@@ -1,0 +1,69 @@
+---
+title: "RTF Examples for Figures"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{example-figure}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message = FALSE}
+library(dplyr)
+library(r2rtf)
+```
+
+The package allow user to embed multiple figures into one RTF document. The workflow can be summarized as
+
+1. save figures into PNG format. (e.g. using `png()` or `ggplot2::ggsave()`).
+1. read PNG files into R as binary file using `r2rtf::rtf_read_png()`.
+1. add optional features using `r2rtf::title()`, `r2rtf::footnote()`, `r2rtf::source()`.
+1. set up page and figure options using `r2rtf::rtf_figure()`.
+1. encode rtf using `r2rtf::rtf_encode(type = "figure")`. (Note: it is important to set `type = "figure")` as the default is `type = "figure` to handle tables).
+1. write rtf to a file using `r2rtf::write_rtf`.
+
+A quick example to illustrate the workflow:
+```{r, eval = FALSE}
+# Define the path of figure 
+filename <- c("fig/fig1.png", "fig/fig2.png", "fig/fig3.png")
+
+filename %>% 
+  rtf_read_png() %>%                          # read PNG files from the file path
+  rtf_title("title", "subtitle") %>%          # add title or subtitle 
+  rtf_footnote("footnote") %>%                # add footnote
+  rtf_source("[datasource: mk0999]") %>%      # add data source
+  rtf_figure() %>%                            # default seting of page and figure 
+  rtf_encode(type = "figure") %>%             # encode rtf as figure
+  write_rtf(file = "rtf/fig-simple.rtf")      # write RTF to a file
+```
+
+In `rtf_figure`, the features of page and figure can be set up: 
+
+* Page direction: `rtf_figure`. 
+* Page margin: `doctype`.
+* Page height and width: `page_height` and `page_width`.
+* Figure height and width: `fig_heigth` and `fig_width`.
+
+The figure height and width can be set up for each figure in a vector. The code below provides an example for these features.
+```{r, eval = FALSE}
+filename %>% 
+  rtf_read_png() %>%                          # read PNG files from the file path
+  rtf_title("title", "subtitle") %>%          # add title or subtitle 
+  rtf_footnote("footnote") %>%                # add footnote
+  rtf_source("[datasource: mk0999]") %>%      # add data source
+  rtf_figure(page_height = 8.5,               # page height 
+             page_width = 11,                 # page width  
+             orientation = "landscape",       # page direction
+             doctype = "narrow",              # set page margin as narrow i.e. 0.5 inch at each side
+             fig_height = 5,                  # set figure height
+             fig_width = c(6,7,8) ) %>%       # set figure width individually.  
+  rtf_encode(type = "figure") %>%             # encode rtf as figure
+  write_rtf(file = "rtf/fig-landscape.rtf")   # write RTF to a file
+```
+

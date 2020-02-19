@@ -1,0 +1,10 @@
+^docs$
+^_pkgdown\.yml$
+^r2rtf\.Rproj$
+^\.Rproj\.user$
+^pkgdown$
+^pipelines-definition.groovy$
+^\vignettes\figure$
+^README.Rmd$
+^LICENSES_THIRD_PARTY$
+^LICENSE$

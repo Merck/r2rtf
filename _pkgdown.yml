@@ -1,0 +1,27 @@
+destination: docs
+development:
+  mode: auto
+  destination: dev
+  version_label: danger
+  version_tooltip: "Initial Version"
+template:
+  package: r2rtf
+  params:
+    bootswatch: flatly
+  navbar:
+  type: inverse
+reference:
+- title: RTF
+  contents:
+  - starts_with("rtf")
+  - ends_with("rtf")
+- title: Utility Data
+  contents:
+  - matches("unicode_latex")
+- title: Example Data
+  contents:
+  - ends_with("gt")
+  - matches("HAMD17")
+  - matches("adae")
+  - matches("adsl")
+  - matches("adtte")
