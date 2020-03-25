@@ -4,14 +4,28 @@
 \alias{rtf_title}
 \title{Add title attributes to the table}
 \usage{
-rtf_title(gt_tbl, title = NULL, subtitle = NULL, font = 1,
-  format = NULL, font_size = 12, color = NULL,
-  background_color = NULL, justification = "c", indent_first = 0,
-  indent_left = 0, indent_right = 0, space = 1, space_before = 180,
-  space_after = 180, new_page = FALSE, hyphenation = TRUE)
+rtf_title(
+  tbl,
+  title = NULL,
+  subtitle = NULL,
+  font = 1,
+  format = NULL,
+  font_size = 12,
+  color = NULL,
+  background_color = NULL,
+  justification = "c",
+  indent_first = 0,
+  indent_left = 0,
+  indent_right = 0,
+  space = 1,
+  space_before = 180,
+  space_after = 180,
+  new_page = FALSE,
+  hyphenation = TRUE
+)
 }
 \arguments{
-\item{gt_tbl}{a data frame}
+\item{tbl}{a data frame}
 
 \item{title}{title string}
 

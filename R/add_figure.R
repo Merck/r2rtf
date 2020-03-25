@@ -20,11 +20,11 @@
 #' @param file a vector of PNG file path
 #'
 #' @export
-rtf_read_png <- function(file){
-  lapply(file, readBin, what="raw", size=1, signed=TRUE, endian="little", n = 1e8)
+rtf_read_png <- function(file) {
+  lapply(file, readBin, what = "raw", size = 1, signed = TRUE, endian = "little", n = 1e8)
 }
 
-#' Add Figure Attrbuties
+#' Add Figure Attributes
 #'
 #' @inheritParams rtf_body
 #'
@@ -32,7 +32,7 @@ rtf_read_png <- function(file){
 #' @param fig_height the height of figures in inch
 #'
 #' @export
-rtf_figure <- function(gt_tbl,
+rtf_figure <- function(tbl,
 
                        page_width = 8.5,
                        page_height = 11,
@@ -40,22 +40,20 @@ rtf_figure <- function(gt_tbl,
                        doctype = "wma",
 
                        fig_width = 5,
-                       fig_height = 5){
-
-  gt_tbl <- .rtf_page_size(gt_tbl,
-                           page_width   = page_width,
-                           page_height  = page_height,
-                           orientation  = orientation
+                       fig_height = 5) {
+  tbl <- .rtf_page_size(tbl,
+    page_width = page_width,
+    page_height = page_height,
+    orientation = orientation
   )
 
-  gt_tbl <- .rtf_page_margin(gt_tbl,
-                             doctype = doctype,
-                             orientation = orientation
+  tbl <- .rtf_page_margin(tbl,
+    doctype = doctype,
+    orientation = orientation
   )
 
-  attr(gt_tbl, "fig_width")  <- matrix(fig_width, nrow = length(gt_tbl), ncol = 1, byrow = TRUE)
-  attr(gt_tbl, "fig_height") <- matrix(fig_height, nrow = length(gt_tbl), ncol = 1, byrow = TRUE)
+  attr(tbl, "fig_width") <- matrix(fig_width, nrow = length(tbl), ncol = 1, byrow = TRUE)
+  attr(tbl, "fig_height") <- matrix(fig_height, nrow = length(tbl), ncol = 1, byrow = TRUE)
 
-  gt_tbl
-
+  tbl
 }

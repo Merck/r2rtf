@@ -38,4 +38,3 @@
 
 #' unicode_latex
 "unicode_latex"
-

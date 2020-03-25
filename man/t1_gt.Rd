@@ -4,7 +4,7 @@
 \name{t1_gt}
 \alias{t1_gt}
 \title{t1_gt}
-\format{An object of class \code{gt_tbl} (inherits from \code{data.frame}) with 2 rows and 8 columns.}
+\format{An object of class \code{tbl} (inherits from \code{data.frame}) with 2 rows and 8 columns.}
 \usage{
 t1_gt
 }

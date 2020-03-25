@@ -4,19 +4,36 @@
 \alias{rtf_colheader}
 \title{Add column header to the table}
 \usage{
-rtf_colheader(gt_tbl, colheader = NULL, border_left = "single",
-  border_right = "single", border_top = NULL, border_bottom = "",
-  border_color_left = NULL, border_color_right = NULL,
-  border_color_top = NULL, border_color_bottom = NULL,
-  border_width = 15, cell_justification = "c", col_rel_width = NULL,
-  page_width = 8.5, col_total_width = page_width/1.4,
-  cell_height = 0.15, text_justification = "c", text_font = 1,
-  text_format = NULL, text_color = NULL,
-  text_background_color = NULL, text_font_size = 9,
-  text_space_before = 15, text_space_after = 15, first_row = FALSE)
+rtf_colheader(
+  tbl,
+  colheader = NULL,
+  border_left = "single",
+  border_right = "single",
+  border_top = NULL,
+  border_bottom = "",
+  border_color_left = NULL,
+  border_color_right = NULL,
+  border_color_top = NULL,
+  border_color_bottom = NULL,
+  border_width = 15,
+  cell_justification = "c",
+  col_rel_width = NULL,
+  page_width = 8.5,
+  col_total_width = page_width/1.4,
+  cell_height = 0.15,
+  text_justification = "c",
+  text_font = 1,
+  text_format = NULL,
+  text_color = NULL,
+  text_background_color = NULL,
+  text_font_size = 9,
+  text_space_before = 15,
+  text_space_after = 15,
+  first_row = FALSE
+)
 }
 \arguments{
-\item{gt_tbl}{A data frame}
+\item{tbl}{A data frame}
 
 \item{colheader}{A string that uses " | " to separate column names.}
 
@@ -36,7 +53,7 @@ rtf_colheader(gt_tbl, colheader = NULL, border_left = "single",
 
 \item{border_color_bottom}{bottom border color}
 
-\item{border_width}{worder width in twips}
+\item{border_width}{border width in twips}
 
 \item{cell_justification}{justification for cell}
 

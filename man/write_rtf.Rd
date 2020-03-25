@@ -7,7 +7,7 @@
 write_rtf(rtf, file)
 }
 \arguments{
-\item{rtf}{rtf encoing string rendered by \code{as_rtf()}}
+\item{rtf}{rtf encoding string rendered by \code{as_rtf()}}
 
 \item{file}{File name to write the output RTF table.}
 }

@@ -4,7 +4,7 @@
 \name{unicode_latex}
 \alias{unicode_latex}
 \title{unicode_latex}
-\format{An object of class \code{data.frame} with 704 rows and 3 columns.}
+\format{An object of class \code{data.frame} with 681 rows and 3 columns.}
 \source{
 \url{http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt}
 }

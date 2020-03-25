@@ -31,10 +31,12 @@
                       font_size = 12,
                       format = NULL,
                       color = NULL,
-                      background_color = NULL){
+                      background_color = NULL) {
 
   ## Set defalut value
-  if( (! is.null(background_color)) & is.null(color)){color <- "black"}
+  if ((!is.null(background_color)) & is.null(color)) {
+    color <- "black"
+  }
 
   ## Define dictionary
   font_type <- .font_type()
@@ -42,15 +44,14 @@
   col_tb <- .color_table()
 
 
-  if(! is.null(format)){
+  if (!is.null(format)) {
     format_check <- unlist(strsplit(format, ""))
-  }else{
+  } else {
     format_check <- NULL
   }
 
   ## check whether input arguments are valid
   stopifnot(
-
     font %in% font_type$type,
 
     as.vector(format_check) %in% font_format$type,
@@ -60,8 +61,6 @@
     color %in% col_tb$color,
 
     background_color %in% col_tb$color
-
-
   )
 
 
@@ -71,26 +70,29 @@
 
   ### Font
   font <- factor(font, levels = font_type$type, labels = font_type$rtf_code)
-  font_size <- paste0("\\fs", round(font_size * 2, 0) )
-
+  font_size <- paste0("\\fs", round(font_size * 2, 0))
 
   ## The combination of text format should be valid.
   ## e.g. type = "bi" or "ib" should be bold and italics.
-  if(! is.null(format)){
-    format <- lapply(strsplit(format, ""), function(x){
+  if (!is.null(format)) {
+    format <- lapply(strsplit(format, ""), function(x) {
       paste0(factor(x, levels = font_format$type, labels = font_format$rtf_code),
-             collapse = "")} )
-    format  <- unlist(format)
-  }else{format <- NULL}
+        collapse = ""
+      )
+    })
+    format <- unlist(format)
+  } else {
+    format <- NULL
+  }
 
   ### Color
   text_color <- NULL
-  if(! is.null(color)){
+  if (!is.null(color)) {
     fg_color <- factor(color, levels = col_tb$color, labels = col_tb$type)
     text_color <- paste0("\\cf", fg_color)
   }
 
-  if(! is.null(background_color)){
+  if (!is.null(background_color)) {
     bg_color <- factor(background_color, levels = col_tb$color, labels = col_tb$type)
     text_color <- paste0(text_color, "\\chshdng0", "\\chcbpat", bg_color, "\\cb", bg_color)
   }
@@ -104,13 +106,14 @@
   end <- "}"
 
 
-  paste0(begin,
-         font, font_size,
-         format,
-         text_color, " ",
-         text,
-         end)
-
+  paste0(
+    begin,
+    font, font_size,
+    format,
+    text_color, " ",
+    text,
+    end
+  )
 }
 
 #' rtf code to add text to paragraph
@@ -130,20 +133,20 @@
 #'
 #' @noRd
 .rtf_paragraph <- function(
-                            text,
+                           text,
 
-                            justification = "c",
+                           justification = "c",
 
-                            indent_first = 0,
-                            indent_left  = 0,
-                            indent_right = 0,
+                           indent_first = 0,
+                           indent_left = 0,
+                           indent_right = 0,
 
-                            space = 1,
-                            space_before = 180,
-                            space_after = 180,
+                           space = 1,
+                           space_before = 180,
+                           space_after = 180,
 
-                            new_page = FALSE,
-                            hyphenation = TRUE){
+                           new_page = FALSE,
+                           hyphenation = TRUE) {
 
   ## Define dictionary
   para_justification <- .justification()
@@ -151,7 +154,6 @@
 
   ## check whether input arguments are valid
   stopifnot(
-
     as.vector(justification) %in% para_justification$type,
 
     is.numeric(indent_first),
@@ -165,30 +167,29 @@
     is.numeric(space_before),
 
     is.numeric(space_after)
-
-
-
   )
 
   begin <- "{\\pard"
 
   ### line space
   space_before <- paste0("\\sb", space_before)
-  space_after  <- paste0("\\sa", space_after)
+  space_after <- paste0("\\sa", space_after)
 
   ### paragraph space
-  space <- factor(space, levels = spacing$type, labels = spacing$rtf_code)
+  space <- factor(space, levels = spacing$type)
+  levels(space) <- spacing$rtf_code
 
   ### Start new page for this paragraph
   page_break <- ifelse(new_page, "\\pagebb", "")
 
   ### Indent
   indent_first <- paste0("\\fi", indent_first)
-  indent_left  <- paste0("\\li", indent_left)
+  indent_left <- paste0("\\li", indent_left)
   indent_right <- paste0("\\ri", indent_right)
 
   ### Alignment
-  alignment <- factor(justification, levels = para_justification$type, labels = para_justification$rtf_code_text)
+  alignment <- factor(justification, levels = para_justification$type)
+  levels(alignment) <- para_justification$rtf_code_text
 
   ### Hyphenation
   hyphenation <- ifelse(hyphenation, "\\hyphpar", "hyphpar0")
@@ -197,11 +198,12 @@
 
 
   ## Paragraph RTF Encode
-  paste0(begin, page_break, hyphenation, "\n",
-        space, space_before, space_after, indent_first, indent_left, indent_right, alignment,  "\n",
-        text, "\n",
-        end)
-
+  paste0(
+    begin, page_break, hyphenation, "\n",
+    space, space_before, space_after, indent_first, indent_left, indent_right, alignment, "\n",
+    text, "\n",
+    end
+  )
 }
 
 #' rtf code to add picture
@@ -209,11 +211,12 @@
 #' @param path path for rtf figure
 #'
 #' @noRd
-.rtf_figure <- function(path){
+.rtf_figure <- function(path) {
   # ToDo
   # refer rtf:::.add.png and rtf::addPng.RTF
 
-  paste0( "{\\field\\fldedit{\\*\\fldinst { INCLUDEPICTURE  \\\\d",
+  paste0(
+    "{\\field\\fldedit{\\*\\fldinst { INCLUDEPICTURE  \\\\d",
     path,
     "\\\\* MERGEFORMATINET }}{\\fldrslt {  }}}"
   )
@@ -226,18 +229,17 @@
 #' @param file file name to save rtf text paragraph, eg. filename.rtf
 #'
 #' @noRd
-write_rtf_para <- function(rtf_body, file){
-
-  col_tb    <- .color_table()
-  rtf_color <- paste(c( "{\\colortbl; ", col_tb$rtf_code, "}"), collapse = "\n")
+write_rtf_para <- function(rtf_body, file) {
+  col_tb <- .color_table()
+  rtf_color <- paste(c("{\\colortbl; ", col_tb$rtf_code, "}"), collapse = "\n")
 
   start_rtf <- paste(
 
     .as_rtf_init(),
     .as_rtf_font(),
     rtf_color,
-    sep="\n"
+    sep = "\n"
   )
-  rtf <- paste(start_rtf, "{\\pard \\par}", paste(rtf_body, collapse = ""), .end_rtf(), sep="\n")
+  rtf <- paste(start_rtf, "{\\pard \\par}", paste(rtf_body, collapse = ""), .end_rtf(), sep = "\n")
   write(rtf, file)
 }

@@ -5,12 +5,12 @@
 \alias{as_rtf}
 \title{Render to RTF Encoding}
 \usage{
-rtf_encode(gt_tbl, type = "table")
+rtf_encode(tbl, type = "table")
 
-as_rtf(gt_tbl, type = "table")
+as_rtf(tbl, type = "table")
 }
 \arguments{
-\item{gt_tbl}{a data frame for table or a list of binary string for figure}
+\item{tbl}{a data frame for table or a list of binary string for figure}
 
 \item{type}{the type of input, default is table.}
 }
