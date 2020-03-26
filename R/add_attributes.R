@@ -39,6 +39,14 @@
 #' @param new_page boolean value to indicate whether to start a new page
 #' @param hyphenation boolean value to indicate whether to use hyphenation
 #'
+#' @examples
+#' \dontrun{
+#' library(dplyr) # required to run examples
+#' data(tbl_1)
+#' tbl_1 %>% rtf_title(title = "ANCOVA of Change from Baseline at Week 8") %>%
+#'   attr("rtf_heading")
+#' }
+#'
 #' @export
 rtf_title <- function(tbl,
 
@@ -111,6 +119,14 @@ rtf_title <- function(tbl,
 #' @param space_after  line space after text
 #' @param new_page boolean value to indicate whether to start a new page
 #' @param hyphenation boolean value to indicate whether to use hyphenation
+#'
+#' @examples
+#' \dontrun{
+#' library(dplyr) # required to run examples
+#' data(tbl_1)
+#' tbl_1 %>% rtf_footnote("\\dagger Based on an ANCOVA model.") %>%
+#'     attr("rtf_footnote")
+#' }
 #'
 #' @export
 rtf_footnote <- function(tbl,
@@ -190,6 +206,14 @@ rtf_footnote <- function(tbl,
 #' @param space_after  line space after text
 #' @param new_page boolean value to indicate whether to start a new page
 #' @param hyphenation boolean value to indicate whether to use hyphenation
+#'
+#' @examples
+#' \dontrun{
+#' library(dplyr) # required to run examples
+#' data(tbl_1)
+#' tbl_1 %>% rtf_source("Source: [study999:adam-adeff]") %>%
+#'     attr("rtf_source")
+#' }
 #'
 #' @export
 rtf_source <- function(tbl,
@@ -335,6 +359,16 @@ rtf_source <- function(tbl,
 #' @param text_space_before line space before text
 #' @param text_space_after  line space after text
 #' @param first_row boolean value to indicate whether column header is the first row of the table
+#'
+#' @examples
+#' \dontrun{
+#' library(dplyr) # required to run examples
+#' data(tbl_1)
+#' tbl_1 %>%
+#'   rtf_colheader(colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
+#'                   Mean (SD) | LS Mean (95% CI)\\dagger") %>%
+#'   attr("rtf_colheader")
+#' }
 #'
 #' @export
 rtf_colheader <- function(tbl,
@@ -496,6 +530,17 @@ rtf_colheader <- function(tbl,
 #' @param page_by column names to group by table in sections
 #' @param new_page a boolean value to indicate whether to separate grouped table into pages by sections
 #' @param last_row a boolean value to indicate whether the table contains the last row of the final table
+#'
+#' @examples
+#' \dontrun{
+#' library(dplyr) # required to run examples
+#' data(tbl_1)
+#' tbl_1 %>%
+#'   rtf_body(col_rel_width = c(3,1,3,1,3,1,3,5),
+#'            text_justification = c("l",rep("c",7)),
+#'            last_row = FALSE) %>%
+#'   attributes()
+#' }
 #'
 #' @export
 rtf_body <- function(tbl,

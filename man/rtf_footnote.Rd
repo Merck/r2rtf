@@ -59,3 +59,12 @@ rtf_footnote(
 \description{
 Add footnote attributes to the table
 }
+\examples{
+\dontrun{
+library(dplyr) # required to run examples
+data(tbl_1)
+tbl_1 \%>\% rtf_footnote("\\\\dagger Based on an ANCOVA model.") \%>\%
+    attr("rtf_footnote")
+}
+
+}

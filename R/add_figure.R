@@ -19,6 +19,17 @@
 #'
 #' @param file a vector of PNG file path
 #'
+#' @examples
+#' \dontrun{
+#'   file <- file.path(tempdir(), "figure1.png")
+#'   png(file)
+#'   plot(1:10)
+#'   dev.off()
+#'
+#'   # Read in PNG file in binary format
+#'   rtf_read_png(file)
+#' }
+#'
 #' @export
 rtf_read_png <- function(file) {
   lapply(file, readBin, what = "raw", size = 1, signed = TRUE, endian = "little", n = 1e8)
@@ -30,6 +41,19 @@ rtf_read_png <- function(file) {
 #'
 #' @param fig_width the width of figures in inch
 #' @param fig_height the height of figures in inch
+#'
+#' @examples
+#' \dontrun{
+#'   library(dplyr) # required to run examples
+#'   file <- file.path(tempdir(), "figure1.png")
+#'   png(file)
+#'   plot(1:10)
+#'   dev.off()
+#'
+#'   # Read in PNG file in binary format
+#'   rtf_read_png(file) %>% rtf_figure() %>%
+#'   attributes()
+#' }
 #'
 #' @export
 rtf_figure <- function(tbl,

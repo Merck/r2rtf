@@ -104,3 +104,15 @@ rtf_body(
 \description{
 add table body attributes to the table
 }
+\examples{
+\dontrun{
+library(dplyr) # required to run examples
+data(tbl_1)
+tbl_1 \%>\%
+  rtf_body(col_rel_width = c(3,1,3,1,3,1,3,5),
+           text_justification = c("l",rep("c",7)),
+           last_row = FALSE) \%>\%
+  attributes()
+}
+
+}

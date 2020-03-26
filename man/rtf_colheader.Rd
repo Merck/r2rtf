@@ -86,3 +86,14 @@ rtf_colheader(
 \description{
 Add column header to the table
 }
+\examples{
+\dontrun{
+library(dplyr) # required to run examples
+data(tbl_1)
+tbl_1 \%>\%
+  rtf_colheader(colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
+                  Mean (SD) | LS Mean (95\% CI)\\\\dagger") \%>\%
+  attr("rtf_colheader")
+}
+
+}

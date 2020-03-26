@@ -27,14 +27,14 @@
 #' HAMD17
 "HAMD17"
 
-#' t1_gt
-"t1_gt"
+#' tbl_1
+"tbl_1"
 
-#' t2_gt
-"t2_gt"
+#' tbl_2
+"tbl_2"
 
-#' t3_gt
-"t3_gt"
+#' tbl_3
+"tbl_3"
 
 #' unicode_latex
 "unicode_latex"

@@ -62,3 +62,12 @@ rtf_title(
 \description{
 add title, subtitle, and other attributes to the object
 }
+\examples{
+\dontrun{
+library(dplyr) # required to run examples
+data(tbl_1)
+tbl_1 \%>\% rtf_title(title = "ANCOVA of Change from Baseline at Week 8") \%>\%
+  attr("rtf_heading")
+}
+
+}

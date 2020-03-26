@@ -24,6 +24,69 @@
 #' @param tbl a data frame for table or a list of binary string for figure
 #' @param type the type of input, default is table.
 #'
+#' @examples
+#' \dontrun{
+#' library(dplyr)  # required to run examples
+#'
+#' # Example 1
+#'   head(iris) %>%
+#'     rtf_body() %>%
+#'     rtf_encode() %>%
+#'     write_rtf(file = file.path(tempdir(), "table1.rtf"))
+#'
+#' # Example 2
+#'   library(dplyr) # required to run examples
+#'   file <- file.path(tempdir(), "figure1.png")
+#'   png(file)
+#'   plot(1:10)
+#'   dev.off()
+#'
+#'   # Read in PNG file in binary format
+#'   rtf_read_png(file) %>% rtf_figure() %>%
+#'     rtf_encode(type = "figure") %>%
+#'     write_rtf(file = file.path(tempdir(), "figure1.rtf"))
+#'
+#' # Example 3
+#'
+#' ## convert tbl_1 to the table body. Add title, subtitle, two table
+#' ## headers, and footnotes to the table body.
+#'   data(tbl_1)
+#'   data(tbl_2)
+#'   data(tbl_3)
+#'   t1 <- tbl_1 %>%
+#'     rtf_title(title = "ANCOVA of Change from Baseline at Week 8",
+#'               subtitle = c("Missing Data Approach",
+#'                            "Analysis Population")) %>%
+#'     rtf_colheader(colheader = " | Baseline | Week 20 | Change from Baseline",
+#'                   col_rel_width = c(3, 4, 4, 9),
+#'                   first_row = TRUE) %>%
+#'     rtf_colheader(colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
+#'                     Mean (SD) | LS Mean (95% CI)\\dagger") %>%
+#'     rtf_body(col_rel_width = c(3,1,3,1,3,1,3,5),
+#'              text_justification = c("l",rep("c",7)),
+#'              last_row = FALSE) %>%
+#'     rtf_footnote(footnote = "\\dagger Based on an ANCOVA model.
+#'                  justification = "l");
+#'   ## convert tbl_2 to the table body. Add a table column header to table body.
+#'   t2 <- tbl_2 %>%
+#'     rtf_colheader(colheader = "Pairwise Comparison |
+#'                    Difference in LS Mean(95% CI)\\dagger | p-Value",
+#'                   text_justification = c("l","c","c")) %>%
+#'     rtf_body(col_rel_width = c(8,7,5),
+#'              text_justification = c("l","c","c"),
+#'              last_row = FALSE);
+#'   ## convert tbl_3 to the table body. Add data source to the table body.
+#'   t3 <- tbl_3 %>%
+#'     rtf_body(colheader = FALSE,
+#'              text_justification = "l") %>%
+#'     rtf_source(source = "Source: [study999:adam-adeff]",
+#'                justification = "l")
+#'   # add t1, t2, and t3 into a list in order
+#'   tbl <- list(t1, t2, t3)
+#'   # concatenate a list of table and save to an RTF file
+#'   tbl %>% rtf_encode() %>% write_rtf(file.path(tempdir(), "table2.rtf"))
+#' }
+#'
 
 
 #' @rdname rtf_encode

@@ -32,3 +32,17 @@ rtf_figure(
 \description{
 Add Figure Attributes
 }
+\examples{
+\dontrun{
+  library(dplyr) # required to run examples
+  file <- file.path(tempdir(), "figure1.png")
+  png(file)
+  plot(1:10)
+  dev.off()
+
+  # Read in PNG file in binary format
+  rtf_read_png(file) \%>\% rtf_figure() \%>\%
+  attributes()
+}
+
+}

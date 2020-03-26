@@ -59,3 +59,12 @@ rtf_source(
 \description{
 Add data source attributes to the table
 }
+\examples{
+\dontrun{
+library(dplyr) # required to run examples
+data(tbl_1)
+tbl_1 \%>\% rtf_source("Source: [study999:adam-adeff]") \%>\%
+    attr("rtf_source")
+}
+
+}
