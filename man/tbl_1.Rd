@@ -3,12 +3,12 @@
 \docType{data}
 \name{tbl_1}
 \alias{tbl_1}
-\title{tbl_1}
-\format{An object of class \code{tbl} (inherits from \code{data.frame}) with 2 rows and 8 columns.}
+\title{Within Group Results from an ANCOVA Model}
+\format{A data frame with 2 rows and 8 variables.}
 \usage{
 tbl_1
 }
 \description{
-tbl_1
+A dataset containing within group results from an ANCOVA model.
 }
 \keyword{datasets}

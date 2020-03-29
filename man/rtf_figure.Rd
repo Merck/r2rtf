@@ -29,11 +29,13 @@ rtf_figure(
 
 \item{fig_height}{the height of figures in inch}
 }
+\value{
+the same data frame \code{tbl} with additional attributes for figure body
+}
 \description{
 Add Figure Attributes
 }
 \examples{
-\dontrun{
   library(dplyr) # required to run examples
   file <- file.path(tempdir(), "figure1.png")
   png(file)
@@ -43,6 +45,5 @@ Add Figure Attributes
   # Read in PNG file in binary format
   rtf_read_png(file) \%>\% rtf_figure() \%>\%
   attributes()
-}
 
 }

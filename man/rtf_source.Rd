@@ -56,15 +56,16 @@ rtf_source(
 
 \item{hyphenation}{boolean value to indicate whether to use hyphenation}
 }
+\value{
+the same data frame \code{tbl} with additional attributes for data source of a table
+}
 \description{
 Add data source attributes to the table
 }
 \examples{
-\dontrun{
 library(dplyr) # required to run examples
 data(tbl_1)
 tbl_1 \%>\% rtf_source("Source: [study999:adam-adeff]") \%>\%
     attr("rtf_source")
-}
 
 }

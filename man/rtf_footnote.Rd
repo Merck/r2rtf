@@ -56,15 +56,16 @@ rtf_footnote(
 
 \item{hyphenation}{boolean value to indicate whether to use hyphenation}
 }
+\value{
+the same data frame \code{tbl} with additional attributes for table footnote
+}
 \description{
 Add footnote attributes to the table
 }
 \examples{
-\dontrun{
 library(dplyr) # required to run examples
 data(tbl_1)
 tbl_1 \%>\% rtf_footnote("\\\\dagger Based on an ANCOVA model.") \%>\%
     attr("rtf_footnote")
-}
 
 }

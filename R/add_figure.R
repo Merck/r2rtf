@@ -19,8 +19,9 @@
 #'
 #' @param file a vector of PNG file path
 #'
+#' @return a list of binary data vector returned by \code{readBin}
+#'
 #' @examples
-#' \dontrun{
 #'   file <- file.path(tempdir(), "figure1.png")
 #'   png(file)
 #'   plot(1:10)
@@ -28,7 +29,6 @@
 #'
 #'   # Read in PNG file in binary format
 #'   rtf_read_png(file)
-#' }
 #'
 #' @export
 rtf_read_png <- function(file) {
@@ -42,8 +42,9 @@ rtf_read_png <- function(file) {
 #' @param fig_width the width of figures in inch
 #' @param fig_height the height of figures in inch
 #'
+#' @return the same data frame \code{tbl} with additional attributes for figure body
+#'
 #' @examples
-#' \dontrun{
 #'   library(dplyr) # required to run examples
 #'   file <- file.path(tempdir(), "figure1.png")
 #'   png(file)
@@ -53,7 +54,6 @@ rtf_read_png <- function(file) {
 #'   # Read in PNG file in binary format
 #'   rtf_read_png(file) %>% rtf_figure() %>%
 #'   attributes()
-#' }
 #'
 #' @export
 rtf_figure <- function(tbl,

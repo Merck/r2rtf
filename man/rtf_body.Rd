@@ -101,11 +101,13 @@ rtf_body(
 
 \item{last_row}{a boolean value to indicate whether the table contains the last row of the final table}
 }
+\value{
+the same data frame \code{tbl} with additional attributes for table body
+}
 \description{
 add table body attributes to the table
 }
 \examples{
-\dontrun{
 library(dplyr) # required to run examples
 data(tbl_1)
 tbl_1 \%>\%
@@ -113,6 +115,5 @@ tbl_1 \%>\%
            text_justification = c("l",rep("c",7)),
            last_row = FALSE) \%>\%
   attributes()
-}
 
 }

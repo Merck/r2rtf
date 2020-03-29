@@ -59,15 +59,16 @@ rtf_title(
 
 \item{hyphenation}{boolean value to indicate whether to use hyphenation}
 }
+\value{
+the same data frame \code{tbl} with additional attributes for table title
+}
 \description{
 add title, subtitle, and other attributes to the object
 }
 \examples{
-\dontrun{
 library(dplyr) # required to run examples
 data(tbl_1)
 tbl_1 \%>\% rtf_title(title = "ANCOVA of Change from Baseline at Week 8") \%>\%
   attr("rtf_heading")
-}
 
 }

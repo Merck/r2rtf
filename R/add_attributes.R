@@ -39,13 +39,13 @@
 #' @param new_page boolean value to indicate whether to start a new page
 #' @param hyphenation boolean value to indicate whether to use hyphenation
 #'
+#' @return the same data frame \code{tbl} with additional attributes for table title
+#'
 #' @examples
-#' \dontrun{
 #' library(dplyr) # required to run examples
 #' data(tbl_1)
 #' tbl_1 %>% rtf_title(title = "ANCOVA of Change from Baseline at Week 8") %>%
 #'   attr("rtf_heading")
-#' }
 #'
 #' @export
 rtf_title <- function(tbl,
@@ -120,13 +120,13 @@ rtf_title <- function(tbl,
 #' @param new_page boolean value to indicate whether to start a new page
 #' @param hyphenation boolean value to indicate whether to use hyphenation
 #'
+#' @return the same data frame \code{tbl} with additional attributes for table footnote
+#'
 #' @examples
-#' \dontrun{
 #' library(dplyr) # required to run examples
 #' data(tbl_1)
 #' tbl_1 %>% rtf_footnote("\\dagger Based on an ANCOVA model.") %>%
 #'     attr("rtf_footnote")
-#' }
 #'
 #' @export
 rtf_footnote <- function(tbl,
@@ -207,13 +207,13 @@ rtf_footnote <- function(tbl,
 #' @param new_page boolean value to indicate whether to start a new page
 #' @param hyphenation boolean value to indicate whether to use hyphenation
 #'
+#' @return the same data frame \code{tbl} with additional attributes for data source of a table
+#'
 #' @examples
-#' \dontrun{
 #' library(dplyr) # required to run examples
 #' data(tbl_1)
 #' tbl_1 %>% rtf_source("Source: [study999:adam-adeff]") %>%
 #'     attr("rtf_source")
-#' }
 #'
 #' @export
 rtf_source <- function(tbl,
@@ -360,15 +360,15 @@ rtf_source <- function(tbl,
 #' @param text_space_after  line space after text
 #' @param first_row boolean value to indicate whether column header is the first row of the table
 #'
+#' @return the same data frame \code{tbl} with additional attributes for table column header
+#'
 #' @examples
-#' \dontrun{
 #' library(dplyr) # required to run examples
 #' data(tbl_1)
 #' tbl_1 %>%
 #'   rtf_colheader(colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
 #'                   Mean (SD) | LS Mean (95% CI)\\dagger") %>%
 #'   attr("rtf_colheader")
-#' }
 #'
 #' @export
 rtf_colheader <- function(tbl,
@@ -531,8 +531,9 @@ rtf_colheader <- function(tbl,
 #' @param new_page a boolean value to indicate whether to separate grouped table into pages by sections
 #' @param last_row a boolean value to indicate whether the table contains the last row of the final table
 #'
+#' @return the same data frame \code{tbl} with additional attributes for table body
+#'
 #' @examples
-#' \dontrun{
 #' library(dplyr) # required to run examples
 #' data(tbl_1)
 #' tbl_1 %>%
@@ -540,7 +541,6 @@ rtf_colheader <- function(tbl,
 #'            text_justification = c("l",rep("c",7)),
 #'            last_row = FALSE) %>%
 #'   attributes()
-#' }
 #'
 #' @export
 rtf_body <- function(tbl,

@@ -83,17 +83,18 @@ rtf_colheader(
 
 \item{first_row}{boolean value to indicate whether column header is the first row of the table}
 }
+\value{
+the same data frame \code{tbl} with additional attributes for table column header
+}
 \description{
 Add column header to the table
 }
 \examples{
-\dontrun{
 library(dplyr) # required to run examples
 data(tbl_1)
 tbl_1 \%>\%
   rtf_colheader(colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
                   Mean (SD) | LS Mean (95\% CI)\\\\dagger") \%>\%
   attr("rtf_colheader")
-}
 
 }

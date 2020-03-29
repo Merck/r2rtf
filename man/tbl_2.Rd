@@ -3,12 +3,12 @@
 \docType{data}
 \name{tbl_2}
 \alias{tbl_2}
-\title{tbl_2}
-\format{An object of class \code{tbl} (inherits from \code{data.frame}) with 1 rows and 3 columns.}
+\title{Between Group Results from an ANCOVA Model}
+\format{A data frame with 1 row and 3 variables.}
 \usage{
 tbl_2
 }
 \description{
-tbl_2
+A dataset containing between group results from an ANCOVA model.
 }
 \keyword{datasets}

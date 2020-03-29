@@ -3,12 +3,12 @@
 \docType{data}
 \name{tbl_3}
 \alias{tbl_3}
-\title{tbl_3}
-\format{An object of class \code{tbl} (inherits from \code{data.frame}) with 1 rows and 1 columns.}
+\title{Root Mean Square Error from an ANCOVA model}
+\format{A data frame with 1 row and 1 variable.}
 \usage{
 tbl_3
 }
 \description{
-tbl_3
+A dataset containing root mean square error from an ANCOVA model.
 }
 \keyword{datasets}
