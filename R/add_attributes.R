@@ -21,7 +21,7 @@
 #'
 #' @description
 #' add title, subtitle, and other attributes to the object
-#' @param gt_tbl a data frame
+#' @param tbl a data frame
 #' @param title title string
 #' @param subtitle subtitle string
 #' @param font text font type
@@ -39,8 +39,16 @@
 #' @param new_page boolean value to indicate whether to start a new page
 #' @param hyphenation boolean value to indicate whether to use hyphenation
 #'
+#' @return the same data frame \code{tbl} with additional attributes for table title
+#'
+#' @examples
+#' library(dplyr) # required to run examples
+#' data(tbl_1)
+#' tbl_1 %>% rtf_title(title = "ANCOVA of Change from Baseline at Week 8") %>%
+#'   attr("rtf_heading")
+#'
 #' @export
-rtf_title <- function(gt_tbl,
+rtf_title <- function(tbl,
 
                       title = NULL,
                       subtitle = NULL,
@@ -53,7 +61,7 @@ rtf_title <- function(gt_tbl,
                       justification = "c",
 
                       indent_first = 0,
-                      indent_left  = 0,
+                      indent_left = 0,
                       indent_right = 0,
 
                       space = 1,
@@ -61,41 +69,33 @@ rtf_title <- function(gt_tbl,
                       space_after = 180,
 
                       new_page = FALSE,
-                      hyphenation = TRUE){
-
-
-  if ("rtf_heading" %in% names(attributes(gt_tbl))) {
-
-    attr(gt_tbl, "rtf_heading")$title <- c(attr(gt_tbl, "rtf_heading")$title, title)
-    attr(gt_tbl, "rtf_heading")$subtitle <- c(attr(gt_tbl, "rtf_heading")$subtitle, subtitle)
-
-
+                      hyphenation = TRUE) {
+  if ("rtf_heading" %in% names(attributes(tbl))) {
+    attr(tbl, "rtf_heading")$title <- c(attr(tbl, "rtf_heading")$title, title)
+    attr(tbl, "rtf_heading")$subtitle <- c(attr(tbl, "rtf_heading")$subtitle, subtitle)
   } else {
-
-    attr(gt_tbl, "rtf_heading") <- list(title = title, subtitle = subtitle)
-
+    attr(tbl, "rtf_heading") <- list(title = title, subtitle = subtitle)
   }
 
 
-  attr(gt_tbl, "rtf_heading")$font               <- font
-  attr(gt_tbl, "rtf_heading")$format             <- format
-  attr(gt_tbl, "rtf_heading")$font_size          <- font_size
-  attr(gt_tbl, "rtf_heading")$color              <- color
-  attr(gt_tbl, "rtf_heading")$background_color   <- background_color
-  attr(gt_tbl, "rtf_heading")$justification      <- justification
-  attr(gt_tbl, "rtf_heading")$indent_first       <- indent_first
-  attr(gt_tbl, "rtf_heading")$indent_left        <- indent_left
-  attr(gt_tbl, "rtf_heading")$indent_right       <- indent_right
-  attr(gt_tbl, "rtf_heading")$space              <- space
-  attr(gt_tbl, "rtf_heading")$space_before       <- space_before
-  attr(gt_tbl, "rtf_heading")$space_after        <- space_after
-  attr(gt_tbl, "rtf_heading")$new_page           <- new_page
-  attr(gt_tbl, "rtf_heading")$hyphenation        <- hyphenation
+  attr(tbl, "rtf_heading")$font <- font
+  attr(tbl, "rtf_heading")$format <- format
+  attr(tbl, "rtf_heading")$font_size <- font_size
+  attr(tbl, "rtf_heading")$color <- color
+  attr(tbl, "rtf_heading")$background_color <- background_color
+  attr(tbl, "rtf_heading")$justification <- justification
+  attr(tbl, "rtf_heading")$indent_first <- indent_first
+  attr(tbl, "rtf_heading")$indent_left <- indent_left
+  attr(tbl, "rtf_heading")$indent_right <- indent_right
+  attr(tbl, "rtf_heading")$space <- space
+  attr(tbl, "rtf_heading")$space_before <- space_before
+  attr(tbl, "rtf_heading")$space_after <- space_after
+  attr(tbl, "rtf_heading")$new_page <- new_page
+  attr(tbl, "rtf_heading")$hyphenation <- hyphenation
 
 
 
-  gt_tbl
-
+  tbl
 }
 
 
@@ -103,7 +103,7 @@ rtf_title <- function(gt_tbl,
 
 #' @title Add footnote attributes to the table
 #'
-#' @param gt_tbl a data frame
+#' @param tbl a data frame
 #' @param footnote footnote text
 #' @param font text font type
 #' @param font_size text font size
@@ -120,8 +120,16 @@ rtf_title <- function(gt_tbl,
 #' @param new_page boolean value to indicate whether to start a new page
 #' @param hyphenation boolean value to indicate whether to use hyphenation
 #'
+#' @return the same data frame \code{tbl} with additional attributes for table footnote
+#'
+#' @examples
+#' library(dplyr) # required to run examples
+#' data(tbl_1)
+#' tbl_1 %>% rtf_footnote("\\dagger Based on an ANCOVA model.") %>%
+#'     attr("rtf_footnote")
+#'
 #' @export
-rtf_footnote <- function(gt_tbl,
+rtf_footnote <- function(tbl,
 
                          footnote = NULL,
 
@@ -133,7 +141,7 @@ rtf_footnote <- function(gt_tbl,
                          justification = "c",
 
                          indent_first = 0,
-                         indent_left  = 0,
+                         indent_left = 0,
                          indent_right = 0,
 
                          space = 1,
@@ -141,44 +149,39 @@ rtf_footnote <- function(gt_tbl,
                          space_after = 0,
 
                          new_page = FALSE,
-                         hyphenation = TRUE){
-
-
-  if ("rtf_footnote" %in% names(attributes(gt_tbl))) {
-
-    attr(gt_tbl, "rtf_footnote")$footnote <- c(attr(gt_tbl, "rtf_footnote")$footnote, footnote)
-
+                         hyphenation = TRUE) {
+  if ("rtf_footnote" %in% names(attributes(tbl))) {
+    attr(tbl, "rtf_footnote")$footnote <- c(attr(tbl, "rtf_footnote")$footnote, footnote)
   } else {
-
-    attr(gt_tbl, "rtf_footnote") <- list(footnote = footnote)
+    attr(tbl, "rtf_footnote") <- list(footnote = footnote)
   }
 
 
   if (justification == "l") {
-    indent_left <- .footnote_source_space(gt_tbl)
+    indent_left <- .footnote_source_space(tbl)
   } else if (justification == "r") {
-    indent_right  <- .footnote_source_space(gt_tbl)
+    indent_right <- .footnote_source_space(tbl)
   }
 
 
 
-  attr(gt_tbl, "rtf_footnote")$font               <- font
-  attr(gt_tbl, "rtf_footnote")$format             <- format
-  attr(gt_tbl, "rtf_footnote")$font_size          <- font_size
-  attr(gt_tbl, "rtf_footnote")$color              <- color
-  attr(gt_tbl, "rtf_footnote")$background_color   <- background_color
-  attr(gt_tbl, "rtf_footnote")$justification      <- justification
-  attr(gt_tbl, "rtf_footnote")$indent_first       <- indent_first
-  attr(gt_tbl, "rtf_footnote")$indent_left        <- indent_left
-  attr(gt_tbl, "rtf_footnote")$indent_right       <- indent_right
-  attr(gt_tbl, "rtf_footnote")$space              <- space
-  attr(gt_tbl, "rtf_footnote")$space_before       <- space_before
-  attr(gt_tbl, "rtf_footnote")$space_after        <- space_after
-  attr(gt_tbl, "rtf_footnote")$new_page           <- new_page
-  attr(gt_tbl, "rtf_footnote")$hyphenation        <- hyphenation
+  attr(tbl, "rtf_footnote")$font <- font
+  attr(tbl, "rtf_footnote")$format <- format
+  attr(tbl, "rtf_footnote")$font_size <- font_size
+  attr(tbl, "rtf_footnote")$color <- color
+  attr(tbl, "rtf_footnote")$background_color <- background_color
+  attr(tbl, "rtf_footnote")$justification <- justification
+  attr(tbl, "rtf_footnote")$indent_first <- indent_first
+  attr(tbl, "rtf_footnote")$indent_left <- indent_left
+  attr(tbl, "rtf_footnote")$indent_right <- indent_right
+  attr(tbl, "rtf_footnote")$space <- space
+  attr(tbl, "rtf_footnote")$space_before <- space_before
+  attr(tbl, "rtf_footnote")$space_after <- space_after
+  attr(tbl, "rtf_footnote")$new_page <- new_page
+  attr(tbl, "rtf_footnote")$hyphenation <- hyphenation
 
 
-  gt_tbl
+  tbl
 }
 
 
@@ -187,7 +190,7 @@ rtf_footnote <- function(gt_tbl,
 
 #' @title Add data source attributes to the table
 #'
-#' @param gt_tbl A data frame
+#' @param tbl A data frame
 #' @param source data source text
 #' @param font text font type
 #' @param font_size text font size
@@ -204,8 +207,16 @@ rtf_footnote <- function(gt_tbl,
 #' @param new_page boolean value to indicate whether to start a new page
 #' @param hyphenation boolean value to indicate whether to use hyphenation
 #'
+#' @return the same data frame \code{tbl} with additional attributes for data source of a table
+#'
+#' @examples
+#' library(dplyr) # required to run examples
+#' data(tbl_1)
+#' tbl_1 %>% rtf_source("Source: [study999:adam-adeff]") %>%
+#'     attr("rtf_source")
+#'
 #' @export
-rtf_source <- function(gt_tbl,
+rtf_source <- function(tbl,
 
                        source = NULL,
 
@@ -217,7 +228,7 @@ rtf_source <- function(gt_tbl,
                        justification = "c",
 
                        indent_first = 0,
-                       indent_left  = 0,
+                       indent_left = 0,
                        indent_right = 0,
 
                        space = 1,
@@ -225,58 +236,51 @@ rtf_source <- function(gt_tbl,
                        space_after = 0,
 
                        new_page = FALSE,
-                       hyphenation = TRUE){
-
-
-  if ("rtf_source" %in% names(attributes(gt_tbl))) {
-
-    attr(gt_tbl, "rtf_source")$source <- c(attr(gt_tbl, "rtf_source")$source, source)
-
+                       hyphenation = TRUE) {
+  if ("rtf_source" %in% names(attributes(tbl))) {
+    attr(tbl, "rtf_source")$source <- c(attr(tbl, "rtf_source")$source, source)
   } else {
-
-    attr(gt_tbl, "rtf_source") <- list(source = source)
+    attr(tbl, "rtf_source") <- list(source = source)
   }
 
   if (justification == "l") {
-    indent_left <- .footnote_source_space(gt_tbl)
+    indent_left <- .footnote_source_space(tbl)
   } else if (justification == "r") {
-    indent_right  <- .footnote_source_space(gt_tbl)
+    indent_right <- .footnote_source_space(tbl)
   }
 
-  attr(gt_tbl, "rtf_source")$font               <- font
-  attr(gt_tbl, "rtf_source")$format             <- format
-  attr(gt_tbl, "rtf_source")$font_size          <- font_size
-  attr(gt_tbl, "rtf_source")$color              <- color
-  attr(gt_tbl, "rtf_source")$background_color   <- background_color
-  attr(gt_tbl, "rtf_source")$justification      <- justification
-  attr(gt_tbl, "rtf_source")$indent_first       <- indent_first
-  attr(gt_tbl, "rtf_source")$indent_left        <- indent_left
-  attr(gt_tbl, "rtf_source")$indent_right       <- indent_right
-  attr(gt_tbl, "rtf_source")$space              <- space
-  attr(gt_tbl, "rtf_source")$space_before       <- space_before
-  attr(gt_tbl, "rtf_source")$space_after        <- space_after
-  attr(gt_tbl, "rtf_source")$new_page           <- new_page
-  attr(gt_tbl, "rtf_source")$hyphenation        <- hyphenation
+  attr(tbl, "rtf_source")$font <- font
+  attr(tbl, "rtf_source")$format <- format
+  attr(tbl, "rtf_source")$font_size <- font_size
+  attr(tbl, "rtf_source")$color <- color
+  attr(tbl, "rtf_source")$background_color <- background_color
+  attr(tbl, "rtf_source")$justification <- justification
+  attr(tbl, "rtf_source")$indent_first <- indent_first
+  attr(tbl, "rtf_source")$indent_left <- indent_left
+  attr(tbl, "rtf_source")$indent_right <- indent_right
+  attr(tbl, "rtf_source")$space <- space
+  attr(tbl, "rtf_source")$space_before <- space_before
+  attr(tbl, "rtf_source")$space_after <- space_after
+  attr(tbl, "rtf_source")$new_page <- new_page
+  attr(tbl, "rtf_source")$hyphenation <- hyphenation
 
 
-  gt_tbl
-
+  tbl
 }
 
 
 #' Add page attributes to the table
 #'
-#' @param gt_tbl A data frame
+#' @param tbl A data frame
 #' @param page_width A numeric number to indicate page width.
 #' @param page_height A numeric number to indicate page height.
 #' @param orientation Orientation in 'portrait' or 'landscape'.
 #'
 #' @noRd
-.rtf_page_size <- function(gt_tbl,
+.rtf_page_size <- function(tbl,
                            page_width,
                            page_height,
                            orientation) {
-
   if (!is.numeric(page_width)) {
     stop("input page_width must be a numeric number")
   }
@@ -286,43 +290,42 @@ rtf_source <- function(gt_tbl,
   }
 
 
-  if (!orientation %in% c("portrait","landscape")){
+  if (!orientation %in% c("portrait", "landscape")) {
     stop("input orientation must be 'portrait' or 'landscape' ")
   }
 
-  attr(gt_tbl, "page_width")  <- page_width
-  attr(gt_tbl, "page_height") <- page_height
-  attr(gt_tbl, "orientation") <- orientation
+  attr(tbl, "page_width") <- page_width
+  attr(tbl, "page_height") <- page_height
+  attr(tbl, "orientation") <- orientation
 
-  gt_tbl
+  tbl
 }
 
 
 
 #' Add margin attributes to the table
 #'
-#' @param gt_tbl A data frame
+#' @param tbl A data frame
 #' @param doctype doctype in 'csr', 'wma', 'wmm' or 'narrow'
 #' @param orientation Orientation in 'portrait' or 'landscape'.
 #'
 #' @noRd
-.rtf_page_margin <- function(gt_tbl,
+.rtf_page_margin <- function(tbl,
                              doctype,
                              orientation) {
-
-  if (!doctype %in% c("csr", "wma", "wmm", "narrow")){
+  if (!doctype %in% c("csr", "wma", "wmm", "narrow")) {
     stop("input doctype must be 'csr', 'wma', 'wmm' or 'narrow' ")
   }
 
 
-  if (!orientation %in% c("portrait","landscape")){
+  if (!orientation %in% c("portrait", "landscape")) {
     stop("input orientation must be 'portrait' or 'landscape' ")
   }
 
 
-  attr(gt_tbl, "doctype")  <- doctype
+  attr(tbl, "doctype") <- doctype
 
-  gt_tbl
+  tbl
 }
 
 
@@ -331,7 +334,7 @@ rtf_source <- function(gt_tbl,
 
 #' @title Add column header to the table
 #'
-#' @param gt_tbl A data frame
+#' @param tbl A data frame
 #' @param colheader A string that uses " | " to separate column names.
 #' @param border_left left border type
 #' @param border_right right border type
@@ -341,7 +344,7 @@ rtf_source <- function(gt_tbl,
 #' @param border_color_right right border color
 #' @param border_color_top top border color
 #' @param border_color_bottom bottom border color
-#' @param border_width worder width in twips
+#' @param border_width border width in twips
 #' @param cell_justification justification for cell
 #' @param col_rel_width column relative width in a vector eg. c(2,1,1) refers to 2:1;1
 #' @param page_width page width in inches
@@ -357,148 +360,146 @@ rtf_source <- function(gt_tbl,
 #' @param text_space_after  line space after text
 #' @param first_row boolean value to indicate whether column header is the first row of the table
 #'
+#' @return the same data frame \code{tbl} with additional attributes for table column header
+#'
+#' @examples
+#' library(dplyr) # required to run examples
+#' data(tbl_1)
+#' tbl_1 %>%
+#'   rtf_colheader(colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
+#'                   Mean (SD) | LS Mean (95% CI)\\dagger") %>%
+#'   attr("rtf_colheader")
+#'
 #' @export
-rtf_colheader <- function(gt_tbl,
+rtf_colheader <- function(tbl,
 
-                          colheader             = NULL,
+                          colheader = NULL,
 
-                          border_left           = "single",
-                          border_right          = "single",
-                          border_top            = NULL,
-                          border_bottom         = "",
+                          border_left = "single",
+                          border_right = "single",
+                          border_top = NULL,
+                          border_bottom = "",
 
-                          border_color_left     = NULL,
-                          border_color_right    = NULL,
-                          border_color_top      = NULL,
-                          border_color_bottom   = NULL,
+                          border_color_left = NULL,
+                          border_color_right = NULL,
+                          border_color_top = NULL,
+                          border_color_bottom = NULL,
 
-                          border_width          = 15,
-                          cell_justification    = "c",
+                          border_width = 15,
+                          cell_justification = "c",
 
-                          col_rel_width         = NULL,
-                          page_width            = 8.5,
-                          col_total_width       = page_width/1.4,
-                          cell_height           = 0.15,
+                          col_rel_width = NULL,
+                          page_width = 8.5,
+                          col_total_width = page_width / 1.4,
+                          cell_height = 0.15,
 
-                          text_justification    = "c",
-                          text_font             = 1,
-                          text_format           =  NULL,
-                          text_color            = NULL,
+                          text_justification = "c",
+                          text_font = 1,
+                          text_format = NULL,
+                          text_color = NULL,
                           text_background_color = NULL,
-                          text_font_size        = 9,
-                          text_space_before     = 15,
-                          text_space_after      = 15,
+                          text_font_size = 9,
+                          text_space_before = 15,
+                          text_space_after = 15,
 
-                          first_row             = FALSE
-
-
-) {
-
+                          first_row = FALSE) {
   if (colheader == "") {
+    attr(tbl, "rtf_colheader")$colheader <- NULL
+    attr(tbl, "rtf_colheader")$first_row <- first_row
+  } else if (!is.null(colheader)) {
+    colheader <- data.frame(t(trimws(unlist(strsplit(colheader, "|", fixed = TRUE)))))
 
-    attr(gt_tbl, "rtf_colheader")$colheader  <- NULL
-    attr(gt_tbl, "rtf_colheader")$first_row  <- first_row
-
-  } else if (!is.null(colheader)){
-
-    colheader <- data.frame( t(trimws(unlist(strsplit(colheader, "|", fixed = TRUE)))))
-
-    n_row = nrow(colheader)
-    n_col = ncol(colheader)
+    n_row <- nrow(colheader)
+    n_col <- ncol(colheader)
 
     # Set default value for column width
-    if (is.null(col_rel_width)){
+    if (is.null(col_rel_width)) {
       col_rel_width <- NA
     }
 
     ## Border top post processing for new page
-    if(is.null(border_top)){
-      border_top = ""
-      border_post = TRUE
-    }else{
-      border_post = FALSE
+    if (is.null(border_top)) {
+      border_top <- ""
+      border_post <- TRUE
+    } else {
+      border_post <- FALSE
     }
 
     # Set default value for text color if background color presented
-    if(is.null(text_color) & ! is.null(text_background_color)){
+    if (is.null(text_color) & !is.null(text_background_color)) {
       text_color <- "black"
     }
 
     # Transer vector to matrix by row
-    foo <- function(x){
-      if( (is.null(dim(x))) & (! is.null(x) ) ){
+    foo <- function(x) {
+      if ((is.null(dim(x))) & (!is.null(x))) {
         x <- matrix(x, nrow = n_row, ncol = n_col, byrow = TRUE)
       }
       x
     }
 
 
-    border_top            <- foo(border_top)
-    border_left           <- foo(border_left)
-    border_right          <- foo(border_right)
-    border_bottom         <- foo(border_bottom)
+    border_top <- foo(border_top)
+    border_left <- foo(border_left)
+    border_right <- foo(border_right)
+    border_bottom <- foo(border_bottom)
 
-    border_color_left     <- foo(border_color_left)
-    border_color_right    <- foo(border_color_right)
-    border_color_top      <- foo(border_color_top)
-    border_color_bottom   <- foo(border_color_bottom)
+    border_color_left <- foo(border_color_left)
+    border_color_right <- foo(border_color_right)
+    border_color_top <- foo(border_color_top)
+    border_color_bottom <- foo(border_color_bottom)
 
-    text_font             <- foo(text_font)
-    text_format           <- foo(text_format)
-    text_color            <- foo(text_color)
+    text_font <- foo(text_font)
+    text_format <- foo(text_format)
+    text_color <- foo(text_color)
     text_background_color <- foo(text_background_color)
-    text_justification    <- foo(text_justification)
-    text_font_size        <- foo(text_font_size)
+    text_justification <- foo(text_justification)
+    text_font_size <- foo(text_font_size)
 
 
     # Update to matrix format
     if (border_post) {
-
-      if (length(.get_colheader(gt_tbl)) == 0 && first_row == TRUE) {
-        border_top[1,] <-  rep("double", n_col)
+      if (length(.get_colheader(tbl)) == 0 && first_row == TRUE) {
+        border_top[1, ] <- rep("double", n_col)
       } else {
-        border_top[1,] <-  rep("single", n_col)
+        border_top[1, ] <- rep("single", n_col)
       }
-
     }
 
-    attr(gt_tbl, "rtf_colheader")$col_rel_width         <- c(attr(gt_tbl, "rtf_colheader")$col_rel_width, list(col_rel_width))
-    attr(gt_tbl, "rtf_colheader")$colheader             <- c(attr(gt_tbl, "rtf_colheader")$colheader, list(colheader))
-    attr(gt_tbl, "rtf_colheader")$border_left           <- c(attr(gt_tbl, "rtf_colheader")$border_left, list(border_left))
-    attr(gt_tbl, "rtf_colheader")$border_right          <- c(attr(gt_tbl, "rtf_colheader")$border_right, list(border_right))
-    attr(gt_tbl, "rtf_colheader")$border_top            <- c(attr(gt_tbl, "rtf_colheader")$border_top, list(border_top))
-    attr(gt_tbl, "rtf_colheader")$border_bottom         <- c(attr(gt_tbl, "rtf_colheader")$border_bottom, list(border_bottom))
-    attr(gt_tbl, "rtf_colheader")$border_color_left     <- c(attr(gt_tbl, "rtf_colheader")$border_color_left, list(border_color_left))
-    attr(gt_tbl, "rtf_colheader")$border_color_right    <- c(attr(gt_tbl, "rtf_colheader")$border_color_right, list(border_color_right))
-    attr(gt_tbl, "rtf_colheader")$border_color_bottom   <- c(attr(gt_tbl, "rtf_colheader")$border_color_bottom, list(border_color_bottom))
-    attr(gt_tbl, "rtf_colheader")$border_width          <- c(attr(gt_tbl, "rtf_colheader")$border_width, list(border_width))
-    attr(gt_tbl, "rtf_colheader")$cell_justification    <- c(attr(gt_tbl, "rtf_colheader")$cell_justification, list(cell_justification))
-    attr(gt_tbl, "rtf_colheader")$page_width            <- c(attr(gt_tbl, "rtf_colheader")$page_width, list(page_width))
-    attr(gt_tbl, "rtf_colheader")$col_total_width       <- c(attr(gt_tbl, "rtf_colheader")$col_total_width, list(col_total_width))
-    attr(gt_tbl, "rtf_colheader")$cell_height           <- c(attr(gt_tbl, "rtf_colheader")$cell_height, list(cell_height))
-    attr(gt_tbl, "rtf_colheader")$text_justification    <- c(attr(gt_tbl, "rtf_colheader")$text_justification, list(text_justification))
-    attr(gt_tbl, "rtf_colheader")$text_font             <- c(attr(gt_tbl, "rtf_colheader")$text_font, list(text_font))
-    attr(gt_tbl, "rtf_colheader")$text_format           <- c(attr(gt_tbl, "rtf_colheader")$text_format, list(text_format))
-    attr(gt_tbl, "rtf_colheader")$text_color            <- c(attr(gt_tbl, "rtf_colheader")$text_color, list(text_color))
-    attr(gt_tbl, "rtf_colheader")$text_background_color <- c(attr(gt_tbl, "rtf_colheader")$text_background_color, list(text_background_color))
-    attr(gt_tbl, "rtf_colheader")$text_font_size        <- c(attr(gt_tbl, "rtf_colheader")$text_font_size, list(text_font_size))
-    attr(gt_tbl, "rtf_colheader")$text_space_before     <- c(attr(gt_tbl, "rtf_colheader")$text_space_before, list(text_space_before))
-    attr(gt_tbl, "rtf_colheader")$text_space_after      <- c(attr(gt_tbl, "rtf_colheader")$text_space_after, list(text_space_after))
-    attr(gt_tbl, "rtf_colheader")$first_row             <- c(attr(gt_tbl, "rtf_colheader")$first_row, list(first_row))
-
-
-
-  }else{
-    attr(gt_tbl, "rtf_colheader")$colheader  <- NULL
+    attr(tbl, "rtf_colheader")$col_rel_width <- c(attr(tbl, "rtf_colheader")$col_rel_width, list(col_rel_width))
+    attr(tbl, "rtf_colheader")$colheader <- c(attr(tbl, "rtf_colheader")$colheader, list(colheader))
+    attr(tbl, "rtf_colheader")$border_left <- c(attr(tbl, "rtf_colheader")$border_left, list(border_left))
+    attr(tbl, "rtf_colheader")$border_right <- c(attr(tbl, "rtf_colheader")$border_right, list(border_right))
+    attr(tbl, "rtf_colheader")$border_top <- c(attr(tbl, "rtf_colheader")$border_top, list(border_top))
+    attr(tbl, "rtf_colheader")$border_bottom <- c(attr(tbl, "rtf_colheader")$border_bottom, list(border_bottom))
+    attr(tbl, "rtf_colheader")$border_color_left <- c(attr(tbl, "rtf_colheader")$border_color_left, list(border_color_left))
+    attr(tbl, "rtf_colheader")$border_color_right <- c(attr(tbl, "rtf_colheader")$border_color_right, list(border_color_right))
+    attr(tbl, "rtf_colheader")$border_color_bottom <- c(attr(tbl, "rtf_colheader")$border_color_bottom, list(border_color_bottom))
+    attr(tbl, "rtf_colheader")$border_width <- c(attr(tbl, "rtf_colheader")$border_width, list(border_width))
+    attr(tbl, "rtf_colheader")$cell_justification <- c(attr(tbl, "rtf_colheader")$cell_justification, list(cell_justification))
+    attr(tbl, "rtf_colheader")$page_width <- c(attr(tbl, "rtf_colheader")$page_width, list(page_width))
+    attr(tbl, "rtf_colheader")$col_total_width <- c(attr(tbl, "rtf_colheader")$col_total_width, list(col_total_width))
+    attr(tbl, "rtf_colheader")$cell_height <- c(attr(tbl, "rtf_colheader")$cell_height, list(cell_height))
+    attr(tbl, "rtf_colheader")$text_justification <- c(attr(tbl, "rtf_colheader")$text_justification, list(text_justification))
+    attr(tbl, "rtf_colheader")$text_font <- c(attr(tbl, "rtf_colheader")$text_font, list(text_font))
+    attr(tbl, "rtf_colheader")$text_format <- c(attr(tbl, "rtf_colheader")$text_format, list(text_format))
+    attr(tbl, "rtf_colheader")$text_color <- c(attr(tbl, "rtf_colheader")$text_color, list(text_color))
+    attr(tbl, "rtf_colheader")$text_background_color <- c(attr(tbl, "rtf_colheader")$text_background_color, list(text_background_color))
+    attr(tbl, "rtf_colheader")$text_font_size <- c(attr(tbl, "rtf_colheader")$text_font_size, list(text_font_size))
+    attr(tbl, "rtf_colheader")$text_space_before <- c(attr(tbl, "rtf_colheader")$text_space_before, list(text_space_before))
+    attr(tbl, "rtf_colheader")$text_space_after <- c(attr(tbl, "rtf_colheader")$text_space_after, list(text_space_after))
+    attr(tbl, "rtf_colheader")$first_row <- c(attr(tbl, "rtf_colheader")$first_row, list(first_row))
+  } else {
+    attr(tbl, "rtf_colheader")$colheader <- NULL
   }
 
-  gt_tbl
+  tbl
 }
 
 
 #' @title add table body attributes to the table
 #'
-#' @param gt_tbl A data frame
+#' @param tbl A data frame
 #' @param colheader A boolean value to indicate whether to add default column header to the table
 #' @param page_width page width in inches
 #' @param page_height page height in inches
@@ -512,7 +513,7 @@ rtf_colheader <- function(gt_tbl,
 #' @param border_color_right right border color
 #' @param border_color_top top border color
 #' @param border_color_bottom bottom border color
-#' @param border_width worder width in twips
+#' @param border_width border width in twips
 #' @param cell_justification justification for cell
 #' @param col_rel_width column relative width in a vector eg. c(2,1,1) refers to 2:1;1
 #' @param col_total_width column total width for the table
@@ -530,183 +531,178 @@ rtf_colheader <- function(gt_tbl,
 #' @param new_page a boolean value to indicate whether to separate grouped table into pages by sections
 #' @param last_row a boolean value to indicate whether the table contains the last row of the final table
 #'
+#' @return the same data frame \code{tbl} with additional attributes for table body
+#'
+#' @examples
+#' library(dplyr) # required to run examples
+#' data(tbl_1)
+#' tbl_1 %>%
+#'   rtf_body(col_rel_width = c(3,1,3,1,3,1,3,5),
+#'            text_justification = c("l",rep("c",7)),
+#'            last_row = FALSE) %>%
+#'   attributes()
+#'
 #' @export
-rtf_body <- function(gt_tbl,
+rtf_body <- function(tbl,
 
-                     colheader             = TRUE,
+                     colheader = TRUE,
 
-                     page_width            = 8.5,
-                     page_height           = 11,
-                     orientation           = "portrait",
-                     doctype               = "wma",
+                     page_width = 8.5,
+                     page_height = 11,
+                     orientation = "portrait",
+                     doctype = "wma",
 
-                     border_left           = "single",
-                     border_right          = "single",
-                     border_top            = NULL,
-                     border_bottom         = "double",
+                     border_left = "single",
+                     border_right = "single",
+                     border_top = NULL,
+                     border_bottom = "double",
 
-                     border_color_left     = NULL,
-                     border_color_right    = NULL,
-                     border_color_top      = NULL,
-                     border_color_bottom   = NULL,
+                     border_color_left = NULL,
+                     border_color_right = NULL,
+                     border_color_top = NULL,
+                     border_color_bottom = NULL,
 
-                     border_width          = 15,
-                     col_rel_width         = NULL,
-                     col_total_width       = page_width/1.4,
-                     cell_height           = 0.15,
-                     cell_justification    = "c",
+                     border_width = 15,
+                     col_rel_width = NULL,
+                     col_total_width = page_width / 1.4,
+                     cell_height = 0.15,
+                     cell_justification = "c",
 
-                     text_font             = 1,
-                     text_format           =  NULL,
-                     text_color            = NULL,
+                     text_font = 1,
+                     text_format = NULL,
+                     text_color = NULL,
                      text_background_color = NULL,
-                     text_justification    = "c",
-                     text_font_size        = 9,
-                     text_space_before     = 15,
-                     text_space_after      = 15,
+                     text_justification = "c",
+                     text_font_size = 9,
+                     text_space_before = 15,
+                     text_space_after = 15,
 
-                     page_num              = NULL,
+                     page_num = NULL,
 
-                     page_by               = NULL,
-                     new_page              = FALSE,
+                     page_by = NULL,
+                     new_page = FALSE,
 
-                     last_row              = TRUE){
-
-
-  gt_tbl <- .rtf_page_size(gt_tbl,
-                           page_width   = page_width,
-                           page_height  = page_height,
-                           orientation  = orientation
+                     last_row = TRUE) {
+  tbl <- .rtf_page_size(tbl,
+    page_width = page_width,
+    page_height = page_height,
+    orientation = orientation
   )
 
-  gt_tbl <- .rtf_page_margin(gt_tbl,
-                             doctype = doctype,
-                             orientation = orientation
+  tbl <- .rtf_page_margin(tbl,
+    doctype = doctype,
+    orientation = orientation
   )
 
   ## check whether to add column header or not
-  if (colheader == TRUE){
-
-    if ( is.null(.get_colheader(gt_tbl)$colheader)){
-      gt_tbl <- rtf_colheader(gt_tbl,
-                              colheader = paste(attr(gt_tbl, "names"), collapse = " | " ))
-
+  if (colheader == TRUE) {
+    if (is.null(.get_colheader(tbl)$colheader)) {
+      tbl <- rtf_colheader(tbl,
+        colheader = paste(attr(tbl, "names"), collapse = " | ")
+      )
     }
-
-  }else{
-
-    attr(gt_tbl, "rtf_colheader")$colheader <- NULL
-    attr(gt_tbl, "rtf_colheader")$first_row <- FALSE
+  } else {
+    attr(tbl, "rtf_colheader")$colheader <- NULL
+    attr(tbl, "rtf_colheader")$first_row <- FALSE
   }
 
   ## Border top post processing for new page
-  if(is.null(border_top)){
-    border_top = ""
-    border_post = TRUE
-  }else{
-    border_post = FALSE
+  if (is.null(border_top)) {
+    border_top <- ""
+    border_post <- TRUE
+  } else {
+    border_post <- FALSE
   }
 
-  if ( !is.null(page_by)) {
+  if (!is.null(page_by)) {
+    if (all(page_by %in% attr(tbl, "names"))) {
+      id <- which(attr(tbl, "names") %in% page_by)
 
-    if (all(page_by %in% attr(gt_tbl, "names"))) {
+      page_by_vars <- tbl[, id]
 
-      id  <- which(attr(gt_tbl, "names") %in% page_by)
-
-      page_by_vars <- gt_tbl[,id]
-
-      if (is.null(ncol(page_by_vars))){
-
-        pageby_condition = page_by_vars
-
-      }else{
-
+      if (is.null(ncol(page_by_vars))) {
+        pageby_condition <- page_by_vars
+      } else {
         pageby_condition <- do.call(paste, c(page_by_vars, sep = "-"))
       }
 
-      temp <- lapply(unique(pageby_condition), function(x){
-
-        gt_tbl[which(pageby_condition %in% x), -id]
-
-        })
+      temp <- lapply(unique(pageby_condition), function(x) {
+        tbl[which(pageby_condition %in% x), -id]
+      })
 
       pageby_db <- do.call(rbind, temp)
 
       pageby_colheader <- unique(pageby_condition)
-
-
     } else {
-
-      stop(paste0("page_by must be one of the following: ", paste(attr(gt_tbl, "names"), collapse = ", ")))
+      stop(paste0("page_by must be one of the following: ", paste(attr(tbl, "names"), collapse = ", ")))
     }
-
   } else {
-    pageby_db        <- data.frame(gt_tbl)
+    pageby_db <- data.frame(tbl)
     pageby_condition <- NULL
     pageby_colheader <- NULL
   }
 
 
 
-  n_row = nrow(pageby_db)
-  n_col = ncol(pageby_db)
+  n_row <- nrow(pageby_db)
+  n_col <- ncol(pageby_db)
 
   # Set default value for column width
-  if(is.null(col_rel_width)){
+  if (is.null(col_rel_width)) {
     col_rel_width <- rep(1, n_col)
   }
 
   # Set default value for text color if background color presented
-  if(is.null(text_color) & ! is.null(text_background_color)){
+  if (is.null(text_color) & !is.null(text_background_color)) {
     text_color <- "black"
   }
 
   # Transer vector to matrix by row
-  foo <- function(x){
-    if( (is.null(dim(x))) & (! is.null(x) ) ){
+  foo <- function(x) {
+    if ((is.null(dim(x))) & (!is.null(x))) {
       x <- matrix(x, nrow = n_row, ncol = n_col, byrow = TRUE)
     }
     x
   }
 
-  border_top            <- foo(border_top)
-  border_left           <- foo(border_left)
-  border_right          <- foo(border_right)
-  border_bottom         <- foo(border_bottom)
+  border_top <- foo(border_top)
+  border_left <- foo(border_left)
+  border_right <- foo(border_right)
+  border_bottom <- foo(border_bottom)
 
-  border_color_left     <- foo(border_color_left)
-  border_color_right    <- foo(border_color_right)
-  border_color_top      <- foo(border_color_top)
-  border_color_bottom   <- foo(border_color_bottom)
+  border_color_left <- foo(border_color_left)
+  border_color_right <- foo(border_color_right)
+  border_color_top <- foo(border_color_top)
+  border_color_bottom <- foo(border_color_bottom)
 
-  text_font             <- foo(text_font)
-  text_format           <- foo(text_format)
-  text_color            <- foo(text_color)
+  text_font <- foo(text_font)
+  text_format <- foo(text_format)
+  text_color <- foo(text_color)
   text_background_color <- foo(text_background_color)
-  text_justification    <- foo(text_justification)
-  text_font_size        <- foo(text_font_size)
+  text_justification <- foo(text_justification)
+  text_font_size <- foo(text_font_size)
 
-  page_num      <- .set_page_num(page_num, orientation)
+  page_num <- .set_page_num(page_num, orientation)
 
-  index_list    <- .pageby_db_index(pageby_db,
-                                    pageby_colheader,
-                                    pageby_condition,
-                                    page_num,
-                                    page_by,
-                                    new_page)
+  index_list <- .pageby_db_index(
+    pageby_db,
+    pageby_colheader,
+    pageby_condition,
+    page_num,
+    page_by,
+    new_page
+  )
 
   index_newpage <- index_list$index_newpage
   index_endpage <- index_list$index_endpage
 
 
-  for (x in index_newpage){
-
+  for (x in index_newpage) {
     if (border_post) {
-
-      if (is.null(.get_colheader(gt_tbl)$colheader) && .get_colheader(gt_tbl)$first_row == TRUE) {
-        border_top[x,] <-  rep("double", n_col)
+      if (is.null(.get_colheader(tbl)$colheader) && .get_colheader(tbl)$first_row == TRUE) {
+        border_top[x, ] <- rep("double", n_col)
       } else {
-        border_top[x,] <-  rep("single", n_col)
+        border_top[x, ] <- rep("single", n_col)
       }
     }
   }
@@ -714,48 +710,46 @@ rtf_body <- function(gt_tbl,
 
 
 
-  attr(gt_tbl, "border_top")              <- border_top
-  attr(gt_tbl, "border_left")             <- border_left
-  attr(gt_tbl, "border_right")            <- border_right
-  attr(gt_tbl, "border_bottom")           <- border_bottom
+  attr(tbl, "border_top") <- border_top
+  attr(tbl, "border_left") <- border_left
+  attr(tbl, "border_right") <- border_right
+  attr(tbl, "border_bottom") <- border_bottom
 
-  attr(gt_tbl, "border_color_left")       <- border_color_left
-  attr(gt_tbl, "border_color_right")      <- border_color_right
-  attr(gt_tbl, "border_color_top")        <- border_color_top
-  attr(gt_tbl, "border_color_bottom")     <- border_color_bottom
-
-
-  attr(gt_tbl, "border_width")            <- border_width
-  attr(gt_tbl, "page_width")              <- page_width
-  attr(gt_tbl, "col_total_width")         <- col_total_width
-  attr(gt_tbl, "cell_height")             <- cell_height
-  attr(gt_tbl, "cell_justification")      <- cell_justification
-  attr(gt_tbl, "col_rel_width")           <- col_rel_width
-
-  attr(gt_tbl, "text_font")               <- text_font
-  attr(gt_tbl, "text_format")             <- text_format
-  attr(gt_tbl, "text_font_size")          <- text_font_size
-  attr(gt_tbl, "text_color")              <- text_color
-  attr(gt_tbl, "text_background_color")   <- text_background_color
-  attr(gt_tbl, "text_justification")      <- text_justification
-
-  attr(gt_tbl, "text_space_before")       <- text_space_before
-  attr(gt_tbl, "text_space_after")        <- text_space_after
-
-  attr(gt_tbl, "page_num")                <- page_num
-  attr(gt_tbl, "page_by")                 <- page_by
-  attr(gt_tbl, "new_page")                <- new_page
-  attr(gt_tbl, "pageby_db")               <- pageby_db
-  attr(gt_tbl, "pageby_condition")        <- pageby_condition
-  attr(gt_tbl, "pageby_colheader")        <- pageby_colheader
-  attr(gt_tbl, "pageby_newpage_index")    <- index_newpage
-  attr(gt_tbl, "pageby_endpage_index")    <- index_endpage
+  attr(tbl, "border_color_left") <- border_color_left
+  attr(tbl, "border_color_right") <- border_color_right
+  attr(tbl, "border_color_top") <- border_color_top
+  attr(tbl, "border_color_bottom") <- border_color_bottom
 
 
-  attr(gt_tbl, "last_row")                <- last_row
+  attr(tbl, "border_width") <- border_width
+  attr(tbl, "page_width") <- page_width
+  attr(tbl, "col_total_width") <- col_total_width
+  attr(tbl, "cell_height") <- cell_height
+  attr(tbl, "cell_justification") <- cell_justification
+  attr(tbl, "col_rel_width") <- col_rel_width
+
+  attr(tbl, "text_font") <- text_font
+  attr(tbl, "text_format") <- text_format
+  attr(tbl, "text_font_size") <- text_font_size
+  attr(tbl, "text_color") <- text_color
+  attr(tbl, "text_background_color") <- text_background_color
+  attr(tbl, "text_justification") <- text_justification
+
+  attr(tbl, "text_space_before") <- text_space_before
+  attr(tbl, "text_space_after") <- text_space_after
+
+  attr(tbl, "page_num") <- page_num
+  attr(tbl, "page_by") <- page_by
+  attr(tbl, "new_page") <- new_page
+  attr(tbl, "pageby_db") <- pageby_db
+  attr(tbl, "pageby_condition") <- pageby_condition
+  attr(tbl, "pageby_colheader") <- pageby_colheader
+  attr(tbl, "pageby_newpage_index") <- index_newpage
+  attr(tbl, "pageby_endpage_index") <- index_endpage
 
 
-  gt_tbl
+  attr(tbl, "last_row") <- last_row
+
+
+  tbl
 }
-
-

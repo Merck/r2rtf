@@ -3,12 +3,19 @@
 \docType{data}
 \name{HAMD17}
 \alias{HAMD17}
-\title{HAMD17}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 831 rows and 6 columns.}
+\title{An Efficacy Clinical Trial Data to Evaluate a Drug to Reduce Lower Back Pain}
+\format{A data frame with 831 rows and 6 variables.}
+\source{
+\url{https://missingdata.lshtm.ac.uk/dia-working-group/}
+}
 \usage{
 HAMD17
 }
 \description{
-HAMD17
+A dataset prepared by the Drug Information Association scientific working group
+to investigate a drug to reduce lower back pain.
+}
+\details{
+Definition of each variable can be found in \url{https://missingdata.lshtm.ac.uk/dia-working-group/}
 }
 \keyword{datasets}

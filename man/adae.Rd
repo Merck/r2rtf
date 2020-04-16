@@ -3,12 +3,20 @@
 \docType{data}
 \name{adae}
 \alias{adae}
-\title{ADAE}
-\format{An object of class \code{data.frame} with 1191 rows and 55 columns.}
+\title{An Adverse Event Dataset}
+\format{A data frame with 1191 rows and 55 variables.}
+\source{
+\url{https://www.cdisc.org/pilot-project-submission-package}
+}
 \usage{
 adae
 }
 \description{
-ADAE
+A dataset containing the adverse event information of a clinical trial following
+CDISC ADaM standard.
+}
+\details{
+Definition of each variable can be found in
+\url{https://www.cdisc.org/pilot-project-submission-package}
 }
 \keyword{datasets}

@@ -4,14 +4,27 @@
 \alias{rtf_footnote}
 \title{Add footnote attributes to the table}
 \usage{
-rtf_footnote(gt_tbl, footnote = NULL, font = 1, format = NULL,
-  font_size = 9, color = NULL, background_color = NULL,
-  justification = "c", indent_first = 0, indent_left = 0,
-  indent_right = 0, space = 1, space_before = 0, space_after = 0,
-  new_page = FALSE, hyphenation = TRUE)
+rtf_footnote(
+  tbl,
+  footnote = NULL,
+  font = 1,
+  format = NULL,
+  font_size = 9,
+  color = NULL,
+  background_color = NULL,
+  justification = "c",
+  indent_first = 0,
+  indent_left = 0,
+  indent_right = 0,
+  space = 1,
+  space_before = 0,
+  space_after = 0,
+  new_page = FALSE,
+  hyphenation = TRUE
+)
 }
 \arguments{
-\item{gt_tbl}{a data frame}
+\item{tbl}{a data frame}
 
 \item{footnote}{footnote text}
 
@@ -43,6 +56,16 @@ rtf_footnote(gt_tbl, footnote = NULL, font = 1, format = NULL,
 
 \item{hyphenation}{boolean value to indicate whether to use hyphenation}
 }
+\value{
+the same data frame \code{tbl} with additional attributes for table footnote
+}
 \description{
 Add footnote attributes to the table
+}
+\examples{
+library(dplyr) # required to run examples
+data(tbl_1)
+tbl_1 \%>\% rtf_footnote("\\\\dagger Based on an ANCOVA model.") \%>\%
+    attr("rtf_footnote")
+
 }

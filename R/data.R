@@ -15,27 +15,76 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' ADAE
+#' An Adverse Event Dataset
+#'
+#' A dataset containing the adverse event information of a clinical trial following
+#' CDISC ADaM standard.
+#'
+#' Definition of each variable can be found in
+#' \url{https://www.cdisc.org/pilot-project-submission-package}
+#'
+#' @format A data frame with 1191 rows and 55 variables.
+#'
+#' @source \url{https://www.cdisc.org/pilot-project-submission-package}
+#'
 "adae"
 
-#' ADSL
+#' A Subject Level Demographic Dataset
+#'
+#' A dataset containing the demographic information of a clinical trial following
+#' CDISC ADaM standard.
+#'
+#' Definition of each variable can be found in
+#' \url{https://www.cdisc.org/pilot-project-submission-package}
+#'
+#' @format A data frame with 254 rows and 51 variables.
+#'
+#' @source \url{https://www.cdisc.org/pilot-project-submission-package}
 "adsl"
 
-#' ADTTE
-"adtte"
-
-#' HAMD17
+#' An Efficacy Clinical Trial Data to Evaluate a Drug to Reduce Lower Back Pain
+#'
+#' A dataset prepared by the Drug Information Association scientific working group
+#' to investigate a drug to reduce lower back pain.
+#'
+#' Definition of each variable can be found in \url{https://missingdata.lshtm.ac.uk/dia-working-group/}
+#'
+#' @format A data frame with 831 rows and 6 variables.
+#'
+#' @source \url{https://missingdata.lshtm.ac.uk/dia-working-group/}
 "HAMD17"
 
-#' t1_gt
-"t1_gt"
+#' Within Group Results from an ANCOVA Model
+#'
+#' A dataset containing within group results from an ANCOVA model.
+#'
+#' @format A data frame with 2 rows and 8 variables.
+"tbl_1"
 
-#' t2_gt
-"t2_gt"
+#' Between Group Results from an ANCOVA Model
+#'
+#' A dataset containing between group results from an ANCOVA model.
+#'
+#' @format A data frame with 1 row and 3 variables.
+"tbl_2"
 
-#' t3_gt
-"t3_gt"
+#' Root Mean Square Error from an ANCOVA model
+#'
+#' A dataset containing root mean square error from an ANCOVA model.
+#'
+#' @format A data frame with 1 row and 1 variable.
+"tbl_3"
 
-#' unicode_latex
+#' Dictionary of Unicode and Latex Code
+#'
+#' A dataset containing the mapping between unicode and latex code.
+#'
+#' @format A data frame with 681 rows and 3 variables.
+#' \describe{
+#'    \item{unicode}{unicode, UTF-8 code}
+#'    \item{latex}{latex, latex code}
+#'    \item{int}{int, Converted integer of the UTF-8 code}
+#' }
+#'
+#' @source \url{http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt}
 "unicode_latex"
-
