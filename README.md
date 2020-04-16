@@ -1,3 +1,12 @@
+<!-- badges: start -->
+[![CRAN
+status](https://www.r-pkg.org/badges/version/r2rtf)](https://CRAN.R-project.org/package=r2rtf)
+[![Codecov test
+coverage](https://codecov.io/gh/Merck/r2rtf/branch/master/graph/badge.svg)](https://codecov.io/gh/Merck/r2rtf?branch=master)
+[![R build
+status](https://github.com/Merck/r2rtf/workflows/R-CMD-check/badge.svg)](https://github.com/Merck/r2rtf/actions)
+<!-- badges: end -->
+
 Overview
 ========
 
