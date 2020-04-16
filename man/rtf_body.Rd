@@ -4,22 +4,42 @@
 \alias{rtf_body}
 \title{add table body attributes to the table}
 \usage{
-rtf_body(gt_tbl, colheader = TRUE, page_width = 8.5,
-  page_height = 11, orientation = "portrait", doctype = "wma",
-  border_left = "single", border_right = "single", border_top = NULL,
-  border_bottom = "double", border_color_left = NULL,
-  border_color_right = NULL, border_color_top = NULL,
-  border_color_bottom = NULL, border_width = 15,
-  col_rel_width = NULL, col_total_width = page_width/1.4,
-  cell_height = 0.15, cell_justification = "c", text_font = 1,
-  text_format = NULL, text_color = NULL,
-  text_background_color = NULL, text_justification = "c",
-  text_font_size = 9, text_space_before = 15, text_space_after = 15,
-  page_num = NULL, page_by = NULL, new_page = FALSE,
-  last_row = TRUE)
+rtf_body(
+  tbl,
+  colheader = TRUE,
+  page_width = 8.5,
+  page_height = 11,
+  orientation = "portrait",
+  doctype = "wma",
+  border_left = "single",
+  border_right = "single",
+  border_top = NULL,
+  border_bottom = "double",
+  border_color_left = NULL,
+  border_color_right = NULL,
+  border_color_top = NULL,
+  border_color_bottom = NULL,
+  border_width = 15,
+  col_rel_width = NULL,
+  col_total_width = page_width/1.4,
+  cell_height = 0.15,
+  cell_justification = "c",
+  text_font = 1,
+  text_format = NULL,
+  text_color = NULL,
+  text_background_color = NULL,
+  text_justification = "c",
+  text_font_size = 9,
+  text_space_before = 15,
+  text_space_after = 15,
+  page_num = NULL,
+  page_by = NULL,
+  new_page = FALSE,
+  last_row = TRUE
+)
 }
 \arguments{
-\item{gt_tbl}{A data frame}
+\item{tbl}{A data frame}
 
 \item{colheader}{A boolean value to indicate whether to add default column header to the table}
 
@@ -47,7 +67,7 @@ rtf_body(gt_tbl, colheader = TRUE, page_width = 8.5,
 
 \item{border_color_bottom}{bottom border color}
 
-\item{border_width}{worder width in twips}
+\item{border_width}{border width in twips}
 
 \item{col_rel_width}{column relative width in a vector eg. c(2,1,1) refers to 2:1;1}
 
@@ -81,6 +101,19 @@ rtf_body(gt_tbl, colheader = TRUE, page_width = 8.5,
 
 \item{last_row}{a boolean value to indicate whether the table contains the last row of the final table}
 }
+\value{
+the same data frame \code{tbl} with additional attributes for table body
+}
 \description{
 add table body attributes to the table
+}
+\examples{
+library(dplyr) # required to run examples
+data(tbl_1)
+tbl_1 \%>\%
+  rtf_body(col_rel_width = c(3,1,3,1,3,1,3,5),
+           text_justification = c("l",rep("c",7)),
+           last_row = FALSE) \%>\%
+  attributes()
+
 }

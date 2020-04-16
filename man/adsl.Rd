@@ -3,12 +3,20 @@
 \docType{data}
 \name{adsl}
 \alias{adsl}
-\title{ADSL}
-\format{An object of class \code{data.frame} with 254 rows and 51 columns.}
+\title{A Subject Level Demographic Dataset}
+\format{A data frame with 254 rows and 51 variables.}
+\source{
+\url{https://www.cdisc.org/pilot-project-submission-package}
+}
 \usage{
 adsl
 }
 \description{
-ADSL
+A dataset containing the demographic information of a clinical trial following
+CDISC ADaM standard.
+}
+\details{
+Definition of each variable can be found in
+\url{https://www.cdisc.org/pilot-project-submission-package}
 }
 \keyword{datasets}

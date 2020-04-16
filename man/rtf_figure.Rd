@@ -2,14 +2,20 @@
 % Please edit documentation in R/add_figure.R
 \name{rtf_figure}
 \alias{rtf_figure}
-\title{Add Figure Attrbuties}
+\title{Add Figure Attributes}
 \usage{
-rtf_figure(gt_tbl, page_width = 8.5, page_height = 11,
-  orientation = "portrait", doctype = "wma", fig_width = 5,
-  fig_height = 5)
+rtf_figure(
+  tbl,
+  page_width = 8.5,
+  page_height = 11,
+  orientation = "portrait",
+  doctype = "wma",
+  fig_width = 5,
+  fig_height = 5
+)
 }
 \arguments{
-\item{gt_tbl}{A data frame}
+\item{tbl}{A data frame}
 
 \item{page_width}{page width in inches}
 
@@ -23,6 +29,21 @@ rtf_figure(gt_tbl, page_width = 8.5, page_height = 11,
 
 \item{fig_height}{the height of figures in inch}
 }
+\value{
+the same data frame \code{tbl} with additional attributes for figure body
+}
 \description{
-Add Figure Attrbuties
+Add Figure Attributes
+}
+\examples{
+  library(dplyr) # required to run examples
+  file <- file.path(tempdir(), "figure1.png")
+  png(file)
+  plot(1:10)
+  dev.off()
+
+  # Read in PNG file in binary format
+  rtf_read_png(file) \%>\% rtf_figure() \%>\%
+  attributes()
+
 }

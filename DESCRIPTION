@@ -1,17 +1,18 @@
 Package: r2rtf
-Title: Easily Create Presentation-Ready RTF Table and Figure
-Version: 0.1.0
+Title: Easily Create Presentation-Ready Rich Text Format (RTF) Table and Figure
+Version: 0.1.1
 Authors@R: c(
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = c("aut", "cre")),
-    person("Siruo", "Wang", email = "swang171@jhu.edu", role = c("aut")),
-    person("Simiao", "Ye", email = "simiao.ye1@merck.com", role = c("aut"))
+    person("Siruo", "Wang", email = "swang171@jhu.edu", role = "aut"),
+    person("Simiao", "Ye", email = "simiao.ye1@merck.com", role = "aut"),
+    person("Merck Sharp & Dohme Corp", role = "cph")
     )
-Description: Create RTF table and figure with flexible format.
-Depends: R (>= 3.4.0)
+Description: Create presentation-ready Rich Text Format (RTF) table and figure with flexible and customized format.
+Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.2
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 Suggests: 
