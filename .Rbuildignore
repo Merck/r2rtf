@@ -18,3 +18,5 @@
 ^\vignettes\example-pipeline.Rmd$
 ^\vignettes\rtf-row.Rmd$
 ^\vignettes\rtf-text.Rmd$
+^\.github$
+

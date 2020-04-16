@@ -482,7 +482,9 @@
 #'
 #' @noRd
 .is_subtitle <- function(heading) {
-  length(heading) > 0 && !is.null(heading$subtitle) && heading$subtitle != ""
+
+  length(heading) > 0 & !is.null(heading$subtitle) & all(heading$subtitle != "")
+
 }
 
 
@@ -504,8 +506,10 @@
 #' @param footnote footnote attribute from a data frame
 #'
 #' @noRd
-.is_footnote <- function(footnote) {
-  length(footnote) > 0 && !is.null(footnote$footnote) && footnote$footnote != ""
+.is_footnote <- function(footnote){
+
+  length(footnote) > 0 & !is.null(footnote$footnote) & all(footnote$footnote != "")
+
 }
 
 
