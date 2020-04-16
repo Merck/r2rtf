@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
       </span>
     </div>
 
@@ -98,15 +98,18 @@
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
     </li>
     <li>
-      <a href="../articles/example_pipeline.html">RTF Examples for Tables</a>
+      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
     </li>
     <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controling Table Details</a>
+      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
     </li>
     <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controling Text and Paragraph Details</a>
+      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -133,25 +136,45 @@
     <p>add table body attributes to the table</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rtf_body</span>(<span class='no'>gt_tbl</span>, <span class='kw'>colheader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>page_width</span> <span class='kw'>=</span> <span class='fl'>8.5</span>,
-  <span class='kw'>page_height</span> <span class='kw'>=</span> <span class='fl'>11</span>, <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='st'>"portrait"</span>, <span class='kw'>doctype</span> <span class='kw'>=</span> <span class='st'>"wma"</span>,
-  <span class='kw'>border_left</span> <span class='kw'>=</span> <span class='st'>"single"</span>, <span class='kw'>border_right</span> <span class='kw'>=</span> <span class='st'>"single"</span>, <span class='kw'>border_top</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_bottom</span> <span class='kw'>=</span> <span class='st'>"double"</span>, <span class='kw'>border_color_left</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_color_right</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>border_color_top</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_color_bottom</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>border_width</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-  <span class='kw'>col_rel_width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>col_total_width</span> <span class='kw'>=</span> <span class='no'>page_width</span>/<span class='fl'>1.4</span>,
-  <span class='kw'>cell_height</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>cell_justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>, <span class='kw'>text_font</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>text_format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>text_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>text_background_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>text_justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
-  <span class='kw'>text_font_size</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>text_space_before</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>text_space_after</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-  <span class='kw'>page_num</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>page_by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>new_page</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>last_row</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>rtf_body</span>(
+  <span class='no'>tbl</span>,
+  <span class='kw'>colheader</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>page_width</span> <span class='kw'>=</span> <span class='fl'>8.5</span>,
+  <span class='kw'>page_height</span> <span class='kw'>=</span> <span class='fl'>11</span>,
+  <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='st'>"portrait"</span>,
+  <span class='kw'>doctype</span> <span class='kw'>=</span> <span class='st'>"wma"</span>,
+  <span class='kw'>border_left</span> <span class='kw'>=</span> <span class='st'>"single"</span>,
+  <span class='kw'>border_right</span> <span class='kw'>=</span> <span class='st'>"single"</span>,
+  <span class='kw'>border_top</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_bottom</span> <span class='kw'>=</span> <span class='st'>"double"</span>,
+  <span class='kw'>border_color_left</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_color_right</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_color_top</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_color_bottom</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_width</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>col_rel_width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>col_total_width</span> <span class='kw'>=</span> <span class='no'>page_width</span>/<span class='fl'>1.4</span>,
+  <span class='kw'>cell_height</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
+  <span class='kw'>cell_justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
+  <span class='kw'>text_font</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>text_format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>text_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>text_background_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>text_justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
+  <span class='kw'>text_font_size</span> <span class='kw'>=</span> <span class='fl'>9</span>,
+  <span class='kw'>text_space_before</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>text_space_after</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>page_num</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>page_by</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>new_page</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>last_row</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gt_tbl</th>
+      <th>tbl</th>
       <td><p>A data frame</p></td>
     </tr>
     <tr>
@@ -208,7 +231,7 @@
     </tr>
     <tr>
       <th>border_width</th>
-      <td><p>worder width in twips</p></td>
+      <td><p>border width in twips</p></td>
     </tr>
     <tr>
       <th>col_rel_width</th>
@@ -276,7 +299,415 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>the same data frame <code>tbl</code> with additional attributes for table body</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>) <span class='co'># required to run examples</span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>tbl_1</span>)
+<span class='no'>tbl_1</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>rtf_body</span>(<span class='kw'>col_rel_width</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>5</span>),
+           <span class='kw'>text_justification</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"l"</span>,<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='st'>"c"</span>,<span class='fl'>7</span>)),
+           <span class='kw'>last_row</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>()</div><div class='output co'>#&gt; $class
+#&gt; [1] "tbl"        "data.frame"
+#&gt; 
+#&gt; $row.names
+#&gt; [1] 1 2
+#&gt; 
+#&gt; $names
+#&gt; [1] "Trt"   "N1"    "Mean1" "N2"    "Mean2" "N3"    "Mean3" "CI"   
+#&gt; 
+#&gt; $boxh_df
+#&gt;               Trt    N1 Mean1    N2 Mean2    N3 Mean3   CI
+#&gt; group_label  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;
+#&gt; column_label &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;
+#&gt; column_align left right  left right  left right  left left
+#&gt; 
+#&gt; $stub_df
+#&gt;   groupname rowname
+#&gt; 1      &lt;NA&gt;    &lt;NA&gt;
+#&gt; 2      &lt;NA&gt;    &lt;NA&gt;
+#&gt; 
+#&gt; $footnotes_df
+#&gt; <span style='color: #555555;'># A tibble: 1 x 6</span><span>
+#&gt;   locname     locnum grpname colname rownum text                                
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                               
+#&gt; </span><span style='color: #555555;'>1</span><span> columns_co…      4 </span><span style='color: #BB0000;'>NA</span><span>      CI          </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #555555;'>"</span><span>$^\\dagger$Based on an ANCOVA mode…
+#&gt; 
+#&gt; $styles_df
+#&gt; </span><span style='color: #555555;'># A tibble: 0 x 6</span><span>
+#&gt; </span><span style='color: #555555;'># … with 6 variables: locname </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, locnum </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, grpname </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
+#&gt; </span><span style='color: #555555;'>#   colname </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, rownum </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, text </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
+#&gt; 
+#&gt; $rows_df
+#&gt; </span><span style='color: #555555;'># A tibble: 2 x 1</span><span>
+#&gt;   rownums_start
+#&gt;           </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #555555;'>1</span><span>             1
+#&gt; </span><span style='color: #555555;'>2</span><span>             2
+#&gt; 
+#&gt; $cols_df
+#&gt; </span><span style='color: #555555;'># A tibble: 8 x 1</span><span>
+#&gt;   colnames_start
+#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         
+#&gt; </span><span style='color: #555555;'>1</span><span> Trt           
+#&gt; </span><span style='color: #555555;'>2</span><span> N1            
+#&gt; </span><span style='color: #555555;'>3</span><span> Mean1         
+#&gt; </span><span style='color: #555555;'>4</span><span> N2            
+#&gt; </span><span style='color: #555555;'>5</span><span> Mean2         
+#&gt; </span><span style='color: #555555;'>6</span><span> N3            
+#&gt; </span><span style='color: #555555;'>7</span><span> Mean3         
+#&gt; </span><span style='color: #555555;'>8</span><span> CI            
+#&gt; 
+#&gt; $col_labels
+#&gt; $col_labels$Trt
+#&gt; [1] "Treatment"
+#&gt; 
+#&gt; $col_labels$N1
+#&gt; [1] "N"
+#&gt; 
+#&gt; $col_labels$Mean1
+#&gt; [1] "Mean (SD)"
+#&gt; 
+#&gt; $col_labels$N2
+#&gt; [1] "N"
+#&gt; 
+#&gt; $col_labels$Mean2
+#&gt; [1] "Mean (SD)"
+#&gt; 
+#&gt; $col_labels$N3
+#&gt; [1] "N"
+#&gt; 
+#&gt; $col_labels$Mean3
+#&gt; [1] "Mean (SD)"
+#&gt; 
+#&gt; $col_labels$CI
+#&gt; [1] "$LS Mean (95% CI)\\dagger$"
+#&gt; 
+#&gt; 
+#&gt; $grp_labels
+#&gt; $grp_labels$Trt
+#&gt; [1] NA
+#&gt; 
+#&gt; $grp_labels$N1
+#&gt; [1] NA
+#&gt; 
+#&gt; $grp_labels$Mean1
+#&gt; [1] NA
+#&gt; 
+#&gt; $grp_labels$N2
+#&gt; [1] NA
+#&gt; 
+#&gt; $grp_labels$Mean2
+#&gt; [1] NA
+#&gt; 
+#&gt; $grp_labels$N3
+#&gt; [1] NA
+#&gt; 
+#&gt; $grp_labels$Mean3
+#&gt; [1] NA
+#&gt; 
+#&gt; $grp_labels$CI
+#&gt; [1] NA
+#&gt; 
+#&gt; 
+#&gt; $arrange_groups
+#&gt; $arrange_groups$groups
+#&gt; character(0)
+#&gt; 
+#&gt; 
+#&gt; $data_df
+#&gt;          Trt N1       Mean1 N2       Mean2 N3       Mean3                   CI
+#&gt; 1 Study Drug 61 16.6 (4.41) 61 -6.6 (5.95) 61 -7.0 (9.16)  -7.0 (-8.58, -5.38)
+#&gt; 2    Placebo 70 18.4 (6.34) 70 -9.0 (7.04) 70 -8.7 (8.54) -8.7 (-10.17, -7.18)
+#&gt; 
+#&gt; $opts_df
+#&gt;                             parameter  scss          category      value
+#&gt; 1                     container_width FALSE         container       auto
+#&gt; 2                    container_height FALSE         container       auto
+#&gt; 3                container_overflow_x FALSE         container       auto
+#&gt; 4                container_overflow_y FALSE         container       auto
+#&gt; 5                            table_id FALSE             table brsewjfdtk
+#&gt; 6                         table_width  TRUE             table       auto
+#&gt; 7                     table_font_size  TRUE             table       16px
+#&gt; 8              table_background_color  TRUE             table    #FFFFFF
+#&gt; 9                         margin_left  TRUE             table       auto
+#&gt; 10                       margin_right  TRUE             table       auto
+#&gt; 11             table_border_top_style  TRUE             table      solid
+#&gt; 12             table_border_top_width  TRUE             table        2px
+#&gt; 13             table_border_top_color  TRUE             table    #A8A8A8
+#&gt; 14           heading_background_color  TRUE           heading       &lt;NA&gt;
+#&gt; 15            heading_title_font_size  TRUE           heading       125%
+#&gt; 16         heading_subtitle_font_size  TRUE           heading        85%
+#&gt; 17        heading_border_bottom_style  TRUE           heading      solid
+#&gt; 18        heading_border_bottom_width  TRUE           heading        2px
+#&gt; 19        heading_border_bottom_color  TRUE           heading    #A8A8A8
+#&gt; 20     column_labels_background_color  TRUE           columns       &lt;NA&gt;
+#&gt; 21            column_labels_font_size  TRUE           columns       16px
+#&gt; 22          column_labels_font_weight  TRUE           columns    initial
+#&gt; 23               column_labels_hidden FALSE           columns      FALSE
+#&gt; 24         row_group_background_color  TRUE         row_group       &lt;NA&gt;
+#&gt; 25                row_group_font_size  TRUE         row_group       16px
+#&gt; 26              row_group_font_weight  TRUE         row_group    initial
+#&gt; 27         row_group_border_top_style  TRUE         row_group      solid
+#&gt; 28         row_group_border_top_width  TRUE         row_group        2px
+#&gt; 29         row_group_border_top_color  TRUE         row_group    #A8A8A8
+#&gt; 30      row_group_border_bottom_style  TRUE         row_group      solid
+#&gt; 31      row_group_border_bottom_width  TRUE         row_group        2px
+#&gt; 32      row_group_border_bottom_color  TRUE         row_group    #A8A8A8
+#&gt; 33        table_body_border_top_style  TRUE        table_body      solid
+#&gt; 34        table_body_border_top_width  TRUE        table_body        2px
+#&gt; 35        table_body_border_top_color  TRUE        table_body    #A8A8A8
+#&gt; 36     table_body_border_bottom_style  TRUE        table_body      solid
+#&gt; 37     table_body_border_bottom_width  TRUE        table_body        2px
+#&gt; 38     table_body_border_bottom_color  TRUE        table_body    #A8A8A8
+#&gt; 39                        row_padding  TRUE               row        8px
+#&gt; 40          row_striping_include_stub FALSE               row      FALSE
+#&gt; 41    row_striping_include_table_body FALSE               row       TRUE
+#&gt; 42       summary_row_background_color  TRUE       summary_row       &lt;NA&gt;
+#&gt; 43                summary_row_padding  TRUE       summary_row        8px
+#&gt; 44         summary_row_text_transform  TRUE       summary_row    inherit
+#&gt; 45 grand_summary_row_background_color  TRUE grand_summary_row       &lt;NA&gt;
+#&gt; 46          grand_summary_row_padding  TRUE grand_summary_row        8px
+#&gt; 47   grand_summary_row_text_transform  TRUE grand_summary_row    inherit
+#&gt; 48                       footnote_sep FALSE          footnote     &lt;br /&gt;
+#&gt; 49                     footnote_glyph FALSE          footnote    numbers
+#&gt; 50                 footnote_font_size  TRUE          footnote        90%
+#&gt; 51                   footnote_padding  TRUE          footnote        4px
+#&gt; 52               sourcenote_font_size  TRUE        sourcenote        90%
+#&gt; 53                 sourcenote_padding  TRUE        sourcenote        4px
+#&gt; 
+#&gt; $formats
+#&gt; list()
+#&gt; 
+#&gt; $transforms
+#&gt; list()
+#&gt; 
+#&gt; $heading
+#&gt; $heading$title
+#&gt; [1] "ANCOVA of Change from Baseline at Week 8"
+#&gt; 
+#&gt; $heading$subtitle
+#&gt; [1] "Missing Data Approach \n Analysis Population"
+#&gt; 
+#&gt; 
+#&gt; $page_width
+#&gt; [1] 8.5
+#&gt; 
+#&gt; $page_height
+#&gt; [1] 11
+#&gt; 
+#&gt; $orientation
+#&gt; [1] "portrait"
+#&gt; 
+#&gt; $doctype
+#&gt; [1] "wma"
+#&gt; 
+#&gt; $rtf_colheader
+#&gt; $rtf_colheader$col_rel_width
+#&gt; $rtf_colheader$col_rel_width[[1]]
+#&gt; [1] NA
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$colheader
+#&gt; $rtf_colheader$colheader[[1]]
+#&gt;    X1 X2    X3 X4    X5 X6    X7 X8
+#&gt; 1 Trt N1 Mean1 N2 Mean2 N3 Mean3 CI
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$border_left
+#&gt; $rtf_colheader$border_left[[1]]
+#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
+#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$border_right
+#&gt; $rtf_colheader$border_right[[1]]
+#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
+#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$border_top
+#&gt; $rtf_colheader$border_top[[1]]
+#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
+#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$border_bottom
+#&gt; $rtf_colheader$border_bottom[[1]]
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,] ""   ""   ""   ""   ""   ""   ""   ""  
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$border_color_left
+#&gt; $rtf_colheader$border_color_left[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$border_color_right
+#&gt; $rtf_colheader$border_color_right[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$border_color_bottom
+#&gt; $rtf_colheader$border_color_bottom[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$border_width
+#&gt; $rtf_colheader$border_width[[1]]
+#&gt; [1] 15
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$cell_justification
+#&gt; $rtf_colheader$cell_justification[[1]]
+#&gt; [1] "c"
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$page_width
+#&gt; $rtf_colheader$page_width[[1]]
+#&gt; [1] 8.5
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$col_total_width
+#&gt; $rtf_colheader$col_total_width[[1]]
+#&gt; [1] 6.071429
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$cell_height
+#&gt; $rtf_colheader$cell_height[[1]]
+#&gt; [1] 0.15
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$text_justification
+#&gt; $rtf_colheader$text_justification[[1]]
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,] "c"  "c"  "c"  "c"  "c"  "c"  "c"  "c" 
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$text_font
+#&gt; $rtf_colheader$text_font[[1]]
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,]    1    1    1    1    1    1    1    1
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$text_format
+#&gt; $rtf_colheader$text_format[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$text_color
+#&gt; $rtf_colheader$text_color[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$text_background_color
+#&gt; $rtf_colheader$text_background_color[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$text_font_size
+#&gt; $rtf_colheader$text_font_size[[1]]
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,]    9    9    9    9    9    9    9    9
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$text_space_before
+#&gt; $rtf_colheader$text_space_before[[1]]
+#&gt; [1] 15
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$text_space_after
+#&gt; $rtf_colheader$text_space_after[[1]]
+#&gt; [1] 15
+#&gt; 
+#&gt; 
+#&gt; $rtf_colheader$first_row
+#&gt; $rtf_colheader$first_row[[1]]
+#&gt; [1] FALSE
+#&gt; 
+#&gt; 
+#&gt; 
+#&gt; $border_top
+#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
+#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; [2,] ""       ""       ""       ""       ""       ""       ""       ""      
+#&gt; 
+#&gt; $border_left
+#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
+#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; [2,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; 
+#&gt; $border_right
+#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
+#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; [2,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; 
+#&gt; $border_bottom
+#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
+#&gt; [1,] "double" "double" "double" "double" "double" "double" "double" "double"
+#&gt; [2,] "double" "double" "double" "double" "double" "double" "double" "double"
+#&gt; 
+#&gt; $border_width
+#&gt; [1] 15
+#&gt; 
+#&gt; $col_total_width
+#&gt; [1] 6.071429
+#&gt; 
+#&gt; $cell_height
+#&gt; [1] 0.15
+#&gt; 
+#&gt; $cell_justification
+#&gt; [1] "c"
+#&gt; 
+#&gt; $col_rel_width
+#&gt; [1] 3 1 3 1 3 1 3 5
+#&gt; 
+#&gt; $text_font
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,]    1    1    1    1    1    1    1    1
+#&gt; [2,]    1    1    1    1    1    1    1    1
+#&gt; 
+#&gt; $text_font_size
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,]    9    9    9    9    9    9    9    9
+#&gt; [2,]    9    9    9    9    9    9    9    9
+#&gt; 
+#&gt; $text_justification
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,] "l"  "c"  "c"  "c"  "c"  "c"  "c"  "c" 
+#&gt; [2,] "l"  "c"  "c"  "c"  "c"  "c"  "c"  "c" 
+#&gt; 
+#&gt; $text_space_before
+#&gt; [1] 15
+#&gt; 
+#&gt; $text_space_after
+#&gt; [1] 15
+#&gt; 
+#&gt; $page_num
+#&gt; [1] 42
+#&gt; 
+#&gt; $new_page
+#&gt; [1] FALSE
+#&gt; 
+#&gt; $pageby_db
+#&gt;          Trt N1       Mean1 N2       Mean2 N3       Mean3                   CI
+#&gt; 1 Study Drug 61 16.6 (4.41) 61 -6.6 (5.95) 61 -7.0 (9.16)  -7.0 (-8.58, -5.38)
+#&gt; 2    Placebo 70 18.4 (6.34) 70 -9.0 (7.04) 70 -8.7 (8.54) -8.7 (-10.17, -7.18)
+#&gt; 
+#&gt; $pageby_newpage_index
+#&gt; [1] 1
+#&gt; 
+#&gt; $last_row
+#&gt; [1] FALSE
+#&gt; </div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

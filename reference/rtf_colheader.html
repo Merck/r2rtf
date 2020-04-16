@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
       </span>
     </div>
 
@@ -98,15 +98,18 @@
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
     </li>
     <li>
-      <a href="../articles/example_pipeline.html">RTF Examples for Tables</a>
+      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
     </li>
     <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controling Table Details</a>
+      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
     </li>
     <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controling Text and Paragraph Details</a>
+      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -133,22 +136,39 @@
     <p>Add column header to the table</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rtf_colheader</span>(<span class='no'>gt_tbl</span>, <span class='kw'>colheader</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>border_left</span> <span class='kw'>=</span> <span class='st'>"single"</span>,
-  <span class='kw'>border_right</span> <span class='kw'>=</span> <span class='st'>"single"</span>, <span class='kw'>border_top</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>border_bottom</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>border_color_left</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>border_color_right</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_color_top</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>border_color_bottom</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_width</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>cell_justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>, <span class='kw'>col_rel_width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>page_width</span> <span class='kw'>=</span> <span class='fl'>8.5</span>, <span class='kw'>col_total_width</span> <span class='kw'>=</span> <span class='no'>page_width</span>/<span class='fl'>1.4</span>,
-  <span class='kw'>cell_height</span> <span class='kw'>=</span> <span class='fl'>0.15</span>, <span class='kw'>text_justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>, <span class='kw'>text_font</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>text_format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>text_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>text_background_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>text_font_size</span> <span class='kw'>=</span> <span class='fl'>9</span>,
-  <span class='kw'>text_space_before</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>text_space_after</span> <span class='kw'>=</span> <span class='fl'>15</span>, <span class='kw'>first_row</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>rtf_colheader</span>(
+  <span class='no'>tbl</span>,
+  <span class='kw'>colheader</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_left</span> <span class='kw'>=</span> <span class='st'>"single"</span>,
+  <span class='kw'>border_right</span> <span class='kw'>=</span> <span class='st'>"single"</span>,
+  <span class='kw'>border_top</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_bottom</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>border_color_left</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_color_right</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_color_top</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_color_bottom</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>border_width</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>cell_justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
+  <span class='kw'>col_rel_width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>page_width</span> <span class='kw'>=</span> <span class='fl'>8.5</span>,
+  <span class='kw'>col_total_width</span> <span class='kw'>=</span> <span class='no'>page_width</span>/<span class='fl'>1.4</span>,
+  <span class='kw'>cell_height</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
+  <span class='kw'>text_justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
+  <span class='kw'>text_font</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>text_format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>text_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>text_background_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>text_font_size</span> <span class='kw'>=</span> <span class='fl'>9</span>,
+  <span class='kw'>text_space_before</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>text_space_after</span> <span class='kw'>=</span> <span class='fl'>15</span>,
+  <span class='kw'>first_row</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gt_tbl</th>
+      <th>tbl</th>
       <td><p>A data frame</p></td>
     </tr>
     <tr>
@@ -189,7 +209,7 @@
     </tr>
     <tr>
       <th>border_width</th>
-      <td><p>worder width in twips</p></td>
+      <td><p>border width in twips</p></td>
     </tr>
     <tr>
       <th>cell_justification</th>
@@ -249,7 +269,140 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>the same data frame <code>tbl</code> with additional attributes for table column header</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>) <span class='co'># required to run examples</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>tbl_1</span>)
+<span class='no'>tbl_1</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>rtf_colheader</span>(<span class='kw'>colheader</span> <span class='kw'>=</span> <span class='st'>"Treatment | N | Mean (SD) | N | Mean (SD) | N |
+                  Mean (SD) | LS Mean (95% CI)\\dagger"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='st'>"rtf_colheader"</span>)</div><div class='output co'>#&gt; $col_rel_width
+#&gt; $col_rel_width[[1]]
+#&gt; [1] NA
+#&gt; 
+#&gt; 
+#&gt; $colheader
+#&gt; $colheader[[1]]
+#&gt;          X1 X2        X3 X4        X5 X6        X7                       X8
+#&gt; 1 Treatment  N Mean (SD)  N Mean (SD)  N Mean (SD) LS Mean (95% CI)\\dagger
+#&gt; 
+#&gt; 
+#&gt; $border_left
+#&gt; $border_left[[1]]
+#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
+#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; 
+#&gt; 
+#&gt; $border_right
+#&gt; $border_right[[1]]
+#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
+#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; 
+#&gt; 
+#&gt; $border_top
+#&gt; $border_top[[1]]
+#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
+#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
+#&gt; 
+#&gt; 
+#&gt; $border_bottom
+#&gt; $border_bottom[[1]]
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,] ""   ""   ""   ""   ""   ""   ""   ""  
+#&gt; 
+#&gt; 
+#&gt; $border_color_left
+#&gt; $border_color_left[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $border_color_right
+#&gt; $border_color_right[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $border_color_bottom
+#&gt; $border_color_bottom[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $border_width
+#&gt; $border_width[[1]]
+#&gt; [1] 15
+#&gt; 
+#&gt; 
+#&gt; $cell_justification
+#&gt; $cell_justification[[1]]
+#&gt; [1] "c"
+#&gt; 
+#&gt; 
+#&gt; $page_width
+#&gt; $page_width[[1]]
+#&gt; [1] 8.5
+#&gt; 
+#&gt; 
+#&gt; $col_total_width
+#&gt; $col_total_width[[1]]
+#&gt; [1] 6.071429
+#&gt; 
+#&gt; 
+#&gt; $cell_height
+#&gt; $cell_height[[1]]
+#&gt; [1] 0.15
+#&gt; 
+#&gt; 
+#&gt; $text_justification
+#&gt; $text_justification[[1]]
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,] "c"  "c"  "c"  "c"  "c"  "c"  "c"  "c" 
+#&gt; 
+#&gt; 
+#&gt; $text_font
+#&gt; $text_font[[1]]
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,]    1    1    1    1    1    1    1    1
+#&gt; 
+#&gt; 
+#&gt; $text_format
+#&gt; $text_format[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $text_color
+#&gt; $text_color[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $text_background_color
+#&gt; $text_background_color[[1]]
+#&gt; NULL
+#&gt; 
+#&gt; 
+#&gt; $text_font_size
+#&gt; $text_font_size[[1]]
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,]    9    9    9    9    9    9    9    9
+#&gt; 
+#&gt; 
+#&gt; $text_space_before
+#&gt; $text_space_before[[1]]
+#&gt; [1] 15
+#&gt; 
+#&gt; 
+#&gt; $text_space_after
+#&gt; $text_space_after[[1]]
+#&gt; [1] 15
+#&gt; 
+#&gt; 
+#&gt; $first_row
+#&gt; $first_row[[1]]
+#&gt; [1] FALSE
+#&gt; 
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

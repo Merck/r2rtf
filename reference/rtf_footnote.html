@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
       </span>
     </div>
 
@@ -98,15 +98,18 @@
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
     </li>
     <li>
-      <a href="../articles/example_pipeline.html">RTF Examples for Tables</a>
+      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
     </li>
     <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controling Table Details</a>
+      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
     </li>
     <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controling Text and Paragraph Details</a>
+      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -133,17 +136,30 @@
     <p>Add footnote attributes to the table</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rtf_footnote</span>(<span class='no'>gt_tbl</span>, <span class='kw'>footnote</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>font</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>font_size</span> <span class='kw'>=</span> <span class='fl'>9</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>background_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>, <span class='kw'>indent_first</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>indent_left</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>indent_right</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>space</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>space_before</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>space_after</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>new_page</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>hyphenation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>rtf_footnote</span>(
+  <span class='no'>tbl</span>,
+  <span class='kw'>footnote</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>font</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>font_size</span> <span class='kw'>=</span> <span class='fl'>9</span>,
+  <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>background_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
+  <span class='kw'>indent_first</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>indent_left</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>indent_right</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>space</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>space_before</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>space_after</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>new_page</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>hyphenation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gt_tbl</th>
+      <th>tbl</th>
       <td><p>a data frame</p></td>
     </tr>
     <tr>
@@ -208,7 +224,51 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>the same data frame <code>tbl</code> with additional attributes for table footnote</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>) <span class='co'># required to run examples</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>tbl_1</span>)
+<span class='no'>tbl_1</span> <span class='kw'>%&gt;%</span> <span class='fu'>rtf_footnote</span>(<span class='st'>"\\dagger Based on an ANCOVA model."</span>) <span class='kw'>%&gt;%</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='st'>"rtf_footnote"</span>)</div><div class='output co'>#&gt; $footnote
+#&gt; [1] "\\dagger Based on an ANCOVA model."
+#&gt; 
+#&gt; $font
+#&gt; [1] 1
+#&gt; 
+#&gt; $font_size
+#&gt; [1] 9
+#&gt; 
+#&gt; $justification
+#&gt; [1] "c"
+#&gt; 
+#&gt; $indent_first
+#&gt; [1] 0
+#&gt; 
+#&gt; $indent_left
+#&gt; [1] 0
+#&gt; 
+#&gt; $indent_right
+#&gt; [1] 0
+#&gt; 
+#&gt; $space
+#&gt; [1] 1
+#&gt; 
+#&gt; $space_before
+#&gt; [1] 0
+#&gt; 
+#&gt; $space_after
+#&gt; [1] 0
+#&gt; 
+#&gt; $new_page
+#&gt; [1] FALSE
+#&gt; 
+#&gt; $hyphenation
+#&gt; [1] TRUE
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

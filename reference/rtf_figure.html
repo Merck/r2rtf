@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add Figure Attrbuties — rtf_figure • r2rtf</title>
+<title>Add Figure Attributes — rtf_figure • r2rtf</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Add Figure Attrbuties — rtf_figure" />
-<meta property="og:description" content="Add Figure Attrbuties" />
+<meta property="og:title" content="Add Figure Attributes — rtf_figure" />
+<meta property="og:description" content="Add Figure Attributes" />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
       </span>
     </div>
 
@@ -98,15 +98,18 @@
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
     </li>
     <li>
-      <a href="../articles/example_pipeline.html">RTF Examples for Tables</a>
+      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
     </li>
     <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controling Table Details</a>
+      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
     </li>
     <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controling Text and Paragraph Details</a>
+      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -124,24 +127,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add Figure Attrbuties</h1>
+    <h1>Add Figure Attributes</h1>
     
     <div class="hidden name"><code>rtf_figure.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add Figure Attrbuties</p>
+    <p>Add Figure Attributes</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rtf_figure</span>(<span class='no'>gt_tbl</span>, <span class='kw'>page_width</span> <span class='kw'>=</span> <span class='fl'>8.5</span>, <span class='kw'>page_height</span> <span class='kw'>=</span> <span class='fl'>11</span>,
-  <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='st'>"portrait"</span>, <span class='kw'>doctype</span> <span class='kw'>=</span> <span class='st'>"wma"</span>, <span class='kw'>fig_width</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>fig_height</span> <span class='kw'>=</span> <span class='fl'>5</span>)</pre>
+    <pre class="usage"><span class='fu'>rtf_figure</span>(
+  <span class='no'>tbl</span>,
+  <span class='kw'>page_width</span> <span class='kw'>=</span> <span class='fl'>8.5</span>,
+  <span class='kw'>page_height</span> <span class='kw'>=</span> <span class='fl'>11</span>,
+  <span class='kw'>orientation</span> <span class='kw'>=</span> <span class='st'>"portrait"</span>,
+  <span class='kw'>doctype</span> <span class='kw'>=</span> <span class='st'>"wma"</span>,
+  <span class='kw'>fig_width</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>fig_height</span> <span class='kw'>=</span> <span class='fl'>5</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>gt_tbl</th>
+      <th>tbl</th>
       <td><p>A data frame</p></td>
     </tr>
     <tr>
@@ -170,7 +179,40 @@
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>the same data frame <code>tbl</code> with additional attributes for figure body</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>  <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>) <span class='co'># required to run examples</span>
+  <span class='no'>file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"figure1.png"</span>)
+  <span class='fu'><a href='https://rdrr.io/r/grDevices/png.html'>png</a></span>(<span class='no'>file</span>)
+  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='fl'>1</span>:<span class='fl'>10</span>)
+  <span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span>()</div><div class='output co'>#&gt; pdf 
+#&gt;   2 </div><div class='input'>
+  <span class='co'># Read in PNG file in binary format</span>
+  <span class='fu'><a href='rtf_read_png.html'>rtf_read_png</a></span>(<span class='no'>file</span>) <span class='kw'>%&gt;%</span> <span class='fu'>rtf_figure</span>() <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span>()</div><div class='output co'>#&gt; $page_width
+#&gt; [1] 8.5
+#&gt; 
+#&gt; $page_height
+#&gt; [1] 11
+#&gt; 
+#&gt; $orientation
+#&gt; [1] "portrait"
+#&gt; 
+#&gt; $doctype
+#&gt; [1] "wma"
+#&gt; 
+#&gt; $fig_width
+#&gt;      [,1]
+#&gt; [1,]    5
+#&gt; 
+#&gt; $fig_height
+#&gt;      [,1]
+#&gt; [1,]    5
+#&gt; </div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

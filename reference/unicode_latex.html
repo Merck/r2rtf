@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>unicode_latex — unicode_latex • r2rtf</title>
+<title>Dictionary of Unicode and Latex Code — unicode_latex • r2rtf</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="unicode_latex — unicode_latex" />
-<meta property="og:description" content="A dataset containing the unicode, character and latex command." />
+<meta property="og:title" content="Dictionary of Unicode and Latex Code — unicode_latex" />
+<meta property="og:description" content="A dataset containing the mapping between unicode and latex code." />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
       </span>
     </div>
 
@@ -98,15 +98,18 @@
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
     </li>
     <li>
-      <a href="../articles/example_pipeline.html">RTF Examples for Tables</a>
+      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
     </li>
     <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controling Table Details</a>
+      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
     </li>
     <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controling Text and Paragraph Details</a>
+      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
     </li>
   </ul>
+</li>
+<li>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -124,23 +127,26 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>unicode_latex</h1>
+    <h1>Dictionary of Unicode and Latex Code</h1>
     
     <div class="hidden name"><code>unicode_latex.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A dataset containing the unicode, character and latex command.</p>
+    <p>A dataset containing the mapping between unicode and latex code.</p>
     </div>
 
-    <pre class="usage"><span class='no'>unicode_latex</span>
-
-<span class='no'>unicode_latex</span></pre>
+    <pre class="usage"><span class='no'>unicode_latex</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>data.frame</code> with 704 rows and 3 columns.</p>
+    <p>A data frame with 681 rows and 3 variables.</p><dl'>
+<dt>unicode</dt><dd><p>unicode, UTF-8 code</p></dd>
+<dt>latex</dt><dd><p>latex, latex code</p></dd>
+<dt>int</dt><dd><p>int, Converted integer of the UTF-8 code</p></dd>
+
+</dl>
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p><a href='http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt'>http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt</a></p>
