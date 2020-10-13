@@ -1,8 +1,23 @@
 context("Independent testing for rtf_read_png.R")
 
+#create temporary plots for testing
+options(bitmapType='cairo')
+png(filename =  file.path(tempdir(), "plot1.png"))
+df <- rnorm(300, 1, 2)
+plot(df)
+dev.off()
+
+png(filename = file.path(tempdir(), "plot2.png"))
+x <- seq(-10,10,1)
+options(bitmapType='cairo')
+plot(x, (x*2))
+dev.off()
+
 test_that("read in PNG file in binary format", {
-  file_png_1 <- "https://lctcvp7236.merck.com:3838/content/26/images/r_version.png"
-  file_png_2 <- "https://lctcvp7236.merck.com:3838/content/26/images/Jira_import_issues.PNG"
+  df <- file.path(tempdir(), c("plot1.png", "plot2.png"))
+
+  file_png_1 <- df[1]
+  file_png_2 <- df[2]
 
   file_png_vec <- c(file_png_1, file_png_2)
   png_vec_in <-rtf_read_png(file_png_vec)
