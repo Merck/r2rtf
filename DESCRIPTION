@@ -1,6 +1,6 @@
 Package: r2rtf
 Title: Easily Create Presentation-Ready Rich Text Format (RTF) Table and Figure
-Version: 0.1.1.9002
+Version: 0.2.0
 Authors@R: c(
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = c("aut", "cre")),
     person("Siruo", "Wang", email = "swang171@jhu.edu", role = "aut"),
