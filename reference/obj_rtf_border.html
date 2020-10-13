@@ -166,7 +166,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tbl</th>
-      <td><p>a data frame</p></td>
+      <td><p>A data frame.</p></td>
     </tr>
     <tr>
       <th>border_left</th>
@@ -198,6 +198,20 @@ equal to number of columns displayed e.g. c("single","single","single").
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
+      <th>border_first</th>
+      <td><p>First top border type in each page. Default is "single" indicating single line bottom border.
+To vary bottom border by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("single","single","single").
+All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></td>
+    </tr>
+    <tr>
+      <th>border_last</th>
+      <td><p>Last bottom border type in each page. Default is "single" indicating single line bottom border.
+To vary bottom border by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("single","single","single").
+All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></td>
+    </tr>
+    <tr>
       <th>border_color_left</th>
       <td><p>Left border color type. Default is NULL for black. To vary left
 border color by column, use character vector with length of vector
@@ -221,6 +235,20 @@ All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/co
     <tr>
       <th>border_color_bottom</th>
       <td><p>Bottom border color type. Default is NULL for black. To vary bottom
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>border_color_first</th>
+      <td><p>First top border color type in each page. Default is NULL for black. To vary top
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>border_color_last</th>
+      <td><p>Last bottom border color type in each page. Default is NULL for black. To vary bottom
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
