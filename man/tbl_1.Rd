@@ -4,7 +4,9 @@
 \name{tbl_1}
 \alias{tbl_1}
 \title{Within Group Results from an ANCOVA Model}
-\format{A data frame with 2 rows and 8 variables.}
+\format{
+A data frame with 2 rows and 8 variables.
+}
 \usage{
 tbl_1
 }

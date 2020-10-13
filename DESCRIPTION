@@ -1,6 +1,6 @@
 Package: r2rtf
 Title: Easily Create Presentation-Ready Rich Text Format (RTF) Table and Figure
-Version: 0.1.1
+Version: 0.1.1.9002
 Authors@R: c(
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = c("aut", "cre")),
     person("Siruo", "Wang", email = "swang171@jhu.edu", role = "aut"),
@@ -12,17 +12,21 @@ Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-Suggests: 
+Imports: 
+    grDevices
+Suggests:
+    stringi,
     knitr,
     rmarkdown,
     testthat,
     emmeans,
     dplyr, 
-    tidyverse,
-    devtools
-Imports: 
-    stringr,
-    grDevices
+    tidyr,
+    devtools,
+    DT,
+    covr,
+    ggplot2
+URL: https://merck.github.io/r2rtf/

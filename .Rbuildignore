@@ -1,4 +1,5 @@
 ..Rcheck
+^doc$
 ^docs$
 ^_pkgdown\.yml$
 ^r2rtf\.Rproj$

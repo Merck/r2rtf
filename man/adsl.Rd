@@ -4,9 +4,11 @@
 \name{adsl}
 \alias{adsl}
 \title{A Subject Level Demographic Dataset}
-\format{A data frame with 254 rows and 51 variables.}
+\format{
+A data frame with 254 rows and 51 variables.
+}
 \source{
-\url{https://www.cdisc.org/pilot-project-submission-package}
+\url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
 }
 \usage{
 adsl
@@ -17,6 +19,6 @@ CDISC ADaM standard.
 }
 \details{
 Definition of each variable can be found in
-\url{https://www.cdisc.org/pilot-project-submission-package}
+\url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
 }
 \keyword{datasets}

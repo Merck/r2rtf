@@ -1,0 +1,119 @@
+#    Copyright (c) 2020 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#
+#    This file is part of the r2rtf program.
+#
+#    r2rtf is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#' Render to RTF Encoding
+#'
+#' This function extracts table/figure attributes and render to RTF encoding that is ready to save
+#'     to an RTF file.
+#'
+#' @section Specification:
+#' \if{latex}{
+#'  \itemize{
+#'    \item Input check for type ("table" or "figure").
+#'    \item Input check for title, footnote and source position ("all", "first" or "last").
+#'    \item If type is "table" and class is data.frame then run \code{rtf_encode_table(tbl)}.
+#'    \item If type is "table" and class is list then run \code{rtf_encode_list(tbl)}.
+#'    \item If type is "figure" then run \code{rtf_encode_figure(tbl)}.
+#'  }
+#'  }
+#' \if{html}{The contents of this section are shown in PDF user manual only.}
+#'
+#' @name rtf_encode
+#' @param tbl a data frame for table or a list of binary string for figure
+#' @param type the type of input, default is table.
+#' @param page_title a character of title displaying location. Default is "all" for all pages.
+#'                   Possible values are "first", "last" and "all".
+#' @param page_footnote a character of title displaying location. Default is "last" for all pages.
+#'                   Possible values are "first", "last" and "all".
+#' @param page_source a character of title displaying location. Default is "last" for all pages.
+#'                   Possible values are "first", "last" and "all".
+#'
+#' @return
+#'     For \code{rtf_encode}, a vector of RTF code.
+#'     For \code{write_rtf}, no return value.
+#'
+#' @examples
+#'
+#' library(dplyr)  # required to run examples
+#'
+#' # Example 1
+#'   head(iris) %>%
+#'     rtf_body() %>%
+#'     rtf_encode() %>%
+#'     write_rtf(file = file.path(tempdir(), "table1.rtf"))
+#'
+#' # Example 2
+#' \dontrun{
+#'   library(dplyr) # required to run examples
+#'   file <- file.path(tempdir(), "figure1.png")
+#'   png(file)
+#'   plot(1:10)
+#'   dev.off()
+#'
+#'   # Read in PNG file in binary format
+#'   rtf_read_png(file) %>% rtf_figure() %>%
+#'     rtf_encode(type = "figure") %>%
+#'     write_rtf(file = file.path(tempdir(), "figure1.rtf"))
+#' }
+#' # Example 3
+#'
+#' ## convert tbl_1 to the table body. Add title, subtitle, two table
+#' ## headers, and footnotes to the table body.
+#'   data(tbl_1)
+#'   data(tbl_2)
+#'   data(tbl_3)
+#'   ## convert tbl_2 to the table body. Add a table column header to table body.
+#'   t2 <- tbl_2 %>%
+#'     rtf_colheader(colheader = "Pairwise Comparison |
+#'                    Difference in LS Mean(95% CI)\\dagger | p-Value",
+#'                   text_justification = c("l","c","c")) %>%
+#'     rtf_body(col_rel_width = c(8,7,5),
+#'              text_justification = c("l","c","c"),
+#'              last_row = FALSE);
+#'
+#'   # concatenate a list of table and save to an RTF file
+#'   t2 %>% rtf_encode() %>% write_rtf(file.path(tempdir(), "table2.rtf"))
+#'
+#' @rdname rtf_encode
+#'
+#' @export
+rtf_encode <- function(tbl, type = "table",
+                       page_title    = "all",
+                       page_footnote = "last",
+                       page_source   = "last") {
+
+  match_arg(type, c("table", "figure"))
+  match_arg(page_title, c("all", "first", "last"))
+  match_arg(page_footnote, c("all", "first", "last"))
+  match_arg(page_source, c("all", "first", "last"))
+
+  if (type == "table") {
+
+    if(any(class(tbl) %in% "list")){
+      return(rtf_encode_list(tbl, page_title = page_title, page_footnote = page_footnote, page_source = page_source))
+    }
+
+    if(any(class(tbl) %in% "data.frame")){
+      return(rtf_encode_table(tbl, page_title = page_title, page_footnote = page_footnote, page_source = page_source))
+    }
+
+  }
+
+  if (type == "figure") {
+    return(rtf_encode_figure(tbl, page_title = page_title, page_footnote = page_footnote, page_source = page_source))
+  }
+}

@@ -11,9 +11,9 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 devtools::load_all() # need to be updated after the package mature
 
-library(tidyverse)
+library(dplyr)
+library(tidyr)
 library(emmeans)
-library(stringr)
 ```
 
 Define some utility functions
@@ -156,25 +156,26 @@ tbl_1 <- t1 %>%
   ) %>%
   rtf_colheader(
     colheader = " | Baseline | Week 20 | Change from Baseline",
-    col_rel_width = c(3, 4, 4, 9),
-    first_row = TRUE
+    col_rel_width = c(3, 4, 4, 9)
   ) %>%
-  rtf_colheader(colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N | Mean (SD) | LS Mean (95% CI)\\dagger") %>%
+  rtf_colheader(colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N | Mean (SD) | LS Mean (95% CI){^a}", 
+                col_rel_width = c(3, 1, 3, 1, 3, 1, 3, 5)) %>%
   rtf_body(
     col_rel_width = c(3, 1, 3, 1, 3, 1, 3, 5),
     text_justification = c("l", rep("c", 7)),
     last_row = FALSE
   ) %>%
   rtf_footnote(
-    footnote = "\\daggerBased on an ANCOVA model.\n ANCOVA = Analysis of Covariance, CI = Confidence Interval, LS = Least Squares, SD = Standard Deviation",
-    justification = "l"
+    footnote = c("{^a}Based on an ANCOVA model.",
+                 "ANCOVA = Analysis of Covariance, CI = Confidence Interval, LS = Least Squares, SD = Standard Deviation")
   )
 
 
 tbl_2 <- t2 %>%
   rtf_colheader(
-    colheader = "Pairwise Comparison | Difference in LS Mean (95% CI)\\dagger | p-Value",
-    text_justification = c("l", "c", "c")
+    colheader = "Pairwise Comparison | Difference in LS Mean (95% CI){^a} | p-Value",
+    text_justification = c("l", "c", "c"),
+    col_rel_width = c(8, 7, 5)
   ) %>%
   rtf_body(
     col_rel_width = c(8, 7, 5),
@@ -187,19 +188,25 @@ tbl_3 <- t3 %>%
   rtf_body(
     colheader = FALSE,
     col_rel_width = c(1),
+    border_color_left = "red",
     text_justification = "l"
   ) %>%
   rtf_source(
-    source = "Source:  [study999: adam-adeff]",
-    justification = "l"
+    source = "Source: [study999: adam-adeff]"
   )
 
 
 tbl <- list(tbl_1, tbl_2, tbl_3)
+```
 
+```{r}
 tbl %>%
   rtf_encode() %>%
   write_rtf("rtf/efficacy_example.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/efficacy_example.pdf")
 ```
 
 
@@ -211,16 +218,16 @@ tbl %>%
 # Step 1: Get raw summary
 data(adae)
 ae_t1 <- adae %>%
-  group_by(TRTP) %>%
-  mutate(n_subj = n_distinct(SUBJID)) %>%
-  group_by(TRTP, AEDECOD) %>%
+  group_by(TRTA) %>%
+  mutate(n_subj = n_distinct(USUBJID)) %>%
+  group_by(TRTA, AEDECOD) %>%
   summarise(
-    n_ae = n_distinct(SUBJID),
+    n_ae = n_distinct(USUBJID),
     pct = round(n_ae / unique(n_subj) * 100, 2)
   ) %>%
   dplyr::filter(n_ae > 4) %>% # only show AE terms with at least 10 subjects in one treatment group.
   gather(key = "var", value = "value", n_ae, pct) %>%
-  unite(temp, TRTP, var) %>%
+  unite(temp, TRTA, var) %>%
   spread(temp, value, fill = 0)
 ae_t1
 ```
@@ -236,10 +243,10 @@ ae_tbl <- ae_t1 %>%
     )
   ) %>%
   rtf_colheader(" | Placebo | Drug High Dose | Drug Low Dose",
-    col_rel_width = c(4, rep(2, 3)),
-    first_row = TRUE
+    col_rel_width = c(4, rep(2, 3))
   ) %>%
   rtf_colheader(" | n | (%) | n | (%) | n | (%)",
+    col_rel_width = c(4, rep(1, 6)),
     border_top = c("", rep("single", 6)),
     border_left = c("single", rep(c("single", ""), 3))
   ) %>%
@@ -248,11 +255,9 @@ ae_tbl <- ae_t1 %>%
     text_justification = c("l", rep("c", 6)),
     border_left = c("single", rep(c("single", ""), 3))
   ) %>%
-  rtf_footnote(c("\\daggerThis is footnote 1", "This is footnote 2"),
-    justification = "l"
+  rtf_footnote(c("{^\\dagger}This is footnote 1", "This is footnote 2"),
   ) %>%
-  rtf_source("Source: xxx",
-    justification = "l"
+  rtf_source("Source: xxx"
   )
 
 
@@ -266,6 +271,7 @@ ae_tbl %>%
 # write to an rtf table 
 ```{r}
 ae_tbl <- ae_t1 %>%
+  rtf_page(nrow = 10) %>%
   rtf_title(
     "Analysis of Subjects With Specific Adverse Events",
     c(
@@ -274,18 +280,17 @@ ae_tbl <- ae_t1 %>%
     )
   ) %>%
   rtf_colheader(" | Placebo | Drug High Dose | Drug Low Dose",
-    col_rel_width = c(4, rep(2, 3)),
-    first_row = TRUE
+    col_rel_width = c(4, rep(2, 3))
   ) %>%
   rtf_colheader(" | n | (%) | n | (%) | n | (%)",
+    col_rel_width = c(4, rep(1, 6)),
     border_top = c("", rep("single", 6)),
     border_left = c("single", rep(c("single", ""), 3))
   ) %>%
   rtf_body(
     col_rel_width = c(4, rep(1, 6)),
     text_justification = c("l", rep("c", 6)),
-    border_left = c("single", rep(c("single", ""), 3)),
-    page_num = 10
+    border_left = c("single", rep(c("single", ""), 3))
   ) %>%
   rtf_footnote("This is a footnote") %>%
   rtf_source("Source: xxx")
@@ -304,15 +309,17 @@ data(iris)
 
 iris <- cbind(iris, new_cat = rep(c("A", "B", "C", "D", "E"), 30))
 
-iris_tbl <- iris %>%
+iris_tbl <- iris %>% arrange(Species, new_cat) %>% 
+  rtf_page(nrow = 30) %>%
   rtf_title("IRIS DATA") %>%
   rtf_colheader("Sepal Length | Sepal Width | Petal Length | PetalWidth",
-    first_row = TRUE
   ) %>%
   rtf_body(
     page_by = c("Species", "new_cat"),
-    new_page = TRUE,
-    page_num = 30
+    border_top = c(rep("",4),c("single", "single")),
+    border_bottom = c(rep("", 4), c("single", "single")),
+    text_justification = c(rep("c", 4), c("l", "l")),
+    new_page = TRUE
   ) %>%
   rtf_footnote("This is a footnote") %>%
   rtf_source("Source: xxx")
@@ -339,8 +346,7 @@ data(iris)
 
 iris_tbl <- iris[1:20, ] %>%
   rtf_title("IRIS DATA") %>%
-  rtf_colheader("Sepal Length | Sepal Width | Petal Length | PetalWidth | Species",
-    first_row = TRUE
+  rtf_colheader("Sepal Length | Sepal Width | Petal Length | PetalWidth | Species"
   ) %>%
   rtf_body() %>%
   rtf_footnote("This is a footnote") %>%
@@ -448,25 +454,22 @@ bs_continous <- function(data, grp, var,
 
 # Analaysis Set
 data(adsl)
-ana <- adsl %>% subset(ITT == "Y")
+ana <- adsl %>% subset(ITTFL == "Y")
 ana <- ana %>% mutate(
   RACE = factor(
     RACE,
-    toupper(c(
-      "African Descent (Negro, Black)", "Caucasian", "Hispanic (Mexican - American, Mexico, Central And South America)",
-      "Other (Mixed - Racial Heritage, American Indian, Eskimo)"
-    )),
-    c("Black", "Caucasian", "Hispanic", "Other")
+    c("WHITE", "BLACK OR AFRICAN AMERICAN", "AMERICAN INDIAN OR ALASKA NATIVE"),
+    c("White", "Black", "Other")
   ),
   SEX = factor(SEX, c("F", "M"), c("Female", "Male"))
 )
 
 # Build Data for r2rtf
 bs_tb <- bind_rows(
-  bs_count(ana, "TRTPN", "SEX", "Gender"),
-  bs_count(ana, "TRTPN", "AGEGRP", "Age (Years)"),
-  bs_continous(ana, "TRTPN", "AGE", "Age (Years)", blank_row = TRUE),
-  bs_count(ana, "TRTPN", "RACE", "Race")
+  bs_count(ana, "TRT01AN", "SEX", "Gender"),
+  bs_count(ana, "TRT01AN", "AGEGR1", "Age (Years)"),
+  bs_continous(ana, "TRT01AN", "AGE", "Age (Years)", blank_row = TRUE),
+  bs_count(ana, "TRT01AN", "RACE", "Race")
 )
 
 bs_tb[is.na(bs_tb)] <- ""
@@ -475,19 +478,17 @@ bs_tb[is.na(bs_tb)] <- ""
 
 ```{r}
 bs_rtf <- bs_tb %>%
+  rtf_page(width = 9.5) %>%
   rtf_title("Demographic and Anthropometric Characteristics", "ITT Subjects") %>%
   rtf_colheader(" | Placebo | Drug Low Dose | Drug High Dose | Total | label",
-    col_rel_width = c(3, rep(2, 4), 3),
-    page_width = 9.5,
-    first_row = TRUE
+    col_rel_width = c(3, rep(2, 4), 3)
   ) %>%
   rtf_colheader(" | n | (%) | n | (%) | n | (%) | n | (%) | label",
-    page_width = 9.5,
+    col_rel_width = c(3, rep(c(1.2, 0.8), 4), 3),
     border_top = c("", rep("single", 9)),
     border_left = c("single", rep(c("single", ""), 4), "single")
   ) %>%
   rtf_body(
-    page_width = 9.5,
     col_rel_width = c(3, rep(c(1.2, 0.8), 4), 3),
     text_justification = c("l", rep("d", 8), "c"),
     border_left = c("single", rep(c("single", ""), 4), "single")
@@ -511,18 +512,20 @@ bs_rtf %>%
 bs_rtf <- bs_tb %>%
   rtf_title("Demographic and Anthropometric Characteristics", "ITT Subjects") %>%
   rtf_colheader(" | Placebo | Drug Low Dose | Drug High Dose | Total",
-    col_rel_width = c(3, rep(2, 4)),
-    first_row = TRUE
+    col_rel_width = c(3, rep(2, 4))
   ) %>%
   rtf_colheader(" | n | (%) | n | (%) | n | (%) | n | (%)",
+    col_rel_width = c(3, rep(c(1.2, 0.8), 4)),
     border_top = c("", rep("single", 8)),
     border_left = c("single", rep(c("single", ""), 4))
   ) %>%
   rtf_body(
     page_by = "var_label", # this option show the label in one row.
-    col_rel_width = c(3, rep(c(1.2, 0.8), 4)),
-    text_justification = c("l", rep("d", 8)),
-    border_left = c("single", rep(c("single", ""), 4))
+    col_rel_width = c(3, rep(c(1.2, 0.8), 4), 1),
+    text_justification = c("l", rep("d", 8), "l"),
+    border_left = c("single", rep(c("single", ""), 4), "single"),
+    border_top =  c(rep("", 9), "single"), 
+    border_bottom = c(rep("", 9), "single")
   ) %>%
   rtf_footnote("This is a footnote") %>%
   rtf_source("Source: xxx")
@@ -534,43 +537,3 @@ bs_rtf %>%
   rtf_encode() %>%
   write_rtf("rtf/bs_pageby_example.rtf")
 ```
-
-
-
-## Example 9: baseline characteristics example page_by and new_page feature
-```{r}
-## r2rtf rtf table createion pipeline
-bs_rtf <- bs_tb %>%
-  rtf_title("Demographic and Anthropometric Characteristics", "ITT Subjects") %>%
-  rtf_colheader(" | Placebo | Drug Low Dose | Drug High Dose | Total",
-    col_rel_width = c(3, rep(2, 4)),
-    first_row = TRUE
-  ) %>%
-  rtf_colheader(" | n | (%) | n | (%) | n | (%) | n | (%)",
-    border_top = c("", rep("single", 8)),
-    border_left = c("single", rep(c("single", ""), 4))
-  ) %>%
-  rtf_body(
-    page_by = "var_label", # this option show the label in one row.
-    new_page = TRUE,
-    col_rel_width = c(3, rep(c(1.2, 0.8), 4)),
-    text_justification = c("l", rep("d", 8)),
-    border_left = c("single", rep(c("single", ""), 4))
-  ) %>%
-  rtf_footnote("This is a footnote",
-    justification = "l"
-  ) %>%
-  rtf_source("Source: xxx",
-    justification = "l"
-  )
-
-
-# Output
-
-bs_rtf %>%
-  rtf_encode() %>%
-  write_rtf("rtf/bs_pageby_newpage_example.rtf")
-```
-
-
-

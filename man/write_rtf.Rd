@@ -2,15 +2,25 @@
 % Please edit documentation in R/write_rtf.R
 \name{write_rtf}
 \alias{write_rtf}
-\title{Write an RTF table to .rtf file}
+\title{Write an RTF Table or Figure to an RTF File}
 \usage{
 write_rtf(rtf, file)
 }
 \arguments{
-\item{rtf}{rtf encoding string rendered by \code{as_rtf()}}
+\item{rtf}{a character rtf encoding string rendered by \code{rtf_encode()}}
 
-\item{file}{File name to write the output RTF table.}
+\item{file}{a character string naming a file to save rtf file.}
 }
 \description{
 The write_rtf function writes rtf encoding string to an .rtf file
 }
+\section{Specification}{
+
+\if{latex}{
+ \itemize{
+   \item Export a single RTF string into an file using \code{write} function.
+ }
+ }
+\if{html}{The contents of this section are shown in PDF user manual only.}
+}
+

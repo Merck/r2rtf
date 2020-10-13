@@ -4,12 +4,14 @@
 \name{unicode_latex}
 \alias{unicode_latex}
 \title{Dictionary of Unicode and Latex Code}
-\format{A data frame with 681 rows and 3 variables.
+\format{
+A data frame with 681 rows and 3 variables.
 \describe{
 \item{unicode}{unicode, UTF-8 code}
 \item{latex}{latex, latex code}
 \item{int}{int, Converted integer of the UTF-8 code}
-}}
+}
+}
 \source{
 \url{http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt}
 }

@@ -15,8 +15,9 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup, message = FALSE}
+devtools::load_all() # need to be updated after the package mature
+
 library(dplyr)
-library(r2rtf)
 ```
 
 The package allow user to embed multiple figures into one RTF document. The workflow can be summarized as
@@ -29,43 +30,39 @@ The package allow user to embed multiple figures into one RTF document. The work
 1. write rtf to a file using `r2rtf::write_rtf`.
 
 A quick example to illustrate the workflow:
-```{r, eval = FALSE}
+```{r}
 # Define the path of figure
 filename <- c("fig/fig1.png", "fig/fig2.png", "fig/fig3.png")
 
 filename %>%
-  rtf_read_png() %>% # read PNG files from the file path
-  rtf_title("title", "subtitle") %>% # add title or subtitle
-  rtf_footnote("footnote") %>% # add footnote
+  rtf_read_png() %>%                     # read PNG files from the file path
+  rtf_title("title", "subtitle") %>%     # add title or subtitle
+  rtf_footnote("footnote") %>%           # add footnote
   rtf_source("[datasource: mk0999]") %>% # add data source
-  rtf_figure() %>% # default seting of page and figure
-  rtf_encode(type = "figure") %>% # encode rtf as figure
+  rtf_figure() %>%                       # default seting of page and figure
+  rtf_encode(type = "figure") %>%        # encode rtf as figure
   write_rtf(file = "rtf/fig-simple.rtf") # write RTF to a file
 ```
 
 In `rtf_figure`, the features of page and figure can be set up: 
 
-* Page direction: `rtf_figure`. 
-* Page margin: `doctype`.
-* Page height and width: `page_height` and `page_width`.
+* Page orientation: `rtf_page`. 
 * Figure height and width: `fig_heigth` and `fig_width`.
 
-The figure height and width can be set up for each figure in a vector. The code below provides an example for these features.
-```{r, eval = FALSE}
+The figure height and width can be set up for each figure in a vector. 
+The code below provides an example for these features.
+```{r}
 filename %>%
-  rtf_read_png() %>% # read PNG files from the file path
-  rtf_title("title", "subtitle") %>% # add title or subtitle
-  rtf_footnote("footnote") %>% # add footnote
-  rtf_source("[datasource: mk0999]") %>% # add data source
+  rtf_read_png() %>%                                # read PNG files from the file path
+  rtf_page(orientation = "landscape") %>%           # set page orientation
+  rtf_title("title", "subtitle") %>%                # add title or subtitle
+  rtf_footnote("footnote") %>%                      # add footnote
+  rtf_source("[datasource: mk0999]") %>%            # add data source
   rtf_figure(
-    page_height = 8.5, # page height
-    page_width = 11, # page width
-    orientation = "landscape", # page direction
-    doctype = "narrow", # set page margin as narrow i.e. 0.5 inch at each side
-    fig_height = 5, # set figure height
-    fig_width = c(6, 7, 8)
-  ) %>% # set figure width individually.
-  rtf_encode(type = "figure") %>% # encode rtf as figure
-  write_rtf(file = "rtf/fig-landscape.rtf") # write RTF to a file
+    fig_height = 3.5,                               # set figure height
+    fig_width = c(6, 7, 8)                          # set figure width individually.
+  ) %>% 
+  rtf_encode(type = "figure") %>%                   # encode rtf as figure
+  write_rtf(file = "rtf/fig-landscape.rtf")         # write RTF to a file
 ```
 

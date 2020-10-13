@@ -4,7 +4,9 @@
 \name{tbl_2}
 \alias{tbl_2}
 \title{Between Group Results from an ANCOVA Model}
-\format{A data frame with 1 row and 3 variables.}
+\format{
+A data frame with 1 row and 3 variables.
+}
 \usage{
 tbl_2
 }

@@ -4,7 +4,9 @@
 \name{HAMD17}
 \alias{HAMD17}
 \title{An Efficacy Clinical Trial Data to Evaluate a Drug to Reduce Lower Back Pain}
-\format{A data frame with 831 rows and 6 variables.}
+\format{
+A data frame with 831 rows and 6 variables.
+}
 \source{
 \url{https://missingdata.lshtm.ac.uk/dia-working-group/}
 }

@@ -4,9 +4,11 @@
 \name{adae}
 \alias{adae}
 \title{An Adverse Event Dataset}
-\format{A data frame with 1191 rows and 55 variables.}
+\format{
+A data frame with 1191 rows and 55 variables.
+}
 \source{
-\url{https://www.cdisc.org/pilot-project-submission-package}
+\url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
 }
 \usage{
 adae
@@ -17,6 +19,6 @@ CDISC ADaM standard.
 }
 \details{
 Definition of each variable can be found in
-\url{https://www.cdisc.org/pilot-project-submission-package}
+\url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
 }
 \keyword{datasets}

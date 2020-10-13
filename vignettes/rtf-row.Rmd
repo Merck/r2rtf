@@ -12,10 +12,7 @@ vignette: >
 knitr::opts_chunk$set(echo = TRUE)
 devtools::load_all() # need to be updated after the package mature
 
-library(tidyverse)
-library(emmeans)
-library(stringr)
-
+library(dplyr)
 ```
 
 
@@ -24,20 +21,21 @@ This vignette documents how to use `.rtf_row` to customize table in details. All
 
 ## Border Type
 
-`.rtf_row` supports `r length(.border_type()$name)` different types of border as listed below. 
+`.rtf_row` supports `r length(border_type()$name)` different types of border as listed below. 
 
 ```{r}
-.border_type()$name
+border_type()$name
 ```
 
 The border type can be used to define the top, left, right and bottom border types. 
 
 This example define different top border line. 
 ```{r}
-.n <- length(.border_type()$name)
-db <- data.frame(border_type = .border_type()$name) %>%
+.n <- length(border_type()$name)
+db <- data.frame(border_type = border_type()$name) %>%
   rtf_title("Summary of Border Type Using Top Border") %>%
-  rtf_body(border_top = .border_type()$name)
+  rtf_colheader("Border Type") %>%
+  rtf_body(border_top = border_type()$name)
 
 db %>%
   rtf_encode() %>%
@@ -53,10 +51,10 @@ cell border as single. Only last column use right border as double. Only last ro
 iris %>%
   head() %>%
   rtf_body(
-    border_top = "single",
-    border_left = "single",
-    border_right = "double",
-    border_bottom = "dash"
+    colheader = FALSE,
+    border_top = "dash",
+    border_left = "double",
+    border_right = "single"
   ) %>%
   rtf_encode() %>%
   write_rtf("rtf/border-order.rtf")
@@ -67,8 +65,7 @@ This example display table with specific border type (i.e. double line at the fi
 rtf_db <- iris %>%
   head() %>%
   rtf_title("Border Using Double Line at First/Last Line") %>%
-  rtf_colheader("Sepal Length | Sepal Width | Petal Length | Petal Width | Species",
-    first_row = TRUE
+  rtf_colheader("Sepal Length | Sepal Width | Petal Length | Petal Width | Species"
   ) %>%
   rtf_body()
 
@@ -78,28 +75,33 @@ rtf_db %>%
   write_rtf("rtf/border-example.rtf")
 ```
 
-Internally, the border type will be saved as a matrix to define the border type of each cell. For example, the top border type in the last example is saved as
+* The first and last border of the whole table is controled by `border_first` and `border_last` argument in `rtf_page()`  
+
+```{r}
+attr(rtf_db, "page")$border_first
+```
+
+```{r}
+attr(rtf_db, "border_first")
+```
+
+For other border, it is controled by a matrix. 
 
 ```{r}
 rtf_db %>% attr("border_top")
 ```
 
-the bottom border type in the last example is saved as below. Based on the rule, all cells use top border. cells at last row use bottom border at last row. 
-```{r}
-rtf_db %>% attr("border_bottom")
-```
-
 User can use single value, vector, and matrix to control the border type. Specifically, a vector is transferred to a matrix by row. Therefore, it is useful to set columns type by using vector. 
 
 ```{r}
-matrix(.border_type()$name[1:5], nrow = 6, ncol = 5, byrow = TRUE)
+matrix(border_type()$name[1:5], nrow = 6, ncol = 5, byrow = TRUE)
 ```
 
 ```{r}
 rtf_db <- iris %>%
   head() %>%
   rtf_title("Left Border Defined by a Vector") %>%
-  rtf_body(border_left = .border_type()$name[2:6])
+  rtf_body(border_left = border_type()$name[2:6])
 
 rtf_db %>%
   rtf_encode() %>%
@@ -111,12 +113,12 @@ rtf_db %>%
 
 The table cell allow to be left, center or right justified. the cell is also allow to align by decimal. 
 ```{r}
-.justification()[, 1:2]
+justification()[, 1:2]
 ```
 
 ```{r}
-.justification()[, 1:2] %>%
-  rtf_body(text_justification = rep(.justification()$type, each = 2)) %>%
+justification()[, 1:2] %>%
+  rtf_body(text_justification = rep(justification()$type, each = 2)) %>%
   rtf_encode() %>%
   write_rtf("rtf/justification-type.rtf")
 ```
@@ -141,7 +143,7 @@ This example shows the default setting
 ```{r}
 iris %>%
   head() %>%
-  rtf_body() %>%
+  rtf_body(colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/column-width-default.rtf")
 ```
@@ -150,7 +152,7 @@ This example customizes the column width
 ```{r}
 iris %>%
   head() %>%
-  rtf_body(col_rel_width = 1:ncol(iris)) %>%
+  rtf_body(col_rel_width = 1:ncol(iris), colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/column-width-ratio.rtf")
 ```
@@ -161,19 +163,19 @@ iris %>%
 The `.rtf_row` function allow **bold**, *italics*, ~~strikethrough~~, underline and any combinations of them. 
 
 ```{r}
-.font_format()[, 1:2]
+font_format()[, 1:2]
 ```
 
 This example considers the text format defined below
 
 ```{r}
-fmt <- matrix(c(.font_format()$type, paste0(.font_format()$type, "b")), ncol = 2)
+fmt <- cbind("", font_format()$type)
 fmt
 ```
 
 
 ```{r}
-.font_format()[, 1:2] %>%
+font_format()[, 1:2] %>%
   rtf_body(text_format = fmt) %>%
   rtf_encode() %>%
   write_rtf("rtf/text-format.rtf")
@@ -186,7 +188,7 @@ Font size can be defined for each cell.
 ```{r}
 iris %>%
   head() %>%
-  rtf_body(text_font_size = c(7:11)) %>%
+  rtf_body(text_font_size = c(7:11), colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/text-font-size.rtf")
 ```
@@ -200,7 +202,8 @@ This example define text color for each column
 ```{r}
 iris %>%
   head() %>%
-  rtf_body(text_color = c("black", "red", "gold", "blue", "grey")) %>%
+  rtf_body(text_color = c("black", "red", "gold", "blue", "grey"),
+           colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/color-text.rtf")
 ```
@@ -210,7 +213,8 @@ This example define left border color for each column
 ```{r}
 iris %>%
   head() %>%
-  rtf_body(border_color_left = c("black", "red", "gold", "blue", "grey")) %>%
+  rtf_body(border_color_left = c("black", "red", "gold", "blue", "grey"),
+           colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/color-border.rtf")
 ```
@@ -222,7 +226,8 @@ iris %>%
   head() %>%
   rtf_body(
     text_background_color = c("white", "red", "gold", "blue", "grey"),
-    text_color = "black"
+    text_color = "black",
+    colheader = FALSE,
   ) %>%
   rtf_encode() %>%
   write_rtf("rtf/color-background.rtf")

@@ -21,11 +21,11 @@
 #' CDISC ADaM standard.
 #'
 #' Definition of each variable can be found in
-#' \url{https://www.cdisc.org/pilot-project-submission-package}
+#' \url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
 #'
 #' @format A data frame with 1191 rows and 55 variables.
 #'
-#' @source \url{https://www.cdisc.org/pilot-project-submission-package}
+#' @source \url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
 #'
 "adae"
 
@@ -35,11 +35,11 @@
 #' CDISC ADaM standard.
 #'
 #' Definition of each variable can be found in
-#' \url{https://www.cdisc.org/pilot-project-submission-package}
+#' \url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
 #'
 #' @format A data frame with 254 rows and 51 variables.
 #'
-#' @source \url{https://www.cdisc.org/pilot-project-submission-package}
+#' @source \url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
 "adsl"
 
 #' An Efficacy Clinical Trial Data to Evaluate a Drug to Reduce Lower Back Pain
