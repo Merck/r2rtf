@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0</span>
       </span>
     </div>
 
@@ -94,7 +94,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
+    </li>
+    <li>
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
+    </li>
+    <li>
+      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
     </li>
     <li>
       <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
@@ -160,13 +166,31 @@
         <td>
           <p><code><a href="rtf_colheader.html">rtf_colheader()</a></code> </p>
         </td>
-        <td><p>Add column header to the table</p></td>
+        <td><p>Add Column Header Attributes to Table</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="rtf_encode.html">rtf_encode()</a></code> <code><a href="rtf_encode.html">as_rtf()</a></code> </p>
+          <p><code><a href="rtf_encode.html">rtf_encode()</a></code> </p>
         </td>
         <td><p>Render to RTF Encoding</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_encode_figure.html">rtf_encode_figure()</a></code> </p>
+        </td>
+        <td><p>Render Figure to RTF encoding</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_encode_list.html">rtf_encode_list()</a></code> </p>
+        </td>
+        <td><p>Render List to RTF encoding</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_encode_table.html">rtf_encode_table()</a></code> </p>
+        </td>
+        <td><p>Render Table to RTF encoding</p></td>
       </tr><tr>
         
         <td>
@@ -182,9 +206,39 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="rtf_page.html">rtf_page()</a></code> </p>
+        </td>
+        <td><p>Add RTF File Page Information</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_page_footer.html">rtf_page_footer()</a></code> </p>
+        </td>
+        <td><p>Add RTF Page Footer Information</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_page_header.html">rtf_page_header()</a></code> </p>
+        </td>
+        <td><p>Add RTF Page Header Information</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_pageby.html">rtf_pageby()</a></code> </p>
+        </td>
+        <td><p>add table body page by attributes to the table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_paragraph.html">rtf_paragraph()</a></code> </p>
+        </td>
+        <td><p>Paragraph to RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="rtf_read_png.html">rtf_read_png()</a></code> </p>
         </td>
-        <td><p>Read PNG figures into Binary Files</p></td>
+        <td><p>Read PNG Figures into Binary Files</p></td>
       </tr><tr>
         
         <td>
@@ -194,15 +248,39 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="rtf_subline.html">rtf_subline()</a></code> </p>
+        </td>
+        <td><p>Add Subline Attributes to Table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_table_content.html">rtf_table_content()</a></code> </p>
+        </td>
+        <td><p>Create RTF Table Body Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_text.html">rtf_text()</a></code> </p>
+        </td>
+        <td><p>Text to RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="rtf_title.html">rtf_title()</a></code> </p>
         </td>
-        <td><p>Add title attributes to the table</p></td>
+        <td><p>Add Title Attributes to Table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="utf8Tortf.html">utf8Tortf()</a></code> </p>
+        </td>
+        <td><p>Convert a UTF-8 Encoded Character String to a RTF Encoded String</p></td>
       </tr><tr>
         
         <td>
           <p><code><a href="write_rtf.html">write_rtf()</a></code> </p>
         </td>
-        <td><p>Write an RTF table to .rtf file</p></td>
+        <td><p>Write an RTF Table or Figure to an RTF File</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -256,6 +334,180 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="as_rtf_colheader.html">as_rtf_colheader()</a></code> </p>
+        </td>
+        <td><p>Create Column Header RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_color.html">as_rtf_color()</a></code> </p>
+        </td>
+        <td><p>Create RTF Color Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_end.html">as_rtf_end()</a></code> </p>
+        </td>
+        <td><p>End RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_font.html">as_rtf_font()</a></code> </p>
+        </td>
+        <td><p>Create RTF Font Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_footnote.html">as_rtf_footnote()</a></code> </p>
+        </td>
+        <td><p>Create Footnote RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_init.html">as_rtf_init()</a></code> </p>
+        </td>
+        <td><p>Create RTF Header Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_margin.html">as_rtf_margin()</a></code> </p>
+        </td>
+        <td><p>Create RTF Page Margin Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_new_page.html">as_rtf_new_page()</a></code> </p>
+        </td>
+        <td><p>Create RTF New Page Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_page.html">as_rtf_page()</a></code> </p>
+        </td>
+        <td><p>Create RTF Page Size Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_pageby.html">as_rtf_pageby()</a></code> </p>
+        </td>
+        <td><p>RTF Table Page By Encoding</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_paragraph.html">as_rtf_paragraph()</a></code> </p>
+        </td>
+        <td><p>Create Paragraph RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_source.html">as_rtf_source()</a></code> </p>
+        </td>
+        <td><p>Create Data Source RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_subline.html">as_rtf_subline()</a></code> </p>
+        </td>
+        <td><p>Create Table Subline RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_table.html">as_rtf_table()</a></code> </p>
+        </td>
+        <td><p>Combine RTF Table Encoding</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="as_rtf_title.html">as_rtf_title()</a></code> </p>
+        </td>
+        <td><p>Create Table Title RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="border_type.html">border_type()</a></code> </p>
+        </td>
+        <td><p>RTF Border Type Dictionary</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="cell_size.html">cell_size()</a></code> </p>
+        </td>
+        <td><p>Calculate Cell Size in Twips</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="check_args.html">check_args()</a></code> </p>
+        </td>
+        <td><p>Check Argument Types, Length or Dimension</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="color_table.html">color_table()</a></code> </p>
+        </td>
+        <td><p>RTF Text Color Dictionary</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="convert.html">convert()</a></code> </p>
+        </td>
+        <td><p>Convert Symbol to ANSI and Unicode Encoding</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="font_format.html">font_format()</a></code> </p>
+        </td>
+        <td><p>RTF Text Format Dictionary</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="font_type.html">font_type()</a></code> </p>
+        </td>
+        <td><p>RTF Text Font Dictionary</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="footnote_source_space.html">footnote_source_space()</a></code> </p>
+        </td>
+        <td><p>Derive Space Adjustment</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="inch_to_twip.html">inch_to_twip()</a></code> </p>
+        </td>
+        <td><p>Convert Inches to Twips</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="justification.html">justification()</a></code> </p>
+        </td>
+        <td><p>RTF Text Justification Dictionary</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="match_arg.html">match_arg()</a></code> </p>
+        </td>
+        <td><p>Argument Verification Using Partial Matching</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="obj_rtf_border.html">obj_rtf_border()</a></code> </p>
+        </td>
+        <td><p>Create an RTF Table Border Object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="obj_rtf_text.html">obj_rtf_text()</a></code> </p>
+        </td>
+        <td><p>Create an RTF Text Object</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="remove_group_by.html">remove_group_by()</a></code> </p>
+        </td>
+        <td><p>Remove Duplicate Records</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="rtf_body.html">rtf_body()</a></code> </p>
         </td>
         <td><p>add table body attributes to the table</p></td>
@@ -264,13 +516,31 @@
         <td>
           <p><code><a href="rtf_colheader.html">rtf_colheader()</a></code> </p>
         </td>
-        <td><p>Add column header to the table</p></td>
+        <td><p>Add Column Header Attributes to Table</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="rtf_encode.html">rtf_encode()</a></code> <code><a href="rtf_encode.html">as_rtf()</a></code> </p>
+          <p><code><a href="rtf_encode.html">rtf_encode()</a></code> </p>
         </td>
         <td><p>Render to RTF Encoding</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_encode_figure.html">rtf_encode_figure()</a></code> </p>
+        </td>
+        <td><p>Render Figure to RTF encoding</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_encode_list.html">rtf_encode_list()</a></code> </p>
+        </td>
+        <td><p>Render List to RTF encoding</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_encode_table.html">rtf_encode_table()</a></code> </p>
+        </td>
+        <td><p>Render Table to RTF encoding</p></td>
       </tr><tr>
         
         <td>
@@ -286,9 +556,39 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="rtf_page.html">rtf_page()</a></code> </p>
+        </td>
+        <td><p>Add RTF File Page Information</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_page_footer.html">rtf_page_footer()</a></code> </p>
+        </td>
+        <td><p>Add RTF Page Footer Information</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_page_header.html">rtf_page_header()</a></code> </p>
+        </td>
+        <td><p>Add RTF Page Header Information</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_pageby.html">rtf_pageby()</a></code> </p>
+        </td>
+        <td><p>add table body page by attributes to the table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_paragraph.html">rtf_paragraph()</a></code> </p>
+        </td>
+        <td><p>Paragraph to RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="rtf_read_png.html">rtf_read_png()</a></code> </p>
         </td>
-        <td><p>Read PNG figures into Binary Files</p></td>
+        <td><p>Read PNG Figures into Binary Files</p></td>
       </tr><tr>
         
         <td>
@@ -298,9 +598,39 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="rtf_subline.html">rtf_subline()</a></code> </p>
+        </td>
+        <td><p>Add Subline Attributes to Table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_table_content.html">rtf_table_content()</a></code> </p>
+        </td>
+        <td><p>Create RTF Table Body Encode</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="rtf_text.html">rtf_text()</a></code> </p>
+        </td>
+        <td><p>Text to RTF Encode</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="rtf_title.html">rtf_title()</a></code> </p>
         </td>
-        <td><p>Add title attributes to the table</p></td>
+        <td><p>Add Title Attributes to Table</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_margin.html">set_margin()</a></code> </p>
+        </td>
+        <td><p>Define Margin Type</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="spacing.html">spacing()</a></code> </p>
+        </td>
+        <td><p>RTF Paragraph Spacing Dictionary</p></td>
       </tr><tr>
         
         <td>
@@ -328,9 +658,21 @@
       </tr><tr>
         
         <td>
+          <p><code><a href="utf8Tortf.html">utf8Tortf()</a></code> </p>
+        </td>
+        <td><p>Convert a UTF-8 Encoded Character String to a RTF Encoded String</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="write_rtf.html">write_rtf()</a></code> </p>
         </td>
-        <td><p>Write an RTF table to .rtf file</p></td>
+        <td><p>Write an RTF Table or Figure to an RTF File</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="write_rtf_para.html">write_rtf_para()</a></code> </p>
+        </td>
+        <td><p>Write a Paragraph to an RTF File</p></td>
       </tr>
     </tbody>
     </table>
@@ -347,7 +689,7 @@
       <footer>
       <div class="copyright">
   <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
 <div class="logo">

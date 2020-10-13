@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0</span>
       </span>
     </div>
 
@@ -54,7 +54,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
+    </li>
+    <li>
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
+    </li>
+    <li>
+      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
     </li>
     <li>
       <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
@@ -81,12 +87,12 @@
 
       
 
-      </header><div class="row">
+      </header><script src="rtf-text_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>RTF Examples for Controlling Text and Paragraph Details</h1>
             
-            <h4 class="date">2020-04-16</h4>
+            <h4 class="date">2020-10-13</h4>
       
       
       <div class="hidden name"><code>rtf-text.Rmd</code></div>
@@ -95,9 +101,11 @@
 
     
     
-<p>This vignette documents how to use <code>.rtf_text</code> and <code>.rtf_paragraph</code> to customize text and paragraph in details. All output tables are saved in the <code>vignettes/rtf</code> folder and assembled in <code>vignettes/r2rtf_examples.docx</code> document.</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">text</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"Sample Text"</span>, <span class="fl">20</span>), <span class="kw">collapse</span> <span class="kw">=</span> <span class="st">" "</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="no">text</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="no">text</span>, <span class="fl">5</span>)</pre></body></html></div>
+<p>This vignette documents how to use <code>rtf_text</code> and <code>rtf_paragraph</code> to customize text and paragraph in details. All output tables are saved in the <code>vignettes/rtf</code> folder and assembled in <code>vignettes/r2rtf_examples.docx</code> document.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Sample Text"</span>, <span class="fl">20</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">" "</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="va">text</span>, <span class="fl">5</span><span class="op">)</span></pre></div>
 <div id="paragraph" class="section level2">
 <h2 class="hasAnchor">
 <a href="#paragraph" class="anchor"></a>Paragraph</h2>
@@ -105,57 +113,64 @@
 <h3 class="hasAnchor">
 <a href="#paragraph-alignment" class="anchor"></a>Paragraph Alignment</h3>
 <p>Paragraph alignment supports four types.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu">.justification</span>() <span class="kw">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(<span class="no">type</span> <span class="kw">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"r"</span>, <span class="st">"j"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">type</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"r"</span>, <span class="st">"j"</span><span class="op">)</span><span class="op">)</span></pre></div>
 <pre><code>##   type      name rtf_code_text rtf_code_row
 ## 1    l      left          \\ql       \\trql
 ## 2    c    center          \\qc       \\trqc
 ## 3    r     right          \\qr       \\trqr
 ## 5    j justified          \\qj</code></pre>
 <p>This example display text in different alignment methods.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>),
-  <span class="kw">justification</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"r"</span>, <span class="st">"j"</span>)
-)
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/para-justification.rtf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,
+  justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"r"</span>, <span class="st">"j"</span><span class="op">)</span>
+<span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-justification.rtf"</span><span class="op">)</span></pre></div>
 </div>
 <div id="indent" class="section level3">
 <h3 class="hasAnchor">
 <a href="#indent" class="anchor"></a>Indent</h3>
-<p>First line, left, and right indent can be control. One can also use a negative number to have the text “outdent”.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>), <span class="kw">indent_first</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1000</span>, <span class="fl">0</span>, -<span class="fl">1000</span>), <span class="kw">indent_left</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">500</span>, -<span class="fl">500</span>), <span class="kw">indent_right</span> <span class="kw">=</span> <span class="fl">500</span>)
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/para-indent.rtf"</span>)</pre></body></html></div>
+<p>First line, left, and right indent can be controlled. One can also use a negative number to have the text “outdent”.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>, indent_first <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1000</span><span class="op">)</span>, indent_left <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">500</span>, <span class="op">-</span><span class="fl">500</span><span class="op">)</span>, indent_right <span class="op">=</span> <span class="fl">500</span><span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-indent.rtf"</span><span class="op">)</span></pre></div>
 </div>
 <div id="line-space" class="section level3">
 <h3 class="hasAnchor">
 <a href="#line-space" class="anchor"></a>Line Space</h3>
 <p>Different types of line space can be controlled.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu">.spacing</span>()[, <span class="fl">1</span>:<span class="fl">2</span>]</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="../reference/spacing.html">spacing</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></pre></div>
 <pre><code>##   type         name
 ## 1  1.0 single-space
 ## 2  2.0 double-space
 ## 3  1.5    1.5-space</code></pre>
 <p>This example show different line spaces in paragraph.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>),
-  <span class="kw">space</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1.5</span>)
-)
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/para-line-space.rtf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,
+  space <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1.5</span><span class="op">)</span>
+<span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-line-space.rtf"</span><span class="op">)</span></pre></div>
 </div>
 <div id="paragraph-space" class="section level3">
 <h3 class="hasAnchor">
 <a href="#paragraph-space" class="anchor"></a>Paragraph Space</h3>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>),
-  <span class="kw">space_before</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">50</span>, <span class="fl">180</span>),
-  <span class="kw">space_after</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">180</span>, <span class="fl">50</span>)
-)
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/para-space.rtf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,
+  space_before <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">180</span><span class="op">)</span>,
+  space_after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">180</span>, <span class="fl">50</span><span class="op">)</span>
+<span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-space.rtf"</span><span class="op">)</span></pre></div>
 </div>
 <div id="new-page" class="section level3">
 <h3 class="hasAnchor">
 <a href="#new-page" class="anchor"></a>New Page</h3>
 <p>This example add page break before paragraphs.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>)[<span class="fl">1</span>:<span class="fl">2</span>],
-  <span class="kw">new_page</span> <span class="kw">=</span> <span class="fl">TRUE</span>
-)
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/para-page.rtf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,
+  new_page <span class="op">=</span> <span class="cn">TRUE</span>
+<span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-page.rtf"</span><span class="op">)</span></pre></div>
 </div>
 </div>
 <div id="text" class="section level2">
@@ -164,63 +179,70 @@
 <div id="font-size" class="section level3">
 <h3 class="hasAnchor">
 <a href="#font-size" class="anchor"></a>Font Size</h3>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>,
-  <span class="kw">font_size</span> <span class="kw">=</span> <span class="fl">8</span>:<span class="fl">12</span>
-))
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/text-font-size.rtf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,
+  font_size <span class="op">=</span> <span class="fl">8</span><span class="op">:</span><span class="fl">12</span>
+<span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-font-size-1.rtf"</span><span class="op">)</span></pre></div>
 </div>
 <div id="text-format" class="section level3">
 <h3 class="hasAnchor">
 <a href="#text-format" class="anchor"></a>Text Format</h3>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>,
-  <span class="kw">format</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"b"</span>, <span class="st">"i"</span>, <span class="st">"bi"</span>, <span class="st">"^"</span>, <span class="st">"_"</span>, <span class="st">"u"</span>, <span class="st">"s"</span>)
-))
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/text-format.rtf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit">
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,
+  format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"i"</span>, <span class="st">"bi"</span>, <span class="st">"^"</span>, <span class="st">"_"</span>, <span class="st">"u"</span>, <span class="st">"s"</span><span class="op">)</span>
+<span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-format-1.rtf"</span><span class="op">)</span></pre></div>
 </div>
 <div id="text-color" class="section level3">
 <h3 class="hasAnchor">
 <a href="#text-color" class="anchor"></a>Text Color</h3>
-<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>,
-  <span class="kw">color</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"black"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span>)
-))
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/text-color.rtf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb14"><pre class="downlit">
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,
+  color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"black"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span><span class="op">)</span>
+<span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-color.rtf"</span><span class="op">)</span></pre></div>
 </div>
 <div id="text-background-color" class="section level3">
 <h3 class="hasAnchor">
 <a href="#text-background-color" class="anchor"></a>Text Background Color</h3>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>,
-  <span class="kw">color</span> <span class="kw">=</span> <span class="st">"white"</span>,
-  <span class="kw">background_color</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"black"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span>)
-))
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/text-background-color.rtf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit">
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,
+  color <span class="op">=</span> <span class="st">"white"</span>,
+  background_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"black"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span><span class="op">)</span>
+<span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-background-color.rtf"</span><span class="op">)</span></pre></div>
 </div>
 <div id="combine-text-in-different-format" class="section level3">
 <h3 class="hasAnchor">
 <a href="#combine-text-in-different-format" class="anchor"></a>Combine Text in Different Format</h3>
 <p>This example call <code>rtf_text</code> multiple times to combine a text.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(
-  <span class="fu">.rtf_text</span>(<span class="st">"3.5"</span>),
-  <span class="fu">.rtf_text</span>(<span class="st">"\\dagger"</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="st">"^"</span>),
-  <span class="fu">.rtf_text</span>(<span class="st">"\\line red "</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="st">"red"</span>),
-  <span class="fu">.rtf_text</span>(<span class="st">"highlight"</span>, <span class="kw">background_color</span> <span class="kw">=</span> <span class="st">"yellow"</span>)
-))
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/text-combine1.rtf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit">
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span>
+  <span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="st">"3.5"</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="st">"\\dagger"</span>, format <span class="op">=</span> <span class="st">"^"</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="st">"\\line red "</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,
+  <span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="st">"highlight"</span>, background_color <span class="op">=</span> <span class="st">"yellow"</span><span class="op">)</span>
+<span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine1.rtf"</span><span class="op">)</span></pre></div>
 <p>This example call <code>rtf_text</code> one time to combine a text.</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">text</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">3.5</span>, <span class="st">"\\dagger"</span>, <span class="st">"\\line red "</span>, <span class="st">"highlight"</span>)
-<span class="no">format</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">""</span>, <span class="st">"^"</span>, <span class="st">""</span>, <span class="st">""</span>)
-<span class="no">color</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"black"</span>)
-<span class="no">background_color</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"white"</span>, <span class="st">"white"</span>, <span class="st">"white"</span>, <span class="st">"yellow"</span>)
+<div class="sourceCode" id="cb17"><pre class="downlit">
+<span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.5</span>, <span class="st">"\\dagger"</span>, <span class="st">"\\line red "</span>, <span class="st">"highlight"</span><span class="op">)</span>
+<span class="va">format</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"^"</span>, <span class="st">""</span>, <span class="st">""</span><span class="op">)</span>
+<span class="va">color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span>
+<span class="va">background_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"white"</span>, <span class="st">"white"</span>, <span class="st">"yellow"</span><span class="op">)</span>
 
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>, <span class="kw">format</span> <span class="kw">=</span> <span class="no">format</span>, <span class="kw">color</span> <span class="kw">=</span> <span class="no">color</span>, <span class="kw">background_color</span> <span class="kw">=</span> <span class="no">background_color</span>), <span class="kw">collapse</span> <span class="kw">=</span> <span class="st">""</span>))
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/text-combine2.rtf"</span>)</pre></body></html></div>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>, format <span class="op">=</span> <span class="va">format</span>, color <span class="op">=</span> <span class="va">color</span>, background_color <span class="op">=</span> <span class="va">background_color</span><span class="op">)</span>, collapse <span class="op">=</span> <span class="st">""</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine2.rtf"</span><span class="op">)</span></pre></div>
 </div>
 <div id="inline-formatting" class="section level3">
 <h3 class="hasAnchor">
 <a href="#inline-formatting" class="anchor"></a>Inline Formatting</h3>
 <p>This example provide an inline formatting options with superscript and subscript. It is important to note the location of <code>{}</code> is before the special character.</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">text</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"X{_1} = \\alpha{^2} + \\beta{^\\dagger}"</span>)
-<span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu">.rtf_paragraph</span>(<span class="fu">.rtf_text</span>(<span class="no">text</span>))
-<span class="fu">write_rtf_para</span>(<span class="no">res</span>, <span class="st">"rtf/text-combine3.rtf"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb18"><pre class="downlit">
+<span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"X{_1} = \\alpha{^2} + \\beta{^\\dagger}"</span><span class="op">)</span>
+<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">)</span>
+<span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine3.rtf"</span><span class="op">)</span></pre></div>
 </div>
 </div>
   </div>
@@ -237,7 +259,7 @@
 
       <footer><div class="copyright">
   <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
 <div class="logo">

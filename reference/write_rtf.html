@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Write an RTF table to .rtf file — write_rtf • r2rtf</title>
+<title>Write an RTF Table or Figure to an RTF File — write_rtf • r2rtf</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Write an RTF table to .rtf file — write_rtf" />
+<meta property="og:title" content="Write an RTF Table or Figure to an RTF File — write_rtf" />
 <meta property="og:description" content="The write_rtf function writes rtf encoding string to an .rtf file" />
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0</span>
       </span>
     </div>
 
@@ -95,7 +95,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
+    </li>
+    <li>
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
+    </li>
+    <li>
+      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
     </li>
     <li>
       <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
@@ -127,7 +133,7 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Write an RTF table to .rtf file</h1>
+    <h1>Write an RTF Table or Figure to an RTF File</h1>
     
     <div class="hidden name"><code>write_rtf.Rd</code></div>
     </div>
@@ -136,21 +142,26 @@
     <p>The write_rtf function writes rtf encoding string to an .rtf file</p>
     </div>
 
-    <pre class="usage"><span class='fu'>write_rtf</span>(<span class='no'>rtf</span>, <span class='no'>file</span>)</pre>
+    <pre class="usage"><span class='fu'>write_rtf</span><span class='op'>(</span><span class='va'>rtf</span>, <span class='va'>file</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>rtf</th>
-      <td><p>rtf encoding string rendered by <code><a href='rtf_encode.html'>as_rtf()</a></code></p></td>
+      <td><p>a character rtf encoding string rendered by <code><a href='rtf_encode.html'>rtf_encode()</a></code></p></td>
     </tr>
     <tr>
       <th>file</th>
-      <td><p>File name to write the output RTF table.</p></td>
+      <td><p>a character string naming a file to save rtf file.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
+
+    
+
+<p>The contents of this section are shown in PDF user manual only.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -164,7 +175,7 @@
       <footer>
       <div class="copyright">
   <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
 <div class="logo">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add column header to the table — rtf_colheader • r2rtf</title>
+<title>Add Column Header Attributes to Table — rtf_colheader • r2rtf</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Add column header to the table — rtf_colheader" />
-<meta property="og:description" content="Add column header to the table" />
+<meta property="og:title" content="Add Column Header Attributes to Table — rtf_colheader" />
+<meta property="og:description" content="Add Column Header Attributes to Table" />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0</span>
       </span>
     </div>
 
@@ -95,7 +95,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
+    </li>
+    <li>
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
+    </li>
+    <li>
+      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
     </li>
     <li>
       <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
@@ -127,280 +133,160 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add column header to the table</h1>
+    <h1>Add Column Header Attributes to Table</h1>
     
     <div class="hidden name"><code>rtf_colheader.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add column header to the table</p>
+    <p>Add Column Header Attributes to Table</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rtf_colheader</span>(
-  <span class='no'>tbl</span>,
-  <span class='kw'>colheader</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_left</span> <span class='kw'>=</span> <span class='st'>"single"</span>,
-  <span class='kw'>border_right</span> <span class='kw'>=</span> <span class='st'>"single"</span>,
-  <span class='kw'>border_top</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_bottom</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>border_color_left</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_color_right</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_color_top</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_color_bottom</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>border_width</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-  <span class='kw'>cell_justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
-  <span class='kw'>col_rel_width</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>page_width</span> <span class='kw'>=</span> <span class='fl'>8.5</span>,
-  <span class='kw'>col_total_width</span> <span class='kw'>=</span> <span class='no'>page_width</span>/<span class='fl'>1.4</span>,
-  <span class='kw'>cell_height</span> <span class='kw'>=</span> <span class='fl'>0.15</span>,
-  <span class='kw'>text_justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
-  <span class='kw'>text_font</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>text_format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>text_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>text_background_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>text_font_size</span> <span class='kw'>=</span> <span class='fl'>9</span>,
-  <span class='kw'>text_space_before</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-  <span class='kw'>text_space_after</span> <span class='kw'>=</span> <span class='fl'>15</span>,
-  <span class='kw'>first_row</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>rtf_colheader</span><span class='op'>(</span>
+  <span class='va'>tbl</span>,
+  colheader <span class='op'>=</span> <span class='cn'>NULL</span>,
+  col_rel_width <span class='op'>=</span> <span class='cn'>NULL</span>,
+  border_left <span class='op'>=</span> <span class='st'>"single"</span>,
+  border_right <span class='op'>=</span> <span class='st'>"single"</span>,
+  border_top <span class='op'>=</span> <span class='st'>"single"</span>,
+  border_bottom <span class='op'>=</span> <span class='st'>""</span>,
+  border_color_left <span class='op'>=</span> <span class='cn'>NULL</span>,
+  border_color_right <span class='op'>=</span> <span class='cn'>NULL</span>,
+  border_color_top <span class='op'>=</span> <span class='cn'>NULL</span>,
+  border_color_bottom <span class='op'>=</span> <span class='cn'>NULL</span>,
+  border_width <span class='op'>=</span> <span class='fl'>15</span>,
+  cell_height <span class='op'>=</span> <span class='fl'>0.15</span>,
+  cell_justification <span class='op'>=</span> <span class='st'>"c"</span>,
+  text_font <span class='op'>=</span> <span class='fl'>1</span>,
+  text_format <span class='op'>=</span> <span class='cn'>NULL</span>,
+  text_font_size <span class='op'>=</span> <span class='fl'>9</span>,
+  text_color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  text_background_color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  text_justification <span class='op'>=</span> <span class='st'>"c"</span>,
+  text_indent_first <span class='op'>=</span> <span class='fl'>0</span>,
+  text_indent_left <span class='op'>=</span> <span class='fl'>0</span>,
+  text_indent_right <span class='op'>=</span> <span class='fl'>0</span>,
+  text_space <span class='op'>=</span> <span class='fl'>1</span>,
+  text_space_before <span class='op'>=</span> <span class='fl'>15</span>,
+  text_space_after <span class='op'>=</span> <span class='fl'>15</span>,
+  text_convert <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tbl</th>
-      <td><p>A data frame</p></td>
+      <td><p>A data frame. Required argument.</p></td>
     </tr>
     <tr>
       <th>colheader</th>
-      <td><p>A string that uses " | " to separate column names.</p></td>
-    </tr>
-    <tr>
-      <th>border_left</th>
-      <td><p>left border type</p></td>
-    </tr>
-    <tr>
-      <th>border_right</th>
-      <td><p>right border type</p></td>
-    </tr>
-    <tr>
-      <th>border_top</th>
-      <td><p>top border type</p></td>
-    </tr>
-    <tr>
-      <th>border_bottom</th>
-      <td><p>bottom border type</p></td>
-    </tr>
-    <tr>
-      <th>border_color_left</th>
-      <td><p>left border color</p></td>
-    </tr>
-    <tr>
-      <th>border_color_right</th>
-      <td><p>right border color</p></td>
-    </tr>
-    <tr>
-      <th>border_color_top</th>
-      <td><p>top border color</p></td>
-    </tr>
-    <tr>
-      <th>border_color_bottom</th>
-      <td><p>bottom border color</p></td>
-    </tr>
-    <tr>
-      <th>border_width</th>
-      <td><p>border width in twips</p></td>
-    </tr>
-    <tr>
-      <th>cell_justification</th>
-      <td><p>justification for cell</p></td>
+      <td><p>A character string that uses " | " to separate column names. Default is NULL for a blank column header.</p></td>
     </tr>
     <tr>
       <th>col_rel_width</th>
-      <td><p>column relative width in a vector eg. c(2,1,1) refers to 2:1;1</p></td>
+      <td><p>A numeric vector for column relative width, e.g. c(2,1,1) refers to 2:1:1. Default is NULL for equal column width.</p></td>
     </tr>
     <tr>
-      <th>page_width</th>
-      <td><p>page width in inches</p></td>
+      <th>border_left</th>
+      <td><p>A character vector for left border type. Default is "single". All possible input can be found in <code>r2rtf:::border_type()</code>.</p></td>
     </tr>
     <tr>
-      <th>col_total_width</th>
-      <td><p>column total width for the table</p></td>
+      <th>border_right</th>
+      <td><p>A character vector for right border type. Default is "single". All possible input can be found in <code>r2rtf:::border_type()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>border_top</th>
+      <td><p>A character vector for top border type. Default is NULL. If it is the first row in a table for this page,
+the border is set to "double" otherwise the border is set to "single".</p></td>
+    </tr>
+    <tr>
+      <th>border_bottom</th>
+      <td><p>A character vector for bottom border type. Default is NULL for no border. All possible input can be found in <code>r2rtf:::border_type()</code>.</p></td>
+    </tr>
+    <tr>
+      <th>border_color_left</th>
+      <td><p>A character vector for left border color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>border_color_right</th>
+      <td><p>A character vector for right border color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>border_color_top</th>
+      <td><p>A character vector for top border color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>border_color_bottom</th>
+      <td><p>A character vector for bottom border color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>border_width</th>
+      <td><p>A numeric value for border width in twips. Default is 15.</p></td>
     </tr>
     <tr>
       <th>cell_height</th>
-      <td><p>height for cell in twips</p></td>
+      <td><p>A numeric value for height of cell in inch. Default is 0.15 inch.</p></td>
     </tr>
     <tr>
-      <th>text_justification</th>
-      <td><p>justification for text</p></td>
+      <th>cell_justification</th>
+      <td><p>A character vector for justification of cell. Default is "c" for center justification. All possible input can be found in <code>r2rtf:::justification()</code>.</p></td>
     </tr>
     <tr>
       <th>text_font</th>
-      <td><p>text font type</p></td>
+      <td><p>A numeric value for text font type. Default is 1 for Times New Roman. All possible input can be found in <code>r2rtf:::font_type()</code>.</p></td>
     </tr>
     <tr>
       <th>text_format</th>
-      <td><p>text format</p></td>
-    </tr>
-    <tr>
-      <th>text_color</th>
-      <td><p>text color</p></td>
-    </tr>
-    <tr>
-      <th>text_background_color</th>
-      <td><p>text background color</p></td>
+      <td><p>A character vector for  text format. Default is NULL for normal format. Multiple format type can be assigned, e.g. "bi" will
+give the text both bold and italics format. All possible input can be found in <code>r2rtf:::font_format()</code>.</p></td>
     </tr>
     <tr>
       <th>text_font_size</th>
-      <td><p>text font size</p></td>
+      <td><p>A numeric value for text font size. Default is 9.</p></td>
+    </tr>
+    <tr>
+      <th>text_color</th>
+      <td><p>A character vector for text color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>text_background_color</th>
+      <td><p>A character vector for text background color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>text_justification</th>
+      <td><p>A character vector for text justification. Default is "c" for center justification. All possible input can be found in <code>r2rtf:::justification()</code>.</p></td>
     </tr>
     <tr>
       <th>text_space_before</th>
-      <td><p>line space before text</p></td>
+      <td><p>A numeric value for line space before text in twips. Default is 15.</p></td>
     </tr>
     <tr>
       <th>text_space_after</th>
-      <td><p>line space after text</p></td>
-    </tr>
-    <tr>
-      <th>first_row</th>
-      <td><p>boolean value to indicate whether column header is the first row of the table</p></td>
+      <td><p>A numeric value for line space after text in twips. Default is 15.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>the same data frame <code>tbl</code> with additional attributes for table column header</p>
+    <p>The same data frame <code>tbl</code> with additional attributes for table column header.</p>
+    <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
+
+    
+
+<p>The contents of this section are shown in PDF user manual only.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>) <span class='co'># required to run examples</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>tbl_1</span>)
-<span class='no'>tbl_1</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>rtf_colheader</span>(<span class='kw'>colheader</span> <span class='kw'>=</span> <span class='st'>"Treatment | N | Mean (SD) | N | Mean (SD) | N |
-                  Mean (SD) | LS Mean (95% CI)\\dagger"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='st'>"rtf_colheader"</span>)</div><div class='output co'>#&gt; $col_rel_width
-#&gt; $col_rel_width[[1]]
-#&gt; [1] NA
-#&gt; 
-#&gt; 
-#&gt; $colheader
-#&gt; $colheader[[1]]
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required to run examples</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_1</span><span class='op'>)</span>
+<span class='va'>tbl_1</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>rtf_colheader</span><span class='op'>(</span>colheader <span class='op'>=</span> <span class='st'>"Treatment | N | Mean (SD) | N | Mean (SD) | N |
+                  Mean (SD) | LS Mean (95% CI)\\dagger"</span>,
+                text_format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"b"</span>, <span class='st'>""</span>, <span class='st'>"u"</span>, <span class='st'>""</span>, <span class='st'>"u"</span>, <span class='st'>""</span>,<span class='st'>"u"</span>, <span class='st'>"i"</span><span class='op'>)</span> <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='st'>"rtf_colheader"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [[1]]
 #&gt;          X1 X2        X3 X4        X5 X6        X7                       X8
 #&gt; 1 Treatment  N Mean (SD)  N Mean (SD)  N Mean (SD) LS Mean (95% CI)\\dagger
-#&gt; 
-#&gt; 
-#&gt; $border_left
-#&gt; $border_left[[1]]
-#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
-#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
-#&gt; 
-#&gt; 
-#&gt; $border_right
-#&gt; $border_right[[1]]
-#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
-#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
-#&gt; 
-#&gt; 
-#&gt; $border_top
-#&gt; $border_top[[1]]
-#&gt;      [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]    
-#&gt; [1,] "single" "single" "single" "single" "single" "single" "single" "single"
-#&gt; 
-#&gt; 
-#&gt; $border_bottom
-#&gt; $border_bottom[[1]]
-#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
-#&gt; [1,] ""   ""   ""   ""   ""   ""   ""   ""  
-#&gt; 
-#&gt; 
-#&gt; $border_color_left
-#&gt; $border_color_left[[1]]
-#&gt; NULL
-#&gt; 
-#&gt; 
-#&gt; $border_color_right
-#&gt; $border_color_right[[1]]
-#&gt; NULL
-#&gt; 
-#&gt; 
-#&gt; $border_color_bottom
-#&gt; $border_color_bottom[[1]]
-#&gt; NULL
-#&gt; 
-#&gt; 
-#&gt; $border_width
-#&gt; $border_width[[1]]
-#&gt; [1] 15
-#&gt; 
-#&gt; 
-#&gt; $cell_justification
-#&gt; $cell_justification[[1]]
-#&gt; [1] "c"
-#&gt; 
-#&gt; 
-#&gt; $page_width
-#&gt; $page_width[[1]]
-#&gt; [1] 8.5
-#&gt; 
-#&gt; 
-#&gt; $col_total_width
-#&gt; $col_total_width[[1]]
-#&gt; [1] 6.071429
-#&gt; 
-#&gt; 
-#&gt; $cell_height
-#&gt; $cell_height[[1]]
-#&gt; [1] 0.15
-#&gt; 
-#&gt; 
-#&gt; $text_justification
-#&gt; $text_justification[[1]]
-#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
-#&gt; [1,] "c"  "c"  "c"  "c"  "c"  "c"  "c"  "c" 
-#&gt; 
-#&gt; 
-#&gt; $text_font
-#&gt; $text_font[[1]]
-#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
-#&gt; [1,]    1    1    1    1    1    1    1    1
-#&gt; 
-#&gt; 
-#&gt; $text_format
-#&gt; $text_format[[1]]
-#&gt; NULL
-#&gt; 
-#&gt; 
-#&gt; $text_color
-#&gt; $text_color[[1]]
-#&gt; NULL
-#&gt; 
-#&gt; 
-#&gt; $text_background_color
-#&gt; $text_background_color[[1]]
-#&gt; NULL
-#&gt; 
-#&gt; 
-#&gt; $text_font_size
-#&gt; $text_font_size[[1]]
-#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
-#&gt; [1,]    9    9    9    9    9    9    9    9
-#&gt; 
-#&gt; 
-#&gt; $text_space_before
-#&gt; $text_space_before[[1]]
-#&gt; [1] 15
-#&gt; 
-#&gt; 
-#&gt; $text_space_after
-#&gt; $text_space_after[[1]]
-#&gt; [1] 15
-#&gt; 
-#&gt; 
-#&gt; $first_row
-#&gt; $first_row[[1]]
-#&gt; [1] FALSE
-#&gt; 
 #&gt; </div><div class='input'>
 </div></pre>
   </div>
@@ -415,7 +301,7 @@
       <footer>
       <div class="copyright">
   <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
 <div class="logo">

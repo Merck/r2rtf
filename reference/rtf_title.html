@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add title attributes to the table — rtf_title • r2rtf</title>
+<title>Add Title Attributes to Table — rtf_title • r2rtf</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Add title attributes to the table — rtf_title" />
-<meta property="og:description" content="add title, subtitle, and other attributes to the object" />
+<meta property="og:title" content="Add Title Attributes to Table — rtf_title" />
+<meta property="og:description" content="Add title, subtitle, and other attributes to the object" />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0</span>
       </span>
     </div>
 
@@ -95,7 +95,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
+    </li>
+    <li>
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
+    </li>
+    <li>
+      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
     </li>
     <li>
       <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
@@ -127,155 +133,164 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add title attributes to the table</h1>
+    <h1>Add Title Attributes to Table</h1>
     
     <div class="hidden name"><code>rtf_title.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>add title, subtitle, and other attributes to the object</p>
+    <p>Add title, subtitle, and other attributes to the object</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rtf_title</span>(
-  <span class='no'>tbl</span>,
-  <span class='kw'>title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subtitle</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>font</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>format</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>font_size</span> <span class='kw'>=</span> <span class='fl'>12</span>,
-  <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>background_color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>justification</span> <span class='kw'>=</span> <span class='st'>"c"</span>,
-  <span class='kw'>indent_first</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>indent_left</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>indent_right</span> <span class='kw'>=</span> <span class='fl'>0</span>,
-  <span class='kw'>space</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-  <span class='kw'>space_before</span> <span class='kw'>=</span> <span class='fl'>180</span>,
-  <span class='kw'>space_after</span> <span class='kw'>=</span> <span class='fl'>180</span>,
-  <span class='kw'>new_page</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>hyphenation</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>rtf_title</span><span class='op'>(</span>
+  <span class='va'>tbl</span>,
+  title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subtitle <span class='op'>=</span> <span class='cn'>NULL</span>,
+  text_font <span class='op'>=</span> <span class='fl'>1</span>,
+  text_format <span class='op'>=</span> <span class='cn'>NULL</span>,
+  text_font_size <span class='op'>=</span> <span class='fl'>12</span>,
+  text_color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  text_background_color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  text_justification <span class='op'>=</span> <span class='st'>"c"</span>,
+  text_indent_first <span class='op'>=</span> <span class='fl'>0</span>,
+  text_indent_left <span class='op'>=</span> <span class='fl'>0</span>,
+  text_indent_right <span class='op'>=</span> <span class='fl'>0</span>,
+  text_space <span class='op'>=</span> <span class='fl'>1</span>,
+  text_space_before <span class='op'>=</span> <span class='fl'>180</span>,
+  text_space_after <span class='op'>=</span> <span class='fl'>180</span>,
+  text_convert <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tbl</th>
-      <td><p>a data frame</p></td>
+      <td><p>The input data frame. Required argument.</p></td>
     </tr>
     <tr>
       <th>title</th>
-      <td><p>title string</p></td>
+      <td><p>Title in a character string.</p></td>
     </tr>
     <tr>
       <th>subtitle</th>
-      <td><p>subtitle string</p></td>
+      <td><p>Subtitle in a character string.</p></td>
     </tr>
     <tr>
-      <th>font</th>
-      <td><p>text font type</p></td>
+      <th>text_font</th>
+      <td><p>Text font type. Default is 1 for Times New Roman. To vary text font type
+by column, use numeric vector with length of vector equal to number of
+columns displayed e.g. c(1,2,3).All possible input can be found
+in <code>r2rtf:::font_type()$type</code>.</p></td>
     </tr>
     <tr>
-      <th>format</th>
-      <td><p>text format</p></td>
+      <th>text_format</th>
+      <td><p>Text format type. Default is NULL for normal. Combination of format type
+are permitted as input for e.g. "ub" for bold and underlined text. To vary
+text format by column, use character vector with length of vector equal to
+number of columns displayed e.g. c("i","u","ib"). All possible input
+can be found in <code>r2rtf:::font_format()$type</code>.</p></td>
     </tr>
     <tr>
-      <th>font_size</th>
-      <td><p>text font size</p></td>
+      <th>text_font_size</th>
+      <td><p>Text font size. Default is 9. To vary text font size by column, use
+numeric vector with length of vector equal to number of columns
+displayed e.g. c(9,20,40).</p></td>
     </tr>
     <tr>
-      <th>color</th>
-      <td><p>text color</p></td>
+      <th>text_color</th>
+      <td><p>Text color type. Default is NULL for black. To vary text color by column,
+use character vector with length of vector equal to number of columns
+displayed e.g. c("white","red","blue"). All possible input can be found
+in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>background_color</th>
-      <td><p>text background color</p></td>
+      <th>text_background_color</th>
+      <td><p>Text background color type. Default is NULL for white. To vary
+text color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
     </tr>
     <tr>
-      <th>justification</th>
-      <td><p>justification for text</p></td>
+      <th>text_justification</th>
+      <td><p>Justification type for text. Default is "c" for center justification.
+To vary text justification by column, use character vector with
+length of vector equal to number of columns displayed e.g. c("c","l","r").
+All possible input can be found in <code>r2rtf:::justification()$type</code>.</p></td>
     </tr>
     <tr>
-      <th>indent_first</th>
-      <td><p>first indent</p></td>
+      <th>text_indent_first</th>
+      <td><p>a value of first indent</p></td>
     </tr>
     <tr>
-      <th>indent_left</th>
-      <td><p>left indent</p></td>
+      <th>text_indent_left</th>
+      <td><p>a value of left indent</p></td>
     </tr>
     <tr>
-      <th>indent_right</th>
-      <td><p>right indent</p></td>
+      <th>text_indent_right</th>
+      <td><p>a value of right indent</p></td>
     </tr>
     <tr>
-      <th>space</th>
-      <td><p>paragraph space</p></td>
+      <th>text_space</th>
+      <td><p>a value of text space</p></td>
     </tr>
     <tr>
-      <th>space_before</th>
-      <td><p>line space before text</p></td>
+      <th>text_space_before</th>
+      <td><p>Line space before text in twips. Default is 15 for 0.0104 inch.</p></td>
     </tr>
     <tr>
-      <th>space_after</th>
-      <td><p>line space after text</p></td>
+      <th>text_space_after</th>
+      <td><p>Line space after text in twips. Default is 15 for 0.0104 inch.</p></td>
     </tr>
     <tr>
-      <th>new_page</th>
-      <td><p>boolean value to indicate whether to start a new page</p></td>
-    </tr>
-    <tr>
-      <th>hyphenation</th>
-      <td><p>boolean value to indicate whether to use hyphenation</p></td>
+      <th>text_convert</th>
+      <td><p>a logical value to convert special characters. Default is TRUE.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>the same data frame <code>tbl</code> with additional attributes for table title</p>
+    <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
+
+    
+
+<p>The contents of this section are shown in PDF user manual only.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>) <span class='co'># required to run examples</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>tbl_1</span>)
-<span class='no'>tbl_1</span> <span class='kw'>%&gt;%</span> <span class='fu'>rtf_title</span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"ANCOVA of Change from Baseline at Week 8"</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span>(<span class='st'>"rtf_heading"</span>)</div><div class='output co'>#&gt; $title
-#&gt; [1] "ANCOVA of Change from Baseline at Week 8"
-#&gt; 
-#&gt; $subtitle
-#&gt; NULL
-#&gt; 
-#&gt; $font
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required to run examples</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_1</span><span class='op'>)</span>
+<span class='va'>tbl_1</span> <span class='op'>%&gt;%</span> <span class='fu'>rtf_title</span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"ANCOVA of Change from Baseline at Week 8"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='st'>"rtf_title"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "ANCOVA of Change from Baseline at Week 8"
+#&gt; attr(,"text_font")
 #&gt; [1] 1
-#&gt; 
-#&gt; $font_size
+#&gt; attr(,"text_font_size")
 #&gt; [1] 12
-#&gt; 
-#&gt; $justification
+#&gt; attr(,"text_justification")
 #&gt; [1] "c"
-#&gt; 
-#&gt; $indent_first
-#&gt; [1] 0
-#&gt; 
-#&gt; $indent_left
-#&gt; [1] 0
-#&gt; 
-#&gt; $indent_right
-#&gt; [1] 0
-#&gt; 
-#&gt; $space
+#&gt; attr(,"text_space")
 #&gt; [1] 1
-#&gt; 
-#&gt; $space_before
+#&gt; attr(,"text_space_before")
 #&gt; [1] 180
-#&gt; 
-#&gt; $space_after
+#&gt; attr(,"text_space_after")
 #&gt; [1] 180
-#&gt; 
-#&gt; $new_page
+#&gt; attr(,"text_indent_first")
+#&gt; [1] 0
+#&gt; attr(,"text_indent_left")
+#&gt; [1] 0
+#&gt; attr(,"text_indent_right")
+#&gt; [1] 0
+#&gt; attr(,"text_new_page")
 #&gt; [1] FALSE
-#&gt; 
-#&gt; $hyphenation
+#&gt; attr(,"text_hyphenation")
 #&gt; [1] TRUE
-#&gt; </div><div class='input'>
+#&gt; attr(,"text_convert")
+#&gt; [1] TRUE
+#&gt; attr(,"use_color")
+#&gt; [1] FALSE
+#&gt; attr(,"class")
+#&gt; [1] "character" "rtf_text" </div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -289,7 +304,7 @@
       <footer>
       <div class="copyright">
   <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
 <div class="logo">

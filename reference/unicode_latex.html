@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0</span>
       </span>
     </div>
 
@@ -95,7 +95,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
+    </li>
+    <li>
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
+    </li>
+    <li>
+      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
     </li>
     <li>
       <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
@@ -136,17 +142,18 @@
     <p>A dataset containing the mapping between unicode and latex code.</p>
     </div>
 
-    <pre class="usage"><span class='no'>unicode_latex</span></pre>
+    <pre class="usage"><span class='va'>unicode_latex</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data frame with 681 rows and 3 variables.</p><dl'>
+    <p>A data frame with 681 rows and 3 variables.</p><dl>
 <dt>unicode</dt><dd><p>unicode, UTF-8 code</p></dd>
 <dt>latex</dt><dd><p>latex, latex code</p></dd>
 <dt>int</dt><dd><p>int, Converted integer of the UTF-8 code</p></dd>
 
 </dl>
+
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
     <p><a href='http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt'>http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt</a></p>
@@ -163,7 +170,7 @@
       <footer>
       <div class="copyright">
   <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
 <div class="logo">
