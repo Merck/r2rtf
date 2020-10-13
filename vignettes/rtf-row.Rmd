@@ -3,7 +3,7 @@ title: "RTF Examples for Controlling Table Details"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{table-details}
+  %\VignetteIndexEntry{RTF Examples for Controlling Table Details}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

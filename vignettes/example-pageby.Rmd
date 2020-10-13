@@ -2,7 +2,7 @@
 title: "RTF Examples for Tables with Pageby Feature"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{example-pageby}
+  %\VignetteIndexEntry{RTF Examples for Tables with Pageby Feature}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

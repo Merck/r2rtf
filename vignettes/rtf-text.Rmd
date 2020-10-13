@@ -3,7 +3,7 @@ title: "RTF Examples for Controlling Text and Paragraph Details"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{paragraph-details}
+  %\VignetteIndexEntry{RTF Examples for Controlling Text and Paragraph Details}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

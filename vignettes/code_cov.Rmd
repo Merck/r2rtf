@@ -2,7 +2,7 @@
 title: "Tests and Code Coverage Report"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Code Coverage Report}
+  %\VignetteIndexEntry{Tests and Code Coverage Report}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

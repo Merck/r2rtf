@@ -2,7 +2,7 @@
 title: "RTF Examples for Figures"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{example-figure}
+  %\VignetteIndexEntry{RTF Examples for Figures}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
