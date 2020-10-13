@@ -1,6 +1,6 @@
 # r2rtf 0.1.1.9001 (development version)
 
-* Add `rtf_subline`, `rtf_header`, `rtf_footer`.
+* Add `rtf_subline`, `rtf_page_header`, `rtf_page_footer`.
 * Add `rtf_page` to set page related attributes. 
 * Introduce `text_convert` argument to allow fixed string. 
 * Add `as_table` argument in `rtf_footnote` and `rtf_source` to allow footnote
