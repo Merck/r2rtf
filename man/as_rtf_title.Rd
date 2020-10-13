@@ -16,10 +16,10 @@ Create Table Title RTF Encode
 
 \if{latex}{
  \itemize{
-   \item Obtain title attributes from \code{tbl} object}.
+   \item Obtain title attributes from \code{tbl} object.
    \item Define title in RTF syntax using \code{as_rtf_paragraph()} if it is not NULL, otherwise return NULL.
  }
-}
+ }
 \if{html}{The contents of this section are shown in PDF user manual only.}
 }
 

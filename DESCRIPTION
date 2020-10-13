@@ -28,5 +28,6 @@ Suggests:
     devtools,
     DT,
     covr,
-    ggplot2
+    ggplot2,
+    haven
 URL: https://merck.github.io/r2rtf/
