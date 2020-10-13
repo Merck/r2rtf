@@ -1,6 +1,6 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1.9000
-pkgdown_sha: e1e46f2e13c7efdb17bc4eae40bc3779c2b0b517
+pkgdown: 1.6.1
+pkgdown_sha: ~
 articles:
   code_cov: code_cov.html
   example-figure: example-figure.html
@@ -8,5 +8,5 @@ articles:
   example-pipeline: example-pipeline.html
   rtf-row: rtf-row.html
   rtf-text: rtf-text.html
-last_built: 2020-10-13T03:42Z
+last_built: 2020-10-13T03:50Z
 
