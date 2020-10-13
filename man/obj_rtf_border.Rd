@@ -24,7 +24,7 @@ obj_rtf_border(
 )
 }
 \arguments{
-\item{tbl}{a data frame}
+\item{tbl}{A data frame.}
 
 \item{border_left}{Left border type. Default is "single". To vary left border by column, use
 character vector with length of vector equal to number of columns displayed
@@ -47,6 +47,16 @@ To vary bottom border by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("single","single","single").
 All possible input can be found in \code{r2rtf:::border_type()$name}.}
 
+\item{border_first}{First top border type in each page. Default is "single" indicating single line bottom border.
+To vary bottom border by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("single","single","single").
+All possible input can be found in \code{r2rtf:::border_type()$name}.}
+
+\item{border_last}{Last bottom border type in each page. Default is "single" indicating single line bottom border.
+To vary bottom border by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("single","single","single").
+All possible input can be found in \code{r2rtf:::border_type()$name}.}
+
 \item{border_color_left}{Left border color type. Default is NULL for black. To vary left
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
@@ -63,6 +73,16 @@ equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in \code{grDevices::colors()}.}
 
 \item{border_color_bottom}{Bottom border color type. Default is NULL for black. To vary bottom
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in \code{grDevices::colors()}.}
+
+\item{border_color_first}{First top border color type in each page. Default is NULL for black. To vary top
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in \code{grDevices::colors()}.}
+
+\item{border_color_last}{Last bottom border color type in each page. Default is NULL for black. To vary bottom
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in \code{grDevices::colors()}.}

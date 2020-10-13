@@ -77,9 +77,19 @@ give the text both bold and italics format. All possible input can be found in \
 
 \item{text_justification}{A character vector for text justification. Default is "c" for center justification. All possible input can be found in \code{r2rtf:::justification()}.}
 
-\item{text_space_before}{A numeric value for line space before text in twips. Default is 15.}
+\item{text_indent_first}{a value of first indent}
 
-\item{text_space_after}{A numeric value for line space after text in twips. Default is 15.}
+\item{text_indent_left}{a value of left indent}
+
+\item{text_indent_right}{a value of right indent}
+
+\item{text_space}{a value of text space}
+
+\item{text_space_before}{Line space before text in twips. Default is 15 for 0.0104 inch.}
+
+\item{text_space_after}{Line space after text in twips. Default is 15 for 0.0104 inch.}
+
+\item{text_convert}{a logical value to convert special characters. Default is TRUE.}
 }
 \value{
 The same data frame \code{tbl} with additional attributes for table column header.

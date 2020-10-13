@@ -39,9 +39,13 @@
 #' @param text_color A character vector for text color. Default is NULL for black. All possible input can be found in `grDevices::colors()`.
 #' @param text_background_color A character vector for text background color. Default is NULL for black. All possible input can be found in `grDevices::colors()`.
 #' @param text_font_size A numeric value for text font size. Default is 9.
-#' @param text_space_before A numeric value for line space before text in twips. Default is 15.
-#' @param text_space_after  A numeric value for line space after text in twips. Default is 15.
-#'
+#' @param text_space a value of text space
+#' @param text_space_before Line space before text in twips. Default is 15 for 0.0104 inch.
+#' @param text_space_after Line space after text in twips. Default is 15 for 0.0104 inch.
+#' @param text_convert a logical value to convert special characters. Default is TRUE.
+#' @param text_indent_first a value of first indent
+#' @param text_indent_left a value of left indent
+#' @param text_indent_right a value of right indent
 #' @section Specification:
 #' \if{latex}{
 #'  \itemize{

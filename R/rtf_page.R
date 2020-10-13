@@ -120,6 +120,7 @@ rtf_page <- function(tbl,
 #' Add RTF Page Header Information
 #'
 #' @inheritParams rtf_footnote
+#' @param text a character string.
 #'
 #' @export
 rtf_page_header <- function(tbl,
@@ -183,6 +184,7 @@ rtf_page_header <- function(tbl,
 #' Add RTF Page Footer Information
 #'
 #' @inheritParams rtf_footnote
+#' @param text a character string.
 #'
 #' @export
 rtf_page_footer <- function(tbl,

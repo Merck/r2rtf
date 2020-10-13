@@ -9,9 +9,9 @@ remove_group_by(tbl, group_by, page)
 \arguments{
 \item{tbl}{A data frame}
 
-\item{page}{A numeric vector of page index}
+\item{group_by}{A character vector of variable names in tbl}
 
-\item{by}{A character vector of variable names in tbl}
+\item{page}{A numeric vector of page index}
 }
 \value{
 Return \code{tbl}.

@@ -19,7 +19,7 @@
 #' Remove Duplicate Records
 #'
 #' @param tbl A data frame
-#' @param by A character vector of variable names in tbl
+#' @param group_by A character vector of variable names in tbl
 #' @param page A numeric vector of page index
 #'
 #' @return Return \code{tbl}.

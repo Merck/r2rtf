@@ -17,7 +17,7 @@
 
 #' Create an RTF Table Border Object
 #'
-#' @inheritParams rtf_footnote
+#' @inheritParams rtf_body
 #'
 #' @section Specification:
 #' \if{latex}{

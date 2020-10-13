@@ -24,6 +24,8 @@ obj_rtf_text(
 )
 }
 \arguments{
+\item{text}{a character string, matrix or data frame.}
+
 \item{text_font}{Text font type. Default is 1 for Times New Roman. To vary text font type
 by column, use numeric vector with length of vector equal to number of
 columns displayed e.g. c(1,2,3).All possible input can be found
@@ -65,6 +67,10 @@ All possible input can be found in \code{r2rtf:::justification()$type}.}
 \item{text_space_before}{Line space before text in twips. Default is 15 for 0.0104 inch.}
 
 \item{text_space_after}{Line space after text in twips. Default is 15 for 0.0104 inch.}
+
+\item{text_new_page}{a logical value to control if a text is in new page.}
+
+\item{text_hyphenation}{a logical value to control if hyphenation is used.}
 
 \item{text_convert}{a logical value to convert special characters. Default is TRUE.}
 }

@@ -17,7 +17,10 @@
 
 #' Create an RTF Text Object
 #'
-#' @inheritParams rtf_footnote
+#' @inheritParams rtf_body
+#' @param text a character string, matrix or data frame.
+#' @param text_new_page a logical value to control if a text is in new page.
+#' @param text_hyphenation a logical value to control if hyphenation is used.
 #'
 #' @section Specification:
 #' \if{latex}{

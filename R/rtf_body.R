@@ -99,9 +99,13 @@
 #'                              text color by column, use character vector with length of vector
 #'                              equal to number of columns displayed e.g. c("white","red","blue").
 #'                              All possible input can be found in `grDevices::colors()`.
+#' @param text_space a value of text space
 #' @param text_space_before Line space before text in twips. Default is 15 for 0.0104 inch.
 #' @param text_space_after Line space after text in twips. Default is 15 for 0.0104 inch.
-#'  @param text_convert a logical value to convert special characters. Default is TRUE.
+#' @param text_convert a logical value to convert special characters. Default is TRUE.
+#' @param text_indent_first a value of first indent
+#' @param text_indent_left a value of left indent
+#' @param text_indent_right a value of right indent
 #' @param group_by Column names in a character vector to remove duplicate records.
 #' @param page_by Column names in a character vector to group by table in sections.
 #'                Default is NULL.

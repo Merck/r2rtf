@@ -77,6 +77,8 @@ rtf_table_content(
 \item{text_space_before}{line space before text}
 
 \item{text_space_after}{line space after text}
+
+\item{text_convert}{a logical value to convert special characters. Default is TRUE.}
 }
 \description{
 Create RTF Table Body Encode

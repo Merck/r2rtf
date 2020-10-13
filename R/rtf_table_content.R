@@ -40,6 +40,7 @@
 #' @param text_space_before line space before text
 #' @param text_space_after  line space after text
 #' @param use_border_bottom logical value of using the bottom border
+#' @param text_convert a logical value to convert special characters. Default is TRUE.
 #'
 #' @section Specification:
 #' \if{latex}{

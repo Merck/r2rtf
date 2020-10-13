@@ -25,6 +25,8 @@ rtf_page_header(
 \arguments{
 \item{tbl}{a data frame}
 
+\item{text}{a character string.}
+
 \item{text_font}{Text font type. Default is 1 for Times New Roman. To vary text font type
 by column, use numeric vector with length of vector equal to number of
 columns displayed e.g. c(1,2,3).All possible input can be found
