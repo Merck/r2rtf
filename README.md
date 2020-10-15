@@ -12,6 +12,8 @@ Overview
 
 Create RTF table and figure with flexible format.
 
+* [overview paper](https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf)
+
 Installation
 ------------
 
