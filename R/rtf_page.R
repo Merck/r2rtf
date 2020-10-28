@@ -17,15 +17,15 @@
 
 #' Add RTF File Page Information
 #'
-#' @param tbl a data frame
-#' @param orientation page orientation
-#' @param width a numeric value of page width in inches.
+#' @param tbl A data frame
+#' @param orientation Page orientation
+#' @param width A numeric value of page width in inches.
 #'              Default is 8.5 inch in portrait orientation or 11.0 inch in landscape orientation.
-#' @param height a numeric value of page width in inches.
+#' @param height A numeric value of page width in inches.
 #'               Default is 11.0 inch in portrait orientation or 8.5 inch in landscape orientation.
-#' @param margin a numeric vector of length 6 for page margin. The value set left, right, top, bottom, header and footer
+#' @param margin A numeric vector of length 6 for page margin. The value set left, right, top, bottom, header and footer
 #'               margin in order. Default value depends on the page orientation and set by `r2rtf:::set_margin("wma", orientation)`
-#' @param nrow   number of rows in each page. Default is 42 rows if portrait orientation
+#' @param nrow   Number of rows in each page. Default is 42 rows if portrait orientation
 #'                 and 26 rows in landscape orientation.
 #' @param border_first First top border type of the whole table. Default is "double" indicating double line bottom border.
 #'                      All possible input can be found in `r2rtf:::border_type()$name`.
@@ -119,8 +119,8 @@ rtf_page <- function(tbl,
 
 #' Add RTF Page Header Information
 #'
+#' @param text A character string.
 #' @inheritParams rtf_footnote
-#' @param text a character string.
 #'
 #' @export
 rtf_page_header <- function(tbl,
@@ -183,8 +183,8 @@ rtf_page_header <- function(tbl,
 
 #' Add RTF Page Footer Information
 #'
+#' @param text A character string.
 #' @inheritParams rtf_footnote
-#' @param text a character string.
 #'
 #' @export
 rtf_page_footer <- function(tbl,

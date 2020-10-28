@@ -39,7 +39,7 @@ write_rtf <- function(rtf, file) {
 
 #' Write a Paragraph to an RTF File
 #'
-#' @param rtf_body rtf code for text paragraph, obtained using `rtf_paragraph(text,...)` function
+#' @param rtf rtf code for text paragraph, obtained using `rtf_paragraph(text,...)` function
 #' @param file file name to save rtf text paragraph, eg. filename.rtf
 #'
 #' @section Specification:
@@ -53,7 +53,7 @@ write_rtf <- function(rtf, file) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-write_rtf_para <- function(rtf_body, file) {
+write_rtf_para <- function(rtf, file) {
   col_tb <- color_table()
   rtf_color <- paste(c("{\\colortbl; ", col_tb$rtf_code, "}"), collapse = "\n")
 
@@ -64,7 +64,8 @@ write_rtf_para <- function(rtf_body, file) {
     rtf_color,
     sep = "\n"
   )
-  rtf <- paste(start_rtf, "{\\pard \\par}", paste(rtf_body, collapse = ""), as_rtf_end(), sep = "\n")
+
+  rtf <- paste(start_rtf, "{\\pard \\par}", paste(rtf, collapse = ""), as_rtf_end(), sep = "\n")
   write(rtf, file)
 }
 

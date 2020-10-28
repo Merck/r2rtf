@@ -20,32 +20,8 @@
 #' @param tbl A data frame. Required argument.
 #' @param colheader A character string that uses " | " to separate column names. Default is NULL for a blank column header.
 #' @param col_rel_width A numeric vector for column relative width, e.g. c(2,1,1) refers to 2:1:1. Default is NULL for equal column width.
-#' @param border_left A character vector for left border type. Default is "single". All possible input can be found in `r2rtf:::border_type()`.
-#' @param border_right A character vector for right border type. Default is "single". All possible input can be found in `r2rtf:::border_type()`.
-#' @param border_top A character vector for top border type. Default is NULL. If it is the first row in a table for this page,
-#'                   the border is set to "double" otherwise the border is set to "single".
-#' @param border_bottom A character vector for bottom border type. Default is NULL for no border. All possible input can be found in `r2rtf:::border_type()`.
-#' @param border_color_left A character vector for left border color. Default is NULL for black. All possible input can be found in `grDevices::colors()`.
-#' @param border_color_right A character vector for right border color. Default is NULL for black. All possible input can be found in `grDevices::colors()`.
-#' @param border_color_top A character vector for top border color. Default is NULL for black. All possible input can be found in `grDevices::colors()`.
-#' @param border_color_bottom A character vector for bottom border color. Default is NULL for black. All possible input can be found in `grDevices::colors()`.
-#' @param border_width A numeric value for border width in twips. Default is 15.
-#' @param cell_height A numeric value for height of cell in inch. Default is 0.15 inch.
-#' @param cell_justification A character vector for justification of cell. Default is "c" for center justification. All possible input can be found in `r2rtf:::justification()`.
-#' @param text_justification A character vector for text justification. Default is "c" for center justification. All possible input can be found in `r2rtf:::justification()`.
-#' @param text_font A numeric value for text font type. Default is 1 for Times New Roman. All possible input can be found in `r2rtf:::font_type()`.
-#' @param text_format A character vector for  text format. Default is NULL for normal format. Multiple format type can be assigned, e.g. "bi" will
-#'                     give the text both bold and italics format. All possible input can be found in `r2rtf:::font_format()`.
-#' @param text_color A character vector for text color. Default is NULL for black. All possible input can be found in `grDevices::colors()`.
-#' @param text_background_color A character vector for text background color. Default is NULL for black. All possible input can be found in `grDevices::colors()`.
-#' @param text_font_size A numeric value for text font size. Default is 9.
-#' @param text_space a value of text space
-#' @param text_space_before Line space before text in twips. Default is 15 for 0.0104 inch.
-#' @param text_space_after Line space after text in twips. Default is 15 for 0.0104 inch.
-#' @param text_convert a logical value to convert special characters. Default is TRUE.
-#' @param text_indent_first a value of first indent
-#' @param text_indent_left a value of left indent
-#' @param text_indent_right a value of right indent
+#' @inheritParams rtf_footnote
+#'
 #' @section Specification:
 #' \if{latex}{
 #'  \itemize{
@@ -88,6 +64,7 @@ rtf_colheader <- function(tbl,
 
                           cell_height = 0.15,
                           cell_justification = "c",
+                          cell_nrow = NULL,
 
                           text_font = 1,
                           text_format = NULL,
@@ -172,7 +149,9 @@ rtf_colheader <- function(tbl,
                              border_width,
 
                              cell_height,
-                             cell_justification)
+                             cell_justification,
+                             cell_nrow)
+
   if(attr(colheader, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   # Set default value for column relative width

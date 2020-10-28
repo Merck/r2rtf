@@ -3,7 +3,7 @@ title: "RTF Examples for Controlling Table Details"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{RTF Examples for Controlling Table Details}
+  %\VignetteIndexEntry{table-details}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -42,6 +42,10 @@ db %>%
   write_rtf("rtf/border-type.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/border-type.pdf")
+```
+
 
 For each cell, the top border and left border is defined in each cell. The right border only defined in last column. 
 The bottom border only defined in last row. This example show that top border and left border type are used for all 
@@ -60,6 +64,10 @@ iris %>%
   write_rtf("rtf/border-order.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/border-order.pdf")
+```
+
 This example display table with specific border type (i.e. double line at the first and last line and blank at the middle)
 ```{r}
 rtf_db <- iris %>%
@@ -74,6 +82,11 @@ rtf_db %>%
   rtf_encode() %>%
   write_rtf("rtf/border-example.rtf")
 ```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/border-example.pdf")
+```
+
 
 * The first and last border of the whole table is controled by `border_first` and `border_last` argument in `rtf_page()`  
 
@@ -109,6 +122,10 @@ rtf_db %>%
 ```
 
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/border-vector.pdf")
+```
+
 ## Cell Justification
 
 The table cell allow to be left, center or right justified. the cell is also allow to align by decimal. 
@@ -123,6 +140,10 @@ justification()[, 1:2] %>%
   write_rtf("rtf/justification-type.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/justification-type.pdf")
+```
+
 
 ```{r}
 db <- iris %>% mutate(Sepal.Length = formatC(Sepal.Length * 2, digits = 1, format = "f"))
@@ -132,6 +153,10 @@ db[, rep(1, 4)] %>%
   rtf_body(text_justification = c("d", "l", "c", "r")) %>%
   rtf_encode() %>%
   write_rtf("rtf/justification-number.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/justification-number.pdf")
 ```
 
 
@@ -148,6 +173,10 @@ iris %>%
   write_rtf("rtf/column-width-default.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/column-width-default.pdf")
+```
+
 This example customizes the column width
 ```{r}
 iris %>%
@@ -157,6 +186,9 @@ iris %>%
   write_rtf("rtf/column-width-ratio.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/column-width-ratio.pdf")
+```
 
 ## Text Appearance 
 
@@ -181,6 +213,10 @@ font_format()[, 1:2] %>%
   write_rtf("rtf/text-format.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-format.pdf")
+```
+
 ## Text Font Size
 
 Font size can be defined for each cell. 
@@ -191,6 +227,10 @@ iris %>%
   rtf_body(text_font_size = c(7:11), colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/text-font-size.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-font-size.pdf")
 ```
 
 ## Color
@@ -208,6 +248,10 @@ iris %>%
   write_rtf("rtf/color-text.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/color-text.pdf")
+```
+
 This example define left border color for each column
 
 ```{r}
@@ -217,6 +261,10 @@ iris %>%
            colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/color-border.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/color-border.pdf")
 ```
 
 This example define background color for each column
@@ -233,5 +281,9 @@ iris %>%
   write_rtf("rtf/color-background.rtf")
 ```
 
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/color-background.pdf")
+```
 
 

@@ -7,7 +7,7 @@ testdat <- iris[1:100,]
 testdatatt<-attributes(testdat)
 
 #Encode Temporary dataset
-testdat2 <- rtf_table_content(db = testdat,
+testdat2 <- rtf_table_content(tbl = testdat,
                               border_left = "single",
                               border_right = "double",
                               border_top = "triple",

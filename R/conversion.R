@@ -47,15 +47,15 @@ inch_to_twip <- function(inch) {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 cell_size <- function(col_rel_width, col_total_width) {
-  total.width.twip <- inch_to_twip(col_total_width)
-  round(total.width.twip / sum(col_rel_width) * col_rel_width, 0)
+  total_width_twip <- inch_to_twip(col_total_width)
+  round(total_width_twip / sum(col_rel_width) * col_rel_width, 0)
 }
 
 
 #' Convert Symbol to ANSI and Unicode Encoding
 #'
-#' @param x Object to be converted.
-#' @param load_stringi logical value to load \code{stringi} or not
+#' @param text A string to be converted.
+#' @param load_stringi A logical value to load \code{stringi} or not
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -67,7 +67,7 @@ cell_size <- function(col_rel_width, col_total_width) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-convert <- function(x,
+convert <- function(text,
                      load_stringi = suppressMessages(suppressWarnings(require("stringi"))) ) {
   char_rtf <- c(
     "^" = "\\super ",
@@ -92,24 +92,24 @@ convert <- function(x,
   char_latex <- c(char_rtf, char_latex)
 
   if(load_stringi){
-    x <- stringi::stri_replace_all_fixed(x, names(char_latex), char_latex,
+    text <- stringi::stri_replace_all_fixed(text, names(char_latex), char_latex,
                                          vectorize_all = FALSE, opts_fixed = list(case_insensitive = FALSE))
   }else{
 
     for(i in 1:length(char_latex)){
-      x <- gsub(names(char_latex[i]), char_latex[i], x, fixed = TRUE)
+      text <- gsub(names(char_latex[i]), char_latex[i], text, fixed = TRUE)
     }
 
   }
 
-  return(x)
+  text
 
 }
 
 
 #' Convert a UTF-8 Encoded Character String to a RTF Encoded String
 #'
-#' @param x object to be converted
+#' @param text A string to be converted.
 #'
 #' If the unicode of a character is 255 or under (including all character on a keyboard), the character is as is.
 #' If the unicode of a character is larger than 255, the character will be encoded.
@@ -126,11 +126,11 @@ convert <- function(x,
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-utf8Tortf <- function(x) {
-  stopifnot(length(x) == 1 & "character" %in% class(x))
+utf8Tortf <- function(text) {
+  stopifnot(length(text) == 1 & "character" %in% class(text))
 
-  x_char <- unlist(strsplit(x, ""))
-  x_int <- utf8ToInt(x)
+  x_char <- unlist(strsplit(text, ""))
+  x_int <- utf8ToInt(text)
   x_rtf <- ifelse(x_int <= 255, x_char,
                   ifelse(x_int <= 32768, paste0("\\uc1\\u", x_int, "?"),
                          paste0("\\uc1\\u-", x_int - 65536, "?")

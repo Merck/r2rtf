@@ -2,7 +2,7 @@
 % Please edit documentation in R/rtf_pageby.R
 \name{rtf_pageby}
 \alias{rtf_pageby}
-\title{add table body page by attributes to the table}
+\title{Add Table Body Pageby Attributes to the Table}
 \usage{
 rtf_pageby(tbl, page_by, new_page, pageby_header)
 }
@@ -18,5 +18,5 @@ by sections. Default is FALSE.}
 \item{pageby_header}{A boolean value to display pageby header at the beginning of each page.}
 }
 \description{
-add table body page by attributes to the table
+Add Table Body Pageby Attributes to the Table
 }

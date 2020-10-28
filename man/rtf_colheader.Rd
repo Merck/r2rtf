@@ -19,6 +19,7 @@ rtf_colheader(
   border_width = 15,
   cell_height = 0.15,
   cell_justification = "c",
+  cell_nrow = NULL,
   text_font = 1,
   text_format = NULL,
   text_font_size = 9,
@@ -41,55 +42,99 @@ rtf_colheader(
 
 \item{col_rel_width}{A numeric vector for column relative width, e.g. c(2,1,1) refers to 2:1:1. Default is NULL for equal column width.}
 
-\item{border_left}{A character vector for left border type. Default is "single". All possible input can be found in \code{r2rtf:::border_type()}.}
+\item{border_left}{Left border type. Default is "single". To vary left border by column, use
+character vector with length of vector equal to number of columns displayed
+e.g. c("single","single","single"). All possible input can be found in
+\code{r2rtf:::border_type()$name}.}
 
-\item{border_right}{A character vector for right border type. Default is "single". All possible input can be found in \code{r2rtf:::border_type()}.}
+\item{border_right}{Right border type. Default is "single". To vary right border by column, use
+character vector with length of vector equal to number of columns displayed
+e.g. c("single","single","single"). All possible input can be found in
+\code{r2rtf:::border_type()$name}.}
 
-\item{border_top}{A character vector for top border type. Default is NULL. If it is the first row in a table for this page,
-the border is set to "double" otherwise the border is set to "single".}
+\item{border_top}{Top border type. Default is NULL. To vary top border by column, use
+character vector with length of vector equal to number of columns displayed
+e.g. c("single","single","single"). If it is the first row in a table for this
+page, the top border is set to "double" otherwise the border is set to "single".
+All possible input can be found in \code{r2rtf:::border_type()$name}.}
 
-\item{border_bottom}{A character vector for bottom border type. Default is NULL for no border. All possible input can be found in \code{r2rtf:::border_type()}.}
+\item{border_bottom}{Bottom border type. Default is "double" indicating double line bottom border.
+To vary bottom border by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("single","single","single").
+All possible input can be found in \code{r2rtf:::border_type()$name}.}
 
-\item{border_color_left}{A character vector for left border color. Default is NULL for black. All possible input can be found in \code{grDevices::colors()}.}
+\item{border_color_left}{Left border color type. Default is NULL for black. To vary left
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in \code{grDevices::colors()}.}
 
-\item{border_color_right}{A character vector for right border color. Default is NULL for black. All possible input can be found in \code{grDevices::colors()}.}
+\item{border_color_right}{Right border color type. Default is NULL for black. To vary right
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in \code{grDevices::colors()}.}
 
-\item{border_color_top}{A character vector for top border color. Default is NULL for black. All possible input can be found in \code{grDevices::colors()}.}
+\item{border_color_top}{Top border color type. Default is NULL for black. To vary top
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in \code{grDevices::colors()}.}
 
-\item{border_color_bottom}{A character vector for bottom border color. Default is NULL for black. All possible input can be found in \code{grDevices::colors()}.}
+\item{border_color_bottom}{Bottom border color type. Default is NULL for black. To vary bottom
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in \code{grDevices::colors()}.}
 
-\item{border_width}{A numeric value for border width in twips. Default is 15.}
+\item{border_width}{Border width in twips. Default is 15 for 0.0104 inch.}
 
-\item{cell_height}{A numeric value for height of cell in inch. Default is 0.15 inch.}
+\item{cell_height}{Cell height in inches. Default is 0.15 for 0.15 inch.}
 
-\item{cell_justification}{A character vector for justification of cell. Default is "c" for center justification. All possible input can be found in \code{r2rtf:::justification()}.}
+\item{cell_justification}{Justification type for cell. Default is "c" for center justification.
+All possible input can be found in \code{r2rtf:::justification()$type}.}
 
-\item{text_font}{A numeric value for text font type. Default is 1 for Times New Roman. All possible input can be found in \code{r2rtf:::font_type()}.}
+\item{cell_nrow}{Number of rows required in each cell. Default is NULL.}
 
-\item{text_format}{A character vector for  text format. Default is NULL for normal format. Multiple format type can be assigned, e.g. "bi" will
-give the text both bold and italics format. All possible input can be found in \code{r2rtf:::font_format()}.}
+\item{text_font}{Text font type. Default is 1 for Times New Roman. To vary text font type
+by column, use numeric vector with length of vector equal to number of
+columns displayed e.g. c(1,2,3).All possible input can be found
+in \code{r2rtf:::font_type()$type}.}
 
-\item{text_font_size}{A numeric value for text font size. Default is 9.}
+\item{text_format}{Text format type. Default is NULL for normal. Combination of format type
+are permitted as input for e.g. "ub" for bold and underlined text. To vary
+text format by column, use character vector with length of vector equal to
+number of columns displayed e.g. c("i","u","ib"). All possible input
+can be found in \code{r2rtf:::font_format()$type}.}
 
-\item{text_color}{A character vector for text color. Default is NULL for black. All possible input can be found in \code{grDevices::colors()}.}
+\item{text_font_size}{Text font size. Default is 9. To vary text font size by column, use
+numeric vector with length of vector equal to number of columns
+displayed e.g. c(9,20,40).}
 
-\item{text_background_color}{A character vector for text background color. Default is NULL for black. All possible input can be found in \code{grDevices::colors()}.}
+\item{text_color}{Text color type. Default is NULL for black. To vary text color by column,
+use character vector with length of vector equal to number of columns
+displayed e.g. c("white","red","blue"). All possible input can be found
+in \code{grDevices::colors()}.}
 
-\item{text_justification}{A character vector for text justification. Default is "c" for center justification. All possible input can be found in \code{r2rtf:::justification()}.}
+\item{text_background_color}{Text background color type. Default is NULL for white. To vary
+text color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in \code{grDevices::colors()}.}
 
-\item{text_indent_first}{a value of first indent}
+\item{text_justification}{Justification type for text. Default is "c" for center justification.
+To vary text justification by column, use character vector with
+length of vector equal to number of columns displayed e.g. c("c","l","r").
+All possible input can be found in \code{r2rtf:::justification()$type}.}
 
-\item{text_indent_left}{a value of left indent}
+\item{text_indent_first}{A value of first indent.}
 
-\item{text_indent_right}{a value of right indent}
+\item{text_indent_left}{A value of left indent.}
 
-\item{text_space}{a value of text space}
+\item{text_indent_right}{A value of right indent.}
+
+\item{text_space}{A value of text space.}
 
 \item{text_space_before}{Line space before text in twips. Default is 15 for 0.0104 inch.}
 
 \item{text_space_after}{Line space after text in twips. Default is 15 for 0.0104 inch.}
 
-\item{text_convert}{a logical value to convert special characters. Default is TRUE.}
+\item{text_convert}{A logical value to convert special characters. Default is TRUE.}
 }
 \value{
 The same data frame \code{tbl} with additional attributes for table column header.

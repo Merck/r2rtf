@@ -1,4 +1,4 @@
-context("Independent testing for remove_group_by.R")
+context("Independent testing for rtf_group_by_enhance.R")
 
 test_that("Test when data is not sorted by group_by variable", {
 

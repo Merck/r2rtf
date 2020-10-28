@@ -204,6 +204,7 @@ rtf_encode_table <- function(tbl,
       body_rtftext,
       footnote_rtftext,
       source_rtftext,
+      "{\\pard\\par}",
       c( rep(new_page_rtftext, n_page - 1), ""),
       sep = "\n"
     )

@@ -15,97 +15,14 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' @title add table body attributes to the table
+#' @title Add Table Body Attributes to the Table
 #'
 #' @param tbl A data frame.
 #' @param colheader A boolean value to indicate whether to add default column header to the table.
 #'                  Default is TRUE to use data frame column names as column header.
 #' @param col_rel_width Column relative width in a vector e.g. c(2,1,1) refers to 2:1:1.
 #'                      Default is NULL for equal column width.
-#' @param border_left Left border type. Default is "single". To vary left border by column, use
-#'                    character vector with length of vector equal to number of columns displayed
-#'                    e.g. c("single","single","single"). All possible input can be found in
-#'                    `r2rtf:::border_type()$name`.
-#' @param border_right Right border type. Default is "single". To vary right border by column, use
-#'                     character vector with length of vector equal to number of columns displayed
-#'                     e.g. c("single","single","single"). All possible input can be found in
-#'                     `r2rtf:::border_type()$name`.
-#' @param border_top Top border type. Default is NULL. To vary top border by column, use
-#'                   character vector with length of vector equal to number of columns displayed
-#'                   e.g. c("single","single","single"). If it is the first row in a table for this
-#'                   page, the top border is set to "double" otherwise the border is set to "single".
-#'                   All possible input can be found in `r2rtf:::border_type()$name`.
-#' @param border_bottom Bottom border type. Default is "double" indicating double line bottom border.
-#'                      To vary bottom border by column, use character vector with length of vector
-#'                      equal to number of columns displayed e.g. c("single","single","single").
-#'                      All possible input can be found in `r2rtf:::border_type()$name`.
-#' @param border_first First top border type in each page. Default is "single" indicating single line bottom border.
-#'                      To vary bottom border by column, use character vector with length of vector
-#'                      equal to number of columns displayed e.g. c("single","single","single").
-#'                      All possible input can be found in `r2rtf:::border_type()$name`.
-#' @param border_last  Last bottom border type in each page. Default is "single" indicating single line bottom border.
-#'                      To vary bottom border by column, use character vector with length of vector
-#'                      equal to number of columns displayed e.g. c("single","single","single").
-#'                      All possible input can be found in `r2rtf:::border_type()$name`.
-#' @param border_color_left Left border color type. Default is NULL for black. To vary left
-#'                          border color by column, use character vector with length of vector
-#'                          equal to number of columns displayed e.g. c("white","red","blue").
-#'                          All possible input can be found in `grDevices::colors()`.
-#' @param border_color_right Right border color type. Default is NULL for black. To vary right
-#'                           border color by column, use character vector with length of vector
-#'                           equal to number of columns displayed e.g. c("white","red","blue").
-#'                           All possible input can be found in `grDevices::colors()`.
-#' @param border_color_top Top border color type. Default is NULL for black. To vary top
-#'                         border color by column, use character vector with length of vector
-#'                         equal to number of columns displayed e.g. c("white","red","blue").
-#'                         All possible input can be found in `grDevices::colors()`.
-#' @param border_color_bottom Bottom border color type. Default is NULL for black. To vary bottom
-#'                            border color by column, use character vector with length of vector
-#'                            equal to number of columns displayed e.g. c("white","red","blue").
-#'                            All possible input can be found in `grDevices::colors()`.
-#' @param border_color_first First top border color type in each page. Default is NULL for black. To vary top
-#'                         border color by column, use character vector with length of vector
-#'                         equal to number of columns displayed e.g. c("white","red","blue").
-#'                         All possible input can be found in `grDevices::colors()`.
-#' @param border_color_last Last bottom border color type in each page. Default is NULL for black. To vary bottom
-#'                            border color by column, use character vector with length of vector
-#'                            equal to number of columns displayed e.g. c("white","red","blue").
-#'                            All possible input can be found in `grDevices::colors()`.
-#' @param border_width Border width in twips. Default is 15 for 0.0104 inch.
-#' @param cell_justification Justification type for cell. Default is "c" for center justification.
-#'                           All possible input can be found in `r2rtf:::justification()$type`.
-#' @param cell_height Cell height in inches. Default is 0.15 for 0.15 inch.
-#' @param text_justification Justification type for text. Default is "c" for center justification.
-#'                           To vary text justification by column, use character vector with
-#'                           length of vector equal to number of columns displayed e.g. c("c","l","r").
-#'                           All possible input can be found in `r2rtf:::justification()$type`.
-#' @param text_font Text font type. Default is 1 for Times New Roman. To vary text font type
-#'                  by column, use numeric vector with length of vector equal to number of
-#'                  columns displayed e.g. c(1,2,3).All possible input can be found
-#'                  in `r2rtf:::font_type()$type`.
-#' @param text_font_size Text font size. Default is 9. To vary text font size by column, use
-#'                       numeric vector with length of vector equal to number of columns
-#'                       displayed e.g. c(9,20,40).
-#' @param text_format Text format type. Default is NULL for normal. Combination of format type
-#'                    are permitted as input for e.g. "ub" for bold and underlined text. To vary
-#'                    text format by column, use character vector with length of vector equal to
-#'                    number of columns displayed e.g. c("i","u","ib"). All possible input
-#'                    can be found in `r2rtf:::font_format()$type`.
-#' @param text_color Text color type. Default is NULL for black. To vary text color by column,
-#'                   use character vector with length of vector equal to number of columns
-#'                   displayed e.g. c("white","red","blue"). All possible input can be found
-#'                   in `grDevices::colors()`.
-#' @param text_background_color Text background color type. Default is NULL for white. To vary
-#'                              text color by column, use character vector with length of vector
-#'                              equal to number of columns displayed e.g. c("white","red","blue").
-#'                              All possible input can be found in `grDevices::colors()`.
-#' @param text_space a value of text space
-#' @param text_space_before Line space before text in twips. Default is 15 for 0.0104 inch.
-#' @param text_space_after Line space after text in twips. Default is 15 for 0.0104 inch.
 #' @param text_convert a logical value to convert special characters. Default is TRUE.
-#' @param text_indent_first a value of first indent
-#' @param text_indent_left a value of left indent
-#' @param text_indent_right a value of right indent
 #' @param group_by Column names in a character vector to remove duplicate records.
 #' @param page_by Column names in a character vector to group by table in sections.
 #'                Default is NULL.
@@ -114,6 +31,8 @@
 #' @param pageby_header A boolean value to display pageby header at the beginning of each page.
 #' @param last_row A boolean value to indicate whether the table contains the last row of the
 #'                 final table. Default is TRUE.
+#' @inheritParams rtf_footnote
+#' @inheritParams rtf_page
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -188,6 +107,7 @@ rtf_body <- function(tbl,
 
                      cell_height = 0.15,
                      cell_justification = "c",
+                     cell_nrow = NULL,
 
                      text_font = 1,
                      text_format = NULL,
@@ -235,6 +155,25 @@ rtf_body <- function(tbl,
   # Set Default Page Attributes
   if(is.null(attr(tbl, "page"))){
     tbl <- rtf_page(tbl)
+  }
+
+  # Sort data in proper order if page_by or group_by is used.
+  by_var <- c(page_by, group_by)
+
+  if(! is.null(by_var)){
+    if(length(by_var) != length(unique(by_var))) stop("Variables in page_by and group_by can not be overlapped")
+
+    if(length(by_var) == 1){
+      order_var <- order(tbl[, by_var])
+    }else{
+      order_var <- do.call(order, as.list(tbl[, by_var]) )
+    }
+
+    if(! all(order_var == 1:nrow(tbl))){
+      message("Data are sorted by ", paste(by_var, collapse = ", "))
+      tbl <- tbl[order_var, ]
+    }
+
   }
 
   ## check whether to add column header or not
@@ -293,7 +232,8 @@ rtf_body <- function(tbl,
                         border_width,
 
                         cell_height,
-                        cell_justification)
+                        cell_justification,
+                        cell_nrow)
   if(attr(tbl, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   # Add Additional Attributions

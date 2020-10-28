@@ -4,10 +4,10 @@
 \alias{write_rtf_para}
 \title{Write a Paragraph to an RTF File}
 \usage{
-write_rtf_para(rtf_body, file)
+write_rtf_para(rtf, file)
 }
 \arguments{
-\item{rtf_body}{rtf code for text paragraph, obtained using \code{rtf_paragraph(text,...)} function}
+\item{rtf}{rtf code for text paragraph, obtained using \code{rtf_paragraph(text,...)} function}
 
 \item{file}{file name to save rtf text paragraph, eg. filename.rtf}
 }

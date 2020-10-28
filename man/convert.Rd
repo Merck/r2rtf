@@ -5,14 +5,14 @@
 \title{Convert Symbol to ANSI and Unicode Encoding}
 \usage{
 convert(
-  x,
+  text,
   load_stringi = suppressMessages(suppressWarnings(require("stringi")))
 )
 }
 \arguments{
-\item{x}{Object to be converted.}
+\item{text}{A string to be converted.}
 
-\item{load_stringi}{logical value to load \code{stringi} or not}
+\item{load_stringi}{A logical value to load \code{stringi} or not}
 }
 \description{
 Convert Symbol to ANSI and Unicode Encoding

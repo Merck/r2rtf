@@ -17,30 +17,30 @@
 
 #' Create RTF Table Body Encode
 #'
-#' @param db a data frame
-#' @param border_left left border type
-#' @param border_right right border type
-#' @param border_top top border type
-#' @param border_bottom bottom border type
-#' @param border_color_left left border color
-#' @param border_color_right right border color
-#' @param border_color_top top border color
-#' @param border_color_bottom bottom border color
-#' @param border_width border width in twips
-#' @param cell_justification justification for cell
-#' @param col_rel_width column relative width in a vector eg. c(2,1,1) refers to 2:1;1
-#' @param col_total_width column total width for the table
-#' @param cell_height height for cell in twips
-#' @param text_font text font type
-#' @param text_font_size text font size
-#' @param text_format  text format
-#' @param text_color text color
-#' @param text_background_color text background color
-#' @param text_justification justification for text
-#' @param text_space_before line space before text
-#' @param text_space_after  line space after text
-#' @param use_border_bottom logical value of using the bottom border
-#' @param text_convert a logical value to convert special characters. Default is TRUE.
+#' @param tbl A data frame
+#' @param border_left Left border type. Default is the corresponding attribute from `tbl`.
+#' @param border_right Right border type. Default is the corresponding attribute from `tbl`.
+#' @param border_top Top border type. Default is the corresponding attribute from `tbl`.
+#' @param border_bottom Bottom border type. Default is the corresponding attribute from `tbl`.
+#' @param border_color_left Left border color. Default is the corresponding attribute from `tbl`.
+#' @param border_color_right Right border color. Default is the corresponding attribute from `tbl`.
+#' @param border_color_top Top border color. Default is the corresponding attribute from `tbl`.
+#' @param border_color_bottom Bottom border color. Default is the corresponding attribute from `tbl`.
+#' @param border_width Border width in twips. Default is the corresponding attribute from `tbl`.
+#' @param cell_justification Justification for cell. Default is the corresponding attribute from `tbl`.
+#' @param col_rel_width Column relative width in a vector eg. c(2,1,1) refers to 2:1;1
+#' @param col_total_width Column total width for the table. Default is the corresponding attribute from `tbl`.
+#' @param cell_height Height for cell in twips. Default is the corresponding attribute from `tbl`.
+#' @param text_font Text font type. Default is the corresponding attribute from `tbl`.
+#' @param text_font_size Text font size. Default is the corresponding attribute from `tbl`.
+#' @param text_format  Text format. Default is the corresponding attribute from `tbl`.
+#' @param text_color Text color. Default is the corresponding attribute from `tbl`.
+#' @param text_background_color Text background color. Default is the corresponding attribute from `tbl`.
+#' @param text_justification Justification for text. Default is the corresponding attribute from `tbl`.
+#' @param text_space_before Line space before text. Default is the corresponding attribute from `tbl`.
+#' @param text_space_after  Line space after text. Default is the corresponding attribute from `tbl`.
+#' @param use_border_bottom Logical value of using the bottom border. Default is the corresponding attribute from `tbl`.
+#' @param text_convert a logical value to convert special characters. Default is the corresponding attribute from `tbl`.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -59,49 +59,47 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-rtf_table_content <- function(db,
+rtf_table_content <- function(tbl,
 
-                               col_total_width       = attr(db, "page")$col_width,
+                               col_total_width       = attr(tbl, "page")$col_width,
                                use_border_bottom     = FALSE,
 
-                               border_left           = attr(db, "border_left"),
-                               border_right          = attr(db, "border_right"),
-                               border_top            = attr(db, "border_top"),
-                               border_bottom         = attr(db, "border_bottom"),
+                               border_left           = attr(tbl, "border_left"),
+                               border_right          = attr(tbl, "border_right"),
+                               border_top            = attr(tbl, "border_top"),
+                               border_bottom         = attr(tbl, "border_bottom"),
 
-                               border_color_left     = attr(db, "border_color_left"),
-                               border_color_right    = attr(db, "border_color_right"),
-                               border_color_top      = attr(db, "border_color_top"),
-                               border_color_bottom   = attr(db, "border_color_bottom"),
+                               border_color_left     = attr(tbl, "border_color_left"),
+                               border_color_right    = attr(tbl, "border_color_right"),
+                               border_color_top      = attr(tbl, "border_color_top"),
+                               border_color_bottom   = attr(tbl, "border_color_bottom"),
 
-                               border_width          = attr(db, "border_width"),
+                               border_width          = attr(tbl, "border_width"),
 
-                               col_rel_width         = attr(db, "col_rel_width"),
-                               cell_height           = attr(db, "cell_height"),
-                               cell_justification    = attr(db, "cell_justification"),
+                               col_rel_width         = attr(tbl, "col_rel_width"),
+                               cell_height           = attr(tbl, "cell_height"),
+                               cell_justification    = attr(tbl, "cell_justification"),
 
-                               text_font             = attr(db, "text_font"),
-                               text_format           = attr(db, "text_format"),
-                               text_color            = attr(db, "text_color"),
-                               text_background_color = attr(db, "text_background_color"),
-                               text_justification    = attr(db, "text_justification"),
-                               text_font_size        = attr(db, "text_font_size"),
-                               text_space_before     = attr(db, "text_space_before"),
-                               text_space_after      = attr(db, "text_space_after"),
+                               text_font             = attr(tbl, "text_font"),
+                               text_format           = attr(tbl, "text_format"),
+                               text_color            = attr(tbl, "text_color"),
+                               text_background_color = attr(tbl, "text_background_color"),
+                               text_justification    = attr(tbl, "text_justification"),
+                               text_font_size        = attr(tbl, "text_font_size"),
+                               text_space_before     = attr(tbl, "text_space_before"),
+                               text_space_after      = attr(tbl, "text_space_after"),
 
-                               text_convert          = attr(db, "text_convert")
+                               text_convert          = attr(tbl, "text_convert")
                                ) {
 
-
-  ## get dimension of db
-  n_row <- nrow(db)
-  n_col <- ncol(db)
+  ## get dimension of tbl
+  n_row <- nrow(tbl)
+  n_col <- ncol(tbl)
 
   ## Ensure Missing value display nothing
   for(i in 1:n_col){
-    db[,i] <- ifelse(is.na(db[,i]), "", as.character(db[,i]))
+    tbl[,i] <- ifelse(is.na(tbl[,i]), "", as.character(tbl[,i]))
   }
-
 
   ## Transfer vector to matrix by row
   foo <- function(x) {
@@ -137,7 +135,6 @@ rtf_table_content <- function(db,
   border_top_rtf <- paste0(border_lrtb["top"], border_top_rtf, border_wid)
   border_bottom_rtf <- paste0(border_lrtb["bottom"], border_bottom_rtf, border_wid)
 
-
   ## Encoding RTF Cell Border color
   col_tb <- color_table()
 
@@ -166,7 +163,6 @@ rtf_table_content <- function(db,
     border_bottom_rtf <- paste0(border_bottom_rtf, border_color_bottom_rtf)
   }
 
-
   ## Cell Background Color
   if (!is.null(text_background_color)) {
     text_background_color_rtf <- factor(text_background_color, levels = col_tb$color)
@@ -175,7 +171,6 @@ rtf_table_content <- function(db,
   } else {
     text_background_color_rtf <- NULL
   }
-
 
   # Cell Size
   cell_width <- cell_size(col_rel_width, col_total_width)
@@ -197,7 +192,6 @@ rtf_table_content <- function(db,
   }
 
   border_rtf <- t(border_rtf)
-
 
   # Encoding RTF Cell Content/Text
   cell <- paste0("\\pard\\intbl\\sb", text_space_before, "\\sa", text_space_after)
@@ -237,9 +231,9 @@ rtf_table_content <- function(db,
     text_color_rtf <- NULL
   }
 
-  content_matrix <- matrix("", nrow = nrow(db), ncol = ncol(db))
-  for(i in 1:ncol(db)){
-    content_matrix[, i] <- ifelse( text_convert[, i], convert(db[,i]), db[,i])
+  content_matrix <- matrix("", nrow = nrow(tbl), ncol = ncol(tbl))
+  for(i in 1:ncol(tbl)){
+    content_matrix[, i] <- ifelse( text_convert[, i], convert(tbl[,i]), tbl[,i])
   }
 
   ## Combine cell content/text attributes of justification, font, font-size, format and color.
@@ -250,9 +244,5 @@ rtf_table_content <- function(db,
   )
   cell_rtf <- t(matrix(cell_rtf, nrow = n_row, ncol = n_col))
 
-
-  db_rtf_text <- rbind(row_begin, border_rtf, cell_rtf, row_end)
-
-
-  db_rtf_text
+  rbind(row_begin, border_rtf, cell_rtf, row_end)
 }

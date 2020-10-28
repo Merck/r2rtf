@@ -63,7 +63,7 @@ as_rtf_font <- function() {
 
 #' Create RTF Color Encode
 #'
-#' @param tbl a data frame
+#' @param tbl A data frame
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -88,7 +88,7 @@ as_rtf_color <- function(tbl) {
 
 #' Create RTF Page Size Encode
 #'
-#' @param tbl a data frame
+#' @param tbl A data frame
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -142,7 +142,7 @@ as_rtf_page <- function(tbl) {
 
 #' Create RTF Page Margin Encode
 #'
-#' @param tbl a data frame
+#' @param tbl A data frame
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -305,7 +305,7 @@ as_rtf_footnote <- function(tbl) {
 
 #' Create Data Source RTF Encode
 #'
-#' @param tbl a data frame
+#' @param tbl A data frame
 #'
 #' @section Specification:
 #' \if{latex}{

@@ -17,10 +17,10 @@
 
 #' Check Argument Types, Length or Dimension
 #'
-#' @param arg an argument to be checked.
-#' @param type a character vector of candidate argument type.
-#' @param length a numeric value of argument length or NULL
-#' @param dim a numeric vector of argument dimension or NULL.
+#' @param arg An argument to be checked.
+#' @param type A character vector of candidate argument type.
+#' @param length A numeric value of argument length or NULL
+#' @param dim A numeric vector of argument dimension or NULL.
 #'
 #' @details if `type`, `length` or `dim` is NULL, the corresponding check will not be executed.
 #'

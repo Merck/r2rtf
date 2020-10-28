@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' @title add table body page by attributes to the table
+#' @title Add Table Body Pageby Attributes to the Table
 #'
 #' @inheritParams rtf_body
 #'
@@ -52,7 +52,7 @@ rtf_pageby <- function(tbl, page_by, new_page, pageby_header){
                                      "border_color_left", "border_color_right", "border_color_top", "border_color_bottom",
                                      "border_color_first", "border_color_last",
                                      "text_font", "text_format", "text_font_size", "text_color",
-                                     "text_background_color", "text_justification", "text_convert")]
+                                     "text_background_color", "text_justification", "text_convert", "cell_nrow")]
     attr_matrix <- attr_matrix[! is.na(names(attr_matrix))]
 
     attr_scale  <- attributes(tbl)[c("border_width", "cell_height", "cell_justification",
@@ -96,7 +96,7 @@ rtf_pageby <- function(tbl, page_by, new_page, pageby_header){
     # re-arrange source data columns
     db_table <- tbl[, - index_var]
     attributes(db_table) <- append( attributes(db_table),
-                              lapply(attr_matrix, function(x) if(!is.null(x)) x[, -index_var] ))
+                              lapply(attr_matrix, function(x) if(!is.null(x)) matrix(x[, -index_var], nrow = nrow(x))))
 
     attributes(db_table) <- append( attributes(db_table), attr_scale)
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/rtf_source.R
 \name{rtf_source}
 \alias{rtf_source}
-\title{Add data source attributes to the table}
+\title{Add Data Source Attributes to the Table}
 \usage{
 rtf_source(
   tbl,
@@ -18,6 +18,7 @@ rtf_source(
   border_width = 15,
   cell_height = 0.15,
   cell_justification = "c",
+  cell_nrow = NULL,
   text_font = 1,
   text_format = NULL,
   text_font_size = 9,
@@ -35,7 +36,7 @@ rtf_source(
 )
 }
 \arguments{
-\item{tbl}{a data frame}
+\item{tbl}{A data frame}
 
 \item{source}{a character string}
 
@@ -87,6 +88,8 @@ All possible input can be found in \code{grDevices::colors()}.}
 \item{cell_justification}{Justification type for cell. Default is "c" for center justification.
 All possible input can be found in \code{r2rtf:::justification()$type}.}
 
+\item{cell_nrow}{Number of rows required in each cell. Default is NULL.}
+
 \item{text_font}{Text font type. Default is 1 for Times New Roman. To vary text font type
 by column, use numeric vector with length of vector equal to number of
 columns displayed e.g. c(1,2,3).All possible input can be found
@@ -117,19 +120,19 @@ To vary text justification by column, use character vector with
 length of vector equal to number of columns displayed e.g. c("c","l","r").
 All possible input can be found in \code{r2rtf:::justification()$type}.}
 
-\item{text_indent_first}{a value of first indent}
+\item{text_indent_first}{A value of first indent.}
 
-\item{text_indent_left}{a value of left indent}
+\item{text_indent_left}{A value of left indent.}
 
-\item{text_indent_right}{a value of right indent}
+\item{text_indent_right}{A value of right indent.}
 
-\item{text_space}{a value of text space}
+\item{text_space}{A value of text space.}
 
 \item{text_space_before}{Line space before text in twips. Default is 15 for 0.0104 inch.}
 
 \item{text_space_after}{Line space after text in twips. Default is 15 for 0.0104 inch.}
 
-\item{text_convert}{a logical value to convert special characters. Default is TRUE.}
+\item{text_convert}{A logical value to convert special characters. Default is TRUE.}
 
 \item{as_table}{logical value to display it as a table.}
 }
@@ -137,7 +140,7 @@ All possible input can be found in \code{r2rtf:::justification()$type}.}
 the same data frame \code{tbl} with additional attributes for data source of a table
 }
 \description{
-Add data source attributes to the table
+Add Data Source Attributes to the Table
 }
 \section{Specification}{
 

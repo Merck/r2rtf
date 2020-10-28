@@ -7,7 +7,7 @@
 as_rtf_pageby(tbl)
 }
 \arguments{
-\item{tbl}{a data frame}
+\item{tbl}{A data frame}
 }
 \description{
 RTF Table Page By Encoding

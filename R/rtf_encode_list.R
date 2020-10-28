@@ -68,6 +68,9 @@ rtf_encode_list <- function(tbl,
     paste(unlist(lapply(tbl, function(x) as_rtf_footnote(x))), sep = ""),
 
     paste(unlist(lapply(tbl, function(x) as_rtf_source(x))), sep = ""),
+
+    "{\\pard\\par}",
+
     sep = "\n"
   )
 

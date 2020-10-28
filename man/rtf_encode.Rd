@@ -6,16 +6,16 @@
 \usage{
 rtf_encode(
   tbl,
-  type = "table",
+  doc_type = "table",
   page_title = "all",
   page_footnote = "last",
   page_source = "last"
 )
 }
 \arguments{
-\item{tbl}{a data frame for table or a list of binary string for figure}
+\item{tbl}{A data frame for table or a list of binary string for figure}
 
-\item{type}{the type of input, default is table.}
+\item{doc_type}{the doc_type of input, default is table.}
 
 \item{page_title}{a character of title displaying location. Default is "all" for all pages.
 Possible values are "first", "last" and "all".}
@@ -39,11 +39,11 @@ to an RTF file.
 
 \if{latex}{
  \itemize{
-   \item Input check for type ("table" or "figure").
+   \item Input check for doc_type ("table" or "figure").
    \item Input check for title, footnote and source position ("all", "first" or "last").
-   \item If type is "table" and class is data.frame then run \code{rtf_encode_table(tbl)}.
-   \item If type is "table" and class is list then run \code{rtf_encode_list(tbl)}.
-   \item If type is "figure" then run \code{rtf_encode_figure(tbl)}.
+   \item If doc_type is "table" and class is data.frame then run \code{rtf_encode_table(tbl)}.
+   \item If doc_type is "table" and class is list then run \code{rtf_encode_list(tbl)}.
+   \item If doc_type is "figure" then run \code{rtf_encode_figure(tbl)}.
  }
  }
 \if{html}{The contents of this section are shown in PDF user manual only.}
@@ -69,7 +69,7 @@ library(dplyr)  # required to run examples
 
   # Read in PNG file in binary format
   rtf_read_png(file) \%>\% rtf_figure() \%>\%
-    rtf_encode(type = "figure") \%>\%
+    rtf_encode(doc_type = "figure") \%>\%
     write_rtf(file = file.path(tempdir(), "figure1.rtf"))
 }
 # Example 3

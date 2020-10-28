@@ -5,80 +5,80 @@
 \title{Create RTF Table Body Encode}
 \usage{
 rtf_table_content(
-  db,
-  col_total_width = attr(db, "page")$col_width,
+  tbl,
+  col_total_width = attr(tbl, "page")$col_width,
   use_border_bottom = FALSE,
-  border_left = attr(db, "border_left"),
-  border_right = attr(db, "border_right"),
-  border_top = attr(db, "border_top"),
-  border_bottom = attr(db, "border_bottom"),
-  border_color_left = attr(db, "border_color_left"),
-  border_color_right = attr(db, "border_color_right"),
-  border_color_top = attr(db, "border_color_top"),
-  border_color_bottom = attr(db, "border_color_bottom"),
-  border_width = attr(db, "border_width"),
-  col_rel_width = attr(db, "col_rel_width"),
-  cell_height = attr(db, "cell_height"),
-  cell_justification = attr(db, "cell_justification"),
-  text_font = attr(db, "text_font"),
-  text_format = attr(db, "text_format"),
-  text_color = attr(db, "text_color"),
-  text_background_color = attr(db, "text_background_color"),
-  text_justification = attr(db, "text_justification"),
-  text_font_size = attr(db, "text_font_size"),
-  text_space_before = attr(db, "text_space_before"),
-  text_space_after = attr(db, "text_space_after"),
-  text_convert = attr(db, "text_convert")
+  border_left = attr(tbl, "border_left"),
+  border_right = attr(tbl, "border_right"),
+  border_top = attr(tbl, "border_top"),
+  border_bottom = attr(tbl, "border_bottom"),
+  border_color_left = attr(tbl, "border_color_left"),
+  border_color_right = attr(tbl, "border_color_right"),
+  border_color_top = attr(tbl, "border_color_top"),
+  border_color_bottom = attr(tbl, "border_color_bottom"),
+  border_width = attr(tbl, "border_width"),
+  col_rel_width = attr(tbl, "col_rel_width"),
+  cell_height = attr(tbl, "cell_height"),
+  cell_justification = attr(tbl, "cell_justification"),
+  text_font = attr(tbl, "text_font"),
+  text_format = attr(tbl, "text_format"),
+  text_color = attr(tbl, "text_color"),
+  text_background_color = attr(tbl, "text_background_color"),
+  text_justification = attr(tbl, "text_justification"),
+  text_font_size = attr(tbl, "text_font_size"),
+  text_space_before = attr(tbl, "text_space_before"),
+  text_space_after = attr(tbl, "text_space_after"),
+  text_convert = attr(tbl, "text_convert")
 )
 }
 \arguments{
-\item{db}{a data frame}
+\item{tbl}{A data frame}
 
-\item{col_total_width}{column total width for the table}
+\item{col_total_width}{Column total width for the table. Default is the corresponding attribute from \code{tbl}.}
 
-\item{use_border_bottom}{logical value of using the bottom border}
+\item{use_border_bottom}{Logical value of using the bottom border. Default is the corresponding attribute from \code{tbl}.}
 
-\item{border_left}{left border type}
+\item{border_left}{Left border type. Default is the corresponding attribute from \code{tbl}.}
 
-\item{border_right}{right border type}
+\item{border_right}{Right border type. Default is the corresponding attribute from \code{tbl}.}
 
-\item{border_top}{top border type}
+\item{border_top}{Top border type. Default is the corresponding attribute from \code{tbl}.}
 
-\item{border_bottom}{bottom border type}
+\item{border_bottom}{Bottom border type. Default is the corresponding attribute from \code{tbl}.}
 
-\item{border_color_left}{left border color}
+\item{border_color_left}{Left border color. Default is the corresponding attribute from \code{tbl}.}
 
-\item{border_color_right}{right border color}
+\item{border_color_right}{Right border color. Default is the corresponding attribute from \code{tbl}.}
 
-\item{border_color_top}{top border color}
+\item{border_color_top}{Top border color. Default is the corresponding attribute from \code{tbl}.}
 
-\item{border_color_bottom}{bottom border color}
+\item{border_color_bottom}{Bottom border color. Default is the corresponding attribute from \code{tbl}.}
 
-\item{border_width}{border width in twips}
+\item{border_width}{Border width in twips. Default is the corresponding attribute from \code{tbl}.}
 
-\item{col_rel_width}{column relative width in a vector eg. c(2,1,1) refers to 2:1;1}
+\item{col_rel_width}{Column relative width in a vector eg. c(2,1,1) refers to 2:1;1}
 
-\item{cell_height}{height for cell in twips}
+\item{cell_height}{Height for cell in twips. Default is the corresponding attribute from \code{tbl}.}
 
-\item{cell_justification}{justification for cell}
+\item{cell_justification}{Justification for cell. Default is the corresponding attribute from \code{tbl}.}
 
-\item{text_font}{text font type}
+\item{text_font}{Text font type. Default is the corresponding attribute from \code{tbl}.}
 
-\item{text_format}{text format}
+\item{text_format}{Text format. Default is the corresponding attribute from \code{tbl}.}
 
-\item{text_color}{text color}
+\item{text_color}{Text color. Default is the corresponding attribute from \code{tbl}.}
 
-\item{text_background_color}{text background color}
+\item{text_background_color}{Text background color. Default is the corresponding attribute from \code{tbl}.}
 
-\item{text_justification}{justification for text}
+\item{text_justification}{Justification for text. Default is the corresponding attribute from \code{tbl}.}
 
-\item{text_font_size}{text font size}
+\item{text_font_size}{Text font size. Default is the corresponding attribute from \code{tbl}.}
 
-\item{text_space_before}{line space before text}
+\item{text_space_before}{Line space before text. Default is the corresponding attribute from \code{tbl}.}
 
-\item{text_space_after}{line space after text}
+\item{text_space_after}{Line space after text. Default is the corresponding attribute from \code{tbl}.}
 
-\item{text_convert}{a logical value to convert special characters. Default is TRUE.}
+\item{text_convert}{a logical value to convert special characters. Default is the corresponding attribute from \code{tbl}.}
 }
 \description{
 Create RTF Table Body Encode

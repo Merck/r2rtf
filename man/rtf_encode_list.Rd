@@ -12,7 +12,7 @@ rtf_encode_list(
 )
 }
 \arguments{
-\item{tbl}{a data frame for table or a list of binary string for figure}
+\item{tbl}{A data frame for table or a list of binary string for figure}
 
 \item{page_title}{a character of title displaying location. Default is "all" for all pages.
 Possible values are "first", "last" and "all".}

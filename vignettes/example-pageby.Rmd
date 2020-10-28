@@ -2,9 +2,11 @@
 title: "RTF Examples for Tables with Pageby Feature"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{RTF Examples for Tables with Pageby Feature}
+  %\VignetteIndexEntry{"RTF Examples for Tables with Pageby Feature"}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+resource_files:
+  - pdf/pageby-ae-listing.pdf
 ---
 
 ```{r}
@@ -41,7 +43,8 @@ ae_t1
 ae_tbl <- ae_t1 %>% arrange(TRTA, SUBJLINE, USUBJID, ASTDY) %>% 
   
   rtf_page(orientation = "landscape",
-           col_width = 9) %>%
+           col_width = 9, 
+           nrow = 22) %>%
   
   rtf_page_header() %>% 
   rtf_page_footer(text = "CONFIDENTIAL") %>% 
@@ -80,3 +83,8 @@ ae_tbl <- ae_t1 %>% arrange(TRTA, SUBJLINE, USUBJID, ASTDY) %>%
 ```{r, warning = FALSE}
 ae_tbl %>% rtf_encode() %>% write_rtf("rtf/pageby-ae-listing.rtf")
 ```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/pageby-ae-listing.pdf")
+```
+

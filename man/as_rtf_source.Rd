@@ -7,7 +7,7 @@
 as_rtf_source(tbl)
 }
 \arguments{
-\item{tbl}{a data frame}
+\item{tbl}{A data frame}
 }
 \description{
 Create Data Source RTF Encode

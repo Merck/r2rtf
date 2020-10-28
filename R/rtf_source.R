@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' @title Add data source attributes to the table
+#' @title Add Data Source Attributes to the Table
 #'
 #' @param source a character string
 #' @inheritParams rtf_footnote
@@ -56,6 +56,7 @@ rtf_source <- function(tbl,
 
                        cell_height = 0.15,
                        cell_justification = "c",
+                       cell_nrow = NULL,
 
                        text_font = 1,
                        text_format = NULL,
@@ -143,7 +144,8 @@ rtf_source <- function(tbl,
                                border_width,
 
                                cell_height,
-                               cell_justification)
+                               cell_justification,
+                               cell_nrow)
 
     if(attr(source, "use_color")) attr(tbl, "page")$use_color <- TRUE
   }

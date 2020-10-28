@@ -7,7 +7,7 @@
 as_rtf_table(tbl)
 }
 \arguments{
-\item{tbl}{a data frame}
+\item{tbl}{A data frame}
 }
 \description{
 Combine RTF Table Encoding

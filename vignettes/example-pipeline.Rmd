@@ -2,7 +2,7 @@
 title: "RTF Examples for Tables"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{RTF Examples for Tables}
+  %\VignetteIndexEntry{example-table}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -188,7 +188,6 @@ tbl_3 <- t3 %>%
   rtf_body(
     colheader = FALSE,
     col_rel_width = c(1),
-    border_color_left = "red",
     text_justification = "l"
   ) %>%
   rtf_source(
@@ -206,7 +205,7 @@ tbl %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-knitr::include_graphics("fig/efficacy_example.pdf")
+knitr::include_graphics("pdf/efficacy_example.pdf")
 ```
 
 
@@ -265,6 +264,10 @@ ae_tbl %>%
   rtf_encode() %>%
   write_rtf("rtf/ae_example.rtf")
 ```
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/ae_example.pdf")
+```
+
 
 # Example 3: adverse events example page_by option
 
@@ -300,6 +303,9 @@ ae_tbl %>%
   rtf_encode() %>%
   write_rtf("rtf/ae_example_page_num_10.rtf")
 ```
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/ae_example_page_num_10.pdf")
+```
 
 
 # Example 4: group_by feature
@@ -328,6 +334,9 @@ iris_tbl %>%
   rtf_encode() %>%
   write_rtf("rtf/iris_example.rtf")
 ```
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/iris_example.pdf")
+```
 
 ## Example 5: A very simple example
 ```{r}
@@ -338,6 +347,9 @@ iris_tbl <- iris[1:20, ] %>% rtf_body()
 iris_tbl %>%
   rtf_encode() %>%
   write_rtf("rtf/iris_very_simple.rtf")
+```
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/iris_very_simple.pdf")
 ```
 
 ## Example 6: A  simple example
@@ -355,6 +367,9 @@ iris_tbl <- iris[1:20, ] %>%
 iris_tbl %>%
   rtf_encode() %>%
   write_rtf("rtf/iris_simple.rtf")
+```
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/iris_simple.pdf")
 ```
 
 ## Example 7: baseline characteristics example feature
@@ -503,7 +518,9 @@ bs_rtf %>%
   rtf_encode() %>%
   write_rtf("rtf/bs_example.rtf")
 ```
-
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/bs_example.pdf")
+```
 
 ## Example 8: baseline characteristics example page_by feature
 
@@ -536,4 +553,7 @@ bs_rtf <- bs_tb %>%
 bs_rtf %>%
   rtf_encode() %>%
   write_rtf("rtf/bs_pageby_example.rtf")
+```
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/bs_pageby_example.pdf")
 ```

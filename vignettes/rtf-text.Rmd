@@ -3,7 +3,7 @@ title: "RTF Examples for Controlling Text and Paragraph Details"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{RTF Examples for Controlling Text and Paragraph Details}
+  %\VignetteIndexEntry{paragraph-details}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -46,6 +46,9 @@ res <- rtf_paragraph(rtf_text(text),
 write_rtf_para(res, "rtf/para-justification.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/para-justification.pdf")
+```
 ### Indent 
 
 First line, left, and right indent can be controlled. One can also use a negative number to have the text "outdent".
@@ -55,6 +58,10 @@ res <- rtf_paragraph(rtf_text(text), indent_first = c(1000, 0, -1000), indent_le
 write_rtf_para(res, "rtf/para-indent.rtf")
 ```
 
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/para-indent.pdf")
+```
 
 ### Line Space
 
@@ -73,6 +80,9 @@ res <- rtf_paragraph(rtf_text(text),
 write_rtf_para(res, "rtf/para-line-space.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/para-line-space.pdf")
+```
 ### Paragraph Space
 
 ```{r}
@@ -83,6 +93,9 @@ res <- rtf_paragraph(rtf_text(text),
 write_rtf_para(res, "rtf/para-space.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/para-space.pdf")
+```
 
 ### New Page
 
@@ -94,6 +107,9 @@ res <- rtf_paragraph(rtf_text(text)[1:2],
 write_rtf_para(res, "rtf/para-page.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/para-page.pdf")
+```
 ## Text
 
 ### Font Size
@@ -104,6 +120,9 @@ res <- rtf_paragraph(rtf_text(text,
 write_rtf_para(res, "rtf/text-font-size-1.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-font-size-1.pdf")
+```
 ### Text Format
 ```{r}
 res <- rtf_paragraph(rtf_text(text,
@@ -112,12 +131,20 @@ res <- rtf_paragraph(rtf_text(text,
 write_rtf_para(res, "rtf/text-format-1.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-format-1.pdf")
+```
+
 ### Text Color
 ```{r}
 res <- rtf_paragraph(rtf_text(text,
   color = c("red", "gold", "black", "orange", "blue")
 ))
 write_rtf_para(res, "rtf/text-color.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-color.pdf")
 ```
 
 ### Text Background Color
@@ -129,6 +156,9 @@ res <- rtf_paragraph(rtf_text(text,
 write_rtf_para(res, "rtf/text-background-color.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-background-color.pdf")
+```
 
 ### Combine Text in Different Format
 
@@ -143,6 +173,9 @@ res <- rtf_paragraph(paste0(
 write_rtf_para(res, "rtf/text-combine1.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-combine1.pdf")
+```
 This example call `rtf_text` one time to combine a text.
 ```{r}
 text <- c(3.5, "\\dagger", "\\line red ", "highlight")
@@ -154,6 +187,10 @@ res <- rtf_paragraph(paste(rtf_text(text, format = format, color = color, backgr
 write_rtf_para(res, "rtf/text-combine2.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-combine2.pdf")
+```
+
 ### Inline Formatting
 This example provide an inline formatting options with superscript and subscript. It is important to note the location of `{}` is before the special character.
 
@@ -163,4 +200,7 @@ res <- rtf_paragraph(rtf_text(text))
 write_rtf_para(res, "rtf/text-combine3.rtf")
 ```
 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-combine3.pdf")
+```
 

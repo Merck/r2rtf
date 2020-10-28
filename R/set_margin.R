@@ -17,7 +17,7 @@
 
 #' Define Margin Type
 #'
-#' @param doctype doctype in 'csr', 'wma', 'wmm' or 'narrow'
+#' @param doc_type doc_type in 'csr', 'wma', 'wmm' or 'narrow'
 #' @param orientation Orientation in 'portrait' or 'landscape'.
 #'
 #' @section Specification:
@@ -29,9 +29,9 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-set_margin <- function(doctype, orientation) {
-  if (!doctype %in% c("csr", "wma", "wmm", "narrow")) {
-    stop("input doctype must be 'csr', 'wma', 'wmm' or 'narrow' ")
+set_margin <- function(doc_type, orientation) {
+  if (!doc_type %in% c("csr", "wma", "wmm", "narrow")) {
+    stop("input doc_type must be 'csr', 'wma', 'wmm' or 'narrow' ")
   }
 
   if (!orientation %in% c("portrait", "landscape")) {
@@ -60,5 +60,5 @@ set_margin <- function(doctype, orientation) {
     )
   )
 
-  margin[[doctype]][[orientation]]
+  margin[[doc_type]][[orientation]]
 }

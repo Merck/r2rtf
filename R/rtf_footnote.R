@@ -17,7 +17,7 @@
 
 #' @title Add footnote attributes to the table
 #'
-#' @param tbl a data frame
+#' @param tbl A data frame
 #' @param footnote A vector of character for footnote text.
 #' @param border_left Left border type. Default is "single". To vary left border by column, use
 #'                    character vector with length of vector equal to number of columns displayed
@@ -56,6 +56,7 @@
 #' @param cell_justification Justification type for cell. Default is "c" for center justification.
 #'                           All possible input can be found in `r2rtf:::justification()$type`.
 #' @param cell_height Cell height in inches. Default is 0.15 for 0.15 inch.
+#' @param cell_nrow Number of rows required in each cell. Default is NULL.
 #' @param text_justification Justification type for text. Default is "c" for center justification.
 #'                           To vary text justification by column, use character vector with
 #'                           length of vector equal to number of columns displayed e.g. c("c","l","r").
@@ -82,12 +83,12 @@
 #'                              All possible input can be found in `grDevices::colors()`.
 #' @param text_space_before Line space before text in twips. Default is 15 for 0.0104 inch.
 #' @param text_space_after Line space after text in twips. Default is 15 for 0.0104 inch.
-#' @param text_indent_first a value of first indent
-#' @param text_indent_left a value of left indent
-#' @param text_indent_right a value of right indent
-#' @param text_space a value of text space
+#' @param text_indent_first A value of first indent.
+#' @param text_indent_left A value of left indent.
+#' @param text_indent_right A value of right indent.
+#' @param text_space A value of text space.
 #' @param as_table logical value to display it as a table.
-#' @param text_convert a logical value to convert special characters. Default is TRUE.
+#' @param text_convert A logical value to convert special characters. Default is TRUE.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -125,6 +126,7 @@ rtf_footnote <- function(tbl,
 
                          cell_height = 0.15,
                          cell_justification = "c",
+                         cell_nrow = NULL,
 
                          text_font = 1,
                          text_format = NULL,
@@ -211,7 +213,8 @@ rtf_footnote <- function(tbl,
                                border_width,
 
                                cell_height,
-                               cell_justification)
+                               cell_justification,
+                               cell_nrow)
 
     if(attr(footnote, "use_color")) attr(tbl, "page")$use_color <- TRUE
   }

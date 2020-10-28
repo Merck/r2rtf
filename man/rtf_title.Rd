@@ -60,19 +60,19 @@ To vary text justification by column, use character vector with
 length of vector equal to number of columns displayed e.g. c("c","l","r").
 All possible input can be found in \code{r2rtf:::justification()$type}.}
 
-\item{text_indent_first}{a value of first indent}
+\item{text_indent_first}{A value of first indent.}
 
-\item{text_indent_left}{a value of left indent}
+\item{text_indent_left}{A value of left indent.}
 
-\item{text_indent_right}{a value of right indent}
+\item{text_indent_right}{A value of right indent.}
 
-\item{text_space}{a value of text space}
+\item{text_space}{A value of text space.}
 
 \item{text_space_before}{Line space before text in twips. Default is 15 for 0.0104 inch.}
 
 \item{text_space_after}{Line space after text in twips. Default is 15 for 0.0104 inch.}
 
-\item{text_convert}{a logical value to convert special characters. Default is TRUE.}
+\item{text_convert}{A logical value to convert special characters. Default is TRUE.}
 }
 \value{
 the same data frame \code{tbl} with additional attributes for table title

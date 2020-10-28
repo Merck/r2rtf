@@ -4,10 +4,10 @@
 \alias{utf8Tortf}
 \title{Convert a UTF-8 Encoded Character String to a RTF Encoded String}
 \usage{
-utf8Tortf(x)
+utf8Tortf(text)
 }
 \arguments{
-\item{x}{object to be converted
+\item{text}{A string to be converted.
 
 If the unicode of a character is 255 or under (including all character on a keyboard), the character is as is.
 If the unicode of a character is larger than 255, the character will be encoded.}

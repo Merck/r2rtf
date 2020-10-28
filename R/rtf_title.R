@@ -116,8 +116,8 @@ rtf_title <- function(tbl,
 #' @description
 #' Add subline attributes to the object
 #'
-#' @param tbl The input data frame.
-#' @param text a character vector of subline
+#' @param tbl A data frame.
+#' @param text A character vector of subline
 #' @inheritParams rtf_footnote
 #'
 #' @section Specification:

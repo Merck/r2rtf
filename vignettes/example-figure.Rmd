@@ -2,7 +2,7 @@
 title: "RTF Examples for Figures"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{RTF Examples for Figures}
+  %\VignetteIndexEntry{example-figure}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -40,8 +40,12 @@ filename %>%
   rtf_footnote("footnote") %>%           # add footnote
   rtf_source("[datasource: mk0999]") %>% # add data source
   rtf_figure() %>%                       # default seting of page and figure
-  rtf_encode(type = "figure") %>%        # encode rtf as figure
+  rtf_encode(doc_type = "figure") %>%        # encode rtf as figure
   write_rtf(file = "rtf/fig-simple.rtf") # write RTF to a file
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/fig-simple.pdf")
 ```
 
 In `rtf_figure`, the features of page and figure can be set up: 
@@ -62,7 +66,11 @@ filename %>%
     fig_height = 3.5,                               # set figure height
     fig_width = c(6, 7, 8)                          # set figure width individually.
   ) %>% 
-  rtf_encode(type = "figure") %>%                   # encode rtf as figure
+  rtf_encode(doc_type = "figure") %>%                   # encode rtf as figure
   write_rtf(file = "rtf/fig-landscape.rtf")         # write RTF to a file
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/fig-landscape.pdf")
 ```
 

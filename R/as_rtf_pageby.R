@@ -17,7 +17,7 @@
 
 #' RTF Table Page By Encoding
 #'
-#' @param tbl a data frame
+#' @param tbl A data frame
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -61,10 +61,15 @@ as_rtf_pageby <- function(tbl){
 
   ## actual column width
   width <- col_width * attr(cell_tbl, "col_rel_width") / sum(attr(cell_tbl, "col_rel_width"))
+  width <- matrix(width, nrow = nrow(cell_tbl), ncol = ncol(cell_tbl), byrow = TRUE)
 
   ## text font size is 1/72 inch height
   ## default font height and width ratio is 1.65
-  cell_nrow <- apply(cell_tbl, 2, nchar) * attr(cell_tbl, "text_font_size") / width / 72 / 1.65
+  if(is.null(attr(tbl, "cell_nrow"))){
+    cell_nrow <- apply(cell_tbl, 2, nchar) * attr(cell_tbl, "text_font_size") / width / 72 / 1.65
+  }else{
+    cell_nrow <- attr(tbl, "cell_nrow")
+  }
 
   ##  maximum num of rows in cells per line
   table_nrow <- ceiling(apply(cell_nrow, 1, max, na.rm = TRUE))
@@ -111,9 +116,9 @@ as_rtf_pageby <- function(tbl){
 
     ## Remove repeated records if group_by is not null
   if(! is.null(group_by)){
-    cell_tbl <- remove_group_by(cell_tbl,
+    cell_tbl <- rtf_group_by_enhance(cell_tbl,
                                 group_by = group_by,
-                                page = subset(page_dict, ! pageby)$page)
+                                page_index = subset(page_dict, ! pageby)$page)
   }
 
   # Add border type for first and last row

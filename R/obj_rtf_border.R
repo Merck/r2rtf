@@ -17,7 +17,8 @@
 
 #' Create an RTF Table Border Object
 #'
-#' @inheritParams rtf_body
+#' @inheritParams rtf_footnote
+#' @inheritParams rtf_page
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -54,7 +55,8 @@ obj_rtf_border <- function(tbl,
                            border_width = 15,
 
                            cell_height = 0.15,
-                           cell_justification = "c"){
+                           cell_justification = "c",
+                           cell_nrow = NULL){
 
 
   #Check argument type
@@ -72,6 +74,7 @@ obj_rtf_border <- function(tbl,
 
   check_args(cell_height,           type = c("integer", "numeric"))
   check_args(cell_justification,    type = c("character"))
+  check_args(cell_nrow,             type = c("integer", "numeric"))
 
   #Check argument values
   match_arg(border_left,   border_type()$name, several.ok = TRUE)
@@ -131,6 +134,8 @@ obj_rtf_border <- function(tbl,
   border_color_first <- foo(border_color_first)
   border_color_last  <- foo(border_color_last)
 
+  cell_nrow <- foo(cell_nrow)
+
   # Add Attributions
   attr(tbl, "border_top") <- border_top
   attr(tbl, "border_left") <- border_left
@@ -152,6 +157,7 @@ obj_rtf_border <- function(tbl,
 
   attr(tbl, "cell_height") <- cell_height
   attr(tbl, "cell_justification") <- cell_justification
+  attr(tbl, "cell_nrow") <- cell_nrow
 
   # Register Color Use
   color <- list(border_color_left, border_color_right, border_color_top,

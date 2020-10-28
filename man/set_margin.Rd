@@ -4,10 +4,10 @@
 \alias{set_margin}
 \title{Define Margin Type}
 \usage{
-set_margin(doctype, orientation)
+set_margin(doc_type, orientation)
 }
 \arguments{
-\item{doctype}{doctype in 'csr', 'wma', 'wmm' or 'narrow'}
+\item{doc_type}{doc_type in 'csr', 'wma', 'wmm' or 'narrow'}
 
 \item{orientation}{Orientation in 'portrait' or 'landscape'.}
 }

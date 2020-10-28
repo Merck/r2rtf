@@ -4,7 +4,7 @@ Version: 0.2.0
 Authors@R: c(
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = c("aut", "cre")),
     person("Siruo", "Wang", email = "swang171@jhu.edu", role = "aut"),
-    person("Simiao", "Ye", email = "simiao.ye1@merck.com", role = "aut"),
+    person("Madhusudhan", "Ginnaram", email = "madhusudhan.ginnaram.reddy@merck.com", role = "aut"),
     person("Merck Sharp & Dohme Corp", role = "cph")
     )
 Description: Create presentation-ready Rich Text Format (RTF) table and figure with flexible and customized format.
@@ -12,7 +12,7 @@ Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 Imports: 

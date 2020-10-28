@@ -7,13 +7,13 @@
 check_args(arg, type, length = NULL, dim = NULL)
 }
 \arguments{
-\item{arg}{an argument to be checked.}
+\item{arg}{An argument to be checked.}
 
-\item{type}{a character vector of candidate argument type.}
+\item{type}{A character vector of candidate argument type.}
 
-\item{length}{a numeric value of argument length or NULL}
+\item{length}{A numeric value of argument length or NULL}
 
-\item{dim}{a numeric vector of argument dimension or NULL.}
+\item{dim}{A numeric vector of argument dimension or NULL.}
 }
 \value{
 Check failure detailed error message

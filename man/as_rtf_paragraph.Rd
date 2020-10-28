@@ -7,7 +7,7 @@
 as_rtf_paragraph(text)
 }
 \arguments{
-\item{text}{a character string.}
+\item{text}{A character string.}
 }
 \description{
 Create Paragraph RTF Encode

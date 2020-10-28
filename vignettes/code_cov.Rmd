@@ -2,7 +2,7 @@
 title: "Tests and Code Coverage Report"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Tests and Code Coverage Report}
+  %\VignetteIndexEntry{Code Coverage Report}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -12,11 +12,12 @@ knitr::opts_chunk$set(
   message = FALSE,
   warning = FALSE, 
   echo = FALSE,
-  eval = TRUE,
+  eval = FALSE,
   collapse = TRUE,
   comment = "#>"
 )
 ```
+
 
 ```{r}
 devtools::load_all() # Load functions in current package

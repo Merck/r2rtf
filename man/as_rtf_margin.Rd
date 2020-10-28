@@ -7,7 +7,7 @@
 as_rtf_margin(tbl)
 }
 \arguments{
-\item{tbl}{a data frame}
+\item{tbl}{A data frame}
 }
 \description{
 Create RTF Page Margin Encode

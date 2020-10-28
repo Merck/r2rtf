@@ -17,7 +17,7 @@
 
 #' Create Paragraph RTF Encode
 #'
-#' @param text a character string.
+#' @param text A character string.
 #'
 #' @section Specification:
 #' \if{latex}{

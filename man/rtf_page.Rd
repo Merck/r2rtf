@@ -19,20 +19,20 @@ rtf_page(
 )
 }
 \arguments{
-\item{tbl}{a data frame}
+\item{tbl}{A data frame}
 
-\item{orientation}{page orientation}
+\item{orientation}{Page orientation}
 
-\item{width}{a numeric value of page width in inches.
+\item{width}{A numeric value of page width in inches.
 Default is 8.5 inch in portrait orientation or 11.0 inch in landscape orientation.}
 
-\item{height}{a numeric value of page width in inches.
+\item{height}{A numeric value of page width in inches.
 Default is 11.0 inch in portrait orientation or 8.5 inch in landscape orientation.}
 
-\item{margin}{a numeric vector of length 6 for page margin. The value set left, right, top, bottom, header and footer
+\item{margin}{A numeric vector of length 6 for page margin. The value set left, right, top, bottom, header and footer
 margin in order. Default value depends on the page orientation and set by \code{r2rtf:::set_margin("wma", orientation)}}
 
-\item{nrow}{number of rows in each page. Default is 42 rows if portrait orientation
+\item{nrow}{Number of rows in each page. Default is 42 rows if portrait orientation
 and 26 rows in landscape orientation.}
 
 \item{border_first}{First top border type of the whole table. Default is "double" indicating double line bottom border.
