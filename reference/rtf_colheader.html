@@ -98,6 +98,9 @@
       <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
     </li>
     <li>
+      <a href="../articles/design-pattern.html">r2rtf: Design Pattern</a>
+    </li>
+    <li>
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
     </li>
     <li>
@@ -157,6 +160,7 @@
   border_width <span class='op'>=</span> <span class='fl'>15</span>,
   cell_height <span class='op'>=</span> <span class='fl'>0.15</span>,
   cell_justification <span class='op'>=</span> <span class='st'>"c"</span>,
+  cell_nrow <span class='op'>=</span> <span class='cn'>NULL</span>,
   text_font <span class='op'>=</span> <span class='fl'>1</span>,
   text_format <span class='op'>=</span> <span class='cn'>NULL</span>,
   text_font_size <span class='op'>=</span> <span class='fl'>9</span>,
@@ -189,89 +193,135 @@
     </tr>
     <tr>
       <th>border_left</th>
-      <td><p>A character vector for left border type. Default is "single". All possible input can be found in <code>r2rtf:::border_type()</code>.</p></td>
+      <td><p>Left border type. Default is "single". To vary left border by column, use
+character vector with length of vector equal to number of columns displayed
+e.g. c("single","single","single"). All possible input can be found in
+<code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
       <th>border_right</th>
-      <td><p>A character vector for right border type. Default is "single". All possible input can be found in <code>r2rtf:::border_type()</code>.</p></td>
+      <td><p>Right border type. Default is "single". To vary right border by column, use
+character vector with length of vector equal to number of columns displayed
+e.g. c("single","single","single"). All possible input can be found in
+<code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
       <th>border_top</th>
-      <td><p>A character vector for top border type. Default is NULL. If it is the first row in a table for this page,
-the border is set to "double" otherwise the border is set to "single".</p></td>
+      <td><p>Top border type. Default is NULL. To vary top border by column, use
+character vector with length of vector equal to number of columns displayed
+e.g. c("single","single","single"). If it is the first row in a table for this
+page, the top border is set to "double" otherwise the border is set to "single".
+All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
       <th>border_bottom</th>
-      <td><p>A character vector for bottom border type. Default is NULL for no border. All possible input can be found in <code>r2rtf:::border_type()</code>.</p></td>
+      <td><p>Bottom border type. Default is "double" indicating double line bottom border.
+To vary bottom border by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("single","single","single").
+All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
       <th>border_color_left</th>
-      <td><p>A character vector for left border color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+      <td><p>Left border color type. Default is NULL for black. To vary left
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
     </tr>
     <tr>
       <th>border_color_right</th>
-      <td><p>A character vector for right border color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+      <td><p>Right border color type. Default is NULL for black. To vary right
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
     </tr>
     <tr>
       <th>border_color_top</th>
-      <td><p>A character vector for top border color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+      <td><p>Top border color type. Default is NULL for black. To vary top
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
     </tr>
     <tr>
       <th>border_color_bottom</th>
-      <td><p>A character vector for bottom border color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+      <td><p>Bottom border color type. Default is NULL for black. To vary bottom
+border color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
     </tr>
     <tr>
       <th>border_width</th>
-      <td><p>A numeric value for border width in twips. Default is 15.</p></td>
+      <td><p>Border width in twips. Default is 15 for 0.0104 inch.</p></td>
     </tr>
     <tr>
       <th>cell_height</th>
-      <td><p>A numeric value for height of cell in inch. Default is 0.15 inch.</p></td>
+      <td><p>Cell height in inches. Default is 0.15 for 0.15 inch.</p></td>
     </tr>
     <tr>
       <th>cell_justification</th>
-      <td><p>A character vector for justification of cell. Default is "c" for center justification. All possible input can be found in <code>r2rtf:::justification()</code>.</p></td>
+      <td><p>Justification type for cell. Default is "c" for center justification.
+All possible input can be found in <code>r2rtf:::justification()$type</code>.</p></td>
+    </tr>
+    <tr>
+      <th>cell_nrow</th>
+      <td><p>Number of rows required in each cell. Default is NULL.</p></td>
     </tr>
     <tr>
       <th>text_font</th>
-      <td><p>A numeric value for text font type. Default is 1 for Times New Roman. All possible input can be found in <code>r2rtf:::font_type()</code>.</p></td>
+      <td><p>Text font type. Default is 1 for Times New Roman. To vary text font type
+by column, use numeric vector with length of vector equal to number of
+columns displayed e.g. c(1,2,3).All possible input can be found
+in <code>r2rtf:::font_type()$type</code>.</p></td>
     </tr>
     <tr>
       <th>text_format</th>
-      <td><p>A character vector for  text format. Default is NULL for normal format. Multiple format type can be assigned, e.g. "bi" will
-give the text both bold and italics format. All possible input can be found in <code>r2rtf:::font_format()</code>.</p></td>
+      <td><p>Text format type. Default is NULL for normal. Combination of format type
+are permitted as input for e.g. "ub" for bold and underlined text. To vary
+text format by column, use character vector with length of vector equal to
+number of columns displayed e.g. c("i","u","ib"). All possible input
+can be found in <code>r2rtf:::font_format()$type</code>.</p></td>
     </tr>
     <tr>
       <th>text_font_size</th>
-      <td><p>A numeric value for text font size. Default is 9.</p></td>
+      <td><p>Text font size. Default is 9. To vary text font size by column, use
+numeric vector with length of vector equal to number of columns
+displayed e.g. c(9,20,40).</p></td>
     </tr>
     <tr>
       <th>text_color</th>
-      <td><p>A character vector for text color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+      <td><p>Text color type. Default is NULL for black. To vary text color by column,
+use character vector with length of vector equal to number of columns
+displayed e.g. c("white","red","blue"). All possible input can be found
+in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
     </tr>
     <tr>
       <th>text_background_color</th>
-      <td><p>A character vector for text background color. Default is NULL for black. All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
+      <td><p>Text background color type. Default is NULL for white. To vary
+text color by column, use character vector with length of vector
+equal to number of columns displayed e.g. c("white","red","blue").
+All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
     </tr>
     <tr>
       <th>text_justification</th>
-      <td><p>A character vector for text justification. Default is "c" for center justification. All possible input can be found in <code>r2rtf:::justification()</code>.</p></td>
+      <td><p>Justification type for text. Default is "c" for center justification.
+To vary text justification by column, use character vector with
+length of vector equal to number of columns displayed e.g. c("c","l","r").
+All possible input can be found in <code>r2rtf:::justification()$type</code>.</p></td>
     </tr>
     <tr>
       <th>text_indent_first</th>
-      <td><p>a value of first indent</p></td>
+      <td><p>A value of first indent.</p></td>
     </tr>
     <tr>
       <th>text_indent_left</th>
-      <td><p>a value of left indent</p></td>
+      <td><p>A value of left indent.</p></td>
     </tr>
     <tr>
       <th>text_indent_right</th>
-      <td><p>a value of right indent</p></td>
+      <td><p>A value of right indent.</p></td>
     </tr>
     <tr>
       <th>text_space</th>
-      <td><p>a value of text space</p></td>
+      <td><p>A value of text space.</p></td>
     </tr>
     <tr>
       <th>text_space_before</th>
@@ -283,7 +333,7 @@ give the text both bold and italics format. All possible input can be found in <
     </tr>
     <tr>
       <th>text_convert</th>
-      <td><p>a logical value to convert special characters. Default is TRUE.</p></td>
+      <td><p>A logical value to convert special characters. Default is TRUE.</p></td>
     </tr>
     </table>
 
@@ -320,7 +370,7 @@ give the text both bold and italics format. All possible input can be found in <
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 

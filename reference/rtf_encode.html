@@ -99,6 +99,9 @@ to an RTF file." />
       <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
     </li>
     <li>
+      <a href="../articles/design-pattern.html">r2rtf: Design Pattern</a>
+    </li>
+    <li>
       <a href="../articles/example-figure.html">RTF Examples for Figures</a>
     </li>
     <li>
@@ -146,7 +149,7 @@ to an RTF file.</p>
 
     <pre class="usage"><span class='fu'>rtf_encode</span><span class='op'>(</span>
   <span class='va'>tbl</span>,
-  type <span class='op'>=</span> <span class='st'>"table"</span>,
+  doc_type <span class='op'>=</span> <span class='st'>"table"</span>,
   page_title <span class='op'>=</span> <span class='st'>"all"</span>,
   page_footnote <span class='op'>=</span> <span class='st'>"last"</span>,
   page_source <span class='op'>=</span> <span class='st'>"last"</span>
@@ -157,11 +160,11 @@ to an RTF file.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tbl</th>
-      <td><p>a data frame for table or a list of binary string for figure</p></td>
+      <td><p>A data frame for table or a list of binary string for figure</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>the type of input, default is table.</p></td>
+      <th>doc_type</th>
+      <td><p>the doc_type of input, default is table.</p></td>
     </tr>
     <tr>
       <th>page_title</th>
@@ -213,7 +216,7 @@ For \code{write_rtf}, no return value.
 
   <span class='co'># Read in PNG file in binary format</span>
   <span class='fu'><a href='rtf_read_png.html'>rtf_read_png</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='rtf_figure.html'>rtf_figure</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-    <span class='fu'>rtf_encode</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"figure"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+    <span class='fu'>rtf_encode</span><span class='op'>(</span>doc_type <span class='op'>=</span> <span class='st'>"figure"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
     <span class='fu'><a href='write_rtf.html'>write_rtf</a></span><span class='op'>(</span>file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"figure1.rtf"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 <span class='co'># Example 3</span>
@@ -247,7 +250,7 @@ For \code{write_rtf}, no return value.
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 

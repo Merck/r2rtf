@@ -3,10 +3,11 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   code_cov: code_cov.html
+  design-pattern: design-pattern.html
   example-figure: example-figure.html
   example-pageby: example-pageby.html
   example-pipeline: example-pipeline.html
   rtf-row: rtf-row.html
   rtf-text: rtf-text.html
-last_built: 2020-10-15T16:56Z
+last_built: 2020-10-28T04:01Z
 
