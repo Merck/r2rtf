@@ -80,49 +80,95 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file-code-o"></span>
+     
+    Functions
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">HTML User Manual</a>
+    </li>
+    <li>
+      <a href="../reference/r2rtf_0.2.0.pdf">PDF User Manual and Speification</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa fas fa-book"></span>
+     
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
+      <a href="../articles/example-basechar.html">Table: Baseline Characteristic</a>
     </li>
     <li>
-      <a href="../articles/design-pattern.html">r2rtf: Design Pattern</a>
+      <a href="../articles/example-efficacy.html">Table: Efficacy</a>
     </li>
     <li>
-      <a href="../articles/example-figure.html">RTF Examples for Figures</a>
+      <a href="../articles/example-ae-summary.html">Table: Safety</a>
     </li>
     <li>
-      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
+      <a href="../articles/example-figure.html">Figure Generation</a>
     </li>
     <li>
-      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
+      <a href="../articles/example-pageby-groupby.html">Feature: Pageby and Groupby</a>
     </li>
     <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
+      <a href="../articles/rtf-row.html">Details in Table Format</a>
     </li>
     <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
+      <a href="../articles/rtf-text.html">Details in Text Format</a>
+    </li>
+    <li>
+      <a href="../articles/design-pattern.html">Package Design Pattern</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-user-shield"></span>
+     
+    Validation
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/plan_track.html">Validation Plan and Track</a>
+    </li>
+    <li>
+      <a href="../articles/code_cov.html">Tests &amp; Coverage Report</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Changelog
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://stash.merck.com/projects/BARDS/repos/r2rtf/browse">
+    <span class="fa fa-bitbucket fa-lg"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -164,11 +210,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tbl</th>
-      <td><p>A data frame</p></td>
+      <td><p>A data frame.</p></td>
     </tr>
     <tr>
       <th>orientation</th>
-      <td><p>Page orientation</p></td>
+      <td><p>Orientation in 'portrait' or 'landscape'.</p></td>
     </tr>
     <tr>
       <th>width</th>
@@ -228,7 +274,9 @@ All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/co
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required to run examples</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_1</span><span class='op'>)</span>
-<span class='va'>tbl_1</span> <span class='op'>%&gt;%</span> <span class='fu'>rtf_page</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='st'>"page"</span><span class='op'>)</span>
+<span class='va'>tbl_1</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>rtf_page</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='st'>"page"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $width
 #&gt; [1] 8.5
 #&gt; 
@@ -255,8 +303,7 @@ All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/co
 #&gt; 
 #&gt; $use_color
 #&gt; [1] FALSE
-#&gt; </div><div class='input'>
-</div></pre>
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -268,7 +315,7 @@ All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/co
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Madhusudhan Ginnaram.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 

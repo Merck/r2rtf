@@ -80,49 +80,95 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file-code-o"></span>
+     
+    Functions
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">HTML User Manual</a>
+    </li>
+    <li>
+      <a href="../reference/r2rtf_0.2.0.pdf">PDF User Manual and Speification</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa fas fa-book"></span>
+     
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
+      <a href="../articles/example-basechar.html">Table: Baseline Characteristic</a>
     </li>
     <li>
-      <a href="../articles/design-pattern.html">r2rtf: Design Pattern</a>
+      <a href="../articles/example-efficacy.html">Table: Efficacy</a>
     </li>
     <li>
-      <a href="../articles/example-figure.html">RTF Examples for Figures</a>
+      <a href="../articles/example-ae-summary.html">Table: Safety</a>
     </li>
     <li>
-      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
+      <a href="../articles/example-figure.html">Figure Generation</a>
     </li>
     <li>
-      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
+      <a href="../articles/example-pageby-groupby.html">Feature: Pageby and Groupby</a>
     </li>
     <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
+      <a href="../articles/rtf-row.html">Details in Table Format</a>
     </li>
     <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
+      <a href="../articles/rtf-text.html">Details in Text Format</a>
+    </li>
+    <li>
+      <a href="../articles/design-pattern.html">Package Design Pattern</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-user-shield"></span>
+     
+    Validation
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/plan_track.html">Validation Plan and Track</a>
+    </li>
+    <li>
+      <a href="../articles/code_cov.html">Tests &amp; Coverage Report</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Changelog
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://stash.merck.com/projects/BARDS/repos/r2rtf/browse">
+    <span class="fa fa-bitbucket fa-lg"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -271,7 +317,7 @@ All possible input can be found in <code>r2rtf:::justification()$type</code>.</p
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Madhusudhan Ginnaram.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 

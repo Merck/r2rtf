@@ -39,48 +39,96 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file-code-o"></span>
+     
+    Functions
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
 <li>
-  <a href="../reference/index.html">Reference</a>
+      <a href="../reference/index.html">HTML User Manual</a>
+    </li>
+    <li>
+      <a href="../reference/r2rtf_0.2.0.pdf">PDF User Manual and Speification</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa fas fa-book"></span>
+     
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
+      <a href="../articles/example-basechar.html">Table: Baseline Characteristic</a>
     </li>
     <li>
-      <a href="../articles/design-pattern.html">r2rtf: Design Pattern</a>
+      <a href="../articles/example-efficacy.html">Table: Efficacy</a>
     </li>
     <li>
-      <a href="../articles/example-figure.html">RTF Examples for Figures</a>
+      <a href="../articles/example-ae-summary.html">Table: Safety</a>
     </li>
     <li>
-      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
+      <a href="../articles/example-figure.html">Figure Generation</a>
     </li>
     <li>
-      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
+      <a href="../articles/example-pageby-groupby.html">Feature: Pageby and Groupby</a>
     </li>
     <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
+      <a href="../articles/rtf-row.html">Details in Table Format</a>
     </li>
     <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
+      <a href="../articles/rtf-text.html">Details in Text Format</a>
+    </li>
+    <li>
+      <a href="../articles/design-pattern.html">Package Design Pattern</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-user-shield"></span>
+     
+    Validation
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/plan_track.html">Validation Plan and Track</a>
+    </li>
+    <li>
+      <a href="../articles/code_cov.html">Tests &amp; Coverage Report</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Changelog
+  </a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://stash.merck.com/projects/BARDS/repos/r2rtf/browse">
+    <span class="fa fa-bitbucket fa-lg"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -96,7 +144,6 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>RTF Examples for Controlling Table Details</h1>
             
-            <h4 class="date">2020-10-28</h4>
       
       
       <div class="hidden name"><code>rtf-row.Rmd</code></div>
@@ -110,8 +157,8 @@
 <h2 class="hasAnchor">
 <a href="#border-type" class="anchor"></a>Border Type</h2>
 <p><code>.rtf_row</code> supports 26 different types of border as listed below.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span></code></pre></div>
 <pre><code>##  [1] ""                       "single"                 "double thick"          
 ##  [4] "shadowed"               "double"                 "dot"                   
 ##  [7] "dash"                   "hairline"               "small dash"            
@@ -123,8 +170,8 @@
 ## [25] "emboss"                 "engrave"</code></pre>
 <p>The border type can be used to define the top, left, right and bottom border types.</p>
 <p>This example define different top border line.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
 <span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>border_type <span class="op">=</span> <span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Summary of Border Type Using Top Border"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span><span class="st">"Border Type"</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -132,22 +179,22 @@
 
 <span class="va">db</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-type.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-type.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/border-type.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>For each cell, the top border and left border is defined in each cell. The right border only defined in last column. The bottom border only defined in last row. This example show that top border and left border type are used for all cell border as single. Only last column use right border as double. Only last row use bottom border as dash line.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>
-    colheader <span class="op">=</span> <span class="cn">FALSE</span>,
+    as_colheader <span class="op">=</span> <span class="cn">FALSE</span>,
     border_top <span class="op">=</span> <span class="st">"dash"</span>,
     border_left <span class="op">=</span> <span class="st">"double"</span>,
     border_right <span class="op">=</span> <span class="st">"single"</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-order.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-order.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/border-order.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>This example display table with specific border type (i.e. double line at the first and last line and blank at the middle)</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="va">rtf_db</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">rtf_db</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Border Using Double Line at First/Last Line"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span><span class="st">"Sepal Length | Sepal Width | Petal Length | Petal Width | Species"</span>
@@ -157,16 +204,16 @@
 
 <span class="va">rtf_db</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-example.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-example.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/border-example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><ul>
 <li>The first and last border of the whole table is controled by <code>border_first</code> and <code>border_last</code> argument in <code><a href="../reference/rtf_page.html">rtf_page()</a></code>
 </li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">rtf_db</span>, <span class="st">"page"</span><span class="op">)</span><span class="op">$</span><span class="va">border_first</span></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">rtf_db</span>, <span class="st">"page"</span><span class="op">)</span><span class="op">$</span><span class="va">border_first</span></code></pre></div>
 <pre><code>## [1] "double"</code></pre>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">rtf_db</span>, <span class="st">"border_first"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">rtf_db</span>, <span class="st">"border_first"</span><span class="op">)</span></code></pre></div>
 <pre><code>##      [,1]     [,2]     [,3]     [,4]     [,5]    
 ## [1,] "single" "single" "single" "single" "single"
 ## [2,] "single" "single" "single" "single" "single"
@@ -175,8 +222,8 @@
 ## [5,] "single" "single" "single" "single" "single"
 ## [6,] "single" "single" "single" "single" "single"</code></pre>
 <p>For other border, it is controled by a matrix.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">rtf_db</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="st">"border_top"</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">rtf_db</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="st">"border_top"</span><span class="op">)</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3] [,4] [,5]
 ## [1,] ""   ""   ""   ""   ""  
 ## [2,] ""   ""   ""   ""   ""  
@@ -185,8 +232,8 @@
 ## [5,] ""   ""   ""   ""   ""  
 ## [6,] ""   ""   ""   ""   ""</code></pre>
 <p>User can use single value, vector, and matrix to control the border type. Specifically, a vector is transferred to a matrix by row. Therefore, it is useful to set columns type by using vector.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, nrow <span class="op">=</span> <span class="fl">6</span>, ncol <span class="op">=</span> <span class="fl">5</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></pre></div>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, nrow <span class="op">=</span> <span class="fl">6</span>, ncol <span class="op">=</span> <span class="fl">5</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>##      [,1] [,2]     [,3]           [,4]       [,5]    
 ## [1,] ""   "single" "double thick" "shadowed" "double"
 ## [2,] ""   "single" "double thick" "shadowed" "double"
@@ -194,42 +241,42 @@
 ## [4,] ""   "single" "double thick" "shadowed" "double"
 ## [5,] ""   "single" "double thick" "shadowed" "double"
 ## [6,] ""   "single" "double thick" "shadowed" "double"</code></pre>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="va">rtf_db</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">rtf_db</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Left Border Defined by a Vector"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>border_left <span class="op">=</span> <span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="fl">2</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span>
 
 <span class="va">rtf_db</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-vector.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-vector.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/border-vector.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div id="cell-justification" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cell-justification" class="anchor"></a>Cell Justification</h2>
 <p>The table cell allow to be left, center or right justified. the cell is also allow to align by decimal.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>##   type      name
 ## 1    l      left
 ## 2    c    center
 ## 3    r     right
 ## 4    d   decimal
 ## 5    j justified</code></pre>
-<div class="sourceCode" id="cb17"><pre class="downlit">
-<span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">type</span>, each <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/justification-type.rtf"</span><span class="op">)</span></pre></div>
-<embed src="pdf/justification-type.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="sourceCode" id="cb18"><pre class="downlit">
-<span class="va">db</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Sepal.Length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/formatc.html">formatC</a></span><span class="op">(</span><span class="va">Sepal.Length</span> <span class="op">*</span> <span class="fl">2</span>, digits <span class="op">=</span> <span class="fl">1</span>, format <span class="op">=</span> <span class="st">"f"</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/justification-type.rtf"</span><span class="op">)</span></code></pre></div>
+<embed src="pdf/justification-type.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>Sepal.Length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/formatc.html">formatC</a></span><span class="op">(</span><span class="va">Sepal.Length</span> <span class="op">*</span> <span class="fl">2</span>, digits <span class="op">=</span> <span class="fl">1</span>, format <span class="op">=</span> <span class="st">"f"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">db</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"d"</span>, <span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"r"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/justification-number.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/justification-number.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/justification-number.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div id="column-width" class="section level2">
@@ -237,27 +284,27 @@
 <a href="#column-width" class="anchor"></a>Column Width</h2>
 <p>Column width is determined by width ratio between the row using <code>col_rel_width</code>. The default is to have the same width for each column. The actual width is calculate with actual width <code>col_total_width</code>. The default value of <code>col_total_width</code> is page_width divided by 1.4.</p>
 <p>This example shows the default setting</p>
-<div class="sourceCode" id="cb19"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>colheader <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>as_colheader <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/column-width-default.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/column-width-default.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/column-width-default.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>This example customizes the column width</p>
-<div class="sourceCode" id="cb20"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>col_rel_width <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>, colheader <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>col_rel_width <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">ncol</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span>, as_colheader <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/column-width-ratio.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/column-width-ratio.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/column-width-ratio.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div id="text-appearance" class="section level2">
 <h2 class="hasAnchor">
 <a href="#text-appearance" class="anchor"></a>Text Appearance</h2>
 <p>The <code>.rtf_row</code> function allow <strong>bold</strong>, <em>italics</em>, <del>strikethrough</del>, underline and any combinations of them.</p>
-<div class="sourceCode" id="cb21"><pre class="downlit">
-<span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></pre></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>##   type        name
 ## 1           normal
 ## 2    b        bold
@@ -267,9 +314,9 @@
 ## 6    ^ superscript
 ## 7    _   subscript</code></pre>
 <p>This example considers the text format defined below</p>
-<div class="sourceCode" id="cb23"><pre class="downlit">
-<span class="va">fmt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="st">""</span>, <span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">type</span><span class="op">)</span>
-<span class="va">fmt</span></pre></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">fmt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="st">""</span>, <span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">type</span><span class="op">)</span>
+<span class="va">fmt</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,] ""   ""  
 ## [2,] ""   "b" 
@@ -278,23 +325,23 @@
 ## [5,] ""   "s" 
 ## [6,] ""   "^" 
 ## [7,] ""   "_"</code></pre>
-<div class="sourceCode" id="cb25"><pre class="downlit">
-<span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>text_format <span class="op">=</span> <span class="va">fmt</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/text-format.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/text-format.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/text-format.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div id="text-font-size" class="section level2">
 <h2 class="hasAnchor">
 <a href="#text-font-size" class="anchor"></a>Text Font Size</h2>
 <p>Font size can be defined for each cell.</p>
-<div class="sourceCode" id="cb26"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>text_font_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span>, colheader <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>text_font_size <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">7</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span>, as_colheader <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/text-font-size.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/text-font-size.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/text-font-size.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div id="color" class="section level2">
@@ -302,32 +349,32 @@
 <a href="#color" class="anchor"></a>Color</h2>
 <p>The text, border and background color can be set separately for each cell. It is important to note that the cell can be defined condition by the data. For example, one can highlight p-value &lt; 0.05 in gold.</p>
 <p>This example define text color for each column</p>
-<div class="sourceCode" id="cb27"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>text_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"blue"</span>, <span class="st">"grey"</span><span class="op">)</span>,
-           colheader <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+           as_colheader <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/color-text.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/color-text.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/color-text.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>This example define left border color for each column</p>
-<div class="sourceCode" id="cb28"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>border_color_left <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"blue"</span>, <span class="st">"grey"</span><span class="op">)</span>,
-           colheader <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+           as_colheader <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/color-border.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/color-border.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/color-border.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>This example define background color for each column</p>
-<div class="sourceCode" id="cb29"><pre class="downlit">
-<span class="va">iris</span> <span class="op">%&gt;%</span>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>
     text_background_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"blue"</span>, <span class="st">"grey"</span><span class="op">)</span>,
     text_color <span class="op">=</span> <span class="st">"black"</span>,
-    colheader <span class="op">=</span> <span class="cn">FALSE</span>,
+    as_colheader <span class="op">=</span> <span class="cn">FALSE</span>,
   <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/color-background.rtf"</span><span class="op">)</span></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/color-background.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/color-background.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
   </div>
@@ -343,7 +390,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Madhusudhan Ginnaram.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 

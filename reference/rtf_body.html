@@ -80,49 +80,95 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-file-code-o"></span>
+     
+    Functions
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../reference/index.html">HTML User Manual</a>
+    </li>
+    <li>
+      <a href="../reference/r2rtf_0.2.0.pdf">PDF User Manual and Speification</a>
+    </li>
+  </ul>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fas fa fas fa-book"></span>
+     
     Articles
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
+      <a href="../articles/example-basechar.html">Table: Baseline Characteristic</a>
     </li>
     <li>
-      <a href="../articles/design-pattern.html">r2rtf: Design Pattern</a>
+      <a href="../articles/example-efficacy.html">Table: Efficacy</a>
     </li>
     <li>
-      <a href="../articles/example-figure.html">RTF Examples for Figures</a>
+      <a href="../articles/example-ae-summary.html">Table: Safety</a>
     </li>
     <li>
-      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
+      <a href="../articles/example-figure.html">Figure Generation</a>
     </li>
     <li>
-      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
+      <a href="../articles/example-pageby-groupby.html">Feature: Pageby and Groupby</a>
     </li>
     <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
+      <a href="../articles/rtf-row.html">Details in Table Format</a>
     </li>
     <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
+      <a href="../articles/rtf-text.html">Details in Text Format</a>
+    </li>
+    <li>
+      <a href="../articles/design-pattern.html">Package Design Pattern</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-user-shield"></span>
+     
+    Validation
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/plan_track.html">Validation Plan and Track</a>
+    </li>
+    <li>
+      <a href="../articles/code_cov.html">Tests &amp; Coverage Report</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Changelog
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://stash.merck.com/projects/BARDS/repos/r2rtf/browse">
+    <span class="fa fa-bitbucket fa-lg"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -148,7 +194,7 @@
     <pre class="usage"><span class='fu'>rtf_body</span><span class='op'>(</span>
   <span class='va'>tbl</span>,
   col_rel_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>tbl</span><span class='op'>)</span><span class='op'>)</span>,
-  colheader <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  as_colheader <span class='op'>=</span> <span class='cn'>TRUE</span>,
   border_left <span class='op'>=</span> <span class='st'>"single"</span>,
   border_right <span class='op'>=</span> <span class='st'>"single"</span>,
   border_top <span class='op'>=</span> <span class='st'>""</span>,
@@ -198,7 +244,7 @@
 Default is NULL for equal column width.</p></td>
     </tr>
     <tr>
-      <th>colheader</th>
+      <th>as_colheader</th>
       <td><p>A boolean value to indicate whether to add default column header to the table.
 Default is TRUE to use data frame column names as column header.</p></td>
     </tr>
@@ -364,11 +410,11 @@ All possible input can be found in <code>r2rtf:::justification()$type</code>.</p
     </tr>
     <tr>
       <th>text_convert</th>
-      <td><p>a logical value to convert special characters. Default is TRUE.</p></td>
+      <td><p>A logical value to convert special characters. Default is TRUE.</p></td>
     </tr>
     <tr>
       <th>group_by</th>
-      <td><p>Column names in a character vector to remove duplicate records.</p></td>
+      <td><p>A character vector of variable names in <code>tbl</code>.</p></td>
     </tr>
     <tr>
       <th>page_by</th>
@@ -409,9 +455,11 @@ final table. Default is TRUE.</p></td>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_1</span><span class='op'>)</span>
 <span class='va'>tbl_1</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>rtf_body</span><span class='op'>(</span>col_rel_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>5</span><span class='op'>)</span>,
-           text_justification <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"l"</span>,<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"c"</span>,<span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span>,
-           last_row <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>rtf_body</span><span class='op'>(</span>
+    col_rel_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span>,
+    text_justification <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"l"</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"c"</span>, <span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span>,
+    last_row <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $class
 #&gt; [1] "data.frame" "rtf_text"   "rtf_border"
@@ -733,8 +781,7 @@ final table. Default is TRUE.</p></td>
 #&gt; $rtf_pageby$id
 #&gt; NULL
 #&gt; 
-#&gt; </div><div class='input'>
-</div></span></pre>
+#&gt; </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -746,7 +793,7 @@ final table. Default is TRUE.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Madhusudhan Ginnaram.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
