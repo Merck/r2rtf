@@ -18,7 +18,7 @@
 ^\vignettes\rtf$
 ^\vignettes\fig$
 ^LICENSE$
-^LICENSE_THIRD_PARTY$
+^LICENSES_THIRD_PARTY$
 ^Meta$
 ^jenkins$
 ^jobs-configuration.groovy$
