@@ -14,12 +14,8 @@ navbar:
     - icon: fa-home
       href: index.html
     - icon: fa-file-code-o
-      text: "Functions"
-      menu:
-      -  text: "HTML User Manual"
-         href: reference/index.html
-      -  text: "PDF User Manual and Speification"
-         href: reference/r2rtf_0.2.0.pdf
+      text: "reference"
+      href: reference/index.html
     - text: "Articles"
       icon: fas fa-book
       menu:
@@ -52,7 +48,7 @@ navbar:
   right:
     - icon: fa-bitbucket fa-lg
       text: "Source code"
-      href: https://stash.merck.com/projects/BARDS/repos/r2rtf/browse
+      href: https://github.com/Merck/r2rtf/
 reference:
 - title: RTF
   contents:
