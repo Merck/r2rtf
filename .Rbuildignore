@@ -1,5 +1,8 @@
+^\.github$
+^sync_bitbucket\.R$
 ..Rcheck
 ^doc$
+^inst$
 ^docs$
 ^vignettes$
 ^_pkgdown\.yml$
@@ -8,14 +11,14 @@
 ^pkgdown$
 ^pipelines-definition.groovy$
 ^README\.Rmd$
-^LICENSES_THIRD_PARTY$
-^LICENSE$
 ^inst\Rbadges$
 ^\.gitignore$
 ^\.DS_Store$
 ^\.git\$
 ^\vignettes\rtf$
 ^\vignettes\fig$
+^LICENSE$
+^LICENSE_THIRD_PARTY$
 ^Meta$
 ^jenkins$
 ^jobs-configuration.groovy$
