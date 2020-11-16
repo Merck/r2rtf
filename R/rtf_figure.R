@@ -37,14 +37,15 @@
 #'
 #' @examples
 #' \dontrun{
-#'   library(dplyr) # required to run examples
-#'   file <- file.path(tempdir(), "figure1.png")
-#'   png(file)
-#'   plot(1:10)
-#'   dev.off()
+#' library(dplyr) # required to run examples
+#' file <- file.path(tempdir(), "figure1.png")
+#' png(file)
+#' plot(1:10)
+#' dev.off()
 #'
-#'   # Read in PNG file in binary format
-#'   rtf_read_png(file) %>% rtf_figure() %>%
+#' # Read in PNG file in binary format
+#' rtf_read_png(file) %>%
+#'   rtf_figure() %>%
 #'   attributes()
 #' }
 #'
@@ -54,16 +55,15 @@ rtf_figure <- function(tbl,
                        fig_height = 5) {
 
   # Set Default Page Attributes
-  if(is.null(attr(tbl, "page"))){
+  if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
-
   }
 
   # Check argument values
   stopifnot(fig_width > 0)
   stopifnot(fig_height > 0)
 
-  attr(tbl, "fig_width")  <- matrix(fig_width,  nrow = length(tbl), ncol = 1, byrow = TRUE)
+  attr(tbl, "fig_width") <- matrix(fig_width, nrow = length(tbl), ncol = 1, byrow = TRUE)
   attr(tbl, "fig_height") <- matrix(fig_height, nrow = length(tbl), ncol = 1, byrow = TRUE)
 
   tbl

@@ -1,11 +1,10 @@
 ---
-title: "RTF Examples for Controlling Text and Paragraph Details"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{paragraph-details}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+title: RTF Examples for Controlling Text and Paragraph Details
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
 ---
 
 ```{r setup, include=FALSE}
@@ -123,6 +122,7 @@ write_rtf_para(res, "rtf/text-font-size-1.rtf")
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/text-font-size-1.pdf")
 ```
+
 ### Text Format
 ```{r}
 res <- rtf_paragraph(rtf_text(text,
@@ -134,6 +134,19 @@ write_rtf_para(res, "rtf/text-format-1.rtf")
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/text-format-1.pdf")
 ```
+
+### Text Font Type
+```{r}
+res <- rtf_paragraph(rtf_text(text,
+  font=1:10
+))
+write_rtf_para(res, "rtf/text-font-type.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-font-type.pdf")
+```
+
 
 ### Text Color
 ```{r}

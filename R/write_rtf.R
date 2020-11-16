@@ -28,8 +28,8 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-#' @param rtf a character rtf encoding string rendered by `rtf_encode()`
-#' @param file a character string naming a file to save rtf file.
+#' @param rtf A character rtf encoding string rendered by `rtf_encode()`.
+#' @param file A character string naming a file to save rtf file.
 #'
 #' @export
 write_rtf <- function(rtf, file) {
@@ -68,4 +68,3 @@ write_rtf_para <- function(rtf, file) {
   rtf <- paste(start_rtf, "{\\pard \\par}", paste(rtf, collapse = ""), as_rtf_end(), sep = "\n")
   write(rtf, file)
 }
-

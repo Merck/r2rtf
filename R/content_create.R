@@ -47,9 +47,9 @@ as_rtf_init <- function() {
 #'
 as_rtf_font <- function() {
   font_type <- font_type()
-  font_rtf <- factor(c(1, 2, 3), levels = font_type$type, labels = font_type$rtf_code)
-  font_style <- factor(c(1, 2, 3), levels = font_type$type, labels = font_type$style)
-  font_name <- factor(c(1, 2, 3), levels = font_type$type, labels = font_type$name)
+  font_rtf <- factor(c(1:10), levels = font_type$type, labels = font_type$rtf_code)
+  font_style <- factor(c(1:10), levels = font_type$type, labels = font_type$style)
+  font_name <- factor(c(1:10), levels = font_type$type, labels = font_type$name)
 
   font_table <- paste0(
     "{\\fonttbl",
@@ -63,7 +63,7 @@ as_rtf_font <- function() {
 
 #' Create RTF Color Encode
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -88,7 +88,7 @@ as_rtf_color <- function(tbl) {
 
 #' Create RTF Page Size Encode
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -101,7 +101,6 @@ as_rtf_color <- function(tbl) {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 as_rtf_page <- function(tbl) {
-
   page <- attr(tbl, "page")
 
   page_size <- c("\\paperw", "\\paperh")
@@ -116,20 +115,24 @@ as_rtf_page <- function(tbl) {
   }
 
   # Page Footer
-  if(! is.null(attr(tbl, "rtf_page_footer"))){
-    encode <- c("{\\footer",
-                as_rtf_paragraph(attr(tbl, "rtf_page_footer")),
-                "}")
+  if (!is.null(attr(tbl, "rtf_page_footer"))) {
+    encode <- c(
+      "{\\footer",
+      as_rtf_paragraph(attr(tbl, "rtf_page_footer")),
+      "}"
+    )
 
     encode <- paste(encode, collapse = "\n")
     page_size <- paste(encode, page_size, sep = "\n")
   }
 
   # Page Header
-  if(! is.null(attr(tbl, "rtf_page_header"))){
-    encode <- c("{\\header",
-                  as_rtf_paragraph(attr(tbl, "rtf_page_header")),
-                  "}")
+  if (!is.null(attr(tbl, "rtf_page_header"))) {
+    encode <- c(
+      "{\\header",
+      as_rtf_paragraph(attr(tbl, "rtf_page_header")),
+      "}"
+    )
 
     encode <- paste(encode, collapse = "\n")
     page_size <- paste(encode, page_size, sep = "\n")
@@ -142,7 +145,7 @@ as_rtf_page <- function(tbl) {
 
 #' Create RTF Page Margin Encode
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -155,7 +158,6 @@ as_rtf_page <- function(tbl) {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 as_rtf_margin <- function(tbl) {
-
   page <- attr(tbl, "page")
 
   margin <- c("\\margl", "\\margr", "\\margt", "\\margb", "\\headery", "\\footery")
@@ -166,7 +168,7 @@ as_rtf_margin <- function(tbl) {
 }
 
 
-#'Create RTF New Page Encode
+#' Create RTF New Page Encode
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -183,7 +185,7 @@ as_rtf_new_page <- function() {
 
 #' Create Table Title RTF Encode
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -195,20 +197,18 @@ as_rtf_new_page <- function() {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 as_rtf_title <- function(tbl) {
-
   title <- attr(tbl, "rtf_title")
 
-  if(is.null(title)){
+  if (is.null(title)) {
     return(NULL)
   }
 
   as_rtf_paragraph(title)
-
 }
 
 #' Create Table Subline RTF Encode
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -221,20 +221,18 @@ as_rtf_title <- function(tbl) {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 as_rtf_subline <- function(tbl) {
-
   subline <- attr(tbl, "rtf_subline")
 
-  if(is.null(subline)){
+  if (is.null(subline)) {
     return(NULL)
   }
 
   as_rtf_paragraph(subline)
-
 }
 
 #' Create Column Header RTF Encode
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -250,7 +248,7 @@ as_rtf_colheader <- function(tbl) {
   rtf_colheader <- attr(tbl, "rtf_colheader")
 
   rtf_code <- lapply(rtf_colheader, rtf_table_content,
-                     col_total_width = attr(tbl, "page")$col_width
+    col_total_width = attr(tbl, "page")$col_width
   )
 
   unlist(rtf_code)
@@ -259,7 +257,7 @@ as_rtf_colheader <- function(tbl) {
 
 #' Create Footnote RTF Encode
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -272,18 +270,16 @@ as_rtf_colheader <- function(tbl) {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 as_rtf_footnote <- function(tbl) {
-
   text <- attr(tbl, "rtf_footnote")
 
-  if(is.null(text)){
+  if (is.null(text)) {
     return(NULL)
   }
 
-  if(attr(text, "as_table")){
-
-    if(attr(text, "text_convert")){
+  if (attr(text, "as_table")) {
+    if (attr(text, "text_convert")) {
       text_matrix <- convert(text)
-    }else{
+    } else {
       text
     }
 
@@ -292,20 +288,20 @@ as_rtf_footnote <- function(tbl) {
     attr(text, "text_convert") <- matrix(FALSE, nrow = 1, ncol = 1)
     attributes(text_matrix) <- append(attributes(text_matrix), attributes(text))
     encode <- rtf_table_content(text_matrix,
-                      col_total_width = attr(tbl, "page")$col_width,
-                      use_border_bottom = TRUE,
-                      col_rel_width = 1)
+      col_total_width = attr(tbl, "page")$col_width,
+      use_border_bottom = TRUE,
+      col_rel_width = 1
+    )
     paste(encode, collapse = "\n")
-  }else{
+  } else {
     as_rtf_paragraph(text)
   }
-
 }
 
 
 #' Create Data Source RTF Encode
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -318,18 +314,16 @@ as_rtf_footnote <- function(tbl) {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 as_rtf_source <- function(tbl) {
-
   text <- attr(tbl, "rtf_source")
 
-  if(is.null(text)){
+  if (is.null(text)) {
     return(NULL)
   }
 
-  if(attr(text, "as_table")){
-
-    if(attr(text, "text_convert")){
+  if (attr(text, "as_table")) {
+    if (attr(text, "text_convert")) {
       text_matrix <- convert(text)
-    }else{
+    } else {
       text
     }
 
@@ -338,14 +332,14 @@ as_rtf_source <- function(tbl) {
     attr(text, "text_convert") <- matrix(FALSE, nrow = 1, ncol = 1)
     attributes(text_matrix) <- append(attributes(text_matrix), attributes(text))
     encode <- rtf_table_content(text_matrix,
-                                col_total_width = attr(tbl, "page")$col_width,
-                                use_border_bottom = TRUE,
-                                col_rel_width = 1)
+      col_total_width = attr(tbl, "page")$col_width,
+      use_border_bottom = TRUE,
+      col_rel_width = 1
+    )
     paste(encode, collapse = "\n")
-  }else{
+  } else {
     as_rtf_paragraph(text)
   }
-
 }
 
 #' End RTF Encode
@@ -361,4 +355,3 @@ as_rtf_source <- function(tbl) {
 as_rtf_end <- function() {
   paste("}", sep = "")
 }
-

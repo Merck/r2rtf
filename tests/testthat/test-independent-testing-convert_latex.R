@@ -1,5 +1,3 @@
-context("test-convert_latex")
-
 test_that("multiplication works", {
   .x <- c(
     "Greek: \\alpha\\beta\\gamma",

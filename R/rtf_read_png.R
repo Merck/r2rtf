@@ -17,7 +17,7 @@
 
 #' Read PNG Figures into Binary Files
 #'
-#' @param file a character vector of PNG file paths
+#' @param file A character vector of PNG file paths.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -31,13 +31,13 @@
 #'
 #' @examples
 #' \dontrun{
-#'   file <- file.path(tempdir(), "figure1.png")
-#'   png(file)
-#'   plot(1:10)
-#'   dev.off()
+#' file <- file.path(tempdir(), "figure1.png")
+#' png(file)
+#' plot(1:10)
+#' dev.off()
 #'
-#'   # Read in PNG file in binary format
-#'   rtf_read_png(file)
+#' # Read in PNG file in binary format
+#' rtf_read_png(file)
 #' }
 #'
 #' @export

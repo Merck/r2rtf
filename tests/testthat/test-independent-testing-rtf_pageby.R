@@ -1,5 +1,3 @@
-context("Independent testing for rtf_pageby.R")
-
 library(dplyr)
 
 test_that("Test case when page_by is NULL and new_page is TRUE",{

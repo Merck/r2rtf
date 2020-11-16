@@ -18,9 +18,9 @@
 
 #' Remove Duplicate Records
 #'
-#' @param tbl A data frame
-#' @param group_by A character vector of variable names in tbl
-#' @param page_index A numeric vector of page index
+#' @param tbl A data frame.
+#' @param group_by A character vector of variable names in `tbl`.
+#' @param page_index A numeric vector of page index.
 #'
 #' @return Return \code{tbl}.
 #'
@@ -33,28 +33,28 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-rtf_group_by_enhance <- function(tbl, group_by, page_index){
-
-  for(i in length(group_by):1){
+rtf_group_by_enhance <- function(tbl, group_by, page_index) {
+  for (i in length(group_by):1) {
     by <- group_by[1:i]
     meta <- cbind(page_index = page_index, tbl[, by])
     # Define Index
-    id <- apply( meta, 1, paste, collapse = "-")
+    id <- apply(meta, 1, paste, collapse = "-")
 
     id <- factor(id, levels = unique(id))
 
-    if(i == length(group_by)){
+    if (i == length(group_by)) {
       order_var <- order(id)
-      index_var <- which( names(tbl) %in% by )
+      index_var <- which(names(tbl) %in% by)
 
-      if( ! all(order_var == 1:nrow(tbl)) ){
-        stop("Data is not sorted by ", paste(by, collapse = ", ") )
+      if (!all(order_var == 1:nrow(tbl))) {
+        stop("Data is not sorted by ", paste(by, collapse = ", "))
       }
     }
 
     # Remove duplicate records
-    tbl <- do.call(rbind,
-      lapply( split(tbl, id), function(x){
+    tbl <- do.call(
+      rbind,
+      lapply(split(tbl, id), function(x) {
         x[-1, group_by[i]] <- NA
         x
       })
@@ -64,5 +64,3 @@ rtf_group_by_enhance <- function(tbl, group_by, page_index){
   rownames(tbl) <- NULL
   tbl
 }
-
-

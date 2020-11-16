@@ -1,5 +1,3 @@
-context("Independent testing for obj_rtf_text.R")
-
 test_that("Check argument type, test if error message will show correctly", {
 
 })

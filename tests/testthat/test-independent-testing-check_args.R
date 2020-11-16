@@ -1,5 +1,3 @@
-context("Independent testing for check_args.R")
-
 test_that("Case when arg input is NULL", {
 
   # Check when arg input is NULL

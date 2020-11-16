@@ -1,5 +1,3 @@
-context("Independent testing for rtf_body.R")
-
 #Build Temporary dataset for use in testing
 testdat <- iris[1:100,]
 
@@ -7,22 +5,22 @@ testdat <- iris[1:100,]
 testdatatt<-attributes(testdat)
 
 
-test_that("case when colheader equals to NULL", {
+test_that("case when as_colheader equals to NULL", {
 
-  #Check case when colheader equals to ""
+  #Check case when as_colheader equals to ""
 
   expect_error(rtf_body(
                         tbl = testdat,
-                        colheader = ""
+                        as_colheader = ""
                         ),
                "The argument type did not match: logical"
                )
 
-  #Check case when colheader equals to NULL
+  #Check case when as_colheader equals to NULL
 
   expect_error(rtf_body(
                         tbl = testdat,
-                        colheader = NULL
+                        as_colheader = NULL
                         ),
                "argument is of length zero"
                )

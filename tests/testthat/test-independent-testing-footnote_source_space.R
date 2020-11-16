@@ -1,5 +1,3 @@
-context("Independent testing for footnote_source_space")
-
 tbl.p <- head(iris) %>% rtf_footnote(text_indent_left = 1) %>% rtf_page(orientation = "portrait")
 tbl.l <- head(iris) %>% rtf_footnote(text_indent_left = 1) %>% rtf_page(orientation = "landscape")
 

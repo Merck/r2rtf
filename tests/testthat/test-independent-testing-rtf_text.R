@@ -1,5 +1,3 @@
-context("Independent testing for rtf_text.R")
-
 #Build Temporary vector for use in testing
 teststr <- "The quick brown fox (){}[]$#&%@,.;:=_+-*/"
 
@@ -39,7 +37,7 @@ test_that("check for valid input arguments to font", {
   #Check font argument matches font_type()$type
 
   expect_error(rtf_text(text = teststr,
-                        font = "4"),
+                        font = "xyz"),
                "font %in% font_type$type is not TRUE",
                fixed = TRUE
                )
@@ -51,7 +49,7 @@ test_that("check for valid input arguments to font_size", {
   #Check font_size argument only takes atomic numeric vector arguments
 
   expect_error(rtf_text(text = teststr,
-                        font_size = "4"),
+                        font_size = "xyz"),
                "is.numeric(font_size) is not TRUE",
                fixed = TRUE
                )
@@ -62,11 +60,7 @@ test_that("check for valid input arguments to format", {
 
   #Check format argument matches font_format()$type
 
-  expect_error(rtf_text(text = teststr,
-                        format = "4"),
-               "as.vector(format_check) %in% font_format$type is not TRUE",
-               fixed = TRUE
-               )
+  expect_error(rtf_text(text = teststr, format = "xyz"))
 
 })
 
@@ -100,12 +94,12 @@ test_that("text font, size and format checks", {
 
   expect_match(rtf_text(text = teststr,
                         font = 2),
-               "f166"
+               "f1"
                )
 
   expect_match(rtf_text(text = teststr,
                         font = 3),
-               "f266"
+               "f2"
                )
 
   #Check font_size

@@ -4,6 +4,7 @@ Version: 0.2.0
 Authors@R: c(
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = c("aut", "cre")),
     person("Siruo", "Wang", email = "swang171@jhu.edu", role = "aut"),
+    person("Simiao", "Ye", email = "simiao.ye1@merck.com", role = "aut"),
     person("Madhusudhan", "Ginnaram", email = "madhusudhan.ginnaram.reddy@merck.com", role = "aut"),
     person("Merck Sharp & Dohme Corp", role = "cph")
     )
@@ -26,8 +27,8 @@ Suggests:
     dplyr, 
     tidyr,
     devtools,
-    DT,
     covr,
     ggplot2,
     haven
 URL: https://merck.github.io/r2rtf/
+Config/testthat/edition: 3

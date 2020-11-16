@@ -17,16 +17,16 @@
 
 #' Paragraph to RTF Encode
 #'
-#' @param text rtf text obtained using `.rtf_text(text,...)` function
-#' @param justification justification for text
-#' @param indent_first first indent
-#' @param indent_left  left indent
-#' @param indent_right right indent
-#' @param space paragraph space
-#' @param space_before line space before text
-#' @param space_after  line space after text
-#' @param new_page boolean value to indicate whether to start a new page
-#' @param hyphenation boolean value to indicate whether to use hyphenation
+#' @param text rtf text obtained using `rtf_text()` function.
+#' @param justification Justification for text.
+#' @param indent_first First indent.
+#' @param indent_left  Left indent.
+#' @param indent_right Right indent.
+#' @param space Paragraph space.
+#' @param space_before Line space before text.
+#' @param space_after  Line space after text.
+#' @param new_page A boolean value to indicate whether to start a new page.
+#' @param hyphenation A boolean value to indicate whether to use hyphenation.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -52,20 +52,20 @@
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 rtf_paragraph <- function(
-  text,
+                          text,
 
-  justification = "c",
+                          justification = "c",
 
-  indent_first = 0,
-  indent_left = 0,
-  indent_right = 0,
+                          indent_first = 0,
+                          indent_left = 0,
+                          indent_right = 0,
 
-  space = 1,
-  space_before = 180,
-  space_after = 180,
+                          space = 1,
+                          space_before = 180,
+                          space_after = 180,
 
-  new_page = FALSE,
-  hyphenation = TRUE) {
+                          new_page = FALSE,
+                          hyphenation = TRUE) {
 
   ## Define dictionary
   para_justification <- justification()
@@ -124,4 +124,3 @@ rtf_paragraph <- function(
     end
   )
 }
-

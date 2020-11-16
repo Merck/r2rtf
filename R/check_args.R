@@ -38,43 +38,44 @@
 #'
 #' @examples
 #' \dontrun{
-#'     tbl < -as.data.frame(matrix(1:9, nrow=3))
-#'     check_args(arg = tbl, type = c("data.frame"))
+#' tbl < -as.data.frame(matrix(1:9, nrow = 3))
+#' check_args(arg = tbl, type = c("data.frame"))
 #'
-#'     vec <- c("a","b","c")
-#'     check_args(arg = vec, type = c("character"), length = 3)
+#' vec <- c("a", "b", "c")
+#' check_args(arg = vec, type = c("character"), length = 3)
 #' }
 #'
-check_args <- function(arg, type, length = NULL, dim = NULL){
-
-  if(is.null(arg)){return(NULL)}
+check_args <- function(arg, type, length = NULL, dim = NULL) {
+  if (is.null(arg)) {
+    return(NULL)
+  }
 
   arg <- as.vector(arg)
 
   check <- list()
   message <- list()
 
-  if(! is.null(type)){
-    check[["type"]] <- any(class(arg) %in% type) & (! is.null(class(arg)))
-    message[["type"]] <- paste("The argument type did not match:", paste(type, collapse = "/") )
+  if (!is.null(type)) {
+    check[["type"]] <- any(class(arg) %in% type) & (!is.null(class(arg)))
+    message[["type"]] <- paste("The argument type did not match:", paste(type, collapse = "/"))
   }
 
-  if(! is.null(length)){
-    check[["length"]] <- all(length(arg) == length) & (! is.null(length(arg)))
+  if (!is.null(length)) {
+    check[["length"]] <- all(length(arg) == length) & (!is.null(length(arg)))
     message[["length"]] <- paste("The argument length is not", length)
   }
 
-  if(! is.null(dim)){
-    check[["dim"]] <- all(dim(arg) == dim) & (! is.null(dim(arg)))
-    message[["dim"]] <- paste("The argument dimension is not", paste(dim, collapse = ",") )
+  if (!is.null(dim)) {
+    check[["dim"]] <- all(dim(arg) == dim) & (!is.null(dim(arg)))
+    message[["dim"]] <- paste("The argument dimension is not", paste(dim, collapse = ","))
   }
 
   check <- unlist(check)
   message <- unlist(message)
 
-  if(! all(unlist(check))){
-    stop(paste( message[! check], collapse = "\n" ))
-  }else{
+  if (!all(unlist(check))) {
+    stop(paste(message[!check], collapse = "\n"))
+  } else {
     return(NULL)
   }
 }

@@ -1,5 +1,3 @@
-context("Independent testing for rtf_source.R")
-
 # tests using as_rtf_source
 test_that("case when source equals to NULL", {
   x <- iris %>% rtf_body() %>% rtf_source()
@@ -23,7 +21,7 @@ test_that("source justification left and identation left 2", {
 
 test_that("source font=2, formats=bold", {
   x <- iris %>% rtf_body() %>% rtf_source(source="testing", text_font=2, text_format="b")
-  expect_equal(as_rtf_source(x), "{\\pard\\hyphpar\n\\sb15\\sa15\\fi0\\li0\\ri0\\qc\n{\\f166\\fs18\\b testing}\n\\par}")
+  expect_equal(as_rtf_source(x), "{\\pard\\hyphpar\n\\sb15\\sa15\\fi0\\li0\\ri0\\qc\n{\\f1\\fs18\\b testing}\n\\par}")
 })
 
 

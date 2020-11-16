@@ -1,5 +1,3 @@
-context("Independent testing for rtf_title.R")
-
 test_that("input argument checks", {
   expect_error(rtf_title(tbl_1, title = 1))
   expect_error(rtf_title(tbl_1, subtitle = NA))
@@ -27,8 +25,14 @@ test_that("title font color and background color", {
 })
 
 test_that("title justification, spacing and indentation", {
-  x <-  tbl_1 %>% rtf_title(title='Title', text_justification = "l", text_space = 60, text_space_before = 6, text_space_after = 10,
-                            text_indent_first = 20, text_indent_left = 2, text_indent_right = 3)
+  x <-  tbl_1 %>% rtf_title(title='Title',
+                            text_justification = "l",
+                            text_space = 60,
+                            text_space_before = 6,
+                            text_space_after = 10,
+                            text_indent_first = 20,
+                            text_indent_left = 2,
+                            text_indent_right = 3)
   expect_equal(attr(attr(x, "rtf_title"),"text_justification")[1], "l")
   expect_equal(attr(attr(x, "rtf_title"),"text_space")[1], 60)
   expect_equal(attr(attr(x, "rtf_title"),"text_space_before")[1], 6)

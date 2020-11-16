@@ -1,5 +1,3 @@
-context("Independent testing for rtf_page.R")
-
 df <- data.frame(x = 1)
 test_that("Test if argument types are checked correctly", {
   expect_error(rtf_page(df, width = c("11")))

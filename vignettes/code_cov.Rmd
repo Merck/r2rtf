@@ -1,10 +1,10 @@
 ---
-title: "Tests and Code Coverage Report"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{Code Coverage Report}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+title: Tests and Code Coverage Report
+output: 
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
 ---
 
 ```{r, include = FALSE}

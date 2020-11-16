@@ -17,9 +17,10 @@
 
 #' @title Add Column Header Attributes to Table
 #'
-#' @param tbl A data frame. Required argument.
+#' @param tbl A data frame.
 #' @param colheader A character string that uses " | " to separate column names. Default is NULL for a blank column header.
-#' @param col_rel_width A numeric vector for column relative width, e.g. c(2,1,1) refers to 2:1:1. Default is NULL for equal column width.
+#' @param col_rel_width A Column relative width in a vector e.g. c(2,1,1) refers to 2:1:1.
+#'                      Default is NULL for equal column width.
 #' @inheritParams rtf_footnote
 #'
 #' @section Specification:
@@ -39,11 +40,12 @@
 #' library(dplyr) # required to run examples
 #' data(tbl_1)
 #' tbl_1 %>%
-#'   rtf_colheader(colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
+#'   rtf_colheader(
+#'     colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
 #'                   Mean (SD) | LS Mean (95% CI)\\dagger",
-#'                 text_format = c("b", "", "u", "", "u", "","u", "i") ) %>%
+#'     text_format = c("b", "", "u", "", "u", "", "u", "i")
+#'   ) %>%
 #'   attr("rtf_colheader")
-#'
 #' @export
 rtf_colheader <- function(tbl,
 
@@ -84,20 +86,24 @@ rtf_colheader <- function(tbl,
 
                           text_convert = TRUE) {
 
-  #Check argument type
-  check_args(tbl,                   type = c("data.frame"))
+  # Check argument type
+  check_args(tbl, type = c("data.frame"))
 
-  check_args(colheader,           type = c("character"))
-  check_args(col_rel_width,       type = c("integer", "numeric"))
+  check_args(colheader, type = c("character"))
+  check_args(col_rel_width, type = c("integer", "numeric"))
 
   # Set Default Page Attributes
-  if(is.null(attr(tbl, "page"))){
+  if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
 
   # Return NULL if colheader is NULL
-  if(is.null(colheader)) return(tbl)
-  if(colheader == "") return(tbl)
+  if (is.null(colheader)) {
+    return(tbl)
+  }
+  if (colheader == "") {
+    return(tbl)
+  }
 
   # Split input by "|".
   colheader <- data.frame(t(trimws(unlist(strsplit(colheader, "|", fixed = TRUE)))))
@@ -105,54 +111,53 @@ rtf_colheader <- function(tbl,
   # Define text attributes
   colheader <- obj_rtf_text(colheader,
 
-                            text_font,
-                            text_format,
-                            text_font_size,
-                            text_color,
-                            text_background_color,
-                            text_justification,
+    text_font,
+    text_format,
+    text_font_size,
+    text_color,
+    text_background_color,
+    text_justification,
 
-                            text_indent_first ,
-                            text_indent_left,
-                            text_indent_right,
+    text_indent_first,
+    text_indent_left,
+    text_indent_right,
+    text_space = 1,
+    text_space_before,
+    text_space_after,
 
-                            text_space = 1,
-                            text_space_before,
-                            text_space_after,
+    text_new_page = FALSE,
+    text_hyphenation = TRUE,
 
-                            text_new_page = FALSE,
-                            text_hyphenation = TRUE,
-
-                            text_convert = text_convert
+    text_convert = text_convert
   )
-  if(attr(colheader, "use_color")) attr(tbl, "page")$use_color <- TRUE
+  if (attr(colheader, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   # Define border attributes
   colheader <- obj_rtf_border(colheader,
 
-                             border_left,
-                             border_right,
-                             border_top,
-                             border_bottom,
+    border_left,
+    border_right,
+    border_top,
+    border_bottom,
+    border_first = NULL,
+    border_last  = NULL,
 
-                             border_first = NULL,
-                             border_last  = NULL,
+    border_color_left,
+    border_color_right,
+    border_color_top,
+    border_color_bottom,
 
-                             border_color_left,
-                             border_color_right,
-                             border_color_top,
-                             border_color_bottom,
+    border_color_first = NULL,
+    border_color_last  = NULL,
 
-                             border_color_first = NULL,
-                             border_color_last  = NULL,
+    border_width,
 
-                             border_width,
+    cell_height,
+    cell_justification,
+    cell_nrow
+  )
 
-                             cell_height,
-                             cell_justification,
-                             cell_nrow)
-
-  if(attr(colheader, "use_color")) attr(tbl, "page")$use_color <- TRUE
+  if (attr(colheader, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   # Set default value for column relative width
   if (is.null(col_rel_width)) {
@@ -163,7 +168,7 @@ rtf_colheader <- function(tbl,
   attr(colheader, "col_rel_width") <- col_rel_width
 
   # Define a list for column header
-  if( is.null(attr(tbl, "rtf_colheader") ) ){
+  if (is.null(attr(tbl, "rtf_colheader"))) {
     attr(tbl, "rtf_colheader") <- list()
   }
 

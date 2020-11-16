@@ -42,7 +42,7 @@ obj_rtf_border <- function(tbl,
                            border_bottom = "",
 
                            border_first = "single",
-                           border_last  = "single",
+                           border_last = "single",
 
                            border_color_left = NULL,
                            border_color_right = NULL,
@@ -50,41 +50,41 @@ obj_rtf_border <- function(tbl,
                            border_color_bottom = NULL,
 
                            border_color_first = NULL,
-                           border_color_last  = NULL,
+                           border_color_last = NULL,
 
                            border_width = 15,
 
                            cell_height = 0.15,
                            cell_justification = "c",
-                           cell_nrow = NULL){
+                           cell_nrow = NULL) {
 
 
-  #Check argument type
-  check_args(border_left,           type = c("character"))
-  check_args(border_right,          type = c("character"))
-  check_args(border_top,            type = c("character"))
-  check_args(border_bottom,         type = c("character"))
+  # Check argument type
+  check_args(border_left, type = c("character"))
+  check_args(border_right, type = c("character"))
+  check_args(border_top, type = c("character"))
+  check_args(border_bottom, type = c("character"))
 
-  check_args(border_color_left,     type = c("character"))
-  check_args(border_color_right,    type = c("character"))
-  check_args(border_color_top,      type = c("character"))
-  check_args(border_color_bottom,   type = c("character"))
+  check_args(border_color_left, type = c("character"))
+  check_args(border_color_right, type = c("character"))
+  check_args(border_color_top, type = c("character"))
+  check_args(border_color_bottom, type = c("character"))
 
-  check_args(border_width,          type = c("integer", "numeric"))
+  check_args(border_width, type = c("integer", "numeric"))
 
-  check_args(cell_height,           type = c("integer", "numeric"))
-  check_args(cell_justification,    type = c("character"))
-  check_args(cell_nrow,             type = c("integer", "numeric"))
+  check_args(cell_height, type = c("integer", "numeric"))
+  check_args(cell_justification, type = c("character"))
+  check_args(cell_nrow, type = c("integer", "numeric"))
 
-  #Check argument values
-  match_arg(border_left,   border_type()$name, several.ok = TRUE)
-  match_arg(border_right,  border_type()$name, several.ok = TRUE)
-  match_arg(border_top,    border_type()$name, several.ok = TRUE)
+  # Check argument values
+  match_arg(border_left, border_type()$name, several.ok = TRUE)
+  match_arg(border_right, border_type()$name, several.ok = TRUE)
+  match_arg(border_top, border_type()$name, several.ok = TRUE)
   match_arg(border_bottom, border_type()$name, several.ok = TRUE)
 
-  match_arg(border_color_left,   colors(), several.ok = TRUE)
-  match_arg(border_color_right,  colors(), several.ok = TRUE)
-  match_arg(border_color_top,    colors(), several.ok = TRUE)
+  match_arg(border_color_left, colors(), several.ok = TRUE)
+  match_arg(border_color_right, colors(), several.ok = TRUE)
+  match_arg(border_color_top, colors(), several.ok = TRUE)
   match_arg(border_color_bottom, colors(), several.ok = TRUE)
 
   stopifnot(border_width > 0)
@@ -92,11 +92,11 @@ obj_rtf_border <- function(tbl,
   stopifnot(cell_height > 0)
   match_arg(cell_justification, justification()$type, several.ok = TRUE)
 
-  if(is.null(border_color_top) & ! is.null(border_color_first)){
+  if (is.null(border_color_top) & !is.null(border_color_first)) {
     stop("border_color_top can not be NULL if border_color_first is used")
   }
 
-  if(is.null(border_color_bottom) & ! is.null(border_color_last)){
+  if (is.null(border_color_bottom) & !is.null(border_color_last)) {
     stop("border_color_top can not be NULL if border_color_first is used")
   }
 
@@ -105,14 +105,13 @@ obj_rtf_border <- function(tbl,
   n_col <- ncol(tbl)
 
   foo <- function(x) {
-
-    if(is.null(n_row) | is.null(n_col)){
-      stopifnot(length(x) %in% c(0,1) )
+    if (is.null(n_row) | is.null(n_col)) {
+      stopifnot(length(x) %in% c(0, 1))
       return(x)
     }
 
     if ((is.null(dim(x))) & (!is.null(x))) {
-      stopifnot( length(x) %in% c(1, n_col) | all( dim(x) == c(n_row, n_col) ) )
+      stopifnot(length(x) %in% c(1, n_col) | all(dim(x) == c(n_row, n_col)))
       x <- matrix(x, nrow = n_row, ncol = n_col, byrow = TRUE)
     }
     x
@@ -124,7 +123,7 @@ obj_rtf_border <- function(tbl,
   border_bottom <- foo(border_bottom)
 
   border_first <- foo(border_first)
-  border_last  <- foo(border_last)
+  border_last <- foo(border_last)
 
   border_color_left <- foo(border_color_left)
   border_color_right <- foo(border_color_right)
@@ -132,7 +131,7 @@ obj_rtf_border <- function(tbl,
   border_color_bottom <- foo(border_color_bottom)
 
   border_color_first <- foo(border_color_first)
-  border_color_last  <- foo(border_color_last)
+  border_color_last <- foo(border_color_last)
 
   cell_nrow <- foo(cell_nrow)
 
@@ -143,7 +142,7 @@ obj_rtf_border <- function(tbl,
   attr(tbl, "border_bottom") <- border_bottom
 
   attr(tbl, "border_first") <- border_first
-  attr(tbl, "border_last")  <- border_last
+  attr(tbl, "border_last") <- border_last
 
   attr(tbl, "border_color_left") <- border_color_left
   attr(tbl, "border_color_right") <- border_color_right
@@ -151,7 +150,7 @@ obj_rtf_border <- function(tbl,
   attr(tbl, "border_color_bottom") <- border_color_bottom
 
   attr(tbl, "border_color_first") <- border_color_first
-  attr(tbl, "border_color_last")  <- border_color_last
+  attr(tbl, "border_color_last") <- border_color_last
 
   attr(tbl, "border_width") <- border_width
 
@@ -160,12 +159,14 @@ obj_rtf_border <- function(tbl,
   attr(tbl, "cell_nrow") <- cell_nrow
 
   # Register Color Use
-  color <- list(border_color_left, border_color_right, border_color_top,
-                border_color_bottom, border_color_first, border_color_last)
+  color <- list(
+    border_color_left, border_color_right, border_color_top,
+    border_color_bottom, border_color_first, border_color_last
+  )
 
-  if( ! all( unlist(color) %in% c("black", "") )){
+  if (!all(unlist(color) %in% c("black", ""))) {
     attr(tbl, "use_color") <- TRUE
-  }else{
+  } else {
     attr(tbl, "use_color") <- FALSE
   }
 
@@ -173,5 +174,4 @@ obj_rtf_border <- function(tbl,
   class(tbl) <- c(class(tbl), "rtf_border")
 
   tbl
-
 }

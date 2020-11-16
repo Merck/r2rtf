@@ -17,7 +17,7 @@
 
 #' @title Add Data Source Attributes to the Table
 #'
-#' @param source a character string
+#' @param source A character string.
 #' @inheritParams rtf_footnote
 #'
 #' @section Specification:
@@ -34,9 +34,9 @@
 #' @examples
 #' library(dplyr) # required to run examples
 #' data(tbl_1)
-#' tbl_1 %>% rtf_source("Source: [study999:adam-adeff]") %>%
-#'     attr("rtf_source")
-#'
+#' tbl_1 %>%
+#'   rtf_source("Source: [study999:adam-adeff]") %>%
+#'   attr("rtf_source")
 #' @export
 rtf_source <- function(tbl,
 
@@ -47,9 +47,9 @@ rtf_source <- function(tbl,
                        border_top = "",
                        border_bottom = "single",
 
-                       border_color_left   = NULL,
-                       border_color_right  = NULL,
-                       border_color_top    = NULL,
+                       border_color_left = NULL,
+                       border_color_right = NULL,
+                       border_color_top = NULL,
                        border_color_bottom = NULL,
 
                        border_width = 15,
@@ -75,7 +75,7 @@ rtf_source <- function(tbl,
 
                        text_convert = TRUE,
 
-                       as_table = FALSE){
+                       as_table = FALSE) {
 
 
   # Check argument type
@@ -92,65 +92,64 @@ rtf_source <- function(tbl,
   }
 
   # Set Default Page Attributes
-  if(is.null(attr(tbl, "page"))){
+  if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
 
   # Define text object
   source <- obj_rtf_text(source,
 
-                           text_font,
-                           text_format,
-                           text_font_size,
-                           text_color,
-                           text_background_color,
-                           text_justification,
+    text_font,
+    text_format,
+    text_font_size,
+    text_color,
+    text_background_color,
+    text_justification,
 
-                           text_indent_first,
-                           text_indent_left,
-                           text_indent_right,
-                           text_space,
-                           text_space_before,
-                           text_space_after,
+    text_indent_first,
+    text_indent_left,
+    text_indent_right,
+    text_space,
+    text_space_before,
+    text_space_after,
+    text_new_page = FALSE,
+    text_hyphenation = TRUE,
 
-                           text_new_page = FALSE,
-                           text_hyphenation = TRUE,
-
-                           text_convert = text_convert
+    text_convert = text_convert
   )
 
-  if(attr(source, "use_color")) attr(tbl, "page")$use_color <- TRUE
+  if (attr(source, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   # Define border object
-  if(as_table){
+  if (as_table) {
     source <- obj_rtf_border(source,
 
-                               border_left,
-                               border_right,
-                               border_top,
-                               border_bottom,
+      border_left,
+      border_right,
+      border_top,
+      border_bottom,
+      border_first = NULL,
+      border_last  = NULL,
 
-                               border_first = NULL,
-                               border_last  = NULL,
+      border_color_left,
+      border_color_right,
+      border_color_top,
+      border_color_bottom,
 
-                               border_color_left,
-                               border_color_right,
-                               border_color_top,
-                               border_color_bottom,
+      border_color_first = NULL,
+      border_color_last  = NULL,
 
-                               border_color_first = NULL,
-                               border_color_last  = NULL,
+      border_width,
 
-                               border_width,
+      cell_height,
+      cell_justification,
+      cell_nrow
+    )
 
-                               cell_height,
-                               cell_justification,
-                               cell_nrow)
-
-    if(attr(source, "use_color")) attr(tbl, "page")$use_color <- TRUE
+    if (attr(source, "use_color")) attr(tbl, "page")$use_color <- TRUE
   }
 
-  attr(source, "as_table")  <- as_table
+  attr(source, "as_table") <- as_table
 
   attr(tbl, "rtf_source") <- source
 

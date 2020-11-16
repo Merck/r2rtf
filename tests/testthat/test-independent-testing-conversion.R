@@ -1,5 +1,3 @@
-context("Independent testing for conversion.R")
-
 test_that("cell size inch to twip conversion", {
   expect_equal(inch_to_twip(1),1440)
   expect_equal(inch_to_twip(1.72),round(1.72*1440))

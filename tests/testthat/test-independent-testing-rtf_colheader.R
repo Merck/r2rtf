@@ -1,8 +1,6 @@
-context("Independent testing for rtf_colheader.R")
-
 test_that("case when colheader equals to NULL", {
   x <- tbl_1 %>% rtf_colheader(colheader = NULL)
-  expect_that( x, is_a("data.frame") )
+  expect_true( "data.frame" %in% class(x))
 
   y <- rtf_colheader(tbl_1, colheader = NULL)
   expect_equal(attributes(y)$colheader, NULL)

@@ -1,0 +1,88 @@
+---
+title: RTF Examples for Tables with Pageby Feature
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+---
+
+```{r}
+library(haven)
+library(dplyr)
+devtools::load_all()
+```
+
+## Step 1: Get raw summary
+```{r}
+data(adae)
+
+ae_t1<- adae %>% 
+     slice(1:100) %>%
+     mutate(SUBJLINE=paste0("Trial Number = ",STUDYID,
+                            ", Site Number = ",SITEID,
+                            ", Subject ID = ",USUBJID, 
+                            ", Gender = ",SEX,
+                            ", Race = ",RACE, 
+                            ", AGE = ",AGE, " Years"), 
+      # create a subject line with participant's demographic information.         # this is for page_by argument in rtf_body function 
+            AEDECD1=tools::toTitleCase(AEDECOD), # propcase the AEDECOD
+            DUR=paste(ADURN,ADURU,sep=" "))%>% # AE duration with unit
+     select(USUBJID,ASTDY,AEDECD1,DUR,AESEV,AESER,AEREL,AEACN,AEOUT,TRTA,SUBJLINE) # display variable using this order
+
+```
+
+```{r}
+ae_t1 
+```
+
+# RTF Table Generation
+```{r}
+ae_tbl <- ae_t1 %>% arrange(TRTA, SUBJLINE, USUBJID, ASTDY) %>% 
+  
+  rtf_page(orientation = "landscape",
+           col_width = 9, 
+           nrow = 22) %>%
+  
+  rtf_page_header() %>% 
+  rtf_page_footer(text = "CONFIDENTIAL") %>% 
+  
+  rtf_title( "Listing of Subjects With Series Adverse Events",
+               "ASaT")  %>%
+  
+  rtf_subline("Trial Number: xxxx") %>% 
+  
+  rtf_colheader("Subject| Rel Day | Aderse | | | | |Action| |",
+                col_rel_width = c(2.5, 2, 4,2,3,2,3,2,5)) %>%
+
+  rtf_colheader("ID| of Onset | Event | Duration | Intensity | Serious |
+                Related | Taken| Outcome",
+                col_rel_width = c(2.5, 2, 4,2,3,2,3,2,5),
+                border_top = c("", rep("", 8)),    # need a smart way to define this
+                border_left = c(rep(c("single")))) %>%
+  
+  rtf_body(col_rel_width = c(2.5, 2, 4,2,3,2,3,2,5,1,1) ,
+           text_justification = c("l", rep("c",8), "l","l"),
+           text_format = c(rep("",9), "b",""),
+           border_top = c(rep("", 9), "single","single"), 
+           border_bottom = c(rep("", 9), "single","single"),
+           border_left = c(rep(c("single"), 11) ),
+           page_by=c("TRTA","SUBJLINE"), 
+           group_by = c("USUBJID", "ASTDY")) %>%
+  
+  rtf_footnote(c("This is footnote 1\nThis is footnote 2")) %>% # \n is to change line
+  
+  rtf_source("Source:  [Study MK9999P001: adam-adae]", 
+             text_justification = "l", 
+             as_table = FALSE) 
+```
+
+# Export RTF Table
+```{r, warning = FALSE}
+ae_tbl %>% rtf_encode() %>% write_rtf("rtf/pageby-ae-listing.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/pageby-ae-listing.pdf")
+```
+

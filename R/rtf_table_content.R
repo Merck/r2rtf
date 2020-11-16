@@ -17,7 +17,7 @@
 
 #' Create RTF Table Body Encode
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #' @param border_left Left border type. Default is the corresponding attribute from `tbl`.
 #' @param border_right Right border type. Default is the corresponding attribute from `tbl`.
 #' @param border_top Top border type. Default is the corresponding attribute from `tbl`.
@@ -28,7 +28,7 @@
 #' @param border_color_bottom Bottom border color. Default is the corresponding attribute from `tbl`.
 #' @param border_width Border width in twips. Default is the corresponding attribute from `tbl`.
 #' @param cell_justification Justification for cell. Default is the corresponding attribute from `tbl`.
-#' @param col_rel_width Column relative width in a vector eg. c(2,1,1) refers to 2:1;1
+#' @param col_rel_width Column relative width in a vector eg. c(2,1,1) refers to 2:1:1
 #' @param col_total_width Column total width for the table. Default is the corresponding attribute from `tbl`.
 #' @param cell_height Height for cell in twips. Default is the corresponding attribute from `tbl`.
 #' @param text_font Text font type. Default is the corresponding attribute from `tbl`.
@@ -39,8 +39,8 @@
 #' @param text_justification Justification for text. Default is the corresponding attribute from `tbl`.
 #' @param text_space_before Line space before text. Default is the corresponding attribute from `tbl`.
 #' @param text_space_after  Line space after text. Default is the corresponding attribute from `tbl`.
-#' @param use_border_bottom Logical value of using the bottom border. Default is the corresponding attribute from `tbl`.
-#' @param text_convert a logical value to convert special characters. Default is the corresponding attribute from `tbl`.
+#' @param use_border_bottom A logical value of using the bottom border. Default is the corresponding attribute from `tbl`.
+#' @param text_convert A logical value to convert special characters. Default is the corresponding attribute from `tbl`.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -61,44 +61,43 @@
 #'
 rtf_table_content <- function(tbl,
 
-                               col_total_width       = attr(tbl, "page")$col_width,
-                               use_border_bottom     = FALSE,
+                              col_total_width = attr(tbl, "page")$col_width,
+                              use_border_bottom = FALSE,
 
-                               border_left           = attr(tbl, "border_left"),
-                               border_right          = attr(tbl, "border_right"),
-                               border_top            = attr(tbl, "border_top"),
-                               border_bottom         = attr(tbl, "border_bottom"),
+                              border_left = attr(tbl, "border_left"),
+                              border_right = attr(tbl, "border_right"),
+                              border_top = attr(tbl, "border_top"),
+                              border_bottom = attr(tbl, "border_bottom"),
 
-                               border_color_left     = attr(tbl, "border_color_left"),
-                               border_color_right    = attr(tbl, "border_color_right"),
-                               border_color_top      = attr(tbl, "border_color_top"),
-                               border_color_bottom   = attr(tbl, "border_color_bottom"),
+                              border_color_left = attr(tbl, "border_color_left"),
+                              border_color_right = attr(tbl, "border_color_right"),
+                              border_color_top = attr(tbl, "border_color_top"),
+                              border_color_bottom = attr(tbl, "border_color_bottom"),
 
-                               border_width          = attr(tbl, "border_width"),
+                              border_width = attr(tbl, "border_width"),
 
-                               col_rel_width         = attr(tbl, "col_rel_width"),
-                               cell_height           = attr(tbl, "cell_height"),
-                               cell_justification    = attr(tbl, "cell_justification"),
+                              col_rel_width = attr(tbl, "col_rel_width"),
+                              cell_height = attr(tbl, "cell_height"),
+                              cell_justification = attr(tbl, "cell_justification"),
 
-                               text_font             = attr(tbl, "text_font"),
-                               text_format           = attr(tbl, "text_format"),
-                               text_color            = attr(tbl, "text_color"),
-                               text_background_color = attr(tbl, "text_background_color"),
-                               text_justification    = attr(tbl, "text_justification"),
-                               text_font_size        = attr(tbl, "text_font_size"),
-                               text_space_before     = attr(tbl, "text_space_before"),
-                               text_space_after      = attr(tbl, "text_space_after"),
+                              text_font = attr(tbl, "text_font"),
+                              text_format = attr(tbl, "text_format"),
+                              text_color = attr(tbl, "text_color"),
+                              text_background_color = attr(tbl, "text_background_color"),
+                              text_justification = attr(tbl, "text_justification"),
+                              text_font_size = attr(tbl, "text_font_size"),
+                              text_space_before = attr(tbl, "text_space_before"),
+                              text_space_after = attr(tbl, "text_space_after"),
 
-                               text_convert          = attr(tbl, "text_convert")
-                               ) {
+                              text_convert = attr(tbl, "text_convert")) {
 
   ## get dimension of tbl
   n_row <- nrow(tbl)
   n_col <- ncol(tbl)
 
   ## Ensure Missing value display nothing
-  for(i in 1:n_col){
-    tbl[,i] <- ifelse(is.na(tbl[,i]), "", as.character(tbl[,i]))
+  for (i in 1:n_col) {
+    tbl[, i] <- ifelse(is.na(tbl[, i]), "", as.character(tbl[, i]))
   }
 
   ## Transfer vector to matrix by row
@@ -183,10 +182,10 @@ rtf_table_content <- function(tbl,
   border_top_left_bottom <- matrix(paste0(border_left_rtf, border_top_rtf, border_bottom_rtf, text_background_color_rtf, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
   border_all <- matrix(paste0(border_left_rtf, border_top_rtf, border_right_rtf, border_bottom_rtf, text_background_color_rtf, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
 
-  if(use_border_bottom){
+  if (use_border_bottom) {
     border_rtf <- border_top_left_bottom
     border_rtf[, n_col] <- border_all[, n_col]
-  }else{
+  } else {
     border_rtf <- border_top_left
     border_rtf[, n_col] <- border_top_left_right[, n_col]
   }
@@ -215,7 +214,7 @@ rtf_table_content <- function(tbl,
   if (!is.null(text_format)) {
     text_format_rtf <- lapply(strsplit(text_format, ""), function(x) {
       paste0(factor(x, levels = font_format$type, labels = font_format$rtf_code),
-             collapse = ""
+        collapse = ""
       )
     })
     text_format_rtf <- unlist(text_format_rtf)
@@ -232,8 +231,8 @@ rtf_table_content <- function(tbl,
   }
 
   content_matrix <- matrix("", nrow = nrow(tbl), ncol = ncol(tbl))
-  for(i in 1:ncol(tbl)){
-    content_matrix[, i] <- ifelse( text_convert[, i], convert(tbl[,i]), tbl[,i])
+  for (i in 1:ncol(tbl)) {
+    content_matrix[, i] <- ifelse(text_convert[, i], convert(tbl[, i]), tbl[, i])
   }
 
   ## Combine cell content/text attributes of justification, font, font-size, format and color.

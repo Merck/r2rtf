@@ -1,18 +1,59 @@
 ---
-title: "r2rtf: Design Pattern"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{design-pattern}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+title: r2rtf Design Pattern
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
 resource_files:
-  - pdf/ex-tbl.pdf
-  - pdf/ex-fig.pdf
-  - pdf/ex-rtf_body.pdf
-  - pdf/ex-pageby.pdf
-  - fig/tmp-fig.png
+   - pdf/ae_example_page_num_10.pdf
+   - pdf/ae_example.pdf
+   - pdf/border-example.pdf
+   - pdf/border-order.pdf
+   - pdf/border-type.pdf
+   - pdf/border-vector.pdf
+   - pdf/bs_example.pdf
+   - pdf/bs_pageby_example.pdf
+   - pdf/bs_pageby_newpage_example.pdf
+   - pdf/color-background.pdf
+   - pdf/color-border.pdf
+   - pdf/color-text.pdf
+   - pdf/column-width-default.pdf
+   - pdf/column-width-ratio.pdf
+   - pdf/efficacy_example.pdf
+   - pdf/ex-fig.pdf
+   - pdf/ex-pageby.pdf
+   - pdf/ex-rtf_body.pdf
+   - pdf/ex-tbl.pdf
+   - pdf/fig-landscape.pdf
+   - pdf/fig-simple.pdf
+   - pdf/iris_example.pdf
+   - pdf/iris_simple.pdf
+   - pdf/iris_very_simple.pdf
+   - pdf/justification-number.pdf
+   - pdf/justification-type.pdf
+   - pdf/pageby-ae-listing.pdf
+   - pdf/para-indent.pdf
+   - pdf/para-justification.pdf
+   - pdf/para-line-space.pdf
+   - pdf/para-page.pdf
+   - pdf/para-space.pdf
+   - pdf/text-background-color.pdf
+   - pdf/text-color.pdf
+   - pdf/text-combine1.pdf
+   - pdf/text-combine2.pdf
+   - pdf/text-combine3.pdf
+   - pdf/text-font-size-1.pdf
+   - pdf/text-font-size.pdf
+   - pdf/text-font-type.pdf
+   - pdf/text-format-1.pdf
+   - pdf/text-format.pdf
 ---
 
+```{r, eval = FALSE, include=FALSE}
+# List all source files
+cat(paste("  - pdf/", list.files("vignettes/pdf/"), sep = "\n"))
+```
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -43,7 +84,7 @@ create a table or listing after a data frame is ready.
 ```{r}
 head(iris) %>% rtf_body() %>%                # Step 1 Add attributes 
                rtf_encode() %>%              # Step 2 Convert attributes to RTF encode 
-               write_rtf(file = "tbl.rtf")   # Step 3 Write to a .rtf file 
+               write_rtf(file = "rtf/ex-tbl.rtf")   # Step 3 Write to a .rtf file 
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -55,10 +96,10 @@ Similar step is used to create a figure. First we generate a figure in `png` for
 
 ```{r}
 fig <- c("fig/fig1.png")
-fig %>% rtf_read_png() %>%                 # Step 1 Read in png file
-         rtf_figure() %>%                  # Step 2 Add attributes 
+fig %>% rtf_read_png() %>%                     # Step 1 Read in png file
+         rtf_figure() %>%                      # Step 2 Add attributes 
          rtf_encode(doc_type = "figure") %>%   # Step 3 Convert attributes to RTF encode 
-         write_rtf(file = "fig.rtf")       # Step 4 Write to a .rtf file 
+         write_rtf(file = "rtf/ex-fig.rtf")           # Step 4 Write to a .rtf file 
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}

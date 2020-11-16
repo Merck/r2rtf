@@ -1,5 +1,3 @@
-context("Independent testing for rtf_paragraph.R")
-
 #Build Temporary vector for use in testing
 teststr <- "The quick brown fox (){}[]$#&%@,.;:=_+-*/"
 

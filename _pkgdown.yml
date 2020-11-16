@@ -8,20 +8,76 @@ template:
   package: r2rtf
   params:
     bootswatch: flatly
-  navbar:
-  type: inverse
+navbar:
+  type: default
+  left:
+    - icon: fa-home
+      href: index.html
+    - icon: fa-file-code-o
+      text: "Functions"
+      menu:
+      -  text: "HTML User Manual"
+         href: reference/index.html
+      -  text: "PDF User Manual and Speification"
+         href: reference/r2rtf_0.2.0.pdf
+    - text: "Articles"
+      icon: fas fa-book
+      menu:
+      -  text: "Table: Baseline Characteristic"
+         href: articles/example-basechar.html
+      -  text: "Table: Efficacy"
+         href: articles/example-efficacy.html
+      -  text: "Table: Safety"
+         href: articles/example-ae-summary.html
+      -  text: "Figure Generation"
+         href: articles/example-figure.html
+      -  text: "Feature: Pageby and Groupby"
+         href: articles/example-pageby-groupby.html
+      -  text: "Details in Table Format"
+         href: articles/rtf-row.html
+      -  text: "Details in Text Format"
+         href: articles/rtf-text.html
+      -  text: "Package Design Pattern"
+         href: articles/design-pattern.html
+    - icon: fa-user-shield
+      text: "Validation"
+      menu:
+      -  text: "Validation Plan and Track"
+         href: articles/plan_track.html
+      -  text: "Tests & Coverage Report"
+         href: articles/code_cov.html
+    - icon: fa-newspaper-o
+      text: "Changelog"
+      href: news/index.html
+  right:
+    - icon: fa-bitbucket fa-lg
+      text: "Source code"
+      href: https://stash.merck.com/projects/BARDS/repos/r2rtf/browse
 reference:
 - title: RTF
   contents:
-  - starts_with("rtf")
-  - ends_with("rtf")
+  - "rtf_page"
+  - "rtf_page_header"
+  - "rtf_page_footer"
+  - "rtf_title"
+  - "rtf_subline"
+  - "rtf_colheader"
+  - "rtf_footnote"
+  - "rtf_body"
+  - "rtf_source"
+  - "rtf_figure"
+  - "rtf_read_png"
+  - "rtf_encode"
+  - "write_rtf"
 - title: Utility Data
   contents:
   - matches("unicode_latex")
 - title: Example Data
   contents:
-  - ends_with("gt")
   - matches("HAMD17")
+  - starts_with("tbl_")
   - matches("adae")
   - matches("adsl")
   - matches("adtte")
+
+

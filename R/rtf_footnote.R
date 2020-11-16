@@ -15,9 +15,9 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' @title Add footnote attributes to the table
+#' @title Add Footnote Attributes to Table
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #' @param footnote A vector of character for footnote text.
 #' @param border_left Left border type. Default is "single". To vary left border by column, use
 #'                    character vector with length of vector equal to number of columns displayed
@@ -87,7 +87,7 @@
 #' @param text_indent_left A value of left indent.
 #' @param text_indent_right A value of right indent.
 #' @param text_space A value of text space.
-#' @param as_table logical value to display it as a table.
+#' @param as_table A logical value to display it as a table.
 #' @param text_convert A logical value to convert special characters. Default is TRUE.
 #'
 #' @section Specification:
@@ -104,9 +104,9 @@
 #' @examples
 #' library(dplyr) # required to run examples
 #' data(tbl_1)
-#' tbl_1 %>% rtf_footnote("\\dagger Based on an ANCOVA model.") %>%
-#'     attr("rtf_footnote")
-#'
+#' tbl_1 %>%
+#'   rtf_footnote("\\dagger Based on an ANCOVA model.") %>%
+#'   attr("rtf_footnote")
 #' @export
 rtf_footnote <- function(tbl,
 
@@ -117,9 +117,9 @@ rtf_footnote <- function(tbl,
                          border_top = "",
                          border_bottom = "single",
 
-                         border_color_left   = NULL,
-                         border_color_right  = NULL,
-                         border_color_top    = NULL,
+                         border_color_left = NULL,
+                         border_color_right = NULL,
+                         border_color_top = NULL,
                          border_color_bottom = NULL,
 
                          border_width = 15,
@@ -145,7 +145,7 @@ rtf_footnote <- function(tbl,
 
                          text_convert = TRUE,
 
-                         as_table = TRUE){
+                         as_table = TRUE) {
 
   # Check argument type
   check_args(footnote, type = "character")
@@ -161,68 +161,66 @@ rtf_footnote <- function(tbl,
   }
 
   # Set Default Page Attributes
-  if(is.null(attr(tbl, "page"))){
+  if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
 
   # Define text object
   footnote <- obj_rtf_text(footnote,
 
-                       text_font,
-                       text_format,
-                       text_font_size,
-                       text_color,
-                       text_background_color,
-                       text_justification,
+    text_font,
+    text_format,
+    text_font_size,
+    text_color,
+    text_background_color,
+    text_justification,
 
-                       text_indent_first,
-                       text_indent_left,
-                       text_indent_right,
-                       text_space,
-                       text_space_before,
-                       text_space_after,
+    text_indent_first,
+    text_indent_left,
+    text_indent_right,
+    text_space,
+    text_space_before,
+    text_space_after,
+    text_new_page = FALSE,
+    text_hyphenation = TRUE,
 
-                       text_new_page = FALSE,
-                       text_hyphenation = TRUE,
-
-                       text_convert = text_convert
+    text_convert = text_convert
   )
 
-  if(attr(footnote, "use_color")) attr(tbl, "page")$use_color <- TRUE
+  if (attr(footnote, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   # Define border object
-  if(as_table){
+  if (as_table) {
     footnote <- obj_rtf_border(footnote,
 
-                               border_left,
-                               border_right,
-                               border_top,
-                               border_bottom,
+      border_left,
+      border_right,
+      border_top,
+      border_bottom,
+      border_first = NULL,
+      border_last  = NULL,
 
-                               border_first = NULL,
-                               border_last  = NULL,
+      border_color_left,
+      border_color_right,
+      border_color_top,
+      border_color_bottom,
 
-                               border_color_left,
-                               border_color_right,
-                               border_color_top,
-                               border_color_bottom,
+      border_color_first = NULL,
+      border_color_last  = NULL,
 
-                               border_color_first = NULL,
-                               border_color_last  = NULL,
+      border_width,
 
-                               border_width,
+      cell_height,
+      cell_justification,
+      cell_nrow
+    )
 
-                               cell_height,
-                               cell_justification,
-                               cell_nrow)
-
-    if(attr(footnote, "use_color")) attr(tbl, "page")$use_color <- TRUE
+    if (attr(footnote, "use_color")) attr(tbl, "page")$use_color <- TRUE
   }
 
-  attr(footnote, "as_table")  <- as_table
+  attr(footnote, "as_table") <- as_table
 
   attr(tbl, "rtf_footnote") <- footnote
 
   tbl
 }
-

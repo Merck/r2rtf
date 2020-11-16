@@ -17,7 +17,7 @@
 
 #' Convert Inches to Twips
 #'
-#' @param inch value in inches
+#' @param inch Value in inches.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -34,8 +34,7 @@ inch_to_twip <- function(inch) {
 
 #' Calculate Cell Size in Twips
 #'
-#' @param col_rel_width col_rel_width A vector of numbers separated by comma
-#' to indicate column relative width ratio.
+#' @param col_rel_width A vector of numbers separated by comma to indicate column relative width ratio.
 #' @param col_total_width A numeric number to indicate total column width.
 #'
 #' @section Specification:
@@ -68,42 +67,43 @@ cell_size <- function(col_rel_width, col_total_width) {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 convert <- function(text,
-                     load_stringi = suppressMessages(suppressWarnings(require("stringi"))) ) {
+                    load_stringi = suppressMessages(suppressWarnings(require("stringi")))) {
   char_rtf <- c(
     "^" = "\\super ",
     "_" = "\\sub ",
     ">=" = "\\geq ",
     "<=" = "\\leq ",
-    "\n" = "\\line "
+    "\n" = "\\line ",
+    "\\pagenumber" = "\\chpgn ",
+    "\\totalpage"  = "\\totalpage ",
+    "\\pagefield" = "{\\field{\\*\\fldinst NUMPAGES }} "
   )
 
   # Define Pattern for latex code
 
   unicode_latex$int <- as.integer(as.hexmode(unicode_latex$unicode))
   char_latex <- ifelse(unicode_latex$int <= 255, unicode_latex$chr,
-                       ifelse(unicode_latex$int > 255 & unicode_latex$int < 32768,
-                              paste0("\\uc1\\u", unicode_latex$int, "*"),
-                              paste0("\\uc1\\u-", unicode_latex$int, "*")
-                       )
+    ifelse(unicode_latex$int > 255 & unicode_latex$int < 32768,
+      paste0("\\uc1\\u", unicode_latex$int, "*"),
+      paste0("\\uc1\\u-", unicode_latex$int, "*")
+    )
   )
 
   names(char_latex) <- unicode_latex$latex
 
   char_latex <- c(char_rtf, char_latex)
 
-  if(load_stringi){
+  if (load_stringi) {
     text <- stringi::stri_replace_all_fixed(text, names(char_latex), char_latex,
-                                         vectorize_all = FALSE, opts_fixed = list(case_insensitive = FALSE))
-  }else{
-
-    for(i in 1:length(char_latex)){
+      vectorize_all = FALSE, opts_fixed = list(case_insensitive = FALSE)
+    )
+  } else {
+    for (i in 1:length(char_latex)) {
       text <- gsub(names(char_latex[i]), char_latex[i], text, fixed = TRUE)
     }
-
   }
 
   text
-
 }
 
 
@@ -132,11 +132,10 @@ utf8Tortf <- function(text) {
   x_char <- unlist(strsplit(text, ""))
   x_int <- utf8ToInt(text)
   x_rtf <- ifelse(x_int <= 255, x_char,
-                  ifelse(x_int <= 32768, paste0("\\uc1\\u", x_int, "?"),
-                         paste0("\\uc1\\u-", x_int - 65536, "?")
-                  )
+    ifelse(x_int <= 32768, paste0("\\uc1\\u", x_int, "?"),
+      paste0("\\uc1\\u-", x_int - 65536, "?")
+    )
   )
 
   paste0(x_rtf, collapse = "")
 }
-

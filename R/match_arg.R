@@ -37,42 +37,53 @@
 #'
 #' @examples
 #' \dontrun{
-#'      match_arg(arg = c(2,1), choices = c(4,3,1,2),  several.ok = TRUE)
-#'      match_arg(arg = c("c","b"), choices = c("a","b","c","d"),  several.ok = TRUE)
+#' match_arg(arg = c(2, 1), choices = c(4, 3, 1, 2), several.ok = TRUE)
+#' match_arg(arg = c("c", "b"), choices = c("a", "b", "c", "d"), several.ok = TRUE)
 #' }
 #'
-match_arg <- function(arg, choices, several.ok = FALSE){
-   # following code are from match.arg with minor updates
+match_arg <- function(arg, choices, several.ok = FALSE) {
+  # following code are from match.arg with minor updates
 
-   #update to enable arg and choices to accept numeric and character vectors
-   if (class(arg)==c("numeric")){arg <- as.character(arg)}
-   if (class(choices)==c("numeric")){choices <- as.character(choices)}
+  # update to enable arg and choices to accept numeric and character vectors
+  if (class(arg) == c("numeric")) {
+    arg <- as.character(arg)
+  }
+  if (class(choices) == c("numeric")) {
+    choices <- as.character(choices)
+  }
 
-   if (missing(choices)) {
-     formal.args <- formals(sys.function(sysP <- sys.parent()))
-     choices <- eval(formal.args[[as.character(substitute(arg))]],
-                     envir = sys.frame(sysP))
-   }
-   if (is.null(arg))
-     return(choices[1L])
+  if (missing(choices)) {
+    formal.args <- formals(sys.function(sysP <- sys.parent()))
+    choices <- eval(formal.args[[as.character(substitute(arg))]],
+      envir = sys.frame(sysP)
+    )
+  }
+  if (is.null(arg)) {
+    return(choices[1L])
+  }
 
-   if (!several.ok) {
-     if (identical(arg, choices))
-       return(arg[1L])
-     if (length(arg) > 1L)
-       stop("'arg' must be of length 1")
-   }
-   else if (length(arg) == 0L)
-     stop("'arg' must be of length >= 1")
+  if (!several.ok) {
+    if (identical(arg, choices)) {
+      return(arg[1L])
+    }
+    if (length(arg) > 1L) {
+      stop("'arg' must be of length 1")
+    }
+  }
+  else if (length(arg) == 0L) {
+    stop("'arg' must be of length >= 1")
+  }
 
-   #i <- pmatch(arg, choices, nomatch = 0L, duplicates.ok = TRUE) # replaced by new code to debug
-   i <- charmatch(arg, choices, nomatch = 0L)
-   if (any(i == 0L))
-     stop(gettextf("all 'arg' should be one of %s", paste(dQuote(choices),
-                                                      collapse = ", ")), domain = NA)
-   i <- i[i > 0L]
-   if (!several.ok && length(i) > 1)
-     stop("there is more than one match in 'match_arg'")
-   choices[i]
+  # i <- pmatch(arg, choices, nomatch = 0L, duplicates.ok = TRUE) # replaced by new code to debug
+  i <- charmatch(arg, choices, nomatch = 0L)
+  if (any(i == 0L)) {
+    stop(gettextf("all 'arg' should be one of %s", paste(dQuote(choices),
+      collapse = ", "
+    )), domain = NA)
+  }
+  i <- i[i > 0L]
+  if (!several.ok && length(i) > 1) {
+    stop("there is more than one match in 'match_arg'")
+  }
+  choices[i]
 }
-

@@ -1,14 +1,5 @@
-context("Independent testing for dictionary.R")
-
 test_that("text font", {
-  t_font<-  data.frame(
-    type = 1:3,
-    name = c("Times New Roman", "Times New Roman Greek", "Arial Greek"),
-    style = c("\\froman", "\\froman", "\\fswiss"),
-    rtf_code = c("\\f0", "\\f166", "\\f266"),
-    stringsAsFactors = FALSE
-  )
-  expect_equal(font_type(),t_font)
+  expect_snapshot_output(font_type())
 })
 
 test_that("text color", {

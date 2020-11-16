@@ -17,7 +17,7 @@
 
 #' Derive Space Adjustment
 #'
-#' @param tbl A data frame
+#' @param tbl A data frame.
 #'
 #' @return a value indicating the amount of space adjustment
 #'
@@ -33,14 +33,13 @@
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 footnote_source_space <- function(tbl) {
-
   page <- attr(tbl, "page")
   page_width <- inch_to_twip(page$width)
   page_margin <- inch_to_twip(page$margin)
 
   table_width <- inch_to_twip(page$col_width)
 
-  left_margin  <- page_margin[1]
+  left_margin <- page_margin[1]
   right_margin <- page_margin[2]
 
   space_adjust <- round((page_width - left_margin - right_margin - table_width) / 2)

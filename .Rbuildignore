@@ -1,6 +1,7 @@
 ..Rcheck
 ^doc$
 ^docs$
+^vignettes$
 ^_pkgdown\.yml$
 ^r2rtf\.Rproj$
 ^\.Rproj\.user$
@@ -15,9 +16,6 @@
 ^\.git\$
 ^\vignettes\rtf$
 ^\vignettes\fig$
-^\vignettes\example-figure.Rmd$
-^\vignettes\example-pipeline.Rmd$
-^\vignettes\rtf-row.Rmd$
-^\vignettes\rtf-text.Rmd$
-^\.github$
-
+^Meta$
+^jenkins$
+^jobs-configuration.groovy$

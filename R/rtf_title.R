@@ -20,7 +20,7 @@
 #' @description
 #' Add title, subtitle, and other attributes to the object
 #'
-#' @param tbl The input data frame. Required argument.
+#' @param tbl A data frame.
 #' @param title Title in a character string.
 #' @param subtitle Subtitle in a character string.
 #' @inheritParams rtf_footnote
@@ -41,9 +41,9 @@
 #' @examples
 #' library(dplyr) # required to run examples
 #' data(tbl_1)
-#' tbl_1 %>% rtf_title(title = "ANCOVA of Change from Baseline at Week 8") %>%
+#' tbl_1 %>%
+#'   rtf_title(title = "ANCOVA of Change from Baseline at Week 8") %>%
 #'   attr("rtf_title")
-#'
 #' @export
 rtf_title <- function(tbl,
 
@@ -65,45 +65,44 @@ rtf_title <- function(tbl,
                       text_space_before = 180,
                       text_space_after = 180,
 
-                      text_convert = TRUE){
+                      text_convert = TRUE) {
 
 
 
-  #check argument types
+  # check argument types
   check_args(title, type = c("character"))
   check_args(subtitle, type = c("character"))
   text <- unlist(c(title, subtitle))
 
   # Set Default Page Attributes
-  if(is.null(attr(tbl, "page"))){
+  if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
 
   text <- obj_rtf_text(text,
 
-                       text_font,
-                       text_format,
-                       text_font_size,
-                       text_color,
-                       text_background_color,
-                       text_justification,
+    text_font,
+    text_format,
+    text_font_size,
+    text_color,
+    text_background_color,
+    text_justification,
 
-                       text_indent_first,
-                       text_indent_left,
-                       text_indent_right,
+    text_indent_first,
+    text_indent_left,
+    text_indent_right,
 
-                       text_space,
-                       text_space_before,
-                       text_space_after,
+    text_space,
+    text_space_before,
+    text_space_after,
+    text_new_page = FALSE,
+    text_hyphenation = TRUE,
 
-                       text_new_page = FALSE,
-                       text_hyphenation = TRUE,
-
-                       text_convert = text_convert
+    text_convert = text_convert
   )
 
   # Register Color Use
-  if(attr(text, "use_color")) attr(tbl, "page") <- TRUE
+  if(attr(text, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   attr(tbl, "rtf_title") <- text
 
@@ -151,10 +150,10 @@ rtf_subline <- function(tbl,
                         text_space_before = 180,
                         text_space_after = 180,
 
-                        text_convert = TRUE){
+                        text_convert = TRUE) {
 
   # Set Default Page Attributes
-  if(is.null(attr(tbl, "page"))){
+  if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
 
@@ -168,32 +167,29 @@ rtf_subline <- function(tbl,
 
   text <- obj_rtf_text(text,
 
-                       text_font,
-                       text_format,
-                       text_font_size,
-                       text_color,
-                       text_background_color,
-                       text_justification,
+    text_font,
+    text_format,
+    text_font_size,
+    text_color,
+    text_background_color,
+    text_justification,
 
-                       text_indent_first,
-                       text_indent_left,
-                       text_indent_right,
-                       text_space,
-                       text_space_before,
-                       text_space_after,
+    text_indent_first,
+    text_indent_left,
+    text_indent_right,
+    text_space,
+    text_space_before,
+    text_space_after,
+    text_new_page = FALSE,
+    text_hyphenation = TRUE,
 
-                       text_new_page = FALSE,
-                       text_hyphenation = TRUE,
-
-                       text_convert = text_convert
+    text_convert = text_convert
   )
 
   # Register Color Use
-  if(attr(text, "use_color")) attr(tbl, "page") <- TRUE
+  if(attr(text, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   attr(tbl, "rtf_subline") <- text
 
   tbl
 }
-
-

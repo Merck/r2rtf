@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Render List to RTF encoding
+#' Render List to RTF Encoding
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -31,10 +31,9 @@
 #' @inheritParams rtf_encode
 #'
 rtf_encode_list <- function(tbl,
-                            page_title    = "all",
+                            page_title = "all",
                             page_footnote = "last",
-                            page_source   = "last"){
-
+                            page_source = "last") {
   color_rtftext <- lapply(tbl, as_rtf_color)
 
   start_rtf <- paste(
@@ -70,15 +69,15 @@ rtf_encode_list <- function(tbl,
     paste(unlist(lapply(tbl, function(x) as_rtf_source(x))), sep = ""),
 
     "{\\pard\\par}",
-
     sep = "\n"
   )
 
   rtf_feature <- paste(unlist(rtf_feature), collapse = "\n")
 
+  ## Post Processing
+  rtf_feature <- gsub("\\totalpage", 1, rtf_feature, fixed = TRUE) # total page number
+
   rtf <- list(start = start_rtf, body = rtf_feature, end = as_rtf_end())
 
   rtf
-
-
 }

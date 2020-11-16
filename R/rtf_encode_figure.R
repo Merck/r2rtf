@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Render Figure to RTF encoding
+#' Render Figure to RTF Encoding
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -36,13 +36,13 @@
 #' @inheritParams rtf_encode
 #'
 rtf_encode_figure <- function(tbl,
-                              page_title    = "all",
+                              page_title = "all",
                               page_footnote = "last",
-                              page_source   = "last") {
+                              page_source = "last") {
 
   # Footnote always be free text in figures
   footnote <- attr(tbl, "rtf_footnote")
-  if(! is.null(footnote)){
+  if (!is.null(footnote)) {
     attr(footnote, "as_table") <- FALSE
     attr(tbl, "rtf_footnote") <- footnote
   }
@@ -74,40 +74,40 @@ rtf_encode_figure <- function(tbl,
 
   n_page <- length(tbl)
   # Page Title Display Location
-  if(page_title == "first"){
-    if(! is.null(header_rtftext)) header_rtftext <- c(header_rtftext, rep("", n_page - 1))
-    if(! is.null(subline_rtftext)) subline_rtftext <- c(subline_rtftext, rep("", n_page - 1))
+  if (page_title == "first") {
+    if (!is.null(header_rtftext)) header_rtftext <- c(header_rtftext, rep("", n_page - 1))
+    if (!is.null(subline_rtftext)) subline_rtftext <- c(subline_rtftext, rep("", n_page - 1))
   }
 
-  if(page_title == "last"){
-    if(! is.null(header_rtftext))  header_rtftext <- c(rep("", n_page - 1), header_rtftext)
-    if(! is.null(subline_rtftext)) subline_rtftext <- c(rep("", n_page - 1), subline_rtftext)
+  if (page_title == "last") {
+    if (!is.null(header_rtftext)) header_rtftext <- c(rep("", n_page - 1), header_rtftext)
+    if (!is.null(subline_rtftext)) subline_rtftext <- c(rep("", n_page - 1), subline_rtftext)
   }
 
   # Footnote Display Location
-  if(page_footnote == "first"){
+  if (page_footnote == "first") {
     footnote_rtftext <- c(footnote_rtftext, rep("", n_page - 1))
   }
 
-  if(page_footnote == "last"){
+  if (page_footnote == "last") {
     footnote_rtftext <- c(rep("", n_page - 1), footnote_rtftext)
   }
 
-  if(page_footnote == "all"){
-    footnote_rtftext <- c( rep(footnote_rtftext, n_page - 1), footnote_rtftext)
+  if (page_footnote == "all") {
+    footnote_rtftext <- c(rep(footnote_rtftext, n_page - 1), footnote_rtftext)
   }
 
   # Page Source Display Location
-  if(page_source == "first"){
+  if (page_source == "first") {
     source_rtftext <- c(source_rtftext, rep("", n_page - 1))
   }
 
-  if(page_source == "last"){
+  if (page_source == "last") {
     source_rtftext <- c(rep("", n_page - 1), source_rtftext)
   }
 
-  if(page_source == "all"){
-    source_rtftext <- c( rep(source_rtftext, n_page - 1), source_rtftext)
+  if (page_source == "all") {
+    source_rtftext <- c(rep(source_rtftext, n_page - 1), source_rtftext)
   }
 
   rtf_feature <- paste(
@@ -122,8 +122,11 @@ rtf_encode_figure <- function(tbl,
     c(rep(new_page_rtftext, length(rtf_fig) - 1), ""),
     sep = "\n"
   )
+
   rtf_feature <- paste(rtf_feature, collapse = "\n")
 
-  list(start = start_rtf, body = rtf_feature, end = as_rtf_end())
+  ## Post Processing
+  rtf_feature <- gsub("\\totalpage", n_page, rtf_feature, fixed = TRUE) # total page number
 
+  list(start = start_rtf, body = rtf_feature, end = as_rtf_end())
 }

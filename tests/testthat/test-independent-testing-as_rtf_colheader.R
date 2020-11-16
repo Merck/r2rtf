@@ -1,5 +1,3 @@
-context("Independent testing for as_rtf_colheader.R")
-
 test_that("Case when colheader equals to NULL", {
 
   x <- iris %>% rtf_colheader(colheader = "")

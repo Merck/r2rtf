@@ -33,13 +33,13 @@
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 #' @name rtf_encode
-#' @param tbl A data frame for table or a list of binary string for figure
-#' @param doc_type the doc_type of input, default is table.
-#' @param page_title a character of title displaying location. Default is "all" for all pages.
+#' @param tbl A data frame for table or a list of binary string for figure.
+#' @param doc_type The doc_type of input, default is table.
+#' @param page_title A character of title displaying location. Default is "all" for all pages.
 #'                   Possible values are "first", "last" and "all".
-#' @param page_footnote a character of title displaying location. Default is "last" for all pages.
+#' @param page_footnote A character of title displaying location. Default is "last" for all pages.
 #'                   Possible values are "first", "last" and "all".
-#' @param page_source a character of title displaying location. Default is "last" for all pages.
+#' @param page_source A character of title displaying location. Default is "last" for all pages.
 #'                   Possible values are "first", "last" and "all".
 #'
 #' @return
@@ -48,69 +48,71 @@
 #'
 #' @examples
 #'
-#' library(dplyr)  # required to run examples
+#' library(dplyr) # required to run examples
 #'
 #' # Example 1
-#'   head(iris) %>%
-#'     rtf_body() %>%
-#'     rtf_encode() %>%
-#'     write_rtf(file = file.path(tempdir(), "table1.rtf"))
+#' head(iris) %>%
+#'   rtf_body() %>%
+#'   rtf_encode() %>%
+#'   write_rtf(file = file.path(tempdir(), "table1.rtf"))
 #'
 #' # Example 2
 #' \dontrun{
-#'   library(dplyr) # required to run examples
-#'   file <- file.path(tempdir(), "figure1.png")
-#'   png(file)
-#'   plot(1:10)
-#'   dev.off()
+#' library(dplyr) # required to run examples
+#' file <- file.path(tempdir(), "figure1.png")
+#' png(file)
+#' plot(1:10)
+#' dev.off()
 #'
-#'   # Read in PNG file in binary format
-#'   rtf_read_png(file) %>% rtf_figure() %>%
-#'     rtf_encode(doc_type = "figure") %>%
-#'     write_rtf(file = file.path(tempdir(), "figure1.rtf"))
+#' # Read in PNG file in binary format
+#' rtf_read_png(file) %>%
+#'   rtf_figure() %>%
+#'   rtf_encode(doc_type = "figure") %>%
+#'   write_rtf(file = file.path(tempdir(), "figure1.rtf"))
 #' }
 #' # Example 3
 #'
 #' ## convert tbl_1 to the table body. Add title, subtitle, two table
 #' ## headers, and footnotes to the table body.
-#'   data(tbl_1)
-#'   data(tbl_2)
-#'   data(tbl_3)
-#'   ## convert tbl_2 to the table body. Add a table column header to table body.
-#'   t2 <- tbl_2 %>%
-#'     rtf_colheader(colheader = "Pairwise Comparison |
+#' data(tbl_1)
+#' data(tbl_2)
+#' data(tbl_3)
+#' ## convert tbl_2 to the table body. Add a table column header to table body.
+#' t2 <- tbl_2 %>%
+#'   rtf_colheader(
+#'     colheader = "Pairwise Comparison |
 #'                    Difference in LS Mean(95% CI)\\dagger | p-Value",
-#'                   text_justification = c("l","c","c")) %>%
-#'     rtf_body(col_rel_width = c(8,7,5),
-#'              text_justification = c("l","c","c"),
-#'              last_row = FALSE);
-#'
-#'   # concatenate a list of table and save to an RTF file
-#'   t2 %>% rtf_encode() %>% write_rtf(file.path(tempdir(), "table2.rtf"))
-#'
+#'     text_justification = c("l", "c", "c")
+#'   ) %>%
+#'   rtf_body(
+#'     col_rel_width = c(8, 7, 5),
+#'     text_justification = c("l", "c", "c"),
+#'     last_row = FALSE
+#'   )
+#' # concatenate a list of table and save to an RTF file
+#' t2 %>%
+#'   rtf_encode() %>%
+#'   write_rtf(file.path(tempdir(), "table2.rtf"))
 #' @rdname rtf_encode
 #'
 #' @export
 rtf_encode <- function(tbl, doc_type = "table",
-                       page_title    = "all",
+                       page_title = "all",
                        page_footnote = "last",
-                       page_source   = "last") {
-
+                       page_source = "last") {
   match_arg(doc_type, c("table", "figure"))
   match_arg(page_title, c("all", "first", "last"))
   match_arg(page_footnote, c("all", "first", "last"))
   match_arg(page_source, c("all", "first", "last"))
 
   if (doc_type == "table") {
-
-    if(any(class(tbl) %in% "list")){
+    if (any(class(tbl) %in% "list")) {
       return(rtf_encode_list(tbl, page_title = page_title, page_footnote = page_footnote, page_source = page_source))
     }
 
-    if(any(class(tbl) %in% "data.frame")){
+    if (any(class(tbl) %in% "data.frame")) {
       return(rtf_encode_table(tbl, page_title = page_title, page_footnote = page_footnote, page_source = page_source))
     }
-
   }
 
   if (doc_type == "figure") {

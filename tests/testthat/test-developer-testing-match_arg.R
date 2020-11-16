@@ -1,5 +1,3 @@
-context("Development testing for match_arg.R")
-
 test_that("Case when choices is missing", {
   expect_error(match_arg(arg='', choices = ))
 })

@@ -17,13 +17,13 @@
 
 #' Text to RTF Encode
 #'
-#' @param text plain text
-#' @param font text font type
-#' @param font_size text font size
-#' @param format  text format
-#' @param color text color
-#' @param background_color text background color
-#' @param text_convert a logical value to convert special characters. Default is TRUE.
+#' @param text Plain text.
+#' @param font Text font type.
+#' @param font_size Text font size.
+#' @param format  Text format.
+#' @param color Text color.
+#' @param background_color Text background color.
+#' @param text_convert A logical value to convert special characters. Default is TRUE.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -109,7 +109,7 @@ rtf_text <- function(text,
   }
 
   ### Convert Latex Character
-  if(text_convert){
+  if (text_convert) {
     text <- convert(text)
   }
 

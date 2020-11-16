@@ -21,8 +21,8 @@
 #' @section Specification:
 #' \if{latex}{
 #'  \itemize{
-#'    \item Collect most commonly used fonts (Times New Roman, Times New Roman Greek, and Arial Greek).
-#'    \item Define font types in 1, 2, 3.
+#'    \item Collect most commonly used fonts (Times New Roman, Times New Roman Greek, and Arial Greek, etc.).
+#'    \item Define font types from 1 to 10.
 #'    \item Define font styles.
 #'    \item Create a mapping between font types and their RTF code.
 #'  }
@@ -31,10 +31,16 @@
 #'
 font_type <- function() {
   data.frame(
-    type = 1:3,
-    name = c("Times New Roman", "Times New Roman Greek", "Arial Greek"),
-    style = c("\\froman", "\\froman", "\\fswiss"),
-    rtf_code = c("\\f0", "\\f166", "\\f266"),
+    type = 1:10,
+    name = c("Times New Roman", "Times New Roman Greek", "Arial Greek",
+             "Arial", "Helvetica", "Calibri", "Georgia",
+             "Cambria", "Courier New","Symbol"),
+    style = c("\\froman", "\\froman", "\\fswiss",
+              "\\fswiss", "\\fswiss", "\\fswiss", "\\froman",
+              "\\ffroman", "\\fmodern", "\\ftech"),
+    rtf_code = c("\\f0", "\\f1", "\\f2",
+                 "\\f3", "\\f4", "\\f5", "\\f6",
+                 "\\f7", "\\f8", "\\f9"),
     stringsAsFactors = FALSE
   )
 }

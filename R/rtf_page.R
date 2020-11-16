@@ -17,8 +17,8 @@
 
 #' Add RTF File Page Information
 #'
-#' @param tbl A data frame
-#' @param orientation Page orientation
+#' @param tbl A data frame.
+#' @param orientation Orientation in 'portrait' or 'landscape'.
 #' @param width A numeric value of page width in inches.
 #'              Default is 8.5 inch in portrait orientation or 11.0 inch in landscape orientation.
 #' @param height A numeric value of page width in inches.
@@ -54,67 +54,66 @@
 #' @examples
 #' library(dplyr) # required to run examples
 #' data(tbl_1)
-#' tbl_1 %>% rtf_page() %>% attr("page")
-#'
+#' tbl_1 %>%
+#'   rtf_page() %>%
+#'   attr("page")
 #' @export
 rtf_page <- function(tbl,
                      orientation = "portrait",
-                     width  = ifelse(orientation == "portrait", 8.5, 11),
+                     width = ifelse(orientation == "portrait", 8.5, 11),
                      height = ifelse(orientation == "portrait", 11, 8.5),
                      margin = set_margin("wma", orientation),
-                     nrow   = ifelse(orientation == "portrait", 40, 28),
+                     nrow = ifelse(orientation == "portrait", 40, 28),
 
                      border_first = "double",
-                     border_last  = "double",
+                     border_last = "double",
 
                      border_color_first = NULL,
-                     border_color_last  = NULL,
+                     border_color_last = NULL,
 
-                     col_width = width - ifelse(orientation == "portrait", 2.25, 2.5)
-                     ){
+                     col_width = width - ifelse(orientation == "portrait", 2.25, 2.5)) {
 
 
   # Check argument type
-  check_args(width ,      type = c("integer", "numeric"), length = 1)
-  check_args(height,      type = c("integer", "numeric"), length = 1)
+  check_args(width, type = c("integer", "numeric"), length = 1)
+  check_args(height, type = c("integer", "numeric"), length = 1)
   check_args(orientation, type = c("character"), length = 1)
-  check_args(margin,      type = c("integer", "numeric"), length = 6)
-  check_args(nrow,        type = c("integer", "numeric"), length = 1)
-  check_args(col_width,   type = c("integer", "numeric"), length = 1)
+  check_args(margin, type = c("integer", "numeric"), length = 6)
+  check_args(nrow, type = c("integer", "numeric"), length = 1)
+  check_args(col_width, type = c("integer", "numeric"), length = 1)
 
   # Check argument values
   stopifnot(width > 0)
   stopifnot(height > 0)
-  stopifnot( all(margin > 0) )
+  stopifnot(all(margin > 0))
   match.arg(orientation, c("portrait", "landscape"))
   stopifnot(nrow > 0)
   stopifnot(col_width > 0)
 
   # Add attributes
-  attr(tbl, "page")$width         <- width
-  attr(tbl, "page")$height        <- height
-  attr(tbl, "page")$orientation   <- orientation
-  attr(tbl, "page")$margin        <- margin
-  attr(tbl, "page")$nrow          <- nrow
-  attr(tbl, "page")$col_width     <- col_width
+  attr(tbl, "page")$width <- width
+  attr(tbl, "page")$height <- height
+  attr(tbl, "page")$orientation <- orientation
+  attr(tbl, "page")$margin <- margin
+  attr(tbl, "page")$nrow <- nrow
+  attr(tbl, "page")$col_width <- col_width
 
-  attr(tbl, "page")$border_first  <- border_first
-  attr(tbl, "page")$border_last   <- border_last
+  attr(tbl, "page")$border_first <- border_first
+  attr(tbl, "page")$border_last <- border_last
 
   attr(tbl, "page")$border_color_first <- border_color_first
-  attr(tbl, "page")$border_color_last  <- border_color_last
+  attr(tbl, "page")$border_color_last <- border_color_last
 
 
   # Register Color Use
   color <- list(border_color_first, border_color_last)
-  if( ! all( unlist(color) %in% c("black", "") )){
+  if (!all(unlist(color) %in% c("black", ""))) {
     attr(tbl, "page")$use_color <- TRUE
-  }else{
-    attr(tbl, "page")$use_color  <- FALSE
+  } else {
+    attr(tbl, "page")$use_color <- FALSE
   }
 
   tbl
-
 }
 
 #' Add RTF Page Header Information
@@ -124,7 +123,7 @@ rtf_page <- function(tbl,
 #'
 #' @export
 rtf_page_header <- function(tbl,
-                            text = "Page \\chpgn  of {\\field{\\*\\fldinst NUMPAGES }}",
+                            text = "Page \\pagenumber of \\pagefield",
 
                             text_font = 1,
                             text_format = NULL,
@@ -141,44 +140,40 @@ rtf_page_header <- function(tbl,
                             text_space_before = 15,
                             text_space_after = 15,
 
-                            text_convert = TRUE){
-
-
+                            text_convert = TRUE) {
   text <- obj_rtf_text(text,
 
-                       text_font,
-                       text_format,
-                       text_font_size,
-                       text_color,
-                       text_background_color,
-                       text_justification,
+    text_font,
+    text_format,
+    text_font_size,
+    text_color,
+    text_background_color,
+    text_justification,
 
-                       text_indent_first,
-                       text_indent_left,
-                       text_indent_right,
+    text_indent_first,
+    text_indent_left,
+    text_indent_right,
 
-                       text_space,
-                       text_space_before,
-                       text_space_after,
+    text_space,
+    text_space_before,
+    text_space_after,
+    text_new_page = NULL,
+    text_hyphenation = NULL,
 
-                       text_new_page = NULL,
-                       text_hyphenation = NULL,
-
-                       text_convert = text_convert
+    text_convert = text_convert
   )
 
   attr(tbl, "rtf_page_header") <- text
 
   # Set Default Page Attributes
-  if(is.null(attr(tbl, "page"))){
+  if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
 
   # Register Color Use
-  if(attr(text, "use_color")) attr(tbl, "page") <- TRUE
+  if (attr(text, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   tbl
-
 }
 
 #' Add RTF Page Footer Information
@@ -205,45 +200,38 @@ rtf_page_footer <- function(tbl,
                             text_space_before = 15,
                             text_space_after = 15,
 
-                            text_convert = TRUE){
-
-
+                            text_convert = TRUE) {
   text <- obj_rtf_text(text,
 
-                       text_font,
-                       text_format,
-                       text_font_size,
-                       text_color,
-                       text_background_color,
-                       text_justification,
+    text_font,
+    text_format,
+    text_font_size,
+    text_color,
+    text_background_color,
+    text_justification,
 
-                       text_indent_first,
-                       text_indent_left,
-                       text_indent_right,
+    text_indent_first,
+    text_indent_left,
+    text_indent_right,
 
-                       text_space,
-                       text_space_before,
-                       text_space_after,
+    text_space,
+    text_space_before,
+    text_space_after,
+    text_new_page = NULL,
+    text_hyphenation = NULL,
 
-                       text_new_page = NULL,
-                       text_hyphenation = NULL,
-
-                       text_convert = text_convert
+    text_convert = text_convert
   )
 
   attr(tbl, "rtf_page_footer") <- text
 
   # Set Default Page Attributes
-  if(is.null(attr(tbl, "page"))){
+  if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
 
   # Register Color Use
-  if(attr(text, "use_color")) attr(tbl, "page") <- TRUE
+  if (attr(text, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   tbl
-
 }
-
-
-

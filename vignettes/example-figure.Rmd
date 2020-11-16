@@ -1,10 +1,10 @@
 ---
-title: "RTF Examples for Figures"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{example-figure}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+title: RTF Examples for Figures
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
 ---
 
 ```{r, include = FALSE}

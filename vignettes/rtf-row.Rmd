@@ -1,11 +1,10 @@
 ---
-title: "RTF Examples for Controlling Table Details"
-date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteIndexEntry{table-details}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+title: RTF Examples for Controlling Table Details
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
 ---
 
 ```{r setup, include=FALSE}
@@ -55,7 +54,7 @@ cell border as single. Only last column use right border as double. Only last ro
 iris %>%
   head() %>%
   rtf_body(
-    colheader = FALSE,
+    as_colheader = FALSE,
     border_top = "dash",
     border_left = "double",
     border_right = "single"
@@ -168,7 +167,7 @@ This example shows the default setting
 ```{r}
 iris %>%
   head() %>%
-  rtf_body(colheader = FALSE) %>%
+  rtf_body(as_colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/column-width-default.rtf")
 ```
@@ -181,7 +180,7 @@ This example customizes the column width
 ```{r}
 iris %>%
   head() %>%
-  rtf_body(col_rel_width = 1:ncol(iris), colheader = FALSE) %>%
+  rtf_body(col_rel_width = 1:ncol(iris), as_colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/column-width-ratio.rtf")
 ```
@@ -224,7 +223,7 @@ Font size can be defined for each cell.
 ```{r}
 iris %>%
   head() %>%
-  rtf_body(text_font_size = c(7:11), colheader = FALSE) %>%
+  rtf_body(text_font_size = c(7:11), as_colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/text-font-size.rtf")
 ```
@@ -243,7 +242,7 @@ This example define text color for each column
 iris %>%
   head() %>%
   rtf_body(text_color = c("black", "red", "gold", "blue", "grey"),
-           colheader = FALSE) %>%
+           as_colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/color-text.rtf")
 ```
@@ -258,7 +257,7 @@ This example define left border color for each column
 iris %>%
   head() %>%
   rtf_body(border_color_left = c("black", "red", "gold", "blue", "grey"),
-           colheader = FALSE) %>%
+           as_colheader = FALSE) %>%
   rtf_encode() %>%
   write_rtf("rtf/color-border.rtf")
 ```
@@ -275,7 +274,7 @@ iris %>%
   rtf_body(
     text_background_color = c("white", "red", "gold", "blue", "grey"),
     text_color = "black",
-    colheader = FALSE,
+    as_colheader = FALSE,
   ) %>%
   rtf_encode() %>%
   write_rtf("rtf/color-background.rtf")
