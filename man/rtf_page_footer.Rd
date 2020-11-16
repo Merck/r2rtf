@@ -23,7 +23,7 @@ rtf_page_footer(
 )
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 
 \item{text}{A character string.}
 

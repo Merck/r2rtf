@@ -7,7 +7,7 @@
 rtf_read_png(file)
 }
 \arguments{
-\item{file}{a character vector of PNG file paths}
+\item{file}{A character vector of PNG file paths.}
 }
 \value{
 a list of binary data vector returned by \code{readBin}
@@ -27,13 +27,13 @@ Read PNG Figures into Binary Files
 
 \examples{
 \dontrun{
-  file <- file.path(tempdir(), "figure1.png")
-  png(file)
-  plot(1:10)
-  dev.off()
+file <- file.path(tempdir(), "figure1.png")
+png(file)
+plot(1:10)
+dev.off()
 
-  # Read in PNG file in binary format
-  rtf_read_png(file)
+# Read in PNG file in binary format
+rtf_read_png(file)
 }
 
 }

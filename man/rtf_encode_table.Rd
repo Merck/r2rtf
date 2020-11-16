@@ -2,7 +2,7 @@
 % Please edit documentation in R/rtf_encode_table.R
 \name{rtf_encode_table}
 \alias{rtf_encode_table}
-\title{Render Table to RTF encoding}
+\title{Render Table to RTF Encoding}
 \usage{
 rtf_encode_table(
   tbl,
@@ -12,19 +12,19 @@ rtf_encode_table(
 )
 }
 \arguments{
-\item{tbl}{A data frame for table or a list of binary string for figure}
+\item{tbl}{A data frame for table or a list of binary string for figure.}
 
-\item{page_title}{a character of title displaying location. Default is "all" for all pages.
+\item{page_title}{A character of title displaying location. Default is "all" for all pages.
 Possible values are "first", "last" and "all".}
 
-\item{page_footnote}{a character of title displaying location. Default is "last" for all pages.
+\item{page_footnote}{A character of title displaying location. Default is "last" for all pages.
 Possible values are "first", "last" and "all".}
 
-\item{page_source}{a character of title displaying location. Default is "last" for all pages.
+\item{page_source}{A character of title displaying location. Default is "last" for all pages.
 Possible values are "first", "last" and "all".}
 }
 \description{
-Render Table to RTF encoding
+Render Table to RTF Encoding
 }
 \section{Specification}{
 
@@ -35,9 +35,9 @@ Render Table to RTF encoding
    \item Define column header, first border and last border type in RTF syntax.
    \item Check whether footnote and source will be displayed as table if they exist.
    \item Define table content in RTF syntax.
-   \item Get page title display location ("all", "first", "last") from arg input and display it in page accordinly.
-   \item Get page footnote display location ("all", "first", "last") from arg input and display it in page accordinly.
-   \item Get page source display location ("all", "first", "last") from arg input and display it in page accordinly.
+   \item Get page title display location ("all", "first", "last") from arg input and display it in page accordingly.
+   \item Get page footnote display location ("all", "first", "last") from arg input and display it in page accordingly.
+   \item Get page source display location ("all", "first", "last") from arg input and display it in page accordingly.
    \item Translate all \code{tbl} attributes into RTF syntax.
    \item Combine all components into a single RTF code string.
  }

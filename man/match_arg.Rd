@@ -40,8 +40,8 @@ This function resolves errors from \code{match.arg()} with '' as arg input.
 
 \examples{
 \dontrun{
-     match_arg(arg = c(2,1), choices = c(4,3,1,2),  several.ok = TRUE)
-     match_arg(arg = c("c","b"), choices = c("a","b","c","d"),  several.ok = TRUE)
+match_arg(arg = c(2, 1), choices = c(4, 3, 1, 2), several.ok = TRUE)
+match_arg(arg = c("c", "b"), choices = c("a", "b", "c", "d"), several.ok = TRUE)
 }
 
 }

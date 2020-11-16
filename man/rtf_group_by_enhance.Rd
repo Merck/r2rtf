@@ -7,11 +7,11 @@
 rtf_group_by_enhance(tbl, group_by, page_index)
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 
-\item{group_by}{A character vector of variable names in tbl}
+\item{group_by}{A character vector of variable names in \code{tbl}.}
 
-\item{page_index}{A numeric vector of page index}
+\item{page_index}{A numeric vector of page index.}
 }
 \value{
 Return \code{tbl}.

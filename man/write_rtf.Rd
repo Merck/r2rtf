@@ -7,9 +7,9 @@
 write_rtf(rtf, file)
 }
 \arguments{
-\item{rtf}{a character rtf encoding string rendered by \code{rtf_encode()}}
+\item{rtf}{A character rtf encoding string rendered by \code{rtf_encode()}.}
 
-\item{file}{a character string naming a file to save rtf file.}
+\item{file}{A character string naming a file to save rtf file.}
 }
 \description{
 The write_rtf function writes rtf encoding string to an .rtf file

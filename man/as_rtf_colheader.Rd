@@ -7,7 +7,7 @@
 as_rtf_colheader(tbl)
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 }
 \description{
 Create Column Header RTF Encode

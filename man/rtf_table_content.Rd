@@ -32,11 +32,11 @@ rtf_table_content(
 )
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 
 \item{col_total_width}{Column total width for the table. Default is the corresponding attribute from \code{tbl}.}
 
-\item{use_border_bottom}{Logical value of using the bottom border. Default is the corresponding attribute from \code{tbl}.}
+\item{use_border_bottom}{A logical value of using the bottom border. Default is the corresponding attribute from \code{tbl}.}
 
 \item{border_left}{Left border type. Default is the corresponding attribute from \code{tbl}.}
 
@@ -56,7 +56,7 @@ rtf_table_content(
 
 \item{border_width}{Border width in twips. Default is the corresponding attribute from \code{tbl}.}
 
-\item{col_rel_width}{Column relative width in a vector eg. c(2,1,1) refers to 2:1;1}
+\item{col_rel_width}{Column relative width in a vector eg. c(2,1,1) refers to 2:1:1}
 
 \item{cell_height}{Height for cell in twips. Default is the corresponding attribute from \code{tbl}.}
 
@@ -78,7 +78,7 @@ rtf_table_content(
 
 \item{text_space_after}{Line space after text. Default is the corresponding attribute from \code{tbl}.}
 
-\item{text_convert}{a logical value to convert special characters. Default is the corresponding attribute from \code{tbl}.}
+\item{text_convert}{A logical value to convert special characters. Default is the corresponding attribute from \code{tbl}.}
 }
 \description{
 Create RTF Table Body Encode

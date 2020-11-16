@@ -7,7 +7,7 @@
 as_rtf_title(tbl)
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 }
 \description{
 Create Table Title RTF Encode

@@ -7,7 +7,7 @@
 as_rtf_color(tbl)
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 }
 \description{
 Create RTF Color Encode

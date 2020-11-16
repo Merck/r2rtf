@@ -2,7 +2,7 @@
 % Please edit documentation in R/rtf_encode_list.R
 \name{rtf_encode_list}
 \alias{rtf_encode_list}
-\title{Render List to RTF encoding}
+\title{Render List to RTF Encoding}
 \usage{
 rtf_encode_list(
   tbl,
@@ -12,19 +12,19 @@ rtf_encode_list(
 )
 }
 \arguments{
-\item{tbl}{A data frame for table or a list of binary string for figure}
+\item{tbl}{A data frame for table or a list of binary string for figure.}
 
-\item{page_title}{a character of title displaying location. Default is "all" for all pages.
+\item{page_title}{A character of title displaying location. Default is "all" for all pages.
 Possible values are "first", "last" and "all".}
 
-\item{page_footnote}{a character of title displaying location. Default is "last" for all pages.
+\item{page_footnote}{A character of title displaying location. Default is "last" for all pages.
 Possible values are "first", "last" and "all".}
 
-\item{page_source}{a character of title displaying location. Default is "last" for all pages.
+\item{page_source}{A character of title displaying location. Default is "last" for all pages.
 Possible values are "first", "last" and "all".}
 }
 \description{
-Render List to RTF encoding
+Render List to RTF Encoding
 }
 \section{Specification}{
 

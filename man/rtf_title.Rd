@@ -24,7 +24,7 @@ rtf_title(
 )
 }
 \arguments{
-\item{tbl}{The input data frame. Required argument.}
+\item{tbl}{A data frame.}
 
 \item{title}{Title in a character string.}
 
@@ -96,7 +96,7 @@ Add title, subtitle, and other attributes to the object
 \examples{
 library(dplyr) # required to run examples
 data(tbl_1)
-tbl_1 \%>\% rtf_title(title = "ANCOVA of Change from Baseline at Week 8") \%>\%
+tbl_1 \%>\%
+  rtf_title(title = "ANCOVA of Change from Baseline at Week 8") \%>\%
   attr("rtf_title")
-
 }

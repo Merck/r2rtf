@@ -7,7 +7,7 @@
 as_rtf_footnote(tbl)
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 }
 \description{
 Create Footnote RTF Encode

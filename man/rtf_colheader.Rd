@@ -36,11 +36,12 @@ rtf_colheader(
 )
 }
 \arguments{
-\item{tbl}{A data frame. Required argument.}
+\item{tbl}{A data frame.}
 
 \item{colheader}{A character string that uses " | " to separate column names. Default is NULL for a blank column header.}
 
-\item{col_rel_width}{A numeric vector for column relative width, e.g. c(2,1,1) refers to 2:1:1. Default is NULL for equal column width.}
+\item{col_rel_width}{A Column relative width in a vector e.g. c(2,1,1) refers to 2:1:1.
+Default is NULL for equal column width.}
 
 \item{border_left}{Left border type. Default is "single". To vary left border by column, use
 character vector with length of vector equal to number of columns displayed
@@ -159,9 +160,10 @@ Add Column Header Attributes to Table
 library(dplyr) # required to run examples
 data(tbl_1)
 tbl_1 \%>\%
-  rtf_colheader(colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
+  rtf_colheader(
+    colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
                   Mean (SD) | LS Mean (95\% CI)\\\\dagger",
-                text_format = c("b", "", "u", "", "u", "","u", "i") ) \%>\%
+    text_format = c("b", "", "u", "", "u", "", "u", "i")
+  ) \%>\%
   attr("rtf_colheader")
-
 }

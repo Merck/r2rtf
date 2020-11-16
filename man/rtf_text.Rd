@@ -15,19 +15,19 @@ rtf_text(
 )
 }
 \arguments{
-\item{text}{plain text}
+\item{text}{Plain text.}
 
-\item{font}{text font type}
+\item{font}{Text font type.}
 
-\item{font_size}{text font size}
+\item{font_size}{Text font size.}
 
-\item{format}{text format}
+\item{format}{Text format.}
 
-\item{color}{text color}
+\item{color}{Text color.}
 
-\item{background_color}{text background color}
+\item{background_color}{Text background color.}
 
-\item{text_convert}{a logical value to convert special characters. Default is TRUE.}
+\item{text_convert}{A logical value to convert special characters. Default is TRUE.}
 }
 \description{
 Text to RTF Encode

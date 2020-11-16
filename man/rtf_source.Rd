@@ -36,9 +36,9 @@ rtf_source(
 )
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 
-\item{source}{a character string}
+\item{source}{A character string.}
 
 \item{border_left}{Left border type. Default is "single". To vary left border by column, use
 character vector with length of vector equal to number of columns displayed
@@ -134,7 +134,7 @@ All possible input can be found in \code{r2rtf:::justification()$type}.}
 
 \item{text_convert}{A logical value to convert special characters. Default is TRUE.}
 
-\item{as_table}{logical value to display it as a table.}
+\item{as_table}{A logical value to display it as a table.}
 }
 \value{
 the same data frame \code{tbl} with additional attributes for data source of a table
@@ -156,7 +156,7 @@ Add Data Source Attributes to the Table
 \examples{
 library(dplyr) # required to run examples
 data(tbl_1)
-tbl_1 \%>\% rtf_source("Source: [study999:adam-adeff]") \%>\%
-    attr("rtf_source")
-
+tbl_1 \%>\%
+  rtf_source("Source: [study999:adam-adeff]") \%>\%
+  attr("rtf_source")
 }

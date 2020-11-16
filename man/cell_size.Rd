@@ -7,8 +7,7 @@
 cell_size(col_rel_width, col_total_width)
 }
 \arguments{
-\item{col_rel_width}{col_rel_width A vector of numbers separated by comma
-to indicate column relative width ratio.}
+\item{col_rel_width}{A vector of numbers separated by comma to indicate column relative width ratio.}
 
 \item{col_total_width}{A numeric number to indicate total column width.}
 }

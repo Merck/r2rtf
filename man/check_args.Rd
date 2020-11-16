@@ -38,11 +38,11 @@ if \code{type}, \code{length} or \code{dim} is NULL, the corresponding check wil
 
 \examples{
 \dontrun{
-    tbl < -as.data.frame(matrix(1:9, nrow=3))
-    check_args(arg = tbl, type = c("data.frame"))
+tbl < -as.data.frame(matrix(1:9, nrow = 3))
+check_args(arg = tbl, type = c("data.frame"))
 
-    vec <- c("a","b","c")
-    check_args(arg = vec, type = c("character"), length = 3)
+vec <- c("a", "b", "c")
+check_args(arg = vec, type = c("character"), length = 3)
 }
 
 }

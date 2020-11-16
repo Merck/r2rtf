@@ -13,17 +13,17 @@ rtf_encode(
 )
 }
 \arguments{
-\item{tbl}{A data frame for table or a list of binary string for figure}
+\item{tbl}{A data frame for table or a list of binary string for figure.}
 
-\item{doc_type}{the doc_type of input, default is table.}
+\item{doc_type}{The doc_type of input, default is table.}
 
-\item{page_title}{a character of title displaying location. Default is "all" for all pages.
+\item{page_title}{A character of title displaying location. Default is "all" for all pages.
 Possible values are "first", "last" and "all".}
 
-\item{page_footnote}{a character of title displaying location. Default is "last" for all pages.
+\item{page_footnote}{A character of title displaying location. Default is "last" for all pages.
 Possible values are "first", "last" and "all".}
 
-\item{page_source}{a character of title displaying location. Default is "last" for all pages.
+\item{page_source}{A character of title displaying location. Default is "last" for all pages.
 Possible values are "first", "last" and "all".}
 }
 \value{
@@ -51,44 +51,49 @@ to an RTF file.
 
 \examples{
 
-library(dplyr)  # required to run examples
+library(dplyr) # required to run examples
 
 # Example 1
-  head(iris) \%>\%
-    rtf_body() \%>\%
-    rtf_encode() \%>\%
-    write_rtf(file = file.path(tempdir(), "table1.rtf"))
+head(iris) \%>\%
+  rtf_body() \%>\%
+  rtf_encode() \%>\%
+  write_rtf(file = file.path(tempdir(), "table1.rtf"))
 
 # Example 2
 \dontrun{
-  library(dplyr) # required to run examples
-  file <- file.path(tempdir(), "figure1.png")
-  png(file)
-  plot(1:10)
-  dev.off()
+library(dplyr) # required to run examples
+file <- file.path(tempdir(), "figure1.png")
+png(file)
+plot(1:10)
+dev.off()
 
-  # Read in PNG file in binary format
-  rtf_read_png(file) \%>\% rtf_figure() \%>\%
-    rtf_encode(doc_type = "figure") \%>\%
-    write_rtf(file = file.path(tempdir(), "figure1.rtf"))
+# Read in PNG file in binary format
+rtf_read_png(file) \%>\%
+  rtf_figure() \%>\%
+  rtf_encode(doc_type = "figure") \%>\%
+  write_rtf(file = file.path(tempdir(), "figure1.rtf"))
 }
 # Example 3
 
 ## convert tbl_1 to the table body. Add title, subtitle, two table
 ## headers, and footnotes to the table body.
-  data(tbl_1)
-  data(tbl_2)
-  data(tbl_3)
-  ## convert tbl_2 to the table body. Add a table column header to table body.
-  t2 <- tbl_2 \%>\%
-    rtf_colheader(colheader = "Pairwise Comparison |
+data(tbl_1)
+data(tbl_2)
+data(tbl_3)
+## convert tbl_2 to the table body. Add a table column header to table body.
+t2 <- tbl_2 \%>\%
+  rtf_colheader(
+    colheader = "Pairwise Comparison |
                    Difference in LS Mean(95\% CI)\\\\dagger | p-Value",
-                  text_justification = c("l","c","c")) \%>\%
-    rtf_body(col_rel_width = c(8,7,5),
-             text_justification = c("l","c","c"),
-             last_row = FALSE);
-
-  # concatenate a list of table and save to an RTF file
-  t2 \%>\% rtf_encode() \%>\% write_rtf(file.path(tempdir(), "table2.rtf"))
-
+    text_justification = c("l", "c", "c")
+  ) \%>\%
+  rtf_body(
+    col_rel_width = c(8, 7, 5),
+    text_justification = c("l", "c", "c"),
+    last_row = FALSE
+  )
+# concatenate a list of table and save to an RTF file
+t2 \%>\%
+  rtf_encode() \%>\%
+  write_rtf(file.path(tempdir(), "table2.rtf"))
 }

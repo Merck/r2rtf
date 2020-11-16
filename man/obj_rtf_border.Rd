@@ -25,7 +25,7 @@ obj_rtf_border(
 )
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 
 \item{border_left}{Left border type. Default is "single". To vary left border by column, use
 character vector with length of vector equal to number of columns displayed

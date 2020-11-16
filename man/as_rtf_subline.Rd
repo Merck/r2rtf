@@ -7,7 +7,7 @@
 as_rtf_subline(tbl)
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 }
 \description{
 Create Table Subline RTF Encode

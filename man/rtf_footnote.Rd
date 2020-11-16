@@ -2,7 +2,7 @@
 % Please edit documentation in R/rtf_footnote.R
 \name{rtf_footnote}
 \alias{rtf_footnote}
-\title{Add footnote attributes to the table}
+\title{Add Footnote Attributes to Table}
 \usage{
 rtf_footnote(
   tbl,
@@ -36,7 +36,7 @@ rtf_footnote(
 )
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 
 \item{footnote}{A vector of character for footnote text.}
 
@@ -134,13 +134,13 @@ All possible input can be found in \code{r2rtf:::justification()$type}.}
 
 \item{text_convert}{A logical value to convert special characters. Default is TRUE.}
 
-\item{as_table}{logical value to display it as a table.}
+\item{as_table}{A logical value to display it as a table.}
 }
 \value{
 the same data frame \code{tbl} with additional attributes for table footnote
 }
 \description{
-Add footnote attributes to the table
+Add Footnote Attributes to Table
 }
 \section{Specification}{
 
@@ -156,7 +156,7 @@ Add footnote attributes to the table
 \examples{
 library(dplyr) # required to run examples
 data(tbl_1)
-tbl_1 \%>\% rtf_footnote("\\\\dagger Based on an ANCOVA model.") \%>\%
-    attr("rtf_footnote")
-
+tbl_1 \%>\%
+  rtf_footnote("\\\\dagger Based on an ANCOVA model.") \%>\%
+  attr("rtf_footnote")
 }

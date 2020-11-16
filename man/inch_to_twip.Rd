@@ -7,7 +7,7 @@
 inch_to_twip(inch)
 }
 \arguments{
-\item{inch}{value in inches}
+\item{inch}{Value in inches.}
 }
 \description{
 Convert Inches to Twips

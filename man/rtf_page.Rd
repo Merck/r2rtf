@@ -19,9 +19,9 @@ rtf_page(
 )
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 
-\item{orientation}{Page orientation}
+\item{orientation}{Orientation in 'portrait' or 'landscape'.}
 
 \item{width}{A numeric value of page width in inches.
 Default is 8.5 inch in portrait orientation or 11.0 inch in landscape orientation.}
@@ -72,6 +72,7 @@ Add RTF File Page Information
 \examples{
 library(dplyr) # required to run examples
 data(tbl_1)
-tbl_1 \%>\% rtf_page() \%>\% attr("page")
-
+tbl_1 \%>\%
+  rtf_page() \%>\%
+  attr("page")
 }

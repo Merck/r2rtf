@@ -13,8 +13,8 @@ RTF Text Font Dictionary
 
 \if{latex}{
  \itemize{
-   \item Collect most commonly used fonts (Times New Roman, Times New Roman Greek, and Arial Greek).
-   \item Define font types in 1, 2, 3.
+   \item Collect most commonly used fonts (Times New Roman, Times New Roman Greek, and Arial Greek, etc.).
+   \item Define font types from 1 to 10.
    \item Define font styles.
    \item Create a mapping between font types and their RTF code.
  }

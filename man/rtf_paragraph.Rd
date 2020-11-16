@@ -18,25 +18,25 @@ rtf_paragraph(
 )
 }
 \arguments{
-\item{text}{rtf text obtained using \code{.rtf_text(text,...)} function}
+\item{text}{rtf text obtained using \code{rtf_text()} function.}
 
-\item{justification}{justification for text}
+\item{justification}{Justification for text.}
 
-\item{indent_first}{first indent}
+\item{indent_first}{First indent.}
 
-\item{indent_left}{left indent}
+\item{indent_left}{Left indent.}
 
-\item{indent_right}{right indent}
+\item{indent_right}{Right indent.}
 
-\item{space}{paragraph space}
+\item{space}{Paragraph space.}
 
-\item{space_before}{line space before text}
+\item{space_before}{Line space before text.}
 
-\item{space_after}{line space after text}
+\item{space_after}{Line space after text.}
 
-\item{new_page}{boolean value to indicate whether to start a new page}
+\item{new_page}{A boolean value to indicate whether to start a new page.}
 
-\item{hyphenation}{boolean value to indicate whether to use hyphenation}
+\item{hyphenation}{A boolean value to indicate whether to use hyphenation.}
 }
 \description{
 Paragraph to RTF Encode

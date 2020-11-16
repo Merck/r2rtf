@@ -7,7 +7,7 @@
 footnote_source_space(tbl)
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 }
 \value{
 a value indicating the amount of space adjustment

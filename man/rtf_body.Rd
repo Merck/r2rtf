@@ -7,7 +7,7 @@
 rtf_body(
   tbl,
   col_rel_width = rep(1, ncol(tbl)),
-  colheader = TRUE,
+  as_colheader = TRUE,
   border_left = "single",
   border_right = "single",
   border_top = "",
@@ -50,7 +50,7 @@ rtf_body(
 \item{col_rel_width}{Column relative width in a vector e.g. c(2,1,1) refers to 2:1:1.
 Default is NULL for equal column width.}
 
-\item{colheader}{A boolean value to indicate whether to add default column header to the table.
+\item{as_colheader}{A boolean value to indicate whether to add default column header to the table.
 Default is TRUE to use data frame column names as column header.}
 
 \item{border_left}{Left border type. Default is "single". To vary left border by column, use
@@ -157,9 +157,9 @@ All possible input can be found in \code{r2rtf:::justification()$type}.}
 
 \item{text_space_after}{Line space after text in twips. Default is 15 for 0.0104 inch.}
 
-\item{text_convert}{a logical value to convert special characters. Default is TRUE.}
+\item{text_convert}{A logical value to convert special characters. Default is TRUE.}
 
-\item{group_by}{Column names in a character vector to remove duplicate records.}
+\item{group_by}{A character vector of variable names in \code{tbl}.}
 
 \item{page_by}{Column names in a character vector to group by table in sections.
 Default is NULL.}
@@ -220,9 +220,10 @@ Add Table Body Attributes to the Table
 library(dplyr) # required to run examples
 data(tbl_1)
 tbl_1 \%>\%
-  rtf_body(col_rel_width = c(3,1,3,1,3,1,3,5),
-           text_justification = c("l",rep("c",7)),
-           last_row = FALSE) \%>\%
+  rtf_body(
+    col_rel_width = c(3, 1, 3, 1, 3, 1, 3, 5),
+    text_justification = c("l", rep("c", 7)),
+    last_row = FALSE
+  ) \%>\%
   attributes()
-
 }

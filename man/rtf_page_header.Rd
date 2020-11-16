@@ -6,7 +6,7 @@
 \usage{
 rtf_page_header(
   tbl,
-  text = "Page \\\\chpgn  of {\\\\field{\\\\*\\\\fldinst NUMPAGES }}",
+  text = "Page \\\\pagenumber of \\\\pagefield",
   text_font = 1,
   text_format = NULL,
   text_font_size = 12,
@@ -23,7 +23,7 @@ rtf_page_header(
 )
 }
 \arguments{
-\item{tbl}{A data frame}
+\item{tbl}{A data frame.}
 
 \item{text}{A character string.}
 
