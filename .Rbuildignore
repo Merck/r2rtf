@@ -11,6 +11,7 @@
 ^pkgdown$
 ^pipelines-definition.groovy$
 ^README\.Rmd$
+^README\.md$
 ^inst\Rbadges$
 ^\.gitignore$
 ^\.DS_Store$

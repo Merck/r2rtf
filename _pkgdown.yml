@@ -14,7 +14,7 @@ navbar:
     - icon: fa-home
       href: index.html
     - icon: fa-file-code-o
-      text: "reference"
+      text: "Reference"
       href: reference/index.html
     - text: "Articles"
       icon: fas fa-book
