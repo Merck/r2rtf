@@ -1,4 +1,4 @@
-# r2rtf 0.1.1.9001 (development version)
+# r2rtf 0.2.0
 
 * Add `rtf_subline`, `rtf_page_header`, `rtf_page_footer`.
 * Add `rtf_page` to set page related attributes. 
