@@ -15,6 +15,10 @@ Overview
 
 Create RTF table and figure with flexible format.
 
+-   [Website](https://merck.github.io/r2rtf/index.html)
+-   [Overview
+    Paper](https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf)
+
 Installation
 ------------
 
