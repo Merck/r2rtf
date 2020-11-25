@@ -85,23 +85,6 @@
     </li>
   </ul>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-user-shield"></span>
-     
-    Validation
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/plan_track.html">Validation Plan and Track</a>
-    </li>
-    <li>
-      <a href="../articles/code_cov.html">Tests &amp; Coverage Report</a>
-    </li>
-  </ul>
-</li>
 <li>
   <a href="../news/index.html">
     <span class="fa fa-newspaper-o"></span>
@@ -149,7 +132,7 @@
 <p>This document is for developers who would like to understand the internal of the <code>r2rtf</code> package.</p>
 </blockquote>
 <p>The r2rtf package is developed to standardize the approach to generate highly customized tables, listings and figures (TLFs) in RTF format and provide flexibility to customize table appearance for table title, subtitle, column header, footnote, and data source.</p>
-<p>The r2rtf package is designed to enables pipes (<code><a href="https://rdrr.io/pkg/magrittr/man/pipe.html">%&gt;%</a></code>), the first argument are all <code>tbl</code> except <code><a href="../reference/rtf_read_png.html">rtf_read_png()</a></code> and <code><a href="../reference/write_rtf.html">write_rtf()</a></code>. A minimal example summarized the major steps in using r2rtf package to create a table or listing after a data frame is ready.</p>
+<p>The r2rtf package is designed to enables pipes (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>), the first argument are all <code>tbl</code> except <code><a href="../reference/rtf_read_png.html">rtf_read_png()</a></code> and <code><a href="../reference/write_rtf.html">write_rtf()</a></code>. A minimal example summarized the major steps in using r2rtf package to create a table or listing after a data frame is ready.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>                <span class="co"># Step 1 Add attributes </span>
                <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>              <span class="co"># Step 2 Convert attributes to RTF encode </span>
