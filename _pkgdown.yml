@@ -35,13 +35,6 @@ navbar:
          href: articles/rtf-text.html
       -  text: "Package Design Pattern"
          href: articles/design-pattern.html
-    - icon: fa-user-shield
-      text: "Validation"
-      menu:
-      -  text: "Validation Plan and Track"
-         href: articles/plan_track.html
-      -  text: "Tests & Coverage Report"
-         href: articles/code_cov.html
     - icon: fa-newspaper-o
       text: "Changelog"
       href: news/index.html
