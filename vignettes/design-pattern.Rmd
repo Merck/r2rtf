@@ -344,10 +344,11 @@ iris %>% arrange(Species) %>%
 
 
 ## Utility functions
-    * `check_args()`: Function for argument checking for types, length or dimension, this function is used for all export functions except `write_rtf()`.
-    * `match_arg()`: Function for argument verification on input values to see whether they match `dictionary()` defined values, 
-    this function is used for all export functions except `write_rtf`().
-    * 'footnote_source_space()`: Function to derive space adjustment, whose results could be used in `rtf_footnote()` and `rtf_source()` 
-    when indentation is defined by user.
+
+* `check_args()`: Function for argument checking for types, length or dimension, this function is used for all export functions except `write_rtf()`.
+* `match_arg()`: Function for argument verification on input values to see whether they match `dictionary()` defined values, 
+this function is used for all export functions except `write_rtf`().
+* 'footnote_source_space()`: Function to derive space adjustment, whose results could be used in `rtf_footnote()` and `rtf_source()` 
+when indentation is defined by user.
     
  

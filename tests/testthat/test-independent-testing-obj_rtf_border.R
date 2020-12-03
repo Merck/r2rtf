@@ -114,7 +114,13 @@ test_that("Test if color_used is derived correctly", {
   expect_equal(attr(a,"use_color")[1], FALSE)
 })
 
-test_that("Check transfer vector to matrix by row", {
-  expect_error(obj_rtf_border(tbl =  ,border_left = "testing")
-  )
+test_that("Test when input is a vector and attribute length is greater than 1", {
+  expect_error(obj_rtf_border(tbl = iris[c(1:5),1]
+                              ,border_top = c("single","single")))
+})
+
+test_that("Test when input is a vector and attribute length is equal to 1", {
+  a <- obj_rtf_border(tbl = iris[c(1:5),1]
+                      ,border_top = c("single"))
+  expect_equal(attr(a, "border_top"), "single")
 })

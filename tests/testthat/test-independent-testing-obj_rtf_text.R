@@ -116,3 +116,12 @@ test_that("Test if color_used is derived correctly", {
   )
   expect_equal(attr(a,"use_color")[1], FALSE)
 })
+
+test_that("Test when input is a data frame", {
+  a <- obj_rtf_text(text = iris[1:2,]
+                    ,text_font = 1
+                    ,text_format = "b"
+  )
+  expect_equal(attr(a, "text_font"), matrix(data=rep(1, 10), nrow = 2))
+  expect_equal(attr(a, "text_format"), matrix(data=rep("b", 10), nrow = 2))
+})
