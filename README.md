@@ -7,7 +7,7 @@ coverage](https://codecov.io/gh/Merck/r2rtf/branch/master/graph/badge.svg)](http
 [![R build
 status](https://github.com/Merck/r2rtf/workflows/R-CMD-check/badge.svg)](https://github.com/Merck/r2rtf/actions)
 [![CRAN
-Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/web/packages/r2rtf/index.html)
+Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/package=r2rtf)
 <!-- badges: end -->
 
 Overview
