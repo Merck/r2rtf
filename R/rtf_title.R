@@ -40,8 +40,8 @@
 #'
 #' @examples
 #' library(dplyr) # required to run examples
-#' data(tbl_1)
-#' tbl_1 %>%
+#' data(r2rtf_tbl1)
+#' r2rtf_tbl1 %>%
 #'   rtf_title(title = "ANCOVA of Change from Baseline at Week 8") %>%
 #'   attr("rtf_title")
 #' @export
@@ -145,6 +145,7 @@ rtf_subline <- function(tbl,
                         text_indent_first = 0,
                         text_indent_left = 0,
                         text_indent_right = 0,
+                        text_indent_reference = "table",
 
                         text_space = 1,
                         text_space_before = 180,
@@ -158,11 +159,11 @@ rtf_subline <- function(tbl,
   }
 
   if (text_justification == "l") {
-    text_indent_left <- footnote_source_space(tbl)
+    text_indent_left <- text_indent_left + footnote_source_space(tbl, text_indent_reference)
   }
 
   if (text_justification == "r") {
-    text_indent_right <- footnote_source_space(tbl)
+    text_indent_right <- text_indent_right + footnote_source_space(tbl, text_indent_reference)
   }
 
   text <- obj_rtf_text(text,

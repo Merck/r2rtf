@@ -39,3 +39,15 @@ test_that("footnote text color red", {
   x <- iris %>% rtf_page() %>% rtf_body() %>% rtf_footnote(footnote="testing", text_color="red")
   expect_equal(attr(attr(x, "rtf_footnote"), 'text_color'), "red")
 })
+
+test_that("footnote justification right and identation right 2, and text_indent_reference is table/page_margin", {
+  x <- iris %>% rtf_page(width = 6, col_width = 3) %>%
+    rtf_body()
+  x_table <- x %>% rtf_footnote(footnote="testing", text_indent_right=2, text_justification  = "r",
+                 text_indent_reference = "table")
+  expect_equal(attr(attr(x_table, "rtf_footnote"), 'text_indent_right'), 2+540)
+
+  x_page <- x %>% rtf_footnote(footnote="testing", text_indent_right=2, text_justification  = "r",
+                                text_indent_reference = "page_margin")
+  expect_equal(attr(attr(x_page, "rtf_footnote"), 'text_indent_right'), 2+0)
+})

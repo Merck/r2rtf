@@ -47,3 +47,15 @@ test_that("check if use_color attribute is assigned correctly", {
   expect_false(attributes(c)$page$use_color)
 
 })
+
+test_that("check justification when 'l' and text_indent_reference is table/page_margin ", {
+
+  a <- head(iris) %>% rtf_page(width = 5.5, col_width = 3) %>%
+    rtf_body()
+  a_table <- a %>%  rtf_subline(text="sublinetest", text_indent_reference = "table")
+  expect_equal(attributes(attributes(a_table)$rtf_subline)$text_indent_left, 180)
+
+  a_page <- a %>%  rtf_subline(text="sublinetest", text_indent_reference = "page_margin")
+  expect_equal(attributes(attributes(a_page)$rtf_subline)$text_indent_left, 0)
+
+})

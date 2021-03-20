@@ -115,4 +115,22 @@ test_that("Test if new_page is FALSE and group_by is NOT NULL", {
   expect_output(str(y), "total : num")
   expect_output(str(y), "page  : num")
   expect_output(str(y), "index : int")
+
+})
+
+test_that("Test whether lines with '-----' were removed correctly", {
+  x <- distinct(iris %>% subset(Species != "virginica"), Species, .keep_all = T) %>%
+       mutate(Species = ifelse(Species == "setosa", "-----", Species)) %>%
+
+    rtf_colheader("Sepal.Length | Sepal.Width | Petal.Length | Petal.Width",
+                  col_rel_width = rep(1, 4)) %>%
+
+    rtf_body(page_by = "Species",
+             text_justification = c(rep("c", 4), "l"),
+             border_top = c(rep("", 4), "single"),
+             border_bottom = c(rep("", 4), "single")) %>%
+
+    rtf_encode()
+
+  expect_snapshot_output(x$body)
 })

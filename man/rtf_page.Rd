@@ -71,8 +71,8 @@ Add RTF File Page Information
 
 \examples{
 library(dplyr) # required to run examples
-data(tbl_1)
-tbl_1 \%>\%
+data(r2rtf_tbl1)
+r2rtf_tbl1 \%>\%
   rtf_page() \%>\%
   attr("page")
 }

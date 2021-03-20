@@ -10,14 +10,16 @@ output:
 ```{r}
 library(haven)
 library(dplyr)
+library(tidyr)
 devtools::load_all()
 ```
+# Example 1: pageby and groupby feature
 
 ## Step 1: Get raw summary
 ```{r}
-data(adae)
+data(r2rtf_adae)
 
-ae_t1<- adae %>% 
+ae_t1<- r2rtf_adae %>% 
      slice(1:100) %>%
      mutate(SUBJLINE=paste0("Trial Number = ",STUDYID,
                             ", Site Number = ",SITEID,
@@ -25,7 +27,8 @@ ae_t1<- adae %>%
                             ", Gender = ",SEX,
                             ", Race = ",RACE, 
                             ", AGE = ",AGE, " Years"), 
-      # create a subject line with participant's demographic information.         # this is for page_by argument in rtf_body function 
+      # create a subject line with participant's demographic information.       
+      # this is for page_by argument in rtf_body function 
             AEDECD1=tools::toTitleCase(AEDECOD), # propcase the AEDECOD
             DUR=paste(ADURN,ADURU,sep=" "))%>% # AE duration with unit
      select(USUBJID,ASTDY,AEDECD1,DUR,AESEV,AESER,AEREL,AEACN,AEOUT,TRTA,SUBJLINE) # display variable using this order
@@ -36,7 +39,7 @@ ae_t1<- adae %>%
 ae_t1 
 ```
 
-# RTF Table Generation
+## RTF Table Generation
 ```{r}
 ae_tbl <- ae_t1 %>% arrange(TRTA, SUBJLINE, USUBJID, ASTDY) %>% 
   
@@ -67,7 +70,7 @@ ae_tbl <- ae_t1 %>% arrange(TRTA, SUBJLINE, USUBJID, ASTDY) %>%
            border_top = c(rep("", 9), "single","single"), 
            border_bottom = c(rep("", 9), "single","single"),
            border_left = c(rep(c("single"), 11) ),
-           page_by=c("TRTA","SUBJLINE"), 
+           page_by=c("TRTA","SUBJLINE"),  
            group_by = c("USUBJID", "ASTDY")) %>%
   
   rtf_footnote(c("This is footnote 1\nThis is footnote 2")) %>% # \n is to change line
@@ -77,7 +80,7 @@ ae_tbl <- ae_t1 %>% arrange(TRTA, SUBJLINE, USUBJID, ASTDY) %>%
              as_table = FALSE) 
 ```
 
-# Export RTF Table
+## Export RTF Table
 ```{r, warning = FALSE}
 ae_tbl %>% rtf_encode() %>% write_rtf("rtf/pageby-ae-listing.rtf")
 ```
@@ -85,4 +88,98 @@ ae_tbl %>% rtf_encode() %>% write_rtf("rtf/pageby-ae-listing.rtf")
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/pageby-ae-listing.pdf")
 ```
+
+# Example 2: removing rows with page_by variable   
+> This example shows how to remove rows by setting corresponding value in page_by variable to "-----".
+
+## Step 1: Get raw summary
+```{r}
+data(r2rtf_adsl)
+adsl <- r2rtf_adsl
+
+row1<- adsl %>% subset(ITTFL == "Y") %>% group_by(TRT01P) %>% count()                                         # randomized 
+row2<- adsl %>% subset(SAFFL == 'Y') %>% group_by(TRT01P) %>% summarise(trtn =n())                            # treated 
+row3<- adsl %>% subset(SAFFL == 'Y' & DCREASCD == "Completed") %>% group_by(TRT01P) %>% summarise(cmpln =n()) # completed
+row4<- adsl %>% subset(SAFFL == 'Y' & DCREASCD != "Completed") %>% group_by(TRT01P) %>% summarise(dcn =n())   # discontinued
+
+reas <- adsl %>% 
+        subset(SAFFL == 'Y' & DCREASCD != "Completed") %>% 
+        group_by(TRT01P, DCREASCD) %>% 
+        summarise(reasn=n())   # discontinuation reason
+
+ds <- rbind(row1 %>% merge(row2,  by='TRT01P')%>% 
+                     merge(row3,  by='TRT01P')%>% 
+                     merge(row4,  by='TRT01P')%>% 
+                     pivot_longer(2:5, names_to="DCREASCD", values_to="n") %>% 
+                     pivot_wider(names_from=TRT01P, values_from='n'),
+              
+            reas %>% pivot_wider(names_from=TRT01P, values_from=c('reasn'))  
+      )%>%       
+      mutate(DCREASCD = ifelse(DCREASCD == 'n',     'Participants randomized', 
+                        ifelse(DCREASCD == 'trtn',  'Participants treated', 
+                        ifelse(DCREASCD == 'cmpln', 'Participants completed', 
+                        ifelse(DCREASCD == 'dcn',   'Participants discontinued', paste0("   ", DCREASCD))))),
+            pagebyvar = ifelse(substr(DCREASCD, 1,5) == "Parti", "-----", "Discontinued reason")) %>%  
+  
+            # pagebyvar will be assigned to page_by argument in rtf_body function later. 
+            # then table will be grouped by single cell row with pagebyvar's value in it.
+            # if pagebyvar's value is "-----", the single cell row will be removed from table.
+
+      select(pagebyvar, DCREASCD, "Xanomeline High Dose" , "Xanomeline Low Dose" , Placebo)
+
+ds[is.na(ds)] <- 0
+
+```
+
+
+```{r}
+ds
+```
+
+## RTF Table Generation
+```{r}
+ds_tbl <- ds %>%  
+  
+  rtf_page_footer(text = "CONFIDENTIAL") %>% 
+
+  rtf_title("Disposition of Participants", "(ITT Population)") %>%
+
+  rtf_colheader(" | Xanomeline High Dose |Xanomeline Low Dose | Placebo", 
+                col_rel_width = c(3.5, 2, 2, 2)) %>%
+
+  rtf_colheader(" | n | n | n ",
+                border_top    = c("", rep("single", 3)),
+                border_left   = c(rep("single", 4)),
+                col_rel_width = c(3.5, rep(2, 3)) ) %>%
+
+  rtf_body(page_by            = "pagebyvar",  
+           
+            # the table will be grouped by single cell row with pagebyvar's value in it.
+            # if pagebyvar's value is "-----", the single cell row will be removed from table.
+
+           col_rel_width      = c(5, 3.5, 2, 2, 2),
+           text_justification = c("l", "l", rep("d", 3)),
+           text_format        = c("b", rep("", 4)),
+           border_top         = c("single", rep("", 4)),
+           border_bottom      = c("single", rep("", 4)),
+           border_left        = c(rep("single", 5))
+           ) %>%
+  
+  rtf_footnote(c("This is footnote 1\nThis is footnote 2")) %>% # \n is to change line
+  
+  rtf_source("Source:  [Study MK9999P001: adam-adsl]", 
+             text_justification = "l", 
+             as_table = FALSE) 
+  
+```
+
+## Export RTF Table
+```{r, warning = FALSE}
+ds_tbl %>% rtf_encode() %>% write_rtf("rtf/pageby-disposition.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/pageby-disposition.pdf")
+```
+
 

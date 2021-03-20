@@ -237,8 +237,8 @@ rtf_table_content <- function(tbl,
 
   ## Combine cell content/text attributes of justification, font, font-size, format and color.
   cell_rtf <- paste0(
-    cell, text_justification_rtf,
-    "{", text_font_rtf, text_font_size_rtf, text_color_rtf, text_format_rtf,
+    cell, text_justification_rtf, text_font_size_rtf,
+    "{", text_font_rtf, text_color_rtf, text_format_rtf,
     " ", content_matrix, "}", "\\cell"
   )
   cell_rtf <- t(matrix(cell_rtf, nrow = n_row, ncol = n_col))

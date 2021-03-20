@@ -113,8 +113,8 @@ bs_continous <- function(data, grp, var,
 
 
 # Analaysis Set
-data(adsl)
-ana <- adsl %>% subset(ITTFL == "Y")
+data(r2rtf_adsl)
+ana <- r2rtf_adsl %>% subset(ITTFL == "Y")
 ana <- ana %>% mutate(
   RACE = factor(
     RACE,
@@ -135,23 +135,31 @@ bs_tb <- bind_rows(
 bs_tb[is.na(bs_tb)] <- ""
 ```
 
+By default, the input dataset will be sorted by alphabetical order of the page_by variable in `rtf_body()`, if order other than alphabetical is desired, users need to reorganize the order by defining it in a factor with desired levels (example shown below).
+```{r}
+bs_tb$var_label<-factor(bs_tb$var_label, levels=c("Race", "Gender", "Age (Years)"))
+
+```
 
 ```{r}
 bs_rtf <- bs_tb %>%
   rtf_page(width = 9.5) %>%
   rtf_title("Demographic and Anthropometric Characteristics", "ITT Subjects") %>%
-  rtf_colheader(" | Placebo | Drug Low Dose | Drug High Dose | Total | label",
-    col_rel_width = c(3, rep(2, 4), 3)
+  rtf_colheader(" | Placebo | Drug Low Dose | Drug High Dose | Total ",
+    col_rel_width = c(3, rep(2, 4))
   ) %>%
-  rtf_colheader(" | n | (%) | n | (%) | n | (%) | n | (%) | label",
-    col_rel_width = c(3, rep(c(1.2, 0.8), 4), 3),
-    border_top = c("", rep("single", 9)),
-    border_left = c("single", rep(c("single", ""), 4), "single")
+  rtf_colheader(" | n | (%) | n | (%) | n | (%) | n | (%) ",
+    col_rel_width = c(3, rep(c(1.2, 0.8), 4)),
+    border_top = c("", rep("single", 8)),
+    border_left = c("single", rep(c("single", ""), 4))
   ) %>%
-  rtf_body(
+  rtf_body(page_by = "var_label",
     col_rel_width = c(3, rep(c(1.2, 0.8), 4), 3),
-    text_justification = c("l", rep("d", 8), "c"),
-    border_left = c("single", rep(c("single", ""), 4), "single")
+    text_justification = c("l", rep("d", 8), "l"),
+    text_format=c(rep("",9), "b"),
+    border_left = rep("single", 10),
+    border_top         = c(rep("", 9),"single"),
+    border_bottom      = c(rep("", 9),"single"),
   ) %>%
   rtf_footnote("This is a footnote") %>%
   rtf_source("Source: xxx")

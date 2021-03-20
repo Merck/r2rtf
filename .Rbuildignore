@@ -23,5 +23,3 @@
 ^jenkins$
 ^jobs-configuration.groovy$
 ^codecov\.yml$
-^CRAN-RELEASE$
-^cran-comments\.md$

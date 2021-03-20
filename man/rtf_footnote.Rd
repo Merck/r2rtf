@@ -28,6 +28,7 @@ rtf_footnote(
   text_indent_first = 0,
   text_indent_left = 0,
   text_indent_right = 0,
+  text_indent_reference = "table",
   text_space = 1,
   text_space_before = 15,
   text_space_after = 15,
@@ -40,23 +41,23 @@ rtf_footnote(
 
 \item{footnote}{A vector of character for footnote text.}
 
-\item{border_left}{Left border type. Default is "single". To vary left border by column, use
+\item{border_left}{Left border type. To vary left border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 \code{r2rtf:::border_type()$name}.}
 
-\item{border_right}{Right border type. Default is "single". To vary right border by column, use
+\item{border_right}{Right border type. To vary right border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 \code{r2rtf:::border_type()$name}.}
 
-\item{border_top}{Top border type. Default is NULL. To vary top border by column, use
+\item{border_top}{Top border type. To vary top border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). If it is the first row in a table for this
 page, the top border is set to "double" otherwise the border is set to "single".
 All possible input can be found in \code{r2rtf:::border_type()$name}.}
 
-\item{border_bottom}{Bottom border type. Default is "double" indicating double line bottom border.
+\item{border_bottom}{Bottom border type.
 To vary bottom border by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("single","single","single").
 All possible input can be found in \code{r2rtf:::border_type()$name}.}
@@ -126,6 +127,8 @@ All possible input can be found in \code{r2rtf:::justification()$type}.}
 
 \item{text_indent_right}{A value of right indent.}
 
+\item{text_indent_reference}{The reference start point of text indent. Accept \code{table} or \code{page_margin}}
+
 \item{text_space}{A value of text space.}
 
 \item{text_space_before}{Line space before text in twips. Default is 15 for 0.0104 inch.}
@@ -155,8 +158,8 @@ Add Footnote Attributes to Table
 
 \examples{
 library(dplyr) # required to run examples
-data(tbl_1)
-tbl_1 \%>\%
+data(r2rtf_tbl1)
+r2rtf_tbl1 \%>\%
   rtf_footnote("\\\\dagger Based on an ANCOVA model.") \%>\%
   attr("rtf_footnote")
 }

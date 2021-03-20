@@ -1,3 +1,14 @@
+# r2rtf 0.2.0.9000 (development)
+
+* Rename dataset with prefix `r2rtf` to avoid conflict of other namespace
+* Enable special place holder "-----" in `pageby` variable to suppress line displayed 
+  in `pageby` variable (ref Example 2 in `vignette/example-pageby-groupby`)
+* New argument `pageby_row` in `rtf_body` to display first row instead of `pageby` variable when `pageby_row = "first_row"` 
+* New internal function `rtf_subset` to subset an rtf table object.
+* Bug fix `groupby` can be used when `pageby=NULL`.
+* Bug fix `pageby` can not sort format style in `rtf_body`
+* 
+
 # r2rtf 0.2.0 (2020-12-04)
 
 * Add `rtf_subline`, `rtf_page_header`, `rtf_page_footer`.

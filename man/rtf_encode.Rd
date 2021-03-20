@@ -77,11 +77,9 @@ rtf_read_png(file) \%>\%
 
 ## convert tbl_1 to the table body. Add title, subtitle, two table
 ## headers, and footnotes to the table body.
-data(tbl_1)
-data(tbl_2)
-data(tbl_3)
-## convert tbl_2 to the table body. Add a table column header to table body.
-t2 <- tbl_2 \%>\%
+data(r2rtf_tbl2)
+## convert r2rtf_tbl2 to the table body. Add a table column header to table body.
+t2 <- r2rtf_tbl2 \%>\%
   rtf_colheader(
     colheader = "Pairwise Comparison |
                    Difference in LS Mean(95\% CI)\\\\dagger | p-Value",

@@ -29,6 +29,8 @@
 #' @param new_page A boolean value to indicate whether to separate grouped table into pages
 #'                 by sections. Default is FALSE.
 #' @param pageby_header A boolean value to display pageby header at the beginning of each page.
+#' @param pageby_row A character vector of location of page_by variable. Possible input are 'column'
+#' or 'first_row'. Default is 'column'.
 #' @param last_row A boolean value to indicate whether the table contains the last row of the
 #'                 final table. Default is TRUE.
 #' @inheritParams rtf_footnote
@@ -74,8 +76,8 @@
 #'
 #' @examples
 #' library(dplyr) # required to run examples
-#' data(tbl_1)
-#' tbl_1 %>%
+#' data(r2rtf_tbl1)
+#' r2rtf_tbl1 %>%
 #'   rtf_body(
 #'     col_rel_width = c(3, 1, 3, 1, 3, 1, 3, 5),
 #'     text_justification = c("l", rep("c", 7)),
@@ -133,6 +135,7 @@ rtf_body <- function(tbl,
                      page_by = NULL,
                      new_page = FALSE,
                      pageby_header = TRUE,
+                     pageby_row = "column",
 
                      last_row = TRUE) {
 
@@ -147,8 +150,14 @@ rtf_body <- function(tbl,
   check_args(page_by, type = c("character"))
   check_args(new_page, type = c("logical"))
   check_args(pageby_header, type = c("logical"))
+  check_args(pageby_row, type = c("character"))
 
   check_args(last_row, type = c("logical"))
+
+  # Check valid value
+  match_arg(group_by, names(tbl), several.ok = TRUE)
+  match_arg(page_by, names(tbl), several.ok = TRUE)
+  match_arg(pageby_row, c("first_row", "column"))
 
   # Convert tbl to a data frame
   tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
@@ -161,6 +170,7 @@ rtf_body <- function(tbl,
   # Sort data in proper order if page_by or group_by is used.
   by_var <- c(page_by, group_by)
 
+  order_check <- FALSE
   if (!is.null(by_var)) {
     if (length(by_var) != length(unique(by_var))) stop("Variables in page_by and group_by can not be overlapped")
 
@@ -172,7 +182,7 @@ rtf_body <- function(tbl,
 
     if (!all(order_var == 1:nrow(tbl))) {
       message("Data are sorted by ", paste(by_var, collapse = ", "))
-      tbl <- tbl[order_var, ]
+      order_check <- TRUE
     }
   }
 
@@ -209,7 +219,6 @@ rtf_body <- function(tbl,
   )
   if (attr(tbl, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
-
   # Define border attributes
   tbl <- obj_rtf_border(
     tbl,
@@ -245,11 +254,14 @@ rtf_body <- function(tbl,
 
   attr(tbl, "last_row") <- last_row
 
+  if(order_check) tbl <- rtf_subset(tbl, row = order_var)
+
   # Pageby Attributions
   tbl <- rtf_pageby(tbl,
     page_by = page_by,
     new_page = new_page,
-    pageby_header = pageby_header
+    pageby_header = pageby_header,
+    pageby_row = pageby_row
   )
 
   tbl

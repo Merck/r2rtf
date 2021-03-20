@@ -27,7 +27,7 @@
 #'
 #' @source \url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
 #'
-"adae"
+"r2rtf_adae"
 
 #' A Subject Level Demographic Dataset
 #'
@@ -40,7 +40,7 @@
 #' @format A data frame with 254 rows and 51 variables.
 #'
 #' @source \url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
-"adsl"
+"r2rtf_adsl"
 
 #' An Efficacy Clinical Trial Data to Evaluate a Drug to Reduce Lower Back Pain
 #'
@@ -52,28 +52,28 @@
 #' @format A data frame with 831 rows and 6 variables.
 #'
 #' @source \url{https://missingdata.lshtm.ac.uk/dia-working-group/}
-"HAMD17"
+"r2rtf_HAMD17"
 
 #' Within Group Results from an ANCOVA Model
 #'
 #' A dataset containing within group results from an ANCOVA model.
 #'
 #' @format A data frame with 2 rows and 8 variables.
-"tbl_1"
+"r2rtf_tbl1"
 
 #' Between Group Results from an ANCOVA Model
 #'
 #' A dataset containing between group results from an ANCOVA model.
 #'
 #' @format A data frame with 1 row and 3 variables.
-"tbl_2"
+"r2rtf_tbl2"
 
 #' Root Mean Square Error from an ANCOVA model
 #'
 #' A dataset containing root mean square error from an ANCOVA model.
 #'
 #' @format A data frame with 1 row and 1 variable.
-"tbl_3"
+"r2rtf_tbl3"
 
 #' Dictionary of Unicode and Latex Code
 #'

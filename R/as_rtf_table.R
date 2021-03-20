@@ -87,7 +87,7 @@ as_rtf_table <- function(tbl) {
   if (!is.null(group_by)) {
     cell_tbl <- rtf_group_by_enhance(cell_tbl,
       group_by = group_by,
-      page_index = subset(page_dict, !pageby)$page
+      page_index = page_dict$page
     )
   }
 

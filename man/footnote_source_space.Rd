@@ -4,10 +4,12 @@
 \alias{footnote_source_space}
 \title{Derive Space Adjustment}
 \usage{
-footnote_source_space(tbl)
+footnote_source_space(tbl, text_indent_reference = "table")
 }
 \arguments{
 \item{tbl}{A data frame.}
+
+\item{text_indent_reference}{The reference start point of text indent. Accept \code{table} or \code{page_margin}}
 }
 \value{
 a value indicating the amount of space adjustment

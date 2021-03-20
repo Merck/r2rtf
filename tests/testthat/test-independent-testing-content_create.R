@@ -61,7 +61,7 @@ test_that("RTF page margin encode", {
 test_that("RTF page margin encode - landscape + height 4 + width 6", {
   x <- iris %>% rtf_page(orientation = 'landscape', width=6, height=4)
   expect_equal(as_rtf_margin(x),
-               "\\margl720\\margr720\\margt2880\\margb1800\\headery1800\\footery1800\n")
+               "\\margl1440\\margr1440\\margt2880\\margb1800\\headery1800\\footery1800\n")
 })
 
 test_that("RTF title ", {
@@ -108,7 +108,7 @@ test_that("RTF footnote when as_table = TRUE", {
   expect_snapshot_output(as_rtf_footnote(x))})
 
 test_that("RTF footnote when as_table = FALSE", {
-  x <- iris %>% rtf_footnote(footnote = "test", as_table = FALSE)
+  x <- iris %>% rtf_body() %>% rtf_footnote(footnote = "test", as_table = FALSE)
   expect_equal(as_rtf_footnote(x),
                "{\\pard\\hyphpar\n\\sb15\\sa15\\fi0\\li0\\ri0\\ql\n{\\f0\\fs18 test}\n\\par}")
 })

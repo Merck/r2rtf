@@ -18,7 +18,7 @@ test_that("RTF colheader", {
                          , col_rel_width = rep(1, ncol(d1))
   )
 
-  encode2 <-  rtf_encode_table (d2)
+  encode2 <-  rtf_encode_table(d2)
 
   colheader <- attr(d2, "rtf_colheader")
 
@@ -26,7 +26,7 @@ test_that("RTF colheader", {
     head <- attributes(colheader[[1]])$border_top
     attributes(colheader[[1]])$border_top <- matrix( attr(d2, "page")$border_first, nrow = 1, ncol = ncol(head))
 
-    colheader_rtftext_1 <- lapply(colheader, rtf_table_content,
+    colheader_rtftext_1 <- lapply(colheader, rtf_table_content, use_border_bottom = TRUE,
                                   col_total_width = attr(d2, "page")$col_width)
 
     colheader_rtftext_2 <- unlist(colheader_rtftext_1)
