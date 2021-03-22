@@ -17,3 +17,6 @@ test_that("space adjust when orientation is landscape", {
   expect_equal(footnote_source_space(tbl.l), adj.space.l)
 })
 
+test_that("test when text_indent_reference is page_margin", {
+  expect_equal(footnote_source_space(tbl.l, text_indent_reference = "page_margin"), 0)
+})

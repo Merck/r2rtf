@@ -38,8 +38,8 @@
 #'
 #' @examples
 #' library(dplyr) # required to run examples
-#' data(tbl_1)
-#' tbl_1 %>%
+#' data(r2rtf_tbl1)
+#' r2rtf_tbl1 %>%
 #'   rtf_colheader(
 #'     colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
 #'                   Mean (SD) | LS Mean (95% CI)\\dagger",

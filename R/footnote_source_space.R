@@ -18,6 +18,7 @@
 #' Derive Space Adjustment
 #'
 #' @param tbl A data frame.
+#' @param text_indent_reference The reference start point of text indent. Accept `table` or `page_margin`
 #'
 #' @return a value indicating the amount of space adjustment
 #'
@@ -32,7 +33,17 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-footnote_source_space <- function(tbl) {
+footnote_source_space <- function(tbl,
+                                  text_indent_reference = "table") {
+
+  # Input checking
+  match_arg(text_indent_reference, c("table", "page_margin"))
+  check_args(text_indent_reference, "character", length= 1)
+
+  if(text_indent_reference == "page_margin"){
+    return(0)
+  }
+
   page <- attr(tbl, "page")
   page_width <- inch_to_twip(page$width)
   page_margin <- inch_to_twip(page$margin)
@@ -44,5 +55,5 @@ footnote_source_space <- function(tbl) {
 
   space_adjust <- round((page_width - left_margin - right_margin - table_width) / 2)
 
-  max(0, space_adjust)
+  space_adjust
 }

@@ -16,7 +16,7 @@ test_that("margin type: wma, portrait", {
 
 test_that("margin type: wma, landscape", {
   expect_equal(set_margin("wma", "landscape"),
-               c(0.50, 0.50, 2.00, 1.25, 1.25, 1.25))
+               c(1.00, 1.00, 2.00, 1.25, 1.25, 1.25))
 })
 
 test_that("margin type: wmm, portrait", {

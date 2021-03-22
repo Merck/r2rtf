@@ -45,9 +45,10 @@ match_arg <- function(arg, choices, several.ok = FALSE) {
   # following code are from match.arg with minor updates
 
   # update to enable arg and choices to accept numeric and character vectors
-  if (class(arg) == c("numeric")) {
+  if ("numeric" %in% class(arg)) {
     arg <- as.character(arg)
   }
+
   if (class(choices) == c("numeric")) {
     choices <- as.character(choices)
   }

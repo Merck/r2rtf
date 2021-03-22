@@ -95,8 +95,8 @@ Add title, subtitle, and other attributes to the object
 
 \examples{
 library(dplyr) # required to run examples
-data(tbl_1)
-tbl_1 \%>\%
+data(r2rtf_tbl1)
+r2rtf_tbl1 \%>\%
   rtf_title(title = "ANCOVA of Change from Baseline at Week 8") \%>\%
   attr("rtf_title")
 }

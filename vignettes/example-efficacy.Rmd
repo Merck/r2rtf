@@ -63,7 +63,9 @@ fmt_pval <- function(data, columns = "p.value", decimals = 3) {
 * For example, we want to summary the analysis results using ANCOVA model 
 
 ```{r}
-data("HAMD17")
+data("r2rtf_HAMD17")
+HAMD17 <- r2rtf_HAMD17
+
 ana_week <- 8 # Analysis Week
 
 HAMD17_lmfit <- HAMD17 %>%
@@ -148,7 +150,7 @@ For multiple tables like the efficacy example, we have a flow in the following t
 
 tbl_1 <- t1 %>%
   rtf_title(
-    title = "ANCOVA of Change from Baseline at Week 8",
+    title = "ANCOVA of Change from Baseline at Week 20",
     subtitle = c(
       "Missing Data Approach",
       "Analysis Population"

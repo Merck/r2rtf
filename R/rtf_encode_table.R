@@ -70,7 +70,7 @@ rtf_encode_table <- function(tbl,
       attributes(colheader[[1]])$border_color_top <- matrix(attr(tbl, "page")$border_color_first, nrow = 1, ncol = ncol(head))
     }
 
-    colheader_rtftext_1 <- lapply(colheader, rtf_table_content,
+    colheader_rtftext_1 <- lapply(colheader, rtf_table_content, use_border_bottom = TRUE,
       col_total_width = attr(tbl, "page")$col_width
     )
 
@@ -114,8 +114,8 @@ rtf_encode_table <- function(tbl,
     footnote_rtftext_1 <- as_rtf_footnote(tbl)
   } else {
     pageby <- attr(tbl, "rtf_pageby")
-    n <- nrow(tbl)
     if (is.null(pageby$by_var)) {
+      n <- nrow(tbl)
       attr(tbl, "border_last")[n, ] <- matrix(attr(tbl, "page")$border_last, nrow = 1, ncol = ncol(attr(tbl, "border_bottom")))
       if (!is.null(pageby$border_color_last)) {
         attr(tbl, "border_color_last")[n, ] <- matrix(attr(tbl, "page")$border_color_last,
@@ -124,6 +124,7 @@ rtf_encode_table <- function(tbl,
       }
     } else {
       tbl_pageby <- attr(tbl, "rtf_pageby_table")
+      n <- nrow(tbl_pageby)
       attr(tbl_pageby, "border_last")[n, ] <- matrix(attr(tbl, "page")$border_last, nrow = 1, ncol = ncol(attr(tbl_pageby, "border_bottom")))
       if (!is.null(pageby$border_color_last)) {
         attr(tbl_pageby, "border_color_last")[n, ] <- matrix(attr(tbl, "page")$border_color_last,

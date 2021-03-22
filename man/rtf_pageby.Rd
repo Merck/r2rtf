@@ -4,7 +4,13 @@
 \alias{rtf_pageby}
 \title{Add Table Body Pageby Attributes to Table}
 \usage{
-rtf_pageby(tbl, page_by, new_page, pageby_header)
+rtf_pageby(
+  tbl,
+  page_by = NULL,
+  new_page = FALSE,
+  pageby_header = TRUE,
+  pageby_row = "column"
+)
 }
 \arguments{
 \item{tbl}{A data frame.}
@@ -16,6 +22,9 @@ Default is NULL.}
 by sections. Default is FALSE.}
 
 \item{pageby_header}{A boolean value to display pageby header at the beginning of each page.}
+
+\item{pageby_row}{A character vector of location of page_by variable. Possible input are 'column'
+or 'first_row'. Default is 'column'.}
 }
 \description{
 Add Table Body Pageby Attributes to Table

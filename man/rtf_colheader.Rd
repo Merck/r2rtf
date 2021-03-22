@@ -43,23 +43,23 @@ rtf_colheader(
 \item{col_rel_width}{A Column relative width in a vector e.g. c(2,1,1) refers to 2:1:1.
 Default is NULL for equal column width.}
 
-\item{border_left}{Left border type. Default is "single". To vary left border by column, use
+\item{border_left}{Left border type. To vary left border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 \code{r2rtf:::border_type()$name}.}
 
-\item{border_right}{Right border type. Default is "single". To vary right border by column, use
+\item{border_right}{Right border type. To vary right border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 \code{r2rtf:::border_type()$name}.}
 
-\item{border_top}{Top border type. Default is NULL. To vary top border by column, use
+\item{border_top}{Top border type. To vary top border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). If it is the first row in a table for this
 page, the top border is set to "double" otherwise the border is set to "single".
 All possible input can be found in \code{r2rtf:::border_type()$name}.}
 
-\item{border_bottom}{Bottom border type. Default is "double" indicating double line bottom border.
+\item{border_bottom}{Bottom border type.
 To vary bottom border by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("single","single","single").
 All possible input can be found in \code{r2rtf:::border_type()$name}.}
@@ -158,8 +158,8 @@ Add Column Header Attributes to Table
 
 \examples{
 library(dplyr) # required to run examples
-data(tbl_1)
-tbl_1 \%>\%
+data(r2rtf_tbl1)
+r2rtf_tbl1 \%>\%
   rtf_colheader(
     colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
                   Mean (SD) | LS Mean (95\% CI)\\\\dagger",

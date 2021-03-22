@@ -8,19 +8,19 @@
 
 # RTF footnote font encode - font 2
 
-    [1] "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\intbl\\sb15\\sa15\\ql{\\f1\\fs18 test}\\cell\n\\intbl\\row\\pard"
+    [1] "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\intbl\\sb15\\sa15\\ql\\fs18{\\f1 test}\\cell\n\\intbl\\row\\pard"
 
 # RTF footnote font encode - font 3
 
-    [1] "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\intbl\\sb15\\sa15\\ql{\\f2\\fs18 test}\\cell\n\\intbl\\row\\pard"
+    [1] "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\intbl\\sb15\\sa15\\ql\\fs18{\\f2 test}\\cell\n\\intbl\\row\\pard"
 
 # RTF footnote format, size and color encode
 
-    [1] "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\intbl\\sb15\\sa15\\ql{\\f0\\fs16\\cf553\\i test}\\cell\n\\intbl\\row\\pard"
+    [1] "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\intbl\\sb15\\sa15\\ql\\fs16{\\f0\\cf553\\i test}\\cell\n\\intbl\\row\\pard"
 
 # RTF footnote when as_table = TRUE
 
-    [1] "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\intbl\\sb15\\sa15\\ql{\\f0\\fs18 test}\\cell\n\\intbl\\row\\pard"
+    [1] "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\intbl\\sb15\\sa15\\ql\\fs18{\\f0 test}\\cell\n\\intbl\\row\\pard"
 
 # RTF source font encode
 
@@ -28,5 +28,5 @@
 
 # RTF source when as_table = TRUE
 
-    [1] "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\intbl\\sb15\\sa15\\qc{\\f0\\fs18 test}\\cell\n\\intbl\\row\\pard"
+    [1] "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\intbl\\sb15\\sa15\\qc\\fs18{\\f0 test}\\cell\n\\intbl\\row\\pard"
 

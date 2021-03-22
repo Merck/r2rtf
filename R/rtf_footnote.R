@@ -19,20 +19,20 @@
 #'
 #' @param tbl A data frame.
 #' @param footnote A vector of character for footnote text.
-#' @param border_left Left border type. Default is "single". To vary left border by column, use
+#' @param border_left Left border type. To vary left border by column, use
 #'                    character vector with length of vector equal to number of columns displayed
 #'                    e.g. c("single","single","single"). All possible input can be found in
 #'                    `r2rtf:::border_type()$name`.
-#' @param border_right Right border type. Default is "single". To vary right border by column, use
+#' @param border_right Right border type. To vary right border by column, use
 #'                     character vector with length of vector equal to number of columns displayed
 #'                     e.g. c("single","single","single"). All possible input can be found in
 #'                     `r2rtf:::border_type()$name`.
-#' @param border_top Top border type. Default is NULL. To vary top border by column, use
+#' @param border_top Top border type. To vary top border by column, use
 #'                   character vector with length of vector equal to number of columns displayed
 #'                   e.g. c("single","single","single"). If it is the first row in a table for this
 #'                   page, the top border is set to "double" otherwise the border is set to "single".
 #'                   All possible input can be found in `r2rtf:::border_type()$name`.
-#' @param border_bottom Bottom border type. Default is "double" indicating double line bottom border.
+#' @param border_bottom Bottom border type.
 #'                      To vary bottom border by column, use character vector with length of vector
 #'                      equal to number of columns displayed e.g. c("single","single","single").
 #'                      All possible input can be found in `r2rtf:::border_type()$name`.
@@ -86,6 +86,7 @@
 #' @param text_indent_first A value of first indent.
 #' @param text_indent_left A value of left indent.
 #' @param text_indent_right A value of right indent.
+#' @param text_indent_reference The reference start point of text indent. Accept `table` or `page_margin`
 #' @param text_space A value of text space.
 #' @param as_table A logical value to display it as a table.
 #' @param text_convert A logical value to convert special characters. Default is TRUE.
@@ -103,8 +104,8 @@
 #'
 #' @examples
 #' library(dplyr) # required to run examples
-#' data(tbl_1)
-#' tbl_1 %>%
+#' data(r2rtf_tbl1)
+#' r2rtf_tbl1 %>%
 #'   rtf_footnote("\\dagger Based on an ANCOVA model.") %>%
 #'   attr("rtf_footnote")
 #' @export
@@ -138,6 +139,7 @@ rtf_footnote <- function(tbl,
                          text_indent_first = 0,
                          text_indent_left = 0,
                          text_indent_right = 0,
+                         text_indent_reference = "table",
 
                          text_space = 1,
                          text_space_before = 15,
@@ -153,11 +155,11 @@ rtf_footnote <- function(tbl,
 
   # Define proper justification reference
   if (text_justification == "l") {
-    text_indent_left <- text_indent_left + footnote_source_space(tbl)
+    text_indent_left <- text_indent_left + footnote_source_space(tbl, text_indent_reference)
   }
 
   if (text_justification == "r") {
-    text_indent_right <- text_indent_right + footnote_source_space(tbl)
+    text_indent_right <- text_indent_right + footnote_source_space(tbl, text_indent_reference)
   }
 
   # Set Default Page Attributes

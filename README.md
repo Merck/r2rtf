@@ -15,17 +15,16 @@ Overview
 
 Create RTF table and figure with flexible format.
 
--   [Website](https://merck.github.io/r2rtf/index.html)
--   [Overview
-    Paper](https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf)
-
 Installation
 ------------
 
-1.  Download the package in this code repository.
-2.  Unzip the file.
-3.  Open the \*.Rproj file by Rstudio.
-4.  In Rstudio console, run `devtools::install()`.
+You can install the package via CRAN:
+
+    install.packages("r2rtf")
+
+Or, install from GitHub for development version:
+
+    remotes::install_github("Merck/r2rtf")
 
 Highlighted Features
 --------------------
@@ -52,3 +51,30 @@ The R package r2rtf provided flexibility to provide features below:
 -   Append several tables into one file.
 -   Pagination.
 -   Built in raw data for validation.
+
+Quick Example
+-------------
+
+    library(dplyr)
+    library(r2rtf)
+    head(iris) %>% rtf_body() %>%                       # Step 1 Add attributes 
+                   rtf_encode() %>%                     # Step 2 Convert attributes to RTF encode 
+                   write_rtf(file = "ex-tbl.rtf")       # Step 3 Write to a .rtf file 
+
+<embed src="vignettes/pdf/ex-tbl.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf" />
+
+Example Efficacy Table
+----------------------
+
+-   [Source
+    code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
+
+<embed src="vignettes/pdf/efficacy_example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf" />
+
+Example Safety Table
+--------------------
+
+-   [Source
+    code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
+
+<embed src="vignettes/pdf/ae_example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf" />

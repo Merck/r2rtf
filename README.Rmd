@@ -21,15 +21,19 @@ pkgname <- "r2rtf"
 
 Create RTF table and figure with flexible format.
 
-* [Website](https://merck.github.io/r2rtf/index.html)
-* [Overview Paper](https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf)
-
 ## Installation
 
-1. Download the package in this code repository.
-2. Unzip the file.
-3. Open the *.Rproj file by Rstudio.
-4. In Rstudio console, run `devtools::install()`.
+You can install the package via CRAN:
+
+```r
+install.packages("r2rtf")
+```
+
+Or, install from GitHub for development version:
+
+```r
+remotes::install_github("Merck/r2rtf")
+```
 
 ## Highlighted Features 
 
@@ -52,3 +56,32 @@ The R package `r pkgname` provided flexibility to provide features below:
 * Pagination.
 * Built in raw data for validation.
 
+## Quick Example 
+
+```{r, eval = FALSE}
+library(dplyr)
+library(r2rtf)
+head(iris) %>% rtf_body() %>%                       # Step 1 Add attributes 
+               rtf_encode() %>%                     # Step 2 Convert attributes to RTF encode 
+               write_rtf(file = "ex-tbl.rtf")       # Step 3 Write to a .rtf file 
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("vignettes/pdf/ex-tbl.pdf")
+```
+
+## Example Efficacy Table
+
+- [Source code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("vignettes/pdf/efficacy_example.pdf")
+```
+
+## Example Safety Table
+
+- [Source code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("vignettes/pdf/ae_example.pdf")
+```

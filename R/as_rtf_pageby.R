@@ -69,6 +69,7 @@ as_rtf_pageby <- function(tbl) {
   } else {
     cell_nrow <- attr(tbl, "cell_nrow")
   }
+  cell_nrow[is.na(cell_nrow)] <- 0
 
   ##  maximum num of rows in cells per line
   table_nrow <- ceiling(apply(cell_nrow, 1, max, na.rm = TRUE))
@@ -240,6 +241,12 @@ as_rtf_pageby <- function(tbl) {
       rtf <- c(rtf, rtf_header_nested)[page_dict_order]
     }
   }
+
+  # Remove lines with "-----"
+  rtf_index <- page_dict$index[ ! (page_dict$id == "-----" & page_dict$pageby) ]
+  rtf <- rtf[rtf_index]
+  page_dict <- page_dict[rtf_index, ]
+  page_dict$index <- 1:nrow(page_dict)
 
   attr(rtf, "info") <- page_dict
   rtf

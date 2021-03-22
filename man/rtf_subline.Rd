@@ -16,6 +16,7 @@ rtf_subline(
   text_indent_first = 0,
   text_indent_left = 0,
   text_indent_right = 0,
+  text_indent_reference = "table",
   text_space = 1,
   text_space_before = 180,
   text_space_after = 180,
@@ -62,6 +63,8 @@ All possible input can be found in \code{r2rtf:::justification()$type}.}
 \item{text_indent_left}{A value of left indent.}
 
 \item{text_indent_right}{A value of right indent.}
+
+\item{text_indent_reference}{The reference start point of text indent. Accept \code{table} or \code{page_margin}}
 
 \item{text_space}{A value of text space.}
 

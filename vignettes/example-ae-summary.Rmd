@@ -21,8 +21,8 @@ library(tidyr)
 # get raw summary 
 ```{r}
 # Step 1: Get raw summary
-data(adae)
-ae_t1 <- adae %>%
+data(r2rtf_adae)
+ae_t1 <- r2rtf_adae %>%
   group_by(TRTA) %>%
   mutate(n_subj = n_distinct(USUBJID)) %>%
   group_by(TRTA, AEDECOD) %>%
