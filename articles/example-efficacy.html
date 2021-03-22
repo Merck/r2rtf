@@ -39,20 +39,20 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Reference
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa fas fa-book"></span>
+    <span class="fas fa-book"></span>
      
     Articles
      
@@ -87,7 +87,7 @@
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     Changelog
   </a>
@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/Merck/r2rtf/">
-    <span class="fa fa-bitbucket fa-lg"></span>
+    <span class="fas fa-bitbucket fa-lg"></span>
      
     Source code
   </a>
@@ -111,8 +111,7 @@
 
       
 
-      </header><script src="example-efficacy_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="example-efficacy_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="example-efficacy_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="example-efficacy_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>RTF Examples for Efficacy Tables</h1>
@@ -172,7 +171,9 @@
 <li><p>For example, we want to summary the analysis results using ANCOVA model</p></li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"HAMD17"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"r2rtf_HAMD17"</span><span class="op">)</span>
+<span class="va">HAMD17</span> <span class="op">&lt;-</span> <span class="va">r2rtf_HAMD17</span>
+
 <span class="va">ana_week</span> <span class="op">&lt;-</span> <span class="fl">8</span> <span class="co"># Analysis Week</span>
 
 <span class="va">HAMD17_lmfit</span> <span class="op">&lt;-</span> <span class="va">HAMD17</span> <span class="op">%&gt;%</span>
@@ -192,12 +193,11 @@
     mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">change</span><span class="op">)</span>,
     sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">change</span><span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 </div>
 <div id="ls-mean" class="section level3">
 <h3 class="hasAnchor">
 <a href="#ls-mean" class="anchor"></a>LS mean</h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">t12</span> <span class="op">&lt;-</span> <span class="fu">emmeans</span><span class="op">(</span><span class="va">HAMD17_lmfit</span>, <span class="st">"TRT"</span><span class="op">)</span>
 <span class="va">t1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">t11</span>, <span class="va">t12</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>emmean_sd <span class="op">=</span> <span class="va">SE</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html">sqrt</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -216,7 +216,7 @@
 <div id="treatment-comparison" class="section level3">
 <h3 class="hasAnchor">
 <a href="#treatment-comparison" class="anchor"></a>Treatment Comparison</h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">t2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html">pairs</a></span><span class="op">(</span><span class="va">t12</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">t2</span> <span class="op">&lt;-</span> <span class="va">t2</span> <span class="op">%&gt;%</span>
@@ -234,30 +234,30 @@
 <div id="rmse" class="section level3">
 <h3 class="hasAnchor">
 <a href="#rmse" class="anchor"></a>RMSE</h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">t3</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>rmse <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span>
   <span class="st">"Root Mean Squared Error of Change = "</span>,
   <span class="fu"><a href="https://rdrr.io/r/base/formatc.html">formatC</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/sd.html">sd</a></span><span class="op">(</span><span class="va">HAMD17_lmfit</span><span class="op">$</span><span class="va">residuals</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">2</span>, format <span class="op">=</span> <span class="st">"f"</span>, flag <span class="op">=</span> <span class="st">"0"</span><span class="op">)</span>
 <span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>The purpose of this exercise is to create a table as in <code>rtf_example1.rtf</code> by using the three datasets <code>t1</code>, <code>t2</code> and <code>t3</code></p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">t1</span></code></pre></div>
 <pre><code>##          Trt N1       Mean1 N2       Mean2 N3       Mean3                   CI
 ## 1 Study Drug 61 16.6 (4.41) 61 -6.6 (5.95) 61 -7.0 (9.16)  -7.0 (-8.58, -5.38)
 ## 2    Placebo 70 18.4 (6.34) 70 -9.0 (7.04) 70 -8.7 (8.54) -8.7 (-10.17, -7.18)</code></pre>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">t2</span></code></pre></div>
 <pre><code>##                     comp              mean     p
 ## 1 Study Drug vs. Placebo 1.7 (-0.49, 3.88) 0.130</code></pre>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">t3</span></code></pre></div>
 <pre><code>##                                       rmse
 ## 1 Root Mean Squared Error of Change = 6.23</code></pre>
 <p>For multiple tables like the efficacy example, we have a flow in the following to print an rtf table</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tbl_1</span> <span class="op">&lt;-</span> <span class="va">t1</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"ANCOVA of Change from Baseline at Week 8"</span>,
+    title <span class="op">=</span> <span class="st">"ANCOVA of Change from Baseline at Week 20"</span>,
     subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
       <span class="st">"Missing Data Approach"</span>,
       <span class="st">"Analysis Population"</span>
@@ -305,7 +305,7 @@
 
 
 <span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">tbl_1</span>, <span class="va">tbl_2</span>, <span class="va">tbl_3</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">tbl</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/efficacy_example.rtf"</span><span class="op">)</span></code></pre></div>

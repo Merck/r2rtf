@@ -39,20 +39,20 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Reference
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa fas fa-book"></span>
+    <span class="fas fa-book"></span>
      
     Articles
      
@@ -87,7 +87,7 @@
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     Changelog
   </a>
@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/Merck/r2rtf/">
-    <span class="fa fa-bitbucket fa-lg"></span>
+    <span class="fas fa-bitbucket fa-lg"></span>
      
     Source code
   </a>
@@ -111,8 +111,7 @@
 
       
 
-      </header><script src="example-pageby-groupby_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="example-pageby-groupby_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="example-pageby-groupby_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="example-pageby-groupby_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>RTF Examples for Tables with Pageby Feature</h1>
@@ -137,20 +136,19 @@
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/load_all.html">load_all</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## Loading r2rtf</code></pre>
-<pre><code>## 
-## Attaching package: 'testthat'</code></pre>
-<pre><code>## The following object is masked from 'package:dplyr':
-## 
-##     matches</code></pre>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/load_all.html">load_all</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## ℹ Loading r2rtf</code></pre>
+<div id="example-1-pageby-and-groupby-feature" class="section level1">
+<h1 class="hasAnchor">
+<a href="#example-1-pageby-and-groupby-feature" class="anchor"></a>Example 1: pageby and groupby feature</h1>
 <div id="step-1-get-raw-summary" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-1-get-raw-summary" class="anchor"></a>Step 1: Get raw summary</h2>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">adae</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">r2rtf_adae</span><span class="op">)</span>
 
-<span class="va">ae_t1</span><span class="op">&lt;-</span> <span class="va">adae</span> <span class="op">%&gt;%</span> 
+<span class="va">ae_t1</span><span class="op">&lt;-</span> <span class="va">r2rtf_adae</span> <span class="op">%&gt;%</span> 
      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span> <span class="op">%&gt;%</span>
      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>SUBJLINE<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"Trial Number = "</span>,<span class="va">STUDYID</span>,
                             <span class="st">", Site Number = "</span>,<span class="va">SITEID</span>,
@@ -158,11 +156,12 @@
                             <span class="st">", Gender = "</span>,<span class="va">SEX</span>,
                             <span class="st">", Race = "</span>,<span class="va">RACE</span>, 
                             <span class="st">", AGE = "</span>,<span class="va">AGE</span>, <span class="st">" Years"</span><span class="op">)</span>, 
-      <span class="co"># create a subject line with participant's demographic information.         # this is for page_by argument in rtf_body function </span>
+      <span class="co"># create a subject line with participant's demographic information.       </span>
+      <span class="co"># this is for page_by argument in rtf_body function </span>
             AEDECD1<span class="op">=</span><span class="fu">tools</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/tools/toTitleCase.html">toTitleCase</a></span><span class="op">(</span><span class="va">AEDECOD</span><span class="op">)</span>, <span class="co"># propcase the AEDECOD</span>
             DUR<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">ADURN</span>,<span class="va">ADURU</span>,sep<span class="op">=</span><span class="st">" "</span><span class="op">)</span><span class="op">)</span><span class="op">%&gt;%</span> <span class="co"># AE duration with unit</span>
      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">USUBJID</span>,<span class="va">ASTDY</span>,<span class="va">AEDECD1</span>,<span class="va">DUR</span>,<span class="va">AESEV</span>,<span class="va">AESER</span>,<span class="va">AEREL</span>,<span class="va">AEACN</span>,<span class="va">AEOUT</span>,<span class="va">TRTA</span>,<span class="va">SUBJLINE</span><span class="op">)</span> <span class="co"># display variable using this order</span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ae_t1</span> </code></pre></div>
 <pre><code>##         USUBJID ASTDY                              AEDECD1    DUR    AESEV
 ## 1   01-701-1015     2            APPLICATION SITE ERYTHEMA    NA      MILD
@@ -468,10 +467,10 @@
 ## 99  Trial Number = CDISCPILOT01, Site Number = 701, Subject ID = 01-701-1192, Gender = F, Race = WHITE, AGE = 80 Years
 ## 100 Trial Number = CDISCPILOT01, Site Number = 701, Subject ID = 01-701-1192, Gender = F, Race = WHITE, AGE = 80 Years</code></pre>
 </div>
-<div id="rtf-table-generation" class="section level1">
-<h1 class="hasAnchor">
-<a href="#rtf-table-generation" class="anchor"></a>RTF Table Generation</h1>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div id="rtf-table-generation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#rtf-table-generation" class="anchor"></a>RTF Table Generation</h2>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ae_tbl</span> <span class="op">&lt;-</span> <span class="va">ae_t1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">TRTA</span>, <span class="va">SUBJLINE</span>, <span class="va">USUBJID</span>, <span class="va">ASTDY</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   
   <span class="fu"><a href="../reference/rtf_page.html">rtf_page</a></span><span class="op">(</span>orientation <span class="op">=</span> <span class="st">"landscape"</span>,
@@ -501,7 +500,7 @@
            border_top <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">9</span><span class="op">)</span>, <span class="st">"single"</span>,<span class="st">"single"</span><span class="op">)</span>, 
            border_bottom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">9</span><span class="op">)</span>, <span class="st">"single"</span>,<span class="st">"single"</span><span class="op">)</span>,
            border_left <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"single"</span><span class="op">)</span>, <span class="fl">11</span><span class="op">)</span> <span class="op">)</span>,
-           page_by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TRTA"</span>,<span class="st">"SUBJLINE"</span><span class="op">)</span>, 
+           page_by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"TRTA"</span>,<span class="st">"SUBJLINE"</span><span class="op">)</span>,  
            group_by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"USUBJID"</span>, <span class="st">"ASTDY"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   
   <span class="fu"><a href="../reference/rtf_footnote.html">rtf_footnote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"This is footnote 1\nThis is footnote 2"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># \n is to change line</span>
@@ -510,12 +509,122 @@
              text_justification <span class="op">=</span> <span class="st">"l"</span>, 
              as_table <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </code></pre></div>
 </div>
-<div id="export-rtf-table" class="section level1">
-<h1 class="hasAnchor">
-<a href="#export-rtf-table" class="anchor"></a>Export RTF Table</h1>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div id="export-rtf-table" class="section level2">
+<h2 class="hasAnchor">
+<a href="#export-rtf-table" class="anchor"></a>Export RTF Table</h2>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ae_tbl</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/pageby-ae-listing.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/pageby-ae-listing.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
+</div>
+</div>
+<div id="example-2-removing-rows-with-page_by-variable" class="section level1">
+<h1 class="hasAnchor">
+<a href="#example-2-removing-rows-with-page_by-variable" class="anchor"></a>Example 2: removing rows with page_by variable</h1>
+<blockquote>
+<p>This example shows how to remove rows by setting corresponding value in page_by variable to “—–”.</p>
+</blockquote>
+<div id="step-1-get-raw-summary-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#step-1-get-raw-summary-1" class="anchor"></a>Step 1: Get raw summary</h2>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">r2rtf_adsl</span><span class="op">)</span>
+<span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">r2rtf_adsl</span>
+
+<span class="va">row1</span><span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">ITTFL</span> <span class="op">==</span> <span class="st">"Y"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TRT01P</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="op">)</span>                                         <span class="co"># randomized </span>
+<span class="va">row2</span><span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">'Y'</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TRT01P</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>trtn <span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>                            <span class="co"># treated </span>
+<span class="va">row3</span><span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">'Y'</span> <span class="op">&amp;</span> <span class="va">DCREASCD</span> <span class="op">==</span> <span class="st">"Completed"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TRT01P</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>cmpln <span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># completed</span>
+<span class="va">row4</span><span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">'Y'</span> <span class="op">&amp;</span> <span class="va">DCREASCD</span> <span class="op">!=</span> <span class="st">"Completed"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TRT01P</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>dcn <span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>   <span class="co"># discontinued</span>
+
+<span class="va">reas</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op">%&gt;%</span> 
+        <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">SAFFL</span> <span class="op">==</span> <span class="st">'Y'</span> <span class="op">&amp;</span> <span class="va">DCREASCD</span> <span class="op">!=</span> <span class="st">"Completed"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TRT01P</span>, <span class="va">DCREASCD</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+        <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>reasn<span class="op">=</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>   <span class="co"># discontinuation reason</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by 'TRT01P'. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">row1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">row2</span>,  by<span class="op">=</span><span class="st">'TRT01P'</span><span class="op">)</span><span class="op">%&gt;%</span> 
+                     <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">row3</span>,  by<span class="op">=</span><span class="st">'TRT01P'</span><span class="op">)</span><span class="op">%&gt;%</span> 
+                     <span class="fu"><a href="https://rdrr.io/r/base/merge.html">merge</a></span><span class="op">(</span><span class="va">row4</span>,  by<span class="op">=</span><span class="st">'TRT01P'</span><span class="op">)</span><span class="op">%&gt;%</span> 
+                     <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, names_to<span class="op">=</span><span class="st">"DCREASCD"</span>, values_to<span class="op">=</span><span class="st">"n"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+                     <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from<span class="op">=</span><span class="va">TRT01P</span>, values_from<span class="op">=</span><span class="st">'n'</span><span class="op">)</span>,
+              
+            <span class="va">reas</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html">pivot_wider</a></span><span class="op">(</span>names_from<span class="op">=</span><span class="va">TRT01P</span>, values_from<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'reasn'</span><span class="op">)</span><span class="op">)</span>  
+      <span class="op">)</span><span class="op">%&gt;%</span>       
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>DCREASCD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">DCREASCD</span> <span class="op">==</span> <span class="st">'n'</span>,     <span class="st">'Participants randomized'</span>, 
+                        <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">DCREASCD</span> <span class="op">==</span> <span class="st">'trtn'</span>,  <span class="st">'Participants treated'</span>, 
+                        <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">DCREASCD</span> <span class="op">==</span> <span class="st">'cmpln'</span>, <span class="st">'Participants completed'</span>, 
+                        <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">DCREASCD</span> <span class="op">==</span> <span class="st">'dcn'</span>,   <span class="st">'Participants discontinued'</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"   "</span>, <span class="va">DCREASCD</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>,
+            pagebyvar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html">substr</a></span><span class="op">(</span><span class="va">DCREASCD</span>, <span class="fl">1</span>,<span class="fl">5</span><span class="op">)</span> <span class="op">==</span> <span class="st">"Parti"</span>, <span class="st">"-----"</span>, <span class="st">"Discontinued reason"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>  
+  
+            <span class="co"># pagebyvar will be assigned to page_by argument in rtf_body function later. </span>
+            <span class="co"># then table will be grouped by single cell row with pagebyvar's value in it.</span>
+            <span class="co"># if pagebyvar's value is "-----", the single cell row will be removed from table.</span>
+
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pagebyvar</span>, <span class="va">DCREASCD</span>, <span class="st">"Xanomeline High Dose"</span> , <span class="st">"Xanomeline Low Dose"</span> , <span class="va">Placebo</span><span class="op">)</span>
+
+<span class="va">ds</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">ds</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ds</span></code></pre></div>
+<pre><code>## # A tibble: 13 x 5
+##    pagebyvar      DCREASCD         `Xanomeline High … `Xanomeline Low D… Placebo
+##    &lt;chr&gt;          &lt;chr&gt;                         &lt;int&gt;              &lt;int&gt;   &lt;int&gt;
+##  1 -----          "Participants r…                 84                 84      86
+##  2 -----          "Participants t…                 84                 84      86
+##  3 -----          "Participants c…                 27                 25      58
+##  4 -----          "Participants d…                 57                 59      28
+##  5 Discontinued … "   Adverse Eve…                 40                 44       8
+##  6 Discontinued … "   Death"                        0                  1       2
+##  7 Discontinued … "   I/E Not Met"                  2                  0       1
+##  8 Discontinued … "   Lack of Eff…                  1                  0       3
+##  9 Discontinued … "   Lost to Fol…                  0                  1       1
+## 10 Discontinued … "   Physician D…                  2                  0       1
+## 11 Discontinued … "   Protocol Vi…                  1                  1       1
+## 12 Discontinued … "   Sponsor Dec…                  3                  2       2
+## 13 Discontinued … "   Withdrew Co…                  8                 10       9</code></pre>
+</div>
+<div id="rtf-table-generation-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#rtf-table-generation-1" class="anchor"></a>RTF Table Generation</h2>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ds_tbl</span> <span class="op">&lt;-</span> <span class="va">ds</span> <span class="op">%&gt;%</span>  
+  
+  <span class="fu"><a href="../reference/rtf_page_footer.html">rtf_page_footer</a></span><span class="op">(</span>text <span class="op">=</span> <span class="st">"CONFIDENTIAL"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+
+  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Disposition of Participants"</span>, <span class="st">"(ITT Population)"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+
+  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span><span class="st">" | Xanomeline High Dose |Xanomeline Low Dose | Placebo"</span>, 
+                col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.5</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+
+  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span><span class="st">" | n | n | n "</span>,
+                border_top    <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"single"</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,
+                border_left   <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"single"</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,
+                col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3.5</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">)</span> <span class="op">%&gt;%</span>
+
+  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>page_by            <span class="op">=</span> <span class="st">"pagebyvar"</span>,  
+           
+            <span class="co"># the table will be grouped by single cell row with pagebyvar's value in it.</span>
+            <span class="co"># if pagebyvar's value is "-----", the single cell row will be removed from table.</span>
+
+           col_rel_width      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3.5</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>,
+           text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"d"</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>,
+           text_format        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,
+           border_top         <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"single"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,
+           border_bottom      <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"single"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>,
+           border_left        <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"single"</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span>
+           <span class="op">)</span> <span class="op">%&gt;%</span>
+  
+  <span class="fu"><a href="../reference/rtf_footnote.html">rtf_footnote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"This is footnote 1\nThis is footnote 2"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># \n is to change line</span>
+  
+  <span class="fu"><a href="../reference/rtf_source.html">rtf_source</a></span><span class="op">(</span><span class="st">"Source:  [Study MK9999P001: adam-adsl]"</span>, 
+             text_justification <span class="op">=</span> <span class="st">"l"</span>, 
+             as_table <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </code></pre></div>
+</div>
+<div id="export-rtf-table-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#export-rtf-table-1" class="anchor"></a>Export RTF Table</h2>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ds_tbl</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/pageby-disposition.rtf"</span><span class="op">)</span></code></pre></div>
+<embed src="pdf/pageby-disposition.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
+</div>
 </div>
   </div>
 

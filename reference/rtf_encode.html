@@ -81,20 +81,20 @@ to an RTF file." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Reference
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa fas fa-book"></span>
+    <span class="fas fa-book"></span>
      
     Articles
      
@@ -129,7 +129,7 @@ to an RTF file." />
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     Changelog
   </a>
@@ -138,7 +138,7 @@ to an RTF file." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/Merck/r2rtf/">
-    <span class="fa fa-bitbucket fa-lg"></span>
+    <span class="fas fa-bitbucket fa-lg"></span>
      
     Source code
   </a>
@@ -243,11 +243,9 @@ For \code{write_rtf}, no return value.
 
 <span class='co'>## convert tbl_1 to the table body. Add title, subtitle, two table</span>
 <span class='co'>## headers, and footnotes to the table body.</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_1</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_2</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_3</span><span class='op'>)</span>
-<span class='co'>## convert tbl_2 to the table body. Add a table column header to table body.</span>
-<span class='va'>t2</span> <span class='op'>&lt;-</span> <span class='va'>tbl_2</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>r2rtf_tbl2</span><span class='op'>)</span>
+<span class='co'>## convert r2rtf_tbl2 to the table body. Add a table column header to table body.</span>
+<span class='va'>t2</span> <span class='op'>&lt;-</span> <span class='va'>r2rtf_tbl2</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='rtf_colheader.html'>rtf_colheader</a></span><span class='op'>(</span>
     colheader <span class='op'>=</span> <span class='st'>"Pairwise Comparison |
                    Difference in LS Mean(95% CI)\\dagger | p-Value"</span>,

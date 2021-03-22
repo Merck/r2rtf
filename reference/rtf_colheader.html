@@ -80,20 +80,20 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Reference
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa fas fa-book"></span>
+    <span class="fas fa-book"></span>
      
     Articles
      
@@ -128,7 +128,7 @@
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     Changelog
   </a>
@@ -137,7 +137,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/Merck/r2rtf/">
-    <span class="fa fa-bitbucket fa-lg"></span>
+    <span class="fas fa-bitbucket fa-lg"></span>
      
     Source code
   </a>
@@ -213,21 +213,21 @@ Default is NULL for equal column width.</p></td>
     </tr>
     <tr>
       <th>border_left</th>
-      <td><p>Left border type. Default is "single". To vary left border by column, use
+      <td><p>Left border type. To vary left border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 <code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
       <th>border_right</th>
-      <td><p>Right border type. Default is "single". To vary right border by column, use
+      <td><p>Right border type. To vary right border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 <code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
       <th>border_top</th>
-      <td><p>Top border type. Default is NULL. To vary top border by column, use
+      <td><p>Top border type. To vary top border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). If it is the first row in a table for this
 page, the top border is set to "double" otherwise the border is set to "single".
@@ -235,7 +235,7 @@ All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p><
     </tr>
     <tr>
       <th>border_bottom</th>
-      <td><p>Bottom border type. Default is "double" indicating double line bottom border.
+      <td><p>Bottom border type.
 To vary bottom border by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("single","single","single").
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></td>
@@ -368,8 +368,8 @@ All possible input can be found in <code>r2rtf:::justification()$type</code>.</p
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required to run examples</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_1</span><span class='op'>)</span>
-<span class='va'>tbl_1</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>r2rtf_tbl1</span><span class='op'>)</span>
+<span class='va'>r2rtf_tbl1</span> <span class='op'>%&gt;%</span>
   <span class='fu'>rtf_colheader</span><span class='op'>(</span>
     colheader <span class='op'>=</span> <span class='st'>"Treatment | N | Mean (SD) | N | Mean (SD) | N |
                   Mean (SD) | LS Mean (95% CI)\\dagger"</span>,

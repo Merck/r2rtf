@@ -39,20 +39,20 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Reference
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa fas fa-book"></span>
+    <span class="fas fa-book"></span>
      
     Articles
      
@@ -87,7 +87,7 @@
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     Changelog
   </a>
@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/Merck/r2rtf/">
-    <span class="fa fa-bitbucket fa-lg"></span>
+    <span class="fas fa-bitbucket fa-lg"></span>
      
     Source code
   </a>
@@ -111,8 +111,7 @@
 
       
 
-      </header><script src="design-pattern_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="design-pattern_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="design-pattern_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="design-pattern_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>r2rtf Design Pattern</h1>
@@ -229,7 +228,7 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="../reference/rtf_footnote.html">rtf_footnote</a></span><span class="op">(</span><span class="st">"example"</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_footnote.html">as_rtf_footnote</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; \trowd\trgaph108\trleft0\trqc</span>
 <span class="co">#&gt; \clbrdrl\brdrs\brdrw15\clbrdrt\brdrw15\clbrdrr\brdrs\brdrw15\clbrdrb\brdrs\brdrw15\cellx9000</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\ql{\f0\fs18 example}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\ql\fs18{\f0 example}\cell</span>
 <span class="co">#&gt; \intbl\row\pard</span></code></pre></div>
 <p><code>r2rtf:::as_rtf_init()</code> initiates rtf encode with ‘English’ as default language.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -298,11 +297,11 @@
 <span class="co">#&gt; \clbrdrl\brdrs\brdrw15\clbrdrt\brdrs\brdrw15\clbrdrb\brdrw15\cellx5400</span>
 <span class="co">#&gt; \clbrdrl\brdrs\brdrw15\clbrdrt\brdrs\brdrw15\clbrdrb\brdrw15\cellx7200</span>
 <span class="co">#&gt; \clbrdrl\brdrs\brdrw15\clbrdrt\brdrs\brdrw15\clbrdrr\brdrs\brdrw15\clbrdrb\brdrw15\cellx9000</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\qc{\f0\fs18 5.1}\cell</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\qc{\f0\fs18 3.5}\cell</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\qc{\f0\fs18 1.4}\cell</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\qc{\f0\fs18 0.2}\cell</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\qc{\f0\fs18 setosa}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\qc\fs18{\f0 5.1}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\qc\fs18{\f0 3.5}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\qc\fs18{\f0 1.4}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\qc\fs18{\f0 0.2}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\qc\fs18{\f0 setosa}\cell</span>
 <span class="co">#&gt; \intbl\row\pard</span>
 <span class="co">#&gt; } {\rtf1\ansi</span>
 <span class="co">#&gt; \deff0\deflang1033</span>
@@ -328,11 +327,11 @@
 <span class="co">#&gt; \clbrdrl\brdrs\brdrw15\clbrdrt\brdrw15\clbrdrb\brdrs\brdrw15\cellx5400</span>
 <span class="co">#&gt; \clbrdrl\brdrs\brdrw15\clbrdrt\brdrw15\clbrdrb\brdrs\brdrw15\cellx7200</span>
 <span class="co">#&gt; \clbrdrl\brdrs\brdrw15\clbrdrt\brdrw15\clbrdrr\brdrs\brdrw15\clbrdrb\brdrs\brdrw15\cellx9000</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\qc{\f0\fs18 4.9}\cell</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\qc{\f0\fs18 3}\cell</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\qc{\f0\fs18 1.4}\cell</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\qc{\f0\fs18 0.2}\cell</span>
-<span class="co">#&gt; \pard\intbl\sb15\sa15\qc{\f0\fs18 setosa}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\qc\fs18{\f0 4.9}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\qc\fs18{\f0 3}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\qc\fs18{\f0 1.4}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\qc\fs18{\f0 0.2}\cell</span>
+<span class="co">#&gt; \pard\intbl\sb15\sa15\qc\fs18{\f0 setosa}\cell</span>
 <span class="co">#&gt; \intbl\row\pard</span>
 <span class="co">#&gt; }</span></code></pre></div>
 <p>If we save the RTF code into an <code>.rtf</code> file. Microsoft Word or other RTF Viewer software can display the file properly.</p>

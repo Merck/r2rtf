@@ -80,20 +80,20 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Reference
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa fas fa-book"></span>
+    <span class="fas fa-book"></span>
      
     Articles
      
@@ -128,7 +128,7 @@
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     Changelog
   </a>
@@ -137,7 +137,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/Merck/r2rtf/">
-    <span class="fa fa-bitbucket fa-lg"></span>
+    <span class="fas fa-bitbucket fa-lg"></span>
      
     Source code
   </a>
@@ -164,7 +164,13 @@
     <p>Add Table Body Pageby Attributes to Table</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rtf_pageby</span><span class='op'>(</span><span class='va'>tbl</span>, <span class='va'>page_by</span>, <span class='va'>new_page</span>, <span class='va'>pageby_header</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>rtf_pageby</span><span class='op'>(</span>
+  <span class='va'>tbl</span>,
+  page_by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  new_page <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pageby_header <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  pageby_row <span class='op'>=</span> <span class='st'>"column"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -186,6 +192,11 @@ by sections. Default is FALSE.</p></td>
     <tr>
       <th>pageby_header</th>
       <td><p>A boolean value to display pageby header at the beginning of each page.</p></td>
+    </tr>
+    <tr>
+      <th>pageby_row</th>
+      <td><p>A character vector of location of page_by variable. Possible input are 'column'
+or 'first_row'. Default is 'column'.</p></td>
     </tr>
     </table>
 

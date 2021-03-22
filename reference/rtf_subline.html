@@ -80,20 +80,20 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Reference
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa fas fa-book"></span>
+    <span class="fas fa-book"></span>
      
     Articles
      
@@ -128,7 +128,7 @@
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     Changelog
   </a>
@@ -137,7 +137,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/Merck/r2rtf/">
-    <span class="fa fa-bitbucket fa-lg"></span>
+    <span class="fas fa-bitbucket fa-lg"></span>
      
     Source code
   </a>
@@ -176,6 +176,7 @@
   text_indent_first <span class='op'>=</span> <span class='fl'>0</span>,
   text_indent_left <span class='op'>=</span> <span class='fl'>0</span>,
   text_indent_right <span class='op'>=</span> <span class='fl'>0</span>,
+  text_indent_reference <span class='op'>=</span> <span class='st'>"table"</span>,
   text_space <span class='op'>=</span> <span class='fl'>1</span>,
   text_space_before <span class='op'>=</span> <span class='fl'>180</span>,
   text_space_after <span class='op'>=</span> <span class='fl'>180</span>,
@@ -246,6 +247,10 @@ All possible input can be found in <code>r2rtf:::justification()$type</code>.</p
     <tr>
       <th>text_indent_right</th>
       <td><p>A value of right indent.</p></td>
+    </tr>
+    <tr>
+      <th>text_indent_reference</th>
+      <td><p>The reference start point of text indent. Accept <code>table</code> or <code>page_margin</code></p></td>
     </tr>
     <tr>
       <th>text_space</th>

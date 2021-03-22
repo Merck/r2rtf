@@ -39,20 +39,20 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Reference
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa fas fa-book"></span>
+    <span class="fas fa-book"></span>
      
     Articles
      
@@ -87,7 +87,7 @@
 </li>
 <li>
   <a href="news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     Changelog
   </a>
@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/Merck/r2rtf/">
-    <span class="fa fa-bitbucket fa-lg"></span>
+    <span class="fas fa-bitbucket fa-lg"></span>
      
     Source code
   </a>
@@ -119,19 +119,13 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h1></div>
 <p>Create RTF table and figure with flexible format.</p>
-<ul>
-<li><a href="https://merck.github.io/r2rtf/index.html">Website</a></li>
-<li><a href="https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf">Overview Paper</a></li>
-</ul>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<ol>
-<li>Download the package in this code repository.</li>
-<li>Unzip the file.</li>
-<li>Open the *.Rproj file by Rstudio.</li>
-<li>In Rstudio console, run <code><a href="https://devtools.r-lib.org//reference/install.html">devtools::install()</a></code>.</li>
-</ol>
+<p>You can install the package via CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">"r2rtf"</span>)</span></code></pre></div>
+<p>Or, install from GitHub for development version:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"Merck/r2rtf"</span>)</span></code></pre></div>
 </div>
 <div id="highlighted-features" class="section level2">
 <h2 class="hasAnchor">
@@ -161,6 +155,32 @@
 <li>Pagination.</li>
 <li>Built in raw data for validation.</li>
 </ul>
+</div>
+<div id="quick-example" class="section level2">
+<h2 class="hasAnchor">
+<a href="#quick-example" class="anchor"></a>Quick Example</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">library</span>(r2rtf)</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">head</span>(iris) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">rtf_body</span>() <span class="op">%&gt;%</span><span class="st">                       </span><span class="co"># Step 1 Add attributes </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="st">               </span><span class="kw">rtf_encode</span>() <span class="op">%&gt;%</span><span class="st">                     </span><span class="co"># Step 2 Convert attributes to RTF encode </span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="st">               </span><span class="kw">write_rtf</span>(<span class="dt">file =</span> <span class="st">"ex-tbl.rtf"</span>)       <span class="co"># Step 3 Write to a .rtf file </span></span></code></pre></div>
+<embed src="vignettes/pdf/ex-tbl.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
+</div>
+<div id="example-efficacy-table" class="section level2">
+<h2 class="hasAnchor">
+<a href="#example-efficacy-table" class="anchor"></a>Example Efficacy Table</h2>
+<ul>
+<li><a href="https://merck.github.io/r2rtf/articles/example-efficacy.html">Source code</a></li>
+</ul>
+<embed src="vignettes/pdf/efficacy_example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
+</div>
+<div id="example-safety-table" class="section level2">
+<h2 class="hasAnchor">
+<a href="#example-safety-table" class="anchor"></a>Example Safety Table</h2>
+<ul>
+<li><a href="https://merck.github.io/r2rtf/articles/example-ae-summary.html">Source code</a></li>
+</ul>
+<embed src="vignettes/pdf/ae_example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 </div>
 

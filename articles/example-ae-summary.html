@@ -39,20 +39,20 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">
-    <span class="fa fa-file-code-o"></span>
+    <span class="fas fa-file-code-o"></span>
      
     Reference
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa fas fa-book"></span>
+    <span class="fas fa-book"></span>
      
     Articles
      
@@ -87,7 +87,7 @@
 </li>
 <li>
   <a href="../news/index.html">
-    <span class="fa fa-newspaper-o"></span>
+    <span class="fas fa-newspaper-o"></span>
      
     Changelog
   </a>
@@ -96,7 +96,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/Merck/r2rtf/">
-    <span class="fa fa-bitbucket fa-lg"></span>
+    <span class="fas fa-bitbucket fa-lg"></span>
      
     Source code
   </a>
@@ -111,8 +111,7 @@
 
       
 
-      </header><script src="example-ae-summary_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="example-ae-summary_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="example-ae-summary_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="example-ae-summary_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>RTF Examples for AE Summary Count Tables</h1>
@@ -134,8 +133,8 @@
 <a href="#get-raw-summary" class="anchor"></a>get raw summary</h1>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Step 1: Get raw summary</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">adae</span><span class="op">)</span>
-<span class="va">ae_t1</span> <span class="op">&lt;-</span> <span class="va">adae</span> <span class="op">%&gt;%</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">r2rtf_adae</span><span class="op">)</span>
+<span class="va">ae_t1</span> <span class="op">&lt;-</span> <span class="va">r2rtf_adae</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TRTA</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>n_subj <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TRTA</span>, <span class="va">AEDECOD</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -147,24 +146,24 @@
   <span class="fu">gather</span><span class="op">(</span>key <span class="op">=</span> <span class="st">"var"</span>, value <span class="op">=</span> <span class="st">"value"</span>, <span class="va">n_ae</span>, <span class="va">pct</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">unite</span><span class="op">(</span><span class="va">temp</span>, <span class="va">TRTA</span>, <span class="va">var</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">spread</span><span class="op">(</span><span class="va">temp</span>, <span class="va">value</span>, fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by 'TRTA' (override with `.groups` argument)</code></pre>
+<pre><code>## `summarise()` has grouped output by 'TRTA'. You can override using the `.groups` argument.</code></pre>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ae_t1</span></code></pre></div>
 <pre><code>## # A tibble: 21 x 7
-##    AEDECOD Placebo_n_ae Placebo_pct `Xanomeline Hig… `Xanomeline Hig…
-##    &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-##  1 APPLIC…            5        7.25                7             8.86
-##  2 APPLIC…            0        0                  15            19.0 
-##  3 APPLIC…            0        0                   9            11.4 
-##  4 APPLIC…            6        8.7                22            27.8 
-##  5 APPLIC…            0        0                   6             7.59
-##  6 BLISTER            0        0                   0             0   
-##  7 COUGH              0        0                   5             6.33
-##  8 DIARRH…            9       13.0                 0             0   
-##  9 DIZZIN…            0        0                  12            15.2 
-## 10 ERYTHE…            9       13.0                14            17.7 
-## # … with 11 more rows, and 2 more variables: `Xanomeline Low Dose_n_ae` &lt;dbl&gt;,
-## #   `Xanomeline Low Dose_pct` &lt;dbl&gt;</code></pre>
+##    AEDECOD       Placebo_n_ae Placebo_pct `Xanomeline High D… `Xanomeline High …
+##    &lt;chr&gt;                &lt;dbl&gt;       &lt;dbl&gt;               &lt;dbl&gt;              &lt;dbl&gt;
+##  1 APPLICATION …            5        7.25                   7               8.86
+##  2 APPLICATION …            0        0                     15              19.0 
+##  3 APPLICATION …            0        0                      9              11.4 
+##  4 APPLICATION …            6        8.7                   22              27.8 
+##  5 APPLICATION …            0        0                      6               7.59
+##  6 BLISTER                  0        0                      0               0   
+##  7 COUGH                    0        0                      5               6.33
+##  8 DIARRHOEA                9       13.0                    0               0   
+##  9 DIZZINESS                0        0                     12              15.2 
+## 10 ERYTHEMA                 9       13.0                   14              17.7 
+## # … with 11 more rows, and 2 more variables: Xanomeline Low Dose_n_ae &lt;dbl&gt;,
+## #   Xanomeline Low Dose_pct &lt;dbl&gt;</code></pre>
 </div>
 <div id="write-to-an-rtf-table" class="section level1">
 <h1 class="hasAnchor">
