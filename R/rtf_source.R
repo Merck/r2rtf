@@ -84,11 +84,11 @@ rtf_source <- function(tbl,
   check_args(as_table, type = "logical")
 
   # Define proper justification reference
-  if (text_justification == "l") {
+  if (text_justification == "l" & (! as_table)) {
     text_indent_left <- text_indent_left + footnote_source_space(tbl, text_indent_reference)
   }
 
-  if (text_justification == "r") {
+  if (text_justification == "r" & (! as_table)) {
     text_indent_right <- text_indent_right + footnote_source_space(tbl, text_indent_reference)
   }
 
@@ -151,7 +151,7 @@ rtf_source <- function(tbl,
   }
 
   attr(source, "as_table") <- as_table
-
+  attr(source, "col_rel_width") <- 1
   attr(tbl, "rtf_source") <- source
 
   tbl

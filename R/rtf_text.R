@@ -109,18 +109,27 @@ rtf_text <- function(text,
   }
 
   ### Convert Latex Character
-  if (text_convert) {
-    text <- convert(text)
-  }
+  text_vector <- ifelse(text_convert, convert(as.matrix(text)), as.matrix(text))
 
   end <- "}"
 
-  paste0(
+  text_rtf <- paste0(
+    font_size,
     begin,
-    font, font_size,
+    font,
     format,
     text_color, " ",
-    text,
+    text_vector,
     end
   )
+
+  # Convert back to matrix
+  if(! is.null(dim(text))){
+    text_rtf <- matrix(text_rtf, nrow = nrow(text), ncol = ncol(text))
+  }
+
+  text_rtf
+
+
+
 }

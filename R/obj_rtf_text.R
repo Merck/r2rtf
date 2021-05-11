@@ -95,23 +95,37 @@ obj_rtf_text <- function(text,
 
     foo <- function(x) {
       if ((is.null(dim(x))) & (!is.null(x))) {
+
+        if(! length(x) %in% c(1, n_col, n_col * n_row)){
+          warning("The input is not a single value, with length equal to number of columns or a matrix with same dimension of the table.")
+        }
+
         stopifnot(length(x) %in% c(1, n_col) | all(dim(x) == c(n_row, n_col)))
         x <- matrix(x, nrow = n_row, ncol = n_col, byrow = TRUE)
       }
       x
     }
 
-    text_font <- foo(text_font)
-    text_format <- foo(text_format)
-    text_font_size <- foo(text_font_size)
-
-    text_color <- foo(text_color)
-    text_background_color <- foo(text_background_color)
-    text_justification <- foo(text_justification)
-
-    text_convert <- foo(text_convert)
+  }else{
+    l <- length(text)
+    foo <- function(x){
+      if(! is.null(x)) rep(x, length.out = l)
+    }
   }
 
+  text_font <- foo(text_font)
+  text_format <- foo(text_format)
+  text_font_size <- foo(text_font_size)
+
+  text_color <- foo(text_color)
+  text_background_color <- foo(text_background_color)
+  text_justification <- foo(text_justification)
+
+  text_convert <- foo(text_convert)
+
+  text_indent_first <- foo(text_indent_first)
+  text_indent_left  <- foo(text_indent_left)
+  text_indent_right <- foo(text_indent_right)
 
   # Add attributes
 
@@ -134,6 +148,7 @@ obj_rtf_text <- function(text,
   attr(text, "text_new_page") <- text_new_page
   attr(text, "text_hyphenation") <- text_hyphenation
   attr(text, "text_convert") <- text_convert
+  attr(text, "strwidth")     <- rtf_strwidth(text)
 
   # Register Color Use
   color <- list(text_color, text_background_color)

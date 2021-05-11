@@ -6,10 +6,11 @@ tbl <- rtf_read_png("fig/fig1.png")  %>%
 tbl <- tbl %>%  rtf_title("This is the title") %>% rtf_footnote("This is a footnote") %>%
   rtf_source("Source:  This is the source]")
 
+attr(tbl, "page")$page_title <- "first"
+attr(tbl, "page")$page_footnote <-  "all"
+attr(tbl, "page")$page_source <- "all"
 
-tbl_encode <- tbl %>% rtf_encode_figure(page_title = "first",
-                                        page_footnote = "all",
-                                        page_source = "all")
+tbl_encode <- tbl %>% rtf_encode_figure()
 
 
 test_that("figure width and height encoding", {
@@ -51,9 +52,11 @@ test_that("RTF title, footnote and source encoding", {
 
 test_that("RTF title, footnote and source encoding other case for locations", {
 
-  tbl_encode1 <- tbl %>% rtf_encode_figure(page_title = "last",
-                                           page_footnote = "first",
-                                           page_source = "first")
+  attr(tbl, "page")$page_title = "last"
+  attr(tbl, "page")$page_footnote = "first"
+  attr(tbl, "page")$page_source = "first"
+
+  tbl_encode1 <- rtf_encode_figure(tbl)
 
   footnote <- attr(tbl, "rtf_footnote")
   if(! is.null(footnote)){
@@ -72,9 +75,11 @@ test_that("RTF title, footnote and source encoding other case for locations", {
 
 test_that("RTF title, footnote and source encoding other case for locations", {
 
-  tbl_encode1 <- tbl %>% rtf_encode_figure(page_title = "last",
-                                           page_footnote = "last",
-                                           page_source = "last")
+  attr(tbl, "page")$page_title = "last"
+  attr(tbl, "page")$page_footnote = "last"
+  attr(tbl, "page")$page_source = "last"
+
+  tbl_encode1 <- rtf_encode_figure(tbl)
 
   footnote <- attr(tbl, "rtf_footnote")
   if(! is.null(footnote)){

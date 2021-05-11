@@ -21,17 +21,6 @@ test_that("RTF text default color", {
 
 })
 
-test_that("check for valid input arguments to text", {
-
-  #Check text argument only takes atomic character vector arguments
-
-  testdat <- iris[1:100,]
-  expect_warning(rtf_text(text = testdat),
-                 "argument is not an atomic vector; coercing"
-                 )
-
-})
-
 test_that("check for valid input arguments to font", {
 
   #Check font argument matches font_type()$type

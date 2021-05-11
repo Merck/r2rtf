@@ -2,7 +2,7 @@
 % Please edit documentation in R/rtf_pageby.R
 \name{rtf_pageby}
 \alias{rtf_pageby}
-\title{Add Table Body Pageby Attributes to Table}
+\title{Add Pageby Attributes to Table}
 \usage{
 rtf_pageby(
   tbl,
@@ -27,5 +27,5 @@ by sections. Default is FALSE.}
 or 'first_row'. Default is 'column'.}
 }
 \description{
-Add Table Body Pageby Attributes to Table
+Add Pageby Attributes to Table
 }

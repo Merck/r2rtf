@@ -66,9 +66,7 @@ test_that("RTF page margin encode - landscape + height 4 + width 6", {
 
 test_that("RTF title ", {
   x <- iris %>% rtf_title(title="title test")
-  expect_equal(as_rtf_title(x),
-               "{\\pard\\hyphpar\n\\sb180\\sa180\\fi0\\li0\\ri0\\qc\n{\\f0\\fs24 title test}\n\\par}"
-  )
+  expect_snapshot_output(as_rtf_title(x))
 })
 
 test_that("RTF title when no attr assigned", {
@@ -84,18 +82,18 @@ test_that("RTF colheader ", {
 
 test_that("RTF footnote font encode - font 2", {
   x <- iris %>% rtf_footnote(footnote = "test", text_font=2 )
-  expect_snapshot_output(as_rtf_footnote(x))
+  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f1 test}\\cell\n\\intbl\\row\\pard")
 })
 
 test_that("RTF footnote font encode - font 3", {
   x <- iris %>% rtf_footnote(footnote = "test", text_font=3 )
-  expect_snapshot_output(as_rtf_footnote(x))
+  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f2 test}\\cell\n\\intbl\\row\\pard")
 })
 
 
 test_that("RTF footnote format, size and color encode", {
   x <- iris %>% rtf_footnote(footnote = "test", text_font_size=8, text_format="i",text_color="red" )
-  expect_snapshot_output(as_rtf_footnote(x))
+  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs16{\\f0\\i\\cf553 test}\\cell\n\\intbl\\row\\pard")
 })
 
 test_that("RTF footnote NULL", {
@@ -105,12 +103,11 @@ test_that("RTF footnote NULL", {
 
 test_that("RTF footnote when as_table = TRUE", {
   x <- iris %>% rtf_footnote(footnote = "test", as_table = TRUE)
-  expect_snapshot_output(as_rtf_footnote(x))})
+  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f0 test}\\cell\n\\intbl\\row\\pard")})
 
 test_that("RTF footnote when as_table = FALSE", {
   x <- iris %>% rtf_body() %>% rtf_footnote(footnote = "test", as_table = FALSE)
-  expect_equal(as_rtf_footnote(x),
-               "{\\pard\\hyphpar\n\\sb15\\sa15\\fi0\\li0\\ri0\\ql\n{\\f0\\fs18 test}\n\\par}")
+  expect_snapshot_output(as_rtf_footnote(x))
 })
 
 test_that("RTF source font encode", {
@@ -120,10 +117,7 @@ test_that("RTF source font encode", {
 
 test_that("RTF source format, size and color encode", {
   x <- iris %>% rtf_source("data source: adae", text_font_size=8, text_format="b", text_color="red" )
-  expect_equal(as_rtf_source(x),
-               "{\\pard\\hyphpar\n\\sb15\\sa15\\fi0\\li0\\ri0\\qc\n{\\f0\\fs16\\b\\cf553 data source: adae}\n\\par}"
-    )
-
+  expect_snapshot_output(as_rtf_source(x))
 })
 
 test_that("RTF source NULL", {
@@ -138,14 +132,11 @@ test_that("RTF source when as_table = TRUE", {
 
 test_that("RTF source when as_table = FALSE", {
   x <- iris %>% rtf_source(source = "test", as_table = FALSE)
-  expect_equal(as_rtf_source(x),
-               "{\\pard\\hyphpar\n\\sb15\\sa15\\fi0\\li0\\ri0\\qc\n{\\f0\\fs18 test}\n\\par}")
+  expect_snapshot_output(as_rtf_source(x))
 })
 
 test_that("RTF new page", {
-  expect_equal(as_rtf_new_page(),
-               "\\intbl\\row\\pard\\page\\par\\pard"
-  )
+  expect_snapshot_output(as_rtf_new_page())
 })
 
 test_that("RTF end", {
@@ -170,13 +161,52 @@ test_that("RTF page margin encode - landscape + height 4 + width 6", {
   expect_equal(attr(x, "page")$orientation, "landscape")
 })
 
-test_that("RTF source format, size and color encode", {
-  x <- iris %>% rtf_source("data source: adae", text_font_size=8, text_format="b", text_color="red" )
-  expect_equal(attr(attr(x, "rtf_source"), 'text_font_size'), 8)
-  expect_equal(attr(attr(x, "rtf_source"), 'text_format'), "b")
-  expect_equal(attr(attr(x, "rtf_source"), 'text_color'), "red")
+# add tests for new features
+test_that("Test for function as_rtf_page() when page header exists", {
+  x <- head(iris, 2) %>%
+    rtf_page_header(text='header test text')
 
-
+  expect_equal(as_rtf_page(x), "{\\header\n{\\pard\\sb15\\sa15\\fi0\\li0\\ri0\\qr\\fs24{\\f0 header test text}\\par}\n}\n\\paperw12240\\paperh15840\n")
 })
+
+test_that("Test for function as_rtf_page() when page footer exists", {
+  ft <- head(iris, 2) %>%
+    rtf_page_footer(text = 'footer test text')
+
+  expect_equal(as_rtf_page(ft), "{\\footer\n{\\pard\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs24{\\f0 footer test text}\\par}\n}\n\\paperw12240\\paperh15840\n")
+})
+
+test_that("Test for function as_rtf_subline() when subline exists", {
+  sl <- head(iris, 2) %>%
+    rtf_subline(text = 'subline test text')
+
+  expect_equal(as_rtf_subline(sl),"{\\pard\\hyphpar\\sb180\\sa180\\fi0\\li0\\ri0\\ql\\fs24{\\f0 subline test text}\\par}")
+})
+
+test_that("Test for function as_rtf_footnote() when there is no text conversion
+i.e. attr(text, 'text_convert') = NULL", {
+  fn1 <- head(iris, 2) %>%
+    rtf_title(title = 'footnote example') %>%
+    rtf_footnote(footnote = c("> = sign: {\\geq}", "superscript: {^a}"),
+                 text_convert=FALSE)
+
+  expect_equal(as_rtf_footnote(fn1),"\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f0 > = sign: {\\geq}\\line superscript: {^a}}\\cell\n\\intbl\\row\\pard")
+
+  fn2 <- head(iris, 2) %>%
+    rtf_title(title = 'footnote example') %>%
+    rtf_footnote(footnote = c("> = sign: {\\geq}", "superscript: {^a}"))
+
+  expect_equal(as_rtf_footnote(fn2),"\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f0 > = sign: {\\uc1\\u8805*}\\line superscript: {\\super a}}\\cell\n\\intbl\\row\\pard")
+})
+
+test_that("Test for function as_rtf_source() when there is no text conversion
+i.e. attr(text, 'text_convert') = NULL", {
+  sc <- head(iris, 2) %>%
+    rtf_source(source = c(">= sign: {\\geq}", "superscript: {^a}"),
+               text_convert = FALSE)
+
+  expect_equal(as_rtf_source(sc),"{\\pard\\hyphpar\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 >= sign: {\\geq}}\\line\\fs18{\\f0 superscript: {^a}}\\par}")
+})
+
 
 

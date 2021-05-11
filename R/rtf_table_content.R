@@ -18,29 +18,8 @@
 #' Create RTF Table Body Encode
 #'
 #' @param tbl A data frame.
-#' @param border_left Left border type. Default is the corresponding attribute from `tbl`.
-#' @param border_right Right border type. Default is the corresponding attribute from `tbl`.
-#' @param border_top Top border type. Default is the corresponding attribute from `tbl`.
-#' @param border_bottom Bottom border type. Default is the corresponding attribute from `tbl`.
-#' @param border_color_left Left border color. Default is the corresponding attribute from `tbl`.
-#' @param border_color_right Right border color. Default is the corresponding attribute from `tbl`.
-#' @param border_color_top Top border color. Default is the corresponding attribute from `tbl`.
-#' @param border_color_bottom Bottom border color. Default is the corresponding attribute from `tbl`.
-#' @param border_width Border width in twips. Default is the corresponding attribute from `tbl`.
-#' @param cell_justification Justification for cell. Default is the corresponding attribute from `tbl`.
-#' @param col_rel_width Column relative width in a vector eg. c(2,1,1) refers to 2:1:1
 #' @param col_total_width Column total width for the table. Default is the corresponding attribute from `tbl`.
-#' @param cell_height Height for cell in twips. Default is the corresponding attribute from `tbl`.
-#' @param text_font Text font type. Default is the corresponding attribute from `tbl`.
-#' @param text_font_size Text font size. Default is the corresponding attribute from `tbl`.
-#' @param text_format  Text format. Default is the corresponding attribute from `tbl`.
-#' @param text_color Text color. Default is the corresponding attribute from `tbl`.
-#' @param text_background_color Text background color. Default is the corresponding attribute from `tbl`.
-#' @param text_justification Justification for text. Default is the corresponding attribute from `tbl`.
-#' @param text_space_before Line space before text. Default is the corresponding attribute from `tbl`.
-#' @param text_space_after  Line space after text. Default is the corresponding attribute from `tbl`.
 #' @param use_border_bottom A logical value of using the bottom border. Default is the corresponding attribute from `tbl`.
-#' @param text_convert A logical value to convert special characters. Default is the corresponding attribute from `tbl`.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -60,36 +39,42 @@
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 rtf_table_content <- function(tbl,
-
                               col_total_width = attr(tbl, "page")$col_width,
-                              use_border_bottom = FALSE,
+                              use_border_bottom = FALSE) {
 
-                              border_left = attr(tbl, "border_left"),
-                              border_right = attr(tbl, "border_right"),
-                              border_top = attr(tbl, "border_top"),
-                              border_bottom = attr(tbl, "border_bottom"),
+  border_left = attr(tbl, "border_left")
+  border_right = attr(tbl, "border_right")
+  border_top = attr(tbl, "border_top")
+  border_bottom = attr(tbl, "border_bottom")
 
-                              border_color_left = attr(tbl, "border_color_left"),
-                              border_color_right = attr(tbl, "border_color_right"),
-                              border_color_top = attr(tbl, "border_color_top"),
-                              border_color_bottom = attr(tbl, "border_color_bottom"),
+  border_color_left = attr(tbl, "border_color_left")
+  border_color_right = attr(tbl, "border_color_right")
+  border_color_top = attr(tbl, "border_color_top")
+  border_color_bottom = attr(tbl, "border_color_bottom")
 
-                              border_width = attr(tbl, "border_width"),
+  border_width = attr(tbl, "border_width")
 
-                              col_rel_width = attr(tbl, "col_rel_width"),
-                              cell_height = attr(tbl, "cell_height"),
-                              cell_justification = attr(tbl, "cell_justification"),
+  col_rel_width = attr(tbl, "col_rel_width")
+  cell_height = attr(tbl, "cell_height")
+  cell_justification = attr(tbl, "cell_justification")
 
-                              text_font = attr(tbl, "text_font"),
-                              text_format = attr(tbl, "text_format"),
-                              text_color = attr(tbl, "text_color"),
-                              text_background_color = attr(tbl, "text_background_color"),
-                              text_justification = attr(tbl, "text_justification"),
-                              text_font_size = attr(tbl, "text_font_size"),
-                              text_space_before = attr(tbl, "text_space_before"),
-                              text_space_after = attr(tbl, "text_space_after"),
+  text_font = attr(tbl, "text_font")
+  text_format = attr(tbl, "text_format")
+  text_color = attr(tbl, "text_color")
+  text_background_color = attr(tbl, "text_background_color")
+  text_justification = attr(tbl, "text_justification")
+  text_font_size = attr(tbl, "text_font_size")
+  text_space = attr(tbl, "text_space")
+  text_space_before = attr(tbl, "text_space_before")
+  text_space_after = attr(tbl, "text_space_after")
 
-                              text_convert = attr(tbl, "text_convert")) {
+  text_indent_first = attr(tbl, "text_indent_first")
+  text_indent_left = attr(tbl, "text_indent_left")
+  text_indent_right = attr(tbl, "text_indent_right")
+
+
+
+  text_convert = attr(tbl, "text_convert")
 
   ## get dimension of tbl
   n_row <- nrow(tbl)
@@ -192,56 +177,26 @@ rtf_table_content <- function(tbl,
 
   border_rtf <- t(border_rtf)
 
-  # Encoding RTF Cell Content/Text
-  cell <- paste0("\\pard\\intbl\\sb", text_space_before, "\\sa", text_space_after)
+  # Encode RTF Text and Paragraph
+  text_rtf <- rtf_text(tbl,
+                       font = text_font,
+                       font_size = text_font_size,
+                       format = text_format,
+                       color = text_color,
+                       background_color = text_background_color,
+                       text_convert = text_convert)
 
-  ## content/text justification
-  text_justification_rtf <- factor(text_justification, levels = justification$type, labels = justification$rtf_code_text)
+  cell_rtf <- rtf_paragraph(text_rtf,
+                                 justification = text_justification,
+                                 indent_first = text_indent_first,
+                                 indent_left = text_indent_left,
+                                 indent_right = text_indent_right,
+                                 space = text_space,
+                                 space_before = text_space_before,
+                                 space_after = text_space_after,
+                                 new_page = FALSE,
+                                 hyphenation = FALSE,
+                                 cell = TRUE)
 
-  # if align in decimal always justified at center.
-  text_justification_rtf <- ifelse(text_justification == "d", paste0(text_justification_rtf, "\\tqdec\\tx", round(foo(cell_width) / 2, 0)), as.character(text_justification_rtf))
-
-  ## content/text font and font size
-  font_type <- font_type()
-  text_font_rtf <- factor(text_font, levels = font_type$type, labels = font_type$rtf_code)
-  text_font_size_rtf <- paste0("\\fs", round(text_font_size * 2, 0))
-
-  ## content/text format
-  ## The combination of type should be valid.
-  ## e.g. type = "bi" or "ib" should be bold and italics.
-  font_format <- font_format()
-
-  if (!is.null(text_format)) {
-    text_format_rtf <- lapply(strsplit(text_format, ""), function(x) {
-      paste0(factor(x, levels = font_format$type, labels = font_format$rtf_code),
-        collapse = ""
-      )
-    })
-    text_format_rtf <- unlist(text_format_rtf)
-  } else {
-    text_format_rtf <- NULL
-  }
-
-  ## cell content/text color
-  if (!is.null(text_color)) {
-    text_color_rtf <- factor(text_color, levels = col_tb$color, labels = col_tb$type)
-    text_color_rtf <- paste0("\\cf", text_color_rtf)
-  } else {
-    text_color_rtf <- NULL
-  }
-
-  content_matrix <- matrix("", nrow = nrow(tbl), ncol = ncol(tbl))
-  for (i in 1:ncol(tbl)) {
-    content_matrix[, i] <- ifelse(text_convert[, i], convert(tbl[, i]), tbl[, i])
-  }
-
-  ## Combine cell content/text attributes of justification, font, font-size, format and color.
-  cell_rtf <- paste0(
-    cell, text_justification_rtf, text_font_size_rtf,
-    "{", text_font_rtf, text_color_rtf, text_format_rtf,
-    " ", content_matrix, "}", "\\cell"
-  )
-  cell_rtf <- t(matrix(cell_rtf, nrow = n_row, ncol = n_col))
-
-  rbind(row_begin, border_rtf, cell_rtf, row_end)
+  rbind(row_begin, border_rtf, t(cell_rtf), row_end)
 }

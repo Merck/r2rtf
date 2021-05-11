@@ -1,13 +1,14 @@
-# r2rtf 0.2.0.9000 (development)
+# r2rtf 0.2.0.9002 (development)
 
 * Rename dataset with prefix `r2rtf` to avoid conflict of other namespace
-* Enable special place holder "-----" in `pageby` variable to suppress line displayed 
-  in `pageby` variable (ref Example 2 in `vignette/example-pageby-groupby`)
-* New argument `pageby_row` in `rtf_body` to display first row instead of `pageby` variable when `pageby_row = "first_row"` 
-* New argument `text_indent_reference` to allow user to control reference of indent are from page margin or table border (#12)
+* Enable special place holder "-----" in `page_by` variable to suppress line displayed 
+  in `page_by` variable (ref Example 2 in `vignette/example-pageby-groupby`)
+* New argument `pageby_row` in `rtf_body` to display first row instead of `page_by` variable when `pageby_row = "first_row"` 
+* New argument `subline_by` in `rtf_body` to display subline by an variable.  
+* New argument `text_indent_reference` to allow user to control reference of indent from page margin or table border (#12)
 * New internal function `rtf_subset` to subset an rtf table object.
-* Bug fix `groupby` can be used when `pageby=NULL`.
-* Bug fix `pageby` can not sort format style in `rtf_body`
+* Bug fix `group_by` can be used when `page_by=NULL`.
+* Bug fix `page_by` can not sort format style in `rtf_body`
 * Bug fix ensure consistent font size with blank cell (#14)
 
 # r2rtf 0.2.0 (2020-12-04)

@@ -81,13 +81,13 @@
 #'                              text color by column, use character vector with length of vector
 #'                              equal to number of columns displayed e.g. c("white","red","blue").
 #'                              All possible input can be found in `grDevices::colors()`.
-#' @param text_space_before Line space before text in twips. Default is 15 for 0.0104 inch.
-#' @param text_space_after Line space after text in twips. Default is 15 for 0.0104 inch.
-#' @param text_indent_first A value of first indent.
-#' @param text_indent_left A value of left indent.
-#' @param text_indent_right A value of right indent.
+#' @param text_indent_first A value of text indent in first line.
+#' @param text_indent_left  A value of text left indent.
+#' @param text_indent_right A value of text right indent.
 #' @param text_indent_reference The reference start point of text indent. Accept `table` or `page_margin`
-#' @param text_space A value of text space.
+#' @param text_space Line space between paragraph in twips. Default is 0.
+#' @param text_space_before Line space before a paragraph in twips. Default is 15.
+#' @param text_space_after Line space after a paragraph in twips. Default is 15.
 #' @param as_table A logical value to display it as a table.
 #' @param text_convert A logical value to convert special characters. Default is TRUE.
 #'
@@ -154,11 +154,11 @@ rtf_footnote <- function(tbl,
   check_args(as_table, type = "logical")
 
   # Define proper justification reference
-  if (text_justification == "l") {
+  if (text_justification == "l" & (! as_table) ) {
     text_indent_left <- text_indent_left + footnote_source_space(tbl, text_indent_reference)
   }
 
-  if (text_justification == "r") {
+  if (text_justification == "r" & (! as_table) ) {
     text_indent_right <- text_indent_right + footnote_source_space(tbl, text_indent_reference)
   }
 
@@ -221,7 +221,7 @@ rtf_footnote <- function(tbl,
   }
 
   attr(footnote, "as_table") <- as_table
-
+  attr(footnote, "col_rel_width") <- 1
   attr(tbl, "rtf_footnote") <- footnote
 
   tbl

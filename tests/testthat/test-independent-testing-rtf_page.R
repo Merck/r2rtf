@@ -56,7 +56,7 @@ test_that("Test if attributes are assigned correctly for orientation not portrai
   expect_equal(att_dfl$page$width, 11)
   expect_equal(att_dfl$page$height, 8.5)
   expect_equal(att_dfl$page$margin, set_margin("wma", "landscape"))
-  expect_equal(att_dfl$page$nrow, 28)
+  expect_equal(att_dfl$page$nrow, 24)
   expect_equal(att_dfl$page$border_first, "double")
   expect_equal(att_dfl$page$border_last, "double")
   expect_equal(att_dfl$page$col_width, 11 - 2.5)

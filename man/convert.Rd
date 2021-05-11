@@ -6,7 +6,8 @@
 \usage{
 convert(
   text,
-  load_stringi = suppressMessages(suppressWarnings(require("stringi")))
+  load_stringi = class(try(stringi::stri_replace_all_fixed, silent = TRUE)) !=
+    "try-error"
 )
 }
 \arguments{

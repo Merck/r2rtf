@@ -10,7 +10,7 @@ rtf_page(
   width = ifelse(orientation == "portrait", 8.5, 11),
   height = ifelse(orientation == "portrait", 11, 8.5),
   margin = set_margin("wma", orientation),
-  nrow = ifelse(orientation == "portrait", 40, 28),
+  nrow = ifelse(orientation == "portrait", 40, 24),
   border_first = "double",
   border_last = "double",
   border_color_first = NULL,

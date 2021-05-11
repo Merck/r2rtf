@@ -8,14 +8,6 @@ test_that("Test case when page_by is NULL and new_page is TRUE",{
 
 })
 
-test_that("Test case when page_by is not NULL but data is not sorted by the page_by variable",{
-
-
-  expect_error(iris %>%
-                 rtf_body() %>%
-                 rtf_pageby(page_by=c("Petal.Length"), new_page=TRUE, pageby_header = TRUE))
-})
-
 test_that("Test case when page_by is not NULL and data is sorted by the page_by variable",{
 
   expect_output(str(iris[1:2,] %>%
@@ -66,5 +58,38 @@ test_that("Test if there are more than one page_by variables",{
   expect_true(attributes(x)$rtf_pageby$new_page)
   expect_equal(attributes(x)$rtf_pageby$by_var, c("Petal.Width", "Petal.Length"))
   expect_true(attributes(x)$rtf_pageby$pageby_header)
+
+})
+
+# add tests for new features
+test_that("Test case when pageby_row='first_row'", {
+  x <- iris[c(1:4, 51:54), 3:5] %>%
+    mutate(s2 = paste0(Species, 1:2), s3 = s2) %>%
+    arrange(Species, s2)%>%
+    rtf_colheader("patelLength|patelWidth|s3") %>%
+    rtf_body(subline_by = "Species") %>%
+    rtf_pageby(page_by = 's2',
+      pageby_row = 'first_row')
+
+  expect_false(attributes(x)$rtf_pageby$new_page)
+  expect_equal(attributes(x)$rtf_pageby$by_var, 's2')
+  expect_true(attributes(x)$rtf_pageby$pageby_header)
+  expect_equal(attributes(x)$rtf_pageby$pageby_row,'first_row')
+
+})
+
+
+test_that("Test case when subline is not NULL", {
+  x <- iris[c(1:4, 51:54), 3:5] %>%
+    mutate(s2 = paste0(Species, 1:2), s3 = s2) %>%
+    arrange(Species, s2)%>%
+    rtf_colheader("patelLength|patelWidth|s3") %>%
+    rtf_body(subline_by = "Species") %>%
+    rtf_pageby(page_by = 's2',
+               pageby_row = 'first_row')
+
+  expect_equal(data.frame(attributes(x)$rtf_by_subline_row), data.frame(tibble(x = unique(x$Species))))
+  expect_equal(attributes(x)$rtf_by_subline$by_var,'Species')
+  expect_equal(attributes(x)$rtf_by_subline$new_page,TRUE)
 
 })

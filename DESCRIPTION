@@ -3,9 +3,20 @@ Title: Easily Create Presentation-Ready Rich Text Format (RTF) Table and Figure
 Version: 0.2.0
 Authors@R: c(
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = c("aut", "cre")),
-    person("Siruo", "Wang", email = "swang171@jhu.edu", role = "aut"),
-    person("Simiao", "Ye", email = "simiao.ye1@merck.com", role = "aut"),
-    person("Madhusudhan", "Ginnaram", email = "madhusudhan.ginnaram.reddy@merck.com", role = "aut"),
+    person("Siruo", "Wang", role = "aut"),
+    person("Simiao", "Ye", role = "aut"),
+    person("Madhusudhan", "Ginnaram", role = "aut"),
+    person("Ruchitbhai", "Patel", role = "ctb"), 
+    person("Huei-Ling", "Chen", role = "ctb"), 
+    person("Peikun", "Wu", role = "ctb"), 
+    person("Uday Preetham", "Palukuru", role = "ctb"),
+    person("Fansen", "Kong", role = "ctb"), 
+    person("Daniel", "Woodie", role = "ctb"),
+    person("Sarad", "Nepal", role = "ctb"),
+    person("Jane", "Liao", role = "ctb"),
+    person("Benjamin", "Wang", role = "ctb"),
+    person("Jeff", "Cheng", role = "ctb"),
+    person("Yirong", "Cao", role = "ctb"),
     person("Merck Sharp & Dohme Corp", role = "cph")
     )
 Description: Create presentation-ready Rich Text Format (RTF) table and figure with flexible and customized format.

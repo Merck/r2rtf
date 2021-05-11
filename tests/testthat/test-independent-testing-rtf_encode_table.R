@@ -5,6 +5,10 @@ data2 <- data1 %>% rtf_body (as_colheader = TRUE
 )
 
 #create rtf encode table
+attr(data2, "page")$page_title <- "all"
+attr(data2, "page")$page_footnote <- "last"
+attr(data2, "page")$page_source <- "last"
+
 data3 <- data2 %>%  rtf_encode_table()
 
 test_that("RTF page, margin encoding", {
@@ -17,6 +21,10 @@ test_that("RTF colheader", {
   d2 <- d1 %>% rtf_body (as_colheader = TRUE
                          , col_rel_width = rep(1, ncol(d1))
   )
+
+  attr(d2, "page")$page_title <- "all"
+  attr(d2, "page")$page_footnote <- "last"
+  attr(d2, "page")$page_source <- "last"
 
   encode2 <-  rtf_encode_table(d2)
 
@@ -56,9 +64,12 @@ test_that("RTF header, footnote and source encoding", {
                 text_indent_right = 0) %>%
     rtf_title ("Title Testing")
 
-  encode <-  d3 %>% rtf_encode_table (page_title = "last",
-                                      page_footnote = "first",
-                                      page_source = "last" )
+
+  attr(d3, "page")$page_title = "last"
+  attr(d3, "page")$page_footnote = "first"
+  attr(d3, "page")$page_source = "last"
+
+  encode <-  d3 %>% rtf_encode_table ()
 
 
   expect_true(grep(as_rtf_footnote(d3), encode, fixed=TRUE) == 2)
@@ -85,9 +96,11 @@ test_that("RTF header, footnote and source encoding for different location", {
                   text_indent_right = 0) %>%
       rtf_title ("Title Testing")
 
-  encode1 <- d3 %>%  rtf_encode_table(page_title = "first",
-                                      page_footnote = "last",
-                                      page_source = "first")
+  attr(d3, "page")$page_title = "first"
+  attr(d3, "page")$page_footnote = "last"
+  attr(d3, "page")$page_source = "first"
+
+  encode1 <- d3 %>%  rtf_encode_table()
 
   #assign defult value ..
   k   <- attr(d3, "rtf_footnote")
@@ -110,8 +123,12 @@ test_that("RTF header, footnote and source encoding for different location", {
 test_that("input value test if data frame or list of data frames", {
   m <- iris[1:2,]
   m1 <- m %>% rtf_body (as_colheader = TRUE
-                        ,col_rel_width = c(5,9,13,18,9)) %>%
-    rtf_encode_table()
+                        ,col_rel_width = c(5,9,13,18,9))
+
+  attr(m1, "page")$page_title <- "all"
+  attr(m1, "page")$page_footnote <- "last"
+  attr(m1, "page")$page_source <- "last"
+  m1 <- rtf_encode_table(m1)
 
   expect_snapshot_output(m1)
 })
@@ -121,8 +138,12 @@ test_that("Test case when source are included as table", {
   m <- iris[1:2,]
   m1 <- m %>% rtf_body (as_colheader = TRUE
                         ,col_rel_width = c(5,9,13,18,9)) %>%
-    rtf_source("source text", as_table = TRUE) %>%
-    rtf_encode_table()
+    rtf_source("source text", as_table = TRUE)
+
+  attr(m1, "page")$page_title <- "all"
+  attr(m1, "page")$page_footnote <- "last"
+  attr(m1, "page")$page_source <- "last"
+  m1 <- rtf_encode_table(m1)
 
   expect_snapshot_output(m1)
 })
@@ -134,8 +155,12 @@ test_that("Test case when page_by var is not NULL", {
                         as_colheader = TRUE,
                         col_rel_width = c(5,9,13,18,9),
                         border_color_bottom = "black",
-                        border_color_last = "red") %>%
-              rtf_encode_table()
+                        border_color_last = "red")
+
+  attr(m1, "page")$page_title <- "all"
+  attr(m1, "page")$page_footnote <- "last"
+  attr(m1, "page")$page_source <- "last"
+  m1 <- rtf_encode_table(m1)
 
   expect_snapshot_output(m1)
 })
@@ -148,10 +173,63 @@ test_that("Test case when footnote and source display in all pages", {
               as_colheader = TRUE,
               col_rel_width = c(5,9,13,18,9),
               border_color_bottom = "black",
-              border_color_last = "red") %>%
-              rtf_encode_table(page_footnote = "all", page_source = "all")
+              border_color_last = "red")
+
+  attr(m1, "page")$page_title <- "all"
+  attr(m1, "page")$page_footnote <- "last"
+  attr(m1, "page")$page_source <- "last"
+
+  m1 <- rtf_encode_table(m1)
 
   expect_snapshot_output(m1)
 })
+
+
+# add additional test to increase coverage and for new feature
+test_that("Test case when page$border_color_first is not NULL", {
+  ir <- head(iris, 2) %>%
+    rtf_page(border_color_first = 'red') %>%
+    rtf_body()
+
+  ir <- rtf_encode_table(ir)
+
+  expect_snapshot_output(ir)
+})
+
+test_that("Test case when pageby$border_color_last is not NULL", {
+  ir2 <- head(iris, 2) %>%
+    rtf_page(border_color_last = 'red') %>%
+    rtf_body()
+
+  ir2 <- rtf_encode_table(ir2)
+
+  expect_snapshot_output(ir2)
+
+})
+
+test_that("Test case when subline is not NULL", {
+  ir3 <- iris[c(1:4, 51:54), 3:5] %>%
+    mutate(s2 = paste0(Species, 1:2)) %>%
+    arrange(Species, s2) %>%
+    rtf_colheader("patelLength|patelWidth|s2") %>%
+    rtf_body(subline_by = "Species")
+
+  ir3 <- rtf_encode_table(ir3)
+
+  expect_snapshot_output(ir3)
+})
+
+test_that("Test case when subline is not NULL and verbose equals to TRUE", {
+  ir3 <- iris[c(1:4, 51:54), 3:5] %>%
+    mutate(s2 = paste0(Species, 1:2)) %>%
+    arrange(Species, s2) %>%
+    rtf_colheader("patelLength|patelWidth|s2") %>%
+    rtf_body(subline_by = "Species")
+
+  ir3 <- rtf_encode_table(ir3, verbose = TRUE)
+
+  expect_true(length(ir3$info)>0)
+})
+
 
 

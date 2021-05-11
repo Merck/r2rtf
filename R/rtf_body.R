@@ -31,6 +31,8 @@
 #' @param pageby_header A boolean value to display pageby header at the beginning of each page.
 #' @param pageby_row A character vector of location of page_by variable. Possible input are 'column'
 #' or 'first_row'. Default is 'column'.
+#' @param subline_by Column names in a character vector to subline by table in sections.
+#'                Default is NULL.
 #' @param last_row A boolean value to indicate whether the table contains the last row of the
 #'                 final table. Default is TRUE.
 #' @inheritParams rtf_footnote
@@ -92,8 +94,8 @@ rtf_body <- function(tbl,
 
                      border_left = "single",
                      border_right = "single",
-                     border_top = "",
-                     border_bottom = "",
+                     border_top = NULL,
+                     border_bottom = NULL,
 
                      border_first = "single",
                      border_last = "single",
@@ -118,7 +120,7 @@ rtf_body <- function(tbl,
 
                      text_color = NULL,
                      text_background_color = NULL,
-                     text_justification = "c",
+                     text_justification = NULL,
 
                      text_indent_first = 0,
                      text_indent_left = 0,
@@ -136,6 +138,8 @@ rtf_body <- function(tbl,
                      new_page = FALSE,
                      pageby_header = TRUE,
                      pageby_row = "column",
+
+                     subline_by = NULL,
 
                      last_row = TRUE) {
 
@@ -159,37 +163,94 @@ rtf_body <- function(tbl,
   match_arg(page_by, names(tbl), several.ok = TRUE)
   match_arg(pageby_row, c("first_row", "column"))
 
-  # Convert tbl to a data frame
+  # Convert tbl to a data frame, each column is a character
   tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+
+  # Sort data in proper order if subline_by, page_by or group_by is used.
+  by_var <- c(subline_by, page_by, group_by)
+
+  if(pageby_row == "first_row"){
+    by_var1 <- c(subline_by, page_by)
+    if (length(by_var) > 1) {
+      id_i <- apply(tbl[, by_var1], 1, paste, collapse = "-")
+    } else {
+      id_i <- tbl[, by_var1]
+    }
+
+    pageby_nrow <- as.numeric(table(id_i))
+
+    if(any(pageby_nrow <= 1)){
+      stop("first_row can not be used if a group only have one record")
+    }
+  }
+
+  if (!is.null(by_var)) {
+
+    if (length(by_var) != length(unique(by_var))) stop("Variables in subline_by, page_by and group_by can not be overlapped")
+
+    # Define Index
+    for(i in 1:length(by_var)){
+      if(class(tbl[[by_var[i]]]) == "character"){
+        tbl[[by_var[i]]] <- factor(tbl[[by_var[i]]], levels = unique(tbl[[by_var[i]]]))
+      }
+    }
+
+    if(length(by_var) > 1){
+      order_var <- do.call(order, tbl[, by_var])
+    }else{
+      order_var <- order(tbl[, by_var])
+    }
+
+    if (!all(order_var == 1:nrow(tbl))) {
+      stop("Data is not sorted by ", paste(by_var, collapse = ", "))
+    }
+  }
+
+  # Redefine value to character
+  for(i in 1:ncol(tbl)){
+    tbl[[i]] <- as.character(tbl[[i]])
+  }
 
   # Set Default Page Attributes
   if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
 
-  # Sort data in proper order if page_by or group_by is used.
-  by_var <- c(page_by, group_by)
+  # Set Default Value for Boarder Top and Bottom
+  if( is.null(border_top) ){
+    top_null <- TRUE
+    border_top <- rep("", ncol(tbl))
 
-  order_check <- FALSE
-  if (!is.null(by_var)) {
-    if (length(by_var) != length(unique(by_var))) stop("Variables in page_by and group_by can not be overlapped")
-
-    if (length(by_var) == 1) {
-      order_var <- order(tbl[, by_var])
-    } else {
-      order_var <- do.call(order, as.list(tbl[, by_var]))
+    if(pageby_row == "column"){
+      border_top[names(tbl) %in% page_by] <- "single"
     }
 
-    if (!all(order_var == 1:nrow(tbl))) {
-      message("Data are sorted by ", paste(by_var, collapse = ", "))
-      order_check <- TRUE
+  }else{
+    top_null <- FALSE
+  }
+
+  if( is.null(border_bottom) ){
+    bottom_null <- TRUE
+    border_bottom <- rep("", ncol(tbl))
+
+    if(pageby_row == "column"){
+      border_bottom[names(tbl) %in% page_by] <- "single"
     }
+  }else{
+    bottom_null <- FALSE
+  }
+
+  # Set Default Value for Text Justification
+  if( is.null(text_justification)){
+    text_justification <- rep("c", ncol(tbl))
+    text_justification[names(tbl) %in% c(subline_by, page_by)] <- "l"
   }
 
   ## check whether to add column header or not
   if (as_colheader == TRUE) {
     if (is.null(attr(tbl, "rtf_colheader"))) {
-      tbl <- rtf_colheader(tbl, colheader = paste(attr(tbl, "names"), collapse = " | "))
+      col_name <- attr(tbl, "names")[! names(tbl) %in% c(subline_by, page_by)]
+      tbl <- rtf_colheader(tbl, colheader = paste(col_name, collapse = " | "))
     }
   } else {
     tbl <- rtf_colheader(tbl, colheader = NULL)
@@ -254,9 +315,10 @@ rtf_body <- function(tbl,
 
   attr(tbl, "last_row") <- last_row
 
-  if(order_check) tbl <- rtf_subset(tbl, row = order_var)
+  # Sublineby Attributes
+  tbl <- rtf_by_subline(tbl, subline_by = subline_by)
 
-  # Pageby Attributions
+  # Pageby Attributes
   tbl <- rtf_pageby(tbl,
     page_by = page_by,
     new_page = new_page,

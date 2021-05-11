@@ -67,7 +67,13 @@ cell_size <- function(col_rel_width, col_total_width) {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 convert <- function(text,
-                    load_stringi = suppressMessages(suppressWarnings(require("stringi")))) {
+                    load_stringi = class(try(stringi::stri_replace_all_fixed, silent = TRUE)) != "try-error") {
+
+  # grepl(">|<|=|_|\\^|(\\\\)|(\\n)", c(">", "<", "=", "_", "\n", "\\line", "abc"))
+  index <- grepl(">|<|=|_|\\^|(\\\\)|(\\n)", text)
+
+  if(! any(index)){ return(text) }
+
   char_rtf <- c(
     "^" = "\\super ",
     "_" = "\\sub ",
@@ -82,24 +88,24 @@ convert <- function(text,
   # Define Pattern for latex code
 
   unicode_latex$int <- as.integer(as.hexmode(unicode_latex$unicode))
-  char_latex <- ifelse(unicode_latex$int <= 255, unicode_latex$chr,
-    ifelse(unicode_latex$int > 255 & unicode_latex$int < 32768,
-      paste0("\\uc1\\u", unicode_latex$int, "*"),
-      paste0("\\uc1\\u-", unicode_latex$int, "*")
-    )
+  char_latex <- ifelse(unicode_latex$int <= 255 & unicode_latex$int != 177, unicode_latex$chr,
+                       ifelse(unicode_latex$int < 32768,
+                              paste0("\\uc1\\u", unicode_latex$int, "*"),
+                              paste0("\\uc1\\u-", unicode_latex$int, "*")
+                       )
   )
 
   names(char_latex) <- unicode_latex$latex
 
-  char_latex <- c(char_rtf, char_latex)
+  char_latex <- rev(c(char_latex, char_rtf))
 
   if (load_stringi) {
-    text <- stringi::stri_replace_all_fixed(text, names(char_latex), char_latex,
-      vectorize_all = FALSE, opts_fixed = list(case_insensitive = FALSE)
+    text[index] <- stringi::stri_replace_all_fixed(text[index], names(char_latex), char_latex,
+                                                   vectorize_all = FALSE, opts_fixed = list(case_insensitive = FALSE)
     )
   } else {
     for (i in 1:length(char_latex)) {
-      text <- gsub(names(char_latex[i]), char_latex[i], text, fixed = TRUE)
+      text[index] <- gsub(names(char_latex[i]), char_latex[i], text[index], fixed = TRUE)
     }
   }
 

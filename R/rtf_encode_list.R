@@ -30,54 +30,147 @@
 #'
 #' @inheritParams rtf_encode
 #'
-rtf_encode_list <- function(tbl,
-                            page_title = "all",
-                            page_footnote = "last",
-                            page_source = "last") {
-  color_rtftext <- lapply(tbl, as_rtf_color)
+rtf_encode_list <- function(tbl) {
 
-  start_rtf <- paste(
+  # Page Input checking
+  page <- lapply(tbl, function(x) attr(x, "page"))
+  width <- length(unique(lapply(page, function(x) x$width))) > 1
+  height <- length(unique(lapply(page, function(x) x$height))) > 1
+  orientation <- length(unique(lapply(page, function(x) x$orientation))) > 1
+  use_color <- length(unique(lapply(page, function(x) x$use_color))) > 1
 
-    as_rtf_init(),
-    as_rtf_font(),
-    unlist(unique(color_rtftext)),
-    sep = "\n"
-  )
+  if(width){stop("Page width must be the same")}
+  if(height){stop("Page height must be the same")}
+  if(orientation){stop("Page orientation must be the same")}
 
-  rtf_feature <- paste(
+  page_footnote <- unlist(unique(lapply(page, function(x) x$page_footnote)))
+  page_source <- unlist(unique(lapply(page, function(x) x$page_source)))
+  if(length(page_footnote) > 1){stop("Table footnote location must be the same")}
+  if(length(page_source) > 1){stop("Table source location must be the same")}
+  if(page_footnote != "last"){stop("Only page_footnote = 'last' is supported in list")}
+  if(page_source != "last"){stop("Only page_source = 'last' is supported in list")}
 
-    as_rtf_page(tbl[[1]]),
+  # Number of tbls
+  n <- length(tbl)
+  if(n < 2){ stop("The length of input list must >= 2")}
 
-    as_rtf_margin(tbl[[1]]),
+  # Footnote and Data Source
+  tbl[2:n] <- lapply(tbl[2:n], function(x){
+    if(! is.null(attr(x, "rtf_footnote"))){
+      message("Only rtf_footnote in first item is used")
+    }
 
-    paste(unlist(lapply(tbl, function(x) as_rtf_title(x))), sep = "\n"),
+    if(! is.null(attr(x, "rtf_source"))){
+      message("Only rtf_source in first item is used")
+    }
 
-    paste(unlist(lapply(tbl, function(x) as_rtf_subline(x))), sep = "\n"),
+    attr(x, "page")$nrow  <- attr(tbl[[1]], "page")$nrow
+    x
+  })
 
-    paste(unlist(lapply(tbl, function(x) {
-      paste(
-        paste(unlist(as_rtf_colheader(x)), collapse = "\n"),
-        paste(as_rtf_table(x), collapse = "\n"),
-        sep = "\n"
-      )
-    })),
-    collapse = "\n"
-    ),
+  if(n > 2){
+    tbl[2:(n-1)] <- lapply(tbl[2:(n-1)], function(x){
+                              attr(x, "page")$border_first <- NULL
+                              attr(x, "page")$border_last  <- NULL
+                              attr(x, "page")$border_color_first <- NULL
+                              attr(x, "page")$border_color_last  <- NULL
+                              x
+    })
+  }
 
-    paste(unlist(lapply(tbl, function(x) as_rtf_footnote(x))), sep = ""),
+  attr(tbl[[1]], "page")$border_last <- NULL
+  attr(tbl[[1]], "page")$border_color_last <- NULL
+  attr(tbl[[1]], "page")$use_color <- use_color
+  attr(tbl[[n]], "page")$border_first <- NULL
+  attr(tbl[[n]], "page")$border_color_first <- NULL
+  attr(tbl[[n]], "rtf_footnote") <- attr(tbl[[1]], "rtf_footnote")
+  attr(tbl[[n]], "rtf_source")   <- attr(tbl[[1]], "rtf_source")
+  attr(tbl[[1]], "rtf_footnote") <- NULL
+  attr(tbl[[1]], "rtf_source")   <- NULL
 
-    paste(unlist(lapply(tbl, function(x) as_rtf_source(x))), sep = ""),
+  # Split page if necessary
+  item <- 0
+  item_next <- tbl[[1]]
+  while(nrow(item_next) > 0){
 
-    "{\\pard\\par}",
-    sep = "\n"
-  )
+    if(item == 0){
+      # Render first time
+      encode <- lapply(tbl, rtf_encode_table, verbose = TRUE)
+    }else{
+      index <- item_next$index[item_next$page1 == item_next$page1[1]]
 
-  rtf_feature <- paste(unlist(rtf_feature), collapse = "\n")
+      tbl0 <- list()
+      tbl0[[1]] <- rtf_subset(tbl[[item]], row = index)
+      tbl0[[2]] <- rtf_subset(tbl[[item]], row = - index)
 
-  ## Post Processing
-  rtf_feature <- gsub("\\totalpage", 1, rtf_feature, fixed = TRUE) # total page number
+      # Update border
+      attr(tbl0[[1]], "page")$border_last  <- NULL
+      attr(tbl0[[1]], "page")$border_color_last  <- NULL
+      attr(tbl0[[1]], "rtf_footnote") <- NULL
+      attr(tbl0[[1]], "rtf_source") <- NULL
+      encode0 <- c(encode[1:(item -1)], lapply(tbl0, rtf_encode_table, verbose = TRUE))
 
-  rtf <- list(start = start_rtf, body = rtf_feature, end = as_rtf_end())
+      if(item < length(encode)){
+        encode0 <- c(encode0, encode[(item+1):n])
+      }
+
+      encode <- encode0
+    }
+
+    # Split page
+    info <- list()
+    for(i in 1:length(encode)){
+      info[[i]] <- data.frame(item = i, encode[[i]]$info)
+    }
+    info <- do.call(rbind, info)
+
+    info$total <- min(info$total)
+
+    info$page1 <- cumsum(info$nrow) %/% info$total + 1
+
+    page1 <- info[info$page == 1, ]
+    page1 <- split(page1, page1$item)
+    item1 <- which(unlist(lapply(page1, function(x) length(unique(x$page1)))) > 1)
+    item_next <- info[info$item == item1 & info$page == 1, ]
+    item <- item1[1]
+ }
+
+
+  start <- encode[[1]]$start
+  new_page_rtftext <- as_rtf_new_page()
+
+
+  body <- lapply(encode, function(x){
+    n_page <- length(x$body)
+    paste(
+      x$page,
+      x$margin,
+      x$header,
+      x$subline,
+      x$sublineby,
+      x$colheader,
+      x$body,
+      x$footnote,
+      x$source,
+      c(rep(new_page_rtftext, n_page - 1), ""),
+      sep = "\n"
+    )
+  })
+
+  # add page break
+  break_index <- lapply(split(info, info$page1), function(x){
+    unique(x$item)[-length(unique(x$item))]
+  })
+  break_index <- sort(unique(unlist(break_index)))
+
+  page_break <- rep(new_page_rtftext, length(body))
+  page_break[c(break_index, length(body))] <- ""
+
+  for(i in 1:length(body)){
+    body[[i]] <- c(body[[i]], page_break[i])
+  }
+  body <- paste(unlist(body), collapse = "\n")
+  rtf <- list(start = start, body = body, end = as_rtf_end())
 
   rtf
 }

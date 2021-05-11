@@ -52,7 +52,6 @@ test_that("cell text formats", {
   expect_error(rtf_colheader(r2rtf_tbl1, colheader =" a | b | c ", text_format   = c("$20.", "$5.", "$20.")))
   expect_error(rtf_colheader(r2rtf_tbl1, colheader =" a | b | c ", text_format   = "%m/%d/%Y"))
   expect_error(rtf_colheader(r2rtf_tbl1, colheader =" a | b | c ", text_format   = c("a", "b", "c")))
-  expect_warning(rtf_colheader(r2rtf_tbl1, colheader =" a | b | c ", text_format   = c("b", "b", "b", "b")))
   expect_equal(attr(attr(x, "rtf_colheader")[[2]], 'text_format')[1,], c("u", "i", "s"))
 
 })

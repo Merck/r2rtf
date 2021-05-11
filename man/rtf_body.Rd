@@ -10,8 +10,8 @@ rtf_body(
   as_colheader = TRUE,
   border_left = "single",
   border_right = "single",
-  border_top = "",
-  border_bottom = "",
+  border_top = NULL,
+  border_bottom = NULL,
   border_first = "single",
   border_last = "single",
   border_color_left = NULL,
@@ -29,7 +29,7 @@ rtf_body(
   text_font_size = 9,
   text_color = NULL,
   text_background_color = NULL,
-  text_justification = "c",
+  text_justification = NULL,
   text_indent_first = 0,
   text_indent_left = 0,
   text_indent_right = 0,
@@ -42,6 +42,7 @@ rtf_body(
   new_page = FALSE,
   pageby_header = TRUE,
   pageby_row = "column",
+  subline_by = NULL,
   last_row = TRUE
 )
 }
@@ -146,17 +147,17 @@ To vary text justification by column, use character vector with
 length of vector equal to number of columns displayed e.g. c("c","l","r").
 All possible input can be found in \code{r2rtf:::justification()$type}.}
 
-\item{text_indent_first}{A value of first indent.}
+\item{text_indent_first}{A value of text indent in first line.}
 
-\item{text_indent_left}{A value of left indent.}
+\item{text_indent_left}{A value of text left indent.}
 
-\item{text_indent_right}{A value of right indent.}
+\item{text_indent_right}{A value of text right indent.}
 
-\item{text_space}{A value of text space.}
+\item{text_space}{Line space between paragraph in twips. Default is 0.}
 
-\item{text_space_before}{Line space before text in twips. Default is 15 for 0.0104 inch.}
+\item{text_space_before}{Line space before a paragraph in twips. Default is 15.}
 
-\item{text_space_after}{Line space after text in twips. Default is 15 for 0.0104 inch.}
+\item{text_space_after}{Line space after a paragraph in twips. Default is 15.}
 
 \item{text_convert}{A logical value to convert special characters. Default is TRUE.}
 
@@ -172,6 +173,9 @@ by sections. Default is FALSE.}
 
 \item{pageby_row}{A character vector of location of page_by variable. Possible input are 'column'
 or 'first_row'. Default is 'column'.}
+
+\item{subline_by}{Column names in a character vector to subline by table in sections.
+Default is NULL.}
 
 \item{last_row}{A boolean value to indicate whether the table contains the last row of the
 final table. Default is TRUE.}
