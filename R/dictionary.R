@@ -41,6 +41,8 @@ font_type <- function() {
     rtf_code = c("\\f0", "\\f1", "\\f2",
                  "\\f3", "\\f4", "\\f5", "\\f6",
                  "\\f7", "\\f8", "\\f9"),
+    family = c("Times", "Times", "ArialMT", "ArialMT", "Helvetica",
+               "Calibri", "Georgia", "Cambria", "Courier", "Times"),
     stringsAsFactors = FALSE
   )
 }

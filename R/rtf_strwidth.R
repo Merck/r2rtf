@@ -71,7 +71,7 @@ rtf_strwidth <- function(tbl){
   font_num <- factor(font_num, levels = 1:10, labels = c(1,1,4,4,4,1,9,4,9,9))
   font_num <- as.numeric(as.character(font_num))
 
-  text_family <- font_type()[font_num, "name"]
+  text_family <- font_type()[font_num, "family"]
 
   text_indent <- (attr(tbl, "text_indent_first")) / 1440 # to inch
 
@@ -89,11 +89,11 @@ rtf_strwidth <- function(tbl){
 
   db_list <- split(db, db$index)
   db_list <- lapply(db_list, function(x){
-                family  <- x$family[1]
-                if(grepl("Times New Roman", family)){
-                  family = "Times"
-                }
-                x$width <- graphics::strwidth(x$text, units = "inches", cex = x$cex[1], font = x$font[1], family = family)
+                # family  <- x$family[1]
+                # if(grepl("Times New Roman", family)){
+                #   family = "Times"
+                # }
+                x$width <- graphics::strwidth(x$text, units = "inches", cex = x$cex[1], font = x$font[1], family = x$family[1])
                 x
   })
   db <- do.call(rbind, db_list)

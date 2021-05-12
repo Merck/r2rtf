@@ -15,13 +15,13 @@
                                    units = "inches",
                                    cex = 2/3,
                                    font = 3,
-                                   family = 'Times New Roman'), 5)
+                                   family = 'Times'), 5)
 
  bold <- round(graphics::strwidth('third',
                                   units = "inches",
                                   cex = 2/3,
                                   font = 2,
-                                  family = 'Times New Roman'), 5)
+                                  family = 'Times'), 5)
 
 
 test_that("test if width are calculated correctly for case when font size is 8", {
