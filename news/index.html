@@ -158,19 +158,21 @@
       
     </div>
 
-    <div id="r2rtf-0209000-development" class="section level1">
-<h1 class="page-header" data-toc-text="0.2.0.9000">
-<a href="#r2rtf-0209000-development" class="anchor"></a>r2rtf 0.2.0.9000 (development)<small> Unreleased </small>
+    <div id="r2rtf-0209002-development" class="section level1">
+<h1 class="page-header" data-toc-text="0.2.0.9002">
+<a href="#r2rtf-0209002-development" class="anchor"></a>r2rtf 0.2.0.9002 (development)<small> Unreleased </small>
 </h1>
 <ul>
 <li>Rename dataset with prefix <code>r2rtf</code> to avoid conflict of other namespace</li>
-<li>Enable special place holder “—–” in <code>pageby</code> variable to suppress line displayed in <code>pageby</code> variable (ref Example 2 in <code>vignette/example-pageby-groupby</code>)</li>
-<li>New argument <code>pageby_row</code> in <code>rtf_body</code> to display first row instead of <code>pageby</code> variable when <code>pageby_row = "first_row"</code>
+<li>Enable special place holder “—–” in <code>page_by</code> variable to suppress line displayed in <code>page_by</code> variable (ref Example 2 in <code>vignette/example-pageby-groupby</code>)</li>
+<li>New argument <code>pageby_row</code> in <code>rtf_body</code> to display first row instead of <code>page_by</code> variable when <code>pageby_row = "first_row"</code>
 </li>
-<li>New argument <code>text_indent_reference</code> to allow user to control reference of indent are from page margin or table border (#12)</li>
+<li>New argument <code>subline_by</code> in <code>rtf_body</code> to display subline by an variable.<br>
+</li>
+<li>New argument <code>text_indent_reference</code> to allow user to control reference of indent from page margin or table border (#12)</li>
 <li>New internal function <code>rtf_subset</code> to subset an rtf table object.</li>
-<li>Bug fix <code>groupby</code> can be used when <code>pageby=NULL</code>.</li>
-<li>Bug fix <code>pageby</code> can not sort format style in <code>rtf_body</code>
+<li>Bug fix <code>group_by</code> can be used when <code>page_by=NULL</code>.</li>
+<li>Bug fix <code>page_by</code> can not sort format style in <code>rtf_body</code>
 </li>
 <li>Bug fix ensure consistent font size with blank cell (#14)</li>
 </ul>

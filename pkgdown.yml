@@ -8,8 +8,9 @@ articles:
   example-basechar: example-basechar.html
   example-efficacy: example-efficacy.html
   example-figure: example-figure.html
-  example-pageby-groupby: example-pageby-groupby.html
+  example-sublineby-pageby-groupby: example-sublineby-pageby-groupby.html
+  r2rtf: r2rtf.html
   rtf-row: rtf-row.html
   rtf-text: rtf-text.html
-last_built: 2021-03-22T21:51Z
+last_built: 2021-05-12T18:00Z
 

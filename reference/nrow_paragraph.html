@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add RTF Page Header Information — rtf_page_header • r2rtf</title>
+<title>Calculate Number of Rows for a Paragraph — nrow_paragraph • r2rtf</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Add RTF Page Header Information — rtf_page_header" />
-<meta property="og:description" content="Add RTF Page Header Information" />
+<meta property="og:title" content="Calculate Number of Rows for a Paragraph — nrow_paragraph" />
+<meta property="og:description" content="Calculate number of rows for a paragraph like title, subline, footnote, source" />
 
 
 
@@ -155,117 +155,58 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add RTF Page Header Information</h1>
+    <h1>Calculate Number of Rows for a Paragraph</h1>
     
-    <div class="hidden name"><code>rtf_page_header.Rd</code></div>
+    <div class="hidden name"><code>nrow_paragraph.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Add RTF Page Header Information</p>
+    <p>Calculate number of rows for a paragraph like title, subline, footnote, source</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rtf_page_header</span><span class='op'>(</span>
-  <span class='va'>tbl</span>,
-  text <span class='op'>=</span> <span class='st'>"Page \\pagenumber of \\pagefield"</span>,
-  text_font <span class='op'>=</span> <span class='fl'>1</span>,
-  text_format <span class='op'>=</span> <span class='cn'>NULL</span>,
-  text_font_size <span class='op'>=</span> <span class='fl'>12</span>,
-  text_color <span class='op'>=</span> <span class='cn'>NULL</span>,
-  text_background_color <span class='op'>=</span> <span class='cn'>NULL</span>,
-  text_justification <span class='op'>=</span> <span class='st'>"r"</span>,
-  text_indent_first <span class='op'>=</span> <span class='fl'>0</span>,
-  text_indent_left <span class='op'>=</span> <span class='fl'>0</span>,
-  text_indent_right <span class='op'>=</span> <span class='fl'>0</span>,
-  text_space <span class='op'>=</span> <span class='fl'>1</span>,
-  text_space_before <span class='op'>=</span> <span class='fl'>15</span>,
-  text_space_after <span class='op'>=</span> <span class='fl'>15</span>,
-  text_convert <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>nrow_paragraph</span><span class='op'>(</span><span class='va'>tbl</span>, <span class='va'>size</span>, padding <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tbl</th>
-      <td><p>A data frame.</p></td>
+      <td><p>A data frame's <code>rtf_title</code>, <code>rtf_subline</code>, <code>rtf_footnote</code>, or <code>rtf_source</code> attribute containing <code>strwidth</code> attribute</p></td>
     </tr>
     <tr>
-      <th>text</th>
-      <td><p>A character string.</p></td>
+      <th>size</th>
+      <td><p>Size of a line in inches</p></td>
     </tr>
     <tr>
-      <th>text_font</th>
-      <td><p>Text font type. Default is 1 for Times New Roman. To vary text font type
-by column, use numeric vector with length of vector equal to number of
-columns displayed e.g. c(1,2,3).All possible input can be found
-in <code>r2rtf:::font_type()$type</code>.</p></td>
-    </tr>
-    <tr>
-      <th>text_format</th>
-      <td><p>Text format type. Default is NULL for normal. Combination of format type
-are permitted as input for e.g. "ub" for bold and underlined text. To vary
-text format by column, use character vector with length of vector equal to
-number of columns displayed e.g. c("i","u","ib"). All possible input
-can be found in <code>r2rtf:::font_format()$type</code>.</p></td>
-    </tr>
-    <tr>
-      <th>text_font_size</th>
-      <td><p>Text font size. Default is 9. To vary text font size by column, use
-numeric vector with length of vector equal to number of columns
-displayed e.g. c(9,20,40).</p></td>
-    </tr>
-    <tr>
-      <th>text_color</th>
-      <td><p>Text color type. Default is NULL for black. To vary text color by column,
-use character vector with length of vector equal to number of columns
-displayed e.g. c("white","red","blue"). All possible input can be found
-in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>text_background_color</th>
-      <td><p>Text background color type. Default is NULL for white. To vary
-text color by column, use character vector with length of vector
-equal to number of columns displayed e.g. c("white","red","blue").
-All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>text_justification</th>
-      <td><p>Justification type for text. Default is "c" for center justification.
-To vary text justification by column, use character vector with
-length of vector equal to number of columns displayed e.g. c("c","l","r").
-All possible input can be found in <code>r2rtf:::justification()$type</code>.</p></td>
-    </tr>
-    <tr>
-      <th>text_indent_first</th>
-      <td><p>A value of text indent in first line.</p></td>
-    </tr>
-    <tr>
-      <th>text_indent_left</th>
-      <td><p>A value of text left indent.</p></td>
-    </tr>
-    <tr>
-      <th>text_indent_right</th>
-      <td><p>A value of text right indent.</p></td>
-    </tr>
-    <tr>
-      <th>text_space</th>
-      <td><p>Line space between paragraph in twips. Default is 0.</p></td>
-    </tr>
-    <tr>
-      <th>text_space_before</th>
-      <td><p>Line space before a paragraph in twips. Default is 15.</p></td>
-    </tr>
-    <tr>
-      <th>text_space_after</th>
-      <td><p>Line space after a paragraph in twips. Default is 15.</p></td>
-    </tr>
-    <tr>
-      <th>text_convert</th>
-      <td><p>A logical value to convert special characters. Default is TRUE.</p></td>
+      <th>padding</th>
+      <td><p>Cell padding in inches</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>an integer (number of rows) for title, subline, footnote, or source</p>
+    <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
+
+    
+
+<p>The contents of this section are shown in PDF user manual only.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'>#required for running example</span>
+</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='va'>tb</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='rtf_title.html'>rtf_title</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Iris example"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='rtf_footnote.html'>rtf_footnote</a></span><span class='op'>(</span>footnote <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>'footnote 1'</span>,<span class='st'>'footnote 2'</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='rtf_body.html'>rtf_body</a></span><span class='op'>(</span><span class='op'>)</span>
+
+<span class='fu'>r2rtf</span><span class='fu'>:::</span><span class='fu'>nrow_paragraph</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>tb</span>, <span class='st'>"rtf_title"</span><span class='op'>)</span>, <span class='fl'>6.25</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>r2rtf</span><span class='fu'>:::</span><span class='fu'>nrow_paragraph</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>tb</span>, <span class='st'>"rtf_footnote"</span><span class='op'>)</span>, <span class='fl'>6.25</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 2</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
