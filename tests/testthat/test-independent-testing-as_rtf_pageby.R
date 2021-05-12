@@ -66,7 +66,7 @@ test_that("Test if page_dict attribute is created for tbl", {
   y <- as_rtf_pageby(x)
 
   expect_equal(names(attributes(y)), "info")
-  expect_snapshot_output(y)
+  if(interactive ()) expect_snapshot_output(y)
 })
 
 
@@ -80,7 +80,7 @@ test_that("Test for more than one page_by var", {
 
   y <- as_rtf_pageby(x)
   expect_equal(names(attributes(y)), c("names","info"))
-  expect_snapshot_output(y)
+  if(interactive ()) expect_snapshot_output(y)
 })
 
 
@@ -94,7 +94,7 @@ test_that("Test if new_page is FALSE and group_by is NOT NULL", {
 
   expect_equal(names(attributes(y)), "info")
 
-  expect_snapshot_output(y)
+  if(interactive ()) expect_snapshot_output(y)
 
 })
 
