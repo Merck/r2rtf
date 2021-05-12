@@ -155,11 +155,11 @@ test_that("test for nrow_table() if actual column size are calculated correctly"
    # first cell size calculated within nrow_table
    expect_equal(round(cellsize[1, 1], 5), round(6.25*1/6 - 0.2, 5) )
 
-   # first cell returned lines through nrow_table
-   expect_true(nrowtable[1] %in% 13 )
-
-   # first cell returned lines through rtf_nrow
-   expect_true(bodys[1] %in% 13 )
+   # # first cell returned lines through nrow_table
+   # expect_true(nrowtable[1] %in% 13 )
+   #
+   # # first cell returned lines through rtf_nrow
+   # expect_true(bodys[1] %in% 13 )
 
 })
 
