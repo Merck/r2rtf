@@ -15,12 +15,10 @@
 ^\.gitignore$
 ^\.DS_Store$
 ^\.git\$
-^\vignettes\rtf$
-^\vignettes\fig$
 ^LICENSE$
 ^LICENSES_THIRD_PARTY$
 ^Meta$
 ^jenkins$
 ^jobs-configuration.groovy$
 ^codecov\.yml$
-^\tests\testthat\_snaps$
+^tests/testthat/_snaps$
