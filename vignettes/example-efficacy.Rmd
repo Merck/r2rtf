@@ -5,6 +5,7 @@ output:
     df_print: paged
     toc: yes
     toc_depth: '2'
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -16,14 +17,22 @@ library(tidyr)
 library(emmeans)
 ```
 
-Define some utility functions
+# Example:
+
+This example shows how to create a efficacy table as below.
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/efficacy_example.pdf")
+```
+
+## Step 1: Define some utility functions
+
+- Format Model Estimator
 ```{r}
-#' Format Model Estimator
-#'
 #' The function assume 1 or 2 column.
 #'   If there is only 1 column, only represent mean
 #'   If there are 2 column, represent mean (sd) or mean(se)
-#' Decimals will understand the number will be formated as x.x(x.xx)
+#' Decimals will understand the number will be formatted as x.x(x.xx)
 #' @noRd
 fmt_est <- function(data, columns = c("mean", "sd"), decimals = c(1, 2)) {
   .mean <- formatC(data[[columns[[1]]]], digits = decimals[1], format = "f", flag = "0")
@@ -34,16 +43,20 @@ fmt_est <- function(data, columns = c("mean", "sd"), decimals = c(1, 2)) {
     .mean
   }
 }
+```
 
-#' Format Confidence Interval
+- Format Confidence Interval
+```{r}
 #' @noRd
 fmt_ci <- function(data, columns = c("lower.CL", "upper.CL"), decimals = 2) {
   .lower <- formatC(data[[columns[[1]]]], digits = decimals, format = "f", flag = "0")
   .upper <- formatC(data[[columns[[2]]]], digits = decimals, format = "f", flag = "0")
   paste0("(", .lower, ", ", .upper, ")")
 }
+```
 
-#' Format P-Value
+- Format P-Value
+```{r}
 #' @noRd
 fmt_pval <- function(data, columns = "p.value", decimals = 3) {
   scale <- 10^(-1 * decimals)
@@ -54,13 +67,11 @@ fmt_pval <- function(data, columns = "p.value", decimals = 3) {
 }
 ```
 
-# Examples
-## Example 1: ANCOVA analysis for HOMA data
+## Step 2: ANCOVA analysis for HOMA data
 
+The data is available at [https://missingdata.lshtm.ac.uk/dia-working-group/example-data-sets/](https://missingdata.lshtm.ac.uk/dia-working-group/example-data-sets/)
 
-* The data is available at [https://missingdata.lshtm.ac.uk/dia-working-group/example-data-sets/](https://missingdata.lshtm.ac.uk/dia-working-group/example-data-sets/)
-
-* For example, we want to summary the analysis results using ANCOVA model 
+- Read in data and run ANCOVA model
 
 ```{r}
 data("r2rtf_HAMD17")
@@ -73,7 +84,8 @@ HAMD17_lmfit <- HAMD17 %>%
   lm(change ~ basval + TRT, data = .)
 ```
 
-### Raw summary
+- Raw summary
+
 ```{r}
 t11 <- HAMD17 %>%
   filter(week == ana_week) %>%
@@ -87,7 +99,8 @@ t11 <- HAMD17 %>%
   )
 ```
 
-### LS mean 
+- LS mean 
+
 ```{r}
 t12 <- emmeans(HAMD17_lmfit, "TRT")
 t1 <- merge(t11, t12) %>%
@@ -105,7 +118,12 @@ t1 <- merge(t11, t12) %>%
   select(Trt:CI)
 ```
 
-### Treatment Comparison
+```{r}
+knitr::kable(t1)
+```
+
+- Treatment Comparison
+
 ```{r}
 t2 <- data.frame(pairs(t12))
 
@@ -122,7 +140,12 @@ t2 <- t2 %>%
   select(comp:p)
 ```
 
-### RMSE
+```{r}
+knitr::kable(t2)
+```
+
+- RMSE
+
 ```{r}
 t3 <- data.frame(rmse = paste0(
   "Root Mean Squared Error of Change = ",
@@ -130,24 +153,15 @@ t3 <- data.frame(rmse = paste0(
 ))
 ```
 
-The purpose of this exercise is to create a table as in `rtf_example1.rtf` by using the three datasets `t1`, `t2` and `t3`
-
 ```{r}
-t1
+knitr::kable(t3)
 ```
 
-```{r}
-t2
-```
+## Step 3: Define table format
+
+The table consists of three data frames: `t1`, `t2`, and `t3`. We define each data frame's format as below then combine them into a listing. 
 
 ```{r}
-t3
-```
-
-
-For multiple tables like the efficacy example, we have a flow in the following to print an rtf table
-```{r}
-
 tbl_1 <- t1 %>%
   rtf_title(
     title = "ANCOVA of Change from Baseline at Week 20",
@@ -165,13 +179,13 @@ tbl_1 <- t1 %>%
   rtf_body(
     col_rel_width = c(3, 1, 3, 1, 3, 1, 3, 5),
     text_justification = c("l", rep("c", 7)),
-    last_row = FALSE
-  ) %>%
+    last_row = FALSE) %>%
   rtf_footnote(
     footnote = c("{^a}Based on an ANCOVA model.",
-                 "ANCOVA = Analysis of Covariance, CI = Confidence Interval, LS = Least Squares, SD = Standard Deviation")
+                 "ANCOVA = Analysis of Covariance, CI = Confidence Interval, LS = Least Squares, SD = Standard Deviation")) %>% 
+  rtf_source(
+    source = "Source: [study999: adam-adeff]"
   )
-
 
 tbl_2 <- t2 %>%
   rtf_colheader(
@@ -185,28 +199,28 @@ tbl_2 <- t2 %>%
     last_row = FALSE
   )
 
-
 tbl_3 <- t3 %>%
   rtf_body(
     as_colheader = FALSE,
     col_rel_width = c(1),
     text_justification = "l"
-  ) %>%
-  rtf_source(
-    source = "Source: [study999: adam-adeff]"
   )
-
 
 tbl <- list(tbl_1, tbl_2, tbl_3)
 ```
 
 ```{r}
+knitr::kable(tbl)
+```
+
+## Step 4: Output
+
+```{r}
+# Output .rtf file 
 tbl %>%
   rtf_encode() %>%
   write_rtf("rtf/efficacy_example.rtf")
 ```
 
-```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-knitr::include_graphics("pdf/efficacy_example.pdf")
-```
+
 

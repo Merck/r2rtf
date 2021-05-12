@@ -140,7 +140,7 @@ test_that("check page break encoding", {
   expect_match(rtf_paragraph(text = teststr,
                              new_page = TRUE
                              ),
-               "\n"
+               "pagebb"
                )
 
 })

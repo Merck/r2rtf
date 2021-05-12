@@ -5,6 +5,7 @@ output:
     df_print: paged
     toc: yes
     toc_depth: '2'
+    toc_float: true
 resource_files:
    - pdf/ae_example_page_num_10.pdf
    - pdf/ae_example.pdf
@@ -33,6 +34,8 @@ resource_files:
    - pdf/justification-number.pdf
    - pdf/justification-type.pdf
    - pdf/pageby-ae-listing.pdf
+   - pdf/pageby-disposition.pdf
+   - pdf/pageby-firstrow-ae.pdf
    - pdf/para-indent.pdf
    - pdf/para-justification.pdf
    - pdf/para-line-space.pdf
@@ -82,8 +85,8 @@ A minimal example summarized the major steps in using r2rtf package to
 create a table or listing after a data frame is ready.
   
 ```{r}
-head(iris) %>% rtf_body() %>%                # Step 1 Add attributes 
-               rtf_encode() %>%              # Step 2 Convert attributes to RTF encode 
+head(iris) %>% rtf_body() %>%                       # Step 1 Add attributes 
+               rtf_encode() %>%                     # Step 2 Convert attributes to RTF encode 
                write_rtf(file = "rtf/ex-tbl.rtf")   # Step 3 Write to a .rtf file 
 ```
 

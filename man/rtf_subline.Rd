@@ -58,19 +58,19 @@ To vary text justification by column, use character vector with
 length of vector equal to number of columns displayed e.g. c("c","l","r").
 All possible input can be found in \code{r2rtf:::justification()$type}.}
 
-\item{text_indent_first}{A value of first indent.}
+\item{text_indent_first}{A value of text indent in first line.}
 
-\item{text_indent_left}{A value of left indent.}
+\item{text_indent_left}{A value of text left indent.}
 
-\item{text_indent_right}{A value of right indent.}
+\item{text_indent_right}{A value of text right indent.}
 
 \item{text_indent_reference}{The reference start point of text indent. Accept \code{table} or \code{page_margin}}
 
-\item{text_space}{A value of text space.}
+\item{text_space}{Line space between paragraph in twips. Default is 0.}
 
-\item{text_space_before}{Line space before text in twips. Default is 15 for 0.0104 inch.}
+\item{text_space_before}{Line space before a paragraph in twips. Default is 15.}
 
-\item{text_space_after}{Line space after text in twips. Default is 15 for 0.0104 inch.}
+\item{text_space_after}{Line space after a paragraph in twips. Default is 15.}
 
 \item{text_convert}{A logical value to convert special characters. Default is TRUE.}
 }

@@ -62,7 +62,8 @@ rtf_subset <- function(tbl,
     "border_color_left", "border_color_right", "border_color_top", "border_color_bottom",
     "border_color_first", "border_color_last",
     "text_font", "text_format", "text_font_size", "text_color",
-    "text_background_color", "text_justification", "text_convert", "cell_nrow"
+    "text_background_color", "text_justification", "text_convert", "cell_nrow",
+    "text_indent_first", "text_indent_left", "text_indent_right", "strwidth"
   )]
   attr_matrix <- attr_matrix[!is.na(names(attr_matrix))]
 

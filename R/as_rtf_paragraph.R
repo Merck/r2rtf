@@ -18,6 +18,7 @@
 #' Create Paragraph RTF Encode
 #'
 #' @param text A character string.
+#' @param combine A boolean to combine string or not.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -29,9 +30,8 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-as_rtf_paragraph <- function(text) {
+as_rtf_paragraph <- function(text, combine = TRUE) {
   attr_text <- attributes(text)
-  text <- paste(text, collapse = " \n")
 
   text_rtftext <- rtf_text(text,
     font = attr_text$text_font,
@@ -42,20 +42,28 @@ as_rtf_paragraph <- function(text) {
     text_convert = attr_text$text_convert
   )
 
+  if(combine){
+    text_rtftext <- paste(text_rtftext, collapse = "\\line")
+    attr_text$text_justification <- attr_text$text_justification[1]
+    attr_text$text_indent_first  <- attr_text$text_indent_first[1]
+    attr_text$text_indent_left   <- attr_text$text_indent_left[1]
+    attr_text$text_indent_right  <- attr_text$text_indent_right[1]
+  }
+
   paragraph_rtftext <- rtf_paragraph(text_rtftext,
-    justification = attr_text$text_justification,
+      justification = attr_text$text_justification,
 
-    indent_first = attr_text$text_indent_first,
-    indent_left = attr_text$text_indent_left,
-    indent_right = attr_text$text_indent_right,
+      indent_first = attr_text$text_indent_first,
+      indent_left = attr_text$text_indent_left,
+      indent_right = attr_text$text_indent_right,
 
-    space = attr_text$text_space,
-    space_before = attr_text$text_space_before,
-    space_after = attr_text$text_space_after,
+      space = attr_text$text_space,
+      space_before = attr_text$text_space_before,
+      space_after = attr_text$text_space_after,
 
-    new_page = attr_text$text_new_page,
-    hyphenation = attr_text$text_hyphenation
-  )
+      new_page = attr_text$text_new_page,
+      hyphenation = attr_text$text_hyphenation
+    )
 
-  paragraph_rtftext
+ paragraph_rtftext
 }

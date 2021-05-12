@@ -60,6 +60,7 @@ rtf_title <- function(tbl,
                       text_indent_first = 0,
                       text_indent_left = 0,
                       text_indent_right = 0,
+                      text_indent_reference = "table",
 
                       text_space = 1,
                       text_space_before = 180,
@@ -78,6 +79,15 @@ rtf_title <- function(tbl,
   if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
+
+  if (text_justification == "l") {
+    text_indent_left <- text_indent_left + footnote_source_space(tbl, text_indent_reference)
+  }
+
+  if (text_justification == "r") {
+    text_indent_right <- text_indent_right + footnote_source_space(tbl, text_indent_reference)
+  }
+
 
   text <- obj_rtf_text(text,
 
@@ -152,6 +162,9 @@ rtf_subline <- function(tbl,
                         text_space_after = 180,
 
                         text_convert = TRUE) {
+
+  # Input checking
+  check_args(text, type = c("character"))
 
   # Set Default Page Attributes
   if (is.null(attr(tbl, "page"))) {

@@ -4,24 +4,10 @@
 \alias{rtf_encode_list}
 \title{Render List to RTF Encoding}
 \usage{
-rtf_encode_list(
-  tbl,
-  page_title = "all",
-  page_footnote = "last",
-  page_source = "last"
-)
+rtf_encode_list(tbl)
 }
 \arguments{
 \item{tbl}{A data frame for table or a list of binary string for figure.}
-
-\item{page_title}{A character of title displaying location. Default is "all" for all pages.
-Possible values are "first", "last" and "all".}
-
-\item{page_footnote}{A character of title displaying location. Default is "last" for all pages.
-Possible values are "first", "last" and "all".}
-
-\item{page_source}{A character of title displaying location. Default is "last" for all pages.
-Possible values are "first", "last" and "all".}
 }
 \description{
 Render List to RTF Encoding

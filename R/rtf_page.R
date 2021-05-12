@@ -63,7 +63,7 @@ rtf_page <- function(tbl,
                      width = ifelse(orientation == "portrait", 8.5, 11),
                      height = ifelse(orientation == "portrait", 11, 8.5),
                      margin = set_margin("wma", orientation),
-                     nrow = ifelse(orientation == "portrait", 40, 28),
+                     nrow = ifelse(orientation == "portrait", 40, 24),
 
                      border_first = "double",
                      border_last = "double",
@@ -104,6 +104,9 @@ rtf_page <- function(tbl,
   attr(tbl, "page")$border_color_first <- border_color_first
   attr(tbl, "page")$border_color_last <- border_color_last
 
+  attr(tbl, "page")$page_title    <- "all"
+  attr(tbl, "page")$page_footnote <- "last"
+  attr(tbl, "page")$page_source   <- "last"
 
   # Register Color Use
   color <- list(border_color_first, border_color_last)

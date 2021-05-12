@@ -179,7 +179,7 @@ as_rtf_margin <- function(tbl) {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 as_rtf_new_page <- function() {
-  paste("\\intbl\\row\\pard\\page\\par\\pard")
+  paste("\\page{\\pard\\fs2\\par}")
 }
 
 
@@ -277,20 +277,20 @@ as_rtf_footnote <- function(tbl) {
   }
 
   if (attr(text, "as_table")) {
-    if (attr(text, "text_convert")) {
+    if (any(attr(text, "text_convert"))) {
       text_matrix <- convert(text)
     } else {
-      text
+      text_matrix <- text
     }
 
     text_matrix <- matrix(paste(text_matrix, collapse = "\\line "), nrow = 1, ncol = 1)
 
     attr(text, "text_convert") <- matrix(FALSE, nrow = 1, ncol = 1)
     attributes(text_matrix) <- append(attributes(text_matrix), attributes(text))
+    attr(text_matrix, "col_rel_width") <- 1
     encode <- rtf_table_content(text_matrix,
       col_total_width = attr(tbl, "page")$col_width,
-      use_border_bottom = TRUE,
-      col_rel_width = 1
+      use_border_bottom = TRUE
     )
     paste(encode, collapse = "\n")
   } else {
@@ -321,20 +321,20 @@ as_rtf_source <- function(tbl) {
   }
 
   if (attr(text, "as_table")) {
-    if (attr(text, "text_convert")) {
+    if (any(attr(text, "text_convert"))) {
       text_matrix <- convert(text)
     } else {
-      text
+      text_matrix <- text
     }
 
     text_matrix <- matrix(paste(text_matrix, collapse = "\\line "), nrow = 1, ncol = 1)
 
     attr(text, "text_convert") <- matrix(FALSE, nrow = 1, ncol = 1)
     attributes(text_matrix) <- append(attributes(text_matrix), attributes(text))
+    attr(text_matrix, "col_rel_width") <- 1
     encode <- rtf_table_content(text_matrix,
       col_total_width = attr(tbl, "page")$col_width,
-      use_border_bottom = TRUE,
-      col_rel_width = 1
+      use_border_bottom = TRUE
     )
     paste(encode, collapse = "\n")
   } else {

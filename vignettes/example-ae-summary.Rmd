@@ -5,6 +5,7 @@ output:
     df_print: paged
     toc: yes
     toc_depth: '2'
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
@@ -15,12 +16,17 @@ library(dplyr)
 library(tidyr)
 ```
 
-## Example 1: a simplified adverse events summary table
+# Example:
 
+This example shows how to create a simplified adverse events summary table as below.
 
-# get raw summary 
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/ae_example.pdf")
+```
+
+## Step 1: Create data for RTF table
+
 ```{r}
-# Step 1: Get raw summary
 data(r2rtf_adae)
 ae_t1 <- r2rtf_adae %>%
   group_by(TRTA) %>%
@@ -30,20 +36,24 @@ ae_t1 <- r2rtf_adae %>%
     n_ae = n_distinct(USUBJID),
     pct = round(n_ae / unique(n_subj) * 100, 2)
   ) %>%
-  dplyr::filter(n_ae > 4) %>% # only show AE terms with at least 10 subjects in one treatment group.
-  gather(key = "var", value = "value", n_ae, pct) %>%
+  dplyr::filter(n_ae > 5) %>% # only show AE terms with at least 5 subjects in one treatment group.
+  pivot_longer(cols = c(n_ae, pct), names_to = "var", values_to = "value") %>%
   unite(temp, TRTA, var) %>%
-  spread(temp, value, fill = 0)
-ae_t1
+  pivot_wider(names_from = temp, values_from = value, values_fill = 0)
 ```
 
-# write to an rtf table 
+```{r}
+knitr::kable(ae_t1)
+```
+
+## Step 2: Define table format
+
 ```{r}
 ae_tbl <- ae_t1 %>%
   rtf_title(
     "Analysis of Subjects With Specific Adverse Events",
     c(
-      "(Incidence > 10 Subjects in One or More Treatment Groups)",
+      "(Incidence > 5 Subjects in One or More Treatment Groups)",
       "ASaT"
     )
   ) %>%
@@ -60,16 +70,15 @@ ae_tbl <- ae_t1 %>%
     text_justification = c("l", rep("c", 6)),
     border_left = c("single", rep(c("single", ""), 3))
   ) %>%
-  rtf_footnote(c("{^\\dagger}This is footnote 1", "This is footnote 2"),
-  ) %>%
-  rtf_source("Source: xxx"
-  )
+  rtf_footnote(c("{^\\dagger}This is footnote 1", "This is footnote 2"), ) %>%
+  rtf_source("Source: xxx")
+```
 
+## Step 3: Output
 
+```{r}
+# Output .rtf file  
 ae_tbl %>%
   rtf_encode() %>%
   write_rtf("rtf/ae_example.rtf")
-```
-```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-knitr::include_graphics("pdf/ae_example.pdf")
 ```

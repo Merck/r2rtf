@@ -311,3 +311,89 @@ test_that("text type", {
 
 })
 
+
+test_that("Case for subline_by", {
+
+  tbl <- iris[c(1:2,51:52),] %>%
+          rtf_body(
+            subline_by = c("Species")
+            )
+
+  expect_identical(data.frame(attributes(tbl)$rtf_by_subline_row) ,
+                   data.frame(x = unique(tbl$Species)))
+
+  expect_identical(attr(attr(tbl, "rtf_by_subline_row"),'border_top') ,
+                   matrix('', nrow = 2, ncol = 1))
+
+  expect_identical(attributes(attr(tbl, "rtf_by_subline_row"))$border_bottom ,
+                   matrix('', nrow = 2, ncol = 1))
+
+})
+
+
+test_that("Case for page_by", {
+
+  tbl0 <- iris[c(1:2,51:52),] %>%
+    rtf_body(
+      page_by = c("Species")
+    )
+
+  expect_identical(data.frame(attributes(tbl0)$rtf_pageby_row) ,
+                   data.frame(x = unique(tbl0$Species)))
+
+})
+
+
+test_that("Case for using subline_by and page_by together", {
+
+  tbl1 <- iris[c(1:4, 51:54), 3:5] %>%
+    mutate(s2 = paste0(Species, 1:2), s3 = s2) %>%
+    arrange(Species, s2) %>%
+    rtf_body(
+      subline_by = "Species",
+      page_by = 's2'
+      )
+
+  expect_identical(data.frame(attributes(tbl1)$rtf_by_subline_row) ,
+                   data.frame(x = unique(tbl1$Species)))
+
+  expect_identical(data.frame(attributes(tbl1)$rtf_pageby_row) ,
+                   data.frame(x = unique(tbl1$s2)))
+
+  expect_identical(attr(attr(tbl1, "rtf_by_subline_row"),'border_top') ,
+                   matrix('', nrow = 2, ncol = 1))
+
+  expect_identical(attributes(attr(tbl1, "rtf_by_subline_row"))$border_bottom ,
+                   matrix('', nrow = 2, ncol = 1))
+
+})
+
+test_that("Case for using subline_by and page_by with pageby_row = 'first_row'", {
+
+  tbl2 <- iris[c(1:4, 51:54), 3:5] %>%
+    mutate(s2 = paste0(Species, 1:2), s3 = s2) %>%
+    arrange(Species, s2)%>%
+    rtf_body(
+      subline_by = "Species",
+      page_by = 's2',
+      pageby_row = 'first_row'
+    )
+
+  pageby_exp <- data.frame(tbl2[c(1, 3, 5, 7), c(1:2, 5)])
+  colnames(pageby_exp) <- paste("s2", colnames(pageby_exp), sep = ".")
+
+  expect_identical(data.frame(attributes(tbl2)$rtf_by_subline_row) ,
+                   data.frame(x = unique(tbl2$Species)))
+
+  expect_identical(data.frame(attributes(tbl2)$rtf_pageby_row) ,
+                   pageby_exp)
+
+  expect_identical(attr(attr(tbl2, "rtf_by_subline_row"),'border_top') ,
+                   matrix('', nrow = 2, ncol = 1))
+
+  expect_identical(attributes(attr(tbl2, "rtf_by_subline_row"))$border_bottom ,
+                   matrix('', nrow = 2, ncol = 1))
+
+})
+
+

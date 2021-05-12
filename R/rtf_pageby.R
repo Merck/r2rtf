@@ -15,7 +15,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' @title Add Table Body Pageby Attributes to Table
+#' @title Add Pageby Attributes to Table
 #'
 #' @inheritParams rtf_body
 #'
@@ -24,6 +24,7 @@ rtf_pageby <- function(tbl,
                        new_page = FALSE,
                        pageby_header = TRUE,
                        pageby_row = "column") {
+
   if (is.null(page_by)) {
     if (new_page) {
       stop("new_page must be FALSE if page_by is not specified")
@@ -48,13 +49,15 @@ rtf_pageby <- function(tbl,
     order_var <- order(id)
     index_var <- which(names(tbl) %in% by)
 
-    if (!all(order_var == 1:nrow(tbl))) {
-      stop("Data is not sorted by ", paste(by, collapse = ", "))
-    }
-
     db <- list()
     for (i in 1:length(by)) {
+
       by_i <- by[1:i]
+      index_var_i <- which(names(tbl) %in% by[i])
+
+      if(! is.null(attr(tbl, "rtf_by_subline"))){
+        by_i <- c(attr(tbl, "rtf_by_subline")$by_var, by_i)
+      }
 
       if (length(by_i) > 1) {
         id_i <- apply(tbl[, by_i], 1, paste, collapse = "-")
@@ -72,10 +75,8 @@ rtf_pageby <- function(tbl,
       # Split information for each row
 
       db[[i]] <- switch(pageby_row,
-                        "column" =  rtf_subset(tbl, row$row_start, index_var[i]),
-                        "first_row" = rtf_subset(tbl, row = row$row_start, col = - index_var[i]))
-      # db[[i]] <- rtf_subset(tbl, row$row_start, index_var[i])
-      #db[[i]] <- rtf_subset(tbl, row = row$row_start, col = - index_var[i])
+                        "column" =  rtf_subset(tbl, row$row_start, index_var_i),
+                        "first_row" = rtf_subset(tbl, row = row$row_start, col = - index_var_i))
 
       attr(db[[i]], "row") <- row
     }
@@ -88,6 +89,10 @@ rtf_pageby <- function(tbl,
       tbl0 <- rtf_subset(tbl, row = - first_row_index)
       for(i in 1:length(by)){
         by_i <- by[1:i]
+
+        if(! is.null(attr(tbl, "rtf_by_subline"))){
+          by_i <- c(attr(tbl, "rtf_by_subline")$by_var, by_i)
+        }
 
         if (length(by_i) > 1) {
           id_i <- apply(tbl0[, by_i], 1, paste, collapse = "-")
@@ -111,6 +116,17 @@ rtf_pageby <- function(tbl,
 
     if(pageby_row == "column"){
       db_table <- rtf_subset(tbl, col = - index_var)
+    }
+
+    if(! is.null(attr(tbl, "rtf_by_subline")$by_var)){
+
+      index_subline <- which( names(db_table) %in% attr(tbl, ("rtf_by_subline"))$by_var)
+      db_table <- rtf_subset(db_table, col = - index_subline)
+
+      if(pageby_row == "first_row"){
+        attr(db_table, "rtf_by_subline")$id <- attr(db_table, "rtf_by_subline")$id[- first_row_index]
+        db <- lapply(db,  function(x) rtf_subset(x, col = - index_subline))
+      }
 
     }
 

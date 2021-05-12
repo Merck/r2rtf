@@ -19,7 +19,7 @@
 #' Combine RTF Table Encoding
 #'
 #' @param tbl A data frame.
-#'
+#' @importFrom utils tail
 #' @section Specification:
 #' \if{latex}{
 #'  \itemize{
@@ -36,52 +36,71 @@
 as_rtf_table <- function(tbl) {
 
 
-  # Get number of row for each entry
-  rtf_nrow <- data.frame(
-    page = attr(tbl, "page")$nrow,
-    title = ifelse(is.null(attr(tbl, "rtf_title")), 0, length(attr(tbl, "rtf_title"))),
-    subline = ifelse(is.null(attr(tbl, "rtf_subline")), 0, length(attr(tbl, "rtf_subline"))),
-    col_header = ifelse(is.null(attr(tbl, "rtf_colheader")), 0, length(attr(tbl, "rtf_colheader"))),
-    footnote = ifelse(is.null(attr(tbl, "rtf_footnote")), 0, length(attr(tbl, "rtf_footnote"))),
-    source = ifelse(is.null(attr(tbl, "rtf_source")), 0, length(attr(tbl, "rtf_source")))
-  )
+  # Remove subline_by column
+  if(! is.null(attr(tbl, "rtf_by_subline")$by_var)){
+    index_subline <- which( names(tbl) %in% attr(tbl, ("rtf_by_subline"))$by_var)
+    tbl <- rtf_subset(tbl, col = - index_subline)
+  }
+
+  # Calculate Number of rows for each entry.
+  tbl <- rtf_nrow(tbl)
 
   # tbl attributes
+  page <- attr(tbl, "page")
   group_by <- attr(tbl, "rtf_groupby")
   col_width <- attr(tbl, "page")$col_width
 
-  # Number of rows in cells based on column size
-  if (is.null(attr(tbl, "rtf_pageby_table"))) {
-    cell_tbl <- tbl
-  } else {
-    cell_tbl <- attr(tbl, "rtf_pageby_table")
-  }
+  # Get number of row for each entry
+  rtf_nrow <- attr(tbl, "rtf_nrow_meta")
 
+  # Number of rows in cells based on column size
+  cell_tbl <- tbl
+
+  # Number of rows in cells based on column size
   index <- 1:nrow(cell_tbl)
 
-  ## actual column width
-  width <- col_width * attr(cell_tbl, "col_rel_width") / sum(attr(cell_tbl, "col_rel_width"))
-  width <- matrix(width, nrow = nrow(cell_tbl), ncol = ncol(cell_tbl), byrow = TRUE)
-
-  ## text font size is 1/72 inch height
-  ## default font height and width ratio is 1.65
-  if (is.null(attr(tbl, "cell_nrow"))) {
-    cell_nrow <- apply(cell_tbl, 2, nchar) * attr(cell_tbl, "text_font_size") / width / 72 / 1.65
+  # Number of row in each table entry
+  if (is.null(attr(cell_tbl, "cell_nrow"))) {
+    table_nrow <- attr(cell_tbl, "rtf_nrow")
   } else {
-    cell_nrow <- attr(tbl, "cell_nrow")
+    table_nrow <- attr(cell_tbl, "cell_nrow")
   }
 
-  ##  maximum num of rows in cells per line
-  table_nrow <- ceiling(apply(cell_nrow, 1, max))
-  table_nrow <- ifelse(is.na(table_nrow), 0, table_nrow)
+  rtf_nrow_body <- rtf_nrow
+  if(page$page_title != "all") rtf_nrow_body$title <- 0
+  if(page$page_footnote != "all") rtf_nrow_body$footnote <- 0
+  if(page$page_source != "all") rtf_nrow_body$source <- 0
 
   # Page Dictionary
   page_dict <- data.frame(
     index = index,
     nrow = table_nrow,
-    total = rtf_nrow$page - sum(rtf_nrow[-1])
+    total     = rtf_nrow$page - sum(rtf_nrow_body[-1])
   )
-  page_dict$page <- with(page_dict, cumsum(nrow) %/% total) + 1
+
+  # Define page number for each row
+  page_dict_page <- function(page_dict) {
+    # Page Number
+    page <- cumsum(page_dict$nrow) %/% page_dict$total
+
+    page + 1
+  }
+
+  if(! is.null(attr(tbl, "rtf_by_subline")$id)){
+    page_dict$id <- attr(tbl, "rtf_by_subline")$id
+    page_dict$subline <- attr(tbl, "rtf_by_subline")$id
+    page_dict$page <- unlist(lapply(split(page_dict, page_dict$id), page_dict_page))
+    page_dict$page <- as.numeric(page_dict$id) * 1e6 + page_dict$page
+
+  }else{
+    page_dict$page <- with(page_dict, cumsum(nrow) %/% total) + 1
+  }
+
+  # Move to next page for footnote and data source
+  total_all = rtf_nrow$page - sum(rtf_nrow[-1])
+  if( sum(page_dict$nrow[page_dict$page == tail(page_dict$page,1)]) > total_all){
+    page_dict$page[c(-2:0) + nrow(page_dict)] <- page_dict$page[c(-2:0) + nrow(page_dict)] + 1
+  }
 
   # Remove repeated records if group_by is not null
   if (!is.null(group_by)) {
@@ -108,7 +127,7 @@ as_rtf_table <- function(tbl) {
   }
 
   if (!is.null(attr(cell_tbl, "border_color_last"))) {
-    attr(cell_tbl, "border_color_bottom")[page_dict_first$index, ] <- attr(cell_tbl, "border_color_last")[page_dict_first$index, ]
+    attr(cell_tbl, "border_color_bottom")[page_dict_last$index, ] <- attr(cell_tbl, "border_color_last")[page_dict_last$index, ]
   }
 
   # RTF encode

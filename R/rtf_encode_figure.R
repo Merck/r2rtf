@@ -35,13 +35,12 @@
 #'
 #' @inheritParams rtf_encode
 #'
-rtf_encode_figure <- function(tbl,
-                              page_title = "all",
-                              page_footnote = "last",
-                              page_source = "last") {
+rtf_encode_figure <- function(tbl) {
 
   # Footnote always be free text in figures
+  page <- attr(tbl, "page")
   footnote <- attr(tbl, "rtf_footnote")
+
   if (!is.null(footnote)) {
     attr(footnote, "as_table") <- FALSE
     attr(tbl, "rtf_footnote") <- footnote
@@ -74,39 +73,39 @@ rtf_encode_figure <- function(tbl,
 
   n_page <- length(tbl)
   # Page Title Display Location
-  if (page_title == "first") {
+  if (page$page_title == "first") {
     if (!is.null(header_rtftext)) header_rtftext <- c(header_rtftext, rep("", n_page - 1))
     if (!is.null(subline_rtftext)) subline_rtftext <- c(subline_rtftext, rep("", n_page - 1))
   }
 
-  if (page_title == "last") {
+  if (page$page_title == "last") {
     if (!is.null(header_rtftext)) header_rtftext <- c(rep("", n_page - 1), header_rtftext)
     if (!is.null(subline_rtftext)) subline_rtftext <- c(rep("", n_page - 1), subline_rtftext)
   }
 
   # Footnote Display Location
-  if (page_footnote == "first") {
+  if (page$page_footnote == "first") {
     footnote_rtftext <- c(footnote_rtftext, rep("", n_page - 1))
   }
 
-  if (page_footnote == "last") {
+  if (page$page_footnote == "last") {
     footnote_rtftext <- c(rep("", n_page - 1), footnote_rtftext)
   }
 
-  if (page_footnote == "all") {
+  if (page$page_footnote == "all") {
     footnote_rtftext <- c(rep(footnote_rtftext, n_page - 1), footnote_rtftext)
   }
 
   # Page Source Display Location
-  if (page_source == "first") {
+  if (page$page_source == "first") {
     source_rtftext <- c(source_rtftext, rep("", n_page - 1))
   }
 
-  if (page_source == "last") {
+  if (page$page_source == "last") {
     source_rtftext <- c(rep("", n_page - 1), source_rtftext)
   }
 
-  if (page_source == "all") {
+  if (page$page_source == "all") {
     source_rtftext <- c(rep(source_rtftext, n_page - 1), source_rtftext)
   }
 

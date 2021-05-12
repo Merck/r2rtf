@@ -45,7 +45,7 @@ test_that("footnote justification right and identation right 2, and text_indent_
     rtf_body()
   x_table <- x %>% rtf_footnote(footnote="testing", text_indent_right=2, text_justification  = "r",
                  text_indent_reference = "table")
-  expect_equal(attr(attr(x_table, "rtf_footnote"), 'text_indent_right'), 2+540)
+  expect_equal(attr(attr(x_table, "rtf_footnote"), 'text_indent_right'), 2)
 
   x_page <- x %>% rtf_footnote(footnote="testing", text_indent_right=2, text_justification  = "r",
                                 text_indent_reference = "page_margin")

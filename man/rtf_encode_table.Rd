@@ -4,24 +4,12 @@
 \alias{rtf_encode_table}
 \title{Render Table to RTF Encoding}
 \usage{
-rtf_encode_table(
-  tbl,
-  page_title = "all",
-  page_footnote = "last",
-  page_source = "last"
-)
+rtf_encode_table(tbl, verbose = FALSE)
 }
 \arguments{
 \item{tbl}{A data frame for table or a list of binary string for figure.}
 
-\item{page_title}{A character of title displaying location. Default is "all" for all pages.
-Possible values are "first", "last" and "all".}
-
-\item{page_footnote}{A character of title displaying location. Default is "last" for all pages.
-Possible values are "first", "last" and "all".}
-
-\item{page_source}{A character of title displaying location. Default is "last" for all pages.
-Possible values are "first", "last" and "all".}
+\item{verbose}{a boolean value to return more details of RTF encoding.}
 }
 \description{
 Render Table to RTF Encoding

@@ -63,7 +63,7 @@ test_that("Test whether other attributes were passed correctly", {
    expect_false(attr(tbl_sub,'use_color'))
    expect_false(attr(tbl_sub,'text_new_page'))
    expect_equal(attr(tbl_sub,"col_rel_width"), c(2, 3, 4))
-   expect_equal(attr(tbl_sub,"text_indent_first"), 0)
+   expect_equal(attr(tbl_sub,"text_indent_first"), matrix(0, nrow = 2, ncol = 3))
    expect_equal(attr(tbl_sub,"page")['use_color'], list(use_color = FALSE))
    expect_equal(attr(tbl_sub,"page")['border_last'], list(border_last = 'double'))
    expect_equal(attr(tbl_sub,"page")['col_width'], list(col_width = 6.25))

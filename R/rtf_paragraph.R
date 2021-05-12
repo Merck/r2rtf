@@ -27,6 +27,7 @@
 #' @param space_after  Line space after text.
 #' @param new_page A boolean value to indicate whether to start a new page.
 #' @param hyphenation A boolean value to indicate whether to use hyphenation.
+#' @param cell A boolean value to indicate if paragraph is in table cell.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -51,8 +52,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-rtf_paragraph <- function(
-                          text,
+rtf_paragraph <- function(text,
 
                           justification = "c",
 
@@ -65,7 +65,10 @@ rtf_paragraph <- function(
                           space_after = 180,
 
                           new_page = FALSE,
-                          hyphenation = TRUE) {
+                          hyphenation = TRUE,
+
+                          cell = FALSE) {
+
 
   ## Define dictionary
   para_justification <- justification()
@@ -88,7 +91,13 @@ rtf_paragraph <- function(
     is.numeric(space_after)
   )
 
-  begin <- "{\\pard"
+  if(cell){
+    begin <- "\\pard"
+    end <- "\\cell"
+  }else{
+    begin <- "{\\pard"
+    end <- "\\par}"
+  }
 
   ### line space
   space_before <- paste0("\\sb", space_before)
@@ -113,14 +122,19 @@ rtf_paragraph <- function(
   ### Hyphenation
   hyphenation <- ifelse(hyphenation, "\\hyphpar", "\\hyphpar0")
 
-  end <- "\\par}"
-
-
   ## Paragraph RTF Encode
-  paste0(
-    begin, page_break, hyphenation, "\n",
-    space, space_before, space_after, indent_first, indent_left, indent_right, alignment, "\n",
-    text, "\n",
+ text_rtf <- paste0(
+    begin, page_break, hyphenation,
+    space, space_before, space_after, indent_first, indent_left, indent_right, alignment,
+    text,
     end
   )
+
+  # Convert back to matrix
+  if(! is.null(dim(text))){
+    text_rtf <- matrix(text_rtf, nrow = nrow(text), ncol = ncol(text))
+  }
+
+  text_rtf
+
 }

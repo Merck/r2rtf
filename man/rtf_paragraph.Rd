@@ -14,7 +14,8 @@ rtf_paragraph(
   space_before = 180,
   space_after = 180,
   new_page = FALSE,
-  hyphenation = TRUE
+  hyphenation = TRUE,
+  cell = FALSE
 )
 }
 \arguments{
@@ -37,6 +38,8 @@ rtf_paragraph(
 \item{new_page}{A boolean value to indicate whether to start a new page.}
 
 \item{hyphenation}{A boolean value to indicate whether to use hyphenation.}
+
+\item{cell}{A boolean value to indicate if paragraph is in table cell.}
 }
 \description{
 Paragraph to RTF Encode

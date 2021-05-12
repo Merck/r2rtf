@@ -1,5 +1,5 @@
 library(dplyr)
-
+svg(tempfile("tmp.svg"))
 test_that("Test for case when output has title, footnote and source", {
 
    x <- iris[1:2, ] %>%
@@ -66,14 +66,7 @@ test_that("Test if page_dict attribute is created for tbl", {
   y <- as_rtf_pageby(x)
 
   expect_equal(names(attributes(y)), "info")
-
-  expect_output(str(y), "id    : Factor")
-  expect_output(str(y), "pageby: logi")
-  expect_output(str(y), "nrow  : num")
-  expect_output(str(y), "total : num")
-  expect_output(str(y), "page  : num")
-  expect_output(str(y), "index : int")
-
+  if(interactive ()) expect_snapshot_output(y)
 })
 
 
@@ -87,15 +80,7 @@ test_that("Test for more than one page_by var", {
 
   y <- as_rtf_pageby(x)
   expect_equal(names(attributes(y)), c("names","info"))
-  expect_equal(attr(y, "info")[1,2], TRUE)
-  expect_equal(attr(y, "info")[1,6], 1)
-
-  expect_output(str(y), "id    : Factor")
-  expect_output(str(y), "pageby: logi")
-  expect_output(str(y), "nrow  : num")
-  expect_output(str(y), "total : num")
-  expect_output(str(y), "page  : num")
-  expect_output(str(y), "index : int")
+  if(interactive ()) expect_snapshot_output(y)
 })
 
 
@@ -109,12 +94,7 @@ test_that("Test if new_page is FALSE and group_by is NOT NULL", {
 
   expect_equal(names(attributes(y)), "info")
 
-  expect_output(str(y), "id    : Factor")
-  expect_output(str(y), "pageby: logi")
-  expect_output(str(y), "nrow  : num")
-  expect_output(str(y), "total : num")
-  expect_output(str(y), "page  : num")
-  expect_output(str(y), "index : int")
+  if(interactive ()) expect_snapshot_output(y)
 
 })
 
@@ -134,3 +114,37 @@ test_that("Test whether lines with '-----' were removed correctly", {
 
   expect_snapshot_output(x$body)
 })
+
+
+test_that("Test when using subline_by and page_by together in rtf_body", {
+
+  tbl1 <- iris[c(1:4,51:54), 3:5] %>%
+    mutate(s2 = paste0(Species, 1:2), s3 = s2) %>%
+    arrange(Species, s2)%>%
+    rtf_body(
+      subline_by = "s2",
+      page_by = 'Species'
+    ) %>%
+
+  rtf_encode()
+
+  expect_snapshot_output(tbl1$body)
+})
+
+
+test_that("Test when using subline_by and page_by with pageby_row = 'first_row' in rtf_body", {
+
+  tbl2 <- iris[c(1:4,51:54), 3:5] %>%
+    mutate(s2 = paste0(Species, 1:2), s3 = s2) %>%
+    arrange(Species, s2)%>%
+    rtf_body(
+      subline_by = "s2",
+      page_by = 'Species',
+      pageby_row = 'first_row'
+    ) %>%
+
+  rtf_encode()
+
+  expect_snapshot_output(tbl2$body)
+})
+dev.off()

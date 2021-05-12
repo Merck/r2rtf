@@ -1,27 +1,27 @@
 # tests using as_rtf_source
 test_that("case when source equals to NULL", {
   x <- iris %>% rtf_body() %>% rtf_source()
-  expect_equal(as_rtf_source(x), "{\\pard\\hyphpar\n\\sb15\\sa15\\fi0\\li0\\ri0\\qc\n{\\f0\\fs18 }\n\\par}")
+  expect_snapshot_output(as_rtf_source(x))
 })
 
 test_that("source justification right and identation first 1, left 2", {
   x <- iris %>% rtf_body() %>% rtf_source(source="testing", text_indent_first=1, text_indent_left=2, text_justification = "r")
-  expect_equal(as_rtf_source(x),"{\\pard\\hyphpar\n\\sb15\\sa15\\fi1\\li2\\ri0\\qr\n{\\f0\\fs18 testing}\n\\par}")
+  expect_snapshot_output(as_rtf_source(x))
 })
 
 test_that("source justification left and identation first 1, right 2", {
   x <- iris %>% rtf_body() %>% rtf_source(source="testing",text_indent_first=1, text_indent_right =2,text_justification = "l")
-  expect_equal(as_rtf_source(x),"{\\pard\\hyphpar\n\\sb15\\sa15\\fi1\\li0\\ri2\\ql\n{\\f0\\fs18 testing}\n\\par}")
+  expect_snapshot_output(as_rtf_source(x))
 })
 
 test_that("source justification left and identation left 2", {
   x <- iris %>% rtf_body() %>% rtf_source(source="testing", text_indent_left =2,text_justification = "l")
-  expect_equal(as_rtf_source(x),"{\\pard\\hyphpar\n\\sb15\\sa15\\fi0\\li2\\ri0\\ql\n{\\f0\\fs18 testing}\n\\par}")
+  expect_snapshot_output(as_rtf_source(x))
 })
 
 test_that("source font=2, formats=bold", {
   x <- iris %>% rtf_body() %>% rtf_source(source="testing", text_font=2, text_format="b")
-  expect_equal(as_rtf_source(x), "{\\pard\\hyphpar\n\\sb15\\sa15\\fi0\\li0\\ri0\\qc\n{\\f1\\fs18\\b testing}\n\\par}")
+  expect_snapshot_output(as_rtf_source(x))
 })
 
 

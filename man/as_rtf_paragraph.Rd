@@ -4,10 +4,12 @@
 \alias{as_rtf_paragraph}
 \title{Create Paragraph RTF Encode}
 \usage{
-as_rtf_paragraph(text)
+as_rtf_paragraph(text, combine = TRUE)
 }
 \arguments{
 \item{text}{A character string.}
+
+\item{combine}{A boolean to combine string or not.}
 }
 \description{
 Create Paragraph RTF Encode
