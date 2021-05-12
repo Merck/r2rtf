@@ -89,7 +89,11 @@ rtf_strwidth <- function(tbl){
 
   db_list <- split(db, db$index)
   db_list <- lapply(db_list, function(x){
-                x$width <- graphics::strwidth(x$text, units = "inches", cex = x$cex[1], font = x$font[1], family = x$family[1])
+                family  <- x$family[1]
+                if(grepl("Times New Roman", family)){
+                  family = "Times"
+                }
+                x$width <- graphics::strwidth(x$text, units = "inches", cex = x$cex[1], font = x$font[1], family = family)
                 x
   })
   db <- do.call(rbind, db_list)
