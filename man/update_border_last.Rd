@@ -30,6 +30,6 @@ Update last border line type and color type based on page information.
 library(dplyr)
 tbl <- iris[c(1:3 ,51:54), ] \%>\%
    rtf_body(page_by='Species') \%>\%
-   update_border_last()
+   r2rtf:::update_border_last()
 
 }
