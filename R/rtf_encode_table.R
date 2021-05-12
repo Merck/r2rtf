@@ -155,7 +155,7 @@ rtf_encode_table <- function(tbl, verbose = FALSE) {
   ## Post Processing for total page number
   rtf_feature <- gsub("\\totalpage", n_page, rtf_feature, fixed = TRUE) # total page number
 
-
+  end <- as_rtf_end()
   if(verbose){
     rtf <- list(start     = start_rtf,
                 page      = page_rtftext,
@@ -171,7 +171,7 @@ rtf_encode_table <- function(tbl, verbose = FALSE) {
                 info      = info
         )
   }else{
-    rtf <- list(start = start_rtf, body = rtf_feature, end = as_rtf_end())
+    rtf <- list(start = start_rtf, body = rtf_feature, end = end)
   }
 
   rtf
