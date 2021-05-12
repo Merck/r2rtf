@@ -232,7 +232,8 @@ as_rtf_pageby <- function(tbl) {
     pageby_header <- lapply(
       split(page_dict, page_dict$page),
       function(x) {
-        if (!x[2, "pageby"]) x[1, ]
+        if (nrow(x) < 2) stop("The page contain now table. Try to increase nrow in rtf_page")
+        if (!x[2, "pageby"]) return(x[1, ])
       }
     )
 

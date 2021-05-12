@@ -1,5 +1,5 @@
 # create testing example
-
+svg(tempfile("tmp.svg"))
 font   <- 2:3
 format <- matrix(c("", "i", 'b', 'ib'), nrow = 4, ncol = 2, byrow = FALSE)
 size   <- matrix(9:9, nrow = 4, ncol = 2, byrow = FALSE)
@@ -176,3 +176,4 @@ test_that("test for rtf-nrow() if 'rtf-nrow' attributes are added correctly for 
    expect_equal(irspagebyrows[1], 1)
 
 })
+dev.off()
