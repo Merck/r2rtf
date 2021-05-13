@@ -60,7 +60,7 @@ The R package`r2rtf` provided flexibility to provide features below:
 -   Pagination.
 -   Built in raw data for validation.
 
-Quick Examples
+Simple Example
 --------------
 
     library(dplyr)
@@ -75,7 +75,7 @@ Quick Examples
 <img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png">
 </details>
 
--   [More examples](https://merck.github.io/r2rtf/articles/index.html)
+-   [More Examples](https://merck.github.io/r2rtf/articles/index.html)
 
 Example Efficacy Table
 ----------------------
