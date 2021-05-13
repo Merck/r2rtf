@@ -40,11 +40,14 @@ articles:
   - example-figure
   - example-sublineby-pageby-groupby
 - title: Paragraph Style
+  contents:
   - rtf_text
   - rtf_row
 - title: Package Design
+  contents:
   - design-pattern
 - title: Testing
+  contents:
   - code_cov
 
 reference:
