@@ -1,5 +1,5 @@
 ---
-title: RTF Examples for Tables with Sublineby, Pageby, Groupby Features
+title: RTF Examples for Tables with Sublineby, Pageby, and Groupby Features
 output:
   html_document:
     df_print: paged
