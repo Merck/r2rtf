@@ -12,3 +12,15 @@
     9     9           Courier New \\fmodern     \\f8   Courier
     10   10                Symbol   \\ftech     \\f9     Times
 
+# border type
+
+            name     rtf_code
+    1                        
+    2     single      \\brdrs
+    3     double     \\brdrdb
+    4        dot    \\brdrdot
+    5       dash   \\brdrdash
+    6 small dash \\brdrdashsm
+    7   dot dash  \\brdrdashd
+    8    dot dot \\brdrdashdd
+

@@ -99,39 +99,15 @@ test_that("border type and color", {
                        border_left = c("",
                                        "single",
                                        "double",
-                                       "triple",
+                                       "double",
                                        "dash"
                                        ),
                        border_right = c("dot",
                                         "dot dash",
-                                        "dot dot",
-                                        "small dash",
-                                        "stripe"
+                                        "double",
+                                        "dash",
+                                        "double"
                                         ),
-                       border_top = c("wavy",
-                                      "double wavy",
-                                      "thick thin small",
-                                      "thin thick small",
-                                      "thin thick medium"
-                                      ),
-                       border_bottom = c("engrave",
-                                         "emboss",
-                                         "thin thick thin medium",
-                                         "thick thin large",
-                                         "thin thick thin large"
-                                         ),
-                       border_first = c("dot",
-                                        "dot dash",
-                                        "dot dot",
-                                        "small dash",
-                                        "stripe"
-                                        ),
-                       border_last = c("",
-                                       "single",
-                                       "double",
-                                       "triple",
-                                       "dash"
-                                       ),
                        border_color_left = c("white",
                                              "red",
                                              "blue",
@@ -169,36 +145,6 @@ test_that("border type and color", {
                                              "indianred"
                                              )
                        )
-
-  expect_identical(attributes(testdat2)$border_left[50,1:5] ,
-                   c("","single","double","triple","dash"))
-
-  expect_identical(attributes(testdat2)$border_right[35,1:5] ,
-                   c("dot","dot dash","dot dot","small dash","stripe"))
-
-  expect_identical(attributes(testdat2)$border_top[1,1:5] ,
-                   c("wavy",
-                     "double wavy",
-                     "thick thin small",
-                     "thin thick small",
-                     "thin thick medium"
-                     )
-                   )
-
-  expect_identical(attributes(testdat2)$border_bottom[100,1:5] ,
-                   c("engrave",
-                     "emboss",
-                     "thin thick thin medium",
-                     "thick thin large",
-                     "thin thick thin large"
-                     )
-                   )
-
-  expect_identical(attributes(testdat2)$border_first[1,1:5] ,
-                   c("dot","dot dash","dot dot","small dash","stripe"))
-
-  expect_identical(attributes(testdat2)$border_last[100,1:5] ,
-                   c("","single","double","triple","dash"))
 
   expect_identical(attributes(testdat2)$border_color_left[50,1:5] ,
                    c("white","red","blue","green","yellow"))
