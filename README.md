@@ -72,7 +72,7 @@ Quick Examples
 -   Click “details” button below to preview output.
 
 <details>
-<img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png">
+<img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png" width="50%">
 </details>
 
 -   [More examples](https://merck.github.io/r2rtf/articles/index.html)
@@ -85,7 +85,7 @@ Example Efficacy Table
 -   Click “details” button below to preview output.
 
 <details>
-<img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png">
+<img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png" width="50%">
 </details>
 
 Example Safety Table
@@ -96,5 +96,5 @@ Example Safety Table
 -   Click “details” button below to preview output.
 
 <details>
-<img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png">
+<img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png" width="50%">
 </details>
