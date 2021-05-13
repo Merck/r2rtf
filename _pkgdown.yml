@@ -41,14 +41,11 @@ articles:
   - example-sublineby-pageby-groupby
 - title: Paragraph Style
   contents:
-  - rtf_text
-  - rtf_row
+  - rtf-text
+  - rtf-row
 - title: Package Design
   contents:
   - design-pattern
-- title: Testing
-  contents:
-  - code_cov
 
 reference:
 - title: RTF Table
