@@ -1,4 +1,4 @@
-# r2rtf 0.2.0.9002 (development)
+# r2rtf 0.3.0 (development)
 
 * Rename dataset with prefix `r2rtf` to avoid conflict of other namespace
 * Add `r2rtf:::rtf2pdf` function to convert RTF file to PDF file

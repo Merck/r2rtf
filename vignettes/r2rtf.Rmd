@@ -108,7 +108,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae1.rtf")
+knitr::include_graphics("pdf/intro-ae1.pdf")
 ```
 
 ## Column Width 
@@ -131,7 +131,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae2.rtf")
+knitr::include_graphics("pdf/intro-ae2.pdf")
 ```
 
 Note: 
@@ -159,7 +159,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae3.rtf")
+knitr::include_graphics("pdf/intro-ae3.pdf")
 ```
 
 We also allow column headers be displayed in multiple lines. 
@@ -186,7 +186,7 @@ head(tbl, 50) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae4.rtf")
+knitr::include_graphics("pdf/intro-ae4.pdf")
 ```
 
 ## Text Alignment 
@@ -212,7 +212,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae5.rtf")
+knitr::include_graphics("pdf/intro-ae5.pdf")
 ```
 
 ## Text Style 
@@ -241,7 +241,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae6.rtf")
+knitr::include_graphics("pdf/intro-ae6.pdf")
 ```
 
 ## Table Border 
@@ -277,7 +277,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae7.rtf")
+knitr::include_graphics("pdf/intro-ae7.pdf")
 ```
 
 ## Title
@@ -307,7 +307,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae8.rtf")
+knitr::include_graphics("pdf/intro-ae8.pdf")
 ```
 
 ## Footnote 
@@ -338,7 +338,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae9.rtf")
+knitr::include_graphics("pdf/intro-ae9.pdf")
 ```
 
 Below example showed the case when using `as_table = FALSE` to display footnote outside the table body.
@@ -363,7 +363,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae10.rtf")
+knitr::include_graphics("pdf/intro-ae10.pdf")
 ```
 
 ## Data Source
@@ -393,7 +393,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae11.rtf")
+knitr::include_graphics("pdf/intro-ae11.pdf")
 ```
 
 Below example showed the case when using `as_table = TRUE` to display data source inside the table body.
@@ -415,7 +415,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae12.rtf")
+knitr::include_graphics("pdf/intro-ae12.pdf")
 ```
 
 ## Special Character 
@@ -453,7 +453,7 @@ head(tbl) %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae13.rtf")
+knitr::include_graphics("pdf/intro-ae13.pdf")
 ```
 
 ## Table Color
@@ -490,7 +490,7 @@ tbl1 %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae14.rtf")
+knitr::include_graphics("pdf/intro-ae14.pdf")
 ```
 
 ## Page setup
@@ -517,7 +517,7 @@ tbl[1:50, ] %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae15.rtf")
+knitr::include_graphics("pdf/intro-ae15.pdf")
 ```
 
 ## subline_by feature
@@ -550,7 +550,7 @@ aegt5  %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae16.rtf")
+knitr::include_graphics("pdf/intro-ae16.pdf")
 ```
 
 ## page_by feature
@@ -574,7 +574,7 @@ aegt5  %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae17.rtf")
+knitr::include_graphics("pdf/intro-ae17.pdf")
 ```
 
 ## group_by feature
@@ -594,7 +594,7 @@ aegt5  %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae18.rtf")
+knitr::include_graphics("pdf/intro-ae18.pdf")
 ```
 
 ## Figure
@@ -637,5 +637,5 @@ filename %>%
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-# knitr::include_graphics("pdf/intro-ae19.rtf")
+knitr::include_graphics("pdf/intro-ae19.pdf")
 ```

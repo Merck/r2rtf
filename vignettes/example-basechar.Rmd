@@ -1,5 +1,5 @@
 ---
-title: RTF Examples for baseline characteristics Tables
+title: RTF Examples for Baseline Characteristics Tables
 output:
   html_document:
     df_print: paged
