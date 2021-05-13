@@ -1,0 +1,288 @@
+---
+title: RTF Examples for Controlling Table Details
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+devtools::load_all() # need to be updated after the package mature
+
+library(dplyr)
+```
+
+
+This vignette documents how to use `.rtf_row` to customize table in details. All output tables are saved in the `vignettes/rtf` folder and assembled in `vignettes/r2rtf_examples.docx` document. 
+
+
+## Border Type
+
+`.rtf_row` supports `r length(border_type()$name)` different types of border as listed below. 
+
+```{r}
+border_type()$name
+```
+
+The border type can be used to define the top, left, right and bottom border types. 
+
+This example define different top border line. 
+```{r}
+.n <- length(border_type()$name)
+db <- data.frame(border_type = border_type()$name) %>%
+  rtf_title("Summary of Border Type Using Top Border") %>%
+  rtf_colheader("Border Type") %>%
+  rtf_body(border_top = border_type()$name)
+
+db %>%
+  rtf_encode() %>%
+  write_rtf("rtf/border-type.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/border-type.pdf")
+```
+
+
+For each cell, the top border and left border is defined in each cell. The right border only defined in last column. 
+The bottom border only defined in last row. This example show that top border and left border type are used for all 
+cell border as single. Only last column use right border as double. Only last row use bottom border as dash line. 
+
+```{r}
+iris %>%
+  head() %>%
+  rtf_body(
+    as_colheader = FALSE,
+    border_top = "dash",
+    border_left = "double",
+    border_right = "single"
+  ) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/border-order.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/border-order.pdf")
+```
+
+This example display table with specific border type (i.e. double line at the first and last line and blank at the middle)
+```{r}
+rtf_db <- iris %>%
+  head() %>%
+  rtf_title("Border Using Double Line at First/Last Line") %>%
+  rtf_colheader("Sepal Length | Sepal Width | Petal Length | Petal Width | Species"
+  ) %>%
+  rtf_body()
+
+
+rtf_db %>%
+  rtf_encode() %>%
+  write_rtf("rtf/border-example.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/border-example.pdf")
+```
+
+
+* The first and last border of the whole table is controled by `border_first` and `border_last` argument in `rtf_page()`  
+
+```{r}
+attr(rtf_db, "page")$border_first
+```
+
+```{r}
+attr(rtf_db, "border_first")
+```
+
+For other border, it is controled by a matrix. 
+
+```{r}
+rtf_db %>% attr("border_top")
+```
+
+User can use single value, vector, and matrix to control the border type. Specifically, a vector is transferred to a matrix by row. Therefore, it is useful to set columns type by using vector. 
+
+```{r}
+matrix(border_type()$name[1:5], nrow = 6, ncol = 5, byrow = TRUE)
+```
+
+```{r}
+rtf_db <- iris %>%
+  head() %>%
+  rtf_title("Left Border Defined by a Vector") %>%
+  rtf_body(border_left = border_type()$name[2:6])
+
+rtf_db %>%
+  rtf_encode() %>%
+  write_rtf("rtf/border-vector.rtf")
+```
+
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/border-vector.pdf")
+```
+
+## Cell Justification
+
+The table cell allow to be left, center or right justified. the cell is also allow to align by decimal. 
+```{r}
+justification()[, 1:2]
+```
+
+```{r}
+justification()[, 1:2] %>%
+  rtf_body(text_justification = rep(justification()$type, each = 2)) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/justification-type.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/justification-type.pdf")
+```
+
+
+```{r}
+db <- iris %>% mutate(Sepal.Length = formatC(Sepal.Length * 2, digits = 1, format = "f"))
+
+db[, rep(1, 4)] %>%
+  head() %>%
+  rtf_body(text_justification = c("d", "l", "c", "r")) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/justification-number.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/justification-number.pdf")
+```
+
+
+## Column Width 
+
+Column width is determined by width ratio between the row using `col_rel_width`. The default is to have the same width for each column. The actual width is calculate with actual width `col_total_width`. The default value of `col_total_width` is page_width divided by 1.4. 
+
+This example shows the default setting
+```{r}
+iris %>%
+  head() %>%
+  rtf_body(as_colheader = FALSE) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/column-width-default.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/column-width-default.pdf")
+```
+
+This example customizes the column width
+```{r}
+iris %>%
+  head() %>%
+  rtf_body(col_rel_width = 1:ncol(iris), as_colheader = FALSE) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/column-width-ratio.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/column-width-ratio.pdf")
+```
+
+## Text Appearance 
+
+The `.rtf_row` function allow **bold**, *italics*, ~~strikethrough~~, underline and any combinations of them. 
+
+```{r}
+font_format()[, 1:2]
+```
+
+This example considers the text format defined below
+
+```{r}
+fmt <- cbind("", font_format()$type)
+fmt
+```
+
+
+```{r}
+font_format()[, 1:2] %>%
+  rtf_body(text_format = fmt) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/text-format.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-format.pdf")
+```
+
+## Text Font Size
+
+Font size can be defined for each cell. 
+
+```{r}
+iris %>%
+  head() %>%
+  rtf_body(text_font_size = c(7:11), as_colheader = FALSE) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/text-font-size.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/text-font-size.pdf")
+```
+
+## Color
+
+The text, border and background color can be set separately for each cell. It is important to note that the cell can be defined condition by the data. For example, one can highlight p-value < 0.05 in gold. 
+
+This example define text color for each column
+
+```{r}
+iris %>%
+  head() %>%
+  rtf_body(text_color = c("black", "red", "gold", "blue", "grey"),
+           as_colheader = FALSE) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/color-text.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/color-text.pdf")
+```
+
+This example define left border color for each column
+
+```{r}
+iris %>%
+  head() %>%
+  rtf_body(border_color_left = c("black", "red", "gold", "blue", "grey"),
+           as_colheader = FALSE) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/color-border.rtf")
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/color-border.pdf")
+```
+
+This example define background color for each column
+
+```{r}
+iris %>%
+  head() %>%
+  rtf_body(
+    text_background_color = c("white", "red", "gold", "blue", "grey"),
+    text_color = "black",
+    as_colheader = FALSE,
+  ) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/color-background.rtf")
+```
+
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/color-background.pdf")
+```
+
+
