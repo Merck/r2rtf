@@ -78,7 +78,9 @@ rtf_strwidth <- function(tbl){
 
   db <- data.frame(cex    = as.numeric(text_cex),
                    font   = as.numeric(text_format),
-                   family = as.character(text_family))
+                   family = as.character(text_family),
+                   stringsAsFactors = FALSE)
+
   db$text <- as.character(text)
   db$id <- 1:nrow(db)
 
@@ -89,6 +91,19 @@ rtf_strwidth <- function(tbl){
 
   db_list <- split(db, db$index)
   db_list <- lapply(db_list, function(x){
+
+                # Mapping Windows Font
+                if(.Platform$OS.type == "windows"){
+                  windowsFonts("Arial"     = windowsFont("Arial"))
+                  windowsFonts("Times"     = windowsFont("Times New Roman"))
+                  windowsFonts("ArialMT"   = windowsFont("Arial"))
+                  windowsFonts("Helvetica" = windowsFont("Helvetica"))
+                  windowsFonts("Calibri"   = windowsFont("Calibri"))
+                  windowsFonts("Georgia"   = windowsFont("Georgia"))
+                  windowsFonts("Cambria"   = windowsFont("Cambria"))
+                  windowsFonts("Courier"   = windowsFont("Courier New"))
+                }
+
                 x$width <- graphics::strwidth(x$text, units = "inches", cex = x$cex[1], font = x$font[1], family = x$family[1])
                 x
   })

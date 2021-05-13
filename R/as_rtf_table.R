@@ -75,7 +75,8 @@ as_rtf_table <- function(tbl) {
   page_dict <- data.frame(
     index = index,
     nrow = table_nrow,
-    total     = rtf_nrow$page - sum(rtf_nrow_body[-1])
+    total     = rtf_nrow$page - sum(rtf_nrow_body[-1]),
+    stringsAsFactors = FALSE
   )
 
   # Define page number for each row

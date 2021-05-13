@@ -85,7 +85,8 @@ as_rtf_pageby <- function(tbl) {
     subline = pageby$id[index],
     pageby = c(diff(index) == 0, FALSE),
     nrow = table_nrow[index],
-    total     = rtf_nrow$page - sum(rtf_nrow_body[-1])
+    total     = rtf_nrow$page - sum(rtf_nrow_body[-1]),
+    stringsAsFactors = FALSE
   )
   page_dict$nrow <- ifelse(page_dict$pageby, 1, page_dict$nrow)
 
