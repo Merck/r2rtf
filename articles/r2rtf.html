@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.3.0</span>
       </span>
     </div>
 
@@ -127,18 +127,19 @@
 <div id="overview" class="section level2">
 <h2 class="hasAnchor">
 <a href="#overview" class="anchor"></a>Overview</h2>
+<p><code>r2rtf</code> is an R package to create production ready tables and figures in RTF format. The R package is designed to</p>
+<ul>
+<li>provide simple “verb” functions that correspond to each component of a table, to help you translate data frame to table in RTF file.</li>
+<li>enables pipes (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>).</li>
+<li>only focus on <strong>table format</strong>. Data manipulation and analysis shall be handled by other R packages. (e.g. <code>tidyverse</code>)</li>
+<li>
+<code>r2rtf</code> minimizes package dependency</li>
+</ul>
 <p>Before creating an RTF table we need to:</p>
 <ul>
 <li><p>Figure out table layout.</p></li>
 <li><p>Split the layout into small tasks in the form of a computer program.</p></li>
 <li><p>Execute the program.</p></li>
-</ul>
-<p>The <code>r2rtf</code> package makes these steps fast and easy:</p>
-<ul>
-<li><p><code>r2rtf</code> provides simple “verb” functions that correspond to each component of a table, to help you translate data frame to table in RTF file.</p></li>
-<li><p><code>r2rtf</code> is designed to enables pipes (<code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code>).</p></li>
-<li><p><code>r2rtf</code> only focus on <strong>table format</strong>. Data manipulation and analysis shall be handled by other R packages. (e.g. <code>tidyverse</code>)</p></li>
-<li><p><code>r2rtf</code> minimizes package dependency</p></li>
 </ul>
 <p>This document introduces <code>r2rtf</code> basic set of tools, and show how to transfer data frames into Table, Listing, and Figure (TLFs).</p>
 <p>Other extended examples and features are covered in different document listed in <a href="https://merck.github.io/r2rtf/articles/index.html">table of content</a>.</p>
@@ -322,13 +323,13 @@
 <p>All possible border type inputs can be found in <code>r2rtf:::border_type()</code>. There are 26 different border type, we only display first six here.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
-<span class="co">##           name  rtf_code</span>
-<span class="co">## 1                       </span>
-<span class="co">## 2       single   \\brdrs</span>
-<span class="co">## 3 double thick  \\brdrth</span>
-<span class="co">## 4     shadowed  \\brdrsh</span>
-<span class="co">## 5       double  \\brdrdb</span>
-<span class="co">## 6          dot \\brdrdot</span></code></pre></div>
+<span class="co">##         name     rtf_code</span>
+<span class="co">## 1                        </span>
+<span class="co">## 2     single      \\brdrs</span>
+<span class="co">## 3     double     \\brdrdb</span>
+<span class="co">## 4        dot    \\brdrdot</span>
+<span class="co">## 5       dash   \\brdrdash</span>
+<span class="co">## 6 small dash \\brdrdashsm</span></code></pre></div>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>

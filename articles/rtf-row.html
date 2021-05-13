@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.3.0</span>
       </span>
     </div>
 
@@ -128,18 +128,11 @@
 <div id="border-type" class="section level2">
 <h2 class="hasAnchor">
 <a href="#border-type" class="anchor"></a>Border Type</h2>
-<p><code>.rtf_row</code> supports 26 different types of border as listed below.</p>
+<p><code>.rtf_row</code> supports 8 different types of border as listed below.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span></code></pre></div>
-<pre><code>##  [1] ""                       "single"                 "double thick"          
-##  [4] "shadowed"               "double"                 "dot"                   
-##  [7] "dash"                   "hairline"               "small dash"            
-## [10] "dot dash"               "dot dot"                "triple"                
-## [13] "thick thin small"       "thin thick small"       "thin thick thin small" 
-## [16] "thick thin medium"      "thin thick medium"      "thin thick thin medium"
-## [19] "thick thin large"       "thin thick large"       "thin thick thin large" 
-## [22] "wavy"                   "double wavy"            "stripe"                
-## [25] "emboss"                 "engrave"</code></pre>
+<pre><code>## [1] ""           "single"     "double"     "dot"        "dash"      
+## [6] "small dash" "dot dash"   "dot dot"</code></pre>
 <p>The border type can be used to define the top, left, right and bottom border types.</p>
 <p>This example define different top border line.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -206,13 +199,13 @@
 <p>User can use single value, vector, and matrix to control the border type. Specifically, a vector is transferred to a matrix by row. Therefore, it is useful to set columns type by using vector.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, nrow <span class="op">=</span> <span class="fl">6</span>, ncol <span class="op">=</span> <span class="fl">5</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<pre><code>##      [,1] [,2]     [,3]           [,4]       [,5]    
-## [1,] ""   "single" "double thick" "shadowed" "double"
-## [2,] ""   "single" "double thick" "shadowed" "double"
-## [3,] ""   "single" "double thick" "shadowed" "double"
-## [4,] ""   "single" "double thick" "shadowed" "double"
-## [5,] ""   "single" "double thick" "shadowed" "double"
-## [6,] ""   "single" "double thick" "shadowed" "double"</code></pre>
+<pre><code>##      [,1] [,2]     [,3]     [,4]  [,5]  
+## [1,] ""   "single" "double" "dot" "dash"
+## [2,] ""   "single" "double" "dot" "dash"
+## [3,] ""   "single" "double" "dot" "dash"
+## [4,] ""   "single" "double" "dot" "dash"
+## [5,] ""   "single" "double" "dot" "dash"
+## [6,] ""   "single" "double" "dot" "dash"</code></pre>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">rtf_db</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
