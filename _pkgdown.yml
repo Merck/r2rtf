@@ -54,19 +54,23 @@ reference:
   - "rtf_footnote"
   - "rtf_body"
   - "rtf_source"
-  - "rtf_figure"
-  - "rtf_read_png"
   - "rtf_encode"
   - "write_rtf"
+- title: Figure
+  contents:
+  - "rtf_read_png"
+  - "rtf_figure"
 - title: Utility Data
   contents:
-  - matches("unicode_latex")
+  - "unicode_latex"
 - title: Example Data
   contents:
-  - matches("HAMD17")
-  - starts_with("tbl_")
-  - matches("adae")
-  - matches("adsl")
-  - matches("adtte")
+  - "r2rtf_HAMD17"
+  - "r2rtf_adsl"
+  - "r2rtf_adae"
+  - "r2rtf_adtte"
+  - "r2rtf_tbl1"
+  - "r2rtf_tbl2"
+  - "r2rtf_tbl3"
 
 
