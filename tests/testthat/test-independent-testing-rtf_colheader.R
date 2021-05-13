@@ -34,15 +34,8 @@ test_that("border color", {
 })
 
 test_that("border type", {
-  x <- r2rtf_tbl1 %>% rtf_body() %>% rtf_colheader(colheader =" a | b | c ", border_left   = c("double", "wavy", "engrave"))
-  y <- r2rtf_tbl1 %>% rtf_body() %>% rtf_colheader(colheader =" a | b | c ", border_right  = "hairline")
-  z <- r2rtf_tbl1 %>% rtf_body() %>% rtf_colheader(colheader =" a | b | c ", border_top    = "dot dot")
-  u <- r2rtf_tbl1 %>% rtf_body() %>% rtf_colheader(colheader =" a | b | c ", border_bottom = "thin thick medium")
-
-  expect_equal(attr(attr(x, "rtf_colheader")[[2]], 'border_left')[1,], c("double", "wavy", "engrave"))
-  expect_equal(attr(attr(y, "rtf_colheader")[[2]], 'border_right')[1,], c("hairline", "hairline", "hairline") )
-  expect_equal(attr(attr(z, "rtf_colheader")[[2]], 'border_top')[1,], c("dot dot", "dot dot", "dot dot") )
-  expect_equal(attr(attr(u, "rtf_colheader")[[2]], 'border_bottom')[1,], c("thin thick medium", "thin thick medium", "thin thick medium") )
+  x <- r2rtf_tbl1 %>% rtf_body() %>% rtf_colheader(colheader =" a | b | c ", border_left   = c("double", "single", "dot dot"))
+  expect_equal(attr(attr(x, "rtf_colheader")[[2]], 'border_left')[1,], c("double", "single", "dot dot"))
 })
 
 

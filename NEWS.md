@@ -1,6 +1,7 @@
 # r2rtf 0.2.0.9002 (development)
 
 * Rename dataset with prefix `r2rtf` to avoid conflict of other namespace
+* Add `r2rtf:::rtf2pdf` function to convert RTF file to PDF file
 * Enable special place holder "-----" in `page_by` variable to suppress line displayed 
   in `page_by` variable (ref Example 2 in `vignette/example-pageby-groupby`)
 * New argument `pageby_row` in `rtf_body` to display first row instead of `page_by` variable when `pageby_row = "first_row"` 

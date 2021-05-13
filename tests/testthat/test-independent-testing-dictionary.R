@@ -35,26 +35,7 @@ test_that("text justification", {
 })
 
 test_that("border type", {
-  brd_typ<-  data.frame(
-    name = c(
-      "", "single", "double thick", "shadowed", "double", "dot", "dash", "hairline", "small dash", "dot dash", "dot dot", "triple",
-      "thick thin small", "thin thick small", "thin thick thin small",
-      "thick thin medium", "thin thick medium", "thin thick thin medium",
-      "thick thin large", "thin thick large", "thin thick thin large",
-      "wavy", "double wavy", "stripe", "emboss", "engrave"
-    ),
-    rtf_code = c(
-      "", "\\brdrs", "\\brdrth", "\\brdrsh", "\\brdrdb", "\\brdrdot", "\\brdrdash",
-      "\\brdrhair", "\\brdrdashsm", "\\brdrdashd", "\\brdrdashdd", "\\brdrtriple",
-      "\\brdrtnthsg", "\\brdrthtnsg", "\\brdrtnthtnsg",
-      "\\brdrtnthmg", "\\brdrthtnmg", "\\brdrtnthtnmg",
-      "\\brdrtnthlg", "\\brdrthtnlg", "\\brdrtnthtnlg",
-      "\\brdrwavy", "\\brdrwavydb", "\\brdrdashdotstr",
-      "\\brdremboss", "\\brdrengrave"
-    ),
-    stringsAsFactors = FALSE
-  )
-  expect_equal(border_type(),brd_typ)
+  expect_snapshot_output(border_type())
 })
 
 

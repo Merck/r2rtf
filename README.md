@@ -10,26 +10,31 @@ status](https://github.com/Merck/r2rtf/workflows/R-CMD-check/badge.svg)](https:/
 Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/package=r2rtf)
 <!-- badges: end -->
 
-Overview
-========
+# Overview
 
-Create RTF table and figure with flexible format.
+`r2rtf` is an R package to create production ready tables and figures in
+RTF format. The R package is designed to
 
-Installation
-------------
+-   provide simple “verb” functions that correspond to each component of
+    a table, to help you translate data frame to table in RTF file.
+-   enables pipes (`%>%`).
+-   only focus on **table format**. Data manipulation and analysis shall
+    be handled by other R packages. (e.g. `tidyverse`)
+-   `r2rtf` minimizes package dependency
+
+## Installation
 
 You can install the package via CRAN:
 
     install.packages("r2rtf")
 
-Or, install from GitHub for development version:
+Or, install from GitHub:
 
     remotes::install_github("Merck/r2rtf")
 
-Highlighted Features
---------------------
+## Highlighted Features
 
-The R package r2rtf provided flexibility to provide features below:
+The R package`r2rtf` provided flexibility to provide features below:
 
 -   Necessary options to create highly customized RTF table and figure.
 -   Simple to use parameters and data structure.
@@ -52,8 +57,7 @@ The R package r2rtf provided flexibility to provide features below:
 -   Pagination.
 -   Built in raw data for validation.
 
-Quick Example
--------------
+## Quick Examples
 
     library(dplyr)
     library(r2rtf)
@@ -61,20 +65,30 @@ Quick Example
                    rtf_encode() %>%                     # Step 2 Convert attributes to RTF encode 
                    write_rtf(file = "ex-tbl.rtf")       # Step 3 Write to a .rtf file 
 
-<embed src="vignettes/pdf/ex-tbl.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf" />
+-   Click “details” button below to preview output.
 
-Example Efficacy Table
-----------------------
+<details>
+
+![](articles/fig/ex-tbl.png) &lt;&gt;
+
+-   [More examples](https://merck.github.io/r2rtf/articles/index.html)
+
+## Example Efficacy Table
 
 -   [Source
     code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
+-   Click “details” button below to preview output.
 
-<embed src="vignettes/pdf/efficacy_example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf" />
+<details>
 
-Example Safety Table
---------------------
+![](articles/fig/efficacy_example.png) &lt;&gt;
+
+## Example Safety Table
 
 -   [Source
     code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
+-   Click “details” button below to preview output.
 
-<embed src="vignettes/pdf/ae_example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf" />
+<details>
+
+![](articles/fig/ae_example.png) &lt;&gt;

@@ -147,4 +147,6 @@ test_that("Test when using subline_by and page_by with pageby_row = 'first_row' 
 
   expect_snapshot_output(tbl2$body)
 })
+
 dev.off()
+

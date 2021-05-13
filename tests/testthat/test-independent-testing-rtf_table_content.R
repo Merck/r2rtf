@@ -6,7 +6,7 @@ testdatatt<-attributes(testdat)
 testdat <- rtf_body(testdat,
                       border_left = "single",
                       border_right = "double",
-                      border_top = "triple",
+                      border_top = "double",
                       border_bottom = "dot",
                       border_color_left = "black",
                       border_color_right = "red",
