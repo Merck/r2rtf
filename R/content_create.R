@@ -179,7 +179,7 @@ as_rtf_margin <- function(tbl) {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 as_rtf_new_page <- function() {
-  paste("\\page{\\pard\\fs2\\par}")
+  paste("{\\pard\\fs2\\par}\\page")
 }
 
 

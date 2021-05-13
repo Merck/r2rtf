@@ -1,6 +1,6 @@
 Package: r2rtf
-Title: Easily Create Presentation-Ready Rich Text Format (RTF) Table and Figure
-Version: 0.2.0
+Title: Easily Create Production-Ready Rich Text Format (RTF) Table and Figure
+Version: 0.3.0
 Authors@R: c(
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = c("aut", "cre")),
     person("Siruo", "Wang", role = "aut"),
@@ -19,7 +19,7 @@ Authors@R: c(
     person("Yirong", "Cao", role = "ctb"),
     person("Merck Sharp & Dohme Corp", role = "cph")
     )
-Description: Create presentation-ready Rich Text Format (RTF) table and figure with flexible and customized format.
+Description: Create production-ready Rich Text Format (RTF) table and figure with flexible format.
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
@@ -30,6 +30,7 @@ Imports:
     grDevices
 Suggests:
     stringi,
+    pdftools,
     knitr,
     rmarkdown,
     testthat,

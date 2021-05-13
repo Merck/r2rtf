@@ -7,56 +7,9 @@ output:
     toc_depth: '2'
     toc_float: true
 resource_files:
-   - pdf/ae_example_page_num_10.pdf
-   - pdf/ae_example.pdf
-   - pdf/border-example.pdf
-   - pdf/border-order.pdf
-   - pdf/border-type.pdf
-   - pdf/border-vector.pdf
-   - pdf/bs_example.pdf
-   - pdf/bs_pageby_example.pdf
-   - pdf/bs_pageby_newpage_example.pdf
-   - pdf/color-background.pdf
-   - pdf/color-border.pdf
-   - pdf/color-text.pdf
-   - pdf/column-width-default.pdf
-   - pdf/column-width-ratio.pdf
-   - pdf/efficacy_example.pdf
-   - pdf/ex-fig.pdf
-   - pdf/ex-pageby.pdf
-   - pdf/ex-rtf_body.pdf
-   - pdf/ex-tbl.pdf
-   - pdf/fig-landscape.pdf
-   - pdf/fig-simple.pdf
-   - pdf/iris_example.pdf
-   - pdf/iris_simple.pdf
-   - pdf/iris_very_simple.pdf
-   - pdf/justification-number.pdf
-   - pdf/justification-type.pdf
-   - pdf/pageby-ae-listing.pdf
-   - pdf/pageby-disposition.pdf
-   - pdf/pageby-firstrow-ae.pdf
-   - pdf/para-indent.pdf
-   - pdf/para-justification.pdf
-   - pdf/para-line-space.pdf
-   - pdf/para-page.pdf
-   - pdf/para-space.pdf
-   - pdf/text-background-color.pdf
-   - pdf/text-color.pdf
-   - pdf/text-combine1.pdf
-   - pdf/text-combine2.pdf
-   - pdf/text-combine3.pdf
-   - pdf/text-font-size-1.pdf
-   - pdf/text-font-size.pdf
-   - pdf/text-font-type.pdf
-   - pdf/text-format-1.pdf
-   - pdf/text-format.pdf
+   - pdf/*.pdf
+   - fig/*.png
 ---
-
-```{r, eval = FALSE, include=FALSE}
-# List all source files
-cat(paste("  - pdf/", list.files("vignettes/pdf/"), sep = "\n"))
-```
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -288,12 +241,9 @@ paste(
     ) %>% cat()
 ```
 
-If we save the RTF code into an `.rtf` file. Microsoft Word or other RTF Viewer software can display the file 
-properly.
+If we save the RTF code into an `.rtf` file. 
+Microsoft Word or other RTF Viewer software can display the file properly.
 
-```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-knitr::include_graphics("pdf/ex-rtf_body.pdf")
-```
 
 ## Save RTF File
 

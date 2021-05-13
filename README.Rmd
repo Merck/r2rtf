@@ -19,7 +19,15 @@ pkgname <- "r2rtf"
 
 # Overview 
 
-Create RTF table and figure with flexible format.
+`r2rtf` is an R package to create production ready tables and figures in RTF format.
+The R package is designed to 
+
+- provide simple "verb" functions that correspond to each component of a table, 
+  to help you translate data frame to table in RTF file.
+- enables pipes (`%>%`). 
+- only focus on **table format**. 
+  Data manipulation and analysis shall be handled by other R packages. (e.g. `tidyverse`)
+- `r2rtf` minimizes package dependency 
 
 ## Installation
 
@@ -29,7 +37,7 @@ You can install the package via CRAN:
 install.packages("r2rtf")
 ```
 
-Or, install from GitHub for development version:
+Or, install from GitHub:
 
 ```r
 remotes::install_github("Merck/r2rtf")
@@ -37,7 +45,7 @@ remotes::install_github("Merck/r2rtf")
 
 ## Highlighted Features 
 
-The R package `r pkgname` provided flexibility to provide features below:
+The R package`r2rtf` provided flexibility to provide features below:
 
 * Necessary options to create highly customized RTF table and figure. 
 * Simple to use parameters and data structure.
@@ -56,7 +64,7 @@ The R package `r pkgname` provided flexibility to provide features below:
 * Pagination.
 * Built in raw data for validation.
 
-## Quick Example 
+## Quick Examples 
 
 ```{r, eval = FALSE}
 library(dplyr)
@@ -66,22 +74,56 @@ head(iris) %>% rtf_body() %>%                       # Step 1 Add attributes
                write_rtf(file = "ex-tbl.rtf")       # Step 3 Write to a .rtf file 
 ```
 
-```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-knitr::include_graphics("vignettes/pdf/ex-tbl.pdf")
+```{r, include=FALSE}
+devtools::load_all()
+pdftools::pdf_convert("vignettes/pdf/ex-tbl.pdf", dpi = 200, filenames = "ex-tbl.png")
+pdftools::pdf_convert("vignettes/pdf/efficacy_example.pdf", dpi = 200, filenames = "efficacy_example.png")
+pdftools::pdf_convert("vignettes/pdf/ae_example.pdf", dpi = 200, filenames = "ae_example.png")
+
+files <- c("ex-tbl.png", "efficacy_example.png", "ae_example.png")
+file.copy(from = files, to = file.path("vignettes/fig", files), overwrite = TRUE)
+file.remove(files)
 ```
+
+- Click "details" button below to preview output. 
+
+<details>
+```{r, echo = FALSE}
+knitr::include_graphics("articles/fig/ex-tbl.png", error = FALSE)
+```
+<\details>
+
+- [More examples](https://merck.github.io/r2rtf/articles/index.html)
 
 ## Example Efficacy Table
 
 - [Source code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
+- Click "details" button below to preview output. 
 
-```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-knitr::include_graphics("vignettes/pdf/efficacy_example.pdf")
+<details>
+```{r, echo = FALSE}
+knitr::include_graphics("articles/fig/efficacy_example.png", error = FALSE)
 ```
+<\details>
 
 ## Example Safety Table
 
 - [Source code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
+- Click "details" button below to preview output.
 
-```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-knitr::include_graphics("vignettes/pdf/ae_example.pdf")
+<details>
+```{r, echo = FALSE}
+knitr::include_graphics("articles/fig/ae_example.png", error = FALSE)
 ```
+<\details>
+
+
+
+```{r, include=FALSE}
+# Transfer all RTF files to PDF files
+files <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
+system.time({
+  r2rtf:::rtf2pdf(input = files, output_dir = "vignettes/pdf")
+})
+```
+
