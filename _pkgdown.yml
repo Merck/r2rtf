@@ -6,8 +6,6 @@ development:
   version_tooltip: "Initial Version"
 template:
   package: r2rtf
-  params:
-    bootswatch: flatly
 navbar:
   type: default
   left:
