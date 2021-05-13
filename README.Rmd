@@ -26,7 +26,7 @@ The R package is designed to
   to help you translate data frame to table in RTF file.
 - enables pipes (`%>%`). 
 - only focus on **table format**. 
-  Data manipulation and analysis shall be handled by other R packages. (e.g., `tidyverse`)
+  + Data manipulation and analysis shall be handled by other R packages. (e.g., `tidyverse`)
 - `r2rtf` minimizes package dependency 
 
 ## Installation
