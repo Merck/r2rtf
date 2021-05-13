@@ -89,7 +89,7 @@ try({
 - Click "details" button below to preview output. 
 
 <details>
-<img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png" width="50%">
+<img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png">
 </details>
 
 - [More examples](https://merck.github.io/r2rtf/articles/index.html)
@@ -100,7 +100,7 @@ try({
 - Click "details" button below to preview output. 
 
 <details>
-<img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png" width="50%">
+<img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png">
 </details>
 
 ## Example Safety Table
@@ -109,7 +109,7 @@ try({
 - Click "details" button below to preview output.
 
 <details>
-<img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png" width="50%">
+<img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png">
 </details>
 
 ```{r, include=FALSE, eval = FALSE}

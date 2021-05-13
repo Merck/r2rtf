@@ -20,7 +20,7 @@ RTF format. The R package is designed to
     a table, to help you translate data frame to table in RTF file.
 -   enables pipes (`%>%`).
 -   only focus on **table format**. Data manipulation and analysis shall
-    be handled by other R packages. (e.g. `tidyverse`)
+    be handled by other R packages. (e.g., `tidyverse`)
 -   `r2rtf` minimizes package dependency
 
 Installation
@@ -54,8 +54,8 @@ The R package`r2rtf` provided flexibility to provide features below:
     -   Font size.
     -   Text and border color (657 different colors named in `color()`
         function).
-    -   Special characters: any character in UTF-8 encoding (e.g. Greek,
-        Symbol, Chinese, Japanese, Korean).
+    -   Special characters: any character in UTF-8 encoding (e.g.,
+        Greek, Symbol, Chinese, Japanese, Korean).
 -   Append several tables into one file.
 -   Pagination.
 -   Built in raw data for validation.
@@ -72,7 +72,7 @@ Quick Examples
 -   Click “details” button below to preview output.
 
 <details>
-<img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png" width="50%">
+<img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png">
 </details>
 
 -   [More examples](https://merck.github.io/r2rtf/articles/index.html)
@@ -85,7 +85,7 @@ Example Efficacy Table
 -   Click “details” button below to preview output.
 
 <details>
-<img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png" width="50%">
+<img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png">
 </details>
 
 Example Safety Table
@@ -96,5 +96,5 @@ Example Safety Table
 -   Click “details” button below to preview output.
 
 <details>
-<img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png" width="50%">
+<img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png">
 </details>
