@@ -1,3 +1,5 @@
+# r2rtf
+
 <!-- badges: start -->
 
 [![CRAN
@@ -10,8 +12,7 @@ status](https://github.com/Merck/r2rtf/workflows/R-CMD-check/badge.svg)](https:/
 Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/package=r2rtf)
 <!-- badges: end -->
 
-Overview
-========
+## Overview
 
 `r2rtf` is an R package to create production ready tables and figures in
 RTF format. The R package is designed to
@@ -24,8 +25,7 @@ RTF format. The R package is designed to
         packages. (e.g., `tidyverse`)
 -   minimizes package dependency
 
-Installation
-------------
+## Installation
 
 You can install the package via CRAN:
 
@@ -35,8 +35,7 @@ Or, install from GitHub:
 
     remotes::install_github("Merck/r2rtf")
 
-Highlighted Features
---------------------
+## Highlighted Features
 
 The R package`r2rtf` provided flexibility to provide features below:
 
@@ -61,14 +60,15 @@ The R package`r2rtf` provided flexibility to provide features below:
 -   Pagination.
 -   Built in raw data for validation.
 
-Simple Example
---------------
+## Simple Example
 
     library(dplyr)
     library(r2rtf)
-    head(iris) %>% rtf_body() %>%                       # Step 1 Add attributes 
-                   rtf_encode() %>%                     # Step 2 Convert attributes to RTF encode 
-                   write_rtf(file = "ex-tbl.rtf")       # Step 3 Write to a .rtf file 
+
+    head(iris) %>%
+      rtf_body() %>%                 # Step 1 Add attributes
+      rtf_encode() %>%               # Step 2 Convert attributes to RTF encode
+      write_rtf(file = "ex-tbl.rtf") # Step 3 Write to a .rtf file
 
 -   Click “details” button below to preview output.
 
@@ -78,8 +78,7 @@ Simple Example
 
 -   [More Examples](https://merck.github.io/r2rtf/articles/index.html)
 
-Example Efficacy Table
-----------------------
+## Example Efficacy Table
 
 -   [Source
     code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
@@ -89,8 +88,7 @@ Example Efficacy Table
 <img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png">
 </details>
 
-Example Safety Table
---------------------
+## Example Safety Table
 
 -   [Source
     code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
