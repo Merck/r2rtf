@@ -76,22 +76,23 @@ head(iris) %>% rtf_body() %>%                       # Step 1 Add attributes
 
 ```{r, include=FALSE}
 devtools::load_all()
-pdftools::pdf_convert("vignettes/pdf/ex-tbl.pdf", dpi = 200, filenames = "ex-tbl.png")
-pdftools::pdf_convert("vignettes/pdf/efficacy_example.pdf", dpi = 200, filenames = "efficacy_example.png")
-pdftools::pdf_convert("vignettes/pdf/ae_example.pdf", dpi = 200, filenames = "ae_example.png")
-
-files <- c("ex-tbl.png", "efficacy_example.png", "ae_example.png")
-file.copy(from = files, to = file.path("vignettes/fig", files), overwrite = TRUE)
-file.remove(files)
+try({
+    pdftools::pdf_convert("vignettes/pdf/ex-tbl.pdf", dpi = 200, filenames = "ex-tbl.png")
+    pdftools::pdf_convert("vignettes/pdf/efficacy_example.pdf", dpi = 200, filenames = "efficacy_example.png")
+    pdftools::pdf_convert("vignettes/pdf/ae_example.pdf", dpi = 200, filenames = "ae_example.png")
+  files <- c("ex-tbl.png", "efficacy_example.png", "ae_example.png")
+  file.copy(from = files, to = file.path("vignettes/fig", files), overwrite = TRUE)
+  file.remove(files)
+}, silent = TRUE)
 ```
 
 - Click "details" button below to preview output. 
 
 <details>
 ```{r, echo = FALSE}
-knitr::include_graphics("articles/fig/ex-tbl.png", error = FALSE)
+knitr::include_graphics("https://merck.github.io/r2rtf/articles/fig/ex-tbl.png", error = FALSE)
 ```
-<\details>
+</details>
 
 - [More examples](https://merck.github.io/r2rtf/articles/index.html)
 
@@ -102,9 +103,9 @@ knitr::include_graphics("articles/fig/ex-tbl.png", error = FALSE)
 
 <details>
 ```{r, echo = FALSE}
-knitr::include_graphics("articles/fig/efficacy_example.png", error = FALSE)
+knitr::include_graphics("https://merck.github.io/r2rtf/articles/fig/efficacy_example.png", error = FALSE)
 ```
-<\details>
+</details>
 
 ## Example Safety Table
 
@@ -113,13 +114,11 @@ knitr::include_graphics("articles/fig/efficacy_example.png", error = FALSE)
 
 <details>
 ```{r, echo = FALSE}
-knitr::include_graphics("articles/fig/ae_example.png", error = FALSE)
+knitr::include_graphics("https://merck.github.io/r2rtf/articles/fig/ae_example.png", error = FALSE)
 ```
-<\details>
+</details>
 
-
-
-```{r, include=FALSE}
+```{r, include=FALSE, eval = FALSE}
 # Transfer all RTF files to PDF files
 files <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
 system.time({
