@@ -13,7 +13,7 @@ navbar:
   left:
     - icon: fa-home
       href: index.html
-    - icon: fa-file-code-o
+    - icon: fas fa-file-code
       text: "Reference"
       href: reference/index.html
     - icon: fas fa-play-circle
@@ -26,7 +26,7 @@ navbar:
       text: "Changelog"
       href: news/index.html
   right:
-    - icon: fa-bitbucket fa-lg
+    - icon: fab fa-github
       text: "Source code"
       href: https://github.com/Merck/r2rtf/
 
