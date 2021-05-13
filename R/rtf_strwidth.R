@@ -22,6 +22,7 @@
 #'
 #' @param tbl A data frame
 #'
+#' @importFrom grDevices windowsFont windowsFonts
 #' @section Specification:
 #' \if{latex}{
 #'  \itemize{
@@ -94,14 +95,14 @@ rtf_strwidth <- function(tbl){
 
                 # Mapping Windows Font
                 if(.Platform$OS.type == "windows"){
-                  windowsFonts("Arial"     = windowsFont("Arial"))
-                  windowsFonts("Times"     = windowsFont("Times New Roman"))
-                  windowsFonts("ArialMT"   = windowsFont("Arial"))
-                  windowsFonts("Helvetica" = windowsFont("Helvetica"))
-                  windowsFonts("Calibri"   = windowsFont("Calibri"))
-                  windowsFonts("Georgia"   = windowsFont("Georgia"))
-                  windowsFonts("Cambria"   = windowsFont("Cambria"))
-                  windowsFonts("Courier"   = windowsFont("Courier New"))
+                  grDevices::windowsFonts("Arial"     = grDevices::windowsFont("Arial"))
+                  grDevices::windowsFonts("Times"     = grDevices::windowsFont("Times New Roman"))
+                  grDevices::windowsFonts("ArialMT"   = grDevices::windowsFont("Arial"))
+                  grDevices::windowsFonts("Helvetica" = grDevices::windowsFont("Helvetica"))
+                  grDevices::windowsFonts("Calibri"   = grDevices::windowsFont("Calibri"))
+                  grDevices::windowsFonts("Georgia"   = grDevices::windowsFont("Georgia"))
+                  grDevices::windowsFonts("Cambria"   = grDevices::windowsFont("Cambria"))
+                  grDevices::windowsFonts("Courier"   = grDevices::windowsFont("Courier New"))
                 }
 
                 x$width <- graphics::strwidth(x$text, units = "inches", cex = x$cex[1], font = x$font[1], family = x$family[1])
