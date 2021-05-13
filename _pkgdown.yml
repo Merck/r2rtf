@@ -22,7 +22,7 @@ navbar:
     - text: "Articles"
       icon: fas fa-book
       href: articles/index.html
-    - icon: fa-newspaper-o
+    - icon: fas fa-newspaper
       text: "Changelog"
       href: news/index.html
   right:
