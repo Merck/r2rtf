@@ -16,25 +16,12 @@ navbar:
     - icon: fa-file-code-o
       text: "Reference"
       href: reference/index.html
+    - icon: fas fa-play-circle
+      text: "Get Start"
+      href: articles/r2rtf.html
     - text: "Articles"
       icon: fas fa-book
-      menu:
-      -  text: "Table: Baseline Characteristic"
-         href: articles/example-basechar.html
-      -  text: "Table: Efficacy"
-         href: articles/example-efficacy.html
-      -  text: "Table: Safety"
-         href: articles/example-ae-summary.html
-      -  text: "Figure Generation"
-         href: articles/example-figure.html
-      -  text: "Feature: Pageby and Groupby"
-         href: articles/example-pageby-groupby.html
-      -  text: "Details in Table Format"
-         href: articles/rtf-row.html
-      -  text: "Details in Text Format"
-         href: articles/rtf-text.html
-      -  text: "Package Design Pattern"
-         href: articles/design-pattern.html
+      href: articles/index.html
     - icon: fa-newspaper-o
       text: "Changelog"
       href: news/index.html
@@ -42,8 +29,26 @@ navbar:
     - icon: fa-bitbucket fa-lg
       text: "Source code"
       href: https://github.com/Merck/r2rtf/
+
+articles:
+- title: TLF Examples
+  navbar: ~
+  contents:
+  - example-basechar
+  - example-efficacy
+  - example-ae-summary
+  - example-figure
+  - example-sublineby-pageby-groupby
+- title: Paragraph Style
+  - rtf_text
+  - rtf_row
+- title: Package Design
+  - design-pattern
+- title: Testing
+  - code_cov
+
 reference:
-- title: RTF
+- title: RTF Table
   contents:
   - "rtf_page"
   - "rtf_page_header"
@@ -56,7 +61,7 @@ reference:
   - "rtf_source"
   - "rtf_encode"
   - "write_rtf"
-- title: Figure
+- title: RTF Figure
   contents:
   - "rtf_read_png"
   - "rtf_figure"
