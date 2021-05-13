@@ -29,7 +29,12 @@
 rtf2pdf <- function(input, output_file = NULL, output_dir = ".", overwrite = FALSE){
 
   # Check libreoffice dependency
-  sys_dep <- system("which libreoffice7.1", ignore.stderr = TRUE, ignore.stdout = TRUE)
+  if(.Platform$OS.type == "unix"){
+    sys_dep <- system("which libreoffice7.1", ignore.stderr = TRUE, ignore.stdout = TRUE)
+  }else{
+    stop("Only Unix/Linux is currently supported")
+  }
+
   if(sys_dep == 1){
     stop("libreoffice7.1 is required")
   }

@@ -88,7 +88,7 @@ test_that("Test case when subline is not NULL", {
     rtf_pageby(page_by = 's2',
                pageby_row = 'first_row')
 
-  expect_equal(data.frame(attributes(x)$rtf_by_subline_row), data.frame(tibble(x = unique(x$Species))))
+  expect_equal(as.character(attributes(x)$rtf_by_subline_row$x), unique(x$Species))
   expect_equal(attributes(x)$rtf_by_subline$by_var,'Species')
   expect_equal(attributes(x)$rtf_by_subline$new_page,TRUE)
 
