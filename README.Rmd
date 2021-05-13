@@ -89,9 +89,7 @@ try({
 - Click "details" button below to preview output. 
 
 <details>
-```{r, echo = FALSE}
-knitr::include_graphics("https://merck.github.io/r2rtf/articles/fig/ex-tbl.png", error = FALSE)
-```
+<img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png">
 </details>
 
 - [More examples](https://merck.github.io/r2rtf/articles/index.html)
@@ -102,9 +100,7 @@ knitr::include_graphics("https://merck.github.io/r2rtf/articles/fig/ex-tbl.png",
 - Click "details" button below to preview output. 
 
 <details>
-```{r, echo = FALSE}
-knitr::include_graphics("https://merck.github.io/r2rtf/articles/fig/efficacy_example.png", error = FALSE)
-```
+<img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png">
 </details>
 
 ## Example Safety Table
@@ -113,9 +109,7 @@ knitr::include_graphics("https://merck.github.io/r2rtf/articles/fig/efficacy_exa
 - Click "details" button below to preview output.
 
 <details>
-```{r, echo = FALSE}
-knitr::include_graphics("https://merck.github.io/r2rtf/articles/fig/ae_example.png", error = FALSE)
-```
+<img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png">
 </details>
 
 ```{r, include=FALSE, eval = FALSE}
