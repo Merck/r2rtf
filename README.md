@@ -19,9 +19,10 @@ RTF format. The R package is designed to
 -   provide simple “verb” functions that correspond to each component of
     a table, to help you translate data frame to table in RTF file.
 -   enables pipes (`%>%`).
--   only focus on **table format**. Data manipulation and analysis shall
-    be handled by other R packages. (e.g., `tidyverse`)
--   `r2rtf` minimizes package dependency
+-   only focus on **table format**.
+    -   Data manipulation and analysis shall be handled by other R
+        packages. (e.g., `tidyverse`)
+-   minimizes package dependency
 
 Installation
 ------------
