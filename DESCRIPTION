@@ -30,7 +30,6 @@ Imports:
     grDevices
 Suggests:
     stringi,
-    pdftools,
     knitr,
     rmarkdown,
     testthat,

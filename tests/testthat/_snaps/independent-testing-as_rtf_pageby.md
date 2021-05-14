@@ -12,7 +12,7 @@
 # Test if border type/color for first/last row are assigned correctly
 
                                                                                                                                                                                                                                                            
-    "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\brdrcf2\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\brdrcf2\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 setosa}\\cell\n\\intbl\\row\\pard" 
+    "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\brdrcf1\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\brdrcf1\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 setosa}\\cell\n\\intbl\\row\\pard" 
 
 # Test if page_dict attribute is created for tbl
 

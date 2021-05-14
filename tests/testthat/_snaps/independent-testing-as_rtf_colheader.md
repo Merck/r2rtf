@@ -1,9 +1,9 @@
 # Case when colheader is not NULL and border color is specified
 
     [1] "\\trowd\\trgaph108\\trleft0\\trqc"                                                                                  
-    [2] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf255\\clbrdrt\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\cellx3000"                         
-    [3] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf255\\clbrdrt\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\cellx6000"                         
-    [4] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf255\\clbrdrt\\brdrs\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\cellx9000"
+    [2] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf254\\clbrdrt\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\cellx3000"                         
+    [3] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf254\\clbrdrt\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\cellx6000"                         
+    [4] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf254\\clbrdrt\\brdrs\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\cellx9000"
     [5] "\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 a}\\cell"                                                
     [6] "\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 b}\\cell"                                                
     [7] "\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 c}\\cell"                                                
@@ -12,9 +12,9 @@
 ---
 
     [1] "\\trowd\\trgaph108\\trleft0\\trqc"                                                                                             
-    [2] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf553\\clbrdrt\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\cellx3000"                                    
-    [3] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf553\\clbrdrt\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\cellx6000"                                    
-    [4] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf553\\clbrdrt\\brdrs\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\brdrcf553\\clbrdrb\\brdrw15\\cellx9000"
+    [2] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf552\\clbrdrt\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\cellx3000"                                    
+    [3] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf552\\clbrdrt\\brdrs\\brdrw15\\clbrdrb\\brdrw15\\cellx6000"                                    
+    [4] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf552\\clbrdrt\\brdrs\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\brdrcf552\\clbrdrb\\brdrw15\\cellx9000"
     [5] "\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 a}\\cell"                                                           
     [6] "\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 b}\\cell"                                                           
     [7] "\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 c}\\cell"                                                           

@@ -4,7 +4,7 @@ test_that("text font", {
 
 test_that("text color", {
   t_color <- data.frame(color = grDevices::colors())
-  t_color$type <- 1:nrow(t_color) + 1
+  t_color$type <- 1:nrow(t_color)
   t_color <- cbind(t_color, t(grDevices::col2rgb(t_color$color)))
   t_color$rtf_code <- paste0("\\red", t_color$red, "\\green", t_color$green, "\\blue", t_color$blue, ";")
 

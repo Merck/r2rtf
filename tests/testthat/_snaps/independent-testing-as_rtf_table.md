@@ -8,7 +8,7 @@
 # Case for border_color_left and border_color_top
 
     [1] "\\trowd\\trgaph108\\trleft0\\trqc"                                                                                                   
-    [2] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf553\\clbrdrt\\brdrs\\brdrw15\\brdrcf27\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000"
+    [2] "\\clbrdrl\\brdrs\\brdrw15\\brdrcf552\\clbrdrt\\brdrs\\brdrw15\\brdrcf26\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000"
     [3] "\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 5.1}\\cell"                                                               
     [4] "\\intbl\\row\\pard"                                                                                                                  
 

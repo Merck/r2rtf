@@ -79,7 +79,7 @@ as_rtf_color <- function(tbl) {
 
   if (attr(tbl, "page")$use_color) {
     col_tb <- color_table()
-    rtf_color <- paste(c("{\\colortbl; ", col_tb$rtf_code, "}"), collapse = "\n")
+    rtf_color <- paste(c("{\\colortbl\n;", col_tb$rtf_code, "}"), collapse = "\n")
   }
 
   rtf_color
@@ -137,7 +137,6 @@ as_rtf_page <- function(tbl) {
     encode <- paste(encode, collapse = "\n")
     page_size <- paste(encode, page_size, sep = "\n")
   }
-
 
   page_size
 }

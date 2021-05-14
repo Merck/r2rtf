@@ -64,7 +64,7 @@ font_type <- function() {
 #'
 color_table <- function() {
   .tb <- data.frame(color = grDevices::colors())
-  .tb$type <- 1:nrow(.tb) + 1
+  .tb$type <- 1:nrow(.tb)
   .tb <- cbind(.tb, t(grDevices::col2rgb(.tb$color)))
   .tb$rtf_code <- paste0("\\red", .tb$red, "\\green", .tb$green, "\\blue", .tb$blue, ";")
 

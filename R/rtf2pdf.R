@@ -26,11 +26,15 @@
 #'
 #' @return A vector of file paths for the converted files.
 #'
-rtf2pdf <- function(input, output_file = NULL, output_dir = ".", overwrite = FALSE){
+rtf2pdf <- function(input,
+                    output_file = NULL,
+                    output_dir = ".",
+                    overwrite = FALSE){
 
   # Check libreoffice dependency
   if(.Platform$OS.type == "unix"){
     sys_dep <- system("which libreoffice7.1", ignore.stderr = TRUE, ignore.stdout = TRUE)
+    ps_dep  <- system("which pdf2ps", ignore.stderr = TRUE, ignore.stdout = TRUE)
   }else{
     stop("Only Unix/Linux is currently supported")
   }
@@ -40,7 +44,13 @@ rtf2pdf <- function(input, output_file = NULL, output_dir = ".", overwrite = FAL
   }
 
   # Define command line
-  tmp_dir <- tempdir()
+  tmp_dir <- file.path(tempdir(), "rtf2pdf")
+  if(dir.exists(tmp_dir)){
+    file.remove(list.files(tmp_dir, pattern = "*.pdf"))
+  }else{
+    dir.create(tmp_dir)
+  }
+
   cmd <- paste0("libreoffice7.1 --convert-to pdf ",
                 input,
                 " --outdir ", tmp_dir)
@@ -55,18 +65,23 @@ rtf2pdf <- function(input, output_file = NULL, output_dir = ".", overwrite = FAL
                 paste(basename(input)[output == 1], collapse = "; ") ) )
   }
 
-  # Check content difference
   if(class(try(pdftools::pdf_text, silent = TRUE)) != "try-error" & (! overwrite)){
     out_file <- list.files(output_dir)
     tmp_file <- list.files(tmp_dir, pattern = "*.pdf")
     tmp_file <- tmp_file[tmp_file %in% out_file]
 
-
     for(i in seq_along(tmp_file)){
-      pdf_a <- pdftools::pdf_text(file.path(output_dir, tmp_file[i]) )
-      pdf_b <- pdftools::pdf_text(file.path(tmp_dir, tmp_file[i]) )
-      if(identical(pdf_a, pdf_b)) file.remove(file.path(tmp_dir, tmp_file[i]) )
+      out_path <- file.path(output_dir, tmp_file[i])
+      tmp_path <- file.path(tmp_dir, tmp_file[i])
+
+      a <- readLines(out_path, encoding = "UTF-8", warn = FALSE)
+      b <- readLines(tmp_path, encoding = "UTF-8", warn = FALSE)
+
+      a_end <- max(grep("<</Creator", a))
+      b_end <- max(grep("<</Creator", b))
+      if(identical(a[1:a_end], b[1:b_end])) file.remove(file.path(tmp_dir, tmp_file[i]) )
     }
+
   }
 
   # Copy file with difference
