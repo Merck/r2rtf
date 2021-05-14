@@ -104,7 +104,11 @@ rtf_strwidth <- function(tbl){
                   grDevices::windowsFonts("Courier"   = grDevices::windowsFont("Courier New"))
                 }
 
-                x$width <- graphics::strwidth(x$text, units = "inches", cex = x$cex[1], font = x$font[1], family = x$family[1])
+                x$width <- graphics::strwidth(x$text,
+                                              units = "inches",
+                                              cex = x$cex[1],
+                                              font = x$font[1],
+                                              family = as.character(x$family[1]))
                 x
   })
   db <- do.call(rbind, db_list)

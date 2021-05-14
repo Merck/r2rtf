@@ -22,7 +22,7 @@ test_that("Write function test for simple text", {
   b <- paste(readLines(file.path(tempdir(), "tabel.rtf")), collapse = "\n")
 
   cl <- color_table()
-  rt_cl <- paste(c("{\\colortbl; ", cl$rtf_code, "}"), collapse = "\n")
+  rt_cl <- paste(c("{\\colortbl\n;", cl$rtf_code, "}"), collapse = "\n")
   st_rt <- paste(as_rtf_init(),as_rtf_font(), rt_cl,sep = "\n")
   c <- paste(st_rt, "{\\pard \\par}", paste(a, collapse = ""), as_rtf_end(), sep = "\n")
 
@@ -37,7 +37,7 @@ test_that("Write function test for dataset input", {
   y <- paste(readLines(file.path(tempdir(), "tabel.rtf")), collapse = "\n")
 
   cl <- color_table()
-  rt_cl <- paste(c("{\\colortbl; ", cl$rtf_code, "}"), collapse = "\n")
+  rt_cl <- paste(c("{\\colortbl\n;", cl$rtf_code, "}"), collapse = "\n")
   st_rt <- paste(as_rtf_init(),as_rtf_font(), rt_cl,sep = "\n")
   z <- paste(st_rt, "{\\pard \\par}", paste(x, collapse = ""), as_rtf_end(), sep = "\n")
 
