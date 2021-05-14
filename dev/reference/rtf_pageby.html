@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>add table body page by attributes to the table — rtf_pageby • r2rtf</title>
+<title>Add Pageby Attributes to Table — rtf_pageby • r2rtf</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="add table body page by attributes to the table — rtf_pageby" />
-<meta property="og:description" content="add table body page by attributes to the table" />
+<meta property="og:title" content="Add Pageby Attributes to Table — rtf_pageby" />
+<meta property="og:description" content="Add Pageby Attributes to Table" />
 
 
 <meta name="robots" content="noindex">
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1.9002</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -80,46 +80,47 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa-file-code"></span>
+     
+    Reference
+  </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+<li>
+  <a href="../articles/r2rtf.html">
+    <span class="fas fa-play-circle"></span>
+     
+    Get Start
+  </a>
+</li>
+<li>
+  <a href="../articles/index.html">
+    <span class="fas fa-book"></span>
+     
     Articles
-     
-    <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
-    </li>
-    <li>
-      <a href="../articles/example-figure.html">RTF Examples for Figures</a>
-    </li>
-    <li>
-      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
-    </li>
-    <li>
-      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
-    </li>
-  </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
+     
+    Changelog
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/Merck/r2rtf/">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -133,16 +134,22 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>add table body page by attributes to the table</h1>
+    <h1>Add Pageby Attributes to Table</h1>
     
     <div class="hidden name"><code>rtf_pageby.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>add table body page by attributes to the table</p>
+    <p>Add Pageby Attributes to Table</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rtf_pageby</span><span class='op'>(</span><span class='va'>tbl</span>, <span class='va'>page_by</span>, <span class='va'>new_page</span>, <span class='va'>pageby_header</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>rtf_pageby</span><span class='op'>(</span>
+  <span class='va'>tbl</span>,
+  page_by <span class='op'>=</span> <span class='cn'>NULL</span>,
+  new_page <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  pageby_header <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  pageby_row <span class='op'>=</span> <span class='st'>"column"</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -165,6 +172,11 @@ by sections. Default is FALSE.</p></td>
       <th>pageby_header</th>
       <td><p>A boolean value to display pageby header at the beginning of each page.</p></td>
     </tr>
+    <tr>
+      <th>pageby_row</th>
+      <td><p>A character vector of location of page_by variable. Possible input are 'column'
+or 'first_row'. Default is 'column'.</p></td>
+    </tr>
     </table>
 
 
@@ -179,7 +191,7 @@ by sections. Default is FALSE.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 

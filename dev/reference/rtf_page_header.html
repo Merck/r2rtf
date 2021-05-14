@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1.9002</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -80,46 +80,47 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa-file-code"></span>
+     
+    Reference
+  </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+<li>
+  <a href="../articles/r2rtf.html">
+    <span class="fas fa-play-circle"></span>
+     
+    Get Start
+  </a>
+</li>
+<li>
+  <a href="../articles/index.html">
+    <span class="fas fa-book"></span>
+     
     Articles
-     
-    <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
-    </li>
-    <li>
-      <a href="../articles/example-figure.html">RTF Examples for Figures</a>
-    </li>
-    <li>
-      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
-    </li>
-    <li>
-      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
-    </li>
-  </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
+     
+    Changelog
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/Merck/r2rtf/">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -144,7 +145,7 @@
 
     <pre class="usage"><span class='fu'>rtf_page_header</span><span class='op'>(</span>
   <span class='va'>tbl</span>,
-  text <span class='op'>=</span> <span class='st'>"Page \\chpgn  of {\\field{\\*\\fldinst NUMPAGES }}"</span>,
+  text <span class='op'>=</span> <span class='st'>"Page \\pagenumber of \\pagefield"</span>,
   text_font <span class='op'>=</span> <span class='fl'>1</span>,
   text_format <span class='op'>=</span> <span class='cn'>NULL</span>,
   text_font_size <span class='op'>=</span> <span class='fl'>12</span>,
@@ -165,7 +166,11 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tbl</th>
-      <td><p>a data frame</p></td>
+      <td><p>A data frame.</p></td>
+    </tr>
+    <tr>
+      <th>text</th>
+      <td><p>A character string.</p></td>
     </tr>
     <tr>
       <th>text_font</th>
@@ -211,31 +216,31 @@ All possible input can be found in <code>r2rtf:::justification()$type</code>.</p
     </tr>
     <tr>
       <th>text_indent_first</th>
-      <td><p>a value of first indent</p></td>
+      <td><p>A value of text indent in first line.</p></td>
     </tr>
     <tr>
       <th>text_indent_left</th>
-      <td><p>a value of left indent</p></td>
+      <td><p>A value of text left indent.</p></td>
     </tr>
     <tr>
       <th>text_indent_right</th>
-      <td><p>a value of right indent</p></td>
+      <td><p>A value of text right indent.</p></td>
     </tr>
     <tr>
       <th>text_space</th>
-      <td><p>a value of text space</p></td>
+      <td><p>Line space between paragraph in twips. Default is 0.</p></td>
     </tr>
     <tr>
       <th>text_space_before</th>
-      <td><p>Line space before text in twips. Default is 15 for 0.0104 inch.</p></td>
+      <td><p>Line space before a paragraph in twips. Default is 15.</p></td>
     </tr>
     <tr>
       <th>text_space_after</th>
-      <td><p>Line space after text in twips. Default is 15 for 0.0104 inch.</p></td>
+      <td><p>Line space after a paragraph in twips. Default is 15.</p></td>
     </tr>
     <tr>
       <th>text_convert</th>
-      <td><p>a logical value to convert special characters. Default is TRUE.</p></td>
+      <td><p>A logical value to convert special characters. Default is TRUE.</p></td>
     </tr>
     </table>
 
@@ -251,7 +256,7 @@ All possible input can be found in <code>r2rtf:::justification()$type</code>.</p
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 

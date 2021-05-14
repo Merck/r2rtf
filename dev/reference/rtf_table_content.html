@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1.9002</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -80,46 +80,47 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa-file-code"></span>
+     
+    Reference
+  </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+<li>
+  <a href="../articles/r2rtf.html">
+    <span class="fas fa-play-circle"></span>
+     
+    Get Start
+  </a>
+</li>
+<li>
+  <a href="../articles/index.html">
+    <span class="fas fa-book"></span>
+     
     Articles
-     
-    <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
-    </li>
-    <li>
-      <a href="../articles/example-figure.html">RTF Examples for Figures</a>
-    </li>
-    <li>
-      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
-    </li>
-    <li>
-      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
-    </li>
-  </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
+     
+    Changelog
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/Merck/r2rtf/">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -143,126 +144,25 @@
     </div>
 
     <pre class="usage"><span class='fu'>rtf_table_content</span><span class='op'>(</span>
-  <span class='va'>db</span>,
-  col_total_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"page"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>col_width</span>,
-  use_border_bottom <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  border_left <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"border_left"</span><span class='op'>)</span>,
-  border_right <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"border_right"</span><span class='op'>)</span>,
-  border_top <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"border_top"</span><span class='op'>)</span>,
-  border_bottom <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"border_bottom"</span><span class='op'>)</span>,
-  border_color_left <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"border_color_left"</span><span class='op'>)</span>,
-  border_color_right <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"border_color_right"</span><span class='op'>)</span>,
-  border_color_top <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"border_color_top"</span><span class='op'>)</span>,
-  border_color_bottom <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"border_color_bottom"</span><span class='op'>)</span>,
-  border_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"border_width"</span><span class='op'>)</span>,
-  col_rel_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"col_rel_width"</span><span class='op'>)</span>,
-  cell_height <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"cell_height"</span><span class='op'>)</span>,
-  cell_justification <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"cell_justification"</span><span class='op'>)</span>,
-  text_font <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"text_font"</span><span class='op'>)</span>,
-  text_format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"text_format"</span><span class='op'>)</span>,
-  text_color <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"text_color"</span><span class='op'>)</span>,
-  text_background_color <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"text_background_color"</span><span class='op'>)</span>,
-  text_justification <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"text_justification"</span><span class='op'>)</span>,
-  text_font_size <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"text_font_size"</span><span class='op'>)</span>,
-  text_space_before <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"text_space_before"</span><span class='op'>)</span>,
-  text_space_after <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"text_space_after"</span><span class='op'>)</span>,
-  text_convert <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='st'>"text_convert"</span><span class='op'>)</span>
+  <span class='va'>tbl</span>,
+  col_total_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='va'>tbl</span>, <span class='st'>"page"</span><span class='op'>)</span><span class='op'>$</span><span class='va'>col_width</span>,
+  use_border_bottom <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>db</th>
-      <td><p>a data frame</p></td>
+      <th>tbl</th>
+      <td><p>A data frame.</p></td>
     </tr>
     <tr>
       <th>col_total_width</th>
-      <td><p>column total width for the table</p></td>
+      <td><p>Column total width for the table. Default is the corresponding attribute from <code>tbl</code>.</p></td>
     </tr>
     <tr>
       <th>use_border_bottom</th>
-      <td><p>logical value of using the bottom border</p></td>
-    </tr>
-    <tr>
-      <th>border_left</th>
-      <td><p>left border type</p></td>
-    </tr>
-    <tr>
-      <th>border_right</th>
-      <td><p>right border type</p></td>
-    </tr>
-    <tr>
-      <th>border_top</th>
-      <td><p>top border type</p></td>
-    </tr>
-    <tr>
-      <th>border_bottom</th>
-      <td><p>bottom border type</p></td>
-    </tr>
-    <tr>
-      <th>border_color_left</th>
-      <td><p>left border color</p></td>
-    </tr>
-    <tr>
-      <th>border_color_right</th>
-      <td><p>right border color</p></td>
-    </tr>
-    <tr>
-      <th>border_color_top</th>
-      <td><p>top border color</p></td>
-    </tr>
-    <tr>
-      <th>border_color_bottom</th>
-      <td><p>bottom border color</p></td>
-    </tr>
-    <tr>
-      <th>border_width</th>
-      <td><p>border width in twips</p></td>
-    </tr>
-    <tr>
-      <th>col_rel_width</th>
-      <td><p>column relative width in a vector eg. c(2,1,1) refers to 2:1;1</p></td>
-    </tr>
-    <tr>
-      <th>cell_height</th>
-      <td><p>height for cell in twips</p></td>
-    </tr>
-    <tr>
-      <th>cell_justification</th>
-      <td><p>justification for cell</p></td>
-    </tr>
-    <tr>
-      <th>text_font</th>
-      <td><p>text font type</p></td>
-    </tr>
-    <tr>
-      <th>text_format</th>
-      <td><p>text format</p></td>
-    </tr>
-    <tr>
-      <th>text_color</th>
-      <td><p>text color</p></td>
-    </tr>
-    <tr>
-      <th>text_background_color</th>
-      <td><p>text background color</p></td>
-    </tr>
-    <tr>
-      <th>text_justification</th>
-      <td><p>justification for text</p></td>
-    </tr>
-    <tr>
-      <th>text_font_size</th>
-      <td><p>text font size</p></td>
-    </tr>
-    <tr>
-      <th>text_space_before</th>
-      <td><p>line space before text</p></td>
-    </tr>
-    <tr>
-      <th>text_space_after</th>
-      <td><p>line space after text</p></td>
+      <td><p>A logical value of using the bottom border. Default is the corresponding attribute from <code>tbl</code>.</p></td>
     </tr>
     </table>
 
@@ -283,7 +183,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 

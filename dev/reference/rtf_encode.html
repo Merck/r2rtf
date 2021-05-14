@@ -73,7 +73,7 @@ to an RTF file." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1.9002</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -81,46 +81,47 @@ to an RTF file." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa-file-code"></span>
+     
+    Reference
+  </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+<li>
+  <a href="../articles/r2rtf.html">
+    <span class="fas fa-play-circle"></span>
+     
+    Get Start
+  </a>
+</li>
+<li>
+  <a href="../articles/index.html">
+    <span class="fas fa-book"></span>
+     
     Articles
-     
-    <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
-    </li>
-    <li>
-      <a href="../articles/example-figure.html">RTF Examples for Figures</a>
-    </li>
-    <li>
-      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
-    </li>
-    <li>
-      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
-    </li>
-  </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
+     
+    Changelog
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/Merck/r2rtf/">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -146,7 +147,7 @@ to an RTF file.</p>
 
     <pre class="usage"><span class='fu'>rtf_encode</span><span class='op'>(</span>
   <span class='va'>tbl</span>,
-  type <span class='op'>=</span> <span class='st'>"table"</span>,
+  doc_type <span class='op'>=</span> <span class='st'>"table"</span>,
   page_title <span class='op'>=</span> <span class='st'>"all"</span>,
   page_footnote <span class='op'>=</span> <span class='st'>"last"</span>,
   page_source <span class='op'>=</span> <span class='st'>"last"</span>
@@ -157,25 +158,25 @@ to an RTF file.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tbl</th>
-      <td><p>a data frame for table or a list of binary string for figure</p></td>
+      <td><p>A data frame for table or a list of binary string for figure.</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>the type of input, default is table.</p></td>
+      <th>doc_type</th>
+      <td><p>The doc_type of input, default is table.</p></td>
     </tr>
     <tr>
       <th>page_title</th>
-      <td><p>a character of title displaying location. Default is "all" for all pages.
+      <td><p>A character of title displaying location. Default is "all" for all pages.
 Possible values are "first", "last" and "all".</p></td>
     </tr>
     <tr>
       <th>page_footnote</th>
-      <td><p>a character of title displaying location. Default is "last" for all pages.
+      <td><p>A character of title displaying location. Default is "last" for all pages.
 Possible values are "first", "last" and "all".</p></td>
     </tr>
     <tr>
       <th>page_source</th>
-      <td><p>a character of title displaying location. Default is "last" for all pages.
+      <td><p>A character of title displaying location. Default is "last" for all pages.
 Possible values are "first", "last" and "all".</p></td>
     </tr>
     </table>
@@ -195,46 +196,49 @@ For \code{write_rtf}, no return value.
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>  <span class='co'># required to run examples</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required to run examples</span>
 
 <span class='co'># Example 1</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-    <span class='fu'><a href='rtf_body.html'>rtf_body</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-    <span class='fu'>rtf_encode</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-    <span class='fu'><a href='write_rtf.html'>write_rtf</a></span><span class='op'>(</span>file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"table1.rtf"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>iris</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='rtf_body.html'>rtf_body</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>rtf_encode</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='write_rtf.html'>write_rtf</a></span><span class='op'>(</span>file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"table1.rtf"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># Example 2</span>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required to run examples</span>
-  <span class='va'>file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"figure1.png"</span><span class='op'>)</span>
-  <span class='fu'><a href='https://rdrr.io/r/grDevices/png.html'>png</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span>
-  <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
-  <span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required to run examples</span>
+<span class='va'>file</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"figure1.png"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/grDevices/png.html'>png</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/grDevices/dev.html'>dev.off</a></span><span class='op'>(</span><span class='op'>)</span>
 
-  <span class='co'># Read in PNG file in binary format</span>
-  <span class='fu'><a href='rtf_read_png.html'>rtf_read_png</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='rtf_figure.html'>rtf_figure</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-    <span class='fu'>rtf_encode</span><span class='op'>(</span>type <span class='op'>=</span> <span class='st'>"figure"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-    <span class='fu'><a href='write_rtf.html'>write_rtf</a></span><span class='op'>(</span>file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"figure1.rtf"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='co'># Read in PNG file in binary format</span>
+<span class='fu'><a href='rtf_read_png.html'>rtf_read_png</a></span><span class='op'>(</span><span class='va'>file</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='rtf_figure.html'>rtf_figure</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>rtf_encode</span><span class='op'>(</span>doc_type <span class='op'>=</span> <span class='st'>"figure"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='write_rtf.html'>write_rtf</a></span><span class='op'>(</span>file <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"figure1.rtf"</span><span class='op'>)</span><span class='op'>)</span>
 <span class='op'>}</span>
 <span class='co'># Example 3</span>
 
 <span class='co'>## convert tbl_1 to the table body. Add title, subtitle, two table</span>
 <span class='co'>## headers, and footnotes to the table body.</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_1</span><span class='op'>)</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_2</span><span class='op'>)</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_3</span><span class='op'>)</span>
-  <span class='co'>## convert tbl_2 to the table body. Add a table column header to table body.</span>
-  <span class='va'>t2</span> <span class='op'>&lt;-</span> <span class='va'>tbl_2</span> <span class='op'>%&gt;%</span>
-    <span class='fu'><a href='rtf_colheader.html'>rtf_colheader</a></span><span class='op'>(</span>colheader <span class='op'>=</span> <span class='st'>"Pairwise Comparison |
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>r2rtf_tbl2</span><span class='op'>)</span>
+<span class='co'>## convert r2rtf_tbl2 to the table body. Add a table column header to table body.</span>
+<span class='va'>t2</span> <span class='op'>&lt;-</span> <span class='va'>r2rtf_tbl2</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='rtf_colheader.html'>rtf_colheader</a></span><span class='op'>(</span>
+    colheader <span class='op'>=</span> <span class='st'>"Pairwise Comparison |
                    Difference in LS Mean(95% CI)\\dagger | p-Value"</span>,
-                  text_justification <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"l"</span>,<span class='st'>"c"</span>,<span class='st'>"c"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-    <span class='fu'><a href='rtf_body.html'>rtf_body</a></span><span class='op'>(</span>col_rel_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8</span>,<span class='fl'>7</span>,<span class='fl'>5</span><span class='op'>)</span>,
-             text_justification <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"l"</span>,<span class='st'>"c"</span>,<span class='st'>"c"</span><span class='op'>)</span>,
-             last_row <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>;
-
-  <span class='co'># concatenate a list of table and save to an RTF file</span>
-  <span class='va'>t2</span> <span class='op'>%&gt;%</span> <span class='fu'>rtf_encode</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='write_rtf.html'>write_rtf</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"table2.rtf"</span><span class='op'>)</span><span class='op'>)</span>
-
+    text_justification <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"l"</span>, <span class='st'>"c"</span>, <span class='st'>"c"</span><span class='op'>)</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='rtf_body.html'>rtf_body</a></span><span class='op'>(</span>
+    col_rel_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>8</span>, <span class='fl'>7</span>, <span class='fl'>5</span><span class='op'>)</span>,
+    text_justification <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"l"</span>, <span class='st'>"c"</span>, <span class='st'>"c"</span><span class='op'>)</span>,
+    last_row <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span>
+<span class='co'># concatenate a list of table and save to an RTF file</span>
+<span class='va'>t2</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>rtf_encode</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='write_rtf.html'>write_rtf</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"table2.rtf"</span><span class='op'>)</span><span class='op'>)</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -247,7 +251,7 @@ For \code{write_rtf}, no return value.
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 

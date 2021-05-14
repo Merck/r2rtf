@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>add table body attributes to the table — rtf_body • r2rtf</title>
+<title>Add Table Body Attributes to the Table — rtf_body • r2rtf</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="add table body attributes to the table — rtf_body" />
-<meta property="og:description" content="add table body attributes to the table" />
+<meta property="og:title" content="Add Table Body Attributes to the Table — rtf_body" />
+<meta property="og:description" content="Add Table Body Attributes to the Table" />
 
 
 <meta name="robots" content="noindex">
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1.9002</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -80,46 +80,47 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa-file-code"></span>
+     
+    Reference
+  </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+<li>
+  <a href="../articles/r2rtf.html">
+    <span class="fas fa-play-circle"></span>
+     
+    Get Start
+  </a>
+</li>
+<li>
+  <a href="../articles/index.html">
+    <span class="fas fa-book"></span>
+     
     Articles
-     
-    <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
-    </li>
-    <li>
-      <a href="../articles/example-figure.html">RTF Examples for Figures</a>
-    </li>
-    <li>
-      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
-    </li>
-    <li>
-      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
-    </li>
-  </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
+     
+    Changelog
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/Merck/r2rtf/">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -133,23 +134,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>add table body attributes to the table</h1>
+    <h1>Add Table Body Attributes to the Table</h1>
     
     <div class="hidden name"><code>rtf_body.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>add table body attributes to the table</p>
+    <p>Add Table Body Attributes to the Table</p>
     </div>
 
     <pre class="usage"><span class='fu'>rtf_body</span><span class='op'>(</span>
   <span class='va'>tbl</span>,
   col_rel_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/nrow.html'>ncol</a></span><span class='op'>(</span><span class='va'>tbl</span><span class='op'>)</span><span class='op'>)</span>,
-  colheader <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  as_colheader <span class='op'>=</span> <span class='cn'>TRUE</span>,
   border_left <span class='op'>=</span> <span class='st'>"single"</span>,
   border_right <span class='op'>=</span> <span class='st'>"single"</span>,
-  border_top <span class='op'>=</span> <span class='st'>""</span>,
-  border_bottom <span class='op'>=</span> <span class='st'>""</span>,
+  border_top <span class='op'>=</span> <span class='cn'>NULL</span>,
+  border_bottom <span class='op'>=</span> <span class='cn'>NULL</span>,
   border_first <span class='op'>=</span> <span class='st'>"single"</span>,
   border_last <span class='op'>=</span> <span class='st'>"single"</span>,
   border_color_left <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -161,12 +162,13 @@
   border_width <span class='op'>=</span> <span class='fl'>15</span>,
   cell_height <span class='op'>=</span> <span class='fl'>0.15</span>,
   cell_justification <span class='op'>=</span> <span class='st'>"c"</span>,
+  cell_nrow <span class='op'>=</span> <span class='cn'>NULL</span>,
   text_font <span class='op'>=</span> <span class='fl'>1</span>,
   text_format <span class='op'>=</span> <span class='cn'>NULL</span>,
   text_font_size <span class='op'>=</span> <span class='fl'>9</span>,
   text_color <span class='op'>=</span> <span class='cn'>NULL</span>,
   text_background_color <span class='op'>=</span> <span class='cn'>NULL</span>,
-  text_justification <span class='op'>=</span> <span class='st'>"c"</span>,
+  text_justification <span class='op'>=</span> <span class='cn'>NULL</span>,
   text_indent_first <span class='op'>=</span> <span class='fl'>0</span>,
   text_indent_left <span class='op'>=</span> <span class='fl'>0</span>,
   text_indent_right <span class='op'>=</span> <span class='fl'>0</span>,
@@ -178,6 +180,8 @@
   page_by <span class='op'>=</span> <span class='cn'>NULL</span>,
   new_page <span class='op'>=</span> <span class='cn'>FALSE</span>,
   pageby_header <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  pageby_row <span class='op'>=</span> <span class='st'>"column"</span>,
+  subline_by <span class='op'>=</span> <span class='cn'>NULL</span>,
   last_row <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
@@ -194,27 +198,27 @@
 Default is NULL for equal column width.</p></td>
     </tr>
     <tr>
-      <th>colheader</th>
+      <th>as_colheader</th>
       <td><p>A boolean value to indicate whether to add default column header to the table.
 Default is TRUE to use data frame column names as column header.</p></td>
     </tr>
     <tr>
       <th>border_left</th>
-      <td><p>Left border type. Default is "single". To vary left border by column, use
+      <td><p>Left border type. To vary left border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 <code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
       <th>border_right</th>
-      <td><p>Right border type. Default is "single". To vary right border by column, use
+      <td><p>Right border type. To vary right border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 <code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
       <th>border_top</th>
-      <td><p>Top border type. Default is NULL. To vary top border by column, use
+      <td><p>Top border type. To vary top border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). If it is the first row in a table for this
 page, the top border is set to "double" otherwise the border is set to "single".
@@ -222,23 +226,19 @@ All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p><
     </tr>
     <tr>
       <th>border_bottom</th>
-      <td><p>Bottom border type. Default is "double" indicating double line bottom border.
+      <td><p>Bottom border type.
 To vary bottom border by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("single","single","single").
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
       <th>border_first</th>
-      <td><p>First top border type in each page. Default is "single" indicating single line bottom border.
-To vary bottom border by column, use character vector with length of vector
-equal to number of columns displayed e.g. c("single","single","single").
+      <td><p>First top border type of the whole table. Default is "double" indicating double line bottom border.
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
       <th>border_last</th>
-      <td><p>Last bottom border type in each page. Default is "single" indicating single line bottom border.
-To vary bottom border by column, use character vector with length of vector
-equal to number of columns displayed e.g. c("single","single","single").
+      <td><p>Last bottom border type of the whole table. Default is "double" indicating double line bottom border.
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></td>
     </tr>
     <tr>
@@ -271,16 +271,12 @@ All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/co
     </tr>
     <tr>
       <th>border_color_first</th>
-      <td><p>First top border color type in each page. Default is NULL for black. To vary top
-border color by column, use character vector with length of vector
-equal to number of columns displayed e.g. c("white","red","blue").
+      <td><p>First top border color type of the whole table. Default is NULL for black.
 All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
     </tr>
     <tr>
       <th>border_color_last</th>
-      <td><p>Last bottom border color type in each page. Default is NULL for black. To vary bottom
-border color by column, use character vector with length of vector
-equal to number of columns displayed e.g. c("white","red","blue").
+      <td><p>Last bottom border color type of the whole table. Default is NULL for black.
 All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/colors.html'>grDevices::colors()</a></code>.</p></td>
     </tr>
     <tr>
@@ -295,6 +291,10 @@ All possible input can be found in <code><a href='https://rdrr.io/r/grDevices/co
       <th>cell_justification</th>
       <td><p>Justification type for cell. Default is "c" for center justification.
 All possible input can be found in <code>r2rtf:::justification()$type</code>.</p></td>
+    </tr>
+    <tr>
+      <th>cell_nrow</th>
+      <td><p>Number of rows required in each cell. Default is NULL.</p></td>
     </tr>
     <tr>
       <th>text_font</th>
@@ -339,17 +339,36 @@ length of vector equal to number of columns displayed e.g. c("c","l","r").
 All possible input can be found in <code>r2rtf:::justification()$type</code>.</p></td>
     </tr>
     <tr>
+      <th>text_indent_first</th>
+      <td><p>A value of text indent in first line.</p></td>
+    </tr>
+    <tr>
+      <th>text_indent_left</th>
+      <td><p>A value of text left indent.</p></td>
+    </tr>
+    <tr>
+      <th>text_indent_right</th>
+      <td><p>A value of text right indent.</p></td>
+    </tr>
+    <tr>
+      <th>text_space</th>
+      <td><p>Line space between paragraph in twips. Default is 0.</p></td>
+    </tr>
+    <tr>
       <th>text_space_before</th>
-      <td><p>Line space before text in twips. Default is 15 for 0.0104 inch.</p></td>
+      <td><p>Line space before a paragraph in twips. Default is 15.</p></td>
     </tr>
     <tr>
       <th>text_space_after</th>
-      <td><p>Line space after text in twips. Default is 15 for 0.0104 inch.
-@param text_convert a logical value to convert special characters. Default is TRUE.</p></td>
+      <td><p>Line space after a paragraph in twips. Default is 15.</p></td>
+    </tr>
+    <tr>
+      <th>text_convert</th>
+      <td><p>A logical value to convert special characters. Default is TRUE.</p></td>
     </tr>
     <tr>
       <th>group_by</th>
-      <td><p>Column names in a character vector to remove duplicate records.</p></td>
+      <td><p>A character vector of variable names in <code>tbl</code>.</p></td>
     </tr>
     <tr>
       <th>page_by</th>
@@ -364,6 +383,16 @@ by sections. Default is FALSE.</p></td>
     <tr>
       <th>pageby_header</th>
       <td><p>A boolean value to display pageby header at the beginning of each page.</p></td>
+    </tr>
+    <tr>
+      <th>pageby_row</th>
+      <td><p>A character vector of location of page_by variable. Possible input are 'column'
+or 'first_row'. Default is 'column'.</p></td>
+    </tr>
+    <tr>
+      <th>subline_by</th>
+      <td><p>Column names in a character vector to subline by table in sections.
+Default is NULL.</p></td>
     </tr>
     <tr>
       <th>last_row</th>
@@ -383,199 +412,22 @@ final table. Default is TRUE.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required to run examples</span>
-</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
-#&gt; <span class='message'></span>
-#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>tbl_1</span><span class='op'>)</span>
-<span class='va'>tbl_1</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>rtf_body</span><span class='op'>(</span>col_rel_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>3</span>,<span class='fl'>5</span><span class='op'>)</span>,
-           text_justification <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"l"</span>,<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"c"</span>,<span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span>,
-           last_row <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>r2rtf_tbl1</span><span class='op'>)</span>
+<span class='va'>r2rtf_tbl1</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>rtf_body</span><span class='op'>(</span>
+    col_rel_width <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>1</span>, <span class='fl'>3</span>, <span class='fl'>5</span><span class='op'>)</span>,
+    text_justification <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"l"</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='st'>"c"</span>, <span class='fl'>7</span><span class='op'>)</span><span class='op'>)</span>,
+    last_row <span class='op'>=</span> <span class='cn'>FALSE</span>
+  <span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; $class
-#&gt; [1] "data.frame" "rtf_text"   "rtf_border"
+</div><div class='output co'>#&gt; $names
+#&gt; [1] "Trt"   "N1"    "Mean1" "N2"    "Mean2" "N3"    "Mean3" "CI"   
 #&gt; 
 #&gt; $row.names
 #&gt; [1] 1 2
 #&gt; 
-#&gt; $names
-#&gt; [1] "Trt"   "N1"    "Mean1" "N2"    "Mean2" "N3"    "Mean3" "CI"   
-#&gt; 
-#&gt; $boxh_df
-#&gt;               Trt    N1 Mean1    N2 Mean2    N3 Mean3   CI
-#&gt; group_label  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;
-#&gt; column_label &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; &lt;NA&gt;
-#&gt; column_align left right  left right  left right  left left
-#&gt; 
-#&gt; $stub_df
-#&gt;   groupname rowname
-#&gt; 1      &lt;NA&gt;    &lt;NA&gt;
-#&gt; 2      &lt;NA&gt;    &lt;NA&gt;
-#&gt; 
-#&gt; $footnotes_df
-#&gt; <span style='color: #555555;'># A tibble: 1 x 6</span><span>
-#&gt;   locname     locnum grpname colname rownum text                                
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>        </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>                               
-#&gt; </span><span style='color: #555555;'>1</span><span> columns_co…      4 </span><span style='color: #BB0000;'>NA</span><span>      CI          </span><span style='color: #BB0000;'>NA</span><span> </span><span style='color: #555555;'>"</span><span>$^\\dagger$Based on an ANCOVA mode…
-#&gt; 
-#&gt; $styles_df
-#&gt; </span><span style='color: #555555;'># A tibble: 0 x 6</span><span>
-#&gt; </span><span style='color: #555555;'># … with 6 variables: locname </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, locnum </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, grpname </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>,</span><span>
-#&gt; </span><span style='color: #555555;'>#   colname </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span style='color: #555555;'>, rownum </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span style='color: #555555;'>, text </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; 
-#&gt; $rows_df
-#&gt; </span><span style='color: #555555;'># A tibble: 2 x 1</span><span>
-#&gt;   rownums_start
-#&gt;           </span><span style='color: #555555;font-style: italic;'>&lt;int&gt;</span><span>
-#&gt; </span><span style='color: #555555;'>1</span><span>             1
-#&gt; </span><span style='color: #555555;'>2</span><span>             2
-#&gt; 
-#&gt; $cols_df
-#&gt; </span><span style='color: #555555;'># A tibble: 8 x 1</span><span>
-#&gt;   colnames_start
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>         
-#&gt; </span><span style='color: #555555;'>1</span><span> Trt           
-#&gt; </span><span style='color: #555555;'>2</span><span> N1            
-#&gt; </span><span style='color: #555555;'>3</span><span> Mean1         
-#&gt; </span><span style='color: #555555;'>4</span><span> N2            
-#&gt; </span><span style='color: #555555;'>5</span><span> Mean2         
-#&gt; </span><span style='color: #555555;'>6</span><span> N3            
-#&gt; </span><span style='color: #555555;'>7</span><span> Mean3         
-#&gt; </span><span style='color: #555555;'>8</span><span> CI            
-#&gt; 
-#&gt; $col_labels
-#&gt; $col_labels$Trt
-#&gt; [1] "Treatment"
-#&gt; 
-#&gt; $col_labels$N1
-#&gt; [1] "N"
-#&gt; 
-#&gt; $col_labels$Mean1
-#&gt; [1] "Mean (SD)"
-#&gt; 
-#&gt; $col_labels$N2
-#&gt; [1] "N"
-#&gt; 
-#&gt; $col_labels$Mean2
-#&gt; [1] "Mean (SD)"
-#&gt; 
-#&gt; $col_labels$N3
-#&gt; [1] "N"
-#&gt; 
-#&gt; $col_labels$Mean3
-#&gt; [1] "Mean (SD)"
-#&gt; 
-#&gt; $col_labels$CI
-#&gt; [1] "$LS Mean (95% CI)\\dagger$"
-#&gt; 
-#&gt; 
-#&gt; $grp_labels
-#&gt; $grp_labels$Trt
-#&gt; [1] NA
-#&gt; 
-#&gt; $grp_labels$N1
-#&gt; [1] NA
-#&gt; 
-#&gt; $grp_labels$Mean1
-#&gt; [1] NA
-#&gt; 
-#&gt; $grp_labels$N2
-#&gt; [1] NA
-#&gt; 
-#&gt; $grp_labels$Mean2
-#&gt; [1] NA
-#&gt; 
-#&gt; $grp_labels$N3
-#&gt; [1] NA
-#&gt; 
-#&gt; $grp_labels$Mean3
-#&gt; [1] NA
-#&gt; 
-#&gt; $grp_labels$CI
-#&gt; [1] NA
-#&gt; 
-#&gt; 
-#&gt; $arrange_groups
-#&gt; $arrange_groups$groups
-#&gt; character(0)
-#&gt; 
-#&gt; 
-#&gt; $data_df
-#&gt;          Trt N1       Mean1 N2       Mean2 N3       Mean3                   CI
-#&gt; 1 Study Drug 61 16.6 (4.41) 61 -6.6 (5.95) 61 -7.0 (9.16)  -7.0 (-8.58, -5.38)
-#&gt; 2    Placebo 70 18.4 (6.34) 70 -9.0 (7.04) 70 -8.7 (8.54) -8.7 (-10.17, -7.18)
-#&gt; 
-#&gt; $opts_df
-#&gt;                             parameter  scss          category      value
-#&gt; 1                     container_width FALSE         container       auto
-#&gt; 2                    container_height FALSE         container       auto
-#&gt; 3                container_overflow_x FALSE         container       auto
-#&gt; 4                container_overflow_y FALSE         container       auto
-#&gt; 5                            table_id FALSE             table brsewjfdtk
-#&gt; 6                         table_width  TRUE             table       auto
-#&gt; 7                     table_font_size  TRUE             table       16px
-#&gt; 8              table_background_color  TRUE             table    #FFFFFF
-#&gt; 9                         margin_left  TRUE             table       auto
-#&gt; 10                       margin_right  TRUE             table       auto
-#&gt; 11             table_border_top_style  TRUE             table      solid
-#&gt; 12             table_border_top_width  TRUE             table        2px
-#&gt; 13             table_border_top_color  TRUE             table    #A8A8A8
-#&gt; 14           heading_background_color  TRUE           heading       &lt;NA&gt;
-#&gt; 15            heading_title_font_size  TRUE           heading       125%
-#&gt; 16         heading_subtitle_font_size  TRUE           heading        85%
-#&gt; 17        heading_border_bottom_style  TRUE           heading      solid
-#&gt; 18        heading_border_bottom_width  TRUE           heading        2px
-#&gt; 19        heading_border_bottom_color  TRUE           heading    #A8A8A8
-#&gt; 20     column_labels_background_color  TRUE           columns       &lt;NA&gt;
-#&gt; 21            column_labels_font_size  TRUE           columns       16px
-#&gt; 22          column_labels_font_weight  TRUE           columns    initial
-#&gt; 23               column_labels_hidden FALSE           columns      FALSE
-#&gt; 24         row_group_background_color  TRUE         row_group       &lt;NA&gt;
-#&gt; 25                row_group_font_size  TRUE         row_group       16px
-#&gt; 26              row_group_font_weight  TRUE         row_group    initial
-#&gt; 27         row_group_border_top_style  TRUE         row_group      solid
-#&gt; 28         row_group_border_top_width  TRUE         row_group        2px
-#&gt; 29         row_group_border_top_color  TRUE         row_group    #A8A8A8
-#&gt; 30      row_group_border_bottom_style  TRUE         row_group      solid
-#&gt; 31      row_group_border_bottom_width  TRUE         row_group        2px
-#&gt; 32      row_group_border_bottom_color  TRUE         row_group    #A8A8A8
-#&gt; 33        table_body_border_top_style  TRUE        table_body      solid
-#&gt; 34        table_body_border_top_width  TRUE        table_body        2px
-#&gt; 35        table_body_border_top_color  TRUE        table_body    #A8A8A8
-#&gt; 36     table_body_border_bottom_style  TRUE        table_body      solid
-#&gt; 37     table_body_border_bottom_width  TRUE        table_body        2px
-#&gt; 38     table_body_border_bottom_color  TRUE        table_body    #A8A8A8
-#&gt; 39                        row_padding  TRUE               row        8px
-#&gt; 40          row_striping_include_stub FALSE               row      FALSE
-#&gt; 41    row_striping_include_table_body FALSE               row       TRUE
-#&gt; 42       summary_row_background_color  TRUE       summary_row       &lt;NA&gt;
-#&gt; 43                summary_row_padding  TRUE       summary_row        8px
-#&gt; 44         summary_row_text_transform  TRUE       summary_row    inherit
-#&gt; 45 grand_summary_row_background_color  TRUE grand_summary_row       &lt;NA&gt;
-#&gt; 46          grand_summary_row_padding  TRUE grand_summary_row        8px
-#&gt; 47   grand_summary_row_text_transform  TRUE grand_summary_row    inherit
-#&gt; 48                       footnote_sep FALSE          footnote     &lt;br /&gt;
-#&gt; 49                     footnote_glyph FALSE          footnote    numbers
-#&gt; 50                 footnote_font_size  TRUE          footnote        90%
-#&gt; 51                   footnote_padding  TRUE          footnote        4px
-#&gt; 52               sourcenote_font_size  TRUE        sourcenote        90%
-#&gt; 53                 sourcenote_padding  TRUE        sourcenote        4px
-#&gt; 
-#&gt; $formats
-#&gt; list()
-#&gt; 
-#&gt; $transforms
-#&gt; list()
-#&gt; 
-#&gt; $heading
-#&gt; $heading$title
-#&gt; [1] "ANCOVA of Change from Baseline at Week 8"
-#&gt; 
-#&gt; $heading$subtitle
-#&gt; [1] "Missing Data Approach \n Analysis Population"
-#&gt; 
+#&gt; $class
+#&gt; [1] "data.frame" "rtf_text"   "rtf_border"
 #&gt; 
 #&gt; $page
 #&gt; $page$width
@@ -601,6 +453,15 @@ final table. Default is TRUE.</p></td>
 #&gt; 
 #&gt; $page$border_last
 #&gt; [1] "double"
+#&gt; 
+#&gt; $page$page_title
+#&gt; [1] "all"
+#&gt; 
+#&gt; $page$page_footnote
+#&gt; [1] "last"
+#&gt; 
+#&gt; $page$page_source
+#&gt; [1] "last"
 #&gt; 
 #&gt; $page$use_color
 #&gt; [1] FALSE
@@ -637,13 +498,19 @@ final table. Default is TRUE.</p></td>
 #&gt; [1] 15
 #&gt; 
 #&gt; $text_indent_first
-#&gt; [1] 0
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,]    0    0    0    0    0    0    0    0
+#&gt; [2,]    0    0    0    0    0    0    0    0
 #&gt; 
 #&gt; $text_indent_left
-#&gt; [1] 0
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,]    0    0    0    0    0    0    0    0
+#&gt; [2,]    0    0    0    0    0    0    0    0
 #&gt; 
 #&gt; $text_indent_right
-#&gt; [1] 0
+#&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
+#&gt; [1,]    0    0    0    0    0    0    0    0
+#&gt; [2,]    0    0    0    0    0    0    0    0
 #&gt; 
 #&gt; $text_new_page
 #&gt; [1] FALSE
@@ -655,6 +522,11 @@ final table. Default is TRUE.</p></td>
 #&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
 #&gt; [1,] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
 #&gt; [2,] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+#&gt; 
+#&gt; $strwidth
+#&gt;           [,1]  [,2]      [,3]  [,4]    [,5]  [,6]    [,7]      [,8]
+#&gt; [1,] 0.5798611 0.125 0.5520833 0.125 0.53125 0.125 0.53125 0.8958333
+#&gt; [2,] 0.3958333 0.125 0.5520833 0.125 0.53125 0.125 0.53125 0.9583333
 #&gt; 
 #&gt; $use_color
 #&gt; [1] FALSE
@@ -704,6 +576,17 @@ final table. Default is TRUE.</p></td>
 #&gt; $last_row
 #&gt; [1] FALSE
 #&gt; 
+#&gt; $rtf_by_subline
+#&gt; $rtf_by_subline$new_page
+#&gt; [1] FALSE
+#&gt; 
+#&gt; $rtf_by_subline$by_var
+#&gt; NULL
+#&gt; 
+#&gt; $rtf_by_subline$id
+#&gt; NULL
+#&gt; 
+#&gt; 
 #&gt; $rtf_pageby
 #&gt; $rtf_pageby$new_page
 #&gt; [1] FALSE
@@ -714,8 +597,7 @@ final table. Default is TRUE.</p></td>
 #&gt; $rtf_pageby$id
 #&gt; NULL
 #&gt; 
-#&gt; </div><div class='input'>
-</div></span></pre>
+#&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -727,7 +609,7 @@ final table. Default is TRUE.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 

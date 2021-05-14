@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Render Figure to RTF encoding — rtf_encode_figure • r2rtf</title>
+<title>Render Figure to RTF Encoding — rtf_encode_figure • r2rtf</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Render Figure to RTF encoding — rtf_encode_figure" />
-<meta property="og:description" content="Render Figure to RTF encoding" />
+<meta property="og:title" content="Render Figure to RTF Encoding — rtf_encode_figure" />
+<meta property="og:description" content="Render Figure to RTF Encoding" />
 
 
 <meta name="robots" content="noindex">
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.1.1.9002</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Initial Version">0.2.0.9000</span>
       </span>
     </div>
 
@@ -80,46 +80,47 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">
+    <span class="fas fa-file-code"></span>
+     
+    Reference
+  </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+<li>
+  <a href="../articles/r2rtf.html">
+    <span class="fas fa-play-circle"></span>
+     
+    Get Start
+  </a>
+</li>
+<li>
+  <a href="../articles/index.html">
+    <span class="fas fa-book"></span>
+     
     Articles
-     
-    <span class="caret"></span>
   </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/code_cov.html">Tests and Code Coverage Report</a>
-    </li>
-    <li>
-      <a href="../articles/example-figure.html">RTF Examples for Figures</a>
-    </li>
-    <li>
-      <a href="../articles/example-pageby.html">RTF Examples for Tables with Pageby Feature</a>
-    </li>
-    <li>
-      <a href="../articles/example-pipeline.html">RTF Examples for Tables</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-row.html">RTF Examples for Controlling Table Details</a>
-    </li>
-    <li>
-      <a href="../articles/rtf-text.html">RTF Examples for Controlling Text and Paragraph Details</a>
-    </li>
-  </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="../news/index.html">
+    <span class="fas fa-newspaper"></span>
+     
+    Changelog
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/Merck/r2rtf/">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -133,43 +134,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Render Figure to RTF encoding</h1>
+    <h1>Render Figure to RTF Encoding</h1>
     
     <div class="hidden name"><code>rtf_encode_figure.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Render Figure to RTF encoding</p>
+    <p>Render Figure to RTF Encoding</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rtf_encode_figure</span><span class='op'>(</span>
-  <span class='va'>tbl</span>,
-  page_title <span class='op'>=</span> <span class='st'>"all"</span>,
-  page_footnote <span class='op'>=</span> <span class='st'>"last"</span>,
-  page_source <span class='op'>=</span> <span class='st'>"last"</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>rtf_encode_figure</span><span class='op'>(</span><span class='va'>tbl</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>tbl</th>
-      <td><p>a data frame for table or a list of binary string for figure</p></td>
-    </tr>
-    <tr>
-      <th>page_title</th>
-      <td><p>a character of title displaying location. Default is "all" for all pages.
-Possible values are "first", "last" and "all".</p></td>
-    </tr>
-    <tr>
-      <th>page_footnote</th>
-      <td><p>a character of title displaying location. Default is "last" for all pages.
-Possible values are "first", "last" and "all".</p></td>
-    </tr>
-    <tr>
-      <th>page_source</th>
-      <td><p>a character of title displaying location. Default is "last" for all pages.
-Possible values are "first", "last" and "all".</p></td>
+      <td><p>A data frame for table or a list of binary string for figure.</p></td>
     </tr>
     </table>
 
@@ -190,7 +171,7 @@ Possible values are "first", "last" and "all".</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye.  </p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Madhusudhan Ginnaram.  </p>
   <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
