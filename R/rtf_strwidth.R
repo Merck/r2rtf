@@ -22,7 +22,6 @@
 #'
 #' @param tbl A data frame
 #'
-#' @importFrom grDevices windowsFont windowsFonts
 #' @section Specification:
 #' \if{latex}{
 #'  \itemize{
