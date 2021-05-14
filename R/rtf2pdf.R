@@ -65,7 +65,7 @@ rtf2pdf <- function(input,
                 paste(basename(input)[output == 1], collapse = "; ") ) )
   }
 
-  if(class(try(pdftools::pdf_text, silent = TRUE)) != "try-error" & (! overwrite)){
+  if(! overwrite){
     out_file <- list.files(output_dir)
     tmp_file <- list.files(tmp_dir, pattern = "*.pdf")
     tmp_file <- tmp_file[tmp_file %in% out_file]
