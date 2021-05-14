@@ -38,7 +38,6 @@ Suggests:
     tidyr,
     devtools,
     covr,
-    ggplot2,
-    haven
+    ggplot2
 URL: https://merck.github.io/r2rtf/
 Config/testthat/edition: 3

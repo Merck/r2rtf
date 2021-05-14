@@ -1,5 +1,4 @@
 library(testthat)
-library(haven)
 library(dplyr)
 library(r2rtf)
 library(ggplot2)
