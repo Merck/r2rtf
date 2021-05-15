@@ -16,9 +16,28 @@ library(dplyr)
 library(tidyr)
 ```
 
-# Example 1: removing rows with page_by variable   
+# Overview
 
-This example shows how to remove rows by setting corresponding value in page_by variable to `"-----"`.
+In `rtf_body`, `r2rtf` provided three advanced arguments to customize table layout. 
+
+- `page_by`: The variable is used as section header.   
+- `group_by`: The variable only display when it is first appeared. 
+- `subline_by`: The variable is used as page subline header.
+
+If one or more of the arugments are used, they need to be properly ordered 
+in `subline_by`, `page_by` and `group_by`. 
+
+For `page_by`, the argument `new_page` and `pageby_header` and `pageby_row` further 
+customize the table layout. Details can be found in the `rtf_body` documentation. 
+
+We provided three examples below to illustrate the idea. 
+
+# Example 1: Pageby 
+
+We used `page_by` variable to illustrate how to create a simple disposition table. 
+
+> Note: This example also illustrate how to avoid row header by setting corresponding value 
+> in `page_by` variable to `"-----"`.
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/pageby-disposition.pdf")
@@ -30,27 +49,35 @@ knitr::include_graphics("pdf/pageby-disposition.pdf")
 data(r2rtf_adsl)
 adsl <- r2rtf_adsl
 
+# randomized
 row1 <- adsl %>%
   subset(ITTFL == "Y") %>%
   group_by(TRT01P) %>%
-  count() # randomized
+  count()
+
+# treated
 row2 <- adsl %>%
   subset(SAFFL == "Y") %>%
   group_by(TRT01P) %>%
-  summarise(trtn = n()) # treated
+  summarise(trtn = n())
+
+# completed study
 row3 <- adsl %>%
   subset(SAFFL == "Y" & DCREASCD == "Completed") %>%
   group_by(TRT01P) %>%
-  summarise(cmpln = n()) # completed
+  summarise(cmpln = n()) 
+
+# discontinued study
 row4 <- adsl %>%
   subset(SAFFL == "Y" & DCREASCD != "Completed") %>%
   group_by(TRT01P) %>%
-  summarise(dcn = n()) # discontinued
+  summarise(dcn = n()) 
 
+# discontinuation reason
 reas <- adsl %>%
   subset(SAFFL == "Y" & DCREASCD != "Completed") %>%
   group_by(TRT01P, DCREASCD) %>%
-  summarise(reasn = n()) # discontinuation reason
+  summarise(reasn = n()) 
 
 ds <- rbind(
   row1 %>% merge(row2, by = "TRT01P") %>%
@@ -89,35 +116,32 @@ knitr::kable(head(ds))
 
 ```{r}
 ds_tbl <- ds %>%
-  rtf_page_footer(text = "CONFIDENTIAL") %>%
+  
   rtf_title("Disposition of Participants", "(ITT Population)") %>%
+  
   rtf_colheader(" | Xanomeline High Dose |Xanomeline Low Dose | Placebo",
-    col_rel_width = c(3.5, 2, 2, 2)
+    col_rel_width = c(3, 2, 2, 2)
   ) %>%
+  
   rtf_colheader(" | n | n | n ",
     border_top = c("", rep("single", 3)),
-    border_left = c(rep("single", 4)),
-    col_rel_width = c(3.5, rep(2, 3))
+    col_rel_width = c(3, rep(2, 3))
   ) %>%
+  
+  # the table will be grouped by single cell row with pagebyvar's value in it.
+  # if pagebyvar's value is "-----", the single cell row will be removed from table.
   rtf_body(
     page_by = "pagebyvar",
-
-    # the table will be grouped by single cell row with pagebyvar's value in it.
-    # if pagebyvar's value is "-----", the single cell row will be removed from table.
-
-    col_rel_width = c(5, 3.5, 2, 2, 2),
-    text_justification = c("l", "l", rep("d", 3)),
+    col_rel_width = c(1, 3, 2, 2, 2),
+    text_justification = c("l", "l", rep("c", 3)),
     text_format = c("b", rep("", 4)),
     border_top = c("single", rep("", 4)),
     border_bottom = c("single", rep("", 4)),
-    border_left = c(rep("single", 5))
   ) %>%
-  rtf_footnote(c("This is footnote 1\nThis is footnote 2")) %>% # \n is to change line
+  
+  rtf_footnote(c("This is footnote")) %>%
 
-  rtf_source("Source:  [Study MK9999P001: adam-adsl]",
-    text_justification = "l",
-    as_table = FALSE
-  )
+  rtf_source("Source:  [Study MK9999P001: adam-adsl]")
 ```
 
 ## Step 3: Output
@@ -129,9 +153,10 @@ ds_tbl %>%
   write_rtf("rtf/pageby-disposition.rtf")
 ```
 
-# Example 2: pageby with pageby_row = "first_row" feature
+# Example 2: Pageby with `pageby_row = "first_row"` 
 
-This AE example shows how to use page_by with pageby_row = "first_row" feature.
+We used `page_by` variable and `pageby_row = "first_row"` to illustrate 
+how to create a simple adverse events table. 
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/pageby-firstrow-ae.pdf")
@@ -139,7 +164,7 @@ knitr::include_graphics("pdf/pageby-firstrow-ae.pdf")
 
 ## Step 1: Create data for RTF table 
 
-```{r}
+```{r, message=FALSE}
 # Read in and merge r2rtf_adsl and r2rtf_adae data
 data(r2rtf_adsl)
 data(r2rtf_adae)
@@ -148,164 +173,54 @@ ana <- r2rtf_adsl %>%
        subset(SAFFL == "Y") %>%     
        select(USUBJID, TRT01AN, TRT01A) 
 
-aedata <- inner_join(ana, r2rtf_adae, by="USUBJID") %>% # inner join adsl to bring in TRT01AN
+# inner join adsl to bring in TRT01AN
+aedata <- inner_join(ana, r2rtf_adae, by="USUBJID") %>% 
           filter( AEDECOD != '' & SAFFL =='Y' & AESEV == 'SEVERE') %>% 
           mutate( AEDECOD = tolower(AEDECOD),
                   AEBODSYS = tolower(AEBODSYS)                  
            )
 
-# Count categorical variables function
-count_by <- function(data, grp,
-                     var = NULL,
-                     var_label = var,
-                     id = "USUBJID",
-                     decimal = 1,
-                     total = TRUE
-){
-  if(is.null(id)){
-    rowid <- data.frame(rowid = as.numeric(rownames(data)))
-    data <- bind_cols(data, rowid)
-    id <- "rowid"
-  }
+# participants part
+overall <- ana %>% 
+  group_by(TRT01AN) %>% 
+  summarise(n = n_distinct(USUBJID)) %>% 
+  mutate(AEDECOD = 'Participants in population')
 
-  if(is.null(var)){
-    data <- mutate(data, dum = "1")
-    var <- "dum"
-    if(var_label == var){
-      var_label <- id
-    }
-  }
+withAE <- aedata %>% 
+  group_by(TRT01AN) %>% 
+  summarise(withAE = n_distinct(USUBJID))%>% 
+  mutate(AEDECOD = '  with one or more severe AE') %>% 
+  rename(n = withAE)
 
-  data <- data %>% rename(grp = !! grp, var = !! var, id = !!id)
+woAE <- left_join(overall, withAE, by = 'TRT01AN', suffix = c(".x", ".y")) %>% 
+  mutate(woAE = n.x-n.y,
+         AEDECOD = '  with no severe AE') %>% 
+  select(TRT01AN, AEDECOD, woAE) %>% 
+  rename(n = woAE)
 
-  coding <- levels( factor(data$grp) )
-  data <- data %>% mutate(grp = as.numeric(factor(grp)))
+part1 <- bind_rows(overall, withAE, woAE) %>% 
+  pivot_wider(names_from = TRT01AN, values_from = n) %>% 
+  mutate(AEBODSYS = '  a')
+ 
+# AE part
+bodsys <- aedata %>% 
+  group_by(TRT01AN, AEBODSYS) %>% 
+  summarise(n = n_distinct(USUBJID)) 
 
-  data_total <- data %>% mutate(grp = 9999) #add total rows into calculation
-  data <- rbind(data, data_total)
+decod <- aedata %>% 
+  group_by(TRT01AN, AEBODSYS, AEDECOD) %>% 
+  summarise(n = n_distinct(USUBJID)) %>% 
+  arrange(AEBODSYS, AEDECOD)
 
-  res <- data %>%
-    group_by(grp, var) %>%
-    summarise(n = n_distinct(id))
+part2 <- bind_rows(bodsys, decod) %>% 
+  pivot_wider(names_from = TRT01AN, values_from = n, values_fill = 0) %>% 
+  arrange(AEBODSYS, !is.na(AEDECOD)) %>% 
+  mutate(AEDECOD = ifelse(is.na(AEDECOD), AEBODSYS, paste('  ', AEDECOD)))
 
-  res_total <- data %>%
-    group_by(grp) %>%
-    summarise(tot = n_distinct(id)) #total within each grp
+blank <- tibble(AEBODSYS = '  a')
 
-
-  res <- res %>%
-    left_join(res_total, by = "grp") %>%
-    mutate(pct = formatC(100*n/tot, digits = decimal, format = "f", flag = "0")) #calculate pct
-
-  dum_pct <- formatC(0,digits = decimal, format = "f", flag = "0")
-
-  res <- res %>%
-    mutate(n = as.character(n)) %>%
-    pivot_wider(id_col = var,
-                names_from = grp,
-                values_from = c(n, pct),
-                values_fill = list(n = "0", pct = dum_pct)
-    ) %>%
-    mutate(var_label = var_label)
-
-  if(total != TRUE){
-    res <- res %>% select(-c(n_9999,pct_9999))
-  }
-
-  if(var != "dum"){
-    res <- res %>%
-      mutate(var = as.character(var))
-  } else{
-    res <- res %>%
-      select(c(grep("n",names(res)),var_label))  #removing pct from counting unique per ID since it's irrelevant
-  }
-
-  names(res) <- gsub("n_", "", names(res), fixed = TRUE)
-  attr(res, "coding") <- coding
-
-  res
-}
-
-
-# Participants in population
-part0 <-  count_by(ana,"TRT01AN", var_label='Participants in population')
-
-# Total Counts for each treatment arm
-trt1 <- as.numeric(part0$`1`)
-trt2 <- as.numeric(part0$`2`)
-trt3 <- as.numeric(part0$`3`)
-trt9 <- as.numeric(part0$`9999`)
-
-# AE data count once per USUBJID-with one or more conditions
-part0a <- count_by(distinct(aedata,TRT01AN,USUBJID), "TRT01AN",
-                   var_label='  with one or more severe AE') 
-
-# AE data count with no conditions
-part0b <- mutate(part0a, 
-                 var_label='  with no severe AE',
-                 `1`=as.character(trt1-as.numeric(`1`)),
-                 `2`=as.character(trt2-as.numeric(`2`)),  
-                 `3`=as.character(trt3-as.numeric(`3`)),                   
-                 `9999`=as.character(trt9-as.numeric(`9999`)))
-
-part1 <-  rbind(part0a, part0b) %>%
-          mutate(p_1=paste("(",formatC(round(as.numeric(`1`)/trt1*100, digits=2),
-                                      format='f',digits=2),")",sep=""),
-                 p_2=paste("(",formatC(round(as.numeric(`2`)/trt2*100, digits=2),
-                                      format='f',digits=2),")",sep=""),
-                 p_3=paste("(",formatC(round(as.numeric(`3`)/trt3*100, digits=2),
-                                      format='f',digits=2),")",sep=""),                 
-                 p_9999=paste("(",formatC(round(as.numeric(`9999`)/trt9*100, digits=2),
-                                      format='f',digits=2),")",sep="") ) 
-
-# AE data count once per USUBJID + AEBODSYS 
-part2  <- count_by(distinct(aedata,TRT01AN,AEBODSYS,USUBJID),"TRT01AN","AEBODSYS") %>%
-          mutate(AEBODSYS=var)
-
-# AE data count once per USUBJID + AEBODSYS + AEDECOD 
-part3  <- count_by(distinct(aedata,TRT01AN,AEDECOD,USUBJID),"TRT01AN","AEDECOD") %>%
-          mutate(var_old=var,
-          #       var=paste('  ',var)
-                 )  %>%
-          inner_join(distinct(aedata,AEBODSYS,AEDECOD),by=c('var_old'='AEDECOD') ) %>%
-          mutate(AEBODSYS=paste(AEBODSYS,'_'))
-
-mainpart <- bind_rows(part2, part3) %>%
-          mutate(p_1=paste("(",formatC(round(as.numeric(`1`)/trt1*100, digits=1),
-                                      format='f',digits=1),")",sep=""),
-                 p_2=paste("(",formatC(round(as.numeric(`2`)/trt2*100, digits=1),
-                                      format='f',digits=1),")",sep=""),
-                 p_3=paste("(",formatC(round(as.numeric(`3`)/trt3*100, digits=1),
-                                      format='f',digits=1),")",sep=""),                 
-                 p_9999=paste("(",formatC(round(as.numeric(`9999`)/trt9*100, digits=1),
-                                      format='f',digits=1),")",sep=""))  %>%
-         arrange(AEBODSYS,var)  
-         
-apr0ae <- bind_rows(mutate(part0,var=var_label),
-                   mutate(part1,var=var_label),
-                   data.frame(trt1),
-                   mainpart) %>%
-         select(var,`1`,p_1,`2`,p_2,`3`,p_3,`9999`,p_9999,AEBODSYS) 
-
-# create a format matrix to bold the AEBODSYS rows
-tmp1 <- matrix(ifelse(mainpart$var==mainpart$AEBODSYS, "b", ""), 
-               nrow = nrow(mainpart), ncol = 10)
-
-matrix_tmp0 <- matrix("", nrow = 4, ncol = 10)
-matrix_tmp=list(matrix_tmp0,tmp1)
-table_format <- do.call(rbind,matrix_tmp)
-
-# create a indent format matrix to indent the AEDECOD rows
-tmp_ind <- matrix(ifelse(mainpart$var!=mainpart$AEBODSYS, 200, 0), 
-               nrow = nrow(mainpart), ncol = 10)  
-tmp_ind[, c(2:9)] <- 0L
-matrix_tmp_ind <- matrix(0, nrow = 4, ncol = 10)
-matrix_tmp_ind=list(matrix_tmp_ind,tmp_ind)
-table_format_ind <- do.call(rbind,matrix_tmp_ind)
-
-apr0ae <- apr0ae %>% mutate(AEBODSYS = gsub(" _", "", AEBODSYS)) %>%
-                     mutate(AEBODSYS = ifelse(is.na(AEBODSYS), " ", AEBODSYS))
-
+apr0ae <- bind_rows(part1, blank, part2)  
+ 
 ```
 
 ```{r}
@@ -319,35 +234,26 @@ apr0ae_rtf <-  apr0ae %>%
   rtf_page(orientation = "landscape") %>% 
   rtf_title(c("Participants with Severe Adverse Events","(Incidence \\geq 0% in One or More Treatment Groups)"), "(ASaT Population)") %>%
 
-  rtf_colheader(" | Placebo | Xanomeline Low Dose| Xanomeline High Dose  | Total", 
-                col_rel_width = c(5, 2, 2, 2, 2),
-                border_bottom = c("", rep("single", 4))) %>%
+  rtf_colheader(" | Placebo | Xanomeline Low Dose| Xanomeline High Dose  ", 
+                col_rel_width = c(5, 2, 2, 2),
+                border_bottom = c("", rep("single", 3))) %>%
 
-  rtf_colheader(" | n | (%) | n | (%) | n | (%) | n | (%)",
-                border_top    = c("", rep("single", 8)),
-                border_left   = c("single", rep(c("single",""), 4)),
+  rtf_colheader(" | n |  n  | n  ",
+                border_top    = c("", rep("single", 3)),
                 border_bottom = "single",
-                col_rel_width = c(5, rep(c(0.7, 1.3),4)) 
+                col_rel_width = c(5, rep(2, 3)),  
                 ) %>%
 
-  rtf_body(col_rel_width = c(5, rep(c(0.7, 1.3),4)),
-           text_indent_left = table_format_ind,
-     #      text_indent_left = c(100, rep(0,6), 0),
-           text_justification = c("l" ,rep("c",8), "l"),
-           text_format = table_format,
+  rtf_body(col_rel_width = c(5, rep(2, 3), 1),
+           text_justification = c("l", "c", "c", "c", "l"),
            border_first = "",  
            page_by = "AEBODSYS",
            pageby_row = "first_row", 
-           border_left   = c("single", rep(c("single",""), 4), "")
-           
            ) %>% 
 
-   rtf_footnote(c("This is footnote 1\nThis is footnote 2")) %>% # \n is to change line
+  rtf_footnote(c("This is footnote")) %>% 
 
-  rtf_source("Source:  [Study MK9999P001: adam-adae]",
-    text_justification = "c",
-    as_table = FALSE
-  )
+  rtf_source("Source:  [Study MK9999P001: adam-adae]")
 ```
 
 ## Step 3: Output
@@ -361,7 +267,8 @@ apr0ae_rtf %>%
 
 # Example 3: sublineby, pageby, and groupby features
 
-This example shows how to use sublineby, pageby, and groupby features to create a table as below.
+We used `page_by`, `subline_by` and `group_by` to illustrate 
+how to create a simple adverse events listing. 
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/pageby-ae-listing.pdf")
@@ -401,43 +308,41 @@ knitr::kable(head(ae_t1, 2))
 
 ```{r}
 ae_tbl <- ae_t1 %>%
+  # It is important to order variable properly. 
   arrange(SUBLINEBY, TRTA, SUBJLINE, USUBJID, ASTDY) %>%
-  rtf_page(
-    orientation = "landscape",
-    col_width = 9
-  ) %>%
+  
+  rtf_page(orientation = "landscape", col_width = 9) %>%
+  
   rtf_page_header() %>%
+  
   rtf_page_footer(text = "CONFIDENTIAL") %>%
-  rtf_title(
-    "Listing of Subjects With Serious Adverse Events",
-    "ASaT"
-  ) %>%
+  
+  rtf_title("Listing of Subjects With Serious Adverse Events",
+            "ASaT") %>%
+  
   rtf_colheader("Subject| Rel Day | Adverse | | | | |Action| |",
     col_rel_width = c(2.5, 2, 4, 2, 3, 2, 3, 2, 5)
   ) %>%
+  
   rtf_colheader("ID| of Onset | Event | Duration | Intensity | Serious |
                 Related | Taken| Outcome",
-    col_rel_width = c(2.5, 2, 4, 2, 3, 2, 3, 2, 5),
-    border_top = c("", rep("", 8)), # need a smart way to define this
-    border_left = c(rep(c("single")))
-  ) %>%
+    border_top = "",
+    col_rel_width = c(2.5, 2, 4, 2, 3, 2, 3, 2, 5)) %>%
+  
   rtf_body(
     col_rel_width = c(2.5, 2, 4, 2, 3, 2, 3, 2, 5, 1, 1, 1),
     text_justification = c("l", rep("c", 8), "l", "l", "l"),
     text_format = c(rep("", 9), "b", "", "b"),
     border_top = c(rep("", 9), "single", "single", "single"),
     border_bottom = c(rep("", 9), "single", "single", "single"),
-    border_left = c(rep(c("single"), 12)),
     subline_by = 'SUBLINEBY',
     page_by = c("TRTA", "SUBJLINE"),
     group_by = c("USUBJID", "ASTDY")
   ) %>%
-  rtf_footnote(c("This is footnote 1\nThis is footnote 2")) %>% # \n is to change line
+  
+  rtf_footnote(c("This is footnote 1")) %>% 
 
-  rtf_source("Source:  [Study MK9999P001: adam-adae]",
-    text_justification = "l",
-    as_table = FALSE
-  )
+  rtf_source("Source:  [Study MK9999P001: adam-adae]")
 ```
 
 ## Step 3: Output

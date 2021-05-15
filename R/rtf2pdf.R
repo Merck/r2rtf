@@ -46,7 +46,7 @@ rtf2pdf <- function(input,
   # Define command line
   tmp_dir <- file.path(tempdir(), "rtf2pdf")
   if(dir.exists(tmp_dir)){
-    file.remove(list.files(tmp_dir, pattern = "*.pdf"))
+    file.remove(list.files(tmp_dir, pattern = "*.pdf", full.names = TRUE))
   }else{
     dir.create(tmp_dir)
   }
