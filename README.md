@@ -70,9 +70,7 @@ Simple Example
                    rtf_encode() %>%                     # Step 2 Convert attributes to RTF encode 
                    write_rtf(file = "ex-tbl.rtf")       # Step 3 Write to a .rtf file 
 
--   Click “details” button below to preview output.
-
-<details>
+<details><summary>Click here to see the output</summary>
 <img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png">
 </details>
 
@@ -85,7 +83,7 @@ Example Efficacy Table
     code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
 -   Click “details” button below to preview output.
 
-<details>
+<details><summary>Click here to see the output</summary>
 <img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png">
 </details>
 
@@ -94,8 +92,7 @@ Example Safety Table
 
 -   [Source
     code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
--   Click “details” button below to preview output.
 
-<details>
+<details><summary>Click here to see the output</summary>
 <img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png">
 </details>
