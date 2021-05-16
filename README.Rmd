@@ -86,9 +86,7 @@ try({
 }, silent = TRUE)
 ```
 
-- Click "details" button below to preview output. 
-
-<details>
+<details><summary>Click here to see the output</summary>
 <img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png">
 </details>
 
@@ -97,18 +95,16 @@ try({
 ## Example Efficacy Table
 
 - [Source code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
-- Click "details" button below to preview output. 
 
-<details>
+<details><summary>Click here to see the output</summary>
 <img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png">
 </details>
 
 ## Example Safety Table
 
 - [Source code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
-- Click "details" button below to preview output.
 
-<details>
+<details><summary>Click here to see the output</summary>
 <img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png">
 </details>
 
