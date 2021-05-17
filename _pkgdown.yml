@@ -1,8 +1,6 @@
 destination: docs
 template:
   package: r2rtf
-  params:
-    bootswatch: flatly
 navbar:
   type: default
   left:

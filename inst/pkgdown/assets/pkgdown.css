@@ -1,51 +1,74 @@
-/* Sticky footer */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 16px;
+  line-height: 24px;
+  color: #212529;
+}
 
-/**
- * Basic idea: https://philipwalton.github.io/solved-by-flexbox/demos/sticky-footer/
- * Details: https://github.com/philipwalton/solved-by-flexbox/blob/master/assets/css/components/site.css
- *
- * .Site -> body > .container
- * .Site-content -> body > .container .row
- * .footer -> footer
- *
- * Key idea seems to be to ensure that .container and __all its parents__
- * have height set to 100%
- *
- */
+.navbar-default .navbar-link {
+  color: #fff;
+}
+
+.navbar-default .navbar-link:hover {
+  color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+.label-default {
+  background-color: #95a5a6;
+}
+
+a {
+  color: #00857c;
+}
+
+a:hover, a:active {
+  color: #005c55;
+}
+
+nav[data-toggle='toc'] .nav>li>a {
+  font-size: 15px;
+  color: #747479;
+}
+
+/* ported and slightly modified from r2rtf */
 
 html, body {
   height: 100%;
 }
 
-body > .container {
+body>.container {
   display: flex;
   height: 100%;
   flex-direction: column;
-
   padding-top: 60px;
 }
 
-body > .container .row {
+body>.container .row {
   flex: 1 0 auto;
 }
 
 footer {
   margin-top: 45px;
-  padding: 35px 0 36px;
-  border-top: 1px solid #008780;
-  color: #666;
+  padding: 45px 0 55px;
+  border-top: 1px solid #b7b7b7;
+  color: #747479;
+  font-size: 15px;
   display: flex;
   flex-shrink: 0;
 }
+
 footer p {
   margin-bottom: 0;
 }
+
 footer div {
   flex: 1;
 }
-footer .pkgdown {
-  text-align: right;
-}
+
 footer p {
   margin-bottom: 0;
 }
@@ -59,6 +82,7 @@ img {
 }
 
 /* Fix bug in bootstrap (only seen in firefox) */
+
 summary {
   display: list-item;
 }
@@ -73,16 +97,14 @@ summary {
 
 a.anchor {
   margin-left: -30px;
-  display:inline-block;
+  display: inline-block;
   width: 30px;
   height: 30px;
   visibility: hidden;
-
   background-image: url(./link.svg);
   background-repeat: no-repeat;
   background-size: 20px 20px;
   background-position: center center;
-  
 }
 
 .hasAnchor:hover a.anchor {
@@ -95,7 +117,6 @@ a.anchor {
   }
 }
 
-
 /* Fixes for fixed navbar --------------------------*/
 
 .contents h1, .contents h2, .contents h3, .contents h4 {
@@ -104,22 +125,23 @@ a.anchor {
 }
 
 /* Static header placement on mobile devices */
+
 @media (max-width: 767px) {
   .navbar-fixed-top {
     position: absolute;
   }
   .navbar {
     padding: 0;
-    background-color: #008780;
+    background-color: #00857c;
   }
 }
-
 
 /* Sidebar --------------------------*/
 
 #sidebar {
   margin-top: 30px;
 }
+
 #sidebar h2 {
   font-size: 1.5em;
   margin-top: 1em;
@@ -140,18 +162,46 @@ a.anchor {
 
 /* Reference index & topics ----------------------------------------------- */
 
-.ref-index th {font-weight: normal;}
+.ref-index th {
+  font-weight: normal;
+}
 
-.ref-index td {vertical-align: top;}
-.ref-index .icon {width: 40px;}
-.ref-index .alias {width: 40%;}
-.ref-index-icons .alias {width: calc(40% - 40px);}
-.ref-index .title {width: 60%;}
+.ref-index td {
+  vertical-align: top;
+}
 
-.ref-arguments th {text-align: right; padding-right: 10px;}
-.ref-arguments th, .ref-arguments td {vertical-align: top;}
-.ref-arguments .name {width: 20%;}
-.ref-arguments .desc {width: 80%;}
+.ref-index .icon {
+  width: 40px;
+}
+
+.ref-index .alias {
+  width: 40%;
+}
+
+.ref-index-icons .alias {
+  width: calc(40% - 40px);
+}
+
+.ref-index .title {
+  width: 60%;
+}
+
+.ref-arguments th {
+  text-align: right;
+  padding-right: 10px;
+}
+
+.ref-arguments th, .ref-arguments td {
+  vertical-align: top;
+}
+
+.ref-arguments .name {
+  width: 20%;
+}
+
+.ref-arguments .desc {
+  width: 80%;
+}
 
 /* Nice scrolling for wide elements --------------------------------------- */
 
@@ -161,6 +211,11 @@ table {
 }
 
 /* Syntax highlighting ---------------------------------------------------- */
+
+pre, code {
+  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 14px;
+}
 
 pre {
   word-wrap: normal;
@@ -190,85 +245,135 @@ pre .img img {
 }
 
 code a, pre a {
-  color: #008780;
+  color: #00857c;
 }
 
 a.sourceLine:hover {
   text-decoration: none;
 }
 
-.fl      {color: #008780;}
-.fu      {color: #000000;} /* function */
-.ch,.st  {color: #008780;} /* string */
-.kw      {color: #008780;} /* keyword */
-.co      {color: #888888;} /* comment */
-
-.message { color: black;   font-weight: bolder;}
-.error   { color: orange;  font-weight: bolder;}
-.warning { color: #6A0366; font-weight: bolder;}
-
-
-
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #fff; /*Sets the text hover color on navbar*/
+.fl {
+  color: #00857c;
 }
 
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
-        a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #fff; /*BACKGROUND color for active*/
-    background-color: #008780;
+.fu {
+  color: #000000;
 }
 
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus {
+/* function */
+
+.ch, .st {
+  color: #0c2340;
+}
+
+/* string */
+
+.kw {
+  color: #00857c;
+}
+
+/* keyword */
+
+.co {
+  color: #888888;
+}
+
+/* comment */
+
+.message {
+  color: black;
+  font-weight: bolder;
+}
+
+.error {
+  color: orange;
+  font-weight: bolder;
+}
+
+.warning {
+  color: #6A0366;
+  font-weight: bolder;
+}
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+  color: #fff;
+  /*Sets the text hover color on navbar*/
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+  color: #fff;
+  /*BACKGROUND color for active*/
+  background-color: #00857c;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+  color: #fff;
+  text-decoration: none;
+  background-color: #00857c;
+  /*change color of links in drop down here*/
+}
+
+/* small screen expanded dropdown (vignettes) link color */
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a {
     color: #fff;
-    text-decoration: none;
-    background-color: #008780; /*change color of links in drop down here*/
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu>.active>a, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover {
+    color: #fff;
+  }
 }
 
-.nav > li > a:hover,
-.nav > li > a:focus {
-    text-decoration: none;
-    background-color: silver; /*Change rollover cell color here*/
+.nav>li>a:hover, .nav>li>a:focus {
+  text-decoration: none;
+  background-color: silver;
+  /*Change rollover cell color here*/
 }
 
-.navbar-default .navbar-nav > li > a {
-    color: white; /*Change active text color here*/
+.navbar-default .navbar-nav>li>a {
+  color: white;
+  /*Change active text color here*/
 }
 
 .navbar-default {
-   background-color: #008780;
-   border-color: #fff !important;
+  background-color: #00857c;
+  border-color: #fff !important;
 }
 
 .navbar-mrk {
-	background-color: #006c66;
-    color: #fff !important;
-	margin-right: 0px;
-}
-.navbar-mrk > li > a {
-    color: #fff !important;
-}
-.navbar-mrk > .active > a{
-    background-color: #006c66 !important;
-}
-.navbar-mrk > .open > a:focus, .nav-pills> .open > a:focus{
-    background-color: #006c66 !important;
-}
-.dropdown-menu > .active > a, .dropdown-menu > .active > a:focus{
-    background-color: #006c66 !important;
+  background-color: #005c55;
+  color: #fff !important;
+  margin-right: 0px;
 }
 
- .contents-mrk > li > a:focus, .nav-pills > li > a:focus {
-    background-color: #008780 !important;
-	color: #fff;
+.navbar-mrk>li>a {
+  color: #fff !important;
 }
- .contents-mrk > li.active > a, .nav-pills > li.active > a{
-    background-color: #006c66 !important;
+
+.navbar-mrk>.active>a {
+  background-color: #005c55 !important;
 }
- .contents-mrk > li > a, .nav-pills > li > a{
-    background-color: #008780 !important;
-	color: #fff;
+
+.navbar-mrk>.open>a:focus, .nav-pills>.open>a:focus {
+  background-color: #005c55 !important;
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus {
+  background-color: #005c55 !important;
+}
+
+.contents-mrk>li>a:focus, .nav-pills>li>a:focus {
+  background-color: #00857c !important;
+  color: #fff;
+}
+
+.contents-mrk>li.active>a, .nav-pills>li.active>a {
+  background-color: #005c55 !important;
+}
+
+.contents-mrk>li>a, .nav-pills>li>a {
+  background-color: #00857c !important;
+  color: #fff;
 }
 
 /* Clipboard --------------------------*/
@@ -288,6 +393,16 @@ a.sourceLine:hover {
   visibility: visible;
 }
 
+.btn-copy-ex {
+  background-color: #00857c;
+  border-color: #005c55;
+}
+
+.btn-copy-ex:hover {
+  background-color: #005c55;
+  border-color: #005c55;
+}
+
 /* mark.js ----------------------------*/
 
 mark {
@@ -297,6 +412,7 @@ mark {
 }
 
 /* vertical spacing after htmlwidgets */
+
 .html-widget {
   margin-bottom: 10px;
 }
