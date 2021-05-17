@@ -1,9 +1,4 @@
 destination: docs
-development:
-  mode: auto
-  destination: dev
-  version_label: danger
-  version_tooltip: "Initial Version"
 template:
   package: r2rtf
   params:

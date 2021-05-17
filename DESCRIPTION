@@ -1,16 +1,16 @@
 Package: r2rtf
 Title: Easily Create Production-Ready Rich Text Format (RTF) Table and Figure
-Version: 0.3.0
+Version: 0.2.0.9003
 Authors@R: c(
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = c("aut", "cre")),
     person("Siruo", "Wang", role = "aut"),
     person("Simiao", "Ye", role = "aut"),
-    person("Madhusudhan", "Ginnaram", role = "aut"),
+    person("Fansen", "Kong", role = "aut"), 
+    person("Madhusudhan", "Ginnaram", role = "ctb"),
     person("Ruchitbhai", "Patel", role = "ctb"), 
     person("Huei-Ling", "Chen", role = "ctb"), 
     person("Peikun", "Wu", role = "ctb"), 
     person("Uday Preetham", "Palukuru", role = "ctb"),
-    person("Fansen", "Kong", role = "ctb"), 
     person("Daniel", "Woodie", role = "ctb"),
     person("Sarad", "Nepal", role = "ctb"),
     person("Jane", "Liao", role = "ctb"),
