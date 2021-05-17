@@ -6,6 +6,7 @@ Authors@R: c(
     person("Siruo", "Wang", role = "aut"),
     person("Simiao", "Ye", role = "aut"),
     person("Fansen", "Kong", role = "aut"), 
+    person("Nan", "Xiao", role = "ctb"),
     person("Madhusudhan", "Ginnaram", role = "ctb"),
     person("Ruchitbhai", "Patel", role = "ctb"), 
     person("Huei-Ling", "Chen", role = "ctb"), 
