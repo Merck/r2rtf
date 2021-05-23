@@ -1,0 +1,82 @@
+#    Copyright (c) 2020 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#
+#    This file is part of the r2rtf program.
+#
+#    r2rtf is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#' Convert RTF file to PDF file
+#'
+#' Convert RTF files to PDF files. Require libreoffice7.1.
+#'
+#' @param input A vector of file paths for the input file to be converted.
+#' @param output_file A vector of filename for the output file. Default is the same filename for input.
+#' @param output_dir The output directory for the converted `output_dir`.
+#' @param overwrite logical; should existing destination files be overwritten?
+#'
+#' @return A vector of file paths for the converted files.
+#'
+rtf2pdf <- function(input, output_file = NULL, output_dir = ".", overwrite = FALSE){
+
+  # Check libreoffice dependency
+  sys_dep <- system("which libreoffice7.1", ignore.stderr = TRUE, ignore.stdout = TRUE)
+  if(sys_dep == 1){
+    stop("libreoffice7.1 is required")
+  }
+
+  # Define command line
+  tmp_dir <- tempdir()
+  cmd <- paste0("libreoffice7.1 --convert-to pdf ",
+                input,
+                " --outdir ", tmp_dir)
+
+  # Convert RTF to PDF
+  output <- lapply(cmd, system, ignore.stderr = TRUE, ignore.stdout = TRUE)
+
+
+  # Report error
+  if( any( unlist(output) == 1 ) ){
+    stop(paste0("File convert error: ",
+                paste(basename(input)[output == 1], collapse = "; ") ) )
+  }
+
+  # Check content difference
+  if(class(try(pdftools::pdf_text, silent = TRUE)) != "try-error" & (! overwrite)){
+    out_file <- list.files(output_dir)
+    tmp_file <- list.files(tmp_dir, pattern = "*.pdf")
+    tmp_file <- tmp_file[tmp_file %in% out_file]
+
+
+    for(i in seq_along(tmp_file)){
+      pdf_a <- pdftools::pdf_text(file.path(output_dir, tmp_file[i]) )
+      pdf_b <- pdftools::pdf_text(file.path(tmp_dir, tmp_file[i]) )
+      if(identical(pdf_a, pdf_b)) file.remove(file.path(tmp_dir, tmp_file[i]) )
+    }
+  }
+
+  # Copy file with difference
+  tmp_file <- list.files(tmp_dir, pattern = "*.pdf")
+  file.copy(file.path(tmp_dir, tmp_file), file.path(output_dir, tmp_file), overwrite = TRUE)
+
+  # Output path
+  output_path <- file.path(output_dir, gsub("\\.rtf$", "\\.pdf", basename(input)))
+
+  # Rename file
+  if(! is.null(output_file)){
+    file.rename(from = output_path, to = file.path(output_dir, output_file))
+    output_path <- file.path(output_dir, output_file)
+  }
+
+  invisible(output_path)
+
+}
