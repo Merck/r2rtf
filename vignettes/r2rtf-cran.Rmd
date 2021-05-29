@@ -5,9 +5,9 @@ output:
   knitr:::html_vignette:
     number_sections: yes
     toc: yes
-vignette: |
+vignette: >
   %\VignetteIndexEntry{An Introduction to the r2rtf Package}
-  %\VignetteEngine{knitr::rmarkdown_notangle}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 Please see https://merck.github.io/r2rtf/articles/index.html for the full documentation. Here is only a minimal example:

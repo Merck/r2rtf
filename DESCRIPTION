@@ -37,7 +37,6 @@ Suggests:
     tidyr,
     devtools,
     covr,
-    ggplot2,
     dplyr,
     testthat,
     ggplot2
