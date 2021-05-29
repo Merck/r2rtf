@@ -1,7 +1,6 @@
 ^\.github$
 ^sync_bitbucket\.R$
 ..Rcheck
-^doc$
 ^inst$
 ^docs$
 ^_pkgdown\.yml$
