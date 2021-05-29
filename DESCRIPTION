@@ -1,6 +1,6 @@
 Package: r2rtf
 Title: Easily Create Production-Ready Rich Text Format (RTF) Table and Figure
-Version: 0.2.0.9004
+Version: 0.3.0
 Authors@R: c(
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = c("aut", "cre")),
     person("Siruo", "Wang", role = "aut"),
@@ -24,6 +24,7 @@ Description: Create production-ready Rich Text Format (RTF) table and figure wit
 Depends: R (>= 3.5.0)
 License: GPL-3
 Encoding: UTF-8
+VignetteBuilder: knitr
 LazyData: true
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
