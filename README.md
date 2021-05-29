@@ -10,9 +10,6 @@ coverage](https://codecov.io/gh/Merck/r2rtf/branch/master/graph/badge.svg)](http
 status](https://github.com/Merck/r2rtf/workflows/R-CMD-check/badge.svg)](https://github.com/Merck/r2rtf/actions)
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/package=r2rtf)
-[![Code coverage:
-0](https://builds.merck.com/buildStatus/icon?job=BITBUCKET%2FBARDS%2Fr2rtf%2FTEST_COVERAGE%2FtestCoverage%2Fmaster&config=CodeCov)](https://builds.merck.com/job/BITBUCKET/job/BARDS/job/r2rtf/job/TEST_COVERAGE/job/testCoverage/job/master/cobertura/)
-
 <!-- badges: end -->
 
 ## Overview
@@ -73,7 +70,10 @@ The R package`r2rtf` provided flexibility to provide features below:
       rtf_encode() %>%               # Step 2 Convert attributes to RTF encode
       write_rtf(file = "ex-tbl.rtf") # Step 3 Write to a .rtf file
 
-<details><summary>Click here to see the output</summary>
+<details>
+<summary>
+Click here to see the output
+</summary>
 <img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png">
 </details>
 
@@ -83,9 +83,11 @@ The R package`r2rtf` provided flexibility to provide features below:
 
 -   [Source
     code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
--   Click “details” button below to preview output.
 
-<details><summary>Click here to see the output</summary>
+<details>
+<summary>
+Click here to see the output
+</summary>
 <img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png">
 </details>
 
@@ -94,6 +96,9 @@ The R package`r2rtf` provided flexibility to provide features below:
 -   [Source
     code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
 
-<details><summary>Click here to see the output</summary>
+<details>
+<summary>
+Click here to see the output
+</summary>
 <img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png">
 </details>
