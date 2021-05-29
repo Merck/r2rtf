@@ -32,7 +32,6 @@ lib_paths
 ^vignettes/code_cov.Rmd$
 ^vignettes/example-basechar.Rmd$
 ^vignettes/example-sublineby-pageby-groupby.Rmd$
-^vignettes/r2rtf-cran.Rmd$
 ^vignettes/rtf-row.Rmd$
 ^vignettes/design-pattern.Rmd$
 ^vignettes/example-efficacy.Rmd$
