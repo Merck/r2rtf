@@ -40,6 +40,7 @@ articles:
   - rtf-text
   - rtf-row
 - title: Utility
+  contents:
   - rtf-convert-format
 - title: Package Design
   contents:
