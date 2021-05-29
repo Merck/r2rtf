@@ -1,8 +1,7 @@
 ---
 title: "An Introduction to the r2rtf Package"
-date: '`r Sys.Date()`'
 output:
-  knitr:::html_vignette:
+  rmarkdown::html_vignette:
     number_sections: yes
     toc: yes
 vignette: >
