@@ -67,4 +67,6 @@ write_rtf_para <- function(rtf, file) {
 
   rtf <- paste(start_rtf, "{\\pard \\par}", paste(rtf, collapse = ""), as_rtf_end(), sep = "\n")
   write(rtf, file)
+
+  invisible(file)
 }
