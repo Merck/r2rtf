@@ -32,5 +32,5 @@
 
 # RTF new page
 
-    [1] "{\\pard\\fs2\\par}\\page"
+    [1] "{\\pard\\fs2\\par}\\page{\\pard\\fs2\\par}"
 

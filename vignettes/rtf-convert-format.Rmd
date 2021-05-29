@@ -1,0 +1,71 @@
+---
+title: "File Format Conversion"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_depth: '2'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+devtools::load_all()
+```
+
+# Overview
+
+`r2rtf` had an experimental internal function `r2rtf:::rtf_convert_format` to 
+convert RTF format to PDF, DOCX or HTML. 
+This feature requires [libreoffice7.1](https://www.libreoffice.org/download/download/) and only 
+be tested in a Linux environment. 
+
+By default, `r2rtf:::rtf_convert_format` convert RTF file to PDF format.
+The PDF file will be saved in the same folder with same file name by default.
+
+In example below, `ae_example.pdf` will be created in the same folder. 
+
+```{r, eval = FALSE}
+r2rtf:::rtf_convert_format(input = "rtf/ae_example.rtf")
+```
+
+- Multiple files can be provided as input.
+
+```{r, eval = FALSE}
+r2rtf:::rtf_convert_format(input = list.files("rtf", pattern = "*.rtf"))
+```
+
+- The `format` argument allow use to specify output format as `pdf`, `docx`, or `html`. 
+
+```{r, eval = FALSE}
+r2rtf:::rtf_convert_format(input = "rtf/ae_example.rtf", format = "html")
+```
+
+## Limitations 
+
+There are 2 known limitations after RTF file convert to HTML files:   
+
+- table border issue.
+  - "dash", "small dash", "dot dash", and "dot dot" border type are not supported 
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/border-type.pdf")
+```
+
+````{=html}
+```{r, echo=FALSE, results='asis'}
+xfun::file_string('html/border-type.html')
+```
+````
+
+- left and right adjusted paragraph outside of table. 
+  - e.g. title, subtitle, subline, footnote, or source. 
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/intro-ae16.pdf")
+```
+
+````{=html}
+```{r, echo=FALSE, results='asis'}
+xfun::file_string("html/intro-ae16.html")
+```
+````

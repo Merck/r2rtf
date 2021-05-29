@@ -189,21 +189,27 @@ rtf_body <- function(tbl,
     if (length(by_var) != length(unique(by_var))) stop("Variables in subline_by, page_by and group_by can not be overlapped")
 
     # Define Index
+    # for(i in 1:length(by_var)){
+    #   if(class(tbl[[by_var[i]]]) == "character"){
+    #     tbl[[by_var[i]]] <- factor(tbl[[by_var[i]]], levels = unique(tbl[[by_var[i]]]))
+    #   }
+    # }
+
     for(i in 1:length(by_var)){
-      if(class(tbl[[by_var[i]]]) == "character"){
-        tbl[[by_var[i]]] <- factor(tbl[[by_var[i]]], levels = unique(tbl[[by_var[i]]]))
+
+      if(i == 1){
+        id <- tbl[[by_var[i]]]
+      }else{
+        id <- apply(tbl[, by_var[1:i]], 1, paste, collapse = "-")
       }
+
+      order_var <- order(factor(id, levels = unique(id)))
+      if (!all(order_var == 1:nrow(tbl))) {
+        stop("Data is not sorted by ", paste(by_var, collapse = ", "))
+      }
+
     }
 
-    if(length(by_var) > 1){
-      order_var <- do.call(order, tbl[, by_var])
-    }else{
-      order_var <- order(tbl[, by_var])
-    }
-
-    if (!all(order_var == 1:nrow(tbl))) {
-      stop("Data is not sorted by ", paste(by_var, collapse = ", "))
-    }
   }
 
   # Redefine value to character

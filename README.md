@@ -10,6 +10,9 @@ coverage](https://codecov.io/gh/Merck/r2rtf/branch/master/graph/badge.svg)](http
 status](https://github.com/Merck/r2rtf/workflows/R-CMD-check/badge.svg)](https://github.com/Merck/r2rtf/actions)
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/package=r2rtf)
+[![Code coverage:
+0](https://builds.merck.com/buildStatus/icon?job=BITBUCKET%2FBARDS%2Fr2rtf%2FTEST_COVERAGE%2FtestCoverage%2Fmaster&config=CodeCov)](https://builds.merck.com/job/BITBUCKET/job/BARDS/job/r2rtf/job/TEST_COVERAGE/job/testCoverage/job/master/cobertura/)
+
 <!-- badges: end -->
 
 ## Overview

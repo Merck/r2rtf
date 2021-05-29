@@ -231,5 +231,86 @@ test_that("Test case when subline is not NULL and verbose equals to TRUE", {
   expect_true(length(ir3$info)>0)
 })
 
+test_that("Test case when using subline_by, page_by, group_by simultaneously in rtf_body", {
+  data(r2rtf_adae)
+  ae_t1 <- r2rtf_adae[200:260,] %>%
+    mutate(
+      SUBLINEBY = paste0(
+        "Trial Number: ", STUDYID,
+        ", Site Number: ", SITEID
+      ),
+    ) %>%
+    select(USUBJID, ASTDY, AEDECOD, TRTA, SUBLINEBY) %>%
+    arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) %>%
+    rtf_colheader("Subject| Rel Day | Adverse |"
+    ) %>%
+    rtf_body(
+      subline_by = 'SUBLINEBY',
+      page_by = c("TRTA"),
+      group_by = c("USUBJID", "ASTDY"),
+    )
+
+  ae_t1 <- rtf_encode_table(ae_t1)
+
+  expect_snapshot_output(ae_t1)
+})
 
 
+test_that("Test case when using subline_by, page_by, group_by simultaneously with pageby_row = 'first_row' and new_page = TRUE in rtf_body", {
+  data(r2rtf_adae)
+  ae_t2 <- r2rtf_adae[200:260,] %>% subset(USUBJID != "01-701-1442") %>%
+    mutate(
+      SUBLINEBY = paste0(
+        "Trial Number: ", STUDYID,
+        ", Site Number: ", SITEID
+      ),
+    ) %>%
+    select(USUBJID, ASTDY, AEDECOD, TRTA, SUBLINEBY) %>%
+    arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) %>%
+    rtf_colheader("Subject| Rel Day | Adverse |",
+                  border_bottom = "single"
+    ) %>%
+    rtf_body(
+      subline_by = 'SUBLINEBY',
+      page_by = c("TRTA"),
+      pageby_row='first_row',
+      new_page=TRUE,
+      group_by = c("USUBJID", "ASTDY")
+    )
+
+  ae_t2 <- rtf_encode_table(ae_t2)
+
+  expect_snapshot_output(ae_t2)
+})
+
+test_that("Test case when using subline_by, page_by, group_by simultaneously with pageby_row = 'first_row' and new_page = TRUE in rtf_body and rtf_subline not null and page_title is 'first' or 'last'", {
+  data(r2rtf_adae)
+  ae_t3 <- r2rtf_adae[200:260,] %>% subset(USUBJID != "01-701-1442") %>%
+    mutate(
+      SUBLINEBY = paste0(
+        "Trial Number: ", STUDYID,
+        ", Site Number: ", SITEID
+      ),
+    ) %>%
+    select(USUBJID, ASTDY, AEDECOD, TRTA, SUBLINEBY) %>%
+    arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) %>%
+    rtf_colheader("Subject| Rel Day | Adverse |",
+                  border_bottom = "single"
+    ) %>%
+    rtf_body(
+      subline_by = 'SUBLINEBY',
+      page_by = c("TRTA"),
+      pageby_row='first_row',
+      new_page=TRUE,
+      group_by = c("USUBJID", "ASTDY")
+    ) %>%
+    rtf_subline("subline")
+
+  attr(ae_t3, "page")$page_title <- "first"
+  ae_t3a <- rtf_encode_table(ae_t3)
+  expect_snapshot_output(ae_t3a)
+
+  attr(ae_t3, "page")$page_title <- "last"
+  ae_t3b <- rtf_encode_table(ae_t3)
+  expect_snapshot_output(ae_t3b)
+})

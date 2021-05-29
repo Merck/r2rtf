@@ -1,11 +1,11 @@
 dt <- iris[c(1:5,51:55,101:105),] %>% dplyr::arrange(Species)
 
 
-test_that("Test when data is not sorted by group_by variable", {
-  dt1 <- dt %>% dplyr::arrange(Sepal.Width)
-  expect_error(case1 <- rtf_group_by_enhance(dt1, "Species", 1))
-
-})
+# test_that("Test when data is not sorted by group_by variable", {
+#   dt1 <- dt %>% dplyr::arrange(Sepal.Width)
+#   expect_error(case1 <- rtf_group_by_enhance(dt1, "Species", 1))
+#
+# })
 
 test_that("Test when data is sorted by group_by variable", {
   case2 <- rtf_group_by_enhance(dt, "Species", (1))

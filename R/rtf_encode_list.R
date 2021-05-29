@@ -90,6 +90,7 @@ rtf_encode_list <- function(tbl) {
 
   # Split page if necessary
   item <- 0
+  iter <- 0
   item_next <- tbl[[1]]
   while(nrow(item_next) > 0){
 
@@ -100,8 +101,8 @@ rtf_encode_list <- function(tbl) {
       index <- item_next$index[item_next$page1 == item_next$page1[1]]
 
       tbl0 <- list()
-      tbl0[[1]] <- rtf_subset(tbl[[item]], row = index)
-      tbl0[[2]] <- rtf_subset(tbl[[item]], row = - index)
+      tbl0[[1]] <- rtf_subset(tbl[[item - iter]], row = index)
+      tbl0[[2]] <- rtf_subset(tbl[[item - iter]], row = - index)
 
       # Update border
       attr(tbl0[[1]], "page")$border_last  <- NULL
@@ -115,6 +116,9 @@ rtf_encode_list <- function(tbl) {
       }
 
       encode <- encode0
+
+      iter <- iter + 1
+
     }
 
     # Split page
@@ -130,9 +134,11 @@ rtf_encode_list <- function(tbl) {
 
     page1 <- info[info$page == 1, ]
     page1 <- split(page1, page1$item)
-    item1 <- which(unlist(lapply(page1, function(x) length(unique(x$page1)))) > 1)
+    item1 <- which(unlist(lapply(page1, function(x) length(unique(x$page1)))) > 1)[1]
+    if(is.na(item1)) { item1 = 0 }
     item_next <- info[info$item == item1 & info$page == 1, ]
-    item <- item1[1]
+    item <- item1
+
  }
 
 

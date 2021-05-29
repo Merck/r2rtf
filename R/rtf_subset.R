@@ -85,7 +85,7 @@ rtf_subset <- function(tbl,
   }
   attributes(tbl_sub) <- append(
     attributes(tbl_sub),
-    lapply(attr_matrix, function(x) if (!is.null(x)) as.matrix(x[row, col]))
+    lapply(attr_matrix, function(x) if (!is.null(x)) x[row, col, drop = FALSE])
   )
 
   attributes(tbl_sub) <- append(attributes(tbl_sub), attr_scale)

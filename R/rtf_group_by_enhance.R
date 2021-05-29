@@ -42,14 +42,14 @@ rtf_group_by_enhance <- function(tbl, group_by, page_index) {
 
     id <- factor(id, levels = unique(id))
 
-    if (i == length(group_by)) {
-      order_var <- order(id)
-      index_var <- which(names(tbl) %in% by)
-
-      if (!all(order_var == 1:nrow(tbl))) {
-        stop("Data is not sorted by ", paste(by, collapse = ", "))
-      }
-    }
+    # if (i == length(group_by)) {
+    #   order_var <- order(id)
+    #   index_var <- which(names(tbl) %in% by)
+    #
+    #   if (!all(order_var == 1:nrow(tbl))) {
+    #     stop("Data is not sorted by ", paste(by, collapse = ", "))
+    #   }
+    # }
 
     # Remove duplicate records
     tbl <- do.call(

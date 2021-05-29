@@ -1,11 +1,12 @@
 Package: r2rtf
 Title: Easily Create Production-Ready Rich Text Format (RTF) Table and Figure
-Version: 0.2.0.9003
+Version: 0.2.0.9004
 Authors@R: c(
     person("Yilong", "Zhang", email = "yilong.zhang@merck.com", role = c("aut", "cre")),
     person("Siruo", "Wang", role = "aut"),
     person("Simiao", "Ye", role = "aut"),
     person("Fansen", "Kong", role = "aut"), 
+    person("Nan", "Xiao", role = "ctb"),
     person("Madhusudhan", "Ginnaram", role = "ctb"),
     person("Ruchitbhai", "Patel", role = "ctb"), 
     person("Huei-Ling", "Chen", role = "ctb"), 
@@ -32,12 +33,14 @@ Suggests:
     stringi,
     knitr,
     rmarkdown,
-    testthat,
     emmeans,
-    dplyr, 
     tidyr,
     devtools,
     covr,
+    ggplot2,
+    dplyr,
+    testthat,
     ggplot2
-URL: https://merck.github.io/r2rtf/
+URL: https://merck.github.io/r2rtf/, https://github.com/Merck/r2rtf
+BugReports: https://github.com/Merck/r2rtf/issues
 Config/testthat/edition: 3

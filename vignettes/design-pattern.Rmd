@@ -9,6 +9,9 @@ output:
 resource_files:
    - pdf/*.pdf
    - fig/*.png
+   - html/*.html
+   - html/*.png
+   - docx/*.docx
 ---
 
 ```{r, include = FALSE}

@@ -24,6 +24,9 @@ navbar:
       href: https://github.com/Merck/r2rtf/
 
 articles:
+- title: Get Start
+  contents:
+  - r2rtf
 - title: TLF Examples
   navbar: ~
   contents:
@@ -36,6 +39,8 @@ articles:
   contents:
   - rtf-text
   - rtf-row
+- title: Utility
+  - rtf-convert-format
 - title: Package Design
   contents:
   - design-pattern

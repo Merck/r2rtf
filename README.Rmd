@@ -115,7 +115,38 @@ try({
 ```{r, include=FALSE, eval = FALSE}
 # Transfer all RTF files to PDF files
 files <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
-system.time({
-  r2rtf:::rtf2pdf(input = files, output_dir = "vignettes/pdf")
-})
+
+r2rtf:::rtf_convert_format(input = files, output_dir = "vignettes/pdf")
+
+r2rtf:::rtf_convert_format(input = files, 
+                           format = "docx", 
+                           output_dir = "vignettes/docx")
+
+
+
+r2rtf:::rtf_convert_format(input = files, 
+                           format = "html", 
+                           output_dir = "vignettes/html")
+
+
+files <- list.files("vignettes/rtf", pattern = "*\\.rtf")
+files_pdf  <- list.files("vignettes/pdf", pattern = "*\\.pdf")
+files_docx <- list.files("vignettes/docx", pattern = "*\\.docx")
+files_html <- list.files("vignettes/html", pattern = "*\\.html")
+
+# Compare RTF and PDF folder filenames.  
+waldo::compare(
+  tools::file_path_sans_ext(files),
+  tools::file_path_sans_ext(files_pdf)
+)
+
+waldo::compare(
+  tools::file_path_sans_ext(files),
+  tools::file_path_sans_ext(files_docx)
+)
+
+waldo::compare(
+  tools::file_path_sans_ext(files),
+  tools::file_path_sans_ext(files_html)
+)
 ```
