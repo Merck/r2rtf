@@ -9,8 +9,10 @@ articles:
   example-efficacy: example-efficacy.html
   example-figure: example-figure.html
   example-sublineby-pageby-groupby: example-sublineby-pageby-groupby.html
+  r2rtf-cran: r2rtf-cran.html
   r2rtf: r2rtf.html
+  rtf-convert-format: rtf-convert-format.html
   rtf-row: rtf-row.html
   rtf-text: rtf-text.html
-last_built: 2021-05-17T19:40Z
+last_built: 2021-05-29T01:55Z
 
