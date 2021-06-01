@@ -190,13 +190,15 @@ i.e. attr(text, 'text_convert') = NULL", {
     rtf_footnote(footnote = c("> = sign: {\\geq}", "superscript: {^a}"),
                  text_convert=FALSE)
 
-  expect_equal(as_rtf_footnote(fn1),"\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f0 > = sign: {\\geq}\\line superscript: {^a}}\\cell\n\\intbl\\row\\pard")
+  expect_true(grepl("\\geq", as_rtf_footnote(fn1), fixed = TRUE))
+  expect_true(grepl("^a", as_rtf_footnote(fn1), fixed = TRUE))
 
   fn2 <- head(iris, 2) %>%
     rtf_title(title = 'footnote example') %>%
     rtf_footnote(footnote = c("> = sign: {\\geq}", "superscript: {^a}"))
 
-  expect_equal(as_rtf_footnote(fn2),"\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f0 > = sign: {\\uc1\\u8805*}\\line superscript: {\\super a}}\\cell\n\\intbl\\row\\pard")
+  expect_false(grepl("\\geq", as_rtf_footnote(fn2), fixed = TRUE))
+  expect_false(grepl("^a", as_rtf_footnote(fn2), fixed = TRUE))
 })
 
 test_that("Test for function as_rtf_source() when there is no text conversion
@@ -205,7 +207,8 @@ i.e. attr(text, 'text_convert') = NULL", {
     rtf_source(source = c(">= sign: {\\geq}", "superscript: {^a}"),
                text_convert = FALSE)
 
-  expect_equal(as_rtf_source(sc),"{\\pard\\hyphpar\\sb15\\sa15\\fi0\\li0\\ri0\\qc\\fs18{\\f0 >= sign: {\\geq}}\\line\\fs18{\\f0 superscript: {^a}}\\par}")
+  expect_true(grepl("\\geq", as_rtf_source(sc), fixed = TRUE))
+  expect_true(grepl("^a", as_rtf_source(sc), fixed = TRUE))
 })
 
 
