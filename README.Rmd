@@ -21,11 +21,11 @@ pkgname <- "r2rtf"
 
 ## Overview
 
-`r2rtf` is an R package to create production ready tables and figures in RTF format.
+`r2rtf` is an R package to create production-ready tables and figures in RTF format.
 The R package is designed to 
 
 - provide simple "verb" functions that correspond to each component of a table, 
-  to help you translate data frame to table in RTF file.
+  to help you translate data frame(s) to a table in RTF file.
 - enables pipes (`%>%`). 
 - only focus on **table format**. 
   + Data manipulation and analysis shall be handled by other R packages. (e.g., `tidyverse`)
@@ -47,7 +47,7 @@ remotes::install_github("Merck/r2rtf")
 
 ## Highlighted Features 
 
-The R package`r2rtf` provided flexibility to provide features below:
+The R package`r2rtf` provided flexibility to enable features below:
 
 * Necessary options to create highly customized RTF table and figure. 
 * Simple to use parameters and data structure.
@@ -64,7 +64,7 @@ The R package`r2rtf` provided flexibility to provide features below:
     + Special characters: any character in UTF-8 encoding (e.g., Greek, Symbol, Chinese, Japanese, Korean).
 * Append several tables into one file. 
 * Pagination.
-* Built in raw data for validation.
+* Built-in raw data for validation.
 
 ## Simple Example 
 

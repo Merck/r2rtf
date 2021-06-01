@@ -1,7 +1,6 @@
-# r2rtf 0.3.0 (2020-06)
+# r2rtf 0.3.0 (2020-06-01)
 
 * Rename dataset with prefix `r2rtf` to avoid conflict of other namespace
-* Add `r2rtf:::rtf2pdf` function to convert RTF file to PDF file
 * Enable special place holder "-----" in `page_by` variable to suppress line displayed 
   in `page_by` variable (ref Example 2 in `vignette/example-pageby-groupby`)
 * New experimental function `rtf_convert_format`.
