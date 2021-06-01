@@ -183,33 +183,33 @@ test_that("Test for function as_rtf_subline() when subline exists", {
   expect_equal(as_rtf_subline(sl),"{\\pard\\hyphpar\\sb180\\sa180\\fi0\\li0\\ri0\\ql\\fs24{\\f0 subline test text}\\par}")
 })
 
-test_that("Test for function as_rtf_footnote() when there is no text conversion
-i.e. attr(text, 'text_convert') = NULL", {
-  fn1 <- head(iris, 2) %>%
-    rtf_title(title = 'footnote example') %>%
-    rtf_footnote(footnote = c("> = sign: {\\geq}", "superscript: {^a}"),
-                 text_convert=FALSE)
-
-  expect_true(grepl("\\geq", as_rtf_footnote(fn1), fixed = TRUE))
-  expect_true(grepl("^a", as_rtf_footnote(fn1), fixed = TRUE))
-
-  fn2 <- head(iris, 2) %>%
-    rtf_title(title = 'footnote example') %>%
-    rtf_footnote(footnote = c("> = sign: {\\geq}", "superscript: {^a}"))
-
-  expect_false(grepl("\\geq", as_rtf_footnote(fn2), fixed = TRUE))
-  expect_false(grepl("^a", as_rtf_footnote(fn2), fixed = TRUE))
-})
-
-test_that("Test for function as_rtf_source() when there is no text conversion
-i.e. attr(text, 'text_convert') = NULL", {
-  sc <- head(iris, 2) %>%
-    rtf_source(source = c(">= sign: {\\geq}", "superscript: {^a}"),
-               text_convert = FALSE)
-
-  expect_true(grepl("\\geq", as_rtf_source(sc), fixed = TRUE))
-  expect_true(grepl("^a", as_rtf_source(sc), fixed = TRUE))
-})
+# test_that("Test for function as_rtf_footnote() when there is no text conversion
+# i.e. attr(text, 'text_convert') = NULL", {
+#   fn1 <- head(iris, 2) %>%
+#     rtf_title(title = 'footnote example') %>%
+#     rtf_footnote(footnote = c("> = sign: {\\geq}", "superscript: {^a}"),
+#                  text_convert=FALSE)
+#
+#   expect_true(grepl("\\geq", as_rtf_footnote(fn1), fixed = TRUE))
+#   expect_true(grepl("^a", as_rtf_footnote(fn1), fixed = TRUE))
+#
+#   fn2 <- head(iris, 2) %>%
+#     rtf_title(title = 'footnote example') %>%
+#     rtf_footnote(footnote = c("> = sign: {\\geq}", "superscript: {^a}"))
+#
+#   expect_false(grepl("\\geq", as_rtf_footnote(fn2), fixed = TRUE))
+#   expect_false(grepl("^a", as_rtf_footnote(fn2), fixed = TRUE))
+# })
+#
+# test_that("Test for function as_rtf_source() when there is no text conversion
+# i.e. attr(text, 'text_convert') = NULL", {
+#   sc <- head(iris, 2) %>%
+#     rtf_source(source = c(">= sign: {\\geq}", "superscript: {^a}"),
+#                text_convert = FALSE)
+#
+#   expect_true(grepl("\\geq", as_rtf_source(sc), fixed = TRUE))
+#   expect_true(grepl("^a", as_rtf_source(sc), fixed = TRUE))
+# })
 
 
 
