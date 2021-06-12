@@ -1,0 +1,173 @@
+/* typography */
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 16px;
+    line-height: 24px;
+    color: #212529;
+}
+
+/* content padding */
+
+body>.container {
+    padding-top: 60px;
+}
+
+/* navbar */
+
+.navbar-default .navbar-link {
+    color: #fff;
+}
+
+.navbar-default .navbar-link:hover {
+    color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #fff;
+}
+
+.label-default {
+    background-color: #95a5a6;
+}
+
+a {
+    color: #00857c;
+}
+
+a:hover, a:active {
+    color: #005c55;
+}
+
+/* navbar again */
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: #fff;
+    /*Sets the text hover color on navbar*/
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+    color: #fff;
+    /*BACKGROUND color for active*/
+    background-color: #00857c;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: #00857c;
+    /*change color of links in drop down here*/
+}
+
+.nav>li>a:hover, .nav>li>a:focus {
+    text-decoration: none;
+    background-color: silver;
+    /*Change rollover cell color here*/
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+    /*Change active text color here*/
+}
+
+.navbar-default {
+    background-color: #00857c;
+    border-color: #fff !important;
+}
+
+.navbar-mrk {
+    background-color: #005c55;
+    color: #fff !important;
+    margin-right: 0px;
+}
+
+.navbar-mrk>li>a {
+    color: #fff !important;
+}
+
+.navbar-mrk>.active>a {
+    background-color: #005c55 !important;
+}
+
+.navbar-mrk>.open>a:focus, .nav-pills>.open>a:focus {
+    background-color: #005c55 !important;
+}
+
+.dropdown-menu>.active>a, .dropdown-menu>.active>a:focus {
+    background-color: #005c55 !important;
+}
+
+.contents-mrk>li>a:focus, .nav-pills>li>a:focus {
+    background-color: #00857c !important;
+    color: #fff;
+}
+
+.contents-mrk>li.active>a, .nav-pills>li.active>a {
+    background-color: #005c55 !important;
+}
+
+.contents-mrk>li>a, .nav-pills>li>a {
+    background-color: #00857c !important;
+    color: #fff;
+}
+
+/* small screen expanded dropdown (vignettes) link color */
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu>li>a {
+        color: #fff;
+    }
+    .navbar-default .navbar-nav .open .dropdown-menu>.active>a, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:focus, .navbar-default .navbar-nav .open .dropdown-menu>.active>a:hover {
+        color: #fff;
+    }
+}
+
+/* toc */
+
+nav[data-toggle='toc'] .nav>li>a {
+    font-size: 15px;
+    color: #747479;
+}
+
+/* syntax highlighting */
+
+pre, code {
+    font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 14px;
+}
+
+code a, pre a {
+    color: #00857c;
+}
+
+.fl {
+    color: #00857c;
+}
+
+.ch, .st {
+    color: #0c2340;
+}
+
+.kw {
+    color: #00857c;
+}
+
+/* copy code button */
+
+.btn-copy-ex {
+    background-color: #00857c;
+    border-color: #005c55;
+}
+
+.btn-copy-ex:hover {
+    background-color: #005c55;
+    border-color: #005c55;
+}
+
+/* footer */
+
+footer {
+    margin-top: 45px;
+    padding: 45px 0 55px;
+    color: #747479;
+}
