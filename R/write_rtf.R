@@ -34,6 +34,8 @@
 #' @export
 write_rtf <- function(rtf, file) {
   write(paste(unlist(rtf), collapse = "\n"), file)
+
+  invisible(file)
 }
 
 

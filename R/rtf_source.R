@@ -83,6 +83,9 @@ rtf_source <- function(tbl,
   check_args(source, type = "character")
   check_args(as_table, type = "logical")
 
+  # Convert tbl to a data frame, each column is a character
+  if(class(tbl) %in% "data.frame") tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+
   # Define proper justification reference
   if (text_justification == "l" & (! as_table)) {
     text_indent_left <- text_indent_left + footnote_source_space(tbl, text_indent_reference)

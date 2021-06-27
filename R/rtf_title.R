@@ -75,6 +75,9 @@ rtf_title <- function(tbl,
   check_args(subtitle, type = c("character"))
   text <- unlist(c(title, subtitle))
 
+  # Convert tbl to a data frame, each column is a character
+  if(class(tbl) %in% "data.frame") tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+
   # Set Default Page Attributes
   if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
@@ -165,6 +168,9 @@ rtf_subline <- function(tbl,
 
   # Input checking
   check_args(text, type = c("character"))
+
+  # Convert tbl to a data frame, each column is a character
+  if(class(tbl) %in% "data.frame") tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   # Set Default Page Attributes
   if (is.null(attr(tbl, "page"))) {
