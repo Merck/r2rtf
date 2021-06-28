@@ -9,7 +9,8 @@ rtf_encode(
   doc_type = "table",
   page_title = "all",
   page_footnote = "last",
-  page_source = "last"
+  page_source = "last",
+  verbose = FALSE
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ Possible values are "first", "last" and "all".}
 
 \item{page_source}{A character of title displaying location. Default is "last" for all pages.
 Possible values are "first", "last" and "all".}
+
+\item{verbose}{a boolean value to return more details of RTF encoding.}
 }
 \value{
 \preformatted{For \code{rtf_encode}, a vector of RTF code.
