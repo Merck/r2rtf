@@ -41,6 +41,7 @@
 #'                   Possible values are "first", "last" and "all".
 #' @param page_source A character of title displaying location. Default is "last" for all pages.
 #'                   Possible values are "first", "last" and "all".
+#' @param verbose a boolean value to return more details of RTF encoding.
 #'
 #' @return
 #'     For \code{rtf_encode}, a vector of RTF code.
@@ -98,7 +99,8 @@ rtf_encode <- function(tbl,
                        doc_type = "table",
                        page_title = "all",
                        page_footnote = "last",
-                       page_source = "last") {
+                       page_source = "last",
+                       verbose = FALSE) {
   match_arg(doc_type, c("table", "figure"))
   match_arg(page_title, c("all", "first", "last"))
   match_arg(page_footnote, c("all", "first", "last"))
@@ -114,7 +116,7 @@ rtf_encode <- function(tbl,
     }
 
     if (any(class(tbl) %in% "data.frame")) {
-      return(rtf_encode_table(tbl))
+      return(rtf_encode_table(tbl, verbose = verbose))
     }
   }
 
