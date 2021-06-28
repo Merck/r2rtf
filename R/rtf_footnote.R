@@ -154,7 +154,7 @@ rtf_footnote <- function(tbl,
   check_args(as_table, type = "logical")
 
   # Convert tbl to a data frame, each column is a character
-  if(class(tbl) %in% "data.frame") tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+  if(any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   # Define proper justification reference
   if (text_justification == "l" & (! as_table) ) {

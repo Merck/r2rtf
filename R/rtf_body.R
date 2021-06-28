@@ -164,7 +164,7 @@ rtf_body <- function(tbl,
   match_arg(pageby_row, c("first_row", "column"))
 
   # Convert tbl to a data frame, each column is a character
-  if(class(tbl) %in% "data.frame") tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+  if(any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   # Sort data in proper order if subline_by, page_by or group_by is used.
   by_var <- c(subline_by, page_by, group_by)

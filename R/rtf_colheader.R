@@ -93,7 +93,7 @@ rtf_colheader <- function(tbl,
   check_args(col_rel_width, type = c("integer", "numeric"))
 
   # Convert tbl to a data frame, each column is a character
-  if(class(tbl) %in% "data.frame") tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+  if(any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   # Set Default Page Attributes
   if (is.null(attr(tbl, "page"))) {

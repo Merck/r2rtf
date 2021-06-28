@@ -83,7 +83,7 @@ rtf_page <- function(tbl,
   check_args(col_width, type = c("integer", "numeric"), length = 1)
 
   # Convert tbl to a data frame, each column is a character
-  if(class(tbl) %in% "data.frame") tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+  if(any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   # Check argument values
   stopifnot(width > 0)
@@ -149,7 +149,7 @@ rtf_page_header <- function(tbl,
                             text_convert = TRUE) {
 
   # Convert tbl to a data frame, each column is a character
-  if(class(tbl) %in% "data.frame") tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+  if(any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   text <- obj_rtf_text(text,
 
@@ -213,7 +213,7 @@ rtf_page_footer <- function(tbl,
                             text_convert = TRUE) {
 
   # Convert tbl to a data frame, each column is a character
-  if(class(tbl) %in% "data.frame") tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+  if(any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   text <- obj_rtf_text(text,
 
