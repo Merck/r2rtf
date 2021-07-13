@@ -78,7 +78,9 @@ obj_rtf_text <- function(text,
 
   # Validate argument value
   if (!is.null(text_format)) {
-    match_arg(unlist(strsplit(text_format, "")), font_format()$type, several.ok = TRUE)
+    tmp <- unlist(strsplit(text_format, ""))
+    if(length(tmp) == 0) tmp <- NULL
+    match_arg(tmp, font_format()$type, several.ok = TRUE)
   }
 
   stopifnot(text_font_size > 0)
