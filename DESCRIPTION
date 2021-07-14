@@ -18,6 +18,7 @@ Authors@R: c(
     person("Benjamin", "Wang", role = "ctb"),
     person("Jeff", "Cheng", role = "ctb"),
     person("Yirong", "Cao", role = "ctb"),
+    person("Amin", "Shirazi", role = "ctb"),
     person("Merck Sharp & Dohme Corp", role = "cph")
     )
 Description: Create production-ready Rich Text Format (RTF) table and figure with flexible format.
