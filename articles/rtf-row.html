@@ -110,17 +110,17 @@
 <a href="#border-type" class="anchor"></a>Border Type</h2>
 <p><code>.rtf_row</code> supports 8 different types of border as listed below.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span></code></pre></div>
 <pre><code>## [1] ""           "single"     "double"     "dot"        "dash"      
 ## [6] "small dash" "dot dash"   "dot dot"</code></pre>
 <p>The border type can be used to define the top, left, right and bottom border types.</p>
 <p>This example define different top border line.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
-<span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>border_type <span class="op">=</span> <span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
+<span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>border_type <span class="op">=</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Summary of Border Type Using Top Border"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span><span class="st">"Border Type"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>border_top <span class="op">=</span> <span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
+  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>border_top <span class="op">=</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>
 
 <span class="va">db</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -178,7 +178,7 @@
 ## [6,] ""   ""   ""   ""   ""</code></pre>
 <p>User can use single value, vector, and matrix to control the border type. Specifically, a vector is transferred to a matrix by row. Therefore, it is useful to set columns type by using vector.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, nrow <span class="op">=</span> <span class="fl">6</span>, ncol <span class="op">=</span> <span class="fl">5</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, nrow <span class="op">=</span> <span class="fl">6</span>, ncol <span class="op">=</span> <span class="fl">5</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>##      [,1] [,2]     [,3]     [,4]  [,5]  
 ## [1,] ""   "single" "double" "dot" "dash"
 ## [2,] ""   "single" "double" "dot" "dash"
@@ -202,7 +202,7 @@
 <a href="#cell-justification" class="anchor"></a>Cell Justification</h2>
 <p>The table cell allow to be left, center or right justified. the cell is also allow to align by decimal.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>##   type      name
 ## 1    l      left
 ## 2    c    center
@@ -210,8 +210,8 @@
 ## 4    d   decimal
 ## 5    j justified</code></pre>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">type</span>, each <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">type</span>, each <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/justification-type.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/justification-type.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
@@ -249,7 +249,7 @@
 <a href="#text-appearance" class="anchor"></a>Text Appearance</h2>
 <p>The <code>.rtf_row</code> function allow <strong>bold</strong>, <em>italics</em>, <del>strikethrough</del>, underline and any combinations of them.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
+<code class="sourceCode R"><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></code></pre></div>
 <pre><code>##   type        name
 ## 1           normal
 ## 2    b        bold
@@ -260,7 +260,7 @@
 ## 7    _   subscript</code></pre>
 <p>This example considers the text format defined below</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">fmt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="st">""</span>, <span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">type</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">fmt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="st">""</span>, <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">type</span><span class="op">)</span>
 <span class="va">fmt</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,] ""   ""  

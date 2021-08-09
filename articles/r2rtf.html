@@ -157,7 +157,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">TRTA</span>, <span class="va">AEDECOD</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">TRTA</span>, values_from <span class="op">=</span> <span class="va">n</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
 <span class="va">tbl</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fl">4</span><span class="op">)</span>
-<span class="co">## # A tibble: 4 x 4</span>
+<span class="co">## # A tibble: 4 × 4</span>
 <span class="co">##   AEDECOD        Placebo `Xanomeline High Dose` `Xanomeline Low Dose`</span>
 <span class="co">##   &lt;chr&gt;            &lt;int&gt;                  &lt;int&gt;                 &lt;int&gt;</span>
 <span class="co">## 1 ABDOMINAL PAIN       1                      2                     3</span>
@@ -536,7 +536,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">TRTA</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">aegt5</span><span class="op">)</span>
-<span class="co">## # A tibble: 6 x 3</span>
+<span class="co">## # A tibble: 6 × 3</span>
 <span class="co">##   TRTA                 AEDECOD                   Count</span>
 <span class="co">##   &lt;chr&gt;                &lt;chr&gt;                     &lt;int&gt;</span>
 <span class="co">## 1 Placebo              DIARRHOEA                     9</span>
