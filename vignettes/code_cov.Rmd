@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 
 ```{r}
-devtools::load_all() # Load functions in current package
+library(r2rtf)
 ```
 
 ```{r}

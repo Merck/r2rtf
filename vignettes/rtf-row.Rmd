@@ -9,8 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-devtools::load_all() # need to be updated after the package mature
-
+library(r2rtf)
 library(dplyr)
 ```
 

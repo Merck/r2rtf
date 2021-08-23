@@ -12,7 +12,7 @@ description: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-devtools::load_all()
+library(r2rtf)
 library(ggplot2)
 library(dplyr)
 library(tidyr)

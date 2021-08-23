@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 
 ```{r setup, message=FALSE, echo=FALSE}
 library(dplyr)
-devtools::load_all() # Load functions in current package
+library(r2rtf)
 ```
 
 ## Overview 
