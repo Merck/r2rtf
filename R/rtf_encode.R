@@ -35,11 +35,11 @@
 #' @name rtf_encode
 #' @param tbl A data frame for table or a list of binary string for figure.
 #' @param doc_type The doc_type of input, default is table.
-#' @param page_title A character of title displaying location. Default is "all" for all pages.
+#' @param page_title A character of title displaying location.
 #'                   Possible values are "first", "last" and "all".
-#' @param page_footnote A character of title displaying location. Default is "last" for all pages.
+#' @param page_footnote A character of title displaying location.
 #'                   Possible values are "first", "last" and "all".
-#' @param page_source A character of title displaying location. Default is "last" for all pages.
+#' @param page_source A character of title displaying location.
 #'                   Possible values are "first", "last" and "all".
 #' @param verbose a boolean value to return more details of RTF encoding.
 #'

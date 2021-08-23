@@ -18,7 +18,8 @@
 #' @title Add Column Header Attributes to Table
 #'
 #' @param tbl A data frame.
-#' @param colheader A character string that uses " | " to separate column names. Default is NULL for a blank column header.
+#' @param colheader A character string that uses " | " to separate column names.
+#' Default is NULL for a blank column header.
 #' @param col_rel_width A Column relative width in a vector e.g. c(2,1,1) refers to 2:1:1.
 #'                      Default is NULL for equal column width.
 #' @inheritParams rtf_footnote
@@ -26,7 +27,8 @@
 #' @section Specification:
 #' \if{latex}{
 #'  \itemize{
-#'    \item Input checks using \code{check_args()}, \code{match_arg()} and \code{stopifnot()}. The required argument is \code{tbl}, i.e. A data frame must define by \code{tbl}.
+#'    \item Input checks using \code{check_args()}, \code{match_arg()} and \code{stopifnot()}.
+#'    The required argument is \code{tbl}, i.e. A data frame must define by \code{tbl}.
 #'    \item Set default page attributes and register use_color attribute.
 #'    \item Define column header attributes of \code{tbl} based on the input.
 #'    \item Return \code{tbl}.

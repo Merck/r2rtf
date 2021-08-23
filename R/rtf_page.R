@@ -20,16 +20,13 @@
 #' @param tbl A data frame.
 #' @param orientation Orientation in 'portrait' or 'landscape'.
 #' @param width A numeric value of page width in inches.
-#'              Default is 8.5 inch in portrait orientation or 11.0 inch in landscape orientation.
 #' @param height A numeric value of page width in inches.
-#'               Default is 11.0 inch in portrait orientation or 8.5 inch in landscape orientation.
 #' @param margin A numeric vector of length 6 for page margin. The value set left, right, top, bottom, header and footer
 #'               margin in order. Default value depends on the page orientation and set by `r2rtf:::set_margin("wma", orientation)`
-#' @param nrow   Number of rows in each page. Default is 42 rows if portrait orientation
-#'                 and 26 rows in landscape orientation.
-#' @param border_first First top border type of the whole table. Default is "double" indicating double line bottom border.
+#' @param nrow   Number of rows in each page.
+#' @param border_first First top border type of the whole table.
 #'                      All possible input can be found in `r2rtf:::border_type()$name`.
-#' @param border_last  Last bottom border type of the whole table. Default is "double" indicating double line bottom border.
+#' @param border_last  Last bottom border type of the whole table.
 #'                      All possible input can be found in `r2rtf:::border_type()$name`.
 #' @param border_color_first First top border color type of the whole table. Default is NULL for black.
 #'                         All possible input can be found in `grDevices::colors()`.

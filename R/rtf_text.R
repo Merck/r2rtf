@@ -23,7 +23,7 @@
 #' @param format  Text format.
 #' @param color Text color.
 #' @param background_color Text background color.
-#' @param text_convert A logical value to convert special characters. Default is TRUE.
+#' @param text_convert A logical value to convert special characters.
 #'
 #' @section Specification:
 #' \if{latex}{

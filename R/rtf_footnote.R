@@ -56,7 +56,7 @@
 #' @param cell_justification Justification type for cell. Default is "c" for center justification.
 #'                           All possible input can be found in `r2rtf:::justification()$type`.
 #' @param cell_height Cell height in inches. Default is 0.15 for 0.15 inch.
-#' @param cell_nrow Number of rows required in each cell. Default is NULL.
+#' @param cell_nrow Number of rows required in each cell.
 #' @param text_justification Justification type for text. Default is "c" for center justification.
 #'                           To vary text justification by column, use character vector with
 #'                           length of vector equal to number of columns displayed e.g. c("c","l","r").
@@ -65,7 +65,7 @@
 #'                  by column, use numeric vector with length of vector equal to number of
 #'                  columns displayed e.g. c(1,2,3).All possible input can be found
 #'                  in `r2rtf:::font_type()$type`.
-#' @param text_font_size Text font size. Default is 9. To vary text font size by column, use
+#' @param text_font_size Text font size.  To vary text font size by column, use
 #'                       numeric vector with length of vector equal to number of columns
 #'                       displayed e.g. c(9,20,40).
 #' @param text_format Text format type. Default is NULL for normal. Combination of format type
@@ -86,10 +86,10 @@
 #' @param text_indent_right A value of text right indent.
 #' @param text_indent_reference The reference start point of text indent. Accept `table` or `page_margin`
 #' @param text_space Line space between paragraph in twips. Default is 0.
-#' @param text_space_before Line space before a paragraph in twips. Default is 15.
-#' @param text_space_after Line space after a paragraph in twips. Default is 15.
+#' @param text_space_before Line space before a paragraph in twips.
+#' @param text_space_after Line space after a paragraph in twips.
 #' @param as_table A logical value to display it as a table.
-#' @param text_convert A logical value to convert special characters. Default is TRUE.
+#' @param text_convert A logical value to convert special characters.
 #'
 #' @section Specification:
 #' \if{latex}{

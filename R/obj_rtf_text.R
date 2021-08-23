@@ -19,8 +19,8 @@
 #'
 #' @inheritParams rtf_footnote
 #' @param text A character string.
-#' @param text_new_page A logical value to control whether display text in new page. Default is FALSE.
-#' @param text_hyphenation A logical value to control whether display text linked with hyphenation. Default is TRUE.
+#' @param text_new_page A logical value to control whether display text in new page.
+#' @param text_hyphenation A logical value to control whether display text linked with hyphenation.
 #'
 #' @section Specification:
 #' \if{latex}{
