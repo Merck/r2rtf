@@ -80,14 +80,17 @@ head(iris) %>%
 
 ```{r, include=FALSE}
 library(r2rtf)
-try({
+try(
+  {
     pdftools::pdf_convert("vignettes/pdf/ex-tbl.pdf", dpi = 200, filenames = "ex-tbl.png")
     pdftools::pdf_convert("vignettes/pdf/efficacy_example.pdf", dpi = 200, filenames = "efficacy_example.png")
     pdftools::pdf_convert("vignettes/pdf/ae_example.pdf", dpi = 200, filenames = "ae_example.png")
-  files <- c("ex-tbl.png", "efficacy_example.png", "ae_example.png")
-  file.copy(from = files, to = file.path("vignettes/fig", files), overwrite = TRUE)
-  file.remove(files)
-}, silent = TRUE)
+    files <- c("ex-tbl.png", "efficacy_example.png", "ae_example.png")
+    file.copy(from = files, to = file.path("vignettes/fig", files), overwrite = TRUE)
+    file.remove(files)
+  },
+  silent = TRUE
+)
 ```
 
 <details><summary>Click here to see the output</summary>
@@ -118,23 +121,27 @@ files <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
 
 r2rtf:::rtf_convert_format(input = files, output_dir = "vignettes/pdf")
 
-r2rtf:::rtf_convert_format(input = files, 
-                           format = "docx", 
-                           output_dir = "vignettes/docx")
+r2rtf:::rtf_convert_format(
+  input = files,
+  format = "docx",
+  output_dir = "vignettes/docx"
+)
 
 
 
-r2rtf:::rtf_convert_format(input = files, 
-                           format = "html", 
-                           output_dir = "vignettes/html")
+r2rtf:::rtf_convert_format(
+  input = files,
+  format = "html",
+  output_dir = "vignettes/html"
+)
 
 
 files <- list.files("vignettes/rtf", pattern = "*\\.rtf")
-files_pdf  <- list.files("vignettes/pdf", pattern = "*\\.pdf")
+files_pdf <- list.files("vignettes/pdf", pattern = "*\\.pdf")
 files_docx <- list.files("vignettes/docx", pattern = "*\\.docx")
 files_html <- list.files("vignettes/html", pattern = "*\\.html")
 
-# Compare RTF and PDF folder filenames.  
+# Compare RTF and PDF folder filenames.
 waldo::compare(
   tools::file_path_sans_ext(files),
   tools::file_path_sans_ext(files_pdf)

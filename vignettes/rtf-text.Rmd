@@ -52,10 +52,11 @@ knitr::include_graphics("pdf/para-justification.pdf")
 First line, left, and right indent can be controlled. One can also use a negative number to have the text "outdent".
 
 ```{r}
-res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text), 
-                             indent_first = c(1000, 0, -1000), 
-                             indent_left = c(500, -500), 
-                             indent_right = 500)
+res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text),
+  indent_first = c(1000, 0, -1000),
+  indent_left = c(500, -500),
+  indent_right = 500
+)
 r2rtf:::write_rtf_para(res, "rtf/para-indent.rtf")
 ```
 
@@ -140,7 +141,7 @@ knitr::include_graphics("pdf/text-format-1.pdf")
 ### Text Font Type
 ```{r}
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
-  font=1:10
+  font = 1:10
 ))
 r2rtf:::write_rtf_para(res, "rtf/text-font-type.rtf")
 ```
@@ -199,10 +200,14 @@ color <- c("black", "black", "red", "black")
 background_color <- c("white", "white", "white", "yellow")
 
 res <- r2rtf:::rtf_paragraph(
-          paste(r2rtf:::rtf_text(text, format = format, 
-                                 color = color, 
-                                 background_color = background_color), 
-                collapse = ""))
+  paste(r2rtf:::rtf_text(text,
+    format = format,
+    color = color,
+    background_color = background_color
+  ),
+  collapse = ""
+  )
+)
 r2rtf:::write_rtf_para(res, "rtf/text-combine2.rtf")
 ```
 
@@ -222,4 +227,3 @@ r2rtf:::write_rtf_para(res, "rtf/text-combine3.rtf")
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/text-combine3.pdf")
 ```
-
