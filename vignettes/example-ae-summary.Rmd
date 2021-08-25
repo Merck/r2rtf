@@ -35,7 +35,8 @@ ae_t1 <- r2rtf_adae %>%
     n_ae = n_distinct(USUBJID),
     pct = round(n_ae / unique(n_subj) * 100, 2)
   ) %>%
-  dplyr::filter(n_ae > 5) %>% # only show AE terms with at least 5 subjects in one treatment group.
+  dplyr::filter(n_ae > 5) %>%
+  # only show AE terms with at least 5 subjects in one treatment group.
   pivot_longer(cols = c(n_ae, pct), names_to = "var", values_to = "value") %>%
   unite(temp, TRTA, var) %>%
   pivot_wider(names_from = temp, values_from = value, values_fill = 0)
@@ -76,7 +77,7 @@ ae_tbl <- ae_t1 %>%
 ## Step 3: Output
 
 ```{r}
-# Output .rtf file  
+# Output .rtf file
 ae_tbl %>%
   rtf_encode() %>%
   write_rtf("rtf/ae_example.rtf")

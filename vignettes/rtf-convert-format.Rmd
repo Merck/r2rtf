@@ -53,7 +53,7 @@ knitr::include_graphics("pdf/border-type.pdf")
 
 ````{=html}
 ```{r, echo=FALSE, results='asis'}
-xfun::file_string('html/border-type.html')
+xfun::file_string("html/border-type.html")
 ```
 ````
 

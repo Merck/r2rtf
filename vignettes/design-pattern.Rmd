@@ -94,7 +94,7 @@ To access the attributes, `attr()` or `attributes()` function can be used. For e
 in default setting, we can run code below. 
 
 ```{r}
-data.frame(value=unlist(attr(tbl, "page")))
+data.frame(value = unlist(attr(tbl, "page")))
 ```
 
 
@@ -154,12 +154,18 @@ this is often seen in efficacy analysis. And `rtf_encode_figure()` is used for f
 
 `r2rtf:::as_rtf_colheader()` define the column header in a table or listing.
 ```{r, eval = FALSE}
-head(iris) %>% rtf_body() %>% r2rtf:::as_rtf_colheader() %>% cat()
+head(iris) %>%
+  rtf_body() %>%
+  r2rtf:::as_rtf_colheader() %>%
+  cat()
 ```
 
 `r2rtf:::as_rtf_color()` define the color to be used in text or border.
 ```{r, eval = FALSE}
-head(iris) %>% rtf_body(text_color = "red") %>% r2rtf:::as_rtf_color() %>% cat()
+head(iris) %>%
+  rtf_body(text_color = "red") %>%
+  r2rtf:::as_rtf_color() %>%
+  cat()
 ```
 
 `r2rtf:::as_rtf_end()` define the end of rtf encode string.
@@ -174,7 +180,10 @@ r2rtf:::as_rtf_font() %>% cat()
 
 `r2rtf:::as_rtf_footnote()` define the footnote encode.
 ```{r}
-head(iris) %>% rtf_footnote("example") %>% r2rtf:::as_rtf_footnote() %>% cat()
+head(iris) %>%
+  rtf_footnote("example") %>%
+  r2rtf:::as_rtf_footnote() %>%
+  cat()
 ```
 
 `r2rtf:::as_rtf_init()` initiates rtf encode with 'English' as default language.
@@ -184,7 +193,10 @@ r2rtf:::as_rtf_init() %>% cat()
 
 `r2rtf:::as_rtf_margin()` define a page margin. 
 ```{r, eval = FALSE}
-head(iris) %>% rtf_page() %>% r2rtf::as_rtf_margin() %>% cat()
+head(iris) %>%
+  rtf_page() %>%
+  r2rtf::as_rtf_margin() %>%
+  cat()
 ```
 
 `r2rtf:::as_rtf_new_page()` initiates new page encode. 
@@ -194,12 +206,18 @@ r2rtf::as_rtf_new_page() %>% cat()
 
 `r2rtf:::as_rtf_page()` define a page width (`\paperw`) and height(`\paperh`).
 ```{r, eval = FALSE}
-head(iris) %>% rtf_page() %>% r2rtf:::as_rtf_page() %>% cat()
+head(iris) %>%
+  rtf_page() %>%
+  r2rtf:::as_rtf_page() %>%
+  cat()
 ```
 
 `r2rtf:::as_rtf_pageby()` define a page_by encoding when argument page_by is not NULL in `rtf_body()`.
 ```{r, eval = FALSE}
-iris %>% rtf_body(page_by = 'Species') %>% r2rtf:::as_rtf_pageby() %>% cat()
+iris %>%
+  rtf_body(page_by = "Species") %>%
+  r2rtf:::as_rtf_pageby() %>%
+  cat()
 ```
 
 `r2rtf:::as_rtf_paragraph()` define a title/text attribute as paragraph.
@@ -209,39 +227,51 @@ r2rtf:::as_rtf_paragraph(attr(head(iris) %>% rtf_title("example"), "rtf_title"))
 
 `r2rtf:::as_rtf_source()` define the source encode.
 ```{r, eval = FALSE}
-head(iris) %>% rtf_source("example") %>% r2rtf:::as_rtf_source() %>% cat()
+head(iris) %>%
+  rtf_source("example") %>%
+  r2rtf:::as_rtf_source() %>%
+  cat()
 ```
 
 `r2rtf:::as_rtf_subline()` define the subline encode.
 ```{r, eval = FALSE}
-head(iris) %>% rtf_subline("example") %>% r2rtf:::as_rtf_subline() %>% cat()
+head(iris) %>%
+  rtf_subline("example") %>%
+  r2rtf:::as_rtf_subline() %>%
+  cat()
 ```
 
 `r2rtf:::as_rtf_table()` define the table encode.
 ```{r, eval = FALSE}
-head(iris) %>% rtf_title("example") %>% r2rtf:::as_rtf_table() %>% cat()
+head(iris) %>%
+  rtf_title("example") %>%
+  r2rtf:::as_rtf_table() %>%
+  cat()
 ```
 
 `r2rtf:::as_rtf_title()` define the title encode.
 ```{r, eval = FALSE}
-head(iris) %>% rtf_title("example") %>% r2rtf:::as_rtf_title() %>% cat()
+head(iris) %>%
+  rtf_title("example") %>%
+  r2rtf:::as_rtf_title() %>%
+  cat()
 ```
 
 In a minimal example, we can create an RTF file by combining different pieces of RTF code.
 For simplicity, we only show the first two rows of `iris` data
 
 ```{r}
-tbl <- iris[1:2, ] %>% rtf_body() 
+tbl <- iris[1:2, ] %>% rtf_body()
 
 paste(
-      r2rtf:::as_rtf_init(),
-      r2rtf:::as_rtf_font(),
-      r2rtf:::as_rtf_page(tbl), 
-      r2rtf:::as_rtf_margin(tbl),
-      r2rtf:::as_rtf_table(tbl),
-      "}",
-      sep = "\n"
-    ) %>% cat()
+  r2rtf:::as_rtf_init(),
+  r2rtf:::as_rtf_font(),
+  r2rtf:::as_rtf_page(tbl),
+  r2rtf:::as_rtf_margin(tbl),
+  r2rtf:::as_rtf_table(tbl),
+  "}",
+  sep = "\n"
+) %>% cat()
 ```
 
 If we save the RTF code into an `.rtf` file. 
@@ -258,9 +288,9 @@ into an `.rtf` file.
 A simple example is as in the overview section.
 
 ```{r, eval = FALSE}
-head(iris) %>% rtf_body() %>%                # Step 1 Add attributes 
-               rtf_encode() %>%              # Step 2 Convert attributes to RTF encode 
-               write_rtf(file = "tmp.rtf")   # Step 3 Write to a .rtf file 
+head(iris) %>% rtf_body() %>% # Step 1 Add attributes
+  rtf_encode() %>% # Step 2 Convert attributes to RTF encode
+  write_rtf(file = "tmp.rtf") # Step 3 Write to a .rtf file
 ```
 
 ## Dictionary and Conversion
@@ -276,7 +306,7 @@ r2rtf:::font_type()
 Superscripts, under scripts are taken care of by using `convert()` function to translate them into latex code and unicode. For example:
 
 ```{r}
-r2rtf:::convert(c("^","<="))
+r2rtf:::convert(c("^", "<="))
 ```
 
 ## Pageby 
@@ -286,14 +316,16 @@ To achieve this, user first need to sort input data frame by page_by variable th
 Border and text attributes are controlled together with other variables in the vectors.
 
 ```{r, eval = FALSE}
-iris %>% arrange(Species) %>% 
-  rtf_colheader("Sepal Length | Sepal Width | Petal Length | PetalWidth",) %>%
+iris %>%
+  arrange(Species) %>%
+  rtf_colheader("Sepal Length | Sepal Width | Petal Length | PetalWidth", ) %>%
   rtf_body(
     page_by = c("Species"),
-    border_top = c(rep("",4),c("single")),
+    border_top = c(rep("", 4), c("single")),
     border_bottom = c(rep("", 4), c("single")),
     text_justification = c(rep("c", 4), c("l")),
-    new_page = TRUE) %>%
+    new_page = TRUE
+  ) %>%
   rtf_encode() %>%
   write_rtf("pageby.rtf")
 ```

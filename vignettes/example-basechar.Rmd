@@ -51,9 +51,9 @@ bs_count <- function(data, grp, var,
   res <- res %>% rename(n = Freq)
 
   res <- res %>% mutate(pct = formatC(n / sum(n) * 100, digits = decimal, format = "f", flag = "0"))
-  
+
   res$n <- as.character(res$n)
-  
+
   res <- res %>%
     pivot_longer(cols = c(n, pct), names_to = "key", values_to = "value") %>%
     unite(keys, grp, key) %>%
@@ -105,9 +105,9 @@ bs_continous <- function(data, grp, var,
       mutate(grp = 9999)
     res <- bind_rows(res, res_tot)
   }
- 
+
   res$"Subjects with data" <- as.character(res$"Subjects with data")
-  
+
   res <- res %>%
     pivot_longer(cols = -grp, names_to = "key", values_to = "value") %>%
     mutate(key = factor(key, levels = c("Subjects with data", "Mean", "SD", "Median", "Range"))) %>%
@@ -142,13 +142,13 @@ ana <- ana %>% mutate(
     c("White", "Black", "Other")
   ),
   SEX = factor(
-    SEX, 
-    c("F", "M"), 
+    SEX,
+    c("F", "M"),
     c("Female", "Male")
   ),
   AGEGR1 = factor(
-    AGEGR1, 
-    levels = c('<65','65-80','>80')
+    AGEGR1,
+    levels = c("<65", "65-80", ">80")
   )
 )
 
@@ -158,11 +158,11 @@ bs_tb <- bind_rows(
   bs_count(ana, "TRT01AN", "AGEGR1", "Age (Years)"),
   bs_continous(ana, "TRT01AN", "AGE", "Age (Years)", blank_row = TRUE),
   bs_count(ana, "TRT01AN", "RACE", "Race")
-)  %>% mutate(
-  var_label = factor(var_label, levels = c('Gender','Age (Years)','Race'))
+) %>% mutate(
+  var_label = factor(var_label, levels = c("Gender", "Age (Years)", "Race"))
 )
 
-bs_tb[is.na(bs_tb)] <- ""    # convert NA to blank string.
+bs_tb[is.na(bs_tb)] <- "" # convert NA to blank string.
 ```
 
 ```{r}
@@ -177,11 +177,8 @@ knitr::kable(bs_tb)
 
 ```{r}
 bs_rtf <- bs_tb %>%
-  
   rtf_page(width = 9.5) %>%
-  
-  rtf_title("Demographic and Anthropometric Characteristics", "ITT Subjects"
-  ) %>%
+  rtf_title("Demographic and Anthropometric Characteristics", "ITT Subjects") %>%
   rtf_colheader(" | Placebo | Drug Low Dose | Drug High Dose | Total ",
     col_rel_width = c(3, rep(2, 4))
   ) %>%
@@ -190,24 +187,23 @@ bs_rtf <- bs_tb %>%
     border_top = c("", rep("single", 8)),
     border_left = c("single", rep(c("single", ""), 4))
   ) %>%
-  rtf_body(page_by = "var_label",
+  rtf_body(
+    page_by = "var_label",
     col_rel_width = c(3, rep(c(1.2, 0.8), 4), 3),
     text_justification = c("l", rep("c", 8), "l"),
-    text_format=c(rep("",9), "b"),
+    text_format = c(rep("", 9), "b"),
     border_left = c("single", rep(c("single", ""), 4), "single"),
-    border_top         = c(rep("", 9),"single"),
-    border_bottom      = c(rep("", 9),"single"),
+    border_top = c(rep("", 9), "single"),
+    border_bottom = c(rep("", 9), "single"),
   ) %>%
-
   rtf_footnote("This is a footnote") %>%
-  
   rtf_source("Source: xxx")
 ```
 
 ## Step 4: Output
 
 ```{r}
-# Output .rtf file  
+# Output .rtf file
 bs_rtf %>%
   rtf_encode() %>%
   write_rtf("rtf/bs_example.rtf")

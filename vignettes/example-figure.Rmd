@@ -80,4 +80,3 @@ filename %>%
   rtf_encode(doc_type = "figure") %>%               # encode rtf as figure
   write_rtf(file = "rtf/fig-landscape.rtf")         # write RTF to a file
 ```
-
