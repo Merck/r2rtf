@@ -35,18 +35,19 @@
 #'
 #' @examples
 #' library(dplyr)
-#' tbl <- data.frame(x = rep("This is a long sentence", 5),
-#'                   y = "short")
+#' tbl <- data.frame(
+#'   x = rep("This is a long sentence", 5),
+#'   y = "short"
+#' )
 #' tbl %>%
 #'   rtf_body(text_font = c(1, 3)) %>%
 #'   r2rtf:::rtf_strwidth()
-#'
-rtf_strwidth <- function(tbl){
+rtf_strwidth <- function(tbl) {
 
   # Text matrix
-  if(! is.null(dim(tbl))){
+  if (!is.null(dim(tbl))) {
     text <- apply(tbl, 2, as.character)
-  }else{
+  } else {
     text <- as.character(tbl)
   }
 
@@ -55,12 +56,12 @@ rtf_strwidth <- function(tbl){
 
   # Font format
   # text format 1 (plain/normal), 2 (bold), 3 (italic), 4 (bold-italic)
-  if(! is.null(attr(tbl, "text_format"))){
-    text_format <- unlist(lapply(strsplit(attr(tbl, "text_format"), ""), function(x){
+  if (!is.null(attr(tbl, "text_format"))) {
+    text_format <- unlist(lapply(strsplit(attr(tbl, "text_format"), ""), function(x) {
       type_check <- c("b", "i") %in% x
       sum(type_check * 1:2) + 1
-    } ))
-  }else{
+    }))
+  } else {
     text_format <- 1
   }
 
@@ -68,7 +69,7 @@ rtf_strwidth <- function(tbl){
   font_num <- as.numeric(attr(tbl, "text_font"))
 
   # Group font with same style
-  font_num <- factor(font_num, levels = 1:10, labels = c(1,1,4,4,4,1,9,4,9,9))
+  font_num <- factor(font_num, levels = 1:10, labels = c(1, 1, 4, 4, 4, 1, 9, 4, 9, 9))
   font_num <- as.numeric(as.character(font_num))
 
   text_family <- font_type()[font_num, "family"]
@@ -76,10 +77,12 @@ rtf_strwidth <- function(tbl){
   text_indent <- (attr(tbl, "text_indent_first")) / 1440 # to inch
 
 
-  db <- data.frame(cex    = as.numeric(text_cex),
-                   font   = as.numeric(text_format),
-                   family = as.character(text_family),
-                   stringsAsFactors = FALSE)
+  db <- data.frame(
+    cex = as.numeric(text_cex),
+    font = as.numeric(text_format),
+    family = as.character(text_family),
+    stringsAsFactors = FALSE
+  )
 
   db$text <- as.character(text)
   db$id <- 1:nrow(db)
@@ -90,43 +93,40 @@ rtf_strwidth <- function(tbl){
 
 
   db_list <- split(db, db$index)
-  db_list <- lapply(db_list, function(x){
+  db_list <- lapply(db_list, function(x) {
 
-                # Mapping Windows Font
-                if(.Platform$OS.type == "windows"){
-                  grDevices::windowsFonts("Arial"     = grDevices::windowsFont("Arial"))
-                  grDevices::windowsFonts("Times"     = grDevices::windowsFont("Times New Roman"))
-                  grDevices::windowsFonts("ArialMT"   = grDevices::windowsFont("Arial"))
-                  grDevices::windowsFonts("Helvetica" = grDevices::windowsFont("Helvetica"))
-                  grDevices::windowsFonts("Calibri"   = grDevices::windowsFont("Calibri"))
-                  grDevices::windowsFonts("Georgia"   = grDevices::windowsFont("Georgia"))
-                  grDevices::windowsFonts("Cambria"   = grDevices::windowsFont("Cambria"))
-                  grDevices::windowsFonts("Courier"   = grDevices::windowsFont("Courier New"))
-                }
+    # Mapping Windows Font
+    if (.Platform$OS.type == "windows") {
+      grDevices::windowsFonts("Arial" = grDevices::windowsFont("Arial"))
+      grDevices::windowsFonts("Times" = grDevices::windowsFont("Times New Roman"))
+      grDevices::windowsFonts("ArialMT" = grDevices::windowsFont("Arial"))
+      grDevices::windowsFonts("Helvetica" = grDevices::windowsFont("Helvetica"))
+      grDevices::windowsFonts("Calibri" = grDevices::windowsFont("Calibri"))
+      grDevices::windowsFonts("Georgia" = grDevices::windowsFont("Georgia"))
+      grDevices::windowsFonts("Cambria" = grDevices::windowsFont("Cambria"))
+      grDevices::windowsFonts("Courier" = grDevices::windowsFont("Courier New"))
+    }
 
-                x$width <- graphics::strwidth(x$text,
-                                              units = "inches",
-                                              cex = x$cex[1],
-                                              font = x$font[1],
-                                              family = as.character(x$family[1]))
-                x
+    x$width <- graphics::strwidth(x$text,
+      units = "inches",
+      cex = x$cex[1],
+      font = x$font[1],
+      family = as.character(x$family[1])
+    )
+    x
   })
   db <- do.call(rbind, db_list)
   width <- db$width[order(db$id)]
 
   # Recalculate font size for "Georgia" ,"Courier New", and "Symbol".
-  width <- ifelse(font_num %in% 9, nchar(text) *  attr(tbl, "text_font_size") * 0.52 / 72, width)
+  width <- ifelse(font_num %in% 9, nchar(text) * attr(tbl, "text_font_size") * 0.52 / 72, width)
 
   # Add indent space
   width <- width + text_indent
 
-  if(!is.null(dim(tbl))){
+  if (!is.null(dim(tbl))) {
     width <- matrix(width, nrow = nrow(tbl), ncol = ncol(tbl))
   }
 
   width
-
 }
-
-
-

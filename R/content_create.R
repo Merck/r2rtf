@@ -246,7 +246,8 @@ as_rtf_subline <- function(tbl) {
 as_rtf_colheader <- function(tbl) {
   rtf_colheader <- attr(tbl, "rtf_colheader")
 
-  rtf_code <- lapply(rtf_colheader, rtf_table_content, use_border_bottom = TRUE,
+  rtf_code <- lapply(rtf_colheader, rtf_table_content,
+    use_border_bottom = TRUE,
     col_total_width = attr(tbl, "page")$col_width
   )
 

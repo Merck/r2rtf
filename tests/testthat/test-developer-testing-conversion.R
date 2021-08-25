@@ -18,6 +18,6 @@ test_that("multiplication works", {
   )
 
   expect_equal(convert(x), x_utf8)
-  expect_equal(convert(x, load_stringi = TRUE) , x_utf8)
+  expect_equal(convert(x, load_stringi = TRUE), x_utf8)
   expect_equal(convert(x, load_stringi = FALSE), x_utf8)
 })

@@ -1,12 +1,12 @@
 test_that("Test case when footnote and source display in all pages", {
-  m1 <- iris[1:2,] %>%
-    rtf_body (as_colheader = TRUE, border_color_left = "red") %>%
-    rtf_title("title")  %>%
+  m1 <- iris[1:2, ] %>%
+    rtf_body(as_colheader = TRUE, border_color_left = "red") %>%
+    rtf_title("title") %>%
     rtf_source("source")
-  m2 <- iris[3:4,] %>%
-    rtf_body (as_colheader = TRUE)
-  m3 <- iris[5:6,] %>%
-    rtf_body (as_colheader = TRUE)
+  m2 <- iris[3:4, ] %>%
+    rtf_body(as_colheader = TRUE)
+  m3 <- iris[5:6, ] %>%
+    rtf_body(as_colheader = TRUE)
   m <- list(m1, m2, m3)
 
   attr(m1, "page")$page_title <- "all"
@@ -28,20 +28,20 @@ test_that("Test case when footnote and source display in all pages", {
 })
 
 test_that("Test case when page width, height, or orientation are not consistent", {
-  m1 <- iris[1:2,] %>%
-    rtf_body ()
+  m1 <- iris[1:2, ] %>%
+    rtf_body()
 
-  m2 <- iris[3:4,] %>%
+  m2 <- iris[3:4, ] %>%
     rtf_page(width = 9) %>%
-    rtf_body ()
+    rtf_body()
 
-  m3 <- iris[3:4,] %>%
+  m3 <- iris[3:4, ] %>%
     rtf_page(height = 10) %>%
-    rtf_body ()
+    rtf_body()
 
-  m4 <- iris[3:4,] %>%
-    rtf_page(orientation = 'landscape') %>%
-    rtf_body ()
+  m4 <- iris[3:4, ] %>%
+    rtf_page(orientation = "landscape") %>%
+    rtf_body()
 
   width_diff <- list(m1, m2)
   height_diff <- list(m1, m3)
@@ -54,29 +54,29 @@ test_that("Test case when page width, height, or orientation are not consistent"
 
 
 test_that("Test case when footnote location or source location are not consistent, page_footnote or page_source != 'last', length of list == 1", {
-  m1 <- iris[1:2,] %>%
+  m1 <- iris[1:2, ] %>%
     rtf_footnote("footer 1") %>%
-    rtf_body ()
+    rtf_body()
 
   attr(m1, "page")$page_footnote <- "all"
 
-  m2 <- iris[3:4,] %>%
-    rtf_body ()
+  m2 <- iris[3:4, ] %>%
+    rtf_body()
 
-  m3 <- iris[3:4,] %>%
+  m3 <- iris[3:4, ] %>%
     rtf_source("source") %>%
-    rtf_body ()
+    rtf_body()
 
   attr(m3, "page")$page_source <- "all"
 
-  m4 <- iris[3:4,] %>%
-    rtf_body ()
+  m4 <- iris[3:4, ] %>%
+    rtf_body()
 
   attr(m4, "page")$page_footnote <- "all"
 
-  m5 <- iris[3:4,] %>%
+  m5 <- iris[3:4, ] %>%
     rtf_source("source") %>%
-    rtf_body ()
+    rtf_body()
 
   attr(m5, "page")$page_source <- "all"
 
@@ -95,18 +95,18 @@ test_that("Test case when footnote location or source location are not consisten
 
 
 test_that("Test case when having multiple footnotes or sources", {
-  m1 <- iris[1:2,] %>%
+  m1 <- iris[1:2, ] %>%
     rtf_footnote("footer 1") %>%
     rtf_source("source 1") %>%
-    rtf_body ()
+    rtf_body()
 
-  m2 <- iris[3:4,] %>%
+  m2 <- iris[3:4, ] %>%
     rtf_footnote("footer 2") %>%
-    rtf_body ()
+    rtf_body()
 
-  m3 <- iris[3:4,] %>%
+  m3 <- iris[3:4, ] %>%
     rtf_source("source 2") %>%
-    rtf_body ()
+    rtf_body()
 
   footnote_multi <- list(m1, m2)
   source_multi <- list(m1, m3)
@@ -117,24 +117,26 @@ test_that("Test case when having multiple footnotes or sources", {
 
 
 test_that("Test nrow is consistent with first list", {
-  m1 <- iris%>%
-    rtf_body ()
+  m1 <- iris %>%
+    rtf_body()
 
   m2 <- iris %>%
-    rtf_page(nrow = 10,
-             border_color_first = 'red',
-             border_color_last = 'red') %>%
-    rtf_body ()
+    rtf_page(
+      nrow = 10,
+      border_color_first = "red",
+      border_color_last = "red"
+    ) %>%
+    rtf_body()
 
-  m3 <- iris  %>%
-    rtf_body ()
+  m3 <- iris %>%
+    rtf_body()
 
-  tbl <- list(m1, m2, m3 )
+  tbl <- list(m1, m2, m3)
 
   n <- length(tbl)
 
-  tbl[2:n] <- lapply(tbl[2:n], function(x){
-    attr(x, "page")$nrow  <- attr(tbl[[1]], "page")$nrow
+  tbl[2:n] <- lapply(tbl[2:n], function(x) {
+    attr(x, "page")$nrow <- attr(tbl[[1]], "page")$nrow
     x
   })
 
@@ -142,27 +144,29 @@ test_that("Test nrow is consistent with first list", {
 
   expect_equal(attr(tbl[[2]], "page")$nrow, 40)
 
-  m1 <- iris%>%
-    rtf_body ()
+  m1 <- iris %>%
+    rtf_body()
 
   m2 <- iris %>%
-    rtf_page(nrow = 10,
-             border_color_first = 'red',
-             border_color_last = 'red') %>%
-    rtf_body ()
+    rtf_page(
+      nrow = 10,
+      border_color_first = "red",
+      border_color_last = "red"
+    ) %>%
+    rtf_body()
 
-  m3 <- iris  %>%
-    rtf_body ()
+  m3 <- iris %>%
+    rtf_body()
 
-  tbl <- list(m1, m2, m3 )
+  tbl <- list(m1, m2, m3)
 
   n <- length(tbl)
 
-  tbl[2:(n-1)] <- lapply(tbl[2:(n-1)], function(x){
+  tbl[2:(n - 1)] <- lapply(tbl[2:(n - 1)], function(x) {
     attr(x, "page")$border_first <- NULL
-    attr(x, "page")$border_last  <- NULL
+    attr(x, "page")$border_last <- NULL
     attr(x, "page")$border_color_first <- NULL
-    attr(x, "page")$border_color_last  <- NULL
+    attr(x, "page")$border_color_last <- NULL
     x
   })
 
@@ -174,21 +178,25 @@ test_that("Test nrow is consistent with first list", {
 
 
 test_that("Test border_color_first, border_color_last, border_first, and nrow", {
-  m1 <- iris[1:15,] %>%
-    rtf_page(nrow = 5,
-             border_color_first = 'red') %>%
-    rtf_body ()
+  m1 <- iris[1:15, ] %>%
+    rtf_page(
+      nrow = 5,
+      border_color_first = "red"
+    ) %>%
+    rtf_body()
 
-  m2 <- iris[31:50,] %>%
-    rtf_page(border_first = 'double',
-             border_last = 'double') %>%
-    rtf_body ()
+  m2 <- iris[31:50, ] %>%
+    rtf_page(
+      border_first = "double",
+      border_last = "double"
+    ) %>%
+    rtf_body()
 
-  m3 <- iris[51:60,]  %>%
-    rtf_page(border_color_last = 'red') %>%
-    rtf_body ()
+  m3 <- iris[51:60, ] %>%
+    rtf_page(border_color_last = "red") %>%
+    rtf_body()
 
-  tbl <- list(m1, m2, m3 )
+  tbl <- list(m1, m2, m3)
 
   tbl_out <- tbl %>%
     rtf_encode_list()
@@ -197,38 +205,25 @@ test_that("Test border_color_first, border_color_last, border_first, and nrow", 
 })
 
 test_that("Test when orientation are different in the list", {
-  m1 <- iris[1:15,] %>%
-    rtf_page(nrow = 5,
-             border_color_first = 'red', orientation = "landscape") %>%
-    rtf_body ()
+  m1 <- iris[1:15, ] %>%
+    rtf_page(
+      nrow = 5,
+      border_color_first = "red", orientation = "landscape"
+    ) %>%
+    rtf_body()
 
-  m2 <- iris[31:50,] %>%
-    rtf_page(border_first = 'double',
-             border_last = 'double') %>%
-    rtf_body ()
+  m2 <- iris[31:50, ] %>%
+    rtf_page(
+      border_first = "double",
+      border_last = "double"
+    ) %>%
+    rtf_body()
 
-  m3 <- iris[51:60,]  %>%
-    rtf_page(border_color_last = 'red') %>%
-    rtf_body ()
+  m3 <- iris[51:60, ] %>%
+    rtf_page(border_color_last = "red") %>%
+    rtf_body()
 
-  tbl <- list(m1, m2, m3 )
+  tbl <- list(m1, m2, m3)
 
   expect_error(tbl_out <- tbl %>% rtf_encode_list())
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

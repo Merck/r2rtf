@@ -38,9 +38,9 @@ footnote_source_space <- function(tbl,
 
   # Input checking
   match_arg(text_indent_reference, c("table", "page_margin"))
-  check_args(text_indent_reference, "character", length= 1)
+  check_args(text_indent_reference, "character", length = 1)
 
-  if(text_indent_reference == "page_margin"){
+  if (text_indent_reference == "page_margin") {
     return(0)
   }
 

@@ -46,26 +46,21 @@
 #'   attr("rtf_title")
 #' @export
 rtf_title <- function(tbl,
-
                       title = NULL,
                       subtitle = NULL,
-
                       text_font = 1,
                       text_format = NULL,
                       text_font_size = 12,
                       text_color = NULL,
                       text_background_color = NULL,
                       text_justification = "c",
-
                       text_indent_first = 0,
                       text_indent_left = 0,
                       text_indent_right = 0,
                       text_indent_reference = "table",
-
                       text_space = 1,
                       text_space_before = 180,
                       text_space_after = 180,
-
                       text_convert = TRUE) {
 
 
@@ -76,7 +71,7 @@ rtf_title <- function(tbl,
   text <- unlist(c(title, subtitle))
 
   # Convert tbl to a data frame, each column is a character
-  if(any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+  if (any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   # Set Default Page Attributes
   if (is.null(attr(tbl, "page"))) {
@@ -93,29 +88,25 @@ rtf_title <- function(tbl,
 
 
   text <- obj_rtf_text(text,
-
     text_font,
     text_format,
     text_font_size,
     text_color,
     text_background_color,
     text_justification,
-
     text_indent_first,
     text_indent_left,
     text_indent_right,
-
     text_space,
     text_space_before,
     text_space_after,
     text_new_page = FALSE,
     text_hyphenation = TRUE,
-
     text_convert = text_convert
   )
 
   # Register Color Use
-  if(attr(text, "use_color")) attr(tbl, "page")$use_color <- TRUE
+  if (attr(text, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   attr(tbl, "rtf_title") <- text
 
@@ -145,32 +136,27 @@ rtf_title <- function(tbl,
 #'
 #' @export
 rtf_subline <- function(tbl,
-
                         text,
-
                         text_font = 1,
                         text_format = NULL,
                         text_font_size = 12,
                         text_color = NULL,
                         text_background_color = NULL,
                         text_justification = "l",
-
                         text_indent_first = 0,
                         text_indent_left = 0,
                         text_indent_right = 0,
                         text_indent_reference = "table",
-
                         text_space = 1,
                         text_space_before = 180,
                         text_space_after = 180,
-
                         text_convert = TRUE) {
 
   # Input checking
   check_args(text, type = c("character"))
 
   # Convert tbl to a data frame, each column is a character
-  if(any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+  if (any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   # Set Default Page Attributes
   if (is.null(attr(tbl, "page"))) {
@@ -186,14 +172,12 @@ rtf_subline <- function(tbl,
   }
 
   text <- obj_rtf_text(text,
-
     text_font,
     text_format,
     text_font_size,
     text_color,
     text_background_color,
     text_justification,
-
     text_indent_first,
     text_indent_left,
     text_indent_right,
@@ -202,12 +186,11 @@ rtf_subline <- function(tbl,
     text_space_after,
     text_new_page = FALSE,
     text_hyphenation = TRUE,
-
     text_convert = text_convert
   )
 
   # Register Color Use
-  if(attr(text, "use_color")) attr(tbl, "page")$use_color <- TRUE
+  if (attr(text, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   attr(tbl, "rtf_subline") <- text
 

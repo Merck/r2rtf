@@ -53,20 +53,15 @@
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 rtf_paragraph <- function(text,
-
                           justification = "c",
-
                           indent_first = 0,
                           indent_left = 0,
                           indent_right = 0,
-
                           space = 1,
                           space_before = 180,
                           space_after = 180,
-
                           new_page = FALSE,
                           hyphenation = TRUE,
-
                           cell = FALSE) {
 
 
@@ -77,24 +72,18 @@ rtf_paragraph <- function(text,
   ## check whether input arguments are valid
   stopifnot(
     as.vector(justification) %in% para_justification$type,
-
     is.numeric(indent_first),
-
     is.numeric(indent_left),
-
     is.numeric(indent_right),
-
     space %in% spacing$type,
-
     is.numeric(space_before),
-
     is.numeric(space_after)
   )
 
-  if(cell){
+  if (cell) {
     begin <- "\\pard"
     end <- "\\cell"
-  }else{
+  } else {
     begin <- "{\\pard"
     end <- "\\par}"
   }
@@ -123,7 +112,7 @@ rtf_paragraph <- function(text,
   hyphenation <- ifelse(hyphenation, "\\hyphpar", "\\hyphpar0")
 
   ## Paragraph RTF Encode
- text_rtf <- paste0(
+  text_rtf <- paste0(
     begin, page_break, hyphenation,
     space, space_before, space_after, indent_first, indent_left, indent_right, alignment,
     text,
@@ -131,10 +120,9 @@ rtf_paragraph <- function(text,
   )
 
   # Convert back to matrix
-  if(! is.null(dim(text))){
+  if (!is.null(dim(text))) {
     text_rtf <- matrix(text_rtf, nrow = nrow(text), ncol = ncol(text))
   }
 
   text_rtf
-
 }

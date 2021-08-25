@@ -21,16 +21,14 @@
 #' @inheritParams rtf_body
 #'
 rtf_by_subline <- function(tbl,
-                          subline_by){
-  if(is.null(subline_by)){
-
+                           subline_by) {
+  if (is.null(subline_by)) {
     attr(tbl, "rtf_by_subline") <- list(
       new_page = FALSE,
       by_var = NULL,
       id = NULL
     )
-  }else{
-
+  } else {
     by <- subline_by
     # Define Index
     if (length(by) > 1) {

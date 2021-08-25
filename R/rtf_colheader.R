@@ -50,42 +50,32 @@
 #'   attr("rtf_colheader")
 #' @export
 rtf_colheader <- function(tbl,
-
                           colheader = NULL,
                           col_rel_width = NULL,
-
                           border_left = "single",
                           border_right = "single",
                           border_top = "single",
                           border_bottom = "",
-
                           border_color_left = NULL,
                           border_color_right = NULL,
                           border_color_top = NULL,
                           border_color_bottom = NULL,
-
                           border_width = 15,
-
                           cell_height = 0.15,
                           cell_justification = "c",
                           cell_nrow = NULL,
-
                           text_font = 1,
                           text_format = NULL,
                           text_font_size = 9,
-
                           text_color = NULL,
                           text_background_color = NULL,
                           text_justification = "c",
-
                           text_indent_first = 0,
                           text_indent_left = 0,
                           text_indent_right = 0,
-
                           text_space = 1,
                           text_space_before = 15,
                           text_space_after = 15,
-
                           text_convert = TRUE) {
 
   # Check argument type
@@ -95,7 +85,7 @@ rtf_colheader <- function(tbl,
   check_args(col_rel_width, type = c("integer", "numeric"))
 
   # Convert tbl to a data frame, each column is a character
-  if(any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+  if (any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   # Set Default Page Attributes
   if (is.null(attr(tbl, "page"))) {
@@ -115,48 +105,39 @@ rtf_colheader <- function(tbl,
 
   # Define text attributes
   colheader <- obj_rtf_text(colheader,
-
     text_font,
     text_format,
     text_font_size,
     text_color,
     text_background_color,
     text_justification,
-
     text_indent_first,
     text_indent_left,
     text_indent_right,
     text_space = 1,
     text_space_before,
     text_space_after,
-
     text_new_page = FALSE,
     text_hyphenation = TRUE,
-
     text_convert = text_convert
   )
   if (attr(colheader, "use_color")) attr(tbl, "page")$use_color <- TRUE
 
   # Define border attributes
   colheader <- obj_rtf_border(colheader,
-
     border_left,
     border_right,
     border_top,
     border_bottom,
     border_first = NULL,
     border_last  = NULL,
-
     border_color_left,
     border_color_right,
     border_color_top,
     border_color_bottom,
-
     border_color_first = NULL,
     border_color_last  = NULL,
-
     border_width,
-
     cell_height,
     cell_justification,
     cell_nrow

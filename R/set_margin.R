@@ -43,17 +43,14 @@ set_margin <- function(doc_type, orientation) {
       portrait = c(1.25, 1, 1.5, 1, 0.5, 0.5),
       landscape = c(0.5, 0.5, 1.27986111111111, 1.25, 1.25, 1)
     ),
-
     wma = list(
       portrait = c(1.25, 1, 1.75, 1.25, 1.75, 1.00625),
       landscape = c(1.0, 1.0, 2, 1.25, 1.25, 1.25)
     ),
-
     wmm = list(
       portrait = c(1.25, 1, 1, 1, 1.75, 1.00625),
       landscape = c(0.5, 0.5, 1.25, 1, 1.25, 1.25)
     ),
-
     narrow = list(
       portrait  = rep(0.5, 6),
       landscape = rep(0.5, 6)
