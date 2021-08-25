@@ -2,7 +2,6 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
-  code_cov: code_cov.html
   design-pattern: design-pattern.html
   example-ae-summary: example-ae-summary.html
   example-basechar: example-basechar.html
@@ -14,5 +13,5 @@ articles:
   rtf-convert-format: rtf-convert-format.html
   rtf-row: rtf-row.html
   rtf-text: rtf-text.html
-last_built: 2021-08-23T15:13Z
+last_built: 2021-08-25T15:56Z
 
