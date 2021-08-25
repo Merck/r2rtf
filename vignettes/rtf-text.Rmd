@@ -9,8 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-devtools::load_all() # need to be updated after the package mature
-
+library(r2rtf)
 library(dplyr)
 ```
 
@@ -33,7 +32,7 @@ text <- rep(text, 5)
 Paragraph alignment supports four types. 
 
 ```{r}
-justification() %>% subset(type %in% c("l", "c", "r", "j"))
+r2rtf:::justification() %>% subset(type %in% c("l", "c", "r", "j"))
 ```
 
 This example display text in different alignment methods.
@@ -42,7 +41,7 @@ This example display text in different alignment methods.
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text),
   justification = c("l", "c", "r", "j")
 )
-write_rtf_para(res, "rtf/para-justification.rtf")
+r2rtf:::write_rtf_para(res, "rtf/para-justification.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -53,8 +52,11 @@ knitr::include_graphics("pdf/para-justification.pdf")
 First line, left, and right indent can be controlled. One can also use a negative number to have the text "outdent".
 
 ```{r}
-res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text), indent_first = c(1000, 0, -1000), indent_left = c(500, -500), indent_right = 500)
-write_rtf_para(res, "rtf/para-indent.rtf")
+res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text), 
+                             indent_first = c(1000, 0, -1000), 
+                             indent_left = c(500, -500), 
+                             indent_right = 500)
+r2rtf:::write_rtf_para(res, "rtf/para-indent.rtf")
 ```
 
 
@@ -67,7 +69,7 @@ knitr::include_graphics("pdf/para-indent.pdf")
 Different types of line space can be controlled.
 
 ```{r}
-spacing()[, 1:2]
+r2rtf:::spacing()[, 1:2]
 ```
 
 This example show different line spaces in paragraph. 
@@ -76,7 +78,7 @@ This example show different line spaces in paragraph.
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text),
   space = c(1, 2, 1.5)
 )
-write_rtf_para(res, "rtf/para-line-space.rtf")
+r2rtf:::write_rtf_para(res, "rtf/para-line-space.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -89,7 +91,7 @@ res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text),
   space_before = c(50, 180),
   space_after = c(180, 50)
 )
-write_rtf_para(res, "rtf/para-space.rtf")
+r2rtf:::write_rtf_para(res, "rtf/para-space.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -103,7 +105,7 @@ This example add page break before paragraphs.
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text)[1:2],
   new_page = TRUE
 )
-write_rtf_para(res, "rtf/para-page.rtf")
+r2rtf:::write_rtf_para(res, "rtf/para-page.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -116,7 +118,7 @@ knitr::include_graphics("pdf/para-page.pdf")
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
   font_size = 8:12
 ))
-write_rtf_para(res, "rtf/text-font-size-1.rtf")
+r2rtf:::write_rtf_para(res, "rtf/text-font-size-1.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -128,7 +130,7 @@ knitr::include_graphics("pdf/text-font-size-1.pdf")
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
   format = c("b", "i", "bi", "^", "_", "u", "s")
 ))
-write_rtf_para(res, "rtf/text-format-1.rtf")
+r2rtf:::write_rtf_para(res, "rtf/text-format-1.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -140,7 +142,7 @@ knitr::include_graphics("pdf/text-format-1.pdf")
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
   font=1:10
 ))
-write_rtf_para(res, "rtf/text-font-type.rtf")
+r2rtf:::write_rtf_para(res, "rtf/text-font-type.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -153,7 +155,7 @@ knitr::include_graphics("pdf/text-font-type.pdf")
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
   color = c("red", "gold", "black", "orange", "blue")
 ))
-write_rtf_para(res, "rtf/text-color.rtf")
+r2rtf:::write_rtf_para(res, "rtf/text-color.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -166,7 +168,7 @@ res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
   color = "white",
   background_color = c("red", "gold", "black", "orange", "blue")
 ))
-write_rtf_para(res, "rtf/text-background-color.rtf")
+r2rtf:::write_rtf_para(res, "rtf/text-background-color.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -183,7 +185,7 @@ res <- r2rtf:::rtf_paragraph(paste0(
   r2rtf:::rtf_text("\\line red ", color = "red"),
   r2rtf:::rtf_text("highlight", background_color = "yellow")
 ))
-write_rtf_para(res, "rtf/text-combine1.rtf")
+r2rtf:::write_rtf_para(res, "rtf/text-combine1.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -196,8 +198,12 @@ format <- c("", "^", "", "")
 color <- c("black", "black", "red", "black")
 background_color <- c("white", "white", "white", "yellow")
 
-res <- r2rtf:::rtf_paragraph(paste(r2rtf:::rtf_text(text, format = format, color = color, background_color = background_color), collapse = ""))
-write_rtf_para(res, "rtf/text-combine2.rtf")
+res <- r2rtf:::rtf_paragraph(
+          paste(r2rtf:::rtf_text(text, format = format, 
+                                 color = color, 
+                                 background_color = background_color), 
+                collapse = ""))
+r2rtf:::write_rtf_para(res, "rtf/text-combine2.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -210,7 +216,7 @@ This example provide an inline formatting options with superscript and subscript
 ```{r}
 text <- c("X{_1} = \\alpha{^2} + \\beta{^\\dagger}")
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text))
-write_rtf_para(res, "rtf/text-combine3.rtf")
+r2rtf:::write_rtf_para(res, "rtf/text-combine3.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}

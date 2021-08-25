@@ -9,8 +9,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-devtools::load_all() # need to be updated after the package mature
-
+library(r2rtf)
 library(dplyr)
 ```
 
@@ -20,7 +19,7 @@ This vignette documents how to use `.rtf_row` to customize table in details. All
 
 ## Border Type
 
-`.rtf_row` supports `r length(border_type()$name)` different types of border as listed below. 
+`.rtf_row` supports `r length(r2rtf:::border_type()$name)` different types of border as listed below. 
 
 ```{r}
 r2rtf:::border_type()$name
@@ -113,7 +112,7 @@ matrix(r2rtf:::border_type()$name[1:5], nrow = 6, ncol = 5, byrow = TRUE)
 rtf_db <- iris %>%
   head() %>%
   rtf_title("Left Border Defined by a Vector") %>%
-  rtf_body(border_left = border_type()$name[2:6])
+  rtf_body(border_left = r2rtf:::border_type()$name[2:6])
 
 rtf_db %>%
   rtf_encode() %>%
@@ -206,7 +205,7 @@ fmt
 
 
 ```{r}
-font_format()[, 1:2] %>%
+r2rtf:::font_format()[, 1:2] %>%
   rtf_body(text_format = fmt) %>%
   rtf_encode() %>%
   write_rtf("rtf/text-format.rtf")

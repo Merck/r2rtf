@@ -79,7 +79,7 @@ head(iris) %>%
 ```
 
 ```{r, include=FALSE}
-devtools::load_all()
+library(r2rtf)
 try({
     pdftools::pdf_convert("vignettes/pdf/ex-tbl.pdf", dpi = 200, filenames = "ex-tbl.png")
     pdftools::pdf_convert("vignettes/pdf/efficacy_example.pdf", dpi = 200, filenames = "efficacy_example.png")
