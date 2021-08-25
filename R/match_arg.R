@@ -59,7 +59,7 @@ match_arg <- function(arg, choices, several.ok = FALSE) {
       envir = sys.frame(sysP)
     )
   }
-  if (is.null(arg)) {
+  if (is.null(arg) | length(arg) == 0L) {
     return(choices[1L])
   }
 
@@ -70,9 +70,6 @@ match_arg <- function(arg, choices, several.ok = FALSE) {
     if (length(arg) > 1L) {
       stop("'arg' must be of length 1")
     }
-  }
-  else if (length(arg) == 0L) {
-    stop("'arg' must be of length >= 1")
   }
 
   # i <- pmatch(arg, choices, nomatch = 0L, duplicates.ok = TRUE) # replaced by new code to debug

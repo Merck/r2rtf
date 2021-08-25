@@ -22,19 +22,17 @@
 #'                  Default is TRUE to use data frame column names as column header.
 #' @param col_rel_width Column relative width in a vector e.g. c(2,1,1) refers to 2:1:1.
 #'                      Default is NULL for equal column width.
-#' @param text_convert A logical value to convert special characters. Default is TRUE.
+#' @param text_convert A logical value to convert special characters.
 #' @param group_by A character vector of variable names in `tbl`.
 #' @param page_by Column names in a character vector to group by table in sections.
-#'                Default is NULL.
 #' @param new_page A boolean value to indicate whether to separate grouped table into pages
 #'                 by sections. Default is FALSE.
 #' @param pageby_header A boolean value to display pageby header at the beginning of each page.
 #' @param pageby_row A character vector of location of page_by variable. Possible input are 'column'
-#' or 'first_row'. Default is 'column'.
+#' or 'first_row'.
 #' @param subline_by Column names in a character vector to subline by table in sections.
-#'                Default is NULL.
 #' @param last_row A boolean value to indicate whether the table contains the last row of the
-#'                 final table. Default is TRUE.
+#'                 final table.
 #' @inheritParams rtf_footnote
 #' @inheritParams rtf_page
 #'

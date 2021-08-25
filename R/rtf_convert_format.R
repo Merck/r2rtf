@@ -22,7 +22,8 @@
 #' Convert RTF files to PDF or DOCX files. Require libreoffice7.1.
 #'
 #' @param input A vector of file paths for the input file to be converted.
-#' @param output_file A vector of filename for the output file. Default is the same filename for input.
+#' @param output_file A vector of filename for the output file.
+#' Default is the same filename for input.
 #' @param output_dir The output directory for the converted `output_dir`.
 #' @param format Converted file format extension. Currently support "pdf" or "docx"
 #' @param overwrite logical; should existing destination files be overwritten?
