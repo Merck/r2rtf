@@ -234,11 +234,11 @@ For simplicity, we only show the first two rows of `iris` data
 tbl <- iris[1:2, ] %>% rtf_body() 
 
 paste(
-      as_rtf_init(),
-      as_rtf_font(),
-      as_rtf_page(tbl), 
-      as_rtf_margin(tbl),
-      as_rtf_table(tbl),
+      r2rtf:::as_rtf_init(),
+      r2rtf:::as_rtf_font(),
+      r2rtf:::as_rtf_page(tbl), 
+      r2rtf:::as_rtf_margin(tbl),
+      r2rtf:::as_rtf_table(tbl),
       "}",
       sep = "\n"
     ) %>% cat()
@@ -270,13 +270,13 @@ All these attributes are mapped in a data frame which contains the element names
 allowed to key in whatever is defined in dictionary for the rtf_ functions, or error message will be provided as a result from `match_arg()`. 
 
 ```{r}
-font_type()
+r2rtf:::font_type()
 ```
 
 Superscripts, under scripts are taken care of by using `convert()` function to translate them into latex code and unicode. For example:
 
 ```{r}
-convert(c("^","<="))
+r2rtf:::convert(c("^","<="))
 ```
 
 ## Pageby 

@@ -19,21 +19,21 @@ This vignette documents how to use `.rtf_row` to customize table in details. All
 
 ## Border Type
 
-`.rtf_row` supports `r length(border_type()$name)` different types of border as listed below. 
+`.rtf_row` supports `r length(r2rtf:::border_type()$name)` different types of border as listed below. 
 
 ```{r}
-border_type()$name
+r2rtf:::border_type()$name
 ```
 
 The border type can be used to define the top, left, right and bottom border types. 
 
 This example define different top border line. 
 ```{r}
-.n <- length(border_type()$name)
-db <- data.frame(border_type = border_type()$name) %>%
+.n <- length(r2rtf:::border_type()$name)
+db <- data.frame(border_type = r2rtf:::border_type()$name) %>%
   rtf_title("Summary of Border Type Using Top Border") %>%
   rtf_colheader("Border Type") %>%
-  rtf_body(border_top = border_type()$name)
+  rtf_body(border_top = r2rtf:::border_type()$name)
 
 db %>%
   rtf_encode() %>%
@@ -105,14 +105,14 @@ rtf_db %>% attr("border_top")
 User can use single value, vector, and matrix to control the border type. Specifically, a vector is transferred to a matrix by row. Therefore, it is useful to set columns type by using vector. 
 
 ```{r}
-matrix(border_type()$name[1:5], nrow = 6, ncol = 5, byrow = TRUE)
+matrix(r2rtf:::border_type()$name[1:5], nrow = 6, ncol = 5, byrow = TRUE)
 ```
 
 ```{r}
 rtf_db <- iris %>%
   head() %>%
   rtf_title("Left Border Defined by a Vector") %>%
-  rtf_body(border_left = border_type()$name[2:6])
+  rtf_body(border_left = r2rtf:::border_type()$name[2:6])
 
 rtf_db %>%
   rtf_encode() %>%
@@ -128,12 +128,12 @@ knitr::include_graphics("pdf/border-vector.pdf")
 
 The table cell allow to be left, center or right justified. the cell is also allow to align by decimal. 
 ```{r}
-justification()[, 1:2]
+r2rtf:::justification()[, 1:2]
 ```
 
 ```{r}
-justification()[, 1:2] %>%
-  rtf_body(text_justification = rep(justification()$type, each = 2)) %>%
+r2rtf:::justification()[, 1:2] %>%
+  rtf_body(text_justification = rep(r2rtf:::justification()$type, each = 2)) %>%
   rtf_encode() %>%
   write_rtf("rtf/justification-type.rtf")
 ```
@@ -193,19 +193,19 @@ knitr::include_graphics("pdf/column-width-ratio.pdf")
 The `.rtf_row` function allow **bold**, *italics*, ~~strikethrough~~, underline and any combinations of them. 
 
 ```{r}
-font_format()[, 1:2]
+r2rtf:::font_format()[, 1:2]
 ```
 
 This example considers the text format defined below
 
 ```{r}
-fmt <- cbind("", font_format()$type)
+fmt <- cbind("", r2rtf:::font_format()$type)
 fmt
 ```
 
 
 ```{r}
-font_format()[, 1:2] %>%
+r2rtf:::font_format()[, 1:2] %>%
   rtf_body(text_format = fmt) %>%
   rtf_encode() %>%
   write_rtf("rtf/text-format.rtf")
