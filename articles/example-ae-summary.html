@@ -121,7 +121,8 @@
     n_ae <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span>,
     pct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span><span class="va">n_ae</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">n_subj</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n_ae</span> <span class="op">&gt;</span> <span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># only show AE terms with at least 5 subjects in one treatment group.</span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">n_ae</span> <span class="op">&gt;</span> <span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># only show AE terms with at least 5 subjects in one treatment group.</span>
   <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">n_ae</span>, <span class="va">pct</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"var"</span>, values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">unite</span><span class="op">(</span><span class="va">temp</span>, <span class="va">TRTA</span>, <span class="va">var</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">temp</span>, values_from <span class="op">=</span> <span class="va">value</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
@@ -354,7 +355,7 @@
 <h2 class="hasAnchor">
 <a href="#step-3-output" class="anchor"></a>Step 3: Output</h2>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Output .rtf file  </span>
+<code class="sourceCode R"><span class="co"># Output .rtf file</span>
 <span class="va">ae_tbl</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/ae_example.rtf"</span><span class="op">)</span></code></pre></div>

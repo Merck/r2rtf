@@ -303,15 +303,21 @@
     colheader <span class="op">=</span> <span class="st">" | Baseline | Week 20 | Change from Baseline"</span>,
     col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">9</span><span class="op">)</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>colheader <span class="op">=</span> <span class="st">"Treatment | N | Mean (SD) | N | Mean (SD) | N | Mean (SD) | LS Mean (95% CI){^a}"</span>, 
-                col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>
+    colheader <span class="op">=</span> <span class="st">"Treatment | N | Mean (SD) | N | Mean (SD) | N | Mean (SD) | LS Mean (95% CI){^a}"</span>,
+    col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>
     col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>,
     text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>,
-    last_row <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+    last_row <span class="op">=</span> <span class="cn">FALSE</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_footnote.html">rtf_footnote</a></span><span class="op">(</span>
-    footnote <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"{^a}Based on an ANCOVA model."</span>,
-                 <span class="st">"ANCOVA = Analysis of Covariance, CI = Confidence Interval, LS = Least Squares, SD = Standard Deviation"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+    footnote <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+      <span class="st">"{^a}Based on an ANCOVA model."</span>,
+      <span class="st">"ANCOVA = Analysis of Covariance, CI = Confidence Interval, LS = Least Squares, SD = Standard Deviation"</span>
+    <span class="op">)</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_source.html">rtf_source</a></span><span class="op">(</span>
     source <span class="op">=</span> <span class="st">"Source: [study999: adam-adeff]"</span>
   <span class="op">)</span>
@@ -405,7 +411,7 @@
 <h2 class="hasAnchor">
 <a href="#step-4-output" class="anchor"></a>Step 4: Output</h2>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Output .rtf file </span>
+<code class="sourceCode R"><span class="co"># Output .rtf file</span>
 <span class="va">tbl</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/efficacy_example.rtf"</span><span class="op">)</span></code></pre></div>

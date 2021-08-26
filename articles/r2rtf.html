@@ -200,9 +200,9 @@
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>                     <span class="co"># Step 1 Add table  attributes </span>
-  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>                   <span class="co"># Step 2 Convert attributes to RTF encode </span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/intro-ae1.rtf"</span><span class="op">)</span>     <span class="co"># Step 3 Write to a .rtf file</span></code></pre></div>
+  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># Step 1 Add table  attributes</span>
+  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="co"># Step 2 Convert attributes to RTF encode</span>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/intro-ae1.rtf"</span><span class="op">)</span> <span class="co"># Step 3 Write to a .rtf file</span></code></pre></div>
 <embed src="pdf/intro-ae1.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div id="column-width" class="section level2">
@@ -213,9 +213,10 @@
 <p>In this example, the defined relative width is 3:2:2:2. Only the ratio of <code>col_rel_width</code> is used. Therefore it is equivalent to use <code>col_rel_width = c(6,4,4,4)</code> or <code>col_rel_width = c(1.5,1,1,1)</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="co"># define relative width</span>
-  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>                             
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/intro-ae2.rtf"</span><span class="op">)</span>               </code></pre></div>
+  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># define relative width</span>
+  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/intro-ae2.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/intro-ae2.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>Note:</p>
 <ul>
 <li>The <code>col_rel_width</code> in <code>rtf_body</code> function only control relative width of table body. Therefore the column header is not aligned as expected. More details will be provided in next example to take care of column header width.</li>
@@ -341,8 +342,10 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Adverse Event Count by Treatment Group"</span>,
-              <span class="st">"(An example)"</span><span class="op">)</span>,
+    title <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+      <span class="st">"Adverse Event Count by Treatment Group"</span>,
+      <span class="st">"(An example)"</span>
+    <span class="op">)</span>,
     text_format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">""</span><span class="op">)</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>
@@ -406,8 +409,9 @@
 <p>We can also adjust data source to be left aligned. By default the alignment matches the table border.</p>
 </blockquote>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rtf_page.html">rtf_page</a></span><span class="op">(</span>col_width <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span>                                      <span class="co"># set total column width </span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_page.html">rtf_page</a></span><span class="op">(</span>col_width <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="co"># set total column width</span>
   <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Adverse Event Count by Treatment Group"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>
     colheader <span class="op">=</span> <span class="st">"Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose"</span>,
@@ -528,11 +532,11 @@
 <p>A subject line will be displayed at the beginning of each page based on the variable provided to <code>subline_by</code>. Different value of <code>subline_by</code> will be break into different pages.</p>
 <p>Below example showed using treatment group as <code>subline_by</code> variable.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">aegt5</span>  <span class="op">&lt;-</span> <span class="va">r2rtf_adae</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">aegt5</span> <span class="op">&lt;-</span> <span class="va">r2rtf_adae</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TRTA</span>, <span class="va">AEDECOD</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Count</span> <span class="op">&gt;</span> <span class="fl">7</span><span class="op">)</span> <span class="op">%&gt;%</span>  
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">Count</span> <span class="op">&gt;</span> <span class="fl">7</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="va">TRTA</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">Count</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">aegt5</span><span class="op">)</span>
@@ -546,9 +550,9 @@
 <span class="co">## 5 Xanomeline High Dose APPLICATION SITE PRURITUS    22</span>
 <span class="co">## 6 Xanomeline High Dose APPLICATION SITE ERYTHEMA    15</span></code></pre></div>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">aegt5</span>  <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span> title <span class="op">=</span> <span class="st">"Top Adverse Events by Treatment Group"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>colheader <span class="op">=</span> <span class="st">"Adverse Events|Count"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">aegt5</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Top Adverse Events by Treatment Group"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>colheader <span class="op">=</span> <span class="st">"Adverse Events|Count"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>subline_by <span class="op">=</span> <span class="st">"TRTA"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/intro-ae16.rtf"</span><span class="op">)</span></code></pre></div>
@@ -562,11 +566,13 @@
 <p>if <code>new_page=TRUE</code>, different value of <code>group_by</code> will be break into different pages. Default is <code>FALSE</code>.</p>
 <p>Below example showed using treatment group as <code>page_by</code> variable.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">aegt5</span>  <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span> title <span class="op">=</span> <span class="st">"Top Adverse Events by Treatment Group"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>colheader <span class="op">=</span> <span class="st">"Adverse Events|Count"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>page_by <span class="op">=</span> <span class="st">'TRTA'</span>,
-           new_page <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">aegt5</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Top Adverse Events by Treatment Group"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>colheader <span class="op">=</span> <span class="st">"Adverse Events|Count"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>
+    page_by <span class="op">=</span> <span class="st">"TRTA"</span>,
+    new_page <span class="op">=</span> <span class="cn">TRUE</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/intro-ae17.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/intro-ae17.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
@@ -577,11 +583,13 @@
 <p>Users can use <code>group_by</code> argument in the <code>rtf_body</code> function to display once for group variable.</p>
 <p>Below example showed using treatment group as <code>group_by</code> variable.</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">aegt5</span>  <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span> title <span class="op">=</span> <span class="st">"Top Adverse Events by Treatment Group"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>colheader <span class="op">=</span> <span class="st">"Treatment|Adverse Events|Count"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>group_by <span class="op">=</span> <span class="st">'TRTA'</span>,
-           text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'l'</span>,<span class="st">'l'</span>,<span class="st">'c'</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">aegt5</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Top Adverse Events by Treatment Group"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span>colheader <span class="op">=</span> <span class="st">"Treatment|Adverse Events|Count"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>
+    group_by <span class="op">=</span> <span class="st">"TRTA"</span>,
+    text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"l"</span>, <span class="st">"c"</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/intro-ae18.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/intro-ae18.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
@@ -600,16 +608,16 @@
 <li>write rtf to a file using <code>write_rtf</code>.</li>
 </ul>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pruritus</span> <span class="op">&lt;-</span> <span class="va">r2rtf_adae</span> <span class="op">%&gt;%</span> 
+<code class="sourceCode R"><span class="va">pruritus</span> <span class="op">&lt;-</span> <span class="va">r2rtf_adae</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">AEDECOD</span> <span class="op">==</span> <span class="st">"PRURITUS"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">TRTA</span>, <span class="va">AEDECOD</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span><span class="op">)</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>Count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html">n_distinct</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">fig</span> <span class="op">&lt;-</span> <span class="fu">ggplot</span><span class="op">(</span>data <span class="op">=</span> <span class="va">pruritus</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">TRTA</span>, y <span class="op">=</span> <span class="va">Count</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">xlab</span><span class="op">(</span><span class="st">""</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">geom_bar</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span>
 
-<span class="va">fig</span>       </code></pre></div>
+<span class="va">fig</span></code></pre></div>
 <p><img src="r2rtf_files/figure-html/unnamed-chunk-44-1.png" width="700"></p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">filename</span> <span class="op">&lt;-</span> <span class="st">"fig/intro-fig1.png"</span>
@@ -623,7 +631,7 @@
   <span class="fu"><a href="../reference/rtf_source.html">rtf_source</a></span><span class="op">(</span><span class="st">"[datasource: adam-adae]"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_figure.html">rtf_figure</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span>doc_type <span class="op">=</span> <span class="st">"figure"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/intro-ae19.rtf"</span><span class="op">)</span>    </code></pre></div>
+  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/intro-ae19.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/intro-ae19.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
   </div>
