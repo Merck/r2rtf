@@ -36,24 +36,20 @@
 #'
 #' @importFrom grDevices colors
 obj_rtf_text <- function(text,
-
                          text_font = 1,
                          text_format = NULL,
                          text_font_size = 9,
                          text_color = NULL,
                          text_background_color = NULL,
                          text_justification = "l",
-
                          text_indent_first = 0,
                          text_indent_left = 0,
                          text_indent_right = 0,
                          text_space = 1,
                          text_space_before = 15,
                          text_space_after = 15,
-
                          text_new_page = FALSE,
                          text_hyphenation = TRUE,
-
                          text_convert = TRUE) {
 
   # Check argument type
@@ -95,8 +91,7 @@ obj_rtf_text <- function(text,
 
     foo <- function(x) {
       if ((is.null(dim(x))) & (!is.null(x))) {
-
-        if(! length(x) %in% c(1, n_col, n_col * n_row)){
+        if (!length(x) %in% c(1, n_col, n_col * n_row)) {
           warning("The input is not a single value, with length equal to number of columns or a matrix with same dimension of the table.")
         }
 
@@ -105,11 +100,10 @@ obj_rtf_text <- function(text,
       }
       x
     }
-
-  }else{
+  } else {
     l <- length(text)
-    foo <- function(x){
-      if(! is.null(x)) rep(x, length.out = l)
+    foo <- function(x) {
+      if (!is.null(x)) rep(x, length.out = l)
     }
   }
 
@@ -124,7 +118,7 @@ obj_rtf_text <- function(text,
   text_convert <- foo(text_convert)
 
   text_indent_first <- foo(text_indent_first)
-  text_indent_left  <- foo(text_indent_left)
+  text_indent_left <- foo(text_indent_left)
   text_indent_right <- foo(text_indent_right)
 
   # Add attributes
@@ -148,7 +142,7 @@ obj_rtf_text <- function(text,
   attr(text, "text_new_page") <- text_new_page
   attr(text, "text_hyphenation") <- text_hyphenation
   attr(text, "text_convert") <- text_convert
-  attr(text, "strwidth")     <- rtf_strwidth(text)
+  attr(text, "strwidth") <- rtf_strwidth(text)
 
   # Register Color Use
   color <- list(text_color, text_background_color)

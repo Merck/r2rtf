@@ -35,60 +35,54 @@
 #'
 #' @examples
 #' library(dplyr)
-#' tbl <- iris[c(1:3 ,51:54), ] %>%
-#'    rtf_body(page_by='Species') %>%
-#'    r2rtf:::update_border_first()
-#'
-update_border_first <- function(tbl){
-
-  page      <- attr(tbl, "page")
+#' tbl <- iris[c(1:3, 51:54), ] %>%
+#'   rtf_body(page_by = "Species") %>%
+#'   r2rtf:::update_border_first()
+update_border_first <- function(tbl) {
+  page <- attr(tbl, "page")
   colheader <- attr(tbl, "rtf_colheader")
-  pageby    <- attr(tbl, "rtf_pageby_table")
+  pageby <- attr(tbl, "rtf_pageby_table")
 
-  if(is.null(colheader)){
+  if (is.null(colheader)) {
     row_first <- "body"
-  }else{
+  } else {
     row_first <- "colheader"
   }
 
-  if(is.null(page$border_first)){
+  if (is.null(page$border_first)) {
     row_first <- "null"
   }
 
 
-  if(row_first == "colheader"){
+  if (row_first == "colheader") {
     attributes(colheader[[1]])$border_top <- matrix(page$border_first, nrow = 1, ncol = ncol(colheader[[1]]))
 
     if (!is.null(page$border_color_first)) {
       attributes(colheader[[1]])$border_color_top <- matrix(page$border_color_first, nrow = 1, ncol = ncol(colheader[[1]]))
     }
-
   }
 
-  if(row_first == "body"){
+  if (row_first == "body") {
     attributes(tbl)$border_first[1, ] <- matrix(page$border_first, nrow = 1, ncol = ncol(tbl))
 
     if (!is.null(page$border_color_first)) {
       attributes(tbl)$border_color_first[1, ] <- matrix(page$border_color_first, nrow = 1, ncol = ncol(tbl))
     }
 
-    if(! is.null(pageby)){
+    if (!is.null(pageby)) {
       attributes(pageby)$border_first[1, ] <- matrix(page$border_first, nrow = 1, ncol = ncol(pageby))
 
       if (!is.null(page$border_color_first)) {
         attributes(pageby)$border_color_first[1, ] <- matrix(page$border_color_first, nrow = 1, ncol = ncol(pageby))
       }
-
     }
   }
 
-  attr(tbl, "page")             <- page
-  attr(tbl, "rtf_colheader")    <- colheader
+  attr(tbl, "page") <- page
+  attr(tbl, "rtf_colheader") <- colheader
   attr(tbl, "rtf_pageby_table") <- pageby
 
   tbl
-
-
 }
 
 
@@ -112,57 +106,54 @@ update_border_first <- function(tbl){
 #'
 #' @examples
 #' library(dplyr)
-#' tbl <- iris[c(1:3 ,51:54), ] %>%
-#'    rtf_body(page_by='Species') %>%
-#'    r2rtf:::update_border_last()
-#'
-update_border_last <- function(tbl){
+#' tbl <- iris[c(1:3, 51:54), ] %>%
+#'   rtf_body(page_by = "Species") %>%
+#'   r2rtf:::update_border_last()
+update_border_last <- function(tbl) {
+  page <- attr(tbl, "page")
+  pageby <- attr(tbl, "rtf_pageby_table")
+  footnote <- attr(tbl, "rtf_footnote")
+  source <- attr(tbl, "rtf_source")
 
-  page      <- attr(tbl, "page")
-  pageby    <- attr(tbl, "rtf_pageby_table")
-  footnote  <- attr(tbl, "rtf_footnote")
-  source    <- attr(tbl, "rtf_source")
-
-  if(is.null(source)){
-    if(is.null(footnote)){
+  if (is.null(source)) {
+    if (is.null(footnote)) {
       row_last <- "body"
-    }else{
-      if(attr(footnote, "as_table")){
+    } else {
+      if (attr(footnote, "as_table")) {
         row_last <- "footnote"
-      }else{
+      } else {
         row_last <- "body"
       }
     }
-  }else{
-    if(attr(source, "as_table")){
+  } else {
+    if (attr(source, "as_table")) {
       row_last <- "source"
-    }else{
-      if(is.null(footnote)){
+    } else {
+      if (is.null(footnote)) {
         row_last <- "body"
-      }else{
-        if(attr(footnote, "as_table")){
+      } else {
+        if (attr(footnote, "as_table")) {
           row_last <- "footnote"
-        }else{
+        } else {
           row_last <- "body"
         }
       }
     }
   }
 
-  if(is.null(page$border_last)){
+  if (is.null(page$border_last)) {
     row_last <- "null"
   }
 
-  if(row_last == "footnote"){
+  if (row_last == "footnote") {
     attributes(footnote)$border_bottom <- page$border_last
 
     if (!is.null(page$border_color_last)) {
       attributes(footnote)$border_color_bottom <- page$border_color_last
     }
-
   }
 
-  if(row_last == "source"){
+  if (row_last == "source") {
     attributes(source)$border_bottom <- page$border_last
 
     if (!is.null(page$border_color_last)) {
@@ -170,28 +161,26 @@ update_border_last <- function(tbl){
     }
   }
 
-  if(row_last == "body"){
-      attributes(tbl)$border_last[nrow(tbl), ] <- matrix(page$border_last, nrow = 1, ncol = ncol(tbl))
+  if (row_last == "body") {
+    attributes(tbl)$border_last[nrow(tbl), ] <- matrix(page$border_last, nrow = 1, ncol = ncol(tbl))
 
     if (!is.null(page$border_color_last)) {
       attributes(tbl)$border_color_last[nrow(tbl), ] <- matrix(page$border_color_last, nrow = 1, ncol = ncol(tbl))
     }
 
-    if(! is.null(pageby)){
-        attributes(pageby)$border_last[nrow(pageby), ] <- matrix(page$border_last, nrow = 1, ncol = ncol(pageby))
+    if (!is.null(pageby)) {
+      attributes(pageby)$border_last[nrow(pageby), ] <- matrix(page$border_last, nrow = 1, ncol = ncol(pageby))
 
       if (!is.null(page$border_color_last)) {
         attributes(pageby)$border_color_last[nrow(pageby), ] <- matrix(page$border_color_last, nrow = 1, ncol = ncol(pageby))
       }
-
     }
   }
 
-  attr(tbl, "page")             <- page
+  attr(tbl, "page") <- page
   attr(tbl, "rtf_pageby_table") <- pageby
-  attr(tbl, "rtf_footnote")     <- footnote
-  attr(tbl, "rtf_source")       <- source
+  attr(tbl, "rtf_footnote") <- footnote
+  attr(tbl, "rtf_source") <- source
 
   tbl
-
 }

@@ -106,9 +106,9 @@ rtf_encode <- function(tbl,
   match_arg(page_footnote, c("all", "first", "last"))
   match_arg(page_source, c("all", "first", "last"))
 
-  attr(tbl, "page")$page_title    <- page_title
+  attr(tbl, "page")$page_title <- page_title
   attr(tbl, "page")$page_footnote <- page_footnote
-  attr(tbl, "page")$page_source   <- page_source
+  attr(tbl, "page")$page_source <- page_source
 
   if (doc_type == "table") {
     if (any(class(tbl) %in% "list")) {

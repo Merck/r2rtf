@@ -86,59 +86,43 @@
 #'   attributes()
 #' @export
 rtf_body <- function(tbl,
-
                      col_rel_width = rep(1, ncol(tbl)),
                      as_colheader = TRUE,
-
                      border_left = "single",
                      border_right = "single",
                      border_top = NULL,
                      border_bottom = NULL,
-
                      border_first = "single",
                      border_last = "single",
-
                      border_color_left = NULL,
                      border_color_right = NULL,
                      border_color_top = NULL,
                      border_color_bottom = NULL,
-
                      border_color_first = NULL,
                      border_color_last = NULL,
-
                      border_width = 15,
-
                      cell_height = 0.15,
                      cell_justification = "c",
                      cell_nrow = NULL,
-
                      text_font = 1,
                      text_format = NULL,
                      text_font_size = 9,
-
                      text_color = NULL,
                      text_background_color = NULL,
                      text_justification = NULL,
-
                      text_indent_first = 0,
                      text_indent_left = 0,
                      text_indent_right = 0,
-
                      text_space = 1,
                      text_space_before = 15,
                      text_space_after = 15,
-
                      text_convert = TRUE,
-
                      group_by = NULL,
-
                      page_by = NULL,
                      new_page = FALSE,
                      pageby_header = TRUE,
                      pageby_row = "column",
-
                      subline_by = NULL,
-
                      last_row = TRUE) {
 
   # Check argument type
@@ -162,12 +146,12 @@ rtf_body <- function(tbl,
   match_arg(pageby_row, c("first_row", "column"))
 
   # Convert tbl to a data frame, each column is a character
-  if(any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
+  if (any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
   # Sort data in proper order if subline_by, page_by or group_by is used.
   by_var <- c(subline_by, page_by, group_by)
 
-  if(pageby_row == "first_row"){
+  if (pageby_row == "first_row") {
     by_var1 <- c(subline_by, page_by)
     if (length(by_var) > 1) {
       id_i <- apply(tbl[, by_var1], 1, paste, collapse = "-")
@@ -177,13 +161,12 @@ rtf_body <- function(tbl,
 
     pageby_nrow <- as.numeric(table(id_i))
 
-    if(any(pageby_nrow <= 1)){
+    if (any(pageby_nrow <= 1)) {
       stop("first_row can not be used if a group only have one record")
     }
   }
 
   if (!is.null(by_var)) {
-
     if (length(by_var) != length(unique(by_var))) stop("Variables in subline_by, page_by and group_by can not be overlapped")
 
     # Define Index
@@ -193,11 +176,10 @@ rtf_body <- function(tbl,
     #   }
     # }
 
-    for(i in 1:length(by_var)){
-
-      if(i == 1){
+    for (i in 1:length(by_var)) {
+      if (i == 1) {
         id <- tbl[[by_var[i]]]
-      }else{
+      } else {
         id <- apply(tbl[, by_var[1:i]], 1, paste, collapse = "-")
       }
 
@@ -205,13 +187,11 @@ rtf_body <- function(tbl,
       if (!all(order_var == 1:nrow(tbl))) {
         stop("Data is not sorted by ", paste(by_var, collapse = ", "))
       }
-
     }
-
   }
 
   # Redefine value to character
-  for(i in 1:ncol(tbl)){
+  for (i in 1:ncol(tbl)) {
     tbl[[i]] <- as.character(tbl[[i]])
   }
 
@@ -221,31 +201,30 @@ rtf_body <- function(tbl,
   }
 
   # Set Default Value for Boarder Top and Bottom
-  if( is.null(border_top) ){
+  if (is.null(border_top)) {
     top_null <- TRUE
     border_top <- rep("", ncol(tbl))
 
-    if(pageby_row == "column"){
+    if (pageby_row == "column") {
       border_top[names(tbl) %in% page_by] <- "single"
     }
-
-  }else{
+  } else {
     top_null <- FALSE
   }
 
-  if( is.null(border_bottom) ){
+  if (is.null(border_bottom)) {
     bottom_null <- TRUE
     border_bottom <- rep("", ncol(tbl))
 
-    if(pageby_row == "column"){
+    if (pageby_row == "column") {
       border_bottom[names(tbl) %in% page_by] <- "single"
     }
-  }else{
+  } else {
     bottom_null <- FALSE
   }
 
   # Set Default Value for Text Justification
-  if( is.null(text_justification)){
+  if (is.null(text_justification)) {
     text_justification <- rep("c", ncol(tbl))
     text_justification[names(tbl) %in% c(subline_by, page_by)] <- "l"
   }
@@ -253,7 +232,7 @@ rtf_body <- function(tbl,
   ## check whether to add column header or not
   if (as_colheader == TRUE) {
     if (is.null(attr(tbl, "rtf_colheader"))) {
-      col_name <- attr(tbl, "names")[! names(tbl) %in% c(subline_by, page_by)]
+      col_name <- attr(tbl, "names")[!names(tbl) %in% c(subline_by, page_by)]
       tbl <- rtf_colheader(tbl, colheader = paste(col_name, collapse = " | "))
     }
   } else {
@@ -262,24 +241,20 @@ rtf_body <- function(tbl,
 
   # Define text attributes
   tbl <- obj_rtf_text(tbl,
-
     text_font,
     text_format,
     text_font_size,
     text_color,
     text_background_color,
     text_justification,
-
     text_indent_first,
     text_indent_left,
     text_indent_right,
     text_space = 1,
     text_space_before,
     text_space_after,
-
     text_new_page = FALSE,
     text_hyphenation = TRUE,
-
     text_convert = text_convert
   )
   if (attr(tbl, "use_color")) attr(tbl, "page")$use_color <- TRUE
@@ -287,25 +262,19 @@ rtf_body <- function(tbl,
   # Define border attributes
   tbl <- obj_rtf_border(
     tbl,
-
     border_left,
     border_right,
     border_top,
     border_bottom,
-
     border_first,
     border_last,
-
     border_color_left,
     border_color_right,
     border_color_top,
     border_color_bottom,
-
     border_color_first,
     border_color_last,
-
     border_width,
-
     cell_height,
     cell_justification,
     cell_nrow

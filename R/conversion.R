@@ -72,7 +72,9 @@ convert <- function(text,
   # grepl(">|<|=|_|\\^|(\\\\)|(\\n)", c(">", "<", "=", "_", "\n", "\\line", "abc"))
   index <- grepl(">|<|=|_|\\^|(\\\\)|(\\n)", text)
 
-  if(! any(index)){ return(text) }
+  if (!any(index)) {
+    return(text)
+  }
 
   char_rtf <- c(
     "^" = "\\super ",
@@ -89,10 +91,10 @@ convert <- function(text,
 
   unicode_latex$int <- as.integer(as.hexmode(unicode_latex$unicode))
   char_latex <- ifelse(unicode_latex$int <= 255 & unicode_latex$int != 177, unicode_latex$chr,
-                       ifelse(unicode_latex$int < 32768,
-                              paste0("\\uc1\\u", unicode_latex$int, "*"),
-                              paste0("\\uc1\\u-", unicode_latex$int, "*")
-                       )
+    ifelse(unicode_latex$int < 32768,
+      paste0("\\uc1\\u", unicode_latex$int, "*"),
+      paste0("\\uc1\\u-", unicode_latex$int, "*")
+    )
   )
 
   names(char_latex) <- unicode_latex$latex
@@ -101,7 +103,7 @@ convert <- function(text,
 
   if (load_stringi) {
     text[index] <- stringi::stri_replace_all_fixed(text[index], names(char_latex), char_latex,
-                                                   vectorize_all = FALSE, opts_fixed = list(case_insensitive = FALSE)
+      vectorize_all = FALSE, opts_fixed = list(case_insensitive = FALSE)
     )
   } else {
     for (i in 1:length(char_latex)) {

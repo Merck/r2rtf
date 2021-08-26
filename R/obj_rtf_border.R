@@ -35,25 +35,19 @@
 #'
 #' @importFrom grDevices colors
 obj_rtf_border <- function(tbl,
-
                            border_left = "single",
                            border_right = "single",
                            border_top = "",
                            border_bottom = "",
-
                            border_first = "single",
                            border_last = "single",
-
                            border_color_left = NULL,
                            border_color_right = NULL,
                            border_color_top = NULL,
                            border_color_bottom = NULL,
-
                            border_color_first = NULL,
                            border_color_last = NULL,
-
                            border_width = 15,
-
                            cell_height = 0.15,
                            cell_justification = "c",
                            cell_nrow = NULL) {
@@ -100,14 +94,14 @@ obj_rtf_border <- function(tbl,
     stop("border_color_top can not be NULL if border_color_first is used")
   }
 
-  if(! is.null(attr(tbl, "page")$border_color_first)){
-    border_color_first = ""
-    border_color_top = ""
+  if (!is.null(attr(tbl, "page")$border_color_first)) {
+    border_color_first <- ""
+    border_color_top <- ""
   }
 
-  if(! is.null(attr(tbl, "page")$border_color_last)){
-    border_color_last = ""
-    border_color_bottom = ""
+  if (!is.null(attr(tbl, "page")$border_color_last)) {
+    border_color_last <- ""
+    border_color_bottom <- ""
   }
 
 
@@ -122,8 +116,7 @@ obj_rtf_border <- function(tbl,
     }
 
     if ((is.null(dim(x))) & (!is.null(x))) {
-
-      if(! length(x) %in% c(1, n_col, n_col * n_row)){
+      if (!length(x) %in% c(1, n_col, n_col * n_row)) {
         warning("The input is not a single value, with length equal to number of columns or a matrix with same dimension of the table.")
       }
 

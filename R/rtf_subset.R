@@ -40,13 +40,13 @@
 #' library(dplyr)
 #' data(r2rtf_tbl1)
 #' sub_table <- r2rtf_tbl1 %>%
-#'              rtf_body() %>%
-#'              r2rtf:::rtf_subset(row=1:2, col=c(1, 4:5))
+#'   rtf_body() %>%
+#'   r2rtf:::rtf_subset(row = 1:2, col = c(1, 4:5))
 #'
 #' attributes(sub_table)
 rtf_subset <- function(tbl,
                        row = 1:nrow(tbl),
-                       col = 1:ncol(tbl)){
+                       col = 1:ncol(tbl)) {
 
   # Check argument type
   check_args(tbl, type = c("data.frame"))
@@ -74,13 +74,15 @@ rtf_subset <- function(tbl,
   )]
 
   # collect all other attributes
-  attr_other <- attr_all[! attr_all %in% c(names(attr_matrix), names(attr_scale),
-                                           "col_rel_width", "names", "row.names", "class")]
+  attr_other <- attr_all[!attr_all %in% c(
+    names(attr_matrix), names(attr_scale),
+    "col_rel_width", "names", "row.names", "class"
+  )]
 
 
   # pass attributes to subset data frame
   tbl_sub <- tbl[row, col]
-  if(! "data.frame" %in% class(tbl_sub)){
+  if (!"data.frame" %in% class(tbl_sub)) {
     tbl_sub <- data.frame(x = tbl_sub)
   }
   attributes(tbl_sub) <- append(
@@ -95,4 +97,3 @@ rtf_subset <- function(tbl,
 
   tbl_sub
 }
-

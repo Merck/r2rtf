@@ -24,7 +24,6 @@ rtf_pageby <- function(tbl,
                        new_page = FALSE,
                        pageby_header = TRUE,
                        pageby_row = "column") {
-
   if (is.null(page_by)) {
     if (new_page) {
       stop("new_page must be FALSE if page_by is not specified")
@@ -51,11 +50,10 @@ rtf_pageby <- function(tbl,
 
     db <- list()
     for (i in 1:length(by)) {
-
       by_i <- by[1:i]
       index_var_i <- which(names(tbl) %in% by[i])
 
-      if(! is.null(attr(tbl, "rtf_by_subline"))){
+      if (!is.null(attr(tbl, "rtf_by_subline"))) {
         by_i <- c(attr(tbl, "rtf_by_subline")$by_var, by_i)
       }
 
@@ -75,22 +73,23 @@ rtf_pageby <- function(tbl,
       # Split information for each row
 
       db[[i]] <- switch(pageby_row,
-                        "column" =  rtf_subset(tbl, row$row_start, index_var_i),
-                        "first_row" = rtf_subset(tbl, row = row$row_start, col = - index_var_i))
+        "column" =  rtf_subset(tbl, row$row_start, index_var_i),
+        "first_row" = rtf_subset(tbl, row = row$row_start, col = -index_var_i)
+      )
 
       attr(db[[i]], "row") <- row
     }
     names(db) <- by
 
     # re-arrange source data columns
-    if(pageby_row == "first_row"){
+    if (pageby_row == "first_row") {
       first_row_index <- unlist(lapply(db, function(x) attr(x, "row")$row_start))
 
-      tbl0 <- rtf_subset(tbl, row = - first_row_index)
-      for(i in 1:length(by)){
+      tbl0 <- rtf_subset(tbl, row = -first_row_index)
+      for (i in 1:length(by)) {
         by_i <- by[1:i]
 
-        if(! is.null(attr(tbl, "rtf_by_subline"))){
+        if (!is.null(attr(tbl, "rtf_by_subline"))) {
           by_i <- c(attr(tbl, "rtf_by_subline")$by_var, by_i)
         }
 
@@ -110,24 +109,22 @@ rtf_pageby <- function(tbl,
         attr(db[[i]], "row") <- row
       }
 
-      db_table <- rtf_subset(tbl, row = - first_row_index, col = - index_var)
-      id <- id[- first_row_index]
+      db_table <- rtf_subset(tbl, row = -first_row_index, col = -index_var)
+      id <- id[-first_row_index]
     }
 
-    if(pageby_row == "column"){
-      db_table <- rtf_subset(tbl, col = - index_var)
+    if (pageby_row == "column") {
+      db_table <- rtf_subset(tbl, col = -index_var)
     }
 
-    if(! is.null(attr(tbl, "rtf_by_subline")$by_var)){
+    if (!is.null(attr(tbl, "rtf_by_subline")$by_var)) {
+      index_subline <- which(names(db_table) %in% attr(tbl, ("rtf_by_subline"))$by_var)
+      db_table <- rtf_subset(db_table, col = -index_subline)
 
-      index_subline <- which( names(db_table) %in% attr(tbl, ("rtf_by_subline"))$by_var)
-      db_table <- rtf_subset(db_table, col = - index_subline)
-
-      if(pageby_row == "first_row"){
-        attr(db_table, "rtf_by_subline")$id <- attr(db_table, "rtf_by_subline")$id[- first_row_index]
-        db <- lapply(db,  function(x) rtf_subset(x, col = - index_subline))
+      if (pageby_row == "first_row") {
+        attr(db_table, "rtf_by_subline")$id <- attr(db_table, "rtf_by_subline")$id[-first_row_index]
+        db <- lapply(db, function(x) rtf_subset(x, col = -index_subline))
       }
-
     }
 
     attr(db_table, "row") <- row

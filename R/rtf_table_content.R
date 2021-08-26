@@ -41,40 +41,39 @@
 rtf_table_content <- function(tbl,
                               col_total_width = attr(tbl, "page")$col_width,
                               use_border_bottom = FALSE) {
+  border_left <- attr(tbl, "border_left")
+  border_right <- attr(tbl, "border_right")
+  border_top <- attr(tbl, "border_top")
+  border_bottom <- attr(tbl, "border_bottom")
 
-  border_left = attr(tbl, "border_left")
-  border_right = attr(tbl, "border_right")
-  border_top = attr(tbl, "border_top")
-  border_bottom = attr(tbl, "border_bottom")
+  border_color_left <- attr(tbl, "border_color_left")
+  border_color_right <- attr(tbl, "border_color_right")
+  border_color_top <- attr(tbl, "border_color_top")
+  border_color_bottom <- attr(tbl, "border_color_bottom")
 
-  border_color_left = attr(tbl, "border_color_left")
-  border_color_right = attr(tbl, "border_color_right")
-  border_color_top = attr(tbl, "border_color_top")
-  border_color_bottom = attr(tbl, "border_color_bottom")
+  border_width <- attr(tbl, "border_width")
 
-  border_width = attr(tbl, "border_width")
+  col_rel_width <- attr(tbl, "col_rel_width")
+  cell_height <- attr(tbl, "cell_height")
+  cell_justification <- attr(tbl, "cell_justification")
 
-  col_rel_width = attr(tbl, "col_rel_width")
-  cell_height = attr(tbl, "cell_height")
-  cell_justification = attr(tbl, "cell_justification")
+  text_font <- attr(tbl, "text_font")
+  text_format <- attr(tbl, "text_format")
+  text_color <- attr(tbl, "text_color")
+  text_background_color <- attr(tbl, "text_background_color")
+  text_justification <- attr(tbl, "text_justification")
+  text_font_size <- attr(tbl, "text_font_size")
+  text_space <- attr(tbl, "text_space")
+  text_space_before <- attr(tbl, "text_space_before")
+  text_space_after <- attr(tbl, "text_space_after")
 
-  text_font = attr(tbl, "text_font")
-  text_format = attr(tbl, "text_format")
-  text_color = attr(tbl, "text_color")
-  text_background_color = attr(tbl, "text_background_color")
-  text_justification = attr(tbl, "text_justification")
-  text_font_size = attr(tbl, "text_font_size")
-  text_space = attr(tbl, "text_space")
-  text_space_before = attr(tbl, "text_space_before")
-  text_space_after = attr(tbl, "text_space_after")
-
-  text_indent_first = attr(tbl, "text_indent_first")
-  text_indent_left = attr(tbl, "text_indent_left")
-  text_indent_right = attr(tbl, "text_indent_right")
-
+  text_indent_first <- attr(tbl, "text_indent_first")
+  text_indent_left <- attr(tbl, "text_indent_left")
+  text_indent_right <- attr(tbl, "text_indent_right")
 
 
-  text_convert = attr(tbl, "text_convert")
+
+  text_convert <- attr(tbl, "text_convert")
 
   ## get dimension of tbl
   n_row <- nrow(tbl)
@@ -179,24 +178,26 @@ rtf_table_content <- function(tbl,
 
   # Encode RTF Text and Paragraph
   text_rtf <- rtf_text(tbl,
-                       font = text_font,
-                       font_size = text_font_size,
-                       format = text_format,
-                       color = text_color,
-                       background_color = text_background_color,
-                       text_convert = text_convert)
+    font = text_font,
+    font_size = text_font_size,
+    format = text_format,
+    color = text_color,
+    background_color = text_background_color,
+    text_convert = text_convert
+  )
 
   cell_rtf <- rtf_paragraph(text_rtf,
-                                 justification = text_justification,
-                                 indent_first = text_indent_first,
-                                 indent_left = text_indent_left,
-                                 indent_right = text_indent_right,
-                                 space = text_space,
-                                 space_before = text_space_before,
-                                 space_after = text_space_after,
-                                 new_page = FALSE,
-                                 hyphenation = FALSE,
-                                 cell = TRUE)
+    justification = text_justification,
+    indent_first = text_indent_first,
+    indent_left = text_indent_left,
+    indent_right = text_indent_right,
+    space = text_space,
+    space_before = text_space_before,
+    space_after = text_space_after,
+    new_page = FALSE,
+    hyphenation = FALSE,
+    cell = TRUE
+  )
 
   rbind(row_begin, border_rtf, t(cell_rtf), row_end)
 }

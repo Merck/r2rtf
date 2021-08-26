@@ -38,20 +38,24 @@
 #' @return a vector of integer (number of lines)
 #'
 #' @examples
-#' r2rtf:::rtf_nline_vector(text = c('title 1', "this is a sentence for title 2"),
-#'              strwidth = c(0.4, 2),
-#'                  size = 0.5)
-rtf_nline_vector <- function(text, strwidth, size){
-
+#' r2rtf:::rtf_nline_vector(
+#'   text = c("title 1", "this is a sentence for title 2"),
+#'   strwidth = c(0.4, 2),
+#'   size = 0.5
+#' )
+rtf_nline_vector <- function(text, strwidth, size) {
   index <- strwidth / size > 1
   n_row <- rep(1, length(text))
 
-  if(any(index)){
-
+  if (any(index)) {
     l <- length(text)
 
-    if(length(strwidth) < l){ strwidth <- rep(strwidth, length.out = l)}
-    if(length(size) < l){ size <- rep(size, length.out = l)}
+    if (length(strwidth) < l) {
+      strwidth <- rep(strwidth, length.out = l)
+    }
+    if (length(size) < l) {
+      size <- rep(size, length.out = l)
+    }
 
     text0 <- text[index]
     strwidth0 <- strwidth[index]
@@ -74,7 +78,7 @@ rtf_nline_vector <- function(text, strwidth, size){
 #' @param strwidth a matrix of string width in inches
 #' @param size a matrix of cell size in inches
 #'
-#'#' @section Specification:
+#' #' @section Specification:
 #' \if{latex}{
 #'  \itemize{
 #'    \item \code{text} is a matrix of string
@@ -92,10 +96,9 @@ rtf_nline_vector <- function(text, strwidth, size){
 #' strwidth <- matrix(6:9, nrow = 2)
 #' size <- matrix(1:4, nrow = 2)
 #' r2rtf:::rtf_nline_matrix(text = text, strwidth = strwidth, size = size)
-rtf_nline_matrix <- function(text, strwidth, size){
-
+rtf_nline_matrix <- function(text, strwidth, size) {
   n_row <- matrix(1, nrow = nrow(text), ncol = ncol(text))
-  for(i in 1:ncol(text)){
+  for (i in 1:ncol(text)) {
     n_row[, i] <- rtf_nline_vector(text[, i], strwidth[, i], size[, i])
   }
 
@@ -124,16 +127,18 @@ rtf_nline_matrix <- function(text, strwidth, size){
 #' @return an integer (number of rows) for title, subline, footnote, or source
 #'
 #' @examples
-#' library(dplyr) #required for running example
+#' library(dplyr) # required for running example
 #' tb <- head(iris) %>%
 #'   rtf_title(title = "Iris example") %>%
-#'   rtf_footnote(footnote = c('footnote 1','footnote 2')) %>%
+#'   rtf_footnote(footnote = c("footnote 1", "footnote 2")) %>%
 #'   rtf_body()
 #'
 #' r2rtf:::nrow_paragraph(attr(tb, "rtf_title"), 6.25)
 #' r2rtf:::nrow_paragraph(attr(tb, "rtf_footnote"), 6.25)
-nrow_paragraph <- function(tbl, size, padding = 0.2){
-  if(is.null(tbl)) return(0)
+nrow_paragraph <- function(tbl, size, padding = 0.2) {
+  if (is.null(tbl)) {
+    return(0)
+  }
 
   size <- size - padding
 
@@ -167,38 +172,37 @@ nrow_paragraph <- function(tbl, size, padding = 0.2){
 #' @return a numeric vector of number of maximum lines broken to for each row
 #'
 #' @examples
-#' library(dplyr) #required for running example
-#' tbl <- iris[c(1:4, 50:54),] %>%
+#' library(dplyr) # required for running example
+#' tbl <- iris[c(1:4, 50:54), ] %>%
 #'   rtf_title(title = "Iris example") %>%
 #'   rtf_body()
-#' r2rtf:::nrow_table (tbl, size = 2.55)
-#'
-nrow_table <- function(tbl, size, page_size = size, padding = 0.2){
+#' r2rtf:::nrow_table(tbl, size = 2.55)
+nrow_table <- function(tbl, size, page_size = size, padding = 0.2) {
+  if (is.null(tbl)) {
+    return(0)
+  }
 
-  if(is.null(tbl)) return(0)
+  padding <- (attr(tbl, "text_indent_left") + attr(tbl, "text_indent_right")) / 1440 + padding
 
-  padding <-  (attr(tbl, "text_indent_left") + attr(tbl, "text_indent_right")) / 1440 + padding
-
-  if(! is.null(attr(tbl, "as_table"))){
-    if(! attr(tbl, "as_table")){
+  if (!is.null(attr(tbl, "as_table"))) {
+    if (!attr(tbl, "as_table")) {
       return(nrow_paragraph(tbl, page_size, padding = padding))
     }
   }
 
   ## actual column width
   rel_width <- attr(tbl, "col_rel_width")
-  width <- size *  rel_width/ sum(rel_width)
-  if(! is.null(dim(tbl))){
+  width <- size * rel_width / sum(rel_width)
+  if (!is.null(dim(tbl))) {
     width <- matrix(width, nrow = nrow(tbl), ncol = ncol(tbl), byrow = TRUE) - padding
     n_row <- rtf_nline_matrix(tbl, attr(tbl, "strwidth"), size = width)
-  }else{
+  } else {
     width <- width - padding
     n_row <- rtf_nline_vector(tbl, attr(tbl, "strwidth"), size = width)
   }
 
   n_row <- ifelse(n_row < 1, 1, n_row)
   n_row
-
 }
 
 
@@ -221,44 +225,41 @@ nrow_table <- function(tbl, size, page_size = size, padding = 0.2){
 #' @return a data frame with number of row attributes
 #'
 #' @examples
-#' library(dplyr) #required for running example
-#' tbl <- iris[c(1:4, 50:54),] %>%
+#' library(dplyr) # required for running example
+#' tbl <- iris[c(1:4, 50:54), ] %>%
 #'   rtf_title(title = "Iris example") %>%
 #'   rtf_body()
 #' r2rtf:::rtf_nrow(tbl)
-#'
-rtf_nrow <- function(tbl){
-
+rtf_nrow <- function(tbl) {
   page <- attr(tbl, "page")
-  page_size <- page$width - sum(page$margin[c(1,2)])
+  page_size <- page$width - sum(page$margin[c(1, 2)])
   col_width <- page$col_width
 
   # Add nrow attributes for each meta component
   attr(tbl, "rtf_nrow_meta") <- data.frame(
-    page =        attr(tbl, "page")$nrow,
-    title =       sum(nrow_paragraph(attr(tbl, "rtf_title"), page_size)),
-    subline =     sum(nrow_paragraph(attr(tbl, "rtf_subline"), page_size)),
-    col_header =  sum(unlist(lapply(attr(tbl, "rtf_colheader"), nrow_table, size = col_width))),
-    footnote =    sum(nrow_table(attr(tbl, "rtf_footnote"), size = col_width, page_size = page_size)),
-    source =      sum(nrow_table(attr(tbl, "rtf_source"),   size = col_width, page_size = page_size))
+    page = attr(tbl, "page")$nrow,
+    title = sum(nrow_paragraph(attr(tbl, "rtf_title"), page_size)),
+    subline = sum(nrow_paragraph(attr(tbl, "rtf_subline"), page_size)),
+    col_header = sum(unlist(lapply(attr(tbl, "rtf_colheader"), nrow_table, size = col_width))),
+    footnote = sum(nrow_table(attr(tbl, "rtf_footnote"), size = col_width, page_size = page_size)),
+    source = sum(nrow_table(attr(tbl, "rtf_source"), size = col_width, page_size = page_size))
   )
 
   # Add nrow attributes for original table
   attr(tbl, "rtf_nrow") <- nrow_table(tbl, size = col_width)
 
   # Add nrow attributes for pageby table
-  if(! is.null(attr(tbl, "rtf_pageby_table"))){
+  if (!is.null(attr(tbl, "rtf_pageby_table"))) {
     attr(attr(tbl, "rtf_pageby_table"), "rtf_nrow") <- nrow_table(attr(tbl, "rtf_pageby_table"), size = col_width)
   }
 
   # Add nrow attributes for pageby_row table
-  if(! is.null(attr(tbl, "rtf_pageby_row"))){
-    attr(tbl, "rtf_pageby_row") <- lapply(attr(tbl, "rtf_pageby_row"), function(tbl){
+  if (!is.null(attr(tbl, "rtf_pageby_row"))) {
+    attr(tbl, "rtf_pageby_row") <- lapply(attr(tbl, "rtf_pageby_row"), function(tbl) {
       attr(tbl, "rtf_nrow") <- nrow_table(tbl, size = col_width)
       tbl
     })
   }
 
   tbl
-
 }

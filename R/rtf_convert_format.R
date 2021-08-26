@@ -34,18 +34,17 @@ rtf_convert_format <- function(input,
                                output_file = NULL,
                                output_dir = ".",
                                format = "pdf",
-                               overwrite = FALSE){
-
+                               overwrite = FALSE) {
   match_arg(tolower(format), c("pdf", "docx", "html"))
 
   # Check libreoffice dependency
-  if(.Platform$OS.type == "unix"){
+  if (.Platform$OS.type == "unix") {
     sys_dep <- system("which libreoffice7.1", ignore.stderr = TRUE, ignore.stdout = TRUE)
-  }else{
+  } else {
     stop("Only Unix/Linux is currently supported")
   }
 
-  if(sys_dep == 1){
+  if (sys_dep == 1) {
     stop("libreoffice7.1 is required")
   }
 
@@ -53,50 +52,53 @@ rtf_convert_format <- function(input,
 
   # Define command line
   tmp_dir <- file.path(tempdir(), "rtf_convert")
-  if(dir.exists(tmp_dir)){
+  if (dir.exists(tmp_dir)) {
     file.remove(list.files(tmp_dir, pattern = file_pattern, full.names = TRUE))
-  }else{
+  } else {
     dir.create(tmp_dir)
   }
 
-  cmd <- paste0("libreoffice7.1 --convert-to ",
-                format, " ",
-                input,
-                " --outdir ", tmp_dir)
+  cmd <- paste0(
+    "libreoffice7.1 --convert-to ",
+    format, " ",
+    input,
+    " --outdir ", tmp_dir
+  )
 
   # Convert RTF to PDF
   output <- lapply(cmd, system, ignore.stderr = TRUE, ignore.stdout = TRUE)
 
 
   # Report error
-  if( any( unlist(output) == 1 ) ){
-    stop(paste0("File convert error: ",
-                paste(basename(input)[output == 1], collapse = "; ") ) )
+  if (any(unlist(output) == 1)) {
+    stop(paste0(
+      "File convert error: ",
+      paste(basename(input)[output == 1], collapse = "; ")
+    ))
   }
 
-  if( (! overwrite)){
+  if ((!overwrite)) {
     out_file <- list.files(output_dir)
     tmp_file <- list.files(tmp_dir, pattern = file_pattern)
     tmp_file <- tmp_file[tmp_file %in% out_file]
 
-    for(i in seq_along(tmp_file)){
+    for (i in seq_along(tmp_file)) {
       out_path <- file.path(output_dir, tmp_file[i])
       tmp_path <- file.path(tmp_dir, tmp_file[i])
 
       a <- readLines(out_path, encoding = "UTF-8", warn = FALSE)
       b <- readLines(tmp_path, encoding = "UTF-8", warn = FALSE)
 
-      if(format == "pdf"){
+      if (format == "pdf") {
         a_end <- max(grep("<</Creator", a))
         b_end <- max(grep("<</Creator", b))
-      }else{
+      } else {
         a_end <- length(a)
         b_end <- length(b)
       }
 
-      if(identical(a[1:a_end], b[1:b_end])) file.remove(file.path(tmp_dir, tmp_file[i]) )
+      if (identical(a[1:a_end], b[1:b_end])) file.remove(file.path(tmp_dir, tmp_file[i]))
     }
-
   }
 
   # Copy file with difference
@@ -104,16 +106,19 @@ rtf_convert_format <- function(input,
   file.copy(file.path(tmp_dir, tmp_file), file.path(output_dir, tmp_file), overwrite = TRUE)
 
   # Output path
-  output_path <- file.path(output_dir,
-                           gsub("\\.rtf$", paste0("\\.", format),
-                           basename(input)))
+  output_path <- file.path(
+    output_dir,
+    gsub(
+      "\\.rtf$", paste0("\\.", format),
+      basename(input)
+    )
+  )
 
   # Rename file
-  if(! is.null(output_file)){
+  if (!is.null(output_file)) {
     file.rename(from = output_path, to = file.path(output_dir, output_file))
     output_path <- file.path(output_dir, output_file)
   }
 
   invisible(output_path)
-
 }

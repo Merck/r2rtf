@@ -68,16 +68,16 @@ as_rtf_pageby <- function(tbl) {
   }
 
   # Page Dictionary
-  if(rtf_nrow$page - sum(rtf_nrow[-1]) < 1){
+  if (rtf_nrow$page - sum(rtf_nrow[-1]) < 1) {
     print(rtf_nrow)
     stop("Increase nrow in rtf_page, can not display table body")
   }
 
 
   rtf_nrow_body <- rtf_nrow
-  if(page$page_title != "all") rtf_nrow_body$title <- 0
-  if(page$page_footnote != "all") rtf_nrow_body$footnote <- 0
-  if(page$page_source != "all") rtf_nrow_body$source <- 0
+  if (page$page_title != "all") rtf_nrow_body$title <- 0
+  if (page$page_footnote != "all") rtf_nrow_body$footnote <- 0
+  if (page$page_source != "all") rtf_nrow_body$source <- 0
 
   page_dict <- data.frame(
     page_id = pageby$id[index],
@@ -85,16 +85,15 @@ as_rtf_pageby <- function(tbl) {
     subline = pageby$id[index],
     pageby = c(diff(index) == 0, FALSE),
     nrow = table_nrow[index],
-    total     = rtf_nrow$page - sum(rtf_nrow_body[-1]),
+    total = rtf_nrow$page - sum(rtf_nrow_body[-1]),
     stringsAsFactors = FALSE
   )
   page_dict$nrow <- ifelse(page_dict$pageby, 1, page_dict$nrow)
 
-  if(! is.null(attr(tbl, "rtf_by_subline")$id)){
+  if (!is.null(attr(tbl, "rtf_by_subline")$id)) {
     page_dict$subline <- attr(cell_tbl, "rtf_by_subline")$id[index]
     page_dict$id <- paste(page_dict$id, page_dict$subline, sep = "-")
     page_dict$id <- factor(page_dict$id, levels = unique(page_dict$id))
-
   }
 
   # Define page number for each row
@@ -113,10 +112,9 @@ as_rtf_pageby <- function(tbl) {
   ## Adjust page number if pageby$new_page is true
   new_page <- pageby$new_page | attr(tbl, "rtf_by_subline")$new_page
   if (new_page) {
-
-    if(pageby$new_page) page_id <- page_dict$page_id
-    if(attr(tbl, "rtf_by_subline")$new_page) page_id <- page_dict$subline
-    if(pageby$new_page & attr(tbl, "rtf_by_subline")$new_page) page_id <- page_dict$id
+    if (pageby$new_page) page_id <- page_dict$page_id
+    if (attr(tbl, "rtf_by_subline")$new_page) page_id <- page_dict$subline
+    if (pageby$new_page & attr(tbl, "rtf_by_subline")$new_page) page_id <- page_dict$id
 
     page_dict$page <- unlist(lapply(split(page_dict, page_id), page_dict_page))
     page_dict$page <- as.numeric(page_id) * 1e6 + page_dict$page
@@ -127,8 +125,8 @@ as_rtf_pageby <- function(tbl) {
   page_dict$index <- cumsum(!page_dict$pageby)
 
   # Move to next page for footnote and data source
-  total_all = rtf_nrow$page - sum(rtf_nrow[-1])
-  if( sum(page_dict$nrow[page_dict$page == tail(page_dict$page,1)]) > total_all){
+  total_all <- rtf_nrow$page - sum(rtf_nrow[-1])
+  if (sum(page_dict$nrow[page_dict$page == tail(page_dict$page, 1)]) > total_all) {
     page_dict$page[c(-2:0) + nrow(page_dict)] <- page_dict$page[c(-2:0) + nrow(page_dict)] + 1
   }
 
@@ -152,14 +150,14 @@ as_rtf_pageby <- function(tbl) {
   page_dict_first <- do.call(rbind, lapply(split(page_dict_db, split_id), function(x) x[1, ]))
   page_dict_last <- do.call(rbind, lapply(split(page_dict_db, split_id), function(x) x[nrow(x), ]))
 
-  if ( (!is.null(attr(cell_tbl, "border_first"))) & pageby_column) {
+  if ((!is.null(attr(cell_tbl, "border_first"))) & pageby_column) {
     attr(cell_tbl, "border_top")[page_dict_first$index, ] <- attr(cell_tbl, "border_first")[page_dict_first$index, ]
   }
 
   if (!is.null(attr(cell_tbl, "border_last"))) {
     attr(cell_tbl, "border_bottom")[page_dict_last$index, ] <- attr(cell_tbl, "border_last")[page_dict_last$index, ]
   }
-  if ( (!is.null(attr(cell_tbl, "border_color_first"))) & pageby_column) {
+  if ((!is.null(attr(cell_tbl, "border_color_first"))) & pageby_column) {
     attr(cell_tbl, "border_color_top")[page_dict_first$index, ] <- attr(cell_tbl, "border_color_first")[page_dict_first$index, ]
   }
 
@@ -204,7 +202,7 @@ as_rtf_pageby <- function(tbl) {
 
     pageby_dict <- subset(page_dict, pageby)
 
-    pageby_header <- merge(pageby_dict[, c("page_id", "id","pageby", "nrow", "total")],
+    pageby_header <- merge(pageby_dict[, c("page_id", "id", "pageby", "nrow", "total")],
       subset(pageby_header, !pageby)[, c("page_id", "id", "subline", "page", "index")],
       all.y = TRUE
     )
@@ -234,7 +232,9 @@ as_rtf_pageby <- function(tbl) {
       split(page_dict, page_dict$page),
       function(x) {
         if (nrow(x) < 2) stop("The page contain now table. Try to increase nrow in rtf_page")
-        if (!x[2, "pageby"]) return(x[1, ])
+        if (!x[2, "pageby"]) {
+          return(x[1, ])
+        }
       }
     )
 
@@ -243,9 +243,9 @@ as_rtf_pageby <- function(tbl) {
     if (!is.null(pageby_header)) {
       # By variable dictionary
 
-      if(! is.null(attr(tbl, "rtf_by_subline")$id)){
+      if (!is.null(attr(tbl, "rtf_by_subline")$id)) {
         by_var <- unique(c(pageby$by_var, attr(tbl, "rtf_by_subline")$by_var))
-      }else{
+      } else {
         by_var <- pageby$by_var
       }
 
@@ -280,7 +280,7 @@ as_rtf_pageby <- function(tbl) {
   }
 
   # Remove lines with "-----"
-  rtf_index <- page_dict$index[ ! (page_dict$page_id == "-----" & page_dict$pageby) ]
+  rtf_index <- page_dict$index[!(page_dict$page_id == "-----" & page_dict$pageby)]
   rtf <- rtf[rtf_index]
   page_dict <- page_dict[rtf_index, ]
   page_dict$index <- 1:nrow(page_dict)

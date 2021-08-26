@@ -40,8 +40,8 @@
 rtf_encode_table <- function(tbl, verbose = FALSE) {
 
   # Update First and Last Border
-  tbl_1  <- update_border_first(tbl)
-  tbl_1  <- update_border_last(tbl_1)
+  tbl_1 <- update_border_first(tbl)
+  tbl_1 <- update_border_last(tbl_1)
 
   # Get content
   page <- attr(tbl, "page")
@@ -56,25 +56,25 @@ rtf_encode_table <- function(tbl, verbose = FALSE) {
   )
 
   ## get rtf code for page, margin, header, footnote, source, new_page
-  page_rtftext     <- as_rtf_page(tbl)
-  margin_rtftext   <- as_rtf_margin(tbl)
-  header_rtftext   <- as_rtf_title(tbl)
-  subline_rtftext  <- as_rtf_subline(tbl)
+  page_rtftext <- as_rtf_page(tbl)
+  margin_rtftext <- as_rtf_margin(tbl)
+  header_rtftext <- as_rtf_title(tbl)
+  subline_rtftext <- as_rtf_subline(tbl)
 
 
   new_page_rtftext <- as_rtf_new_page()
 
   ## rtf encode for column header
-  colheader_rtftext_1 <- paste(unlist(as_rtf_colheader(tbl_1)), collapse = "\n")  # First page
-  colheader_rtftext   <- paste(unlist(as_rtf_colheader(tbl)), collapse = "\n")   # Rest of page
+  colheader_rtftext_1 <- paste(unlist(as_rtf_colheader(tbl_1)), collapse = "\n") # First page
+  colheader_rtftext <- paste(unlist(as_rtf_colheader(tbl)), collapse = "\n") # Rest of page
 
   ## rtf encode for footnote
-  footnote_rtftext_1  <- paste(as_rtf_footnote(tbl_1), collapse = "\n")    # Last page
-  footnote_rtftext    <- paste(as_rtf_footnote(tbl), collapse = "\n")      # Rest of pages
+  footnote_rtftext_1 <- paste(as_rtf_footnote(tbl_1), collapse = "\n") # Last page
+  footnote_rtftext <- paste(as_rtf_footnote(tbl), collapse = "\n") # Rest of pages
 
   ## rtf encode for source
-  source_rtftext_1    <- paste(as_rtf_source(tbl_1), collapse = "\n")      # Last page
-  source_rtftext      <- paste(as_rtf_source(tbl), collapse = "\n")        # Rest of pages
+  source_rtftext_1 <- paste(as_rtf_source(tbl_1), collapse = "\n") # Last page
+  source_rtftext <- paste(as_rtf_source(tbl), collapse = "\n") # Rest of pages
 
   ## RTF encode for table body
   if (is.null(pageby$by_var)) {
@@ -86,15 +86,15 @@ rtf_encode_table <- function(tbl, verbose = FALSE) {
   ## RTF encoding for subline_by row
   info <- attr(table_rtftext, "info")
 
-  if(is.null(attr(tbl, "rtf_by_subline")$by_var) ){
+  if (is.null(attr(tbl, "rtf_by_subline")$by_var)) {
     sublineby_rtftext <- NULL
-  }else{
+  } else {
     info_dict <- unique(info[, c("subline", "page")])
     sublineby_index <- as.numeric(factor(info_dict$subline, levels = unique(info_dict$subline)))
 
     sublineby_rtftext <- as_rtf_paragraph(attr(tbl, "rtf_by_subline_row"), combine = FALSE)
 
-    if(! is.null(dim(sublineby_rtftext))){
+    if (!is.null(dim(sublineby_rtftext))) {
       sublineby_rtftext <- apply(sublineby_rtftext, 1, paste, collapse = "\n")
     }
 
@@ -104,7 +104,7 @@ rtf_encode_table <- function(tbl, verbose = FALSE) {
   # if (pageby$new_page) {
   #   body_rtftext <- tapply(table_rtftext, paste0(info$id, info$page), FUN = function(x) paste(x, collapse = "\n"))
   # } else {
-    body_rtftext <- tapply(table_rtftext, info$page, FUN = function(x) paste(x, collapse = "\n"))
+  body_rtftext <- tapply(table_rtftext, info$page, FUN = function(x) paste(x, collapse = "\n"))
   # }
 
   n_page <- length(body_rtftext)
@@ -124,15 +124,17 @@ rtf_encode_table <- function(tbl, verbose = FALSE) {
 
   # Footnote RTF encoding by page
   footnote_rtftext <- switch(page$page_footnote,
-                             first = c(footnote_rtftext, rep("", n_page - 1)),
-                             last  = c(rep("", n_page - 1), footnote_rtftext_1),
-                             all   = c(rep(footnote_rtftext, n_page - 1), footnote_rtftext_1) )
+    first = c(footnote_rtftext, rep("", n_page - 1)),
+    last  = c(rep("", n_page - 1), footnote_rtftext_1),
+    all   = c(rep(footnote_rtftext, n_page - 1), footnote_rtftext_1)
+  )
 
   # Source RTF encoding by page
   source_rtftext <- switch(page$page_source,
-                           first = c(source_rtftext, rep("", n_page - 1)),
-                           last  = c(rep("", n_page - 1), source_rtftext_1),
-                           all   = c(rep(source_rtftext, n_page - 1), source_rtftext_1))
+    first = c(source_rtftext, rep("", n_page - 1)),
+    last  = c(rep("", n_page - 1), source_rtftext_1),
+    all   = c(rep(source_rtftext, n_page - 1), source_rtftext_1)
+  )
 
 
   # Combine RTF body encoding
@@ -156,21 +158,22 @@ rtf_encode_table <- function(tbl, verbose = FALSE) {
   rtf_feature <- gsub("\\totalpage", n_page, rtf_feature, fixed = TRUE) # total page number
 
   end <- as_rtf_end()
-  if(verbose){
-    rtf <- list(start     = start_rtf,
-                page      = page_rtftext,
-                margin    = margin_rtftext,
-                header    = header_rtftext,
-                subline   = subline_rtftext,
-                sublineby = sublineby_rtftext,
-                colheader = c(colheader_rtftext_1, rep(colheader_rtftext, n_page - 1)),
-                body      = body_rtftext,
-                footnote  = footnote_rtftext,
-                source    = source_rtftext,
-                end       = end,
-                info      = info
-        )
-  }else{
+  if (verbose) {
+    rtf <- list(
+      start = start_rtf,
+      page = page_rtftext,
+      margin = margin_rtftext,
+      header = header_rtftext,
+      subline = subline_rtftext,
+      sublineby = sublineby_rtftext,
+      colheader = c(colheader_rtftext_1, rep(colheader_rtftext, n_page - 1)),
+      body = body_rtftext,
+      footnote = footnote_rtftext,
+      source = source_rtftext,
+      end = end,
+      info = info
+    )
+  } else {
     rtf <- list(start = start_rtf, body = rtf_feature, end = end)
   }
 

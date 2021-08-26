@@ -42,28 +42,25 @@ as_rtf_paragraph <- function(text, combine = TRUE) {
     text_convert = attr_text$text_convert
   )
 
-  if(combine){
+  if (combine) {
     text_rtftext <- paste(text_rtftext, collapse = "\\line")
     attr_text$text_justification <- attr_text$text_justification[1]
-    attr_text$text_indent_first  <- attr_text$text_indent_first[1]
-    attr_text$text_indent_left   <- attr_text$text_indent_left[1]
-    attr_text$text_indent_right  <- attr_text$text_indent_right[1]
+    attr_text$text_indent_first <- attr_text$text_indent_first[1]
+    attr_text$text_indent_left <- attr_text$text_indent_left[1]
+    attr_text$text_indent_right <- attr_text$text_indent_right[1]
   }
 
   paragraph_rtftext <- rtf_paragraph(text_rtftext,
-      justification = attr_text$text_justification,
+    justification = attr_text$text_justification,
+    indent_first = attr_text$text_indent_first,
+    indent_left = attr_text$text_indent_left,
+    indent_right = attr_text$text_indent_right,
+    space = attr_text$text_space,
+    space_before = attr_text$text_space_before,
+    space_after = attr_text$text_space_after,
+    new_page = attr_text$text_new_page,
+    hyphenation = attr_text$text_hyphenation
+  )
 
-      indent_first = attr_text$text_indent_first,
-      indent_left = attr_text$text_indent_left,
-      indent_right = attr_text$text_indent_right,
-
-      space = attr_text$text_space,
-      space_before = attr_text$text_space_before,
-      space_after = attr_text$text_space_after,
-
-      new_page = attr_text$text_new_page,
-      hyphenation = attr_text$text_hyphenation
-    )
-
- paragraph_rtftext
+  paragraph_rtftext
 }

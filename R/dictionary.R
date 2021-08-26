@@ -32,17 +32,25 @@
 font_type <- function() {
   data.frame(
     type = 1:10,
-    name = c("Times New Roman", "Times New Roman Greek", "Arial Greek",
-             "Arial", "Helvetica", "Calibri", "Georgia",
-             "Cambria", "Courier New","Symbol"),
-    style = c("\\froman", "\\froman", "\\fswiss",
-              "\\fswiss", "\\fswiss", "\\fswiss", "\\froman",
-              "\\ffroman", "\\fmodern", "\\ftech"),
-    rtf_code = c("\\f0", "\\f1", "\\f2",
-                 "\\f3", "\\f4", "\\f5", "\\f6",
-                 "\\f7", "\\f8", "\\f9"),
-    family = c("Times", "Times", "ArialMT", "ArialMT", "Helvetica",
-               "Calibri", "Georgia", "Cambria", "Courier", "Times"),
+    name = c(
+      "Times New Roman", "Times New Roman Greek", "Arial Greek",
+      "Arial", "Helvetica", "Calibri", "Georgia",
+      "Cambria", "Courier New", "Symbol"
+    ),
+    style = c(
+      "\\froman", "\\froman", "\\fswiss",
+      "\\fswiss", "\\fswiss", "\\fswiss", "\\froman",
+      "\\ffroman", "\\fmodern", "\\ftech"
+    ),
+    rtf_code = c(
+      "\\f0", "\\f1", "\\f2",
+      "\\f3", "\\f4", "\\f5", "\\f6",
+      "\\f7", "\\f8", "\\f9"
+    ),
+    family = c(
+      "Times", "Times", "ArialMT", "ArialMT", "Helvetica",
+      "Calibri", "Georgia", "Cambria", "Courier", "Times"
+    ),
     stringsAsFactors = FALSE
   )
 }
@@ -136,8 +144,8 @@ justification <- function() {
 border_type <- function() {
   data.frame(
     name = c(
-      "", "single", "double", "dot", "dash", "small dash", "dot dash", "dot dot"),
-
+      "", "single", "double", "dot", "dash", "small dash", "dot dash", "dot dot"
+    ),
     rtf_code = c(
       "", "\\brdrs", "\\brdrdb", "\\brdrdot", "\\brdrdash",
       "\\brdrdashsm", "\\brdrdashd", "\\brdrdashdd"

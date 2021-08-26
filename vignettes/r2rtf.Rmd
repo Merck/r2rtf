@@ -102,9 +102,9 @@ A minimal example below illustrates how to combine verbs using pipes to create a
 
 ```{r}
 head(tbl) %>%
-  rtf_body() %>%                     # Step 1 Add table  attributes 
-  rtf_encode() %>%                   # Step 2 Convert attributes to RTF encode 
-  write_rtf("rtf/intro-ae1.rtf")     # Step 3 Write to a .rtf file
+  rtf_body() %>% # Step 1 Add table  attributes
+  rtf_encode() %>% # Step 2 Convert attributes to RTF encode
+  write_rtf("rtf/intro-ae1.rtf") # Step 3 Write to a .rtf file
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -125,9 +125,10 @@ Therefore it is equivalent to use `col_rel_width = c(6,4,4,4)` or `col_rel_width
 
 ```{r}
 head(tbl) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%  # define relative width
-  rtf_encode() %>%                             
-  write_rtf("rtf/intro-ae2.rtf")               
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
+  # define relative width
+  rtf_encode() %>%
+  write_rtf("rtf/intro-ae2.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -293,8 +294,10 @@ The format can also be controlled by providing a vector input in `text_format`.
 ```{r}
 head(tbl) %>%
   rtf_title(
-    title = c("Adverse Event Count by Treatment Group",
-              "(An example)"),
+    title = c(
+      "Adverse Event Count by Treatment Group",
+      "(An example)"
+    ),
     text_format = c("b", "")
   ) %>%
   rtf_colheader(
@@ -375,8 +378,9 @@ Below example showed the case when using `as_table = FALSE` (default) to display
 > We can also adjust data source to be left aligned. By default the alignment matches the table border.  
 
 ```{r}
-head(tbl) %>% 
-  rtf_page(col_width = 5) %>%                                      # set total column width 
+head(tbl) %>%
+  rtf_page(col_width = 5) %>%
+  # set total column width
   rtf_title(title = "Adverse Event Count by Treatment Group") %>%
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
@@ -530,20 +534,20 @@ Different value of `subline_by` will be break into different pages.
 Below example showed using treatment group as `subline_by` variable. 
 
 ```{r, message=FALSE}
-aegt5  <- r2rtf_adae %>% 
+aegt5 <- r2rtf_adae %>%
   group_by(TRTA, AEDECOD) %>%
-  summarise(Count = n_distinct(USUBJID)) %>% 
-  filter(Count > 7) %>%  
-  ungroup() %>% 
+  summarise(Count = n_distinct(USUBJID)) %>%
+  filter(Count > 7) %>%
+  ungroup() %>%
   arrange(TRTA, desc(Count))
 
 head(aegt5)
 ```
 
 ```{r}
-aegt5  %>%
-  rtf_title( title = "Top Adverse Events by Treatment Group") %>%
-  rtf_colheader(colheader = "Adverse Events|Count") %>% 
+aegt5 %>%
+  rtf_title(title = "Top Adverse Events by Treatment Group") %>%
+  rtf_colheader(colheader = "Adverse Events|Count") %>%
   rtf_body(subline_by = "TRTA") %>%
   rtf_encode() %>%
   write_rtf("rtf/intro-ae16.rtf")
@@ -564,11 +568,13 @@ if `new_page=TRUE`, different value of `group_by` will be break into different p
 Below example showed using treatment group as `page_by` variable. 
 
 ```{r}
-aegt5  %>%
-  rtf_title( title = "Top Adverse Events by Treatment Group") %>%
-  rtf_colheader(colheader = "Adverse Events|Count") %>% 
-  rtf_body(page_by = 'TRTA',
-           new_page = TRUE) %>%
+aegt5 %>%
+  rtf_title(title = "Top Adverse Events by Treatment Group") %>%
+  rtf_colheader(colheader = "Adverse Events|Count") %>%
+  rtf_body(
+    page_by = "TRTA",
+    new_page = TRUE
+  ) %>%
   rtf_encode() %>%
   write_rtf("rtf/intro-ae17.rtf")
 ```
@@ -584,11 +590,13 @@ Users can use `group_by` argument in the `rtf_body` function to display once for
 Below example showed using treatment group as `group_by` variable. 
 
 ```{r}
-aegt5  %>%
-  rtf_title( title = "Top Adverse Events by Treatment Group") %>%
-  rtf_colheader(colheader = "Treatment|Adverse Events|Count") %>% 
-  rtf_body(group_by = 'TRTA',
-           text_justification = c('l','l','c')) %>%
+aegt5 %>%
+  rtf_title(title = "Top Adverse Events by Treatment Group") %>%
+  rtf_colheader(colheader = "Treatment|Adverse Events|Count") %>%
+  rtf_body(
+    group_by = "TRTA",
+    text_justification = c("l", "l", "c")
+  ) %>%
   rtf_encode() %>%
   write_rtf("rtf/intro-ae18.rtf")
 ```
@@ -611,16 +619,16 @@ The workflow can be summarized as:
 - write rtf to a file using `write_rtf`.
 
 ```{r, message = FALSE}
-pruritus <- r2rtf_adae %>% 
+pruritus <- r2rtf_adae %>%
   filter(AEDECOD == "PRURITUS") %>%
   group_by(TRTA, AEDECOD) %>%
-  summarise(Count = n_distinct(USUBJID)) 
+  summarise(Count = n_distinct(USUBJID))
 
 fig <- ggplot(data = pruritus, aes(x = TRTA, y = Count)) +
   xlab("") +
   geom_bar(stat = "identity")
 
-fig       
+fig
 ```
 ```{r}
 filename <- "fig/intro-fig1.png"
@@ -633,7 +641,7 @@ filename %>%
   rtf_source("[datasource: adam-adae]") %>%
   rtf_figure() %>%
   rtf_encode(doc_type = "figure") %>%
-  write_rtf("rtf/intro-ae19.rtf")    
+  write_rtf("rtf/intro-ae19.rtf")
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}

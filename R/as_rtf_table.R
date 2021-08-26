@@ -37,9 +37,9 @@ as_rtf_table <- function(tbl) {
 
 
   # Remove subline_by column
-  if(! is.null(attr(tbl, "rtf_by_subline")$by_var)){
-    index_subline <- which( names(tbl) %in% attr(tbl, ("rtf_by_subline"))$by_var)
-    tbl <- rtf_subset(tbl, col = - index_subline)
+  if (!is.null(attr(tbl, "rtf_by_subline")$by_var)) {
+    index_subline <- which(names(tbl) %in% attr(tbl, ("rtf_by_subline"))$by_var)
+    tbl <- rtf_subset(tbl, col = -index_subline)
   }
 
   # Calculate Number of rows for each entry.
@@ -67,15 +67,15 @@ as_rtf_table <- function(tbl) {
   }
 
   rtf_nrow_body <- rtf_nrow
-  if(page$page_title != "all") rtf_nrow_body$title <- 0
-  if(page$page_footnote != "all") rtf_nrow_body$footnote <- 0
-  if(page$page_source != "all") rtf_nrow_body$source <- 0
+  if (page$page_title != "all") rtf_nrow_body$title <- 0
+  if (page$page_footnote != "all") rtf_nrow_body$footnote <- 0
+  if (page$page_source != "all") rtf_nrow_body$source <- 0
 
   # Page Dictionary
   page_dict <- data.frame(
     index = index,
     nrow = table_nrow,
-    total     = rtf_nrow$page - sum(rtf_nrow_body[-1]),
+    total = rtf_nrow$page - sum(rtf_nrow_body[-1]),
     stringsAsFactors = FALSE
   )
 
@@ -87,19 +87,18 @@ as_rtf_table <- function(tbl) {
     page + 1
   }
 
-  if(! is.null(attr(tbl, "rtf_by_subline")$id)){
+  if (!is.null(attr(tbl, "rtf_by_subline")$id)) {
     page_dict$id <- attr(tbl, "rtf_by_subline")$id
     page_dict$subline <- attr(tbl, "rtf_by_subline")$id
     page_dict$page <- unlist(lapply(split(page_dict, page_dict$id), page_dict_page))
     page_dict$page <- as.numeric(page_dict$id) * 1e6 + page_dict$page
-
-  }else{
+  } else {
     page_dict$page <- with(page_dict, cumsum(nrow) %/% total) + 1
   }
 
   # Move to next page for footnote and data source
-  total_all = rtf_nrow$page - sum(rtf_nrow[-1])
-  if( sum(page_dict$nrow[page_dict$page == tail(page_dict$page,1)]) > total_all){
+  total_all <- rtf_nrow$page - sum(rtf_nrow[-1])
+  if (sum(page_dict$nrow[page_dict$page == tail(page_dict$page, 1)]) > total_all) {
     page_dict$page[c(-2:0) + nrow(page_dict)] <- page_dict$page[c(-2:0) + nrow(page_dict)] + 1
   }
 

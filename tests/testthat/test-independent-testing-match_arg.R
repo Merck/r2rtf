@@ -1,5 +1,5 @@
 test_that("Case when choices is missing", {
-  expect_error(match_arg(arg='', choices = ))
+  expect_error(match_arg(arg = "", choices = ))
 })
 
 test_that("Case when arg is NULL", {
@@ -24,13 +24,13 @@ test_that("Case when several.ok is FALSE", {
 
 test_that("Case when arg is in choices", {
   # if arg equals to ''
-  expect_equal(match_arg('', choices = c('', 'a', 'b', 'c')), '')
+  expect_equal(match_arg("", choices = c("", "a", "b", "c")), "")
   # if arg NOT equals to ''
-  expect_equal(match_arg('a', choices = c('', 'a', 'b', 'c')), 'a')
+  expect_equal(match_arg("a", choices = c("", "a", "b", "c")), "a")
   # if arg has more than one match when several.ok is FALSE
   expect_error(match_arg(c("ab", "ab"), choices = c("abc", "ab"), several.ok = FALSE))
 })
 
 test_that("Case when arg is Not in choices", {
-  expect_error(match_arg('d', choices = c('', 'a', 'b', 'c')))
+  expect_error(match_arg("d", choices = c("", "a", "b", "c")))
 })
