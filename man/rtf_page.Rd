@@ -23,22 +23,19 @@ rtf_page(
 
 \item{orientation}{Orientation in 'portrait' or 'landscape'.}
 
-\item{width}{A numeric value of page width in inches.
-Default is 8.5 inch in portrait orientation or 11.0 inch in landscape orientation.}
+\item{width}{A numeric value of page width in inches.}
 
-\item{height}{A numeric value of page width in inches.
-Default is 11.0 inch in portrait orientation or 8.5 inch in landscape orientation.}
+\item{height}{A numeric value of page width in inches.}
 
 \item{margin}{A numeric vector of length 6 for page margin. The value set left, right, top, bottom, header and footer
 margin in order. Default value depends on the page orientation and set by \code{r2rtf:::set_margin("wma", orientation)}}
 
-\item{nrow}{Number of rows in each page. Default is 42 rows if portrait orientation
-and 26 rows in landscape orientation.}
+\item{nrow}{Number of rows in each page.}
 
-\item{border_first}{First top border type of the whole table. Default is "double" indicating double line bottom border.
+\item{border_first}{First top border type of the whole table.
 All possible input can be found in \code{r2rtf:::border_type()$name}.}
 
-\item{border_last}{Last bottom border type of the whole table. Default is "double" indicating double line bottom border.
+\item{border_last}{Last bottom border type of the whole table.
 All possible input can be found in \code{r2rtf:::border_type()$name}.}
 
 \item{border_color_first}{First top border color type of the whole table. Default is NULL for black.

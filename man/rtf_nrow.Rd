@@ -27,10 +27,9 @@ Add number of row attributes for a table
 }
 
 \examples{
-library(dplyr) #required for running example
-tbl <- iris[c(1:4, 50:54),] \%>\%
+library(dplyr) # required for running example
+tbl <- iris[c(1:4, 50:54), ] \%>\%
   rtf_title(title = "Iris example") \%>\%
   rtf_body()
 r2rtf:::rtf_nrow(tbl)
-
 }

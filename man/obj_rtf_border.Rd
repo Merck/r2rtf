@@ -48,10 +48,10 @@ To vary bottom border by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("single","single","single").
 All possible input can be found in \code{r2rtf:::border_type()$name}.}
 
-\item{border_first}{First top border type of the whole table. Default is "double" indicating double line bottom border.
+\item{border_first}{First top border type of the whole table.
 All possible input can be found in \code{r2rtf:::border_type()$name}.}
 
-\item{border_last}{Last bottom border type of the whole table. Default is "double" indicating double line bottom border.
+\item{border_last}{Last bottom border type of the whole table.
 All possible input can be found in \code{r2rtf:::border_type()$name}.}
 
 \item{border_color_left}{Left border color type. Default is NULL for black. To vary left
@@ -87,7 +87,7 @@ All possible input can be found in \code{grDevices::colors()}.}
 \item{cell_justification}{Justification type for cell. Default is "c" for center justification.
 All possible input can be found in \code{r2rtf:::justification()$type}.}
 
-\item{cell_nrow}{Number of rows required in each cell. Default is NULL.}
+\item{cell_nrow}{Number of rows required in each cell.}
 }
 \value{
 the same \code{tbl} with additional border attributes

@@ -15,7 +15,8 @@ rtf_convert_format(
 \arguments{
 \item{input}{A vector of file paths for the input file to be converted.}
 
-\item{output_file}{A vector of filename for the output file. Default is the same filename for input.}
+\item{output_file}{A vector of filename for the output file.
+Default is the same filename for input.}
 
 \item{output_dir}{The output directory for the converted \code{output_dir}.}
 

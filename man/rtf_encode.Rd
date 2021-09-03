@@ -18,13 +18,13 @@ rtf_encode(
 
 \item{doc_type}{The doc_type of input, default is table.}
 
-\item{page_title}{A character of title displaying location. Default is "all" for all pages.
+\item{page_title}{A character of title displaying location.
 Possible values are "first", "last" and "all".}
 
-\item{page_footnote}{A character of title displaying location. Default is "last" for all pages.
+\item{page_footnote}{A character of title displaying location.
 Possible values are "first", "last" and "all".}
 
-\item{page_source}{A character of title displaying location. Default is "last" for all pages.
+\item{page_source}{A character of title displaying location.
 Possible values are "first", "last" and "all".}
 
 \item{verbose}{a boolean value to return more details of RTF encoding.}

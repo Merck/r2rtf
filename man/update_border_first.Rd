@@ -28,8 +28,7 @@ Update first border line type and color type based on page information.
 
 \examples{
 library(dplyr)
-tbl <- iris[c(1:3 ,51:54), ] \%>\%
-   rtf_body(page_by='Species') \%>\%
-   r2rtf:::update_border_first()
-
+tbl <- iris[c(1:3, 51:54), ] \%>\%
+  rtf_body(page_by = "Species") \%>\%
+  r2rtf:::update_border_first()
 }

@@ -27,7 +27,7 @@ rtf_text(
 
 \item{background_color}{Text background color.}
 
-\item{text_convert}{A logical value to convert special characters. Default is TRUE.}
+\item{text_convert}{A logical value to convert special characters.}
 }
 \description{
 Text to RTF Encode

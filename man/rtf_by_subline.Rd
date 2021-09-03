@@ -10,8 +10,7 @@ rtf_by_subline(tbl, subline_by)
 \arguments{
 \item{tbl}{A data frame.}
 
-\item{subline_by}{Column names in a character vector to subline by table in sections.
-Default is NULL.}
+\item{subline_by}{Column names in a character vector to subline by table in sections.}
 }
 \description{
 Add

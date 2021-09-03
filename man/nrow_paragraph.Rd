@@ -31,10 +31,10 @@ Calculate number of rows for a paragraph like title, subline, footnote, source
 }
 
 \examples{
-library(dplyr) #required for running example
+library(dplyr) # required for running example
 tb <- head(iris) \%>\%
   rtf_title(title = "Iris example") \%>\%
-  rtf_footnote(footnote = c('footnote 1','footnote 2')) \%>\%
+  rtf_footnote(footnote = c("footnote 1", "footnote 2")) \%>\%
   rtf_body()
 
 r2rtf:::nrow_paragraph(attr(tb, "rtf_title"), 6.25)
