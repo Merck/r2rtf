@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate Number of Lines Broken to for Each Table Row — nrow_table • r2rtf</title>
+<title>RTF Text Vertical Justification Dictionary — vertical_justification • r2rtf</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Calculate Number of Lines Broken to for Each Table Row — nrow_table" />
-<meta property="og:description" content="Calculate number of lines broken to for each row of a table" />
+<meta property="og:title" content="RTF Text Vertical Justification Dictionary — vertical_justification" />
+<meta property="og:description" content="RTF Text Vertical Justification Dictionary" />
 
 
 
@@ -136,54 +136,24 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate Number of Lines Broken to for Each Table Row</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Merck/r2rtf/blob/master/R/rtf_nrow.R'><code>R/rtf_nrow.R</code></a></small>
-    <div class="hidden name"><code>nrow_table.Rd</code></div>
+    <h1>RTF Text Vertical Justification Dictionary</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Merck/r2rtf/blob/master/R/dictionary.R'><code>R/dictionary.R</code></a></small>
+    <div class="hidden name"><code>vertical_justification.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Calculate number of lines broken to for each row of a table</p>
+    <p>RTF Text Vertical Justification Dictionary</p>
     </div>
 
-    <pre class="usage"><span class='fu'>nrow_table</span><span class='op'>(</span><span class='va'>tbl</span>, <span class='va'>size</span>, page_size <span class='op'>=</span> <span class='va'>size</span>, padding <span class='op'>=</span> <span class='fl'>0.2</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>vertical_justification</span><span class='op'>(</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>tbl</th>
-      <td><p>A data frame with attributes or a data frame's <code>rtf_footnote</code> or <code>rtf_source</code> attributes</p></td>
-    </tr>
-    <tr>
-      <th>size</th>
-      <td><p>Table size in inches</p></td>
-    </tr>
-    <tr>
-      <th>page_size</th>
-      <td><p>Page size in inches</p></td>
-    </tr>
-    <tr>
-      <th>padding</th>
-      <td><p>Cell padding in inches</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a numeric vector of number of maximum lines broken to for each row</p>
     <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
 
     
 
 <p>The contents of this section are shown in PDF user manual only.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required for running example</span>
-<span class='va'>tbl</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>50</span><span class='op'>:</span><span class='fl'>54</span><span class='op'>)</span>, <span class='op'>]</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='rtf_title.html'>rtf_title</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Iris example"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='rtf_body.html'>rtf_body</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'>r2rtf</span><span class='fu'>:::</span><span class='fu'>nrow_table</span><span class='op'>(</span><span class='va'>tbl</span>, size <span class='op'>=</span> <span class='fl'>2.55</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 1 1 1 1 1 1 1 1 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
