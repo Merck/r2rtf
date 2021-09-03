@@ -179,8 +179,8 @@ because original attributes won't be automatically carried over.</p>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>r2rtf_tbl1</span><span class='op'>)</span>
 <span class='va'>sub_table</span> <span class='op'>&lt;-</span> <span class='va'>r2rtf_tbl1</span> <span class='op'>%&gt;%</span>
-             <span class='fu'><a href='rtf_body.html'>rtf_body</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-             <span class='fu'>r2rtf</span><span class='fu'>:::</span><span class='fu'>rtf_subset</span><span class='op'>(</span>row<span class='op'>=</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, col<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>4</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='fu'><a href='rtf_body.html'>rtf_body</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'>r2rtf</span><span class='fu'>:::</span><span class='fu'>rtf_subset</span><span class='op'>(</span>row <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, col <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>4</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='fu'><a href='https://rdrr.io/r/base/attributes.html'>attributes</a></span><span class='op'>(</span><span class='va'>sub_table</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; $names

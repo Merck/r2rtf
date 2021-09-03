@@ -178,13 +178,12 @@
 <p>The contents of this section are shown in PDF user manual only.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'>#required for running example</span>
-<span class='va'>tbl</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>50</span><span class='op'>:</span><span class='fl'>54</span><span class='op'>)</span>,<span class='op'>]</span> <span class='op'>%&gt;%</span>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required for running example</span>
+<span class='va'>tbl</span> <span class='op'>&lt;-</span> <span class='va'>iris</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, <span class='fl'>50</span><span class='op'>:</span><span class='fl'>54</span><span class='op'>)</span>, <span class='op'>]</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='rtf_title.html'>rtf_title</a></span><span class='op'>(</span>title <span class='op'>=</span> <span class='st'>"Iris example"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='rtf_body.html'>rtf_body</a></span><span class='op'>(</span><span class='op'>)</span>
-<span class='fu'>r2rtf</span><span class='fu'>:::</span><span class='fu'>nrow_table</span> <span class='op'>(</span><span class='va'>tbl</span>, size <span class='op'>=</span> <span class='fl'>2.55</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 1 1 1 1 1 1 1 1 1</div><div class='input'>
-</div></pre>
+<span class='fu'>r2rtf</span><span class='fu'>:::</span><span class='fu'>nrow_table</span><span class='op'>(</span><span class='va'>tbl</span>, size <span class='op'>=</span> <span class='fl'>2.55</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 1 1 1 1 1 1 1 1 1</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
