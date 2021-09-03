@@ -35,8 +35,8 @@ because original attributes won't be automatically carried over.
 library(dplyr)
 data(r2rtf_tbl1)
 sub_table <- r2rtf_tbl1 \%>\%
-             rtf_body() \%>\%
-             r2rtf:::rtf_subset(row=1:2, col=c(1, 4:5))
+  rtf_body() \%>\%
+  r2rtf:::rtf_subset(row = 1:2, col = c(1, 4:5))
 
 attributes(sub_table)
 }

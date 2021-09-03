@@ -33,7 +33,9 @@ Calculate number of lines that a string vector (e.g., title, subline, footnote, 
 }
 
 \examples{
-r2rtf:::rtf_nline_vector(text = c('title 1', "this is a sentence for title 2"),
-             strwidth = c(0.4, 2),
-                 size = 0.5)
+r2rtf:::rtf_nline_vector(
+  text = c("title 1", "this is a sentence for title 2"),
+  strwidth = c(0.4, 2),
+  size = 0.5
+)
 }

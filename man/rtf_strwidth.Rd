@@ -28,10 +28,11 @@ Calculate string width in inches based on font (Times New Roman, Arial, etc.), f
 
 \examples{
 library(dplyr)
-tbl <- data.frame(x = rep("This is a long sentence", 5),
-                  y = "short")
+tbl <- data.frame(
+  x = rep("This is a long sentence", 5),
+  y = "short"
+)
 tbl \%>\%
   rtf_body(text_font = c(1, 3)) \%>\%
   r2rtf:::rtf_strwidth()
-
 }

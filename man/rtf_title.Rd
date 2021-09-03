@@ -42,7 +42,7 @@ text format by column, use character vector with length of vector equal to
 number of columns displayed e.g. c("i","u","ib"). All possible input
 can be found in \code{r2rtf:::font_format()$type}.}
 
-\item{text_font_size}{Text font size. Default is 9. To vary text font size by column, use
+\item{text_font_size}{Text font size.  To vary text font size by column, use
 numeric vector with length of vector equal to number of columns
 displayed e.g. c(9,20,40).}
 
@@ -71,11 +71,11 @@ All possible input can be found in \code{r2rtf:::justification()$type}.}
 
 \item{text_space}{Line space between paragraph in twips. Default is 0.}
 
-\item{text_space_before}{Line space before a paragraph in twips. Default is 15.}
+\item{text_space_before}{Line space before a paragraph in twips.}
 
-\item{text_space_after}{Line space after a paragraph in twips. Default is 15.}
+\item{text_space_after}{Line space after a paragraph in twips.}
 
-\item{text_convert}{A logical value to convert special characters. Default is TRUE.}
+\item{text_convert}{A logical value to convert special characters.}
 }
 \value{
 the same data frame \code{tbl} with additional attributes for table title

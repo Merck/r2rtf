@@ -15,8 +15,7 @@ rtf_pageby(
 \arguments{
 \item{tbl}{A data frame.}
 
-\item{page_by}{Column names in a character vector to group by table in sections.
-Default is NULL.}
+\item{page_by}{Column names in a character vector to group by table in sections.}
 
 \item{new_page}{A boolean value to indicate whether to separate grouped table into pages
 by sections. Default is FALSE.}
@@ -24,7 +23,7 @@ by sections. Default is FALSE.}
 \item{pageby_header}{A boolean value to display pageby header at the beginning of each page.}
 
 \item{pageby_row}{A character vector of location of page_by variable. Possible input are 'column'
-or 'first_row'. Default is 'column'.}
+or 'first_row'.}
 }
 \description{
 Add Pageby Attributes to Table
