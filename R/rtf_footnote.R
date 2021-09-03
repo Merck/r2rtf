@@ -53,8 +53,10 @@
 #'                            equal to number of columns displayed e.g. c("white","red","blue").
 #'                            All possible input can be found in `grDevices::colors()`.
 #' @param border_width Border width in twips. Default is 15 for 0.0104 inch.
-#' @param cell_justification Justification type for cell. Default is "c" for center justification.
+#' @param cell_justification Justification type for cell.
 #'                           All possible input can be found in `r2rtf:::justification()$type`.
+#' @param cell_vertical_justification Vertical justification type for cell.
+#'                           All possible input can be found in `r2rtf:::vertical_justification()$type`.
 #' @param cell_height Cell height in inches. Default is 0.15 for 0.15 inch.
 #' @param cell_nrow Number of rows required in each cell.
 #' @param text_justification Justification type for text. Default is "c" for center justification.
@@ -122,6 +124,7 @@ rtf_footnote <- function(tbl,
                          border_width = 15,
                          cell_height = 0.15,
                          cell_justification = "c",
+                         cell_vertical_justification = "top",
                          cell_nrow = NULL,
                          text_font = 1,
                          text_format = NULL,
@@ -196,10 +199,11 @@ rtf_footnote <- function(tbl,
       border_color_bottom,
       border_color_first = NULL,
       border_color_last  = NULL,
-      border_width,
-      cell_height,
-      cell_justification,
-      cell_nrow
+      border_width = border_width,
+      cell_height = cell_height,
+      cell_justification = cell_justification,
+      cell_vertical_justification = cell_vertical_justification,
+      cell_nrow = cell_nrow
     )
 
     if (attr(footnote, "use_color")) attr(tbl, "page")$use_color <- TRUE

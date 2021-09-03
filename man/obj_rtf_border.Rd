@@ -21,6 +21,7 @@ obj_rtf_border(
   border_width = 15,
   cell_height = 0.15,
   cell_justification = "c",
+  cell_vertical_justification = "top",
   cell_nrow = NULL
 )
 }
@@ -84,8 +85,11 @@ All possible input can be found in \code{grDevices::colors()}.}
 
 \item{cell_height}{Cell height in inches. Default is 0.15 for 0.15 inch.}
 
-\item{cell_justification}{Justification type for cell. Default is "c" for center justification.
+\item{cell_justification}{Justification type for cell.
 All possible input can be found in \code{r2rtf:::justification()$type}.}
+
+\item{cell_vertical_justification}{Vertical justification type for cell.
+All possible input can be found in \code{r2rtf:::vertical_justification()$type}.}
 
 \item{cell_nrow}{Number of rows required in each cell.}
 }

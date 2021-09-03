@@ -127,7 +127,25 @@ justification <- function() {
   )
 }
 
-
+#' RTF Text Vertical Justification Dictionary
+#'
+#' @section Specification:
+#' \if{latex}{
+#'  \itemize{
+#'    \item Collect most commonly used vertical alignments for texts or rows (top and bottom).
+#'    \item Create a mapping between justifications and their RTF code.
+#'  }
+#'  }
+#' \if{html}{The contents of this section are shown in PDF user manual only.}
+#'
+vertical_justification <- function(){
+  data.frame(
+    type = c("top", "bottom"),
+    name = c("top", "bottom"),
+    rtf_code = c("", "\\clvertalb"),
+    stringsAsFactors = FALSE
+  )
+}
 #' RTF Border Type Dictionary
 #'
 #' @section Specification:
