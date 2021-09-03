@@ -103,6 +103,7 @@ rtf_body <- function(tbl,
                      border_width = 15,
                      cell_height = 0.15,
                      cell_justification = "c",
+                     cell_vertical_justification = "top",
                      cell_nrow = NULL,
                      text_font = 1,
                      text_format = NULL,
@@ -274,10 +275,11 @@ rtf_body <- function(tbl,
     border_color_bottom,
     border_color_first,
     border_color_last,
-    border_width,
-    cell_height,
-    cell_justification,
-    cell_nrow
+    border_width = border_width,
+    cell_height = cell_height,
+    cell_justification = cell_justification,
+    cell_vertical_justification = cell_vertical_justification,
+    cell_nrow = cell_nrow
   )
   if (attr(tbl, "use_color")) attr(tbl, "page")$use_color <- TRUE
 

@@ -50,6 +50,7 @@ obj_rtf_border <- function(tbl,
                            border_width = 15,
                            cell_height = 0.15,
                            cell_justification = "c",
+                           cell_vertical_justification = "top",
                            cell_nrow = NULL) {
 
 
@@ -68,6 +69,7 @@ obj_rtf_border <- function(tbl,
 
   check_args(cell_height, type = c("integer", "numeric"))
   check_args(cell_justification, type = c("character"))
+  check_args(cell_justification, type = c("character"))
   check_args(cell_nrow, type = c("integer", "numeric"))
 
   # Check argument values
@@ -85,6 +87,7 @@ obj_rtf_border <- function(tbl,
 
   stopifnot(cell_height > 0)
   match_arg(cell_justification, justification()$type, several.ok = TRUE)
+  match_arg(cell_vertical_justification, vertical_justification()$type, several.ok = TRUE)
 
   if (is.null(border_color_top) & !is.null(border_color_first)) {
     stop("border_color_top can not be NULL if border_color_first is used")
@@ -165,6 +168,7 @@ obj_rtf_border <- function(tbl,
 
   attr(tbl, "cell_height") <- cell_height
   attr(tbl, "cell_justification") <- cell_justification
+  attr(tbl, "cell_vertical_justification") <- cell_vertical_justification
   attr(tbl, "cell_nrow") <- cell_nrow
 
   # Register Color Use

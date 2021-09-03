@@ -25,7 +25,7 @@
 #' \if{latex}{
 #'  \itemize{
 #'    \item Define table begin and end in RTF syntax.
-#'    \item Define cell justification using `justification()`, then covert the cell from inch to twip using `inch_to_twip()` in RTF syntax.
+#'    \item Define cell justification using `justification()` and `vertical_justification`, then covert the cell from inch to twip using `inch_to_twip()` in RTF syntax.
 #'    \item Define cell border type using `border_type()` and cell border width in RTF syntax.
 #'    \item Define cell border color using `color_table()` in RTF syntax.
 #'    \item Define cell background color using input variable text_background_color in RTF syntax.
@@ -56,6 +56,7 @@ rtf_table_content <- function(tbl,
   col_rel_width <- attr(tbl, "col_rel_width")
   cell_height <- attr(tbl, "cell_height")
   cell_justification <- attr(tbl, "cell_justification")
+  cell_vertical_justification <- attr(tbl, "cell_vertical_justification")
 
   text_font <- attr(tbl, "text_font")
   text_format <- attr(tbl, "text_format")
@@ -95,6 +96,10 @@ rtf_table_content <- function(tbl,
   # Encoding RTF Cell Justification
   justification <- justification()
   cell_justification_rtf <- factor(cell_justification, levels = justification$type, labels = justification$rtf_code_row)
+
+  vertical_justification <- vertical_justification()
+  cell_vertical_justification <- factor(cell_vertical_justification, levels = vertical_justification$type, labels = vertical_justification$rtf_code)
+
   cell_height <- round(inch_to_twip(cell_height) / 2, 0)
 
   # rtf code for table begin and end
@@ -161,10 +166,10 @@ rtf_table_content <- function(tbl,
   cell_size <- foo(cell_size)
 
   # Combine Cell Attributes of cell justification, cell border type, cell border width, cell border color, cell background color and cell size.
-  border_top_left <- matrix(paste0(border_left_rtf, border_top_rtf, text_background_color_rtf, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
-  border_top_left_right <- matrix(paste0(border_left_rtf, border_top_rtf, border_right_rtf, text_background_color_rtf, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
-  border_top_left_bottom <- matrix(paste0(border_left_rtf, border_top_rtf, border_bottom_rtf, text_background_color_rtf, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
-  border_all <- matrix(paste0(border_left_rtf, border_top_rtf, border_right_rtf, border_bottom_rtf, text_background_color_rtf, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
+  border_top_left <- matrix(paste0(border_left_rtf, border_top_rtf, text_background_color_rtf, cell_vertical_justification ,"\\cellx", cell_size), nrow = n_row, ncol = n_col)
+  border_top_left_right <- matrix(paste0(border_left_rtf, border_top_rtf, border_right_rtf, text_background_color_rtf, cell_vertical_justification, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
+  border_top_left_bottom <- matrix(paste0(border_left_rtf, border_top_rtf, border_bottom_rtf, text_background_color_rtf, cell_vertical_justification, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
+  border_all <- matrix(paste0(border_left_rtf, border_top_rtf, border_right_rtf, border_bottom_rtf, text_background_color_rtf, cell_vertical_justification, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
 
   if (use_border_bottom) {
     border_rtf <- border_top_left_bottom

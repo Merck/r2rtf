@@ -25,6 +25,7 @@ rtf_footnote(
   text_color = NULL,
   text_background_color = NULL,
   text_justification = "l",
+  text_vertical_justification = "top",
   text_indent_first = 0,
   text_indent_left = 0,
   text_indent_right = 0,
@@ -86,7 +87,7 @@ All possible input can be found in \code{grDevices::colors()}.}
 
 \item{cell_height}{Cell height in inches. Default is 0.15 for 0.15 inch.}
 
-\item{cell_justification}{Justification type for cell. Default is "c" for center justification.
+\item{cell_justification}{Justification type for cell.
 All possible input can be found in \code{r2rtf:::justification()$type}.}
 
 \item{cell_nrow}{Number of rows required in each cell.}
@@ -138,6 +139,9 @@ All possible input can be found in \code{r2rtf:::justification()$type}.}
 \item{text_convert}{A logical value to convert special characters.}
 
 \item{as_table}{A logical value to display it as a table.}
+
+\item{cell_vertical_justification}{Vertical justification type for cell.
+All possible input can be found in \code{r2rtf:::vertical_justification()$type}.}
 }
 \value{
 the same data frame \code{tbl} with additional attributes for table footnote

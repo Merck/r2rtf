@@ -25,7 +25,7 @@ Create RTF Table Body Encode
 \if{latex}{
  \itemize{
    \item Define table begin and end in RTF syntax.
-   \item Define cell justification using `justification()`, then covert the cell from inch to twip using `inch_to_twip()` in RTF syntax.
+   \item Define cell justification using `justification()` and `vertical_justification`, then covert the cell from inch to twip using `inch_to_twip()` in RTF syntax.
    \item Define cell border type using `border_type()` and cell border width in RTF syntax.
    \item Define cell border color using `color_table()` in RTF syntax.
    \item Define cell background color using input variable text_background_color in RTF syntax.
