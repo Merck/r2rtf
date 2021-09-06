@@ -138,7 +138,7 @@ justification <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-vertical_justification <- function(){
+vertical_justification <- function() {
   data.frame(
     type = c("top", "bottom"),
     name = c("top", "bottom"),

@@ -87,16 +87,16 @@ rtf_encode_figure <- function(tbl) {
 
   # Footnote RTF encoding by page
   footnote_rtftext <- switch(page$page_footnote,
-                             first = c(footnote_rtftext, rep("", n_page - 1)),
-                             last  = c(rep("", n_page - 1), footnote_rtftext),
-                             all   = rep(footnote_rtftext, n_page)
+    first = c(footnote_rtftext, rep("", n_page - 1)),
+    last  = c(rep("", n_page - 1), footnote_rtftext),
+    all   = rep(footnote_rtftext, n_page)
   )
 
   # Source RTF encoding by page
   source_rtftext <- switch(page$page_source,
-                           first = c(source_rtftext, rep("", n_page - 1)),
-                           last  = c(rep("", n_page - 1), source_rtftext),
-                           all   = rep(source_rtftext, n_page)
+    first = c(source_rtftext, rep("", n_page - 1)),
+    last  = c(rep("", n_page - 1), source_rtftext),
+    all   = rep(source_rtftext, n_page)
   )
 
   rtf_feature <- paste(
