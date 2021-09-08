@@ -49,13 +49,20 @@ rtf_encode_list <- function(tbl) {
     stop("Page orientation must be the same")
   }
 
+  page_title <- unlist(unique(lapply(page, function(x) x$page_title)))
   page_footnote <- unlist(unique(lapply(page, function(x) x$page_footnote)))
   page_source <- unlist(unique(lapply(page, function(x) x$page_source)))
+  if (length(page_title) > 1) {
+    stop("Table title location must be the same")
+  }
   if (length(page_footnote) > 1) {
     stop("Table footnote location must be the same")
   }
   if (length(page_source) > 1) {
     stop("Table source location must be the same")
+  }
+  if (page_title != "all") {
+    stop("Only page_title = 'all' is supported in list")
   }
   if (page_footnote != "last") {
     stop("Only page_footnote = 'last' is supported in list")
@@ -122,6 +129,7 @@ rtf_encode_list <- function(tbl) {
       # Update border
       attr(tbl0[[1]], "page")$border_last <- NULL
       attr(tbl0[[1]], "page")$border_color_last <- NULL
+      attr(tbl0[[1]], "rtf_title") <- NULL
       attr(tbl0[[1]], "rtf_footnote") <- NULL
       attr(tbl0[[1]], "rtf_source") <- NULL
       encode0 <- c(encode[1:(item - 1)], lapply(tbl0, rtf_encode_table, verbose = TRUE))
