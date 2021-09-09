@@ -1,3 +1,13 @@
+# r2rtf 0.3.1 (2021-10-01)
+
+* New argument `cell_vertical_alignment` in `rtf_xxx` function. (#49, #52)
+* New argument `verbose` in `rtf_encode_list` and `rtf_encode_table`. (#38)
+* Bug fix `unicode_latex` not found. (#50)
+* Bug fix vertical align column headers. (#49, #52)
+* Bug fix vectorize text formatting arguments in rtf_page_header and rtf_page_footer. (#47, #53)
+* Bug fix text_format issue with all value equal to "". (#40)
+* `r2rtf` needs to work properly with `group_by()`. (#36)
+
 # r2rtf 0.3.0 (2021-06-01)
 
 * Rename dataset with prefix `r2rtf` to avoid conflict of other namespace

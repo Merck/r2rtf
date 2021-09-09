@@ -41,7 +41,7 @@ The R package`r2rtf` provided flexibility to enable features below:
 
 -   Necessary options to create highly customized RTF table and figure.
 -   Simple to use parameters and data structure.
-    -   Customized column header: split by “|”.
+    -   Customized column header: split by `"|"`.
     -   Three required parameters for the output tables (data, filename,
         column relative width).
     -   Flexible and detail control of table structure.
