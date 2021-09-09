@@ -1,4 +1,4 @@
-# r2rtf 0.3.1 (2021-10-01)
+# r2rtf 0.3.1 (2021-09-09)
 
 * New argument `cell_vertical_alignment` in `rtf_xxx` function. (#49, #52)
 * New argument `verbose` in `rtf_encode_list` and `rtf_encode_table`. (#38)
