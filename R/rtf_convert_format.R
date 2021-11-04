@@ -168,6 +168,9 @@ update_cellx <- function(x, tolerance = 5){
   index <- sapply(cellx, function(x) length(x) > 0)
 
   cellx_num <- sort(as.numeric(gsub("cellx", "", unique(unlist(cellx)))))
+
+  if(length(cellx_num) == 0) return(x)
+
   cellx_diff <- cumsum(c(tolerance+1, diff(cellx_num)) > tolerance)
 
   cellx_update <- unlist(tapply(cellx_num, cellx_diff, function(x) rep(max(x), length(x))))
