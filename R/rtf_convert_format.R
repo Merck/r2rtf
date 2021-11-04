@@ -60,10 +60,14 @@ rtf_convert_format <- function(input,
     for(i in seq_along(input)){
 
       x <- readLines(input[i])
+      x <- update_cellx(x)
+
       index <- grep("^\\{\\\\pard", x)
 
       x_cell <- gsub("\\\\par", "\\\\cell", x[index])
-      x_cell <- paste0("\\trowd\\trgaph108\\trleft0\\trqc\\cellx9000\n", x_cell, "\n\\intbl\\row\\pard")
+      x_cell <- paste0("\\trowd\\trgaph108\\trleft0\\trqc\\cellx", attr(x, "max_twip"), "\n",
+                       x_cell, "\n\\intbl\\row\\pard")
+
       x[index] <- x_cell
 
       write_rtf(x, input_convert[i])
@@ -146,4 +150,37 @@ rtf_convert_format <- function(input,
   }
 
   invisible(output_path)
+}
+
+
+#' Update RTF border twips
+#'
+#' @param x a character vector of RTF encoding.
+#' @param tolerance tolerance of the difference for `\\cellx`.
+#'
+#' @return a character vector of RTF encoding.
+#'
+#' @keywords internal
+update_cellx <- function(x, tolerance = 5){
+
+  cellx <- regmatches(x, gregexpr("cellx([0-9]+)", x))
+
+  index <- sapply(cellx, function(x) length(x) > 0)
+
+  cellx_num <- sort(as.numeric(gsub("cellx", "", unique(unlist(cellx)))))
+  cellx_diff <- cumsum(c(tolerance+1, diff(cellx_num)) > tolerance)
+
+  cellx_update <- unlist(tapply(cellx_num, cellx_diff, function(x) rep(max(x), length(x))))
+
+  origin  <- paste0("\\\\cellx",cellx_num[cellx_num != cellx_update])
+  convert <- paste0("\\\\cellx",cellx_update[cellx_num != cellx_update])
+
+  for(i in seq_along(origin)){
+    x[index] <- gsub(origin[i], convert[i], x[index])
+  }
+
+  attr(x, "max_twip") <- max(cellx_num, na.rm = TRUE)
+
+  x
+
 }
