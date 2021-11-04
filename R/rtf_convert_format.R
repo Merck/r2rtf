@@ -36,6 +36,8 @@ rtf_convert_format <- function(input,
                                format = "pdf",
                                overwrite = FALSE) {
 
+  if(length(input) == 0) stop("The input variable can not be null")
+
   match_arg(tolower(format), c("pdf", "docx", "html"))
 
   # Check libreoffice dependency

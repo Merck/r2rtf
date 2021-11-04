@@ -12,6 +12,12 @@ knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 library(r2rtf)
 ```
 
+```{r, include = FALSE}
+r2rtf:::rtf_convert_format(input = list.files("vignettes/rtf/", pattern = "*.rtf", full.names = TRUE), 
+                           output_dir = "vignettes/html", 
+                           format = "html")
+```
+
 # Overview
 
 `r2rtf` had an experimental internal function `r2rtf:::rtf_convert_format` to 
