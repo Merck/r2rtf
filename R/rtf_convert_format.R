@@ -17,7 +17,7 @@
 
 #' Convert RTF file to Other Format
 #'
-#' This is a experimental function.
+#' This is an experimental function.
 #'
 #' Convert RTF files to PDF or DOCX files. Require libreoffice7.1.
 #'
@@ -35,6 +35,7 @@ rtf_convert_format <- function(input,
                                output_dir = ".",
                                format = "pdf",
                                overwrite = FALSE) {
+
   match_arg(tolower(format), c("pdf", "docx", "html"))
 
   # Check libreoffice dependency
@@ -50,6 +51,30 @@ rtf_convert_format <- function(input,
 
   file_pattern <- paste0("*.", format)
 
+  # Add blank cell for html output
+  if(format == "html"){
+
+    dir.create(file.path(tempdir(), "rtf"), showWarnings = FALSE)
+    input_convert <- file.path(tempdir(), "rtf", basename(input))
+
+    for(i in seq_along(input)){
+
+      x <- readLines(input[i])
+      index <- grep("^\\{\\\\pard", x)
+
+      x_cell <- gsub("\\\\par", "\\\\cell", x[index])
+      x_cell <- paste0("\\trowd\\trgaph108\\trleft0\\trqc\\cellx9000\n", x_cell, "\n\\intbl\\row\\pard")
+      x[index] <- x_cell
+
+      write_rtf(x, input_convert[i])
+    }
+
+
+  }else{
+    input_convert <- input
+  }
+
+
   # Define command line
   tmp_dir <- file.path(tempdir(), "rtf_convert")
   if (dir.exists(tmp_dir)) {
@@ -61,7 +86,7 @@ rtf_convert_format <- function(input,
   cmd <- paste0(
     "libreoffice7.1 --convert-to ",
     format, " ",
-    input,
+    input_convert,
     " --outdir ", tmp_dir
   )
 
@@ -73,7 +98,7 @@ rtf_convert_format <- function(input,
   if (any(unlist(output) == 1)) {
     stop(paste0(
       "File convert error: ",
-      paste(basename(input)[output == 1], collapse = "; ")
+      paste(basename(input_convert)[output == 1], collapse = "; ")
     ))
   }
 
@@ -110,7 +135,7 @@ rtf_convert_format <- function(input,
     output_dir,
     gsub(
       "\\.rtf$", paste0("\\.", format),
-      basename(input)
+      basename(input_convert)
     )
   )
 

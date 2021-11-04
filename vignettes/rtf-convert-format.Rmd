@@ -42,7 +42,7 @@ r2rtf:::rtf_convert_format(input = "rtf/ae_example.rtf", format = "html")
 
 ## Limitations 
 
-There are 2 known limitations after RTF file convert to HTML files:   
+There is one known limitation after RTF file convert to HTML files:   
 
 - table border issue.
   - "dash", "small dash", "dot dash", and "dot dot" border type are not supported 
@@ -54,18 +54,5 @@ knitr::include_graphics("pdf/border-type.pdf")
 ````{=html}
 ```{r, echo=FALSE, results='asis'}
 xfun::file_string("html/border-type.html")
-```
-````
-
-- left and right adjusted paragraph outside of table. 
-  - e.g. title, subtitle, subline, footnote, or source. 
-
-```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
-knitr::include_graphics("pdf/intro-ae16.pdf")
-```
-
-````{=html}
-```{r, echo=FALSE, results='asis'}
-xfun::file_string("html/intro-ae16.html")
 ```
 ````
