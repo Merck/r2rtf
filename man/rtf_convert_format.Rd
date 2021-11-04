@@ -28,7 +28,7 @@ Default is the same filename for input.}
 A vector of file paths for the converted files.
 }
 \description{
-This is a experimental function.
+This is an experimental function.
 }
 \details{
 Convert RTF files to PDF or DOCX files. Require libreoffice7.1.
