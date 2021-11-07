@@ -74,7 +74,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">r2rtf</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1.9000</span>
       </span>
     </div>
 
@@ -355,19 +355,20 @@ All possible input can be found in <code>r2rtf:::justification()$type</code>.</p
 <p>The contents of this section are shown in PDF user manual only.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required to run examples</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>r2rtf_tbl1</span><span class='op'>)</span>
-<span class='va'>r2rtf_tbl1</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>rtf_colheader</span><span class='op'>(</span>
-    colheader <span class='op'>=</span> <span class='st'>"Treatment | N | Mean (SD) | N | Mean (SD) | N |
-                  Mean (SD) | LS Mean (95% CI)\\dagger"</span>,
-    text_format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"b"</span>, <span class='st'>""</span>, <span class='st'>"u"</span>, <span class='st'>""</span>, <span class='st'>"u"</span>, <span class='st'>""</span>, <span class='st'>"u"</span>, <span class='st'>"i"</span><span class='op'>)</span>
-  <span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='st'>"rtf_colheader"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [[1]]
-#&gt;          X1 X2        X3 X4        X5 X6        X7                       X8
-#&gt; 1 Treatment  N Mean (SD)  N Mean (SD)  N Mean (SD) LS Mean (95% CI)\\dagger
-#&gt; </div></pre>
+    <pre class="examples"><span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span> <span class='co'># required to run examples</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>r2rtf_tbl1</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>r2rtf_tbl1</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'>rtf_colheader</span><span class='op'>(</span></span>
+<span class='r-in'>    colheader <span class='op'>=</span> <span class='st'>"Treatment | N | Mean (SD) | N | Mean (SD) | N |</span>
+<span class='r-in'>                  Mean (SD) | LS Mean (95% CI)\\dagger"</span>,</span>
+<span class='r-in'>    text_format <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"b"</span>, <span class='st'>""</span>, <span class='st'>"u"</span>, <span class='st'>""</span>, <span class='st'>"u"</span>, <span class='st'>""</span>, <span class='st'>"u"</span>, <span class='st'>"i"</span><span class='op'>)</span></span>
+<span class='r-in'>  <span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span></span>
+<span class='r-in'>  <span class='fu'><a href='https://rdrr.io/r/base/attr.html'>attr</a></span><span class='op'>(</span><span class='st'>"rtf_colheader"</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [[1]]</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>          X1 X2        X3 X4        X5 X6        X7                       X8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 Treatment  N Mean (SD)  N Mean (SD)  N Mean (SD) LS Mean (95% CI)\\dagger</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

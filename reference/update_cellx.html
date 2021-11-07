@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Create RTF Header Encode — as_rtf_init • r2rtf</title>
+<title>Update RTF border twips — update_cellx • r2rtf</title>
 
 
 <!-- jquery -->
@@ -41,8 +41,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Create RTF Header Encode — as_rtf_init" />
-<meta property="og:description" content="Create RTF Header Encode" />
+<meta property="og:title" content="Update RTF border twips — update_cellx" />
+<meta property="og:description" content="Update RTF border twips" />
 
 
 
@@ -136,23 +136,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Create RTF Header Encode</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Merck/r2rtf/blob/master/R/content_create.R'><code>R/content_create.R</code></a></small>
-    <div class="hidden name"><code>as_rtf_init.Rd</code></div>
+    <h1>Update RTF border twips</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Merck/r2rtf/blob/master/R/rtf_convert_format.R'><code>R/rtf_convert_format.R</code></a></small>
+    <div class="hidden name"><code>update_cellx.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Create RTF Header Encode</p>
+    <p>Update RTF border twips</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as_rtf_init</span><span class='op'>(</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>update_cellx</span><span class='op'>(</span><span class='va'>x</span>, tolerance <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>a character vector of RTF encoding.</p></td>
+    </tr>
+    <tr>
+      <th>tolerance</th>
+      <td><p>tolerance of the difference for <code>\\cellx</code>.</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="specification"><a class="anchor" href="#specification"></a>Specification</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-<p>The contents of this section are shown in PDF user manual only.</p>
+    <p>a character vector of RTF encoding.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
