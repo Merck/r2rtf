@@ -60,7 +60,7 @@ rtf_encode_figure <- function(tbl) {
 
   ## get rtf code for figure format
   fig_format <- fig_format()
-  fig_format <- factor(attr(tbl, "fig_format"), levels = fig_format$type, label = fig_format$rtf_code)
+  fig_format <- factor(attr(tbl, "fig_format"), levels = fig_format$type, labels = fig_format$rtf_code)
 
   rtf_fig <- paste0(
     "{\\pict", fig_format, "\\picwgoal",
