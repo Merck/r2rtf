@@ -24,7 +24,7 @@ test_that("Test if content is converted to RTF correctly when tbl class is data.
 })
 
 
-tbl <- rtf_read_png("fig/fig1.png") %>% rtf_figure()
+tbl <- rtf_read_figure("fig/fig1.png") %>% rtf_figure()
 tbl2 <- tbl %>%
   rtf_title("This is the title") %>%
   rtf_footnote("This is a footnote")

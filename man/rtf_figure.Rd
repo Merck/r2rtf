@@ -4,7 +4,7 @@
 \alias{rtf_figure}
 \title{Add Figure Attributes}
 \usage{
-rtf_figure(tbl, fig_width = 5, fig_height = 5)
+rtf_figure(tbl, fig_width = 5, fig_height = 5, fig_format = NULL)
 }
 \arguments{
 \item{tbl}{A data frame.}
@@ -41,7 +41,7 @@ plot(1:10)
 dev.off()
 
 # Read in PNG file in binary format
-rtf_read_png(file) \%>\%
+rtf_read_figure(file) \%>\%
   rtf_figure() \%>\%
   attributes()
 }

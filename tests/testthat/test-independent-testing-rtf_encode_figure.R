@@ -1,5 +1,5 @@
 
-tbl <- rtf_read_png("fig/fig1.png") %>%
+tbl <- rtf_read_figure("fig/fig1.png") %>%
   rtf_figure(
     fig_width = 5,
     fig_height = 5
