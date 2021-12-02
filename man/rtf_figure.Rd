@@ -12,6 +12,8 @@ rtf_figure(tbl, fig_width = 5, fig_height = 5, fig_format = NULL)
 \item{fig_width}{the width of figures in inch}
 
 \item{fig_height}{the height of figures in inch}
+
+\item{fig_format}{the figure format defined in \code{r2rtf:::fig_format()}}
 }
 \value{
 the same data frame \code{tbl} with additional attributes for figure body

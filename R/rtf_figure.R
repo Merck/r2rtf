@@ -32,6 +32,7 @@
 #'
 #' @param fig_width the width of figures in inch
 #' @param fig_height the height of figures in inch
+#' @param fig_format the figure format defined in `r2rtf:::fig_format()`
 #'
 #' @return the same data frame \code{tbl} with additional attributes for figure body
 #'
