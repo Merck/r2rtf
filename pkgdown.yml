@@ -1,5 +1,5 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   design-pattern: design-pattern.html
@@ -13,5 +13,5 @@ articles:
   rtf-convert-format: rtf-convert-format.html
   rtf-row: rtf-row.html
   rtf-text: rtf-text.html
-last_built: 2021-11-13T05:40Z
+last_built: 2021-12-03T22:37Z
 
