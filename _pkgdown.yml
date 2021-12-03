@@ -76,7 +76,7 @@ reference:
   - "r2rtf_tbl1"
   - "r2rtf_tbl2"
   - "r2rtf_tbl3"
-- title: internal
+- title: Internal
   contents:
   - "as_rtf_color"
   - "as_rtf_end"
