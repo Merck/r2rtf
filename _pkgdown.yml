@@ -76,8 +76,9 @@ reference:
   - "r2rtf_tbl1"
   - "r2rtf_tbl2"
   - "r2rtf_tbl3"
-- title: Internal
+- title: internal function
   contents:
+  - "as_rtf_colheader"
   - "as_rtf_color"
   - "as_rtf_end"
   - "as_rtf_font"
