@@ -58,9 +58,12 @@ rtf_encode_figure <- function(tbl) {
   fig_width <- attr(tbl, "fig_width")
   fig_height <- attr(tbl, "fig_height")
 
+  ## get rtf code for figure format
+  fig_format <- fig_format()
+  fig_format <- factor(attr(tbl, "fig_format"), levels = fig_format$type, labels = fig_format$rtf_code)
 
   rtf_fig <- paste0(
-    "{\\pict\\pngblip\\picwgoal",
+    "{\\pict", fig_format, "\\picwgoal",
     round(fig_width * 1440), "\\pichgoal",
     round(fig_height * 1440), " ", lapply(tbl, paste, collapse = ""), "}"
   )

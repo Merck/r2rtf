@@ -612,7 +612,7 @@ The last example showed how to insert a figure into a RTF document.
 The workflow can be summarized as:
 
 - save figures into PNG format. (e.g. using `png()` or `ggplot2::ggsave()`).
-- read PNG files into R as binary file using `rtf_read_png`.
+- read PNG files into R as binary file using `rtf_read_figure`.
 - add optional features using `rtf_title`, `rtf_footnote`, `rtf_source`.
 - set up page and figure options using `rtf_figure`.
 - convert to rtf encoding using `rtf_encode(doc_type = "figure")`. (Note: it is important to set `doc_type = "figure")` as the  default is `doc_type = "table` to set up tables).
@@ -635,7 +635,7 @@ filename <- "fig/intro-fig1.png"
 ggsave(filename, fig)
 
 filename %>%
-  rtf_read_png() %>%
+  rtf_read_figure() %>%
   rtf_title("Pruritus Frequency by Treatment Group") %>%
   rtf_footnote("footnote here") %>%
   rtf_source("[datasource: adam-adae]") %>%

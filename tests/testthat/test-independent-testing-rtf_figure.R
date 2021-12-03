@@ -1,5 +1,5 @@
 df <- c("fig/fig1.png", "fig/fig2.png")
-df <- df %>% rtf_read_png()
+df <- df %>% rtf_read_figure()
 
 df1 <- df %>% rtf_figure() # to test default values
 

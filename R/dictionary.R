@@ -102,6 +102,25 @@ font_format <- function() {
   )
 }
 
+#' RTF Text Format Dictionary
+#'
+#' @section Specification:
+#' \if{latex}{
+#'  \itemize{
+#'    \item Collect supported figure format.
+#'    \item Create a mapping between figure formats and their RTF code.
+#'  }
+#'
+#'  }
+#' \if{html}{The contents of this section are shown in PDF user manual only.}
+#'
+fig_format <- function() {
+  data.frame(
+    type = c("emf", "png", "jpeg"),
+    rtf_code = c("\\emfblip", "\\pngblip", "\\jpegblip"),
+    stringsAsFactors = FALSE
+  )
+}
 
 #' RTF Text Justification Dictionary
 #'
@@ -193,3 +212,9 @@ spacing <- function() {
     stringsAsFactors = FALSE
   )
 }
+
+
+
+
+
+

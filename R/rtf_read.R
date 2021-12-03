@@ -15,9 +15,11 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Read PNG Figures into Binary Files
+#' Read Figures into Binary Files
 #'
-#' @param file A character vector of PNG file paths.
+#' Supported format is listed in \code{r2rtf:::fig_format()}.
+#'
+#' @param file A character vector of figure file paths.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -31,16 +33,52 @@
 #'
 #' @examples
 #' \dontrun{
-#' file <- file.path(tempdir(), "figure1.png")
+#'
+#' # Read in PNG file in binary format
+#' file <- tempfile("figure",fileext=".png")
 #' png(file)
 #' plot(1:10)
 #' dev.off()
 #'
-#' # Read in PNG file in binary format
-#' rtf_read_png(file)
+#'
+#' rtf_read_figure(file)
+#'
+#' # Read in EMF file in binary format
+#' library(devEMF)
+#' file <- tempfile("figure",fileext=".emf")
+#' emf(file)
+#' plot(1:10)
+#' dev.off()
+#'
+#'
+#' rtf_read_figure(file)
 #' }
+#' @export
+rtf_read_figure <- function(file){
+
+  out <- lapply(file, readBin, what = "raw", size = 1, signed = TRUE, endian = "little", n = 1e8)
+
+  attr(out, "fig_format") <- tools::file_ext(file)
+
+  out
+}
+
+#' Read PNG Figures into Binary Files
+#'
+#' @param file A character vector of PNG file paths.
+#'
+#' @section Specification:
+#' \if{latex}{
+#'  \itemize{
+#'    \item Deprecated: rtf_read_png. Use rtf_read_figure instead
+#'  }
+#'  }
+#' \if{html}{The contents of this section are shown in PDF user manual only.}
+#'
+#' @return a list of binary data vector returned by \code{readBin}
 #'
 #' @export
-rtf_read_png <- function(file) {
-  lapply(file, readBin, what = "raw", size = 1, signed = TRUE, endian = "little", n = 1e8)
+rtf_read_png <- function(file){
+  warning("Deprecated: rtf_read_png. Use rtf_read_figure instead")
+  rtf_read_figure(file)
 }

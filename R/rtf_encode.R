@@ -66,7 +66,7 @@
 #' dev.off()
 #'
 #' # Read in PNG file in binary format
-#' rtf_read_png(file) %>%
+#' rtf_read_figure(file) %>%
 #'   rtf_figure() %>%
 #'   rtf_encode(doc_type = "figure") %>%
 #'   write_rtf(file = file.path(tempdir(), "figure1.rtf"))

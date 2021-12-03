@@ -63,7 +63,7 @@ reference:
   - "write_rtf"
 - title: RTF Figure
   contents:
-  - "rtf_read_png"
+  - "rtf_read_figure"
   - "rtf_figure"
 - title: Utility Data
   contents:

@@ -36,7 +36,7 @@ tables, listings and figures (TLFs) in RTF format and provide flexibility to
 customize table appearance for table title, subtitle, column header, footnote, and data source.
 
 The r2rtf package is designed to enables pipes (`%>%`), 
-the first argument are all `tbl` except `rtf_read_png()` and `write_rtf()`.
+the first argument are all `tbl` except `rtf_read_figure()` and `write_rtf()`.
 A minimal example summarized the major steps in using r2rtf package to
 create a table or listing after a data frame is ready.
   
@@ -50,12 +50,12 @@ head(iris) %>% rtf_body() %>%                       # Step 1 Add attributes
 knitr::include_graphics("pdf/ex-tbl.pdf")
 ```
 
-Similar step is used to create a figure. First we generate a figure in `png` format, then use `rtf_read_png()` to read in the `png` file, and proceed to rtf generation.
+Similar step is used to create a figure. First we generate a figure in `png` format, then use `rtf_read_figure()` to read in the `png` file, and proceed to rtf generation.
 
 
 ```{r}
 fig <- c("fig/fig1.png")
-fig %>% rtf_read_png() %>%                     # Step 1 Read in png file
+fig %>% rtf_read_figure() %>%                     # Step 1 Read in png file
          rtf_figure() %>%                      # Step 2 Add attributes 
          rtf_encode(doc_type = "figure") %>%   # Step 3 Convert attributes to RTF encode 
          write_rtf(file = "rtf/ex-fig.rtf")           # Step 4 Write to a .rtf file 
@@ -132,7 +132,7 @@ head(iris) %>%                               # Step 1 Read in data frame
 
 ```{r, eval = FALSE}
 "fig/tmp-fig.png" %>%
-  rtf_read_png() %>%                     # Step 1 Read PNG files from the file path
+  rtf_read_figure() %>%                  # Step 1 Read PNG files from the file path
   rtf_title("title", "subtitle") %>%     # Step 2 Add title or subtitle
   rtf_footnote("footnote") %>%           # Step 3 Add footnote
   rtf_source("[datasource: mk0999]") %>% # Step 4 Add data source
