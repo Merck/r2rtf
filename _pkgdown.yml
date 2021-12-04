@@ -147,3 +147,5 @@ reference:
   - "utf8Tortf"
   - "vertical_justification"
   - "write_rtf_para"
+  - "fig_format"
+  - "rtf_read_png"
