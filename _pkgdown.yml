@@ -1,17 +1,34 @@
 destination: docs
+
+url: https://merck.github.io/r2rtf/
+
 template:
-  package: r2rtf
   bootstrap: 5
+  bslib:
+    primary: "#00857c"
+    navbar-light-brand-color: "#fff"
+    navbar-light-brand-hover-color: "#fff"
+    navbar-light-color: "#fff"
+    navbar-light-hover-color: "#fff"
+    navbar-light-active-color: "#fff"
+    dropdown-link-hover-color: "#fff"
+    dropdown-link-hover-bg: "#00857c"
+
+footer:
+  structure:
+    left: [developed_by, built_with, legal]
+    right: [blank]
+  components:
+    legal: "<br>Copyright &copy; Merck Sharp & Dohme Corp., a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA."
+    blank: "<span></span>"
+
 navbar:
-  type: default
   left:
-    - icon: fa-home
-      href: index.html
     - icon: fas fa-file-code
       text: "Reference"
       href: reference/index.html
     - icon: fas fa-play-circle
-      text: "Get Start"
+      text: "Get started"
       href: articles/r2rtf.html
     - text: "Articles"
       icon: fas fa-book
@@ -22,10 +39,10 @@ navbar:
   right:
     - icon: fab fa-github
       text: "Source code"
-      href: https://github.com/Merck/r2rtf/
+      href: https://github.com/Merck/r2rtf
 
 articles:
-- title: Get Start
+- title: Get Started
   contents:
   - r2rtf
 - title: TLF Examples
@@ -130,4 +147,3 @@ reference:
   - "utf8Tortf"
   - "vertical_justification"
   - "write_rtf_para"
-
