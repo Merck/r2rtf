@@ -19,7 +19,7 @@
 #'
 #' This is an experimental function.
 #'
-#' Convert RTF files to PDF or DOCX files. Require libreoffice7.1.
+#' Convert RTF files to PDF or DOCX files. Require `libreoffice`.
 #'
 #' @param input A vector of file paths for the input file to be converted.
 #' @param output_file A vector of filename for the output file.
@@ -42,13 +42,20 @@ rtf_convert_format <- function(input,
 
   # Check libreoffice dependency
   if (.Platform$OS.type == "unix") {
-    sys_dep <- system("which libreoffice7.1", ignore.stderr = TRUE, ignore.stdout = TRUE)
+
+    sys_cmd <- c("libreoffice7.2","libreoffice7.1", "libreoffice")
+    sys_loc <- which(Sys.which(sys_cmd) != "")[1]
+    if(is.na(sys_loc)) stop("libreoffice is required")
+    sys_cmd <- sys_cmd[sys_loc]
+
+    # Libreoffice version require to be >= 7.1
+    version <- strsplit(system(paste(sys_cmd, "--version"), intern = TRUE), " ")[[1]][[2]]
+    if(as.package_version(version) < as.package_version("7.1")){
+      stop("libreoffice version required to be >= 7.1")
+    }
+
   } else {
     stop("Only Unix/Linux is currently supported")
-  }
-
-  if (sys_dep == 1) {
-    stop("libreoffice7.1 is required")
   }
 
   file_pattern <- paste0("*.", format)
@@ -80,7 +87,6 @@ rtf_convert_format <- function(input,
     input_convert <- input
   }
 
-
   # Define command line
   tmp_dir <- file.path(tempdir(), "rtf_convert")
   if (dir.exists(tmp_dir)) {
@@ -90,7 +96,7 @@ rtf_convert_format <- function(input,
   }
 
   cmd <- paste0(
-    "libreoffice7.1 --convert-to ",
+    sys_cmd, " --convert-to ",
     format, " ",
     input_convert,
     " --outdir ", tmp_dir

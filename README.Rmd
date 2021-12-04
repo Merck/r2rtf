@@ -120,7 +120,9 @@ try(
 # Transfer all RTF files to PDF files
 files <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
 
-r2rtf:::rtf_convert_format(input = files, output_dir = "vignettes/pdf")
+r2rtf:::rtf_convert_format(input = files, 
+                           format = "pdf",
+                           output_dir = "vignettes/pdf")
 
 r2rtf:::rtf_convert_format(
   input = files,
