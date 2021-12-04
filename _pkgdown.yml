@@ -93,7 +93,7 @@ reference:
   - "r2rtf_tbl1"
   - "r2rtf_tbl2"
   - "r2rtf_tbl3"
-- title: internal
+- title: internal function
   contents:
   - "as_rtf_colheader"
   - "as_rtf_color"
