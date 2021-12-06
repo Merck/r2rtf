@@ -79,3 +79,13 @@ check_args <- function(arg, type, length = NULL, dim = NULL) {
     return(NULL)
   }
 }
+
+# This function will be removed after
+# I can use R in dev version.
+as_vector <- function(x){
+  if(class(x) %in% "data.frame"){
+    return(x)
+  }else{
+    return(as.vector(x))
+  }
+}
