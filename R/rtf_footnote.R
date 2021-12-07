@@ -83,9 +83,9 @@
 #'                              text color by column, use character vector with length of vector
 #'                              equal to number of columns displayed e.g. c("white","red","blue").
 #'                              All possible input can be found in `grDevices::colors()`.
-#' @param text_indent_first A value of text indent in first line.
-#' @param text_indent_left  A value of text left indent.
-#' @param text_indent_right A value of text right indent.
+#' @param text_indent_first A value of text indent in first line. The unit is twip.
+#' @param text_indent_left  A value of text left indent. The unit is twip.
+#' @param text_indent_right A value of text right indent. The unit is twip.
 #' @param text_indent_reference The reference start point of text indent. Accept `table` or `page_margin`
 #' @param text_space Line space between paragraph in twips. Default is 0.
 #' @param text_space_before Line space before a paragraph in twips.
