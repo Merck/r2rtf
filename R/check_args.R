@@ -50,7 +50,7 @@ check_args <- function(arg, type, length = NULL, dim = NULL) {
     return(NULL)
   }
 
-  arg <- as.vector(arg)
+  arg <- if(class(arg) %in% "matrix") as.vector(arg)
 
   check <- list()
   message <- list()
@@ -80,6 +80,7 @@ check_args <- function(arg, type, length = NULL, dim = NULL) {
   }
 }
 
+# Only a temporary solution
 # This function will be removed after
 # I can use R in dev version.
 as_vector <- function(x){

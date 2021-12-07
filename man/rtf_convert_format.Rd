@@ -31,5 +31,5 @@ A vector of file paths for the converted files.
 This is an experimental function.
 }
 \details{
-Convert RTF files to PDF or DOCX files. Require libreoffice7.1.
+Convert RTF files to PDF or DOCX files. Require \code{libreoffice}.
 }
