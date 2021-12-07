@@ -55,7 +55,7 @@ Similar step is used to create a figure. First we generate a figure in `png` for
 
 ```{r}
 fig <- c("fig/fig1.png")
-fig %>% rtf_read_figure() %>%                     # Step 1 Read in png file
+fig %>% rtf_read_figure() %>%                  # Step 1 Read in png file
          rtf_figure() %>%                      # Step 2 Add attributes 
          rtf_encode(doc_type = "figure") %>%   # Step 3 Convert attributes to RTF encode 
          write_rtf(file = "rtf/ex-fig.rtf")           # Step 4 Write to a .rtf file 
