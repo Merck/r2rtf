@@ -5,7 +5,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/r2rtf)](https://CRAN.R-project.org/package=r2rtf)
 [![Codecov test
-coverage](https://codecov.io/gh/Merck/r2rtf/branch/master/graph/badge.svg)](https://codecov.io/gh/Merck/r2rtf?branch=master)
+coverage](https://codecov.io/gh/Merck/r2rtf/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Merck/r2rtf?branch=master)
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/package=r2rtf)
 [![R-CMD-check](https://github.com/Merck/r2rtf/workflows/R-CMD-check/badge.svg)](https://github.com/Merck/r2rtf/actions)
