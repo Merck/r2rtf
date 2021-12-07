@@ -1,3 +1,10 @@
+# r2rtf 0.3.2 (2021-12-07)
+
+* New function: `rtf_read_figure` support `jpeg` and `emf` format to read figure (#65)
+* Improvement: avoid specific libreoffice version (#68)
+* Bug fix: avoid using `as.vector` for `data.frame` (#74)
+* Bug fix: proper alignment to transfer `html` (#61)
+
 # r2rtf 0.3.1 (2021-09-09)
 
 * New argument `cell_vertical_alignment` in `rtf_xxx` function. (#49, #52)

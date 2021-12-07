@@ -58,11 +58,11 @@ To vary text justification by column, use character vector with
 length of vector equal to number of columns displayed e.g. c("c","l","r").
 All possible input can be found in \code{r2rtf:::justification()$type}.}
 
-\item{text_indent_first}{A value of text indent in first line.}
+\item{text_indent_first}{A value of text indent in first line. The unit is twip.}
 
-\item{text_indent_left}{A value of text left indent.}
+\item{text_indent_left}{A value of text left indent. The unit is twip.}
 
-\item{text_indent_right}{A value of text right indent.}
+\item{text_indent_right}{A value of text right indent. The unit is twip.}
 
 \item{text_indent_reference}{The reference start point of text indent. Accept \code{table} or \code{page_margin}}
 

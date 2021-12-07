@@ -23,11 +23,11 @@ rtf_paragraph(
 
 \item{justification}{Justification for text.}
 
-\item{indent_first}{First indent.}
+\item{indent_first}{First indent. The unit is twip.}
 
-\item{indent_left}{Left indent.}
+\item{indent_left}{Left indent. The unit is twip.}
 
-\item{indent_right}{Right indent.}
+\item{indent_right}{Right indent. The unit is twip.}
 
 \item{space}{Paragraph space.}
 

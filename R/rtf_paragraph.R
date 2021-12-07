@@ -19,9 +19,9 @@
 #'
 #' @param text rtf text obtained using `rtf_text()` function.
 #' @param justification Justification for text.
-#' @param indent_first First indent.
-#' @param indent_left  Left indent.
-#' @param indent_right Right indent.
+#' @param indent_first First indent. The unit is twip.
+#' @param indent_left  Left indent. The unit is twip.
+#' @param indent_right Right indent. The unit is twip.
 #' @param space Paragraph space.
 #' @param space_before Line space before text.
 #' @param space_after  Line space after text.
