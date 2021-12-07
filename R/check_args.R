@@ -50,7 +50,7 @@ check_args <- function(arg, type, length = NULL, dim = NULL) {
     return(NULL)
   }
 
-  arg <- if(class(arg) %in% "matrix") as.vector(arg)
+  if(class(arg) %in% "matrix") arg <- as.vector(arg)
 
   check <- list()
   message <- list()
