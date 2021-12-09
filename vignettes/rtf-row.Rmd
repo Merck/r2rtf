@@ -13,9 +13,7 @@ library(r2rtf)
 library(dplyr)
 ```
 
-
 This vignette documents how to use `.rtf_row` to customize table in details. All output tables are saved in the `vignettes/rtf` folder and assembled in `vignettes/r2rtf_examples.docx` document. 
-
 
 ## Border Type
 
@@ -27,7 +25,8 @@ r2rtf:::border_type()$name
 
 The border type can be used to define the top, left, right and bottom border types. 
 
-This example define different top border line. 
+This example define different top border line.
+
 ```{r}
 .n <- length(r2rtf:::border_type()$name)
 db <- data.frame(border_type = r2rtf:::border_type()$name) %>%
@@ -43,7 +42,6 @@ db %>%
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/border-type.pdf")
 ```
-
 
 For each cell, the top border and left border is defined in each cell. The right border only defined in last column. 
 The bottom border only defined in last row. This example show that top border and left border type are used for all 
@@ -67,6 +65,7 @@ knitr::include_graphics("pdf/border-order.pdf")
 ```
 
 This example display table with specific border type (i.e. double line at the first and last line and blank at the middle)
+
 ```{r}
 rtf_db <- iris %>%
   head() %>%
@@ -84,7 +83,6 @@ rtf_db %>%
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/border-example.pdf")
 ```
-
 
 * The first and last border of the whole table is controled by `border_first` and `border_last` argument in `rtf_page()`  
 
@@ -118,7 +116,6 @@ rtf_db %>%
   rtf_encode() %>%
   write_rtf("rtf/border-vector.rtf")
 ```
-
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/border-vector.pdf")
@@ -156,7 +153,6 @@ db[, rep(1, 4)] %>%
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/justification-number.pdf")
 ```
-
 
 ## Column Width 
 
@@ -283,5 +279,3 @@ iris %>%
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/color-background.pdf")
 ```
-
-

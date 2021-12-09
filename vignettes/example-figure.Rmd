@@ -10,12 +10,15 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
 library(r2rtf)
 library(dplyr)
 library(tidyr)
 ```
 
-# Examples:
+## Examples
 
 This example shows how to create and embed figures into an RTF file as below.
 
@@ -29,7 +32,7 @@ Below is an example with adjusted page orientation, figure height and width.
 knitr::include_graphics("pdf/fig-landscape.pdf")
 ```
 
-## Overall workflow
+### Overall workflow
 
 The package allow user to embed multiple figures into one RTF document. 
 The supported format is listed as below. 
@@ -38,26 +41,25 @@ The supported format is listed as below.
 r2rtf:::fig_format()
 ```
 
-
 By using `png` file as an example, the workflow can be summarized as:
 
-1. save figures into PNG format. (e.g. using `png()` or `ggplot2::ggsave()`).
-1. read PNG files into R as binary file using `r2rtf::rtf_read_figure()`.
-1. add optional features using `r2rtf::rtf_title()`, `r2rtf::rtf_footnote()`, `r2rtf::rtf_source()`.
-1. set up page and figure options using `r2rtf::rtf_page()`, `r2rtf::rtf_figure()`.
-1. encode rtf using `r2rtf::rtf_encode(doc_type = "figure")`. (Note: it is important to set `doc_type = "figure")` as the default is `doc_type = "table` to handle tables).
-1. write rtf to a file using `r2rtf::write_rtf`.
+1. Save figures into PNG format. (e.g. using `png()` or `ggplot2::ggsave()`).
+1. Read PNG files into R as binary file using `r2rtf::rtf_read_figure()`.
+1. Add optional features using `r2rtf::rtf_title()`, `r2rtf::rtf_footnote()`, `r2rtf::rtf_source()`.
+1. Set up page and figure options using `r2rtf::rtf_page()`, `r2rtf::rtf_figure()`.
+1. Encode rtf using `r2rtf::rtf_encode(doc_type = "figure")`. (Note: it is important to set `doc_type = "figure"` as the default is `doc_type = "table` to handle tables).
+1. Write rtf to a file using `r2rtf::write_rtf()`.
 
-> For `emf` format, one may use the `devEMF` R package to create the figure. 
+> For `emf` format, one may use the R package `devEMF` to create the figure. 
 
-### Simple Example
+#### Simple Example
 
 ```{r}
 # Define the path of figure
 filename <- c("fig/fig1.png", "fig/fig2.png", "fig/fig3.png")
 
 filename %>%
-  rtf_read_figure() %>%                     # read PNG files from the file path
+  rtf_read_figure() %>%                  # read PNG files from the file path
   rtf_title("title", "subtitle") %>%     # add title or subtitle
   rtf_footnote("footnote") %>%           # add footnote
   rtf_source("[datasource: mk0999]") %>% # add data source
@@ -66,7 +68,7 @@ filename %>%
   write_rtf(file = "rtf/fig-simple.rtf") # write RTF to a file
 ```
 
-### Example with features
+#### Example with features
 
 Features of page and figure can be set up in `rtf_page` and `rtf_figure` respectively: 
 
@@ -78,7 +80,7 @@ The code below provides an example for these features.
 
 ```{r}
 filename %>%
-  rtf_read_figure() %>%                                # read PNG files from the file path
+  rtf_read_figure() %>%                             # read PNG files from the file path
   rtf_page(orientation = "landscape") %>%           # set page orientation
   rtf_title("title", "subtitle") %>%                # add title or subtitle
   rtf_footnote("footnote") %>%                      # add footnote

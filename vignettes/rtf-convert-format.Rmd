@@ -13,12 +13,14 @@ library(r2rtf)
 ```
 
 ```{r, include = FALSE, eval = FALSE}
-r2rtf:::rtf_convert_format(input = list.files("vignettes/rtf/", pattern = "*.rtf", full.names = TRUE), 
-                           output_dir = "vignettes/html", 
-                           format = "html")
+r2rtf:::rtf_convert_format(
+  input = list.files("vignettes/rtf/", pattern = "*.rtf", full.names = TRUE),
+  output_dir = "vignettes/html",
+  format = "html"
+)
 ```
 
-# Overview
+## Overview
 
 `r2rtf` had an experimental internal function `r2rtf:::rtf_convert_format` to 
 convert RTF format to PDF, DOCX or HTML. 
@@ -46,7 +48,7 @@ r2rtf:::rtf_convert_format(input = list.files("rtf", pattern = "*.rtf"))
 r2rtf:::rtf_convert_format(input = "rtf/ae_example.rtf", format = "html")
 ```
 
-## Limitations 
+### Limitations 
 
 There is one known limitation after RTF file convert to HTML files:   
 
