@@ -94,10 +94,14 @@
 
     
     
-<div class="section level1">
-<h1 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
-</h1>
-<p>In <code>rtf_body</code>, <code>r2rtf</code> provided three advanced arguments to customize table layout.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/r2rtf/">r2rtf</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
+<p>In <code><a href="../reference/rtf_body.html">rtf_body()</a></code>, <code>r2rtf</code> provided three advanced arguments to customize table layout.</p>
 <ul>
 <li>
 <code>page_by</code>: The variable is used as section header.<br>
@@ -107,21 +111,21 @@
 <li>
 <code>subline_by</code>: The variable is used as page subline header.</li>
 </ul>
-<p>If one or more of the arugments are used, they need to be properly ordered in <code>subline_by</code>, <code>page_by</code> and <code>group_by</code>.</p>
-<p>For <code>page_by</code>, the argument <code>new_page</code> and <code>pageby_header</code> and <code>pageby_row</code> further customize the table layout. Details can be found in the <code>rtf_body</code> documentation.</p>
+<p>If one or more of the arguments are used, they need to be properly ordered in <code>subline_by</code>, <code>page_by</code> and <code>group_by</code>.</p>
+<p>For <code>page_by</code>, the argument <code>new_page</code> and <code>pageby_header</code> and <code>pageby_row</code> further customize the table layout. Details can be found in the <code><a href="../reference/rtf_body.html">rtf_body()</a></code> documentation.</p>
 <p>We provided three examples below to illustrate the idea.</p>
 </div>
-<div class="section level1">
-<h1 id="example-1-pageby">Example 1: Pageby<a class="anchor" aria-label="anchor" href="#example-1-pageby"></a>
-</h1>
+<div class="section level2">
+<h2 id="example-1-pageby">Example 1: Pageby<a class="anchor" aria-label="anchor" href="#example-1-pageby"></a>
+</h2>
 <p>We used <code>page_by</code> variable to illustrate how to create a simple disposition table.</p>
 <blockquote>
 <p>Note: This example also illustrate how to avoid row header by setting corresponding value in <code>page_by</code> variable to <code>"-----"</code>.</p>
 </blockquote>
-<embed src="pdf/pageby-disposition.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level2">
-<h2 id="step-1-create-data-for-rtf-table">Step 1: Create data for RTF table<a class="anchor" aria-label="anchor" href="#step-1-create-data-for-rtf-table"></a>
-</h2>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<embed src="pdf/pageby-disposition.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level3">
+<h3 id="step-1-create-data-for-rtf-table">Step 1: Create data for RTF table<a class="anchor" aria-label="anchor" href="#step-1-create-data-for-rtf-table"></a>
+</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">r2rtf_adsl</span><span class="op">)</span>
 <span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">r2rtf_adsl</span>
 
@@ -155,14 +159,14 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">TRT01P</span>, <span class="va">DCREASCD</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>reasn <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## `summarise()` has grouped output by 'TRT01P'. You can override using the `.groups` argument.</span></code></pre>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ds</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">rbind</a></span><span class="op">(</span>
   <span class="va">row1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">row2</span>, by <span class="op">=</span> <span class="st">"TRT01P"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">row3</span>, by <span class="op">=</span> <span class="st">"TRT01P"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">row4</span>, by <span class="op">=</span> <span class="st">"TRT01P"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu">pivot_longer</span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, names_to <span class="op">=</span> <span class="st">"DCREASCD"</span>, values_to <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">TRT01P</span>, values_from <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span>,
-  <span class="va">reas</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">TRT01P</span>, values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"reasn"</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, names_to <span class="op">=</span> <span class="st">"DCREASCD"</span>, values_to <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">TRT01P</span>, values_from <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span>,
+  <span class="va">reas</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">TRT01P</span>, values_from <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"reasn"</span><span class="op">)</span><span class="op">)</span>
 <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
     DCREASCD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">DCREASCD</span> <span class="op">==</span> <span class="st">"n"</span>, <span class="st">"Participants randomized"</span>,
@@ -181,7 +185,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">pagebyvar</span>, <span class="va">DCREASCD</span>, <span class="st">"Xanomeline High Dose"</span>, <span class="st">"Xanomeline Low Dose"</span>, <span class="va">Placebo</span><span class="op">)</span>
 
 <span class="va">ds</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">ds</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ds</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -237,10 +241,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level2">
-<h2 id="step-2-define-table-format">Step 2: Define table format<a class="anchor" aria-label="anchor" href="#step-2-define-table-format"></a>
-</h2>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="step-2-define-table-format">Step 2: Define table format<a class="anchor" aria-label="anchor" href="#step-2-define-table-format"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ds_tbl</span> <span class="op">&lt;-</span> <span class="va">ds</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Disposition of Participants"</span>, <span class="st">"(ITT Population)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span><span class="st">" | Xanomeline High Dose |Xanomeline Low Dose | Placebo"</span>,
@@ -263,24 +267,24 @@
   <span class="fu"><a href="../reference/rtf_footnote.html">rtf_footnote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"This is footnote"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_source.html">rtf_source</a></span><span class="op">(</span><span class="st">"Source:  [Study MK9999P001: adam-adsl]"</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="step-3-output">Step 3: Output<a class="anchor" aria-label="anchor" href="#step-3-output"></a>
-</h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="step-3-output">Step 3: Output<a class="anchor" aria-label="anchor" href="#step-3-output"></a>
+</h3>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Output .rtf file</span>
 <span class="va">ds_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/pageby-disposition.rtf"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div class="section level1">
-<h1 id="example-2-pageby-with-pageby_row-first_row">Example 2: Pageby with <code>pageby_row = "first_row"</code><a class="anchor" aria-label="anchor" href="#example-2-pageby-with-pageby_row-first_row"></a>
-</h1>
-<p>We used <code>page_by</code> variable and <code>pageby_row = "first_row"</code> to illustrate how to create a simple adverse events table.</p>
-<embed src="pdf/pageby-firstrow-ae.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level2">
-<h2 id="step-1-create-data-for-rtf-table-1">Step 1: Create data for RTF table<a class="anchor" aria-label="anchor" href="#step-1-create-data-for-rtf-table-1"></a>
+<div class="section level2">
+<h2 id="example-2-pageby-with-pageby_row-first_row">Example 2: Pageby with <code>pageby_row = "first_row"</code><a class="anchor" aria-label="anchor" href="#example-2-pageby-with-pageby_row-first_row"></a>
 </h2>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<p>We used <code>page_by</code> variable and <code>pageby_row = "first_row"</code> to illustrate how to create a simple adverse events table.</p>
+<embed src="pdf/pageby-firstrow-ae.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level3">
+<h3 id="step-1-create-data-for-rtf-table-1">Step 1: Create data for RTF table<a class="anchor" aria-label="anchor" href="#step-1-create-data-for-rtf-table-1"></a>
+</h3>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Read in and merge r2rtf_adsl and r2rtf_adae data</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">r2rtf_adsl</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">r2rtf_adae</span><span class="op">)</span>
@@ -318,7 +322,7 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">woAE</span><span class="op">)</span>
 
 <span class="va">part1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">overall</span>, <span class="va">withAE</span>, <span class="va">woAE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">TRT01AN</span>, values_from <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">TRT01AN</span>, values_from <span class="op">=</span> <span class="va">n</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>AEBODSYS <span class="op">=</span> <span class="st">"  a"</span><span class="op">)</span>
 
 <span class="co"># AE part</span>
@@ -332,14 +336,14 @@
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">AEBODSYS</span>, <span class="va">AEDECOD</span><span class="op">)</span>
 
 <span class="va">part2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">bodsys</span>, <span class="va">decod</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">TRT01AN</span>, values_from <span class="op">=</span> <span class="va">n</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">TRT01AN</span>, values_from <span class="op">=</span> <span class="va">n</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">AEBODSYS</span>, <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">AEDECOD</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>AEDECOD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">AEDECOD</span><span class="op">)</span>, <span class="va">AEBODSYS</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"  "</span>, <span class="va">AEDECOD</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">blank</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://tibble.tidyverse.org/reference/tibble.html" class="external-link">tibble</a></span><span class="op">(</span>AEBODSYS <span class="op">=</span> <span class="st">"  a"</span><span class="op">)</span>
 
 <span class="va">apr0ae</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">part1</span>, <span class="va">blank</span>, <span class="va">part2</span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">apr0ae</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -395,10 +399,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level2">
-<h2 id="step-2-define-table-format-1">Step 2: Define table format<a class="anchor" aria-label="anchor" href="#step-2-define-table-format-1"></a>
-</h2>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="step-2-define-table-format-1">Step 2: Define table format<a class="anchor" aria-label="anchor" href="#step-2-define-table-format-1"></a>
+</h3>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">apr0ae_rtf</span> <span class="op">&lt;-</span> <span class="va">apr0ae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_page.html">rtf_page</a></span><span class="op">(</span>orientation <span class="op">=</span> <span class="st">"landscape"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Participants with Severe Adverse Events"</span>, <span class="st">"(Incidence \\geq 0% in One or More Treatment Groups)"</span><span class="op">)</span>, <span class="st">"(ASaT Population)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -421,24 +425,24 @@
   <span class="fu"><a href="../reference/rtf_footnote.html">rtf_footnote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"This is footnote"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_source.html">rtf_source</a></span><span class="op">(</span><span class="st">"Source:  [Study MK9999P001: adam-adae]"</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="step-3-output-1">Step 3: Output<a class="anchor" aria-label="anchor" href="#step-3-output-1"></a>
-</h2>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="step-3-output-1">Step 3: Output<a class="anchor" aria-label="anchor" href="#step-3-output-1"></a>
+</h3>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Output .rtf file</span>
 <span class="va">apr0ae_rtf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/pageby-firstrow-ae.rtf"</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
-<div class="section level1">
-<h1 id="example-3-sublineby-pageby-and-groupby-features">Example 3: sublineby, pageby, and groupby features<a class="anchor" aria-label="anchor" href="#example-3-sublineby-pageby-and-groupby-features"></a>
-</h1>
-<p>We used <code>page_by</code>, <code>subline_by</code> and <code>group_by</code> to illustrate how to create a simple adverse events listing.</p>
-<embed src="pdf/pageby-ae-listing.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level2">
-<h2 id="step-1-create-data-for-rtf-table-2">Step 1: Create data for RTF table<a class="anchor" aria-label="anchor" href="#step-1-create-data-for-rtf-table-2"></a>
+<div class="section level2">
+<h2 id="example-3-sublineby-pageby-and-groupby-features">Example 3: sublineby, pageby, and groupby features<a class="anchor" aria-label="anchor" href="#example-3-sublineby-pageby-and-groupby-features"></a>
 </h2>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<p>We used <code>page_by</code>, <code>subline_by</code> and <code>group_by</code> to illustrate how to create a simple adverse events listing.</p>
+<embed src="pdf/pageby-ae-listing.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level3">
+<h3 id="step-1-create-data-for-rtf-table-2">Step 1: Create data for RTF table<a class="anchor" aria-label="anchor" href="#step-1-create-data-for-rtf-table-2"></a>
+</h3>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">r2rtf_adae</span><span class="op">)</span>
 
 <span class="va">ae_t1</span> <span class="op">&lt;-</span> <span class="va">r2rtf_adae</span><span class="op">[</span><span class="fl">200</span><span class="op">:</span><span class="fl">260</span>, <span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -460,7 +464,7 @@
     DUR <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">ADURN</span>, <span class="va">ADURU</span>, sep <span class="op">=</span> <span class="st">" "</span><span class="op">)</span>
   <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># AE duration with unit</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">USUBJID</span>, <span class="va">ASTDY</span>, <span class="va">AEDECD1</span>, <span class="va">DUR</span>, <span class="va">AESEV</span>, <span class="va">AESER</span>, <span class="va">AEREL</span>, <span class="va">AEACN</span>, <span class="va">AEOUT</span>, <span class="va">TRTA</span>, <span class="va">SUBJLINE</span>, <span class="va">SUBLINEBY</span><span class="op">)</span> <span class="co"># display variable using this order</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ae_t1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
@@ -527,10 +531,10 @@
 </tbody>
 </table>
 </div>
-<div class="section level2">
-<h2 id="step-2-define-table-format-2">Step 2: Define table format<a class="anchor" aria-label="anchor" href="#step-2-define-table-format-2"></a>
-</h2>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="step-2-define-table-format-2">Step 2: Define table format<a class="anchor" aria-label="anchor" href="#step-2-define-table-format-2"></a>
+</h3>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">ae_tbl</span> <span class="op">&lt;-</span> <span class="va">ae_t1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># It is important to order variable properly.</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">SUBLINEBY</span>, <span class="va">TRTA</span>, <span class="va">SUBJLINE</span>, <span class="va">USUBJID</span>, <span class="va">ASTDY</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -562,10 +566,10 @@
   <span class="fu"><a href="../reference/rtf_footnote.html">rtf_footnote</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"This is footnote 1"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_source.html">rtf_source</a></span><span class="op">(</span><span class="st">"Source:  [Study MK9999P001: adam-adae]"</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="step-3-output-2">Step 3: Output<a class="anchor" aria-label="anchor" href="#step-3-output-2"></a>
-</h2>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="step-3-output-2">Step 3: Output<a class="anchor" aria-label="anchor" href="#step-3-output-2"></a>
+</h3>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Output .rtf file</span>
 <span class="va">ae_tbl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>

@@ -94,18 +94,22 @@
 
     
     
-<div class="section level1">
-<h1 id="example">Example:<a class="anchor" aria-label="anchor" href="#example"></a>
-</h1>
-<p>This example shows how to create a baseline characteristic table as below.</p>
-<embed src="pdf/bs_example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level2">
-<h2 id="step-1-define-utility-functions">Step 1: Define utility functions<a class="anchor" aria-label="anchor" href="#step-1-define-utility-functions"></a>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/r2rtf/">r2rtf</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></code></pre></div>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
+<p>This example shows how to create a baseline characteristic table as below.</p>
+<embed src="pdf/bs_example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level3">
+<h3 id="step-1-define-utility-functions">Step 1: Define utility functions<a class="anchor" aria-label="anchor" href="#step-1-define-utility-functions"></a>
+</h3>
 <p>We defined two utility functions for analysis purpose.</p>
 <ul>
 <li>Summarize categorical variable</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bs_count</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">grp</span>, <span class="va">var</span>,
                      <span class="va">var_label</span> <span class="op">=</span> <span class="va">var</span>,
                      <span class="va">decimal</span> <span class="op">=</span> <span class="fl">1</span>,
@@ -132,9 +136,9 @@
   <span class="va">res</span><span class="op">$</span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">n</span><span class="op">)</span>
 
   <span class="va">res</span> <span class="op">&lt;-</span> <span class="va">res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">pct</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"key"</span>, values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu">unite</span><span class="op">(</span><span class="va">keys</span>, <span class="va">grp</span>, <span class="va">key</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">keys</span>, values_from <span class="op">=</span> <span class="va">value</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">pct</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"key"</span>, values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html" class="external-link">unite</a></span><span class="op">(</span><span class="va">keys</span>, <span class="va">grp</span>, <span class="va">key</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">keys</span>, values_from <span class="op">=</span> <span class="va">value</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_label <span class="op">=</span> <span class="va">var_label</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">var</span><span class="op">)</span><span class="op">)</span>
 
@@ -146,7 +150,7 @@
 <ul>
 <li>Summarize continuous variable</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bs_continous</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">grp</span>, <span class="va">var</span>,
                          <span class="va">var_label</span> <span class="op">=</span> <span class="va">var</span>,
                          <span class="va">decimal</span> <span class="op">=</span> <span class="fl">1</span>,
@@ -186,9 +190,9 @@
   <span class="va">res</span><span class="op">$</span><span class="st">"Subjects with data"</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="st">"Subjects with data"</span><span class="op">)</span>
 
   <span class="va">res</span> <span class="op">&lt;-</span> <span class="va">res</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu">pivot_longer</span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">grp</span>, names_to <span class="op">=</span> <span class="st">"key"</span>, values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="op">-</span><span class="va">grp</span>, names_to <span class="op">=</span> <span class="st">"key"</span>, values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">key</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Subjects with data"</span>, <span class="st">"Mean"</span>, <span class="st">"SD"</span>, <span class="st">"Median"</span>, <span class="st">"Range"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-    <span class="fu">pivot_wider</span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">grp</span>, values_from <span class="op">=</span> <span class="va">value</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">grp</span>, values_from <span class="op">=</span> <span class="va">value</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>var_label <span class="op">=</span> <span class="va">var_label</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>key <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">key</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>var <span class="op">=</span> <span class="va">key</span><span class="op">)</span>
@@ -200,13 +204,13 @@
   <span class="va">res</span>
 <span class="op">}</span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="step-2-create-data-for-rtf-table">Step 2: Create data for rtf table<a class="anchor" aria-label="anchor" href="#step-2-create-data-for-rtf-table"></a>
-</h2>
+<div class="section level3">
+<h3 id="step-2-create-data-for-rtf-table">Step 2: Create data for rtf table<a class="anchor" aria-label="anchor" href="#step-2-create-data-for-rtf-table"></a>
+</h3>
 <ul>
 <li>Convert variable to factors to properly define display order</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># The code above define two utility function for baseline characteristic tables.</span>
 
 <span class="co"># Analysis Set</span>
@@ -241,7 +245,7 @@
 <span class="op">)</span>
 
 <span class="va">bs_tb</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">bs_tb</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">""</span> <span class="co"># convert NA to blank string.</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">bs_tb</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -428,9 +432,9 @@
 </tbody>
 </table>
 </div>
-<div class="section level2">
-<h2 id="step-3-define-table-format">Step 3: Define table format<a class="anchor" aria-label="anchor" href="#step-3-define-table-format"></a>
-</h2>
+<div class="section level3">
+<h3 id="step-3-define-table-format">Step 3: Define table format<a class="anchor" aria-label="anchor" href="#step-3-define-table-format"></a>
+</h3>
 <ul>
 <li>page_by feature was used to display 3 parts (Gender, Age, Race) clearly
 <ul>
@@ -441,7 +445,7 @@
 </ul>
 </li>
 </ul>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">bs_rtf</span> <span class="op">&lt;-</span> <span class="va">bs_tb</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_page.html">rtf_page</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">9.5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Demographic and Anthropometric Characteristics"</span>, <span class="st">"ITT Subjects"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -465,10 +469,10 @@
   <span class="fu"><a href="../reference/rtf_footnote.html">rtf_footnote</a></span><span class="op">(</span><span class="st">"This is a footnote"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_source.html">rtf_source</a></span><span class="op">(</span><span class="st">"Source: xxx"</span><span class="op">)</span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="step-4-output">Step 4: Output<a class="anchor" aria-label="anchor" href="#step-4-output"></a>
-</h2>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="section level3">
+<h3 id="step-4-output">Step 4: Output<a class="anchor" aria-label="anchor" href="#step-4-output"></a>
+</h3>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Output .rtf file</span>
 <span class="va">bs_rtf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
