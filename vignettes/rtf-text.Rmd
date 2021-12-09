@@ -13,9 +13,7 @@ library(r2rtf)
 library(dplyr)
 ```
 
-
 This vignette documents how to use `rtf_text` and `rtf_paragraph` to customize text and paragraph in details. All output tables are saved in the `vignettes/rtf` folder and assembled in `vignettes/r2rtf_examples.docx` document. 
-
 
 ```{r}
 text <- paste(rep("Sample Text", 20), collapse = " ")
@@ -47,6 +45,7 @@ r2rtf:::write_rtf_para(res, "rtf/para-justification.rtf")
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/para-justification.pdf")
 ```
+
 ### Indent 
 
 First line, left, and right indent can be controlled. One can also use a negative number to have the text "outdent".
@@ -85,6 +84,7 @@ r2rtf:::write_rtf_para(res, "rtf/para-line-space.rtf")
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/para-line-space.pdf")
 ```
+
 ### Paragraph Space
 
 ```{r}
@@ -112,9 +112,11 @@ r2rtf:::write_rtf_para(res, "rtf/para-page.rtf")
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/para-page.pdf")
 ```
+
 ## Text
 
 ### Font Size
+
 ```{r}
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
   font_size = 8:12
@@ -127,6 +129,7 @@ knitr::include_graphics("pdf/text-font-size-1.pdf")
 ```
 
 ### Text Format
+
 ```{r}
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
   format = c("b", "i", "bi", "^", "_", "u", "s")
@@ -139,6 +142,7 @@ knitr::include_graphics("pdf/text-format-1.pdf")
 ```
 
 ### Text Font Type
+
 ```{r}
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
   font = 1:10
@@ -150,8 +154,8 @@ r2rtf:::write_rtf_para(res, "rtf/text-font-type.rtf")
 knitr::include_graphics("pdf/text-font-type.pdf")
 ```
 
-
 ### Text Color
+
 ```{r}
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
   color = c("red", "gold", "black", "orange", "blue")
@@ -164,6 +168,7 @@ knitr::include_graphics("pdf/text-color.pdf")
 ```
 
 ### Text Background Color
+
 ```{r}
 res <- r2rtf:::rtf_paragraph(r2rtf:::rtf_text(text,
   color = "white",
@@ -179,6 +184,7 @@ knitr::include_graphics("pdf/text-background-color.pdf")
 ### Combine Text in Different Format
 
 This example call `rtf_text` multiple times to combine a text.
+
 ```{r}
 res <- r2rtf:::rtf_paragraph(paste0(
   r2rtf:::rtf_text("3.5"),
@@ -192,7 +198,9 @@ r2rtf:::write_rtf_para(res, "rtf/text-combine1.rtf")
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/text-combine1.pdf")
 ```
+
 This example call `rtf_text` one time to combine a text.
+
 ```{r}
 text <- c(3.5, "\\dagger", "\\line red ", "highlight")
 format <- c("", "^", "", "")
@@ -216,6 +224,7 @@ knitr::include_graphics("pdf/text-combine2.pdf")
 ```
 
 ### Inline Formatting
+
 This example provide an inline formatting options with superscript and subscript. It is important to note the location of `{}` is before the special character.
 
 ```{r}

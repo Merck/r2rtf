@@ -10,12 +10,15 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
 library(r2rtf)
 library(dplyr)
 library(tidyr)
 ```
 
-# Example:
+## Example
 
 This example shows how to create a baseline characteristic table as below.
 
@@ -23,7 +26,7 @@ This example shows how to create a baseline characteristic table as below.
 knitr::include_graphics("pdf/bs_example.pdf")
 ```
 
-## Step 1: Define utility functions
+### Step 1: Define utility functions
 
 We defined two utility functions for analysis purpose. 
 
@@ -124,7 +127,7 @@ bs_continous <- function(data, grp, var,
 }
 ```
 
-## Step 2: Create data for rtf table
+### Step 2: Create data for rtf table
 
 - Convert variable to factors to properly define display order
 
@@ -169,7 +172,7 @@ bs_tb[is.na(bs_tb)] <- "" # convert NA to blank string.
 knitr::kable(bs_tb)
 ```
 
-## Step 3: Define table format
+### Step 3: Define table format
 
 - page_by feature was used to display 3 parts (Gender, Age, Race) clearly
   + if using `new_page = TRUE` in `rtb_body()`, the 3 parts will be outputted into 3 pages
@@ -200,7 +203,7 @@ bs_rtf <- bs_tb %>%
   rtf_source("Source: xxx")
 ```
 
-## Step 4: Output
+### Step 4: Output
 
 ```{r}
 # Output .rtf file

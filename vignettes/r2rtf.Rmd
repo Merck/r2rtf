@@ -5,56 +5,57 @@ output:
     df_print: paged
     toc: yes
     toc_depth: '2'
-description: > 
-  Start here if this is your first time using r2rtf. 
-  You'll learn the basic philosophy, the most important rtf table generation verbs. 
+description: >
+  Start here if this is your first time using r2rtf.
+  You'll learn the basic philosophy, the most important rtf table generation verbs.
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-library(r2rtf)
-library(ggplot2)
-library(dplyr)
-library(tidyr)
 ```
 
 ## Overview
 
 `r2rtf` is an R package to create production ready tables and figures in RTF format.
-The R package is designed to 
+The R package is designed to
 
-- provide simple "verb" functions that correspond to each component of a table, 
+- provide simple "verb" functions that correspond to each component of a table,
   to help you translate data frame to table in RTF file.
-- enable pipes (`%>%`). 
-- only focus on **table format**. 
-  Data manipulation and analysis shall be handled by other R packages. (e.g. `tidyverse`)
-- `r2rtf` minimizes package dependency 
+- enable pipes (`%>%`).
+- only focus on **table format**.
+  Data manipulation and analysis should be handled by other R packages. (e.g., `tidyverse`)
+- `r2rtf` minimizes package dependency
 
 Before creating an RTF table we need to:
 
-- Figure out table layout. 
-
+- Figure out table layout.
 - Split the layout into small tasks in the form of a computer program.
-
 - Execute the program.
 
-This document introduces `r2rtf` basic set of tools, and show how to transfer 
+This document introduces `r2rtf` basic set of tools, and show how to transfer
 data frames into Table, Listing, and Figure (TLFs).
 
-Other extended examples and features are covered in different document listed in 
-[table of content](https://merck.github.io/r2rtf/articles/index.html). 
+Other extended examples and features are covered in different document listed in
+[vignettes](https://merck.github.io/r2rtf/articles/index.html).
 
 ## Data: Adverse Events
 
-To explore the basic RTF generation verbs in `r2rtf`, we'll use the dataset `r2rtf_adae`. 
+To explore the basic RTF generation verbs in `r2rtf`, we will use the dataset `r2rtf_adae`.
 This dataset contain adverse events (AE) information from a clinical trial.
 
-Below is the meaning of relevant variables. 
+Below is the meaning of relevant variables.
 More information can be found in help page of the dataset (`?r2rtf_adae`)
 
 - USUBJID: Unique Subject Identifier
-- TRTA: Actual Treatment 
+- TRTA: Actual Treatment
 - AEDECOD: Dictionary-Derived Term
+
+```{r, message=FALSE, warning=FALSE}
+library(r2rtf)
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+```
 
 ```{r}
 r2rtf_adae %>%
@@ -64,12 +65,12 @@ r2rtf_adae %>%
 
 ## Table ready data
 
-`dplyr` and `tidyr` packages are used for data manipulation to create a data frame 
-that contains all the information we want to add in an RTF table. 
+`dplyr` and `tidyr` packages are used for data manipulation to create a data frame
+that contains all the information we want to add in an RTF table.
 
 > Please note other packages can also be used for the same purpose.
 
-In this AE example, we provide number of subjects with each type of AE by treatment group. 
+In this AE example, we provide number of subjects with each type of AE by treatment group.
 
 ```{r}
 tbl <- r2rtf_adae %>%
@@ -92,13 +93,13 @@ tbl %>% head(4)
 All these verbs is designed to enables usage of pipes (`%>%`).
 A full list of all functions can be found in [package reference](https://merck.github.io/r2rtf/reference/index.html)
 
-## Simple Example 
+## Simple Example
 
 A minimal example below illustrates how to combine verbs using pipes to create an RTF table.
 
-- `rtf_body` is used to define table body layout. 
-- `rtf_encode` transfers table layout information into RTF syntax.
-- `write_rtf` save RTF encoding into a file with file extension `.rtf` 
+- `rtf_body()` is used to define table body layout.
+- `rtf_encode()` transfers table layout information into RTF syntax.
+- `write_rtf()` save RTF encoding into a file with file extension `.rtf`.
 
 ```{r}
 head(tbl) %>%
@@ -111,17 +112,17 @@ head(tbl) %>%
 knitr::include_graphics("pdf/intro-ae1.pdf")
 ```
 
-## Column Width 
+## Column Width
 
-If we want to adjust the width of each column to provide more space to the first column, 
+If we want to adjust the width of each column to provide more space to the first column,
 and this can be achieved by updating `col_rel_width` in `rtf_body`.
 
-The input of `col_rel_width` is a vector with same length for number of columns. 
-This argument defines the relative length of each column within a pre-defined total column width. 
+The input of `col_rel_width` is a vector with same length for number of columns.
+This argument defines the relative length of each column within a pre-defined total column width.
 
-In this example, the defined relative width is 3:2:2:2. 
-Only the ratio of `col_rel_width` is used. 
-Therefore it is equivalent to use `col_rel_width = c(6,4,4,4)` or `col_rel_width = c(1.5,1,1,1)`. 
+In this example, the defined relative width is 3:2:2:2.
+Only the ratio of `col_rel_width` is used.
+Therefore it is equivalent to use `col_rel_width = c(6,4,4,4)` or `col_rel_width = c(1.5,1,1,1)`.
 
 ```{r}
 head(tbl) %>%
@@ -135,18 +136,18 @@ head(tbl) %>%
 knitr::include_graphics("pdf/intro-ae2.pdf")
 ```
 
-Note: 
+Note:
 
-- The `col_rel_width` in `rtf_body` function only control relative width of table body. Therefore the column header is not aligned as expected. More details will be provided in next example to take care of column header width.
-- The total column width is defined in `col_width` argument of `rtf_page` function. 
+- The `col_rel_width` in the `rtf_body()` function only control relative width of table body. Therefore the column header is not aligned as expected. More details will be provided in next example to take care of column header width.
+- The total column width is defined in the `col_width` argument of the `rtf_page()` function.
 
-## Column Headers 
+## Column Headers
 
-In previous example, we found issue of misaligned column header. 
-We can fix the issue by using `rtf_colheader` function.
+In previous example, we found issue of misaligned column header.
+We can fix the issue by using the `rtf_colheader()` function.
 
-In `rtf_colheader`, `colheader` argument is used to provide content of column header. 
-We used `"|"` to separate the columns. 
+In `rtf_colheader`, `colheader` argument is used to provide content of column header.
+We used `"|"` to separate the columns.
 
 ```{r}
 head(tbl) %>%
@@ -163,13 +164,13 @@ head(tbl) %>%
 knitr::include_graphics("pdf/intro-ae3.pdf")
 ```
 
-We also allow column headers be displayed in multiple lines. 
-If an empty column name is needed for a column, you can insert a space between two vertical lines; e.g., `"name 1 | | name 3"`. 
+We also allow column headers be displayed in multiple lines.
+If an empty column name is needed for a column, you can insert a space between two vertical lines; e.g., `"name 1 | | name 3"`.
 
-The `col_rel_width` can be used to align column header with different number of columns. 
+The `col_rel_width` can be used to align column header with different number of columns.
 
-By using `rtf_colheader` with `col_rel_width`, one can customize complicated column headers. 
-If there are multiple pages, column header will repeat at each page by default. 
+By using `rtf_colheader` with `col_rel_width`, one can customize complicated column headers.
+If there are multiple pages, column header will repeat at each page by default.
 
 ```{r}
 head(tbl, 50) %>%
@@ -190,14 +191,14 @@ head(tbl, 50) %>%
 knitr::include_graphics("pdf/intro-ae4.pdf")
 ```
 
-## Text Alignment 
+## Text Alignment
 
-In `rtf_*` functions such as `rtf_body`, `rtf_footnote`, `text_justification` argument is used to align text. 
-Default is `"c"` for center justification. 
+In `rtf_*()` functions such as `rtf_body()`, `rtf_footnote()`, the `text_justification` argument is used to align text.
+Default is `"c"` for center justification.
 To vary text justification by column, use character vector with length of vector equal to
-number of columns displayed (e.g., `c("c","l","r")`). 
+number of columns displayed (e.g., `c("c","l","r")`).
 
-All possible inputs can be found in the first column of `r2rtf:::justification()`. 
+All possible inputs can be found in the first column of `r2rtf:::justification()`.
 
 ```{r}
 r2rtf:::justification()
@@ -216,11 +217,11 @@ head(tbl) %>%
 knitr::include_graphics("pdf/intro-ae5.pdf")
 ```
 
-## Text Style 
+## Text Style
 
-In `rtf_*` functions such as `rtf_body`, `rtf_footnote`, etc., 
-`text_format` argument is used for controlling text style. 
-Default is NULL for normal. 
+In `rtf_*()` functions such as `rtf_body()`, `rtf_footnote()`, etc.,
+the `text_format` argument is used for controlling text style.
+Default is `NULL` for normal.
 
 All possible inputs and corresponding text style can be found in `r2rtf:::font_format()`.
 
@@ -228,9 +229,9 @@ All possible inputs and corresponding text style can be found in `r2rtf:::font_f
 r2rtf:::font_format()
 ```
 
-Combination of format type are permitted as input (e.g., `"ub"` for bold and underlined text). 
-To vary text format by column, use character vector with length of vector equal to 
-number of columns displayed (e.g., `c("i", "u", "ib")`). 
+Combination of format type are permitted as input (e.g., `"ub"` for bold and underlined text).
+To vary text format by column, use character vector with length of vector equal to
+number of columns displayed (e.g., `c("i", "u", "ib")`).
 
 Below is an example to make first column in bold and normal for the rest.
 
@@ -245,16 +246,16 @@ head(tbl) %>%
 knitr::include_graphics("pdf/intro-ae6.pdf")
 ```
 
-## Table Border 
+## Table Border
 
-In `rtf_*` functions such as `rtf_body`, `rtf_footnote`, etc.,
-`border_left`, `border_right`, `border_top`, and `border_bottom` control border. 
+In `rtf_*()` functions such as `rtf_body()`, `rtf_footnote()`, etc.,
+`border_left`, `border_right`, `border_top`, and `border_bottom` control border.
 
-In example of `intro-ae4.rtf`, if we want to remove the top border of `"Adverse Events"` in header, 
-we can change default value `"single"` to `""` in `border_top` argument as showed below. 
+In example of `intro-ae4.rtf`, if we want to remove the top border of `"Adverse Events"` in header,
+we can change default value `"single"` to `""` in `border_top` argument as showed below.
 
-All possible border type inputs can be found in `r2rtf:::border_type()`. 
-There are 26 different border type, we only display first six here. 
+All possible border type inputs can be found in `r2rtf:::border_type()`.
+There are 26 different border type, we only display first six here.
 
 ```{r}
 head(r2rtf:::border_type())
@@ -283,13 +284,13 @@ knitr::include_graphics("pdf/intro-ae7.pdf")
 
 ## Title
 
-The title(s) can be added using the `rtf_title` function as showed in below example. 
-To get guidance on how to change title text style, aligning title, and other features in the `rtf_title` function, help page `?r2rtf::rtf_title()` is a good resource.
+The title(s) can be added using the `rtf_title()` function as showed in below example.
+To get guidance on how to change title text style, aligning title, and other features in the `rtf_title()` function, help page `?r2rtf::rtf_title()` is a good resource.
 
-We can provide a vector for the `title` argument. Each value is a separate line. 
+We can provide a vector for the `title` argument. Each value is a separate line.
 The format can also be controlled by providing a vector input in `text_format`.
 
-> We used soft return to break lines in title. 
+> We used soft return to break lines in title.
 
 ```{r}
 head(tbl) %>%
@@ -313,11 +314,11 @@ head(tbl) %>%
 knitr::include_graphics("pdf/intro-ae8.pdf")
 ```
 
-## Footnote 
+## Footnote
 
-The footnote(s) can be added using `footnote` argument in the `rtf_footnote` function as showed in below example.
+The footnote(s) can be added using `footnote` argument in the `rtf_footnote()` function as showed in below example.
 
-We can provide a vector for the `footnote` argument. Each value is a separate line. 
+We can provide a vector for the `footnote` argument. Each value is a separate line.
 
 Below example showed the case when using `as_table = TRUE` (default) to display footnote inside the table body.
 
@@ -371,11 +372,11 @@ knitr::include_graphics("pdf/intro-ae10.pdf")
 
 ## Data Source
 
-Data source can be added using `source` argument in the `rtf_source` function as showed in below example.
+Data source can be added using `source` argument in the `rtf_source()` function as showed in below example.
 
 Below example showed the case when using `as_table = FALSE` (default) to display data source outside the table body.
 
-> We can also adjust data source to be left aligned. By default the alignment matches the table border.  
+> We can also adjust data source to be left aligned. By default the alignment matches the table border.
 
 ```{r}
 head(tbl) %>%
@@ -422,19 +423,19 @@ head(tbl) %>%
 knitr::include_graphics("pdf/intro-ae12.pdf")
 ```
 
-## Special Character 
+## Special Character
 
-In the `r2rtf` package, `'^'` is a character to be converted to rtf code 
+In the `r2rtf` package, `'^'` is a character to be converted to rtf code
 `'\\super'` to generate superscript; `'_'` is for subscript.
 
-Similarly, `'<='` is a `r2rtf` package specified character to be converted to 
-LaTeX command `'\\leq'` to generate special character $\leq$. 
+Similarly, `'<='` is a `r2rtf` package specified character to be converted to
+LaTeX command `'\\leq'` to generate special character $\leq$.
 
-LaTeX commands can be used for Greek letters and math symbol such as $\alpha$, $\pm$, $\infty$. 
-You will need to use double backslash `\\` to escape backslash in R. i.e. `"\\alpha"`, `"\\pm"` and `"\\infty"`. 
-A list of LaTex commands can be found [here](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols) 
+LaTeX commands can be used for Greek letters and math symbol such as $\alpha$, $\pm$, $\infty$.
+You will need to use double backslash `\\` to escape backslash in R. i.e. `"\\alpha"`, `"\\pm"` and `"\\infty"`.
+A list of LaTex commands can be found [here](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols)
 
-Example below demonstrate the idea. 
+Example below demonstrate the idea.
 
 ```{r}
 head(tbl) %>%
@@ -462,15 +463,15 @@ knitr::include_graphics("pdf/intro-ae13.pdf")
 
 ## Table Color
 
-Each cell's text and background color are controllable. 
-Take `intro-ae13.rtf` as an example, if we want to add gray background color to cells with 0 AE, 
-we need to create a color name matrix corresponding to each cell in table body. 
+Each cell's text and background color are controllable.
+Take `intro-ae13.rtf` as an example, if we want to add gray background color to cells with 0 AE,
+we need to create a color name matrix corresponding to each cell in table body.
 
-Then assign this background color matrix to `text_background_color` argument in `rtf_body` function as showed below.  
+Then assign this background color matrix to `text_background_color` argument in the `rtf_body()` function as showed below.
 
 Note:
 
-- When creating a color name matrix, each element needs to be a color name defined in `grDevices::colours()`. 
+- When creating a color name matrix, each element needs to be a color name defined in `grDevices::colours()`.
 
 ```{r}
 tbl1 <- head(tbl)
@@ -499,7 +500,7 @@ knitr::include_graphics("pdf/intro-ae14.pdf")
 
 ## Page setup
 
-The total number of rows in each page can be controlled in `nrow` argument of `rtf_page` function.
+The total number of rows in each page can be controlled in `nrow` argument of `rtf_page()` function.
 Every lines is counted including title, subline, header, body, footnote, source, and extra rows.
 
 The value in `nrow` is the maximum of row allowed in one page, the actual rows display can be slightly smaller.
@@ -526,12 +527,12 @@ knitr::include_graphics("pdf/intro-ae15.pdf")
 
 ## subline_by feature
 
-Users can use `subline_by` argument in the `rtf_body` function to group table by assigned `subline_by` variable.
+Users can use the `subline_by` argument in the `rtf_body()` function to group table by assigning the `subline_by` variable.
 
-A subject line will be displayed at the beginning of each page based on the variable provided to `subline_by`. 
-Different value of `subline_by` will be break into different pages. 
+A subject line will be displayed at the beginning of each page based on the variable provided to `subline_by`.
+Different value of `subline_by` will be break into different pages.
 
-Below example showed using treatment group as `subline_by` variable. 
+Below example showed using treatment group as the `subline_by` variable.
 
 ```{r, message=FALSE}
 aegt5 <- r2rtf_adae %>%
@@ -559,13 +560,13 @@ knitr::include_graphics("pdf/intro-ae16.pdf")
 
 ## page_by feature
 
-Users can use `page_by` argument in the `rtf_body` function to group/separate table by single cell row with assigned `page_by` variable's value in it. 
+Users can use `page_by` argument in the `rtf_body()` function to group/separate table by single cell row with assigned `page_by` variable's value in it.
 
-A row header will be generated at the begining of each `page_by` group. 
+A row header will be generated at the beginning of each `page_by` group.
 
-if `new_page=TRUE`, different value of `group_by` will be break into different pages. Default is `FALSE`. 
+if `new_page = TRUE`, different value of `group_by` will be break into different pages. Default is `FALSE`.
 
-Below example showed using treatment group as `page_by` variable. 
+Below example showed using treatment group as `page_by` variable.
 
 ```{r}
 aegt5 %>%
@@ -585,9 +586,9 @@ knitr::include_graphics("pdf/intro-ae17.pdf")
 
 ## group_by feature
 
-Users can use `group_by` argument in the `rtf_body` function to display once for group variable. 
+Users can use the `group_by` argument in the `rtf_body()` function to display once for group variable.
 
-Below example showed using treatment group as `group_by` variable. 
+Below example showed using treatment group as `group_by` variable.
 
 ```{r}
 aegt5 %>%
@@ -607,16 +608,16 @@ knitr::include_graphics("pdf/intro-ae18.pdf")
 
 ## Figure
 
-The last example showed how to insert a figure into a RTF document. 
+The last example showed how to insert a figure into a RTF document.
 
 The workflow can be summarized as:
 
-- save figures into PNG format. (e.g. using `png()` or `ggplot2::ggsave()`).
-- read PNG files into R as binary file using `rtf_read_figure`.
-- add optional features using `rtf_title`, `rtf_footnote`, `rtf_source`.
-- set up page and figure options using `rtf_figure`.
-- convert to rtf encoding using `rtf_encode(doc_type = "figure")`. (Note: it is important to set `doc_type = "figure")` as the  default is `doc_type = "table` to set up tables).
-- write rtf to a file using `write_rtf`.
+- Save figures into PNG format. (e.g. using `png()` or `ggplot2::ggsave()`).
+- Read PNG files into R as binary file using `rtf_read_figure()`.
+- Add optional features using `rtf_title()`, `rtf_footnote()`, `rtf_source()`.
+- Set up page and figure options using `rtf_figure()`.
+- Convert to rtf encoding using `rtf_encode(doc_type = "figure")`. (Note: it is important to set `doc_type = "figure"` as the default is `doc_type = "table` to set up tables).
+- Write rtf to a file using `write_rtf()`.
 
 ```{r, message = FALSE}
 pruritus <- r2rtf_adae %>%
@@ -630,6 +631,7 @@ fig <- ggplot(data = pruritus, aes(x = TRTA, y = Count)) +
 
 fig
 ```
+
 ```{r}
 filename <- "fig/intro-fig1.png"
 ggsave(filename, fig)

@@ -10,28 +10,31 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, message=FALSE, warning=FALSE}
 library(r2rtf)
 library(dplyr)
 library(tidyr)
 ```
 
-# Overview
+## Overview
 
-In `rtf_body`, `r2rtf` provided three advanced arguments to customize table layout. 
+In `rtf_body()`, `r2rtf` provided three advanced arguments to customize table layout. 
 
 - `page_by`: The variable is used as section header.   
 - `group_by`: The variable only display when it is first appeared. 
 - `subline_by`: The variable is used as page subline header.
 
-If one or more of the arugments are used, they need to be properly ordered 
+If one or more of the arguments are used, they need to be properly ordered 
 in `subline_by`, `page_by` and `group_by`. 
 
 For `page_by`, the argument `new_page` and `pageby_header` and `pageby_row` further 
-customize the table layout. Details can be found in the `rtf_body` documentation. 
+customize the table layout. Details can be found in the `rtf_body()` documentation. 
 
 We provided three examples below to illustrate the idea. 
 
-# Example 1: Pageby 
+## Example 1: Pageby 
 
 We used `page_by` variable to illustrate how to create a simple disposition table. 
 
@@ -42,7 +45,7 @@ We used `page_by` variable to illustrate how to create a simple disposition tabl
 knitr::include_graphics("pdf/pageby-disposition.pdf")
 ```
 
-## Step 1: Create data for RTF table
+### Step 1: Create data for RTF table
 
 ```{r}
 data(r2rtf_adsl)
@@ -109,7 +112,7 @@ ds[is.na(ds)] <- 0
 knitr::kable(head(ds))
 ```
 
-## Step 2: Define table format
+### Step 2: Define table format
 
 ```{r}
 ds_tbl <- ds %>%
@@ -135,7 +138,7 @@ ds_tbl <- ds %>%
   rtf_source("Source:  [Study MK9999P001: adam-adsl]")
 ```
 
-## Step 3: Output
+### Step 3: Output
 
 ```{r}
 # Output .rtf file
@@ -144,7 +147,7 @@ ds_tbl %>%
   write_rtf("rtf/pageby-disposition.rtf")
 ```
 
-# Example 2: Pageby with `pageby_row = "first_row"` 
+## Example 2: Pageby with `pageby_row = "first_row"` 
 
 We used `page_by` variable and `pageby_row = "first_row"` to illustrate 
 how to create a simple adverse events table. 
@@ -153,7 +156,7 @@ how to create a simple adverse events table.
 knitr::include_graphics("pdf/pageby-firstrow-ae.pdf")
 ```
 
-## Step 1: Create data for RTF table 
+### Step 1: Create data for RTF table 
 
 ```{r, message=FALSE}
 # Read in and merge r2rtf_adsl and r2rtf_adae data
@@ -220,7 +223,7 @@ apr0ae <- bind_rows(part1, blank, part2)
 knitr::kable(head(apr0ae))
 ```
 
-## Step 2: Define table format
+### Step 2: Define table format
 
 ```{r}
 apr0ae_rtf <- apr0ae %>%
@@ -246,7 +249,7 @@ apr0ae_rtf <- apr0ae %>%
   rtf_source("Source:  [Study MK9999P001: adam-adae]")
 ```
 
-## Step 3: Output
+### Step 3: Output
 
 ```{r}
 # Output .rtf file
@@ -255,7 +258,7 @@ apr0ae_rtf %>%
   write_rtf("rtf/pageby-firstrow-ae.rtf")
 ```
 
-# Example 3: sublineby, pageby, and groupby features
+## Example 3: sublineby, pageby, and groupby features
 
 We used `page_by`, `subline_by` and `group_by` to illustrate 
 how to create a simple adverse events listing. 
@@ -264,7 +267,7 @@ how to create a simple adverse events listing.
 knitr::include_graphics("pdf/pageby-ae-listing.pdf")
 ```
 
-## Step 1: Create data for RTF table
+### Step 1: Create data for RTF table
 
 ```{r}
 data(r2rtf_adae)
@@ -294,7 +297,7 @@ ae_t1 <- r2rtf_adae[200:260, ] %>%
 knitr::kable(head(ae_t1, 2))
 ```
 
-## Step 2: Define table format
+### Step 2: Define table format
 
 ```{r}
 ae_tbl <- ae_t1 %>%
@@ -329,7 +332,7 @@ ae_tbl <- ae_t1 %>%
   rtf_source("Source:  [Study MK9999P001: adam-adae]")
 ```
 
-## Step 3: Output
+### Step 3: Output
 
 ```{r}
 # Output .rtf file

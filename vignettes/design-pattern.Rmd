@@ -21,29 +21,29 @@ knitr::opts_chunk$set(
 )
 ```
 
-
-```{r setup, message=FALSE, echo=FALSE}
+```{r, message=FALSE, echo=FALSE}
 library(dplyr)
 library(r2rtf)
 ```
 
-## Overview 
+## Overview
 
-> This document is for developers who would like to understand the internal of the `r2rtf` package.  
+> This document is for developers who would like to understand the internal of the `r2rtf` package.
 
-The r2rtf package is developed to standardize the approach to generate highly customized 
-tables, listings and figures (TLFs) in RTF format and provide flexibility to 
+The r2rtf package is developed to standardize the approach to generate highly customized
+tables, listings and figures (TLFs) in RTF format and provide flexibility to
 customize table appearance for table title, subtitle, column header, footnote, and data source.
 
-The r2rtf package is designed to enables pipes (`%>%`), 
+The r2rtf package is designed to enables pipes (`%>%`),
 the first argument are all `tbl` except `rtf_read_figure()` and `write_rtf()`.
 A minimal example summarized the major steps in using r2rtf package to
 create a table or listing after a data frame is ready.
-  
+
 ```{r}
-head(iris) %>% rtf_body() %>%                       # Step 1 Add attributes 
-               rtf_encode() %>%                     # Step 2 Convert attributes to RTF encode 
-               write_rtf(file = "rtf/ex-tbl.rtf")   # Step 3 Write to a .rtf file 
+head(iris) %>%
+  rtf_body() %>% # Step 1 Add attributes
+  rtf_encode() %>% # Step 2 Convert attributes to RTF encode
+  write_rtf(file = "rtf/ex-tbl.rtf") # Step 3 Write to a .rtf file
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
@@ -52,61 +52,58 @@ knitr::include_graphics("pdf/ex-tbl.pdf")
 
 Similar step is used to create a figure. First we generate a figure in `png` format, then use `rtf_read_figure()` to read in the `png` file, and proceed to rtf generation.
 
-
 ```{r}
 fig <- c("fig/fig1.png")
-fig %>% rtf_read_figure() %>%                  # Step 1 Read in png file
-         rtf_figure() %>%                      # Step 2 Add attributes 
-         rtf_encode(doc_type = "figure") %>%   # Step 3 Convert attributes to RTF encode 
-         write_rtf(file = "rtf/ex-fig.rtf")           # Step 4 Write to a .rtf file 
+fig %>% rtf_read_figure() %>% # Step 1 Read in PNG file
+  rtf_figure() %>% # Step 2 Add attributes
+  rtf_encode(doc_type = "figure") %>% # Step 3 Convert attributes to RTF encode
+  write_rtf(file = "rtf/ex-fig.rtf") # Step 4 Write to a .rtf file
 ```
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/ex-fig.pdf")
 ```
 
+## Data Structure and Attributes
 
-## Data Structure and Attributes 
-
-We explore `rtf_page()` to illustrate how attributes of a data frame is used. 
-`rtf_page()` is a function to define the feature of a page in rtf document. 
-For example, we need to set the page orientation, width, height, margin etc. 
-The information is attached to an data frame using attributes. 
+We explore `rtf_page()` to illustrate how attributes of a data frame is used.
+`rtf_page()` is a function to define the feature of a page in rtf document.
+For example, we need to set the page orientation, width, height, margin etc.
+The information is attached to an data frame using attributes.
 
 Therefore, the core part of `rtf_page()` is to assign attributes to the input data frame (`tbl`) as below.
 Necessary input checking using `check_arg()`, `stopifnot()` and `match.arg()`, is provided in the function to provide informative error message with unexpected input.
 
 ```{r, eval = FALSE}
-attr(tbl, "page")$orientation   <- orientation
-attr(tbl, "page")$width         <- width
-attr(tbl, "page")$height        <- height
-attr(tbl, "page")$margin        <- margin
+attr(tbl, "page")$orientation <- orientation
+attr(tbl, "page")$width <- width
+attr(tbl, "page")$height <- height
+attr(tbl, "page")$margin <- margin
 attr(tbl, "page")$border_color_first <- border_color_first
 ```
 
-All attributes is saved in a logical way and summarized in the table below.  
+All attributes is saved in a logical way and summarized in the table below.
 
 ```{r}
 tbl <- head(iris) %>% rtf_page()
 ```
 
-To access the attributes, `attr()` or `attributes()` function can be used. For example, to get page attributes 
-in default setting, we can run code below. 
+To access the attributes, `attr()` or `attributes()` function can be used. For example, to get page attributes
+in default setting, we can run code below.
 
 ```{r}
 data.frame(value = unlist(attr(tbl, "page")))
 ```
 
+The table body attributes are more complicated than page attributes. Take `rtf_body()` as an example, it meets
+the user's need to take fully control of table appearance through parameters to customize table size, space, border
+type (e.g., single, double, dash, dot, etc.), color (e.g., 657 different colors named in `color()` function),
+line width, column width, row height, text format (e.g., bold, italics, strikethrough, underline and any combinations),
+font size, text color, alignment (e.g., left, right, center, decimal), etc. Format control can be at the cell, row,
+column, or table level.
 
-The table body attributes are more complicated than page attributes. Take `rtf_body()` as an example, it meets 
-the user's need to take fully control of table appearance through parameters to customize table size, space, border 
-type (e.g., single, double, dash, dot, etc.), color (e.g., 657 different colors named in `color()` function), 
-line width, column width, row height, text format (e.g., bold, italics, strikethrough, underline and any combinations), 
-font size, text color, alignment (e.g., left, right, center, decimal), etc. Format control can be at the cell, row, 
-column, or table level. 
-
-With the help of functions `obj_rtf_text()` and `obj_rtf_border()`, it is straightforward to pass the user inputs to 
-text/border attributes. For example, parameter `text_justification = "c"` sets all text in the cells to be center adjusted 
+With the help of functions `obj_rtf_text()` and `obj_rtf_border()`, it is straightforward to pass the user inputs to
+text/border attributes. For example, parameter `text_justification = "c"` sets all text in the cells to be center adjusted
 and `text_justification = c("c", rep("l", 4))` sets the text in the first column to be center adjusted
 and the texts in the remaining 4 columns to be left adjusted for a table with five columns.
 
@@ -116,43 +113,44 @@ In addition, `rtf_body()` initiates "page" attributes when color is used in any 
 head(iris) %>% rtf_body()
 ```
 
-Similarly to `rtf_body()`, the package also includes 
-`rtf_colheader()`, `rtf_footnote()`, `rtf_source()`, `rtf_subline()`, `rtf_text()`, `rtf_title()` and `rtf_figure()` to 
-assign attributes to the certain component of the output. Below is a simple 
+Similarly to `rtf_body()`, the package also includes
+`rtf_colheader()`, `rtf_footnote()`, `rtf_source()`, `rtf_subline()`, `rtf_text()`, `rtf_title()` and `rtf_figure()` to
+assign attributes to the certain component of the output. Below is a simple
 example of using the functions together for table/figure.
 
 ```{r, eval = FALSE}
-head(iris) %>%                               # Step 1 Read in data frame
-  rtf_title("iris") %>%                      # Step 2 Add title
-  rtf_colheader("A | B | C | D | E") %>%     # Step 3 Add column header
-  rtf_body() %>%                             # Step 4 Add attributes 
-  rtf_footnote("This is a footnote") %>%     # Step 5 Add footnote 
-  rtf_source("Source: xxx")                  # Step 6 Add data source
+head(iris) %>% # Step 1 Read in data frame
+  rtf_title("iris") %>% # Step 2 Add title
+  rtf_colheader("A | B | C | D | E") %>% # Step 3 Add column header
+  rtf_body() %>% # Step 4 Add attributes
+  rtf_footnote("This is a footnote") %>% # Step 5 Add footnote
+  rtf_source("Source: xxx") # Step 6 Add data source
 ```
 
 ```{r, eval = FALSE}
 "fig/tmp-fig.png" %>%
-  rtf_read_figure() %>%                  # Step 1 Read PNG files from the file path
-  rtf_title("title", "subtitle") %>%     # Step 2 Add title or subtitle
-  rtf_footnote("footnote") %>%           # Step 3 Add footnote
+  rtf_read_figure() %>% # Step 1 Read PNG files from the file path
+  rtf_title("title", "subtitle") %>% # Step 2 Add title or subtitle
+  rtf_footnote("footnote") %>% # Step 3 Add footnote
   rtf_source("[datasource: mk0999]") %>% # Step 4 Add data source
-  rtf_figure()                           # Step 5 Add figure attributes 
+  rtf_figure() # Step 5 Add figure attributes
 ```
 
-## RTF Encoding 
+## RTF Encoding
 
-`rtf_encode()` wraps up internal functions in r2rtf package to translate all attributes attached to a data frame 
-into [RTF syntax](http://www.snake.net/software/RTF/RTF-Spec-1.7.pdf). 
+`rtf_encode()` wraps up internal functions in r2rtf package to translate all attributes attached to a data frame
+into [RTF syntax](http://www.snake.net/software/RTF/RTF-Spec-1.7.pdf).
 A good reference is [RTF pocket guide](https://www.oreilly.com/library/view/rtf-pocket-guide/9781449302047/).
 
-All of the internal encoding functions in r2rtf package start with a prefix `as_rtf_`. 
-For a table, `r2rtf:::rtf_encode_table()` is used internally to translate attribute to RTF syntax by using 
-a set of `as_rtf_` functions. 
+All of the internal encoding functions in the r2rtf package start with a prefix `as_rtf_`.
+For a table, `r2rtf:::rtf_encode_table()` is used internally to translate attribute to RTF syntax by using
+a set of `as_rtf_` functions.
 
-Likewise, `rtf_encode_list()` is used when we have multiple data frame with different data structures to be stacked, 
+Likewise, `rtf_encode_list()` is used when we have multiple data frame with different data structures to be stacked,
 this is often seen in efficacy analysis. And `rtf_encode_figure()` is used for figure outputs.
 
 `r2rtf:::as_rtf_colheader()` define the column header in a table or listing.
+
 ```{r, eval = FALSE}
 head(iris) %>%
   rtf_body() %>%
@@ -161,6 +159,7 @@ head(iris) %>%
 ```
 
 `r2rtf:::as_rtf_color()` define the color to be used in text or border.
+
 ```{r, eval = FALSE}
 head(iris) %>%
   rtf_body(text_color = "red") %>%
@@ -169,16 +168,19 @@ head(iris) %>%
 ```
 
 `r2rtf:::as_rtf_end()` define the end of rtf encode string.
+
 ```{r, eval = FALSE}
 r2rtf:::as_rtf_end() %>% cat()
 ```
 
 `r2rtf:::as_rtf_font()` define the font encode.
+
 ```{r, eval = FALSE}
 r2rtf:::as_rtf_font() %>% cat()
 ```
 
 `r2rtf:::as_rtf_footnote()` define the footnote encode.
+
 ```{r}
 head(iris) %>%
   rtf_footnote("example") %>%
@@ -186,12 +188,14 @@ head(iris) %>%
   cat()
 ```
 
-`r2rtf:::as_rtf_init()` initiates rtf encode with 'English' as default language.
+`r2rtf:::as_rtf_init()` initiates rtf encode with 'English' as the default language.
+
 ```{r, eval = FALSE}
 r2rtf:::as_rtf_init() %>% cat()
 ```
 
-`r2rtf:::as_rtf_margin()` define a page margin. 
+`r2rtf:::as_rtf_margin()` define a page margin.
+
 ```{r, eval = FALSE}
 head(iris) %>%
   rtf_page() %>%
@@ -199,12 +203,14 @@ head(iris) %>%
   cat()
 ```
 
-`r2rtf:::as_rtf_new_page()` initiates new page encode. 
+`r2rtf:::as_rtf_new_page()` initiates new page encode.
+
 ```{r, eval = FALSE}
 r2rtf::as_rtf_new_page() %>% cat()
 ```
 
 `r2rtf:::as_rtf_page()` define a page width (`\paperw`) and height(`\paperh`).
+
 ```{r, eval = FALSE}
 head(iris) %>%
   rtf_page() %>%
@@ -213,6 +219,7 @@ head(iris) %>%
 ```
 
 `r2rtf:::as_rtf_pageby()` define a page_by encoding when argument page_by is not NULL in `rtf_body()`.
+
 ```{r, eval = FALSE}
 iris %>%
   rtf_body(page_by = "Species") %>%
@@ -221,11 +228,13 @@ iris %>%
 ```
 
 `r2rtf:::as_rtf_paragraph()` define a title/text attribute as paragraph.
+
 ```{r, eval = FALSE}
 r2rtf:::as_rtf_paragraph(attr(head(iris) %>% rtf_title("example"), "rtf_title")) %>% cat()
 ```
 
 `r2rtf:::as_rtf_source()` define the source encode.
+
 ```{r, eval = FALSE}
 head(iris) %>%
   rtf_source("example") %>%
@@ -234,6 +243,7 @@ head(iris) %>%
 ```
 
 `r2rtf:::as_rtf_subline()` define the subline encode.
+
 ```{r, eval = FALSE}
 head(iris) %>%
   rtf_subline("example") %>%
@@ -242,6 +252,7 @@ head(iris) %>%
 ```
 
 `r2rtf:::as_rtf_table()` define the table encode.
+
 ```{r, eval = FALSE}
 head(iris) %>%
   rtf_title("example") %>%
@@ -250,6 +261,7 @@ head(iris) %>%
 ```
 
 `r2rtf:::as_rtf_title()` define the title encode.
+
 ```{r, eval = FALSE}
 head(iris) %>%
   rtf_title("example") %>%
@@ -274,30 +286,30 @@ paste(
 ) %>% cat()
 ```
 
-If we save the RTF code into an `.rtf` file. 
+If we save the RTF code into an `.rtf` file.
 Microsoft Word or other RTF Viewer software can display the file properly.
-
 
 ## Save RTF File
 
-After everything has been translated into RTF code using `rtf_encode`. It is a simple step to save all RTF code 
-into an `.rtf` file. 
+After everything has been translated into RTF code using `rtf_encode()`. It is a simple step to save all RTF code
+into an `.rtf` file.
 
-`write_rtf()` is a simple wrap up of `write` function, which exports a single RTF string into the output file.
+`write_rtf()` is a simple wrapper of the `write()` function, which exports a single RTF string into the output file.
 
 A simple example is as in the overview section.
 
 ```{r, eval = FALSE}
-head(iris) %>% rtf_body() %>% # Step 1 Add attributes
+head(iris) %>%
+  rtf_body() %>% # Step 1 Add attributes
   rtf_encode() %>% # Step 2 Convert attributes to RTF encode
   write_rtf(file = "tmp.rtf") # Step 3 Write to a .rtf file
 ```
 
 ## Dictionary and Conversion
 
-As mentioned earlier, functions in `dictionary.R` file contains the most commonly used font types, formats, border types, etc. 
-All these attributes are mapped in a data frame which contains the element names and corresponding RTF encode. User is only 
-allowed to key in whatever is defined in dictionary for the rtf_ functions, or error message will be provided as a result from `match_arg()`. 
+As mentioned earlier, functions in the `dictionary.R` file contains the most commonly used font types, formats, border types, etc.
+All these attributes are mapped in a data frame which contains the element names and corresponding RTF encode. User is only
+allowed to key in whatever is defined in dictionary for the rtf_ functions, or error message will be provided as a result from `match_arg()`.
 
 ```{r}
 r2rtf:::font_type()
@@ -309,10 +321,10 @@ Superscripts, under scripts are taken care of by using `convert()` function to t
 r2rtf:::convert(c("^", "<="))
 ```
 
-## Pageby 
+## Pageby
 
-It is commonly seen a variable displayed in headline as group category (e.g. baseline characteristic table). 
-To achieve this, user first need to sort input data frame by page_by variable then define it in `rtf_body()`. 
+It is commonly seen a variable displayed in headline as group category (e.g. baseline characteristic table).
+To achieve this, user first need to sort input data frame by page_by variable then define it in `rtf_body()`.
 Border and text attributes are controlled together with other variables in the vectors.
 
 ```{r, eval = FALSE}
@@ -330,13 +342,10 @@ iris %>%
   write_rtf("pageby.rtf")
 ```
 
-
 ## Utility functions
 
-* `check_args()`: Function for argument checking for types, length or dimension, this function is used for all export functions except `write_rtf()`.
-* `match_arg()`: Function for argument verification on input values to see whether they match `dictionary()` defined values, 
+- `check_args()`: Function for argument checking for types, length or dimension, this function is used for all export functions except `write_rtf()`.
+- `match_arg()`: Function for argument verification on input values to see whether they match `dictionary()` defined values,
 this function is used for all export functions except `write_rtf`().
-* 'footnote_source_space()`: Function to derive space adjustment, whose results could be used in `rtf_footnote()` and `rtf_source()` 
+- `footnote_source_space()`: Function to derive space adjustment, whose results could be used in `rtf_footnote()` and `rtf_source()`
 when indentation is defined by user.
-    
- 
