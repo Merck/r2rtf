@@ -20,7 +20,9 @@ rtf_pageby(
 \item{new_page}{A boolean value to indicate whether to separate grouped table into pages
 by sections. Default is FALSE.}
 
-\item{pageby_header}{A boolean value to display pageby header at the beginning of each page.}
+\item{pageby_header}{A boolean value to display \code{pageby} header at the beginning of each page.
+Default is \code{TRUE}. If the value is \code{FALSE}, the \code{pageby} header is displayed in the first page of the \code{pageby}
+group. The special \code{pageby} value \code{"-----"} is to avoid displaying a \code{pageby} header for this group.}
 
 \item{pageby_row}{A character vector of location of page_by variable. Possible input are 'column'
 or 'first_row'.}
