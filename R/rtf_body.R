@@ -27,7 +27,9 @@
 #' @param page_by Column names in a character vector to group by table in sections.
 #' @param new_page A boolean value to indicate whether to separate grouped table into pages
 #'                 by sections. Default is FALSE.
-#' @param pageby_header A boolean value to display pageby header at the beginning of each page.
+#' @param pageby_header A boolean value to display `pageby` header at the beginning of each page.
+#' Default is `TRUE`. If the value is `FALSE`, the `pageby` header is displayed in the first page of the `pageby`
+#' group. The special `pageby` value `"-----"` is to avoid displaying a `pageby` header for this group.
 #' @param pageby_row A character vector of location of page_by variable. Possible input are 'column'
 #' or 'first_row'.
 #' @param subline_by Column names in a character vector to subline by table in sections.
