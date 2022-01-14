@@ -2,7 +2,7 @@
 output: md_document
 ---
 
-# r2rtf
+# r2rtf <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/r2rtf)](https://CRAN.R-project.org/package=r2rtf)
