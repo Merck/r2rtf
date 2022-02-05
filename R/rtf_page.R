@@ -33,6 +33,7 @@
 #' @param border_color_last Last bottom border color type of the whole table. Default is NULL for black.
 #'                            All possible input can be found in `grDevices::colors()`.
 #' @param col_width A numeric value of total column width in inch. Default is `width - ifelse(orientation == "portrait", 2, 2.5)`
+#' @param use_color A logical value to use color in the output.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -65,7 +66,8 @@ rtf_page <- function(tbl,
                      border_last = "double",
                      border_color_first = NULL,
                      border_color_last = NULL,
-                     col_width = width - ifelse(orientation == "portrait", 2.25, 2.5)) {
+                     col_width = width - ifelse(orientation == "portrait", 2.25, 2.5),
+                     use_color = FALSE) {
 
 
   # Check argument type
@@ -111,6 +113,10 @@ rtf_page <- function(tbl,
     attr(tbl, "page")$use_color <- TRUE
   } else {
     attr(tbl, "page")$use_color <- FALSE
+  }
+
+  if(use_color){
+    attr(tbl, "page")$use_color <- TRUE
   }
 
   tbl
