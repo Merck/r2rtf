@@ -15,7 +15,8 @@ rtf_page(
   border_last = "double",
   border_color_first = NULL,
   border_color_last = NULL,
-  col_width = width - ifelse(orientation == "portrait", 2.25, 2.5)
+  col_width = width - ifelse(orientation == "portrait", 2.25, 2.5),
+  use_color = FALSE
 )
 }
 \arguments{
@@ -45,6 +46,8 @@ All possible input can be found in \code{grDevices::colors()}.}
 All possible input can be found in \code{grDevices::colors()}.}
 
 \item{col_width}{A numeric value of total column width in inch. Default is \code{width - ifelse(orientation == "portrait", 2, 2.5)}}
+
+\item{use_color}{A logical value to use color in the output.}
 }
 \value{
 the same data frame \code{tbl} with additional attributes for page features
