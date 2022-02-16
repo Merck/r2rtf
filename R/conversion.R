@@ -93,7 +93,7 @@ convert <- function(text,
   char_latex <- ifelse(unicode_latex$int <= 255 & unicode_latex$int != 177, unicode_latex$chr,
     ifelse(unicode_latex$int < 32768,
       paste0("\\uc1\\u", unicode_latex$int, "*"),
-      paste0("\\uc1\\u-", unicode_latex$int, "*")
+      paste0("\\uc1\\u", unicode_latex$int - 65536, "*")
     )
   )
 
