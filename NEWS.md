@@ -1,3 +1,9 @@
+# r2rtf 0.3.3 (2022-03-05)
+
+* New argument: add `use_color` argument in `rtf_page`
+* bug fix: convert to proper RTF code
+* bug fig:` rft_encode()` doesn't add footnote and source to all pages for `doc_type = "figure"` (#90)
+
 # r2rtf 0.3.2 (2021-12-07)
 
 * New function: `rtf_read_figure` support `jpeg` and `emf` format to read figure (#65)
