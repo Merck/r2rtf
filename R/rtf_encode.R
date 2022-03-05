@@ -113,7 +113,6 @@ rtf_encode <- function(tbl,
         attr(tbl[[i]], "page")$page_title <- page_title
         attr(tbl[[i]], "page")$page_footnote <- page_footnote
         attr(tbl[[i]], "page")$page_source <- page_source
-        # attr(tbl[[i]], "rtf_title") <- attr(tbl[[1]], "rtf_title")
       }
       return(rtf_encode_list(tbl))
 
@@ -130,6 +129,11 @@ rtf_encode <- function(tbl,
   }
 
   if (doc_type == "figure") {
+
+    attr(tbl, "page")$page_title <- page_title
+    attr(tbl, "page")$page_footnote <- page_footnote
+    attr(tbl, "page")$page_source <- page_source
     return(rtf_encode_figure(tbl))
+
   }
 }
