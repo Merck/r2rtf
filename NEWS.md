@@ -1,4 +1,4 @@
-# r2rtf 0.3.3 (2022-03-05)
+# r2rtf 0.3.3 (2022-03-07)
 
 * New argument: add `use_color` argument in `rtf_page`
 * bug fix: convert to proper RTF code
