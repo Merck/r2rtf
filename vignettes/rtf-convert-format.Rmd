@@ -54,6 +54,7 @@ There is one known limitation after RTF file convert to HTML files:
 
 - table border issue.
   - "dash", "small dash", "dot dash", and "dot dot" border type are not supported 
+- can not convert chinese characters.
 
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/border-type.pdf")

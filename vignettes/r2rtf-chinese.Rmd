@@ -54,7 +54,7 @@ head(iris) %>%
   rtf_body() %>% 
   rtf_footnote(utf8Tortf("中文脚注: abc")) %>%
   rtf_encode() %>% 
-  write_rtf("chinese-1.rtf")
+  write_rtf("rtf/chinese-1.rtf")
 ```
 
 当数据中有中文字符时， 我们可以用类似的方法输出。
@@ -67,7 +67,7 @@ tbl <- data.frame(id = c("一", "二"),
 ```
 
 这里要注意`utf8Tortf`仅允许长度为一的字符串。
-可以通过`purrr::map_chr`进行向量化处理。 
+可以通过`purrr::map_chr()`进行向量化处理。 
 
 ```{r}
 tbl %>% 
@@ -76,7 +76,7 @@ tbl %>%
   rtf_body() %>% 
   rtf_footnote(utf8Tortf("中文脚注: abc")) %>%
   rtf_encode() %>% 
-  write_rtf("chinese-2.rtf")
+  write_rtf("rtf/chinese-2.rtf")
 ```
 
 ## TODO
