@@ -134,6 +134,8 @@ convert <- function(text,
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @export
+#'
 utf8Tortf <- function(text) {
   stopifnot(length(text) == 1 & "character" %in% class(text))
 
@@ -141,7 +143,7 @@ utf8Tortf <- function(text) {
   x_int <- utf8ToInt(text)
   x_rtf <- ifelse(x_int <= 255, x_char,
     ifelse(x_int <= 32768, paste0("\\uc1\\u", x_int, "?"),
-      paste0("\\uc1\\u-", x_int - 65536, "?")
+      paste0("\\uc1\\u", x_int - 65536, "?")
     )
   )
 

@@ -93,7 +93,9 @@ reference:
   - "r2rtf_tbl1"
   - "r2rtf_tbl2"
   - "r2rtf_tbl3"
-- title: internal function
+- title: Utility
+  - "utf8Tortf"
+- title: Internal function
   contents:
   - "as_rtf_colheader"
   - "as_rtf_color"
@@ -144,7 +146,6 @@ reference:
   - "spacing"
   - "update_border_first"
   - "update_border_last"
-  - "utf8Tortf"
   - "vertical_justification"
   - "write_rtf_para"
   - "fig_format"
