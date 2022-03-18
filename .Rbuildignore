@@ -40,4 +40,5 @@ lib_paths
 ^vignettes/example-ae-summary.Rmd$
 ^vignettes/example-figure.Rmd$
 ^vignettes/rtf-convert-format.Rmd$
+^vignettes/rtf-chinese.Rmd$
 ^doc$
