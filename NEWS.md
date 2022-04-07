@@ -1,3 +1,8 @@
+# r2rtf 0.3.4 (2022-04-07)
+
+* Update maintainer email 
+* bug fix: utf8Tortf provide additional "-"
+
 # r2rtf 0.3.3 (2022-03-07)
 
 * New argument: add `use_color` argument in `rtf_page`
