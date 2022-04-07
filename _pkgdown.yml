@@ -94,6 +94,7 @@ reference:
   - "r2rtf_tbl2"
   - "r2rtf_tbl3"
 - title: Utility
+  contents:
   - "utf8Tortf"
 - title: Internal function
   contents:
