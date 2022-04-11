@@ -1,4 +1,4 @@
-# r2rtf 0.3.4 (2022-04-07)
+# r2rtf 0.3.4 (2022-04-08)
 
 * Update maintainer email 
 * bug fix: utf8Tortf provide additional "-"
