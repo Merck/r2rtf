@@ -294,7 +294,7 @@ as_rtf_footnote <- function(tbl) {
     text_matrix <- matrix(paste(text_matrix, collapse = "\\line "), nrow = 1, ncol = 1)
 
     attr(text, "text_convert") <- matrix(FALSE, nrow = 1, ncol = 1)
-    attributes(text_matrix) <- append(attributes(text_matrix), attributes(text))
+    attributes(text_matrix) <- append(attributes(text_matrix), lapply(attributes(text), `[`, 1) )
     attr(text_matrix, "col_rel_width") <- 1
     encode <- rtf_table_content(text_matrix,
       col_total_width = attr(tbl, "page")$col_width,
@@ -342,7 +342,7 @@ as_rtf_source <- function(tbl) {
     text_matrix <- matrix(paste(text_matrix, collapse = "\\line "), nrow = 1, ncol = 1)
 
     attr(text, "text_convert") <- matrix(FALSE, nrow = 1, ncol = 1)
-    attributes(text_matrix) <- append(attributes(text_matrix), attributes(text))
+    attributes(text_matrix) <- append(attributes(text_matrix), lapply(attributes(text), `[`, 1) )
     attr(text_matrix, "col_rel_width") <- 1
     encode <- rtf_table_content(text_matrix,
       col_total_width = attr(tbl, "page")$col_width,
