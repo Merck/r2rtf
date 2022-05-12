@@ -105,7 +105,9 @@ rtf_text <- function(text,
   }
 
   ### Convert Latex Character
-  text_vector <- ifelse(text_convert, convert(as.matrix(text)), as.matrix(text))
+  text <- as.matrix(text)
+  text_convert <- matrix(text_convert, nrow = nrow(text), ncol = ncol(text))
+  text_vector <- ifelse(text_convert, convert(text), text)
 
   end <- "}"
 

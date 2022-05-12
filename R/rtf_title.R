@@ -78,14 +78,13 @@ rtf_title <- function(tbl,
     tbl <- rtf_page(tbl)
   }
 
-  if (text_justification == "l") {
-    text_indent_left <- text_indent_left + footnote_source_space(tbl, text_indent_reference)
-  }
+  text_indent_left <- ifelse(text_justification == "l",
+                             text_indent_left + footnote_source_space(tbl, text_indent_reference),
+                             text_indent_left)
 
-  if (text_justification == "r") {
-    text_indent_right <- text_indent_right + footnote_source_space(tbl, text_indent_reference)
-  }
-
+  text_indent_right <- ifelse(text_justification == "r",
+                              text_indent_right + footnote_source_space(tbl, text_indent_reference),
+                              text_indent_right)
 
   text <- obj_rtf_text(text,
     text_font,
