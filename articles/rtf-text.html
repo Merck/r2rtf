@@ -34,7 +34,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">r2rtf</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -204,24 +204,30 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,
   format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"i"</span>, <span class="st">"bi"</span>, <span class="st">"^"</span>, <span class="st">"_"</span>, <span class="st">"u"</span>, <span class="st">"s"</span><span class="op">)</span>
-<span class="op">)</span><span class="op">)</span>
-<span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-format-1.rtf"</span><span class="op">)</span></code></pre></div>
+<span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## Warning in matrix(text_rtf, nrow = nrow(text), ncol = ncol(text)): data length</span>
+<span class="co">## [7] is not a sub-multiple or multiple of the number of rows [5]</span></code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-format-1.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/text-format-1.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
 <h3 id="text-font-type">Text Font Type<a class="anchor" aria-label="anchor" href="#text-font-type"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,
   font <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>
-<span class="op">)</span><span class="op">)</span>
-<span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-font-type.rtf"</span><span class="op">)</span></code></pre></div>
+<span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="co">## Warning in matrix(text_rtf, nrow = nrow(text), ncol = ncol(text)): data length</span>
+<span class="co">## differs from size of matrix: [10 != 5 x 1]</span></code></pre>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-font-type.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/text-font-type.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
 <h3 id="text-color">Text Color<a class="anchor" aria-label="anchor" href="#text-color"></a>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,
   color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"black"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span><span class="op">)</span>
 <span class="op">)</span><span class="op">)</span>
@@ -231,7 +237,7 @@
 <div class="section level3">
 <h3 id="text-background-color">Text Background Color<a class="anchor" aria-label="anchor" href="#text-background-color"></a>
 </h3>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,
   color <span class="op">=</span> <span class="st">"white"</span>,
   background_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"black"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span><span class="op">)</span>
@@ -243,7 +249,7 @@
 <h3 id="combine-text-in-different-format">Combine Text in Different Format<a class="anchor" aria-label="anchor" href="#combine-text-in-different-format"></a>
 </h3>
 <p>This example call <code>rtf_text</code> multiple times to combine a text.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span>
   <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="st">"3.5"</span><span class="op">)</span>,
   <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="st">"\\dagger"</span>, format <span class="op">=</span> <span class="st">"^"</span><span class="op">)</span>,
@@ -252,7 +258,7 @@
 <span class="op">)</span><span class="op">)</span>
 <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine1.rtf"</span><span class="op">)</span></code></pre></div>
 <embed src="pdf/text-combine1.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>This example call <code>rtf_text</code> one time to combine a text.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3.5</span>, <span class="st">"\\dagger"</span>, <span class="st">"\\line red "</span>, <span class="st">"highlight"</span><span class="op">)</span>
 <span class="va">format</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">""</span>, <span class="st">"^"</span>, <span class="st">""</span>, <span class="st">""</span><span class="op">)</span>
 <span class="va">color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span>
@@ -274,7 +280,7 @@
 <h3 id="inline-formatting">Inline Formatting<a class="anchor" aria-label="anchor" href="#inline-formatting"></a>
 </h3>
 <p>This example provide an inline formatting options with superscript and subscript. It is important to note the location of <code><a href="https://rdrr.io/r/base/Paren.html" class="external-link">{}</a></code> is before the special character.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X{_1} = \\alpha{^2} + \\beta{^\\dagger}"</span><span class="op">)</span>
 <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">)</span>
 <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine3.rtf"</span><span class="op">)</span></code></pre></div>
@@ -289,7 +295,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
+<p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
 </div>
 
 <div class="pkgdown-footer-right">

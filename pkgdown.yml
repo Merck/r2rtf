@@ -1,5 +1,5 @@
 pandoc: 2.7.3
-pkgdown: 2.0.2
+pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   design-pattern: design-pattern.html
@@ -13,7 +13,7 @@ articles:
   rtf-convert-format: rtf-convert-format.html
   rtf-row: rtf-row.html
   rtf-text: rtf-text.html
-last_built: 2022-04-11T15:57Z
+last_built: 2022-05-12T02:59Z
 urls:
   reference: https://merck.github.io/r2rtf/reference
   article: https://merck.github.io/r2rtf/articles
