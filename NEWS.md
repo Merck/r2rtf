@@ -1,3 +1,8 @@
+# r2rtf 0.3.5 (2022-05-14)
+
+* bug fix: avoid warning message for matrix dimission in R4.2.0 (#101)
+* bug fix: vectorized text justification for `r2rtf::rtf_title`, `r2rtf::rtf_footnote`, etc (#98)
+
 # r2rtf 0.3.4 (2022-04-08)
 
 * Update maintainer email 
