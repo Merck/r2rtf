@@ -202,7 +202,11 @@ as_rtf_title <- function(tbl) {
     return(NULL)
   }
 
-  as_rtf_paragraph(title)
+  if( length(unique(attr(title, "text_justification"))) > 1 ){
+    paste0(as_rtf_paragraph(title, combine = FALSE), collapse = "")
+  }else{
+    as_rtf_paragraph(title, combine = TRUE)
+  }
 }
 
 #' Create Table Subline RTF Encode
@@ -226,7 +230,11 @@ as_rtf_subline <- function(tbl) {
     return(NULL)
   }
 
-  as_rtf_paragraph(subline)
+  if( length(unique(attr(subline, "text_justification"))) > 1 ){
+    paste0(as_rtf_paragraph(subline, combine = FALSE), collapse = "")
+  }else{
+    as_rtf_paragraph(subline, combine = TRUE)
+  }
 }
 
 #' Create Column Header RTF Encode
@@ -286,7 +294,7 @@ as_rtf_footnote <- function(tbl) {
     text_matrix <- matrix(paste(text_matrix, collapse = "\\line "), nrow = 1, ncol = 1)
 
     attr(text, "text_convert") <- matrix(FALSE, nrow = 1, ncol = 1)
-    attributes(text_matrix) <- append(attributes(text_matrix), attributes(text))
+    attributes(text_matrix) <- append(attributes(text_matrix), lapply(attributes(text), `[`, 1) )
     attr(text_matrix, "col_rel_width") <- 1
     encode <- rtf_table_content(text_matrix,
       col_total_width = attr(tbl, "page")$col_width,
@@ -294,7 +302,11 @@ as_rtf_footnote <- function(tbl) {
     )
     paste(encode, collapse = "\n")
   } else {
-    as_rtf_paragraph(text)
+    if( length(unique(attr(text, "text_justification"))) > 1 ){
+      paste0(as_rtf_paragraph(text, combine = FALSE), collapse = "")
+    }else{
+      as_rtf_paragraph(text, combine = TRUE)
+    }
   }
 }
 
@@ -330,7 +342,7 @@ as_rtf_source <- function(tbl) {
     text_matrix <- matrix(paste(text_matrix, collapse = "\\line "), nrow = 1, ncol = 1)
 
     attr(text, "text_convert") <- matrix(FALSE, nrow = 1, ncol = 1)
-    attributes(text_matrix) <- append(attributes(text_matrix), attributes(text))
+    attributes(text_matrix) <- append(attributes(text_matrix), lapply(attributes(text), `[`, 1) )
     attr(text_matrix, "col_rel_width") <- 1
     encode <- rtf_table_content(text_matrix,
       col_total_width = attr(tbl, "page")$col_width,
@@ -338,7 +350,11 @@ as_rtf_source <- function(tbl) {
     )
     paste(encode, collapse = "\n")
   } else {
-    as_rtf_paragraph(text)
+    if( length(unique(attr(text, "text_justification"))) > 1 ){
+      paste0(as_rtf_paragraph(text, combine = FALSE), collapse = "")
+    }else{
+      as_rtf_paragraph(text, combine = TRUE)
+    }
   }
 }
 
