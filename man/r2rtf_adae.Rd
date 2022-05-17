@@ -8,7 +8,7 @@
 A data frame with 1191 rows and 55 variables.
 }
 \source{
-\url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
+\url{https://github.com/phuse-org/phuse-scripts/tree/master/data/adam/cdisc}
 }
 \usage{
 r2rtf_adae
@@ -19,6 +19,6 @@ CDISC ADaM standard.
 }
 \details{
 Definition of each variable can be found in
-\url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
+\url{https://github.com/phuse-org/phuse-scripts/tree/master/data/adam/cdisc}
 }
 \keyword{datasets}

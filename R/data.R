@@ -21,12 +21,11 @@
 #' CDISC ADaM standard.
 #'
 #' Definition of each variable can be found in
-#' \url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
+#' \url{https://github.com/phuse-org/phuse-scripts/tree/master/data/adam/cdisc}
 #'
 #' @format A data frame with 1191 rows and 55 variables.
 #'
-#' @source \url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
-#'
+#' @source \url{https://github.com/phuse-org/phuse-scripts/tree/master/data/adam/cdisc}
 "r2rtf_adae"
 
 #' A Subject Level Demographic Dataset
@@ -35,11 +34,11 @@
 #' CDISC ADaM standard.
 #'
 #' Definition of each variable can be found in
-#' \url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
+#' \url{https://github.com/phuse-org/phuse-scripts/tree/master/data/adam/cdisc}
 #'
 #' @format A data frame with 254 rows and 51 variables.
 #'
-#' @source \url{https://bitbucket.cdisc.org/projects/CED/repos/sdtm-adam-pilot-project/browse}
+#' @source \url{https://github.com/phuse-org/phuse-scripts/tree/master/data/adam/cdisc}
 "r2rtf_adsl"
 
 #' An Efficacy Clinical Trial Data to Evaluate a Drug to Reduce Lower Back Pain
