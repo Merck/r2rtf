@@ -8,7 +8,7 @@ status](https://www.r-pkg.org/badges/version/r2rtf)](https://CRAN.R-project.org/
 coverage](https://codecov.io/gh/Merck/r2rtf/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Merck/r2rtf?branch=master)
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/package=r2rtf)
-[![R-CMD-check](https://github.com/Merck/r2rtf/workflows/R-CMD-check/badge.svg)](https://github.com/Merck/r2rtf/actions)
+[![R-CMD-check](https://github.com/Merck/r2rtf/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Merck/r2rtf/actions/workflows/R-CMD-check.yaml)
 [![status](https://tinyverse.netlify.com/badge/r2rtf)](https://tinyverse.netlify.app/)
 <!-- badges: end -->
 
