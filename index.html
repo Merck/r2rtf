@@ -113,9 +113,9 @@
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install the package via CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">"r2rtf"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"r2rtf"</span>)</span></code></pre></div>
 <p>Or, install from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"Merck/r2rtf"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Merck/r2rtf"</span>)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="highlighted-features">Highlighted Features<a class="anchor" aria-label="anchor" href="#highlighted-features"></a>
@@ -147,26 +147,26 @@
 <div class="section level2">
 <h2 id="simple-example">Simple Example<a class="anchor" aria-label="anchor" href="#simple-example"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">library</span>(r2rtf)</span>
-<span id="cb3-3"><a href="#cb3-3"></a></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="kw">head</span>(iris) <span class="op">%&gt;%</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="st">  </span><span class="kw">rtf_body</span>() <span class="op">%&gt;%</span><span class="st">                 </span><span class="co"># Step 1 Add attributes</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="st">  </span><span class="kw">rtf_encode</span>() <span class="op">%&gt;%</span><span class="st">               </span><span class="co"># Step 2 Convert attributes to RTF encode</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="st">  </span><span class="kw">write_rtf</span>(<span class="dt">file =</span> <span class="st">"ex-tbl.rtf"</span>) <span class="co"># Step 3 Write to a .rtf file</span></span></code></pre></div>
-<details><summary> Click here to see the output </summary><img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png"></details><ul><li><a href="https://merck.github.io/r2rtf/articles/index.html">More Examples</a></li></ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r2rtf)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rtf_body</span>() <span class="sc">%&gt;%</span>                 <span class="co"># Step 1 Add attributes</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rtf_encode</span>() <span class="sc">%&gt;%</span>               <span class="co"># Step 2 Convert attributes to RTF encode</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_rtf</span>(<span class="at">file =</span> <span class="st">"ex-tbl.rtf"</span>) <span class="co"># Step 3 Write to a .rtf file</span></span></code></pre></div>
+<details><summary>Click here to see the output</summary><img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png"></details><ul><li><a href="https://merck.github.io/r2rtf/articles/index.html">More Examples</a></li></ul>
 </div>
 <div class="section level2">
 <h2 id="example-efficacy-table">Example Efficacy Table<a class="anchor" aria-label="anchor" href="#example-efficacy-table"></a>
 </h2>
 <ul><li><a href="https://merck.github.io/r2rtf/articles/example-efficacy.html">Source code</a></li></ul>
-<details><summary> Click here to see the output </summary><img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png"></details>
+<details><summary>Click here to see the output</summary><img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png"></details>
 </div>
 <div class="section level2">
 <h2 id="example-safety-table">Example Safety Table<a class="anchor" aria-label="anchor" href="#example-safety-table"></a>
 </h2>
 <ul><li><a href="https://merck.github.io/r2rtf/articles/example-ae-summary.html">Source code</a></li></ul>
-<details><summary> Click here to see the output </summary><img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png"></details>
+<details><summary>Click here to see the output</summary><img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png"></details>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
@@ -210,7 +210,7 @@
 <li><a href="https://CRAN.R-project.org/package=r2rtf" class="external-link"><img src="https://www.r-pkg.org/badges/version/r2rtf" alt="CRAN status"></a></li>
 <li><a href="https://app.codecov.io/gh/Merck/r2rtf?branch=master" class="external-link"><img src="https://codecov.io/gh/Merck/r2rtf/branch/master/graph/badge.svg" alt="Codecov test coverage"></a></li>
 <li><a href="https://cran.r-project.org/package=r2rtf" class="external-link"><img src="https://cranlogs.r-pkg.org/badges/r2rtf" alt="CRAN Downloads"></a></li>
-<li><a href="https://github.com/Merck/r2rtf/actions" class="external-link"><img src="https://github.com/Merck/r2rtf/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/Merck/r2rtf/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/Merck/r2rtf/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://tinyverse.netlify.app/" class="external-link"><img src="https://tinyverse.netlify.com/badge/r2rtf" alt="status"></a></li>
 </ul>
 </div>
