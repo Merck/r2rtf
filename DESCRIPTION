@@ -42,7 +42,8 @@ Suggests:
     covr,
     dplyr,
     testthat,
-    ggplot2
+    ggplot2,
+    devEMF
 URL: https://merck.github.io/r2rtf/, https://github.com/Merck/r2rtf
 BugReports: https://github.com/Merck/r2rtf/issues
 Config/testthat/edition: 3
