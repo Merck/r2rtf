@@ -145,7 +145,9 @@ obj_rtf_border <- function(tbl,
   border_color_first <- foo(border_color_first)
   border_color_last <- foo(border_color_last)
 
-  cell_nrow <- foo(cell_nrow)
+  if(! is.null(cell_nrow)){
+    cell_nrow <- rep_len(cell_nrow, length.out = n_row)
+  }
 
   # Add Attributions
   attr(tbl, "border_top") <- border_top
