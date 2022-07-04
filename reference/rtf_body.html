@@ -74,192 +74,273 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rtf_body</span><span class="op">(</span>
-  <span class="va">tbl</span>,
-  col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span><span class="op">)</span>,
-  as_colheader <span class="op">=</span> <span class="cn">TRUE</span>,
-  border_left <span class="op">=</span> <span class="st">"single"</span>,
-  border_right <span class="op">=</span> <span class="st">"single"</span>,
-  border_top <span class="op">=</span> <span class="cn">NULL</span>,
-  border_bottom <span class="op">=</span> <span class="cn">NULL</span>,
-  border_first <span class="op">=</span> <span class="st">"single"</span>,
-  border_last <span class="op">=</span> <span class="st">"single"</span>,
-  border_color_left <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_right <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_top <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_bottom <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_first <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_last <span class="op">=</span> <span class="cn">NULL</span>,
-  border_width <span class="op">=</span> <span class="fl">15</span>,
-  cell_height <span class="op">=</span> <span class="fl">0.15</span>,
-  cell_justification <span class="op">=</span> <span class="st">"c"</span>,
-  cell_vertical_justification <span class="op">=</span> <span class="st">"top"</span>,
-  cell_nrow <span class="op">=</span> <span class="cn">NULL</span>,
-  text_font <span class="op">=</span> <span class="fl">1</span>,
-  text_format <span class="op">=</span> <span class="cn">NULL</span>,
-  text_font_size <span class="op">=</span> <span class="fl">9</span>,
-  text_color <span class="op">=</span> <span class="cn">NULL</span>,
-  text_background_color <span class="op">=</span> <span class="cn">NULL</span>,
-  text_justification <span class="op">=</span> <span class="cn">NULL</span>,
-  text_indent_first <span class="op">=</span> <span class="fl">0</span>,
-  text_indent_left <span class="op">=</span> <span class="fl">0</span>,
-  text_indent_right <span class="op">=</span> <span class="fl">0</span>,
-  text_space <span class="op">=</span> <span class="fl">1</span>,
-  text_space_before <span class="op">=</span> <span class="fl">15</span>,
-  text_space_after <span class="op">=</span> <span class="fl">15</span>,
-  text_convert <span class="op">=</span> <span class="cn">TRUE</span>,
-  group_by <span class="op">=</span> <span class="cn">NULL</span>,
-  page_by <span class="op">=</span> <span class="cn">NULL</span>,
-  new_page <span class="op">=</span> <span class="cn">FALSE</span>,
-  pageby_header <span class="op">=</span> <span class="cn">TRUE</span>,
-  pageby_row <span class="op">=</span> <span class="st">"column"</span>,
-  subline_by <span class="op">=</span> <span class="cn">NULL</span>,
-  last_row <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rtf_body</span><span class="op">(</span></span>
+<span>  <span class="va">tbl</span>,</span>
+<span>  col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">ncol</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  as_colheader <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  border_left <span class="op">=</span> <span class="st">"single"</span>,</span>
+<span>  border_right <span class="op">=</span> <span class="st">"single"</span>,</span>
+<span>  border_top <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_bottom <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_first <span class="op">=</span> <span class="st">"single"</span>,</span>
+<span>  border_last <span class="op">=</span> <span class="st">"single"</span>,</span>
+<span>  border_color_left <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_right <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_top <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_bottom <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_first <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_last <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_width <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>  cell_height <span class="op">=</span> <span class="fl">0.15</span>,</span>
+<span>  cell_justification <span class="op">=</span> <span class="st">"c"</span>,</span>
+<span>  cell_vertical_justification <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>  cell_nrow <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  text_font <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  text_format <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  text_font_size <span class="op">=</span> <span class="fl">9</span>,</span>
+<span>  text_color <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  text_background_color <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  text_justification <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  text_indent_first <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  text_indent_left <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  text_indent_right <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  text_space <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  text_space_before <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>  text_space_after <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>  text_convert <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  group_by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  page_by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  new_page <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  pageby_header <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  pageby_row <span class="op">=</span> <span class="st">"column"</span>,</span>
+<span>  subline_by <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  last_row <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>tbl</dt>
 <dd><p>A data frame.</p></dd>
+
+
 <dt>col_rel_width</dt>
 <dd><p>Column relative width in a vector e.g. c(2,1,1) refers to 2:1:1.
 Default is NULL for equal column width.</p></dd>
+
+
 <dt>as_colheader</dt>
 <dd><p>A boolean value to indicate whether to add default column header to the table.
 Default is TRUE to use data frame column names as column header.</p></dd>
+
+
 <dt>border_left</dt>
 <dd><p>Left border type. To vary left border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_right</dt>
 <dd><p>Right border type. To vary right border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_top</dt>
 <dd><p>Top border type. To vary top border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). If it is the first row in a table for this
 page, the top border is set to "double" otherwise the border is set to "single".
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_bottom</dt>
 <dd><p>Bottom border type.
 To vary bottom border by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("single","single","single").
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_first</dt>
 <dd><p>First top border type of the whole table.
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_last</dt>
 <dd><p>Last bottom border type of the whole table.
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_color_left</dt>
 <dd><p>Left border color type. Default is NULL for black. To vary left
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_right</dt>
 <dd><p>Right border color type. Default is NULL for black. To vary right
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_top</dt>
 <dd><p>Top border color type. Default is NULL for black. To vary top
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_bottom</dt>
 <dd><p>Bottom border color type. Default is NULL for black. To vary bottom
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_first</dt>
 <dd><p>First top border color type of the whole table. Default is NULL for black.
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_last</dt>
 <dd><p>Last bottom border color type of the whole table. Default is NULL for black.
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_width</dt>
 <dd><p>Border width in twips. Default is 15 for 0.0104 inch.</p></dd>
+
+
 <dt>cell_height</dt>
 <dd><p>Cell height in inches. Default is 0.15 for 0.15 inch.</p></dd>
+
+
 <dt>cell_justification</dt>
 <dd><p>Justification type for cell.
 All possible input can be found in <code>r2rtf:::justification()$type</code>.</p></dd>
+
+
 <dt>cell_vertical_justification</dt>
 <dd><p>Vertical justification type for cell.
 All possible input can be found in <code>r2rtf:::vertical_justification()$type</code>.</p></dd>
+
+
 <dt>cell_nrow</dt>
 <dd><p>Number of rows required in each cell.</p></dd>
+
+
 <dt>text_font</dt>
 <dd><p>Text font type. Default is 1 for Times New Roman. To vary text font type
 by column, use numeric vector with length of vector equal to number of
 columns displayed e.g. c(1,2,3).All possible input can be found
 in <code>r2rtf:::font_type()$type</code>.</p></dd>
+
+
 <dt>text_format</dt>
 <dd><p>Text format type. Default is NULL for normal. Combination of format type
 are permitted as input for e.g. "ub" for bold and underlined text. To vary
 text format by column, use character vector with length of vector equal to
 number of columns displayed e.g. c("i","u","ib"). All possible input
 can be found in <code>r2rtf:::font_format()$type</code>.</p></dd>
+
+
 <dt>text_font_size</dt>
 <dd><p>Text font size.  To vary text font size by column, use
 numeric vector with length of vector equal to number of columns
 displayed e.g. c(9,20,40).</p></dd>
+
+
 <dt>text_color</dt>
 <dd><p>Text color type. Default is NULL for black. To vary text color by column,
 use character vector with length of vector equal to number of columns
 displayed e.g. c("white","red","blue"). All possible input can be found
 in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>text_background_color</dt>
 <dd><p>Text background color type. Default is NULL for white. To vary
 text color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>text_justification</dt>
 <dd><p>Justification type for text. Default is "c" for center justification.
 To vary text justification by column, use character vector with
 length of vector equal to number of columns displayed e.g. c("c","l","r").
 All possible input can be found in <code>r2rtf:::justification()$type</code>.</p></dd>
+
+
 <dt>text_indent_first</dt>
 <dd><p>A value of text indent in first line. The unit is twip.</p></dd>
+
+
 <dt>text_indent_left</dt>
 <dd><p>A value of text left indent. The unit is twip.</p></dd>
+
+
 <dt>text_indent_right</dt>
 <dd><p>A value of text right indent. The unit is twip.</p></dd>
+
+
 <dt>text_space</dt>
 <dd><p>Line space between paragraph in twips. Default is 0.</p></dd>
+
+
 <dt>text_space_before</dt>
 <dd><p>Line space before a paragraph in twips.</p></dd>
+
+
 <dt>text_space_after</dt>
 <dd><p>Line space after a paragraph in twips.</p></dd>
+
+
 <dt>text_convert</dt>
 <dd><p>A logical value to convert special characters.</p></dd>
+
+
 <dt>group_by</dt>
 <dd><p>A character vector of variable names in <code>tbl</code>.</p></dd>
+
+
 <dt>page_by</dt>
 <dd><p>Column names in a character vector to group by table in sections.</p></dd>
+
+
 <dt>new_page</dt>
 <dd><p>A boolean value to indicate whether to separate grouped table into pages
 by sections. Default is FALSE.</p></dd>
+
+
 <dt>pageby_header</dt>
 <dd><p>A boolean value to display <code>pageby</code> header at the beginning of each page.
 Default is <code>TRUE</code>. If the value is <code>FALSE</code>, the <code>pageby</code> header is displayed in the first page of the <code>pageby</code>
 group. The special <code>pageby</code> value <code>"-----"</code> is to avoid displaying a <code>pageby</code> header for this group.</p></dd>
+
+
 <dt>pageby_row</dt>
 <dd><p>A character vector of location of page_by variable. Possible input are 'column'
 or 'first_row'.</p></dd>
+
+
 <dt>subline_by</dt>
 <dd><p>Column names in a character vector to subline by table in sections.</p></dd>
+
+
 <dt>last_row</dt>
 <dd><p>A boolean value to indicate whether the table contains the last row of the
 final table.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>the same data frame <code>tbl</code> with additional attributes for table body</p>
+    
+
+<p>the same data frame <code>tbl</code> with additional attributes for table body</p>
     </div>
     <div class="section level2">
     <h2 id="specification">Specification<a class="anchor" aria-label="anchor" href="#specification"></a></h2>
@@ -270,15 +351,15 @@ final table.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="co"># required to run examples</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">r2rtf_tbl1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">r2rtf_tbl1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">rtf_body</span><span class="op">(</span></span>
-<span class="r-in">    col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">    text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">    last_row <span class="op">=</span> <span class="cn">FALSE</span></span>
-<span class="r-in">  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="co"># required to run examples</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">r2rtf_tbl1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">r2rtf_tbl1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">rtf_body</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">3</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"c"</span>, <span class="fl">7</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    last_row <span class="op">=</span> <span class="cn">FALSE</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $names</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Trt"   "N1"    "Mean1" "N2"    "Mean2" "N3"    "Mean3" "CI"   </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -467,7 +548,7 @@ final table.</p></dd>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
+  <p></p><p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5. <br>Copyright © Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates.</p>
 </div>
 
 <div class="pkgdown-footer-right">

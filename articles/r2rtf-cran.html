@@ -95,7 +95,7 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>An Introduction to the r2rtf Package</h1>
             
       
@@ -107,13 +107,13 @@
     
 <p>Please see <a href="https://merck.github.io/r2rtf/articles/index.html" class="uri">https://merck.github.io/r2rtf/articles/index.html</a> for the full documentation. Here is only a minimal example:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/r2rtf/">r2rtf</a></span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># Step 1 Add attributes</span>
-  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># Step 2 Convert attributes to RTF encode</span>
-  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"ex-tbl.rtf"</span><span class="op">)</span> <span class="co"># Step 3 Write to a .rtf file</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/r2rtf/">r2rtf</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># Step 1 Add attributes</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># Step 2 Convert attributes to RTF encode</span></span>
+<span>  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"ex-tbl.rtf"</span><span class="op">)</span> <span class="co"># Step 3 Write to a .rtf file</span></span></code></pre></div>
   </main>
 </div>
 
@@ -121,7 +121,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
+<p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5. <br>Copyright © Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates.</p>
 </div>
 
 <div class="pkgdown-footer-right">

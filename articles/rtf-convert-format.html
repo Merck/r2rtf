@@ -95,7 +95,7 @@
 
 
 <div class="row">
-  <main id="main"><div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>File Format Conversion</h1>
             
       
@@ -112,17 +112,17 @@
 <p>By default, <code>r2rtf:::rtf_convert_format</code> convert RTF file to PDF format. The PDF file will be saved in the same folder with same file name by default.</p>
 <p>In example below, <code>ae_example.pdf</code> will be created in the same folder.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_convert_format.html">rtf_convert_format</a></span><span class="op">(</span>input <span class="op">=</span> <span class="st">"rtf/ae_example.rtf"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_convert_format.html">rtf_convert_format</a></span><span class="op">(</span>input <span class="op">=</span> <span class="st">"rtf/ae_example.rtf"</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>Multiple files can be provided as input.</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_convert_format.html">rtf_convert_format</a></span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"rtf"</span>, pattern <span class="op">=</span> <span class="st">"*.rtf"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_convert_format.html">rtf_convert_format</a></span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"rtf"</span>, pattern <span class="op">=</span> <span class="st">"*.rtf"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>The <code>format</code> argument allow use to specify output format as <code>pdf</code>, <code>docx</code>, or <code>html</code>.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_convert_format.html">rtf_convert_format</a></span><span class="op">(</span>input <span class="op">=</span> <span class="st">"rtf/ae_example.rtf"</span>, format <span class="op">=</span> <span class="st">"html"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_convert_format.html">rtf_convert_format</a></span><span class="op">(</span>input <span class="op">=</span> <span class="st">"rtf/ae_example.rtf"</span>, format <span class="op">=</span> <span class="st">"html"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="limitations">Limitations<a class="anchor" aria-label="anchor" href="#limitations"></a>
 </h3>
@@ -226,7 +226,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
+<p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5. <br>Copyright © Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -74,57 +74,82 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rtf_page</span><span class="op">(</span>
-  <span class="va">tbl</span>,
-  orientation <span class="op">=</span> <span class="st">"portrait"</span>,
-  width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">orientation</span> <span class="op">==</span> <span class="st">"portrait"</span>, <span class="fl">8.5</span>, <span class="fl">11</span><span class="op">)</span>,
-  height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">orientation</span> <span class="op">==</span> <span class="st">"portrait"</span>, <span class="fl">11</span>, <span class="fl">8.5</span><span class="op">)</span>,
-  margin <span class="op">=</span> <span class="fu"><a href="set_margin.html">set_margin</a></span><span class="op">(</span><span class="st">"wma"</span>, <span class="va">orientation</span><span class="op">)</span>,
-  nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">orientation</span> <span class="op">==</span> <span class="st">"portrait"</span>, <span class="fl">40</span>, <span class="fl">24</span><span class="op">)</span>,
-  border_first <span class="op">=</span> <span class="st">"double"</span>,
-  border_last <span class="op">=</span> <span class="st">"double"</span>,
-  border_color_first <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_last <span class="op">=</span> <span class="cn">NULL</span>,
-  col_width <span class="op">=</span> <span class="va">width</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">orientation</span> <span class="op">==</span> <span class="st">"portrait"</span>, <span class="fl">2.25</span>, <span class="fl">2.5</span><span class="op">)</span>,
-  use_color <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rtf_page</span><span class="op">(</span></span>
+<span>  <span class="va">tbl</span>,</span>
+<span>  orientation <span class="op">=</span> <span class="st">"portrait"</span>,</span>
+<span>  width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">orientation</span> <span class="op">==</span> <span class="st">"portrait"</span>, <span class="fl">8.5</span>, <span class="fl">11</span><span class="op">)</span>,</span>
+<span>  height <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">orientation</span> <span class="op">==</span> <span class="st">"portrait"</span>, <span class="fl">11</span>, <span class="fl">8.5</span><span class="op">)</span>,</span>
+<span>  margin <span class="op">=</span> <span class="fu"><a href="set_margin.html">set_margin</a></span><span class="op">(</span><span class="st">"wma"</span>, <span class="va">orientation</span><span class="op">)</span>,</span>
+<span>  nrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">orientation</span> <span class="op">==</span> <span class="st">"portrait"</span>, <span class="fl">40</span>, <span class="fl">24</span><span class="op">)</span>,</span>
+<span>  border_first <span class="op">=</span> <span class="st">"double"</span>,</span>
+<span>  border_last <span class="op">=</span> <span class="st">"double"</span>,</span>
+<span>  border_color_first <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_last <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  col_width <span class="op">=</span> <span class="va">width</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">orientation</span> <span class="op">==</span> <span class="st">"portrait"</span>, <span class="fl">2.25</span>, <span class="fl">2.5</span><span class="op">)</span>,</span>
+<span>  use_color <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>tbl</dt>
 <dd><p>A data frame.</p></dd>
+
+
 <dt>orientation</dt>
 <dd><p>Orientation in 'portrait' or 'landscape'.</p></dd>
+
+
 <dt>width</dt>
 <dd><p>A numeric value of page width in inches.</p></dd>
+
+
 <dt>height</dt>
 <dd><p>A numeric value of page width in inches.</p></dd>
+
+
 <dt>margin</dt>
 <dd><p>A numeric vector of length 6 for page margin. The value set left, right, top, bottom, header and footer
 margin in order. Default value depends on the page orientation and set by <code>r2rtf:::set_margin("wma", orientation)</code></p></dd>
+
+
 <dt>nrow</dt>
 <dd><p>Number of rows in each page.</p></dd>
+
+
 <dt>border_first</dt>
 <dd><p>First top border type of the whole table.
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_last</dt>
 <dd><p>Last bottom border type of the whole table.
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_color_first</dt>
 <dd><p>First top border color type of the whole table. Default is NULL for black.
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_last</dt>
 <dd><p>Last bottom border color type of the whole table. Default is NULL for black.
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>col_width</dt>
 <dd><p>A numeric value of total column width in inch. Default is <code>width - ifelse(orientation == "portrait", 2, 2.5)</code></p></dd>
+
+
 <dt>use_color</dt>
 <dd><p>A logical value to use color in the output.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>the same data frame <code>tbl</code> with additional attributes for page features</p>
+    
+
+<p>the same data frame <code>tbl</code> with additional attributes for page features</p>
     </div>
     <div class="section level2">
     <h2 id="specification">Specification<a class="anchor" aria-label="anchor" href="#specification"></a></h2>
@@ -135,11 +160,11 @@ All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/co
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="co"># required to run examples</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">r2rtf_tbl1</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">r2rtf_tbl1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu">rtf_page</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="st">"page"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span> <span class="co"># required to run examples</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">r2rtf_tbl1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">r2rtf_tbl1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu">rtf_page</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="st">"page"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -183,7 +208,7 @@ All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/co
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
+  <p></p><p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5. <br>Copyright © Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates.</p>
 </div>
 
 <div class="pkgdown-footer-right">

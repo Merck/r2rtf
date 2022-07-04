@@ -74,82 +74,115 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">obj_rtf_text</span><span class="op">(</span>
-  <span class="va">text</span>,
-  text_font <span class="op">=</span> <span class="fl">1</span>,
-  text_format <span class="op">=</span> <span class="cn">NULL</span>,
-  text_font_size <span class="op">=</span> <span class="fl">9</span>,
-  text_color <span class="op">=</span> <span class="cn">NULL</span>,
-  text_background_color <span class="op">=</span> <span class="cn">NULL</span>,
-  text_justification <span class="op">=</span> <span class="st">"l"</span>,
-  text_indent_first <span class="op">=</span> <span class="fl">0</span>,
-  text_indent_left <span class="op">=</span> <span class="fl">0</span>,
-  text_indent_right <span class="op">=</span> <span class="fl">0</span>,
-  text_space <span class="op">=</span> <span class="fl">1</span>,
-  text_space_before <span class="op">=</span> <span class="fl">15</span>,
-  text_space_after <span class="op">=</span> <span class="fl">15</span>,
-  text_new_page <span class="op">=</span> <span class="cn">FALSE</span>,
-  text_hyphenation <span class="op">=</span> <span class="cn">TRUE</span>,
-  text_convert <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">obj_rtf_text</span><span class="op">(</span></span>
+<span>  <span class="va">text</span>,</span>
+<span>  text_font <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  text_format <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  text_font_size <span class="op">=</span> <span class="fl">9</span>,</span>
+<span>  text_color <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  text_background_color <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  text_justification <span class="op">=</span> <span class="st">"l"</span>,</span>
+<span>  text_indent_first <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  text_indent_left <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  text_indent_right <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  text_space <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>  text_space_before <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>  text_space_after <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>  text_new_page <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  text_hyphenation <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  text_convert <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>text</dt>
 <dd><p>A character string.</p></dd>
+
+
 <dt>text_font</dt>
 <dd><p>Text font type. Default is 1 for Times New Roman. To vary text font type
 by column, use numeric vector with length of vector equal to number of
 columns displayed e.g. c(1,2,3).All possible input can be found
 in <code>r2rtf:::font_type()$type</code>.</p></dd>
+
+
 <dt>text_format</dt>
 <dd><p>Text format type. Default is NULL for normal. Combination of format type
 are permitted as input for e.g. "ub" for bold and underlined text. To vary
 text format by column, use character vector with length of vector equal to
 number of columns displayed e.g. c("i","u","ib"). All possible input
 can be found in <code>r2rtf:::font_format()$type</code>.</p></dd>
+
+
 <dt>text_font_size</dt>
 <dd><p>Text font size.  To vary text font size by column, use
 numeric vector with length of vector equal to number of columns
 displayed e.g. c(9,20,40).</p></dd>
+
+
 <dt>text_color</dt>
 <dd><p>Text color type. Default is NULL for black. To vary text color by column,
 use character vector with length of vector equal to number of columns
 displayed e.g. c("white","red","blue"). All possible input can be found
 in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>text_background_color</dt>
 <dd><p>Text background color type. Default is NULL for white. To vary
 text color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>text_justification</dt>
 <dd><p>Justification type for text. Default is "c" for center justification.
 To vary text justification by column, use character vector with
 length of vector equal to number of columns displayed e.g. c("c","l","r").
 All possible input can be found in <code>r2rtf:::justification()$type</code>.</p></dd>
+
+
 <dt>text_indent_first</dt>
 <dd><p>A value of text indent in first line. The unit is twip.</p></dd>
+
+
 <dt>text_indent_left</dt>
 <dd><p>A value of text left indent. The unit is twip.</p></dd>
+
+
 <dt>text_indent_right</dt>
 <dd><p>A value of text right indent. The unit is twip.</p></dd>
+
+
 <dt>text_space</dt>
 <dd><p>Line space between paragraph in twips. Default is 0.</p></dd>
+
+
 <dt>text_space_before</dt>
 <dd><p>Line space before a paragraph in twips.</p></dd>
+
+
 <dt>text_space_after</dt>
 <dd><p>Line space after a paragraph in twips.</p></dd>
+
+
 <dt>text_new_page</dt>
 <dd><p>A logical value to control whether display text in new page.</p></dd>
+
+
 <dt>text_hyphenation</dt>
 <dd><p>A logical value to control whether display text linked with hyphenation.</p></dd>
+
+
 <dt>text_convert</dt>
 <dd><p>A logical value to convert special characters.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>the same text (data frame or text) with additional attributes</p>
+    
+
+<p>the same text (data frame or text) with additional attributes</p>
     </div>
     <div class="section level2">
     <h2 id="specification">Specification<a class="anchor" aria-label="anchor" href="#specification"></a></h2>
@@ -163,7 +196,7 @@ All possible input can be found in <code>r2rtf:::justification()$type</code>.</p
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
+  <p></p><p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5. <br>Copyright © Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates.</p>
 </div>
 
 <div class="pkgdown-footer-right">

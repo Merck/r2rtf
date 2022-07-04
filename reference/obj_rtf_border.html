@@ -74,101 +74,138 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">obj_rtf_border</span><span class="op">(</span>
-  <span class="va">tbl</span>,
-  border_left <span class="op">=</span> <span class="st">"single"</span>,
-  border_right <span class="op">=</span> <span class="st">"single"</span>,
-  border_top <span class="op">=</span> <span class="st">""</span>,
-  border_bottom <span class="op">=</span> <span class="st">""</span>,
-  border_first <span class="op">=</span> <span class="st">"single"</span>,
-  border_last <span class="op">=</span> <span class="st">"single"</span>,
-  border_color_left <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_right <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_top <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_bottom <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_first <span class="op">=</span> <span class="cn">NULL</span>,
-  border_color_last <span class="op">=</span> <span class="cn">NULL</span>,
-  border_width <span class="op">=</span> <span class="fl">15</span>,
-  cell_height <span class="op">=</span> <span class="fl">0.15</span>,
-  cell_justification <span class="op">=</span> <span class="st">"c"</span>,
-  cell_vertical_justification <span class="op">=</span> <span class="st">"top"</span>,
-  cell_nrow <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">obj_rtf_border</span><span class="op">(</span></span>
+<span>  <span class="va">tbl</span>,</span>
+<span>  border_left <span class="op">=</span> <span class="st">"single"</span>,</span>
+<span>  border_right <span class="op">=</span> <span class="st">"single"</span>,</span>
+<span>  border_top <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  border_bottom <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  border_first <span class="op">=</span> <span class="st">"single"</span>,</span>
+<span>  border_last <span class="op">=</span> <span class="st">"single"</span>,</span>
+<span>  border_color_left <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_right <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_top <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_bottom <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_first <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_color_last <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  border_width <span class="op">=</span> <span class="fl">15</span>,</span>
+<span>  cell_height <span class="op">=</span> <span class="fl">0.15</span>,</span>
+<span>  cell_justification <span class="op">=</span> <span class="st">"c"</span>,</span>
+<span>  cell_vertical_justification <span class="op">=</span> <span class="st">"top"</span>,</span>
+<span>  cell_nrow <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>tbl</dt>
 <dd><p>A data frame.</p></dd>
+
+
 <dt>border_left</dt>
 <dd><p>Left border type. To vary left border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_right</dt>
 <dd><p>Right border type. To vary right border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). All possible input can be found in
 <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_top</dt>
 <dd><p>Top border type. To vary top border by column, use
 character vector with length of vector equal to number of columns displayed
 e.g. c("single","single","single"). If it is the first row in a table for this
 page, the top border is set to "double" otherwise the border is set to "single".
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_bottom</dt>
 <dd><p>Bottom border type.
 To vary bottom border by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("single","single","single").
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_first</dt>
 <dd><p>First top border type of the whole table.
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_last</dt>
 <dd><p>Last bottom border type of the whole table.
 All possible input can be found in <code>r2rtf:::border_type()$name</code>.</p></dd>
+
+
 <dt>border_color_left</dt>
 <dd><p>Left border color type. Default is NULL for black. To vary left
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_right</dt>
 <dd><p>Right border color type. Default is NULL for black. To vary right
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_top</dt>
 <dd><p>Top border color type. Default is NULL for black. To vary top
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_bottom</dt>
 <dd><p>Bottom border color type. Default is NULL for black. To vary bottom
 border color by column, use character vector with length of vector
 equal to number of columns displayed e.g. c("white","red","blue").
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_first</dt>
 <dd><p>First top border color type of the whole table. Default is NULL for black.
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_color_last</dt>
 <dd><p>Last bottom border color type of the whole table. Default is NULL for black.
 All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="external-link">grDevices::colors()</a></code>.</p></dd>
+
+
 <dt>border_width</dt>
 <dd><p>Border width in twips. Default is 15 for 0.0104 inch.</p></dd>
+
+
 <dt>cell_height</dt>
 <dd><p>Cell height in inches. Default is 0.15 for 0.15 inch.</p></dd>
+
+
 <dt>cell_justification</dt>
 <dd><p>Justification type for cell.
 All possible input can be found in <code>r2rtf:::justification()$type</code>.</p></dd>
+
+
 <dt>cell_vertical_justification</dt>
 <dd><p>Vertical justification type for cell.
 All possible input can be found in <code>r2rtf:::vertical_justification()$type</code>.</p></dd>
+
+
 <dt>cell_nrow</dt>
 <dd><p>Number of rows required in each cell.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>the same <code>tbl</code> with additional border attributes</p>
+    
+
+<p>the same <code>tbl</code> with additional border attributes</p>
     </div>
     <div class="section level2">
     <h2 id="specification">Specification<a class="anchor" aria-label="anchor" href="#specification"></a></h2>
@@ -182,7 +219,7 @@ All possible input can be found in <code>r2rtf:::vertical_justification()$type</
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
+  <p></p><p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5. <br>Copyright © Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates.</p>
 </div>
 
 <div class="pkgdown-footer-right">

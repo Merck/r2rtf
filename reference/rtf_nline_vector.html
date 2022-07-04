@@ -74,21 +74,28 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">rtf_nline_vector</span><span class="op">(</span><span class="va">text</span>, <span class="va">strwidth</span>, <span class="va">size</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">rtf_nline_vector</span><span class="op">(</span><span class="va">text</span>, <span class="va">strwidth</span>, <span class="va">size</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>text</dt>
 <dd><p>a vector of string</p></dd>
+
+
 <dt>strwidth</dt>
 <dd><p>a vector of string width in inches</p></dd>
+
+
 <dt>size</dt>
 <dd><p>a vector of cell size in inches</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>a vector of integer (number of lines)</p>
+    
+
+<p>a vector of integer (number of lines)</p>
     </div>
     <div class="section level2">
     <h2 id="specification">Specification<a class="anchor" aria-label="anchor" href="#specification"></a></h2>
@@ -99,11 +106,11 @@
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_nline_vector</span><span class="op">(</span></span>
-<span class="r-in">  text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title 1"</span>, <span class="st">"this is a sentence for title 2"</span><span class="op">)</span>,</span>
-<span class="r-in">  strwidth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">  size <span class="op">=</span> <span class="fl">0.5</span></span>
-<span class="r-in"><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_nline_vector</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title 1"</span>, <span class="st">"this is a sentence for title 2"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  strwidth <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  size <span class="op">=</span> <span class="fl">0.5</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 6</span>
 </code></pre></div>
     </div>
@@ -112,7 +119,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p></p><p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3. <br>Copyright © Merck Sharp &amp; Dohme Corp., a subsidiary of Merck &amp; Co., Inc., Kenilworth, NJ, USA.</p>
+  <p></p><p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5. <br>Copyright © Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates.</p>
 </div>
 
 <div class="pkgdown-footer-right">
