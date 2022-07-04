@@ -6,3 +6,6 @@ docs
 doc
 Meta
 sync_bitbucket.R
+r2rtf.Rcheck/
+r2rtf*.tar.gz
+r2rtf*.tgz
