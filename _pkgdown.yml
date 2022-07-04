@@ -19,7 +19,7 @@ footer:
     left: [developed_by, built_with, legal]
     right: [blank]
   components:
-    legal: "<br>Copyright &copy; Merck Sharp & Dohme Corp., a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA."
+    legal: "<br>Copyright &copy; Merck & Co., Inc., Rahway, NJ, USA and its affiliates."
     blank: "<span></span>"
 
 navbar:
@@ -45,6 +45,7 @@ articles:
 - title: Get Started
   contents:
   - r2rtf
+  - r2rtf-cran
 - title: TLF Examples
   navbar: ~
   contents:

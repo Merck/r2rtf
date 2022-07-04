@@ -41,3 +41,6 @@ lib_paths
 ^vignettes/example-figure.Rmd$
 ^vignettes/rtf-convert-format.Rmd$
 ^doc$
+^r2rtf\.Rcheck$
+^r2rtf.*\.tar\.gz$
+^r2rtf.*\.tgz$

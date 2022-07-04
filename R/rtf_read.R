@@ -1,4 +1,4 @@
-#    Copyright (c) 2020 Merck Sharp & Dohme Corp. a subsidiary of Merck & Co., Inc., Kenilworth, NJ, USA.
+#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
 #
 #    This file is part of the r2rtf program.
 #
@@ -43,6 +43,7 @@
 #'
 #' rtf_read_figure(file)
 #'
+#' \dontrun{
 #' # Read in EMF file in binary format
 #' library(devEMF)
 #' file <- tempfile("figure",fileext=".emf")
@@ -50,8 +51,9 @@
 #' plot(1:10)
 #' dev.off()
 #'
-#'
 #' rtf_read_figure(file)
+#' }
+#'
 #' }
 #' @export
 rtf_read_figure <- function(file){

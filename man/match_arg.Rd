@@ -8,9 +8,10 @@ match_arg(arg, choices, several.ok = FALSE)
 }
 \arguments{
 \item{arg}{a character vector (of length one unless \code{several.ok}
-    is \code{TRUE}) or \code{NULL}.}
+    is \code{TRUE}) or \code{NULL} which means to take \code{choices[1]}.}
 
-\item{choices}{a character vector of candidate values}
+\item{choices}{a character vector of candidate values, often missing, see
+    \sQuote{Details}.}
 
 \item{several.ok}{logical specifying if \code{arg} should be allowed
     to have more than one element.}

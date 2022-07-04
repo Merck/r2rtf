@@ -37,6 +37,7 @@ dev.off()
 
 rtf_read_figure(file)
 
+\dontrun{
 # Read in EMF file in binary format
 library(devEMF)
 file <- tempfile("figure",fileext=".emf")
@@ -44,7 +45,8 @@ emf(file)
 plot(1:10)
 dev.off()
 
-
 rtf_read_figure(file)
+}
+
 }
 }
