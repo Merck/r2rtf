@@ -45,6 +45,7 @@ articles:
 - title: Get Started
   contents:
   - r2rtf
+  - r2rtf-cran
 - title: TLF Examples
   navbar: ~
   contents:
