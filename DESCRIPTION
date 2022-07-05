@@ -5,12 +5,12 @@ Authors@R: c(
     person("Yilong", "Zhang", email = "elong0527@gmail.com", role = c("aut", "cre")),
     person("Siruo", "Wang", role = "aut"),
     person("Simiao", "Ye", role = "aut"),
-    person("Fansen", "Kong", role = "aut"), 
+    person("Fansen", "Kong", role = "aut"),
     person("Nan", "Xiao", role = "ctb"),
     person("Madhusudhan", "Ginnaram", role = "ctb"),
-    person("Ruchitbhai", "Patel", role = "ctb"), 
-    person("Huei-Ling", "Chen", role = "ctb"), 
-    person("Peikun", "Wu", role = "ctb"), 
+    person("Ruchitbhai", "Patel", role = "ctb"),
+    person("Huei-Ling", "Chen", role = "ctb"),
+    person("Peikun", "Wu", role = "ctb"),
     person("Uday Preetham", "Palukuru", role = "ctb"),
     person("Daniel", "Woodie", role = "ctb"),
     person("Sarad", "Nepal", role = "ctb"),
@@ -21,28 +21,28 @@ Authors@R: c(
     person("Amin", "Shirazi", role = "ctb"),
     person("Merck Sharp & Dohme Corp", role = "cph")
     )
-Description: Create production-ready Rich Text Format (RTF) table and figure with flexible format.
-Depends: R (>= 3.5.0)
+Description: Create production-ready Rich Text Format (RTF) table and figure
+    with flexible format.
 License: GPL-3
+URL: https://merck.github.io/r2rtf/, https://github.com/Merck/r2rtf
+BugReports: https://github.com/Merck/r2rtf/issues
 Encoding: UTF-8
 VignetteBuilder: knitr
 LazyData: true
-RoxygenNote: 7.1.2
-Roxygen: list(markdown = TRUE)
-Imports: 
+Depends: R (>= 3.5.0)
+Imports:
     grDevices,
     tools
 Suggests:
-    stringi,
-    knitr,
-    rmarkdown,
-    emmeans,
-    tidyr,
-    devtools,
     covr,
     dplyr,
+    emmeans,
+    ggplot2,
+    knitr,
+    rmarkdown,
+    stringi,
     testthat,
-    ggplot2
-URL: https://merck.github.io/r2rtf/, https://github.com/Merck/r2rtf
-BugReports: https://github.com/Merck/r2rtf/issues
+    tidyr
 Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
