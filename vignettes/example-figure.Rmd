@@ -47,7 +47,7 @@ By using `png` file as an example, the workflow can be summarized as:
 1. Read PNG files into R as binary file using `r2rtf::rtf_read_figure()`.
 1. Add optional features using `r2rtf::rtf_title()`, `r2rtf::rtf_footnote()`, `r2rtf::rtf_source()`.
 1. Set up page and figure options using `r2rtf::rtf_page()`, `r2rtf::rtf_figure()`.
-1. Encode rtf using `r2rtf::rtf_encode(doc_type = "figure")`. (Note: it is important to set `doc_type = "figure"` as the default is `doc_type = "table` to handle tables).
+1. Encode rtf using `r2rtf::rtf_encode(doc_type = "figure")`. (Note: it is important to set `doc_type = "figure"` as the default is `doc_type = "table"` to handle tables).
 1. Write rtf to a file using `r2rtf::write_rtf()`.
 
 > For `emf` format, one may use the R package `devEMF` to create the figure. 
