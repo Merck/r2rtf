@@ -75,7 +75,7 @@ cellsize <- matrix(width, nrow = nrow(tbl), ncol = ncol(tbl), byrow = TRUE) - pa
 
 # rtf_nline_vector example
 nline_vector <- rtf_nline_vector(
-  text = c("title 1", "this is a sentence for title 2"),
+  text = c("title 1", "this is a sentence for title 2", NA),
   strwidth = c(
     strwidth("title 1", units = "inches"),
     strwidth("this is a sentence for title 2", units = "inches")
@@ -115,7 +115,6 @@ test_that("test if rtf_nline_vector() return to correct numbers", {
   # lines for second vector
   expect_equal(nline_vector[2], 6)
 })
-
 
 test_that("test if rtf_nline_matrix() return to correct numbers", {
 
