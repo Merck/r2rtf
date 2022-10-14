@@ -83,9 +83,6 @@ reference:
   contents:
   - "rtf_read_figure"
   - "rtf_figure"
-- title: Utility Data
-  contents:
-  - "unicode_latex"
 - title: Example Data
   contents:
   - "r2rtf_HAMD17"
