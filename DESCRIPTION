@@ -19,6 +19,7 @@ Authors@R: c(
     person("Jeff", "Cheng", role = "ctb"),
     person("Yirong", "Cao", role = "ctb"),
     person("Amin", "Shirazi", role = "ctb"),
+    person("Brian", "Lang", role = "ctb"),
     person("Merck Sharp & Dohme Corp", role = "cph")
     )
 Description: Create production-ready Rich Text Format (RTF) table and figure
@@ -45,4 +46,4 @@ Suggests:
     tidyr
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
