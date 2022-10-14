@@ -74,16 +74,3 @@
 #' @format A data frame with 1 row and 1 variable.
 "r2rtf_tbl3"
 
-#' Dictionary of Unicode and Latex Code
-#'
-#' A dataset containing the mapping between unicode and latex code.
-#'
-#' @format A data frame with 681 rows and 3 variables.
-#' \describe{
-#'    \item{unicode}{unicode, UTF-8 code}
-#'    \item{latex}{latex, latex code}
-#'    \item{int}{int, Converted integer of the UTF-8 code}
-#' }
-#'
-#' @source \url{http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt}
-"unicode_latex"
