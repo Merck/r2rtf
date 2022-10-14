@@ -40,6 +40,7 @@ Suggests:
     emmeans,
     ggplot2,
     knitr,
+    officer,
     rmarkdown,
     stringi,
     testthat,
