@@ -76,7 +76,7 @@ rtf_assemble <- function(input, output, landscape = FALSE, use_officer = require
 
     for (i in seq_along(input)) {
       docx <-
-        docx %>%
+        docx |>
         officer::body_add_fpar(
           officer::fpar(
             officer::ftext("Table "),
