@@ -36,6 +36,7 @@ The contents of this section are shown in PDF user manual only.
 }
 
 \examples{
+\dontrun{
 input <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
 output <- tempfile(fileext = ".rtf")
 
@@ -44,5 +45,5 @@ rtf_assemble(
   output = output,
   use_officer = FALSE
 )
-
+}
 }

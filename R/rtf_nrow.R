@@ -47,7 +47,7 @@ rtf_nline_vector <- function(text, strwidth, size) {
   index <- strwidth / size > 1
   n_row <- rep(1, length(text))
 
-  if (any(na.omit(index))) {
+  if (any(stats::na.omit(index))) {
     l <- length(text)
 
     if (length(strwidth) < l) {
