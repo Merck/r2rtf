@@ -42,7 +42,7 @@ tbl < -as.data.frame(matrix(1:9, nrow = 3))
 check_args(arg = tbl, type = c("data.frame"))
 
 vec <- c("a", "b", "c")
-check_args(arg = vec, type = c("character"), length = 3)
+check_args(arg = vec, type = c("character"), length = c(2,4))
 }
 
 }

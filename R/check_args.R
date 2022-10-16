@@ -42,7 +42,7 @@
 #' check_args(arg = tbl, type = c("data.frame"))
 #'
 #' vec <- c("a", "b", "c")
-#' check_args(arg = vec, type = c("character"), length = 3)
+#' check_args(arg = vec, type = c("character"), length = c(2,4))
 #' }
 #'
 check_args <- function(arg, type, length = NULL, dim = NULL) {
@@ -61,8 +61,8 @@ check_args <- function(arg, type, length = NULL, dim = NULL) {
   }
 
   if (!is.null(length)) {
-    check[["length"]] <- all(length(arg) == length) & (!is.null(length(arg)))
-    message[["length"]] <- paste("The argument length is not", length)
+    check[["length"]] <- all(length(arg) %in% length) & (!is.null(length(arg)))
+    message[["length"]] <- paste("The argument length is not", paste(length, collapse = ", ") )
   }
 
   if (!is.null(dim)) {
