@@ -9,7 +9,8 @@ rtf_assemble(input, output, landscape = FALSE, use_officer = TRUE)
 \arguments{
 \item{input}{Character vector of file path.}
 
-\item{output}{Character string to the output file path.}
+\item{output}{Character string to the output file path. File extension should
+be \code{.docx} if \code{use_officer = TRUE} and \code{.rtf} if \code{FALSE}.}
 
 \item{landscape}{Logical vector to determine whether to
 display files as portrait or landscape. If \code{use_officer = FALSE}, only singular value is allowed.}

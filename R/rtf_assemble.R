@@ -4,7 +4,8 @@
 #' as RTF file or Microsft Word in `docx` format.
 #'
 #' @param input Character vector of file path.
-#' @param output Character string to the output file path.
+#' @param output Character string to the output file path. File extension should
+#' be `.docx` if `use_officer = TRUE` and `.rtf` if `FALSE`.
 #' @param landscape Logical vector to determine whether to
 #' display files as portrait or landscape. If `use_officer = FALSE`, only singular value is allowed.
 #' @param use_officer Logical value to determine whether the package `officer`
@@ -66,6 +67,8 @@ rtf_assemble <- function(input,
   # assemble RTF
   if (use_officer) {
     message("Assemble rtf files into a '.docx' file using `officer` package.")
+    if (!require(officer, quietly = TRUE)) stop("Use_officer = TRUE, but the ",
+      "officer package is not installed.")
 
     field <- ifelse(grepl("/", input),
                     paste0("INCLUDETEXT \"", gsub("/", "\\\\\\\\", input), "\""),
@@ -104,7 +107,7 @@ rtf_assemble <- function(input,
     end <- vapply(rtf, length, numeric(1))
     end[-n] <- end[-n] - 1
 
-    for (i in 1:n) {
+    for (i in seq_len(n)) {
       rtf[[i]] <- rtf[[i]][start[i]:end[i]]
       if (i < n) rtf[[i]] <- c(rtf[[i]], r2rtf:::as_rtf_new_page())
     }
