@@ -1,6 +1,7 @@
 # test bulletproofing
 
 test_that("rtf_assemble: bulletproofing argument landscape", {
+
   withr::with_tempdir({
     a <- "Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
     write_rtf(a, file = "table1.rtf")
@@ -8,22 +9,24 @@ test_that("rtf_assemble: bulletproofing argument landscape", {
     write_rtf(b, file = "table2.rtf")
 
     expect_error(rtf_assemble(input = dir(pattern = "table"),
-      output = "tmp",
-      landscape = "yes"),
-      regexp = "Landscape argument must be of type 'logical'.")
+                              output = "tmp.rtf",
+                              landscape = "yes",
+                              use_officer = FALSE))
+
     expect_error(rtf_assemble(input = dir(pattern = "table"),
-      output = "tmp",
-      landscape = c(TRUE, TRUE, FALSE)),
-      regexp = "Landscape argument is length")
+                              output = "tmp.docx",
+                              landscape = c(TRUE, TRUE, FALSE),
+                              use_officer = TRUE))
 
   })
 })
 
 test_that("rtf_assemble: bulletproofing argument input", {
+
   withr::with_tempdir({
-    expect_error(rtf_assemble(input = c(TRUE, TRUE), output = "tmp"),
-      regexp = "Input argument must be of type 'character'.")
+    expect_error(rtf_assemble(input = c(TRUE, TRUE), output = "tmp"))
   })
+
 })
 
 test_that("rtf_assemble: bulletproofing argument output", {
@@ -33,8 +36,7 @@ test_that("rtf_assemble: bulletproofing argument output", {
     b <- "Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
     write_rtf(b, file = "table2.rtf")
 
-    expect_error(rtf_assemble(input = dir(pattern = "table"), output = TRUE),
-      regexp = "Output argument must be of type 'character'.")
+    expect_error(rtf_assemble(input = dir(pattern = "table"), output = TRUE))
   })
 })
 
@@ -46,8 +48,7 @@ test_that("rtf_assemble: bulletproofing argument use_officer", {
     write_rtf(b, file = "table2.rtf")
 
     expect_error(rtf_assemble(input = dir(pattern = "table"), output = "tmp",
-      use_officer = "yes"),
-      regexp = "Use_officer argument must be of type 'logical'.")
+                 use_officer = "yes"))
   })
 })
 
@@ -60,10 +61,10 @@ test_that("rtf_assemble: output without using officer", {
     write_rtf(b, file = "table2.rtf")
 
     expect_message(rtf_path <- rtf_assemble(input = dir(pattern = "table"),
-      output = "tmp_rtf",
-      use_officer = FALSE), regexp = "page orientation will be ignored.")
+      output = "tmp.rtf",
+      use_officer = FALSE), regexp = "without using `officer` package.")
 
-    expect_equal(rtf_path, "tmp_rtf.rtf")
+    expect_equal(rtf_path, "tmp.rtf")
     expect_true(rtf_path %in% dir())
 
     tmp_rtf <- paste(readLines(rtf_path), collapse = "\n")
@@ -85,15 +86,15 @@ if (require(officer, quietly = TRUE)){
       write_rtf(b, file = "table2.rtf")
 
       expect_message(rtf_path <- rtf_assemble(input = dir(pattern = "table"),
-        output = "tmp_docx",
-        use_officer = TRUE),
-        regexp = "Appending rtf files into a '.docx'")
+                                              output = "tmp.docx",
+                                              use_officer = TRUE),
+        regexp = "'.docx' file using `officer` package.")
 
-      expect_equal(rtf_path, "tmp_docx.docx")
+      expect_equal(rtf_path, "tmp.docx")
       expect_true(rtf_path %in% dir())
 
       # Need to read in and expose document text for our test
-      tmp_docx <- docx_summary(officer::read_docx(rtf_path))
+      tmp_docx <- officer::docx_summary(officer::read_docx(rtf_path))
 
       # Need to check if both "table seq table" texts are in the docx file.
       expect_equal(grepl("Table SEQ Table", tmp_docx$text),

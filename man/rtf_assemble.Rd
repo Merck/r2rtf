@@ -2,28 +2,25 @@
 % Please edit documentation in R/rtf_assemble.R
 \name{rtf_assemble}
 \alias{rtf_assemble}
-\title{Assemble RTF TLFs}
+\title{Assemble Multiple RTF Table Listing and Figure Into One Document}
 \usage{
-rtf_assemble(
-  input,
-  output,
-  landscape = FALSE,
-  use_officer = require(officer, quietly = TRUE)
-)
+rtf_assemble(input, output, landscape = FALSE, use_officer = TRUE)
 }
 \arguments{
 \item{input}{Character vector of file path.}
 
-\item{output}{Character string to the output file path.}
+\item{output}{Character string to the output file path. File extension should
+be \code{.docx} if \code{use_officer = TRUE} and \code{.rtf} if \code{FALSE}.}
 
 \item{landscape}{Logical vector to determine whether to
-display files as portrait or landscape.}
+display files as portrait or landscape. If \code{use_officer = FALSE}, only singular value is allowed.}
 
-\item{use_officer}{Logical value to determine whether the package officer::
-should be used to assemble rtfs.}
+\item{use_officer}{Logical value to determine whether the package \code{officer}
+should be used to assemble RTF table, listing and figure.}
 }
 \description{
-Add a set of RTF/TEXT fields into an rdocx object.
+The function asseble multiple RTF table, listing, and figures into one document
+as RTF file or Microsft Word in \code{docx} format.
 }
 \section{Specification}{
 
@@ -39,15 +36,13 @@ The contents of this section are shown in PDF user manual only.
 }
 
 \examples{
-\dontrun{
+input <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
+output <- tempfile(fileext = ".rtf")
+
 rtf_assemble(
-  list.files(
-    "outtable/",
-    pattern = "*.rtf",
-    full.names = TRUE
-  ),
-  output = "tmp.docx"
+  input = input,
+  output = output,
+  use_officer = FALSE
 )
-}
 
 }

@@ -1,13 +1,15 @@
-#' Assemble RTF TLFs
+#' Assemble Multiple RTF Table Listing and Figure Into One Document
 #'
-#' Add a set of RTF/TEXT fields into an rdocx object.
+#' The function asseble multiple RTF table, listing, and figures into one document
+#' as RTF file or Microsft Word in `docx` format.
 #'
 #' @param input Character vector of file path.
-#' @param output Character string to the output file path.
+#' @param output Character string to the output file path. File extension should
+#' be `.docx` if `use_officer = TRUE` and `.rtf` if `FALSE`.
 #' @param landscape Logical vector to determine whether to
-#' display files as portrait or landscape.
-#' @param use_officer Logical value to determine whether the package officer::
-#' should be used to assemble rtfs.
+#' display files as portrait or landscape. If `use_officer = FALSE`, only singular value is allowed.
+#' @param use_officer Logical value to determine whether the package `officer`
+#' should be used to assemble RTF table, listing and figure.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -21,56 +23,57 @@
 #' }
 #'
 #' @examples
-#' \dontrun{
+#' input <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
+#' output <- tempfile(fileext = ".rtf")
+#'
 #' rtf_assemble(
-#'   list.files(
-#'     "outtable/",
-#'     pattern = "*.rtf",
-#'     full.names = TRUE
-#'   ),
-#'   output = "tmp.docx"
+#'   input = input,
+#'   output = output,
+#'   use_officer = FALSE
 #' )
-#' }
 #'
 #' @export
-rtf_assemble <- function(input, output, landscape = FALSE, use_officer = require(officer, quietly = TRUE)) {
-  if (!is.logical(landscape)) stop("Landscape argument must be of type 'logical'.")
-  if (!is.character(input)) stop("Input argument must be of type 'character'.")
-  if (!is.character(output)) stop("Output argument must be of type 'character'.")
-  if (!is.logical(use_officer)) stop("Use_officer argument must be of type 'logical'.")
-  if (!(length(landscape) %in% c(1, length(input)))) {
-    stop(
-      "Landscape argument is length ", length(landscape),
-      " but must be length 1 or ", length(input), " (input length)."
-    )
-  }
+rtf_assemble <- function(input,
+                         output,
+                         landscape = FALSE,
+                         use_officer = TRUE) {
 
+  # input checking
+  check_args(input, type = "character")
+  check_args(output, type = "character", length = 1)
+  check_args(use_officer, type = "logical", length = 1)
 
-  # We need to choose correct extension based on officer:: use.
-  output_ext <- ifelse(use_officer, ".docx", ".rtf")
-
-  # We need to remove extension from output
-  output <- paste0(regmatches(x = output,
-    m = gregexpr(pattern = "^[aA-zZ0-9_]+", text = output))[[1]],
-    output_ext)
-
+  # define variables
   input <- normalizePath(input)
+  n_input <- length(input)
+  missing_input <- input[! file.exists(input)]
+  ext_output <- tolower(tools::file_ext(output))
 
-  if (!all(file.exists(input))) {
-    warning("Some files do not exist and will not be included in the final document.")
+  # input checking based on use_officer
+  if(use_officer){
+    check_args(landscape, "logical", length = c(1, n_input))
+    landscape <- rep(landscape, length.out = n_input)
+    match_arg(ext_output, "docx")
+  }else{
+    check_args(landscape, "logical", length = 1)
+    match_arg(ext_output, "rtf")
   }
 
-  field <- ifelse(grepl("/", input),
-    paste0("INCLUDETEXT \"", gsub("/", "\\\\\\\\", input), "\""),
-    paste0("INCLUDETEXT \"", gsub("\\", "\\\\", input, fixed = "TRUE"), "\"")
-  )
-
-  if (length(landscape) == 1) {
-    landscape <- rep(landscape, length(field))
+  # warning missing input
+  if(length(missing_input) > 0){
+    warning("Missing files: \n", paste(missing_input, collapse = "\n"))
   }
 
+  # assemble RTF
   if (use_officer) {
-    message("Appending rtf files into a '.docx' file with the use of officer:: package.")
+    message("Assemble rtf files into a '.docx' file using `officer` package.")
+    if (!require(officer, quietly = TRUE)) stop("Use_officer = TRUE, but the ",
+      "officer package is not installed.")
+
+    field <- ifelse(grepl("/", input),
+                    paste0("INCLUDETEXT \"", gsub("/", "\\\\\\\\", input), "\""),
+                    paste0("INCLUDETEXT \"", gsub("\\", "\\\\", input, fixed = "TRUE"), "\"")
+    )
 
     docx <- officer::read_docx()
 
@@ -95,8 +98,8 @@ rtf_assemble <- function(input, output, landscape = FALSE, use_officer = require
       print(docx, target = output)
     }
   } else {
-    message("Appending rtf files into a '.rtf' without the use of officer:: package,",
-      "page orientation will be ignored.")
+
+    message("Assemble rtf files into a '.rtf' without using `officer` package.")
 
     rtf <- lapply(input, readLines)
     n <- length(rtf)
@@ -104,7 +107,7 @@ rtf_assemble <- function(input, output, landscape = FALSE, use_officer = require
     end <- vapply(rtf, length, numeric(1))
     end[-n] <- end[-n] - 1
 
-    for (i in 1:n) {
+    for (i in seq_len(n)) {
       rtf[[i]] <- rtf[[i]][start[i]:end[i]]
       if (i < n) rtf[[i]] <- c(rtf[[i]], r2rtf:::as_rtf_new_page())
     }
