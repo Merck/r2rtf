@@ -23,6 +23,7 @@
 #' }
 #'
 #' @examples
+#' \dontrun{
 #' input <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
 #' output <- tempfile(fileext = ".rtf")
 #'
@@ -31,7 +32,7 @@
 #'   output = output,
 #'   use_officer = FALSE
 #' )
-#'
+#'}
 #' @export
 rtf_assemble <- function(input,
                          output,
@@ -109,7 +110,7 @@ rtf_assemble <- function(input,
 
     for (i in seq_len(n)) {
       rtf[[i]] <- rtf[[i]][start[i]:end[i]]
-      if (i < n) rtf[[i]] <- c(rtf[[i]], r2rtf:::as_rtf_new_page())
+      if (i < n) rtf[[i]] <- c(rtf[[i]], as_rtf_new_page())
     }
 
     rtf <- do.call(c, rtf)
