@@ -1,11 +1,12 @@
 Package: r2rtf
 Title: Easily Create Production-Ready Rich Text Format (RTF) Table and Figure
-Version: 0.3.5.9000
+Version: 0.3.5.9001
 Authors@R: c(
     person("Yilong", "Zhang", email = "elong0527@gmail.com", role = c("aut", "cre")),
     person("Siruo", "Wang", role = "aut"),
     person("Simiao", "Ye", role = "aut"),
     person("Fansen", "Kong", role = "aut"),
+    person("Brian", "Lang", role = "aut"),
     person("Nan", "Xiao", role = "ctb"),
     person("Madhusudhan", "Ginnaram", role = "ctb"),
     person("Ruchitbhai", "Patel", role = "ctb"),
@@ -19,7 +20,6 @@ Authors@R: c(
     person("Jeff", "Cheng", role = "ctb"),
     person("Yirong", "Cao", role = "ctb"),
     person("Amin", "Shirazi", role = "ctb"),
-    person("Brian", "Lang", role = "ctb"),
     person("Merck Sharp & Dohme Corp", role = "cph")
     )
 Description: Create production-ready Rich Text Format (RTF) table and figure
