@@ -1,74 +1,140 @@
-#    Copyright (c) 2022 Merck & Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.
-#
-#    This file is part of the r2rtf program.
-#
-#    r2rtf is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-#
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU General Public License for more details.
-#
-#    You should have received a copy of the GNU General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-#' @title Write an RTF Table or Figure to an RTF File
+#' Assemble Multiple RTF Table Listing and Figure Into One Document
 #'
-#' @description
-#' The write_rtf function writes rtf encoding string to an .rtf file
+#' The function asseble multiple RTF table, listing, and figures into one document
+#' as RTF file or Microsft Word in `docx` format.
+#'
+#' @param input Character vector of file path.
+#' @param output Character string to the output file path. File extension should
+#' be `.docx` if `use_officer = TRUE` and `.rtf` if `FALSE`.
+#' @param landscape Logical vector to determine whether to
+#' display files as portrait or landscape. If `use_officer = FALSE`, only singular value is allowed.
+#' @param use_officer Logical value to determine whether the package `officer`
+#' should be used to assemble RTF table, listing and figure.
 #'
 #' @section Specification:
 #' \if{latex}{
-#'  \itemize{
-#'    \item Export a single RTF string into an file using \code{write} function.
-#'  }
-#'  }
-#' \if{html}{The contents of this section are shown in PDF user manual only.}
+#'   \itemize{
+#'     \item Transfer files to toggle fields format in Word
+#'     \item Insert into Word file using officer
+#'   }
+#' }
+#' \if{html}{
+#' The contents of this section are shown in PDF user manual only.
+#' }
 #'
-#' @param rtf A character rtf encoding string rendered by `rtf_encode()`.
-#' @param file A character string naming a file to save rtf file.
+#' @examples
+#'
+#' file <- replicate(2, tempfile(fileext = ".rtf"))
+#' file1 <- head(iris) %>% rtf_body() %>% rtf_encode() %>% write_rtf(file[1])
+#' file2 <- head(cars) %>% rtf_page(orientation = "landscape") %>%
+#'               rtf_body() %>% rtf_encode() %>% write_rtf(file[2])
+#' output <- tempfile(fileext = ".rtf")
+#'
+#' rtf_assemble(
+#'   input = file,
+#'   output = output,
+#'   use_officer = FALSE
+#' )
 #'
 #' @export
-write_rtf <- function(rtf, file) {
-  write(paste(unlist(rtf), collapse = "\n"), file)
+assemble_to_rtf <- function(input,
+                            output,
+                            landscape = FALSE) {
 
-  invisible(file)
+  # input checking
+  check_args(input, type = "character")
+  check_args(output, type = "character", length = 1)
+
+  # define variables
+  input <- normalizePath(input)
+  n_input <- length(input)
+  missing_input <- input[! file.exists(input)]
+  ext_output <- tolower(tools::file_ext(output))
+
+  # input checking
+  check_args(landscape, "logical", length = 1)
+  match_arg(ext_output, "rtf")
+
+  # warning missing input
+  if(length(missing_input) > 0){
+    warning("Missing files: \n", paste(missing_input, collapse = "\n"))
+    input <- setdiff(input, missing_input)
+  }
+
+  # assemble RTF
+  rtf <- lapply(input, readLines)
+  n <- length(rtf)
+  start <- c(1, rep(2, n - 1))
+  end <- vapply(rtf, length, numeric(1))
+  end[-n] <- end[-n] - 1
+
+  for (i in seq_len(n)) {
+    rtf[[i]] <- rtf[[i]][start[i]:end[i]]
+    if (i < n) rtf[[i]] <- c(rtf[[i]], as_rtf_new_page())
+  }
+
+  rtf <- do.call(c, rtf)
+
+  write_rtf(rtf, output)
+
 }
 
 
-#' Write a Paragraph to an RTF File
-#'
-#' @param rtf rtf code for text paragraph, obtained using `rtf_paragraph(text,...)` function
-#' @param file file name to save rtf text paragraph, eg. filename.rtf
-#'
-#' @section Specification:
-#' \if{latex}{
-#'  \itemize{
-#'    \item Define table color using \code{color_table()} and translate in RTF syntax.
-#'    \item Initiate rtf using \code{as_rtf_init()} and \code{as_rtf_font()}.
-#'    \item Combine the text with other components into a single RTF code string.
-#'    \item Output the paragraph into a file.
-#'  }
-#'  }
-#' \if{html}{The contents of this section are shown in PDF user manual only.}
-#'
-write_rtf_para <- function(rtf, file) {
-  col_tb <- color_table()
-  rtf_color <- paste(c("{\\colortbl\n;", col_tb$rtf_code, "}"), collapse = "\n")
+assemble_to_docx <- function(input,
+                            output,
+                            landscape = FALSE) {
 
-  start_rtf <- paste(
+  # input checking
+  check_args(input, type = "character")
+  check_args(output, type = "character", length = 1)
 
-    as_rtf_init(),
-    as_rtf_font(),
-    rtf_color,
-    sep = "\n"
+  # define variables
+  input <- normalizePath(input)
+  n_input <- length(input)
+  missing_input <- input[! file.exists(input)]
+  ext_output <- tolower(tools::file_ext(output))
+
+  # input checking
+  check_args(landscape, "logical", length = c(1, n_input))
+  landscape <- rep(landscape, length.out = n_input)
+  match_arg(ext_output, "docx")
+
+  # warning missing input
+  if(length(missing_input) > 0){
+    warning("Missing files: \n", paste(missing_input, collapse = "\n"))
+    input <- setdiff(input, missing_input)
+  }
+
+  # assemble RTF
+  if (!require(officer, quietly = TRUE)){
+    stop("Use_officer = TRUE, but the officer package is not installed.")
+  }
+
+  field <- ifelse(grepl("/", input),
+                  paste0("INCLUDETEXT \"", gsub("/", "\\\\\\\\", input), "\""),
+                  paste0("INCLUDETEXT \"", gsub("\\", "\\\\", input, fixed = "TRUE"), "\"")
   )
 
-  rtf <- paste(start_rtf, "{\\pard \\par}", paste(rtf, collapse = ""), as_rtf_end(), sep = "\n")
-  write(rtf, file)
+  docx <- officer::read_docx()
 
-  invisible(file)
+  for (i in seq_along(input)) {
+    docx <- officer::body_add_fpar(docx,
+                                   officer::fpar(
+                                     officer::ftext("Table "),
+                                     officer::run_word_field("SEQ Table \\* ARABIC"),
+                                     officer::run_linebreak(),
+                                     officer::run_word_field(field[i])
+                                   )
+    )
+    if (landscape[i]) {
+      docx <- officer::body_end_section_landscape(docx)
+    } else {
+      docx <- officer::body_end_section_portrait(docx)
+    }
+
+    print(docx, target = output)
+  }
+
+  invisible(output)
+
 }
