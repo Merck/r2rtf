@@ -331,6 +331,9 @@
     <loc>https://merck.github.io/r2rtf/reference/r2rtf_tbl3.html</loc>
   </url>
   <url>
+    <loc>https://merck.github.io/r2rtf/reference/rtf_assemble.html</loc>
+  </url>
+  <url>
     <loc>https://merck.github.io/r2rtf/reference/rtf_body.html</loc>
   </url>
   <url>
@@ -419,9 +422,6 @@
   </url>
   <url>
     <loc>https://merck.github.io/r2rtf/reference/spacing.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/unicode_latex.html</loc>
   </url>
   <url>
     <loc>https://merck.github.io/r2rtf/reference/update_border_first.html</loc>
