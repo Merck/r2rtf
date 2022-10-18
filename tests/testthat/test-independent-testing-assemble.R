@@ -5,35 +5,25 @@ file2 <- head(cars) %>% rtf_page(orientation = "landscape") %>% rtf_body() %>% r
 
 test_that("rtf_assemble: bulletproofing argument landscape", {
 
-  expect_error(rtf_assemble(input = file,
+  expect_error(assemble_rtf(input = file,
                             output = tempfile(fileext = ".rtf"),
-                            landscape = "yes",
-                            use_officer = FALSE))
+                            landscape = "yes"))
 
-  expect_error(rtf_assemble(input = file,
-                            output = tempfile(fileext = ".docx"),
-                            landscape = c(TRUE, TRUE, FALSE),
-                            use_officer = TRUE))
+  expect_error(assemble_docx(input = file,
+                             output = tempfile(fileext = ".docx"),
+                             landscape = c(TRUE, TRUE, FALSE)))
 
 })
 
 test_that("rtf_assemble: bulletproofing argument input", {
 
-  expect_error(rtf_assemble(input = c(TRUE, TRUE), output = "tmp"))
+  expect_error(assemble_rtf(input = c(TRUE, TRUE), output = tempfile(fileext = ".rtf")))
 
 })
 
 test_that("rtf_assemble: bulletproofing argument output", {
 
-  expect_error(rtf_assemble(input = file, output = TRUE))
-
-})
-
-test_that("rtf_assemble: bulletproofing argument use_officer", {
-
-    expect_error(rtf_assemble(input = file,
-                              output = "tmp",
-                              use_officer = "yes"))
+  expect_error(assemble_rtf(input = file, output = TRUE))
 
 })
 
@@ -41,10 +31,7 @@ test_that("rtf_assemble: bulletproofing argument use_officer", {
 test_that("rtf_assemble: output without using officer", {
 
   file_tmp <- tempfile(fileext = ".rtf")
-  expect_message(rtf_path <- rtf_assemble(input = file,
-                                          output = file_tmp,
-                                          use_officer = FALSE),
-                 regexp = "without using `officer` package.")
+  rtf_path <- assemble_rtf(input = file, output = file_tmp)
 
   expect_equal(rtf_path, file_tmp)
   expect_true(grepl(tempdir(), rtf_path))
@@ -61,11 +48,9 @@ if (require(officer, quietly = TRUE)){
   test_that("rtf_assemble: output with using officer", {
 
     file_tmp <- tempfile(fileext = ".docx")
-    expect_message(rtf_path <- rtf_assemble(input = file,
-                                            output = file_tmp,
-                                            landscape = c(FALSE, TRUE),
-                                            use_officer = TRUE),
-                   regexp = "'.docx' file using `officer` package.")
+    rtf_path <- assemble_docx(input = file,
+                              output = file_tmp,
+                              landscape = c(FALSE, TRUE))
 
     expect_equal(rtf_path, file_tmp)
     expect_true(grepl(tempdir(), rtf_path))
