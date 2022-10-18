@@ -79,17 +79,14 @@ rtf_assemble <- function(input,
     docx <- officer::read_docx()
 
     for (i in seq_along(input)) {
-      docx <-
-        docx |>
-        officer::body_add_fpar(
-          officer::fpar(
-            officer::ftext("Table "),
-            officer::run_word_field("SEQ Table \\* ARABIC"),
-            officer::run_linebreak(),
-            officer::run_word_field(field[i]),
-            officer::run_pagebreak()
-          )
-        )
+      docx <- officer::body_add_fpar(docx,
+                officer::fpar(
+                  officer::ftext("Table "),
+                  officer::run_word_field("SEQ Table \\* ARABIC"),
+                  officer::run_linebreak(),
+                  officer::run_word_field(field[i])
+               )
+              )
       if (landscape[i]) {
         docx <- officer::body_end_section_landscape(docx)
       } else {
