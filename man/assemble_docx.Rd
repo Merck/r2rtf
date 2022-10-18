@@ -48,18 +48,19 @@ The contents of this section are shown in PDF user manual only.
 
 \examples{
 
-if (require(officer, quietly = TRUE)){
-   file <- replicate(2, tempfile(fileext = ".rtf"))
-   file1 <- head(iris) \%>\% rtf_body() \%>\% rtf_encode() \%>\% write_rtf(file[1])
-   file2 <- head(cars) \%>\% rtf_page(orientation = "landscape") \%>\%
-                 rtf_body() \%>\% rtf_encode() \%>\% write_rtf(file[2])
-   output <- tempfile(fileext = ".docx")
+library(officer)
+library(magrittr)
 
-   assemble_docx(
-     input = file,
-     output = output
-   )
-}
+file <- replicate(2, tempfile(fileext = ".rtf"))
+file1 <- head(iris) \%>\% rtf_body() \%>\% rtf_encode() \%>\% write_rtf(file[1])
+file2 <- head(cars) \%>\% rtf_page(orientation = "landscape") \%>\%
+              rtf_body() \%>\% rtf_encode() \%>\% write_rtf(file[2])
+output <- tempfile(fileext = ".docx")
+
+assemble_docx(
+  input = file,
+  output = output
+)
 
 
 library(officer)
