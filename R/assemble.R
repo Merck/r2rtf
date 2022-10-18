@@ -139,7 +139,7 @@ assemble_docx <- function(input,
   }
 
   # assemble RTF
-  if (!require(officer, quietly = TRUE)){
+  if (requireNamespace("officer")){
     stop("Use_officer = TRUE, but the officer package is not installed.")
   }
 
