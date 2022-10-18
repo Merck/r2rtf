@@ -1,106 +1,86 @@
 # test bulletproofing
+file <- replicate(2, tempfile(fileext = ".rtf"))
+file1 <- head(iris) %>% rtf_body() %>% rtf_encode() %>% write_rtf(file[1])
+file2 <- head(cars) %>% rtf_page(orientation = "landscape") %>% rtf_body() %>% rtf_encode() %>% write_rtf(file[2])
 
 test_that("rtf_assemble: bulletproofing argument landscape", {
 
-  withr::with_tempdir({
-    a <- "Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
-    write_rtf(a, file = "table1.rtf")
-    b <- "Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
-    write_rtf(b, file = "table2.rtf")
+  expect_error(rtf_assemble(input = file,
+                            output = tempfile(fileext = ".rtf"),
+                            landscape = "yes",
+                            use_officer = FALSE))
 
-    expect_error(rtf_assemble(input = dir(pattern = "table"),
-                              output = "tmp.rtf",
-                              landscape = "yes",
-                              use_officer = FALSE))
+  expect_error(rtf_assemble(input = file,
+                            output = tempfile(fileext = ".docx"),
+                            landscape = c(TRUE, TRUE, FALSE),
+                            use_officer = TRUE))
 
-    expect_error(rtf_assemble(input = dir(pattern = "table"),
-                              output = "tmp.docx",
-                              landscape = c(TRUE, TRUE, FALSE),
-                              use_officer = TRUE))
-
-  })
 })
 
 test_that("rtf_assemble: bulletproofing argument input", {
 
-  withr::with_tempdir({
-    expect_error(rtf_assemble(input = c(TRUE, TRUE), output = "tmp"))
-  })
+  expect_error(rtf_assemble(input = c(TRUE, TRUE), output = "tmp"))
 
 })
 
 test_that("rtf_assemble: bulletproofing argument output", {
-  withr::with_tempdir({
-    a <- "Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
-    write_rtf(a, file = "table1.rtf")
-    b <- "Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
-    write_rtf(b, file = "table2.rtf")
 
-    expect_error(rtf_assemble(input = dir(pattern = "table"), output = TRUE))
-  })
+  expect_error(rtf_assemble(input = file, output = TRUE))
+
 })
 
 test_that("rtf_assemble: bulletproofing argument use_officer", {
-  withr::with_tempdir({
-    a <- "Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
-    write_rtf(a, file = "table1.rtf")
-    b <- "Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
-    write_rtf(b, file = "table2.rtf")
 
-    expect_error(rtf_assemble(input = dir(pattern = "table"), output = "tmp",
-                 use_officer = "yes"))
-  })
+    expect_error(rtf_assemble(input = file,
+                              output = "tmp",
+                              use_officer = "yes"))
+
 })
 
 # test functionality without officer
 test_that("rtf_assemble: output without using officer", {
-  withr::with_tempdir({
-    a <- "A: Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
-    write_rtf(a, file = "table1.rtf")
-    b <- "B: Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
-    write_rtf(b, file = "table2.rtf")
 
-    expect_message(rtf_path <- rtf_assemble(input = dir(pattern = "table"),
-      output = "tmp.rtf",
-      use_officer = FALSE), regexp = "without using `officer` package.")
+  file_tmp <- tempfile(fileext = ".rtf")
+  expect_message(rtf_path <- rtf_assemble(input = file,
+                                          output = file_tmp,
+                                          use_officer = FALSE),
+                 regexp = "without using `officer` package.")
 
-    expect_equal(rtf_path, "tmp.rtf")
-    expect_true(rtf_path %in% dir())
+  expect_equal(rtf_path, file_tmp)
+  expect_true(grepl(tempdir(), rtf_path))
 
-    tmp_rtf <- paste(readLines(rtf_path), collapse = "\n")
+  tmp_rtf <- paste(readLines(rtf_path), collapse = "\n")
 
-    expect_true(
-      all(c(grepl(tmp_rtf, pattern = "A: Just a random Text"),
-        grepl(tmp_rtf, pattern = "B: Just a random Text"))))
-  })
+  expect_true(grepl(tmp_rtf, pattern = "Sepal"))
+  expect_true(grepl(tmp_rtf, pattern = "speed"))
+
 })
 
 # test functionality with officer
 if (require(officer, quietly = TRUE)){
   test_that("rtf_assemble: output with using officer", {
 
-    withr::with_tempdir({
-      a <- "A: Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
-      write_rtf(a, file = "table1.rtf")
-      b <- "B: Just a random Text and Symbols.!@#$%^&*()[],:; \ <>"
-      write_rtf(b, file = "table2.rtf")
+    file_tmp <- tempfile(fileext = ".docx")
+    expect_message(rtf_path <- rtf_assemble(input = file,
+                                            output = file_tmp,
+                                            landscape = c(FALSE, TRUE),
+                                            use_officer = TRUE),
+                   regexp = "'.docx' file using `officer` package.")
 
-      expect_message(rtf_path <- rtf_assemble(input = dir(pattern = "table"),
-                                              output = "tmp.docx",
-                                              use_officer = TRUE),
-        regexp = "'.docx' file using `officer` package.")
+    expect_equal(rtf_path, file_tmp)
+    expect_true(grepl(tempdir(), rtf_path))
 
-      expect_equal(rtf_path, "tmp.docx")
-      expect_true(rtf_path %in% dir())
+    # Need to read in and expose document text for our test
+    docx <- officer::read_docx(rtf_path)
+    tmp_docx <- officer::docx_summary(docx)
+    body_docx <- officer::docx_body_xml(docx)
 
-      # Need to read in and expose document text for our test
-      tmp_docx <- officer::docx_summary(officer::read_docx(rtf_path))
+    # Need to check if both "table seq table" texts are in the docx file.
+    expect_true(grepl("Table SEQ Table", tmp_docx$text[1]))
 
-      # Need to check if both "table seq table" texts are in the docx file.
-      expect_equal(grepl("Table SEQ Table", tmp_docx$text),
-        c(TRUE, FALSE, TRUE, FALSE))
-
-
-    })
+    expect_equal(
+      unlist(lapply(xml2::as_list(xml2::xml_find_all(body_docx, "//w:pgSz")), FUN = function(x) attr(x, "orient"))),
+      c("portrait", "landscape")
+    )
   })
 }

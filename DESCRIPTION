@@ -41,7 +41,7 @@ Suggests:
     ggplot2,
     knitr,
     officer,
-    withr,
+    xml2,
     rmarkdown,
     stringi,
     testthat,
