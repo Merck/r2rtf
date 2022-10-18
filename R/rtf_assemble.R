@@ -23,16 +23,19 @@
 #' }
 #'
 #' @examples
-#' \dontrun{
-#' input <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
+#'
+#' file <- replicate(2, tempfile(fileext = ".rtf"))
+#' file1 <- head(iris) %>% rtf_body() %>% rtf_encode() %>% write_rtf(file[1])
+#' file2 <- head(cars) %>% rtf_page(orientation = "landscape") %>%
+#'               rtf_body() %>% rtf_encode() %>% write_rtf(file[2])
 #' output <- tempfile(fileext = ".rtf")
 #'
 #' rtf_assemble(
-#'   input = input,
+#'   input = file,
 #'   output = output,
 #'   use_officer = FALSE
 #' )
-#'}
+#'
 #' @export
 rtf_assemble <- function(input,
                          output,
