@@ -79,13 +79,11 @@ reference:
   - "rtf_source"
   - "rtf_encode"
   - "write_rtf"
+  - "rtf_assemble"
 - title: RTF Figure
   contents:
   - "rtf_read_figure"
   - "rtf_figure"
-- title: Utility Data
-  contents:
-  - "unicode_latex"
 - title: Example Data
   contents:
   - "r2rtf_HAMD17"
