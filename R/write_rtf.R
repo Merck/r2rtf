@@ -81,8 +81,8 @@ assemble_to_rtf <- function(input,
 
 
 assemble_to_docx <- function(input,
-                            output,
-                            landscape = FALSE) {
+                             output,
+                             landscape = FALSE) {
 
   # input checking
   check_args(input, type = "character")
