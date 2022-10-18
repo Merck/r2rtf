@@ -37,15 +37,13 @@
 #' )
 #'
 #' @export
-rtf_assemble <- function(input,
-                         output,
-                         landscape = FALSE,
-                         use_officer = TRUE) {
+assemble_to_rtf <- function(input,
+                            output,
+                            landscape = FALSE) {
 
   # input checking
   check_args(input, type = "character")
   check_args(output, type = "character", length = 1)
-  check_args(use_officer, type = "logical", length = 1)
 
   # define variables
   input <- normalizePath(input)
@@ -53,70 +51,90 @@ rtf_assemble <- function(input,
   missing_input <- input[! file.exists(input)]
   ext_output <- tolower(tools::file_ext(output))
 
-  # input checking based on use_officer
-  if(use_officer){
-    check_args(landscape, "logical", length = c(1, n_input))
-    landscape <- rep(landscape, length.out = n_input)
-    match_arg(ext_output, "docx")
-  }else{
-    check_args(landscape, "logical", length = 1)
-    match_arg(ext_output, "rtf")
-  }
+  # input checking
+  check_args(landscape, "logical", length = 1)
+  match_arg(ext_output, "rtf")
 
   # warning missing input
   if(length(missing_input) > 0){
     warning("Missing files: \n", paste(missing_input, collapse = "\n"))
+    input <- setdiff(input, missing_input)
   }
 
   # assemble RTF
-  if (use_officer) {
-    message("Assemble rtf files into a '.docx' file using `officer` package.")
-    if (!require(officer, quietly = TRUE)) stop("Use_officer = TRUE, but the ",
-      "officer package is not installed.")
+  rtf <- lapply(input, readLines)
+  n <- length(rtf)
+  start <- c(1, rep(2, n - 1))
+  end <- vapply(rtf, length, numeric(1))
+  end[-n] <- end[-n] - 1
 
-    field <- ifelse(grepl("/", input),
-                    paste0("INCLUDETEXT \"", gsub("/", "\\\\\\\\", input), "\""),
-                    paste0("INCLUDETEXT \"", gsub("\\", "\\\\", input, fixed = "TRUE"), "\"")
+  for (i in seq_len(n)) {
+    rtf[[i]] <- rtf[[i]][start[i]:end[i]]
+    if (i < n) rtf[[i]] <- c(rtf[[i]], as_rtf_new_page())
+  }
+
+  rtf <- do.call(c, rtf)
+
+  write_rtf(rtf, output)
+
+}
+
+
+assemble_to_docx <- function(input,
+                             output,
+                             landscape = FALSE) {
+
+  # input checking
+  check_args(input, type = "character")
+  check_args(output, type = "character", length = 1)
+
+  # define variables
+  input <- normalizePath(input)
+  n_input <- length(input)
+  missing_input <- input[! file.exists(input)]
+  ext_output <- tolower(tools::file_ext(output))
+
+  # input checking
+  check_args(landscape, "logical", length = c(1, n_input))
+  landscape <- rep(landscape, length.out = n_input)
+  match_arg(ext_output, "docx")
+
+  # warning missing input
+  if(length(missing_input) > 0){
+    warning("Missing files: \n", paste(missing_input, collapse = "\n"))
+    input <- setdiff(input, missing_input)
+  }
+
+  # assemble RTF
+  if (!require(officer, quietly = TRUE)){
+    stop("Use_officer = TRUE, but the officer package is not installed.")
+  }
+
+  field <- ifelse(grepl("/", input),
+                  paste0("INCLUDETEXT \"", gsub("/", "\\\\\\\\", input), "\""),
+                  paste0("INCLUDETEXT \"", gsub("\\", "\\\\", input, fixed = "TRUE"), "\"")
+  )
+
+  docx <- officer::read_docx()
+
+  for (i in seq_along(input)) {
+    docx <- officer::body_add_fpar(docx,
+                                   officer::fpar(
+                                     officer::ftext("Table "),
+                                     officer::run_word_field("SEQ Table \\* ARABIC"),
+                                     officer::run_linebreak(),
+                                     officer::run_word_field(field[i])
+                                   )
     )
-
-    docx <- officer::read_docx()
-
-    for (i in seq_along(input)) {
-      docx <- officer::body_add_fpar(docx,
-                officer::fpar(
-                  officer::ftext("Table "),
-                  officer::run_word_field("SEQ Table \\* ARABIC"),
-                  officer::run_linebreak(),
-                  officer::run_word_field(field[i])
-               )
-              )
-      if (landscape[i]) {
-        docx <- officer::body_end_section_landscape(docx)
-      } else {
-        docx <- officer::body_end_section_portrait(docx)
-      }
-
-      print(docx, target = output)
-    }
-  } else {
-
-    message("Assemble rtf files into a '.rtf' without using `officer` package.")
-
-    rtf <- lapply(input, readLines)
-    n <- length(rtf)
-    start <- c(1, rep(2, n - 1))
-    end <- vapply(rtf, length, numeric(1))
-    end[-n] <- end[-n] - 1
-
-    for (i in seq_len(n)) {
-      rtf[[i]] <- rtf[[i]][start[i]:end[i]]
-      if (i < n) rtf[[i]] <- c(rtf[[i]], as_rtf_new_page())
+    if (landscape[i]) {
+      docx <- officer::body_end_section_landscape(docx)
+    } else {
+      docx <- officer::body_end_section_portrait(docx)
     }
 
-    rtf <- do.call(c, rtf)
-
-    write_rtf(rtf, output)
+    print(docx, target = output)
   }
 
   invisible(output)
+
 }
