@@ -34,7 +34,6 @@ test_that("rtf_assemble: output without using officer", {
   rtf_path <- assemble_rtf(input = file, output = file_tmp)
 
   expect_equal(rtf_path, file_tmp)
-  expect_true(grepl(tempdir(), rtf_path))
 
   tmp_rtf <- paste(readLines(rtf_path), collapse = "\n")
 
@@ -53,7 +52,6 @@ if (requireNamespace("officer")){
                               landscape = c(FALSE, TRUE))
 
     expect_equal(rtf_path, file_tmp)
-    expect_true(grepl(tempdir(), rtf_path))
 
     # Need to read in and expose document text for our test
     docx <- officer::read_docx(rtf_path)
