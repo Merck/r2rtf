@@ -44,7 +44,7 @@ test_that("rtf_assemble: output without using officer", {
 })
 
 # test functionality with officer
-if (require(officer, quietly = TRUE)){
+if (requireNamespace("officer")){
   test_that("rtf_assemble: output with using officer", {
 
     file_tmp <- tempfile(fileext = ".docx")
