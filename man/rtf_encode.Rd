@@ -30,9 +30,9 @@ Possible values are "first", "last" and "all".}
 \item{verbose}{a boolean value to return more details of RTF encoding.}
 }
 \value{
-\if{html}{\out{<div class="sourceCode">}}\preformatted{For \code{rtf_encode}, a vector of RTF code.
+\preformatted{For \code{rtf_encode}, a vector of RTF code.
 For \code{write_rtf}, no return value.
-}\if{html}{\out{</div>}}
+}
 }
 \description{
 This function extracts table/figure attributes and render to RTF encoding that is ready to save

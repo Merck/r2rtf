@@ -1,21 +1,17 @@
-#' Assemble Multiple RTF Table Listing and Figure Into One Document
+#' Assemble Multiple RTF Table Listing and Figure Into One RTF Document
 #'
-#' The function asseble multiple RTF table, listing, and figures into one document
-#' as RTF file or Microsft Word in `docx` format.
+#' The function assemble multiple RTF table, listing, and figures into
+#' one document as RTF file.
 #'
 #' @param input Character vector of file path.
-#' @param output Character string to the output file path. File extension should
-#' be `.docx` if `use_officer = TRUE` and `.rtf` if `FALSE`.
-#' @param landscape Logical vector to determine whether to
-#' display files as portrait or landscape. If `use_officer = FALSE`, only singular value is allowed.
-#' @param use_officer Logical value to determine whether the package `officer`
-#' should be used to assemble RTF table, listing and figure.
+#' @param output Character string to the output file path.
+#' @param landscape Logical value to determine page direction.
 #'
 #' @section Specification:
 #' \if{latex}{
 #'   \itemize{
-#'     \item Transfer files to toggle fields format in Word
-#'     \item Insert into Word file using officer
+#'     \item Read individual RTF files.
+#'     \item Insert into one RTF file.
 #'   }
 #' }
 #' \if{html}{
@@ -30,14 +26,13 @@
 #'               rtf_body() %>% rtf_encode() %>% write_rtf(file[2])
 #' output <- tempfile(fileext = ".rtf")
 #'
-#' rtf_assemble(
+#' assemble_rtf(
 #'   input = file,
-#'   output = output,
-#'   use_officer = FALSE
+#'   output = output
 #' )
 #'
 #' @export
-assemble_to_rtf <- function(input,
+assemble_rtf <- function(input,
                             output,
                             landscape = FALSE) {
 
@@ -79,10 +74,45 @@ assemble_to_rtf <- function(input,
 
 }
 
-
-assemble_to_docx <- function(input,
-                             output,
-                             landscape = FALSE) {
+#' Assemble Multiple RTF Table Listing and Figure Into One Word Document
+#'
+#' The function assemble multiple RTF table, listing, and figures into
+#' one document as Microsoft Word (i.e., `docx`).
+#'
+#' @param input Character vector of file path.
+#' @param output Character string to the output file path.
+#' @param landscape Logical vector to determine page direction.
+#'
+#' @section Specification:
+#' \if{latex}{
+#'   \itemize{
+#'     \item Transfer files to toggle fields format in Word
+#'     \item Insert into Word file using officer
+#'   }
+#' }
+#' \if{html}{
+#' The contents of this section are shown in PDF user manual only.
+#' }
+#'
+#' @examples
+#'
+#'if (require(officer, quietly = TRUE)){
+#'    file <- replicate(2, tempfile(fileext = ".rtf"))
+#'    file1 <- head(iris) %>% rtf_body() %>% rtf_encode() %>% write_rtf(file[1])
+#'    file2 <- head(cars) %>% rtf_page(orientation = "landscape") %>%
+#'                  rtf_body() %>% rtf_encode() %>% write_rtf(file[2])
+#'    output <- tempfile(fileext = ".docx")
+#'
+#'    assemble_docx(
+#'      input = file,
+#'      output = output
+#'    )
+#' }
+#'
+#' @export
+assemble_docx <- function(input,
+                          output,
+                          landscape = FALSE) {
 
   # input checking
   check_args(input, type = "character")
