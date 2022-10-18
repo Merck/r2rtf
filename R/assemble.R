@@ -139,8 +139,8 @@ assemble_docx <- function(input,
   }
 
   # assemble RTF
-  if (requireNamespace("officer")){
-    stop("Use_officer = TRUE, but the officer package is not installed.")
+  if (! requireNamespace("officer")){
+    stop("The officer package is required but not installed.")
   }
 
   field <- ifelse(grepl("/", input),
