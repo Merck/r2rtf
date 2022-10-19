@@ -79,7 +79,8 @@ reference:
   - "rtf_source"
   - "rtf_encode"
   - "write_rtf"
-  - "rtf_assemble"
+  - "assemble_rtf"
+  - "assemble_docx"
 - title: RTF Figure
   contents:
   - "rtf_read_figure"
