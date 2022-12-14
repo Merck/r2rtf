@@ -35,8 +35,8 @@
 #'
 #' @export
 assemble_rtf <- function(input,
-                            output,
-                            landscape = FALSE) {
+                         output,
+                         landscape = FALSE) {
 
   # input checking
   check_args(input, type = "character")
@@ -61,7 +61,7 @@ assemble_rtf <- function(input,
   # assemble RTF
   rtf <- lapply(input, readLines)
   n <- length(rtf)
-  start <- c(1, rep(2, n - 1))
+  start <- c(1, vapply(rtf[-1], function(x) max(grep("fcharset",rtf[[1]])) + 2, numeric(1)))
   end <- vapply(rtf, length, numeric(1))
   end[-n] <- end[-n] - 1
 
