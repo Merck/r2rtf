@@ -99,6 +99,7 @@
 </h1>
 </div>
 <!-- badges: start -->
+
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
@@ -106,7 +107,10 @@
 <ul>
 <li>provide simple “verb” functions that correspond to each component of a table, to help you translate data frame(s) to a table in RTF file.</li>
 <li>enables pipes (<code>%&gt;%</code>).</li>
-<li>only focus on <strong>table format</strong>.<ul><li>Data manipulation and analysis shall be handled by other R packages. (e.g., <code>tidyverse</code>)</li></ul>
+<li>only focus on <strong>table format</strong>.
+<ul>
+<li>Data manipulation and analysis shall be handled by other R packages. (e.g., <code>tidyverse</code>)</li>
+</ul>
 </li>
 <li>minimizes package dependency</li>
 </ul>
@@ -125,13 +129,15 @@
 <p>The R package<code>r2rtf</code> provided flexibility to enable features below:</p>
 <ul>
 <li>Necessary options to create highly customized RTF table and figure.</li>
-<li>Simple to use parameters and data structure.<ul>
+<li>Simple to use parameters and data structure.
+<ul>
 <li>Customized column header: split by <code>"|"</code>.</li>
 <li>Three required parameters for the output tables (data, filename, column relative width).</li>
 <li>Flexible and detail control of table structure.</li>
 </ul>
 </li>
-<li>Format control in cell, row, column and table level for:<ul>
+<li>Format control in cell, row, column and table level for:
+<ul>
 <li>Border Type: single, double, dash, dot, etc.</li>
 <li>Alignment: left, right, center, decimal.</li>
 <li>Column width.</li>
@@ -156,19 +162,31 @@
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rtf_body</span>() <span class="sc">%&gt;%</span>                 <span class="co"># Step 1 Add attributes</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rtf_encode</span>() <span class="sc">%&gt;%</span>               <span class="co"># Step 2 Convert attributes to RTF encode</span></span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_rtf</span>(<span class="at">file =</span> <span class="st">"ex-tbl.rtf"</span>) <span class="co"># Step 3 Write to a .rtf file</span></span></code></pre></div>
-<details><summary>Click here to see the output</summary><img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png"></details><ul><li><a href="https://merck.github.io/r2rtf/articles/index.html">More Examples</a></li></ul>
+<details><summary>
+Click here to see the output
+</summary><img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png"></details><ul>
+<li><a href="https://merck.github.io/r2rtf/articles/index.html">More Examples</a></li>
+</ul>
 </div>
 <div class="section level2">
 <h2 id="example-efficacy-table">Example Efficacy Table<a class="anchor" aria-label="anchor" href="#example-efficacy-table"></a>
 </h2>
-<ul><li><a href="https://merck.github.io/r2rtf/articles/example-efficacy.html">Source code</a></li></ul>
-<details><summary>Click here to see the output</summary><img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png"></details>
+<ul>
+<li><a href="https://merck.github.io/r2rtf/articles/example-efficacy.html">Source code</a></li>
+</ul>
+<details><summary>
+Click here to see the output
+</summary><img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png"></details>
 </div>
 <div class="section level2">
 <h2 id="example-safety-table">Example Safety Table<a class="anchor" aria-label="anchor" href="#example-safety-table"></a>
 </h2>
-<ul><li><a href="https://merck.github.io/r2rtf/articles/example-ae-summary.html">Source code</a></li></ul>
-<details><summary>Click here to see the output</summary><img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png"></details>
+<ul>
+<li><a href="https://merck.github.io/r2rtf/articles/example-ae-summary.html">Source code</a></li>
+</ul>
+<details><summary>
+Click here to see the output
+</summary><img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png"></details>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

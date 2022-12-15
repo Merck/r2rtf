@@ -108,9 +108,15 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><code>r2rtf</code> had an experimental internal function <code>r2rtf:::rtf_convert_format</code> to convert RTF format to PDF, DOCX or HTML. This feature requires <a href="https://www.libreoffice.org/download/download/" class="external-link">libreoffice7.1</a> and only be tested in a Linux environment.</p>
-<p>By default, <code>r2rtf:::rtf_convert_format</code> convert RTF file to PDF format. The PDF file will be saved in the same folder with same file name by default.</p>
-<p>In example below, <code>ae_example.pdf</code> will be created in the same folder.</p>
+<p><code>r2rtf</code> had an experimental internal function
+<code>r2rtf:::rtf_convert_format</code> to convert RTF format to PDF,
+DOCX or HTML. This feature requires <a href="https://www.libreoffice.org/download/download/" class="external-link">libreoffice7.1</a>
+and only be tested in a Linux environment.</p>
+<p>By default, <code>r2rtf:::rtf_convert_format</code> convert RTF file
+to PDF format. The PDF file will be saved in the same folder with same
+file name by default.</p>
+<p>In example below, <code>ae_example.pdf</code> will be created in the
+same folder.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_convert_format.html">rtf_convert_format</a></span><span class="op">(</span>input <span class="op">=</span> <span class="st">"rtf/ae_example.rtf"</span><span class="op">)</span></span></code></pre></div>
 <ul>
@@ -119,18 +125,21 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_convert_format.html">rtf_convert_format</a></span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"rtf"</span>, pattern <span class="op">=</span> <span class="st">"*.rtf"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <ul>
-<li>The <code>format</code> argument allow use to specify output format as <code>pdf</code>, <code>docx</code>, or <code>html</code>.</li>
+<li>The <code>format</code> argument allow use to specify output format
+as <code>pdf</code>, <code>docx</code>, or <code>html</code>.</li>
 </ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_convert_format.html">rtf_convert_format</a></span><span class="op">(</span>input <span class="op">=</span> <span class="st">"rtf/ae_example.rtf"</span>, format <span class="op">=</span> <span class="st">"html"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="limitations">Limitations<a class="anchor" aria-label="anchor" href="#limitations"></a>
 </h3>
-<p>There is one known limitation after RTF file convert to HTML files:</p>
+<p>There is one known limitation after RTF file convert to HTML
+files:</p>
 <ul>
 <li>table border issue.
 <ul>
-<li>“dash”, “small dash”, “dot dash”, and “dot dot” border type are not supported</li>
+<li>“dash”, “small dash”, “dot dash”, and “dot dot” border type are not
+supported</li>
 </ul>
 </li>
 </ul>

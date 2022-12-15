@@ -105,16 +105,21 @@
 
     
     
-<p>This vignette documents how to use <code>.rtf_row</code> to customize table in details. All output tables are saved in the <code>vignettes/rtf</code> folder and assembled in <code>vignettes/r2rtf_examples.docx</code> document.</p>
+<p>This vignette documents how to use <code>.rtf_row</code> to customize
+table in details. All output tables are saved in the
+<code>vignettes/rtf</code> folder and assembled in
+<code>vignettes/r2rtf_examples.docx</code> document.</p>
 <div class="section level2">
 <h2 id="border-type">Border Type<a class="anchor" aria-label="anchor" href="#border-type"></a>
 </h2>
-<p><code>.rtf_row</code> supports 8 different types of border as listed below.</p>
+<p><code>.rtf_row</code> supports 8 different types of border as listed
+below.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] ""           "single"     "double"     "dot"        "dash"      </span></span>
 <span><span class="co">## [6] "small dash" "dot dash"   "dot dot"</span></span></code></pre>
-<p>The border type can be used to define the top, left, right and bottom border types.</p>
+<p>The border type can be used to define the top, left, right and bottom
+border types.</p>
 <p>This example define different top border line.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">.n</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">)</span></span>
@@ -126,7 +131,12 @@
 <span><span class="va">db</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-type.rtf"</span><span class="op">)</span></span></code></pre></div>
-<embed src="pdf/border-type.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>For each cell, the top border and left border is defined in each cell. The right border only defined in last column. The bottom border only defined in last row. This example show that top border and left border type are used for all cell border as single. Only last column use right border as double. Only last row use bottom border as dash line.</p>
+<embed src="pdf/border-type.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>For each cell, the top border and left border is defined in each
+cell. The right border only defined in last column. The bottom border
+only defined in last row. This example show that top border and left
+border type are used for all cell border as single. Only last column use
+right border as double. Only last row use bottom border as dash
+line.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -138,7 +148,8 @@
 <span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-order.rtf"</span><span class="op">)</span></span></code></pre></div>
-<embed src="pdf/border-order.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>This example display table with specific border type (i.e. double line at the first and last line and blank at the middle)</p>
+<embed src="pdf/border-order.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>This example display table with specific border type (i.e. double
+line at the first and last line and blank at the middle)</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">rtf_db</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -152,7 +163,9 @@
 <span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/border-example.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/border-example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><ul>
-<li>The first and last border of the whole table is controled by <code>border_first</code> and <code>border_last</code> argument in <code><a href="../reference/rtf_page.html">rtf_page()</a></code>
+<li>The first and last border of the whole table is controled by
+<code>border_first</code> and <code>border_last</code> argument in
+<code><a href="../reference/rtf_page.html">rtf_page()</a></code>
 </li>
 </ul>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -177,7 +190,9 @@
 <span><span class="co">## [4,] ""   ""   ""   ""   ""  </span></span>
 <span><span class="co">## [5,] ""   ""   ""   ""   ""  </span></span>
 <span><span class="co">## [6,] ""   ""   ""   ""   ""</span></span></code></pre>
-<p>User can use single value, vector, and matrix to control the border type. Specifically, a vector is transferred to a matrix by row. Therefore, it is useful to set columns type by using vector.</p>
+<p>User can use single value, vector, and matrix to control the border
+type. Specifically, a vector is transferred to a matrix by row.
+Therefore, it is useful to set columns type by using vector.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">$</span><span class="va">name</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>, nrow <span class="op">=</span> <span class="fl">6</span>, ncol <span class="op">=</span> <span class="fl">5</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##      [,1] [,2]     [,3]     [,4]  [,5]  </span></span>
@@ -201,7 +216,8 @@
 <div class="section level2">
 <h2 id="cell-justification">Cell Justification<a class="anchor" aria-label="anchor" href="#cell-justification"></a>
 </h2>
-<p>The table cell allow to be left, center or right justified. the cell is also allow to align by decimal.</p>
+<p>The table cell allow to be left, center or right justified. the cell
+is also allow to align by decimal.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##   type      name</span></span>
@@ -228,7 +244,11 @@
 <div class="section level2">
 <h2 id="column-width">Column Width<a class="anchor" aria-label="anchor" href="#column-width"></a>
 </h2>
-<p>Column width is determined by width ratio between the row using <code>col_rel_width</code>. The default is to have the same width for each column. The actual width is calculate with actual width <code>col_total_width</code>. The default value of <code>col_total_width</code> is page_width divided by 1.4.</p>
+<p>Column width is determined by width ratio between the row using
+<code>col_rel_width</code>. The default is to have the same width for
+each column. The actual width is calculate with actual width
+<code>col_total_width</code>. The default value of
+<code>col_total_width</code> is page_width divided by 1.4.</p>
 <p>This example shows the default setting</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -248,7 +268,9 @@
 <div class="section level2">
 <h2 id="text-appearance">Text Appearance<a class="anchor" aria-label="anchor" href="#text-appearance"></a>
 </h2>
-<p>The <code>.rtf_row</code> function allow <strong>bold</strong>, <em>italics</em>, <del>strikethrough</del>, underline and any combinations of them.</p>
+<p>The <code>.rtf_row</code> function allow <strong>bold</strong>,
+<em>italics</em>, <del>strikethrough</del>, underline and any
+combinations of them.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/font_format.html">font_format</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##   type        name</span></span>
@@ -293,7 +315,9 @@
 <div class="section level2">
 <h2 id="color">Color<a class="anchor" aria-label="anchor" href="#color"></a>
 </h2>
-<p>The text, border and background color can be set separately for each cell. It is important to note that the cell can be defined condition by the data. For example, one can highlight p-value &lt; 0.05 in gold.</p>
+<p>The text, border and background color can be set separately for each
+cell. It is important to note that the cell can be defined condition by
+the data. For example, one can highlight p-value &lt; 0.05 in gold.</p>
 <p>This example define text color for each column</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>

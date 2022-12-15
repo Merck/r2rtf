@@ -112,7 +112,8 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This example shows how to create a baseline characteristic table as below.</p>
+<p>This example shows how to create a baseline characteristic table as
+below.</p>
 <embed src="pdf/bs_example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level3">
 <h3 id="step-1-define-utility-functions">Step 1: Define utility functions<a class="anchor" aria-label="anchor" href="#step-1-define-utility-functions"></a>
 </h3>
@@ -258,7 +259,19 @@
 <span><span class="va">bs_tb</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">bs_tb</span><span class="op">)</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="st">""</span> <span class="co"># convert NA to blank string.</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">bs_tb</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="20%">
+<col width="9%">
+<col width="6%">
+<col width="9%">
+<col width="6%">
+<col width="9%">
+<col width="6%">
+<col width="9%">
+<col width="9%">
+<col width="12%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">var</th>
 <th align="left">1</th>
@@ -447,11 +460,15 @@
 <h3 id="step-3-define-table-format">Step 3: Define table format<a class="anchor" aria-label="anchor" href="#step-3-define-table-format"></a>
 </h3>
 <ul>
-<li>page_by feature was used to display 3 parts (Gender, Age, Race) clearly
+<li>page_by feature was used to display 3 parts (Gender, Age, Race)
+clearly
 <ul>
-<li>if using <code>new_page = TRUE</code> in <code>rtb_body()</code>, the 3 parts will be outputted into 3 pages</li>
+<li>if using <code>new_page = TRUE</code> in <code>rtb_body()</code>,
+the 3 parts will be outputted into 3 pages</li>
 <li>
-<code>page_by</code> variable should not be in <code><a href="../reference/rtf_colheader.html">rtf_colheader()</a></code>. However, it should be in <code><a href="../reference/rtf_body.html">rtf_body()</a></code>
+<code>page_by</code> variable should not be in
+<code><a href="../reference/rtf_colheader.html">rtf_colheader()</a></code>. However, it should be in
+<code><a href="../reference/rtf_body.html">rtf_body()</a></code>
 </li>
 </ul>
 </li>

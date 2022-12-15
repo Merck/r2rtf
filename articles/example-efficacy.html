@@ -209,6 +209,16 @@
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">t1</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="14%">
+<col width="3%">
+<col width="15%">
+<col width="3%">
+<col width="15%">
+<col width="3%">
+<col width="15%">
+<col width="27%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">Trt</th>
 <th align="right">N1</th>
@@ -295,7 +305,9 @@
 <div class="section level3">
 <h3 id="step-3-define-table-format">Step 3: Define table format<a class="anchor" aria-label="anchor" href="#step-3-define-table-format"></a>
 </h3>
-<p>The table consists of three data frames: <code>t1</code>, <code>t2</code>, and <code>t3</code>. We define each data frame’s format as below then combine them into a listing.</p>
+<p>The table consists of three data frames: <code>t1</code>,
+<code>t2</code>, and <code>t3</code>. We define each data frame’s format
+as below then combine them into a listing.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl_1</span> <span class="op">&lt;-</span> <span class="va">t1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span></span>
@@ -353,6 +365,16 @@
 <table class="table kable_wrapper"><tbody><tr>
 <td>
 <table class="table">
+<colgroup>
+<col width="14%">
+<col width="3%">
+<col width="15%">
+<col width="3%">
+<col width="15%">
+<col width="3%">
+<col width="15%">
+<col width="27%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">Trt</th>
 <th align="left">N1</th>

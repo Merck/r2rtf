@@ -112,29 +112,42 @@
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
 </h2>
-<p>This example shows how to create and embed figures into an RTF file as below.</p>
-<embed src="pdf/fig-simple.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>Below is an example with adjusted page orientation, figure height and width.</p>
+<p>This example shows how to create and embed figures into an RTF file
+as below.</p>
+<embed src="pdf/fig-simple.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>Below is an example with adjusted page orientation, figure height and
+width.</p>
 <embed src="pdf/fig-landscape.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level3">
 <h3 id="overall-workflow">Overall workflow<a class="anchor" aria-label="anchor" href="#overall-workflow"></a>
 </h3>
-<p>The package allow user to embed multiple figures into one RTF document. The supported format is listed as below.</p>
+<p>The package allow user to embed multiple figures into one RTF
+document. The supported format is listed as below.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/fig_format.html">fig_format</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   type   rtf_code</span></span>
 <span><span class="co">## 1  emf  \\emfblip</span></span>
 <span><span class="co">## 2  png  \\pngblip</span></span>
 <span><span class="co">## 3 jpeg \\jpegblip</span></span></code></pre>
-<p>By using <code>png</code> file as an example, the workflow can be summarized as:</p>
+<p>By using <code>png</code> file as an example, the workflow can be
+summarized as:</p>
 <ol style="list-style-type: decimal">
-<li>Save figures into PNG format. (e.g. using <code><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png()</a></code> or <code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code>).</li>
-<li>Read PNG files into R as binary file using <code><a href="../reference/rtf_read_figure.html">r2rtf::rtf_read_figure()</a></code>.</li>
-<li>Add optional features using <code><a href="../reference/rtf_title.html">r2rtf::rtf_title()</a></code>, <code><a href="../reference/rtf_footnote.html">r2rtf::rtf_footnote()</a></code>, <code><a href="../reference/rtf_source.html">r2rtf::rtf_source()</a></code>.</li>
-<li>Set up page and figure options using <code><a href="../reference/rtf_page.html">r2rtf::rtf_page()</a></code>, <code><a href="../reference/rtf_figure.html">r2rtf::rtf_figure()</a></code>.</li>
-<li>Encode rtf using <code>r2rtf::rtf_encode(doc_type = "figure")</code>. (Note: it is important to set <code>doc_type = "figure"</code> as the default is <code>doc_type = "table"</code> to handle tables).</li>
+<li>Save figures into PNG format. (e.g. using <code><a href="https://rdrr.io/r/grDevices/png.html" class="external-link">png()</a></code> or
+<code><a href="https://ggplot2.tidyverse.org/reference/ggsave.html" class="external-link">ggplot2::ggsave()</a></code>).</li>
+<li>Read PNG files into R as binary file using
+<code><a href="../reference/rtf_read_figure.html">r2rtf::rtf_read_figure()</a></code>.</li>
+<li>Add optional features using <code><a href="../reference/rtf_title.html">r2rtf::rtf_title()</a></code>,
+<code><a href="../reference/rtf_footnote.html">r2rtf::rtf_footnote()</a></code>,
+<code><a href="../reference/rtf_source.html">r2rtf::rtf_source()</a></code>.</li>
+<li>Set up page and figure options using <code><a href="../reference/rtf_page.html">r2rtf::rtf_page()</a></code>,
+<code><a href="../reference/rtf_figure.html">r2rtf::rtf_figure()</a></code>.</li>
+<li>Encode rtf using
+<code>r2rtf::rtf_encode(doc_type = "figure")</code>. (Note: it is
+important to set <code>doc_type = "figure"</code> as the default is
+<code>doc_type = "table"</code> to handle tables).</li>
 <li>Write rtf to a file using <code><a href="../reference/write_rtf.html">r2rtf::write_rtf()</a></code>.</li>
 </ol>
 <blockquote>
-<p>For <code>emf</code> format, one may use the R package <code>devEMF</code> to create the figure.</p>
+<p>For <code>emf</code> format, one may use the R package
+<code>devEMF</code> to create the figure.</p>
 </blockquote>
 <div class="section level4">
 <h4 id="simple-example">Simple Example<a class="anchor" aria-label="anchor" href="#simple-example"></a>
@@ -155,12 +168,16 @@
 <div class="section level4">
 <h4 id="example-with-features">Example with features<a class="anchor" aria-label="anchor" href="#example-with-features"></a>
 </h4>
-<p>Features of page and figure can be set up in <code>rtf_page</code> and <code>rtf_figure</code> respectively:</p>
+<p>Features of page and figure can be set up in <code>rtf_page</code>
+and <code>rtf_figure</code> respectively:</p>
 <ul>
-<li>Page orientation: <code>orientation</code> argument in <code>rtf_page</code>.</li>
-<li>Figure height and width: <code>fig_heigth</code> and <code>fig_width</code> arguments in <code>rtf_figure</code>.</li>
+<li>Page orientation: <code>orientation</code> argument in
+<code>rtf_page</code>.</li>
+<li>Figure height and width: <code>fig_heigth</code> and
+<code>fig_width</code> arguments in <code>rtf_figure</code>.</li>
 </ul>
-<p>The figure height and width can be set up for each figure in a vector. The code below provides an example for these features.</p>
+<p>The figure height and width can be set up for each figure in a
+vector. The code below provides an example for these features.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">filename</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_read_figure.html">rtf_read_figure</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>                             <span class="co"># read PNG files from the file path</span></span>
