@@ -51,7 +51,6 @@ obj_rtf_text <- function(text,
                          text_new_page = FALSE,
                          text_hyphenation = TRUE,
                          text_convert = TRUE) {
-
   # Check argument type
   check_args(text, type = c("character", "data.frame"))
 

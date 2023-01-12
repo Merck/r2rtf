@@ -46,7 +46,6 @@ rtf_text <- function(text,
                      color = NULL,
                      background_color = NULL,
                      text_convert = TRUE) {
-
   ## Set default value
   if ((!is.null(background_color)) & is.null(color)) {
     color <- "black"

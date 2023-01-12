@@ -68,8 +68,6 @@ rtf_page <- function(tbl,
                      border_color_last = NULL,
                      col_width = width - ifelse(orientation == "portrait", 2.25, 2.5),
                      use_color = FALSE) {
-
-
   # Check argument type
   check_args(width, type = c("integer", "numeric"), length = 1)
   check_args(height, type = c("integer", "numeric"), length = 1)
@@ -115,7 +113,7 @@ rtf_page <- function(tbl,
     attr(tbl, "page")$use_color <- FALSE
   }
 
-  if(use_color){
+  if (use_color) {
     attr(tbl, "page")$use_color <- TRUE
   }
 
@@ -143,7 +141,6 @@ rtf_page_header <- function(tbl,
                             text_space_before = 15,
                             text_space_after = 15,
                             text_convert = TRUE) {
-
   # Convert tbl to a data frame, each column is a character
   if (any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
@@ -199,7 +196,6 @@ rtf_page_footer <- function(tbl,
                             text_space_before = 15,
                             text_space_after = 15,
                             text_convert = TRUE) {
-
   # Convert tbl to a data frame, each column is a character
   if (any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 

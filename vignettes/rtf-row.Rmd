@@ -70,8 +70,7 @@ This example display table with specific border type (i.e. double line at the fi
 rtf_db <- iris %>%
   head() %>%
   rtf_title("Border Using Double Line at First/Last Line") %>%
-  rtf_colheader("Sepal Length | Sepal Width | Petal Length | Petal Width | Species"
-  ) %>%
+  rtf_colheader("Sepal Length | Sepal Width | Petal Length | Petal Width | Species") %>%
   rtf_body()
 
 
@@ -236,8 +235,10 @@ This example define text color for each column
 ```{r}
 iris %>%
   head() %>%
-  rtf_body(text_color = c("black", "red", "gold", "blue", "grey"),
-           as_colheader = FALSE) %>%
+  rtf_body(
+    text_color = c("black", "red", "gold", "blue", "grey"),
+    as_colheader = FALSE
+  ) %>%
   rtf_encode() %>%
   write_rtf("rtf/color-text.rtf")
 ```
@@ -251,8 +252,10 @@ This example define left border color for each column
 ```{r}
 iris %>%
   head() %>%
-  rtf_body(border_color_left = c("black", "red", "gold", "blue", "grey"),
-           as_colheader = FALSE) %>%
+  rtf_body(
+    border_color_left = c("black", "red", "gold", "blue", "grey"),
+    as_colheader = FALSE
+  ) %>%
   rtf_encode() %>%
   write_rtf("rtf/color-border.rtf")
 ```

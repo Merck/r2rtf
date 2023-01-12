@@ -23,9 +23,15 @@
 #' library(magrittr)
 #'
 #' file <- replicate(2, tempfile(fileext = ".rtf"))
-#' file1 <- head(iris) %>% rtf_body() %>% rtf_encode() %>% write_rtf(file[1])
-#' file2 <- head(cars) %>% rtf_page(orientation = "landscape") %>%
-#'               rtf_body() %>% rtf_encode() %>% write_rtf(file[2])
+#' file1 <- head(iris) %>%
+#'   rtf_body() %>%
+#'   rtf_encode() %>%
+#'   write_rtf(file[1])
+#' file2 <- head(cars) %>%
+#'   rtf_page(orientation = "landscape") %>%
+#'   rtf_body() %>%
+#'   rtf_encode() %>%
+#'   write_rtf(file[2])
 #' output <- tempfile(fileext = ".rtf")
 #'
 #' assemble_rtf(
@@ -37,7 +43,6 @@
 assemble_rtf <- function(input,
                          output,
                          landscape = FALSE) {
-
   # input checking
   check_args(input, type = "character")
   check_args(output, type = "character", length = 1)
@@ -45,7 +50,7 @@ assemble_rtf <- function(input,
   # define variables
   input <- normalizePath(input)
   n_input <- length(input)
-  missing_input <- input[! file.exists(input)]
+  missing_input <- input[!file.exists(input)]
   ext_output <- tolower(tools::file_ext(output))
 
   # input checking
@@ -53,7 +58,7 @@ assemble_rtf <- function(input,
   match_arg(ext_output, "rtf")
 
   # warning missing input
-  if(length(missing_input) > 0){
+  if (length(missing_input) > 0) {
     warning("Missing files: \n", paste(missing_input, collapse = "\n"))
     input <- setdiff(input, missing_input)
   }
@@ -61,7 +66,7 @@ assemble_rtf <- function(input,
   # assemble RTF
   rtf <- lapply(input, readLines)
   n <- length(rtf)
-  start <- c(1, vapply(rtf[-1], function(x) max(grep("fcharset",rtf[[1]])) + 2, numeric(1)))
+  start <- c(1, vapply(rtf[-1], function(x) max(grep("fcharset", rtf[[1]])) + 2, numeric(1)))
   end <- vapply(rtf, length, numeric(1))
   end[-n] <- end[-n] - 1
 
@@ -73,7 +78,6 @@ assemble_rtf <- function(input,
   rtf <- do.call(c, rtf)
 
   write_rtf(rtf, output)
-
 }
 
 #' Assemble Multiple RTF Table Listing and Figure Into One Word Document
@@ -102,9 +106,15 @@ assemble_rtf <- function(input,
 #' library(magrittr)
 #'
 #' file <- replicate(2, tempfile(fileext = ".rtf"))
-#' file1 <- head(iris) %>% rtf_body() %>% rtf_encode() %>% write_rtf(file[1])
-#' file2 <- head(cars) %>% rtf_page(orientation = "landscape") %>%
-#'               rtf_body() %>% rtf_encode() %>% write_rtf(file[2])
+#' file1 <- head(iris) %>%
+#'   rtf_body() %>%
+#'   rtf_encode() %>%
+#'   write_rtf(file[1])
+#' file2 <- head(cars) %>%
+#'   rtf_page(orientation = "landscape") %>%
+#'   rtf_body() %>%
+#'   rtf_encode() %>%
+#'   write_rtf(file[2])
 #' output <- tempfile(fileext = ".docx")
 #'
 #' assemble_docx(
@@ -116,7 +126,6 @@ assemble_rtf <- function(input,
 assemble_docx <- function(input,
                           output,
                           landscape = FALSE) {
-
   # input checking
   check_args(input, type = "character")
   check_args(output, type = "character", length = 1)
@@ -124,7 +133,7 @@ assemble_docx <- function(input,
   # define variables
   input <- normalizePath(input)
   n_input <- length(input)
-  missing_input <- input[! file.exists(input)]
+  missing_input <- input[!file.exists(input)]
   ext_output <- tolower(tools::file_ext(output))
 
   # input checking
@@ -133,31 +142,32 @@ assemble_docx <- function(input,
   match_arg(ext_output, "docx")
 
   # warning missing input
-  if(length(missing_input) > 0){
+  if (length(missing_input) > 0) {
     warning("Missing files: \n", paste(missing_input, collapse = "\n"))
     input <- setdiff(input, missing_input)
   }
 
   # assemble RTF
-  if (! requireNamespace("officer")){
+  if (!requireNamespace("officer")) {
     stop("The officer package is required but not installed.")
   }
 
   field <- ifelse(grepl("/", input),
-                  paste0("INCLUDETEXT \"", gsub("/", "\\\\\\\\", input), "\""),
-                  paste0("INCLUDETEXT \"", gsub("\\", "\\\\", input, fixed = "TRUE"), "\"")
+    paste0("INCLUDETEXT \"", gsub("/", "\\\\\\\\", input), "\""),
+    paste0("INCLUDETEXT \"", gsub("\\", "\\\\", input, fixed = "TRUE"), "\"")
   )
 
   docx <- officer::read_docx()
 
   for (i in seq_along(input)) {
-    docx <- officer::body_add_fpar(docx,
-                                   officer::fpar(
-                                     officer::ftext("Table "),
-                                     officer::run_word_field("SEQ Table \\* ARABIC"),
-                                     officer::run_linebreak(),
-                                     officer::run_word_field(field[i])
-                                   )
+    docx <- officer::body_add_fpar(
+      docx,
+      officer::fpar(
+        officer::ftext("Table "),
+        officer::run_word_field("SEQ Table \\* ARABIC"),
+        officer::run_linebreak(),
+        officer::run_word_field(field[i])
+      )
     )
     if (landscape[i]) {
       docx <- officer::body_end_section_landscape(docx)
@@ -169,5 +179,4 @@ assemble_docx <- function(input,
   }
 
   invisible(output)
-
 }

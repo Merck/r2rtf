@@ -15,99 +15,98 @@ rtf_text(
 teststratt <- attributes(teststr)
 
 test_that("check valid input arguments to justification", {
-
   # Check justification argument matches justification()$type
 
-  expect_error(rtf_paragraph(
-    text = teststr,
-    justification = 1
-  ),
-  "as.vector(justification) %in% para_justification$type is not TRUE",
-  fixed = TRUE
+  expect_error(
+    rtf_paragraph(
+      text = teststr,
+      justification = 1
+    ),
+    "as.vector(justification) %in% para_justification$type is not TRUE",
+    fixed = TRUE
   )
 })
 
 test_that("check valid input arguments to indent_first", {
-
   # Check indent_first argument only takes atomic numeric vector arguments
 
-  expect_error(rtf_paragraph(
-    text = teststr,
-    indent_first = "4"
-  ),
-  "is.numeric(indent_first) is not TRUE",
-  fixed = TRUE
+  expect_error(
+    rtf_paragraph(
+      text = teststr,
+      indent_first = "4"
+    ),
+    "is.numeric(indent_first) is not TRUE",
+    fixed = TRUE
   )
 })
 
 test_that("check valid input arguments to indent_left", {
-
   # Check indent_left argument only takes atomic numeric vector arguments
 
-  expect_error(rtf_paragraph(
-    text = teststr,
-    indent_left = "4"
-  ),
-  "is.numeric(indent_left) is not TRUE",
-  fixed = TRUE
+  expect_error(
+    rtf_paragraph(
+      text = teststr,
+      indent_left = "4"
+    ),
+    "is.numeric(indent_left) is not TRUE",
+    fixed = TRUE
   )
 })
 
 test_that("check valid input arguments to indent_right", {
-
   # Check indent_right argument only takes atomic numeric vector arguments
 
-  expect_error(rtf_paragraph(
-    text = teststr,
-    indent_right = "4"
-  ),
-  "is.numeric(indent_right) is not TRUE",
-  fixed = TRUE
+  expect_error(
+    rtf_paragraph(
+      text = teststr,
+      indent_right = "4"
+    ),
+    "is.numeric(indent_right) is not TRUE",
+    fixed = TRUE
   )
 })
 
 test_that("check valid input arguments to spacing", {
-
   # Check space argument matches spacing()$type
 
-  expect_error(rtf_paragraph(
-    text = teststr,
-    space = "2.5"
-  ),
-  "space %in% spacing$type is not TRUE",
-  fixed = TRUE
+  expect_error(
+    rtf_paragraph(
+      text = teststr,
+      space = "2.5"
+    ),
+    "space %in% spacing$type is not TRUE",
+    fixed = TRUE
   )
 })
 
 test_that("check valid input arguments to space_before", {
-
   # Check space_before argument only takes atomic numeric vector arguments
 
-  expect_error(rtf_paragraph(
-    text = teststr,
-    space_before = "4"
-  ),
-  "is.numeric(space_before) is not TRUE",
-  fixed = TRUE
+  expect_error(
+    rtf_paragraph(
+      text = teststr,
+      space_before = "4"
+    ),
+    "is.numeric(space_before) is not TRUE",
+    fixed = TRUE
   )
 })
 
 test_that("check valid input arguments to space_after", {
-
   # Check space_after argument only takes atomic numeric vector arguments
 
-  expect_error(rtf_paragraph(
-    text = teststr,
-    space_after = "4"
-  ),
-  "is.numeric(space_after) is not TRUE",
-  fixed = TRUE
+  expect_error(
+    rtf_paragraph(
+      text = teststr,
+      space_after = "4"
+    ),
+    "is.numeric(space_after) is not TRUE",
+    fixed = TRUE
   )
 })
 
 
 test_that("check line, paragraph space encoding", {
-
   # Check paragraph space encoding
 
   expect_match(
@@ -140,7 +139,6 @@ test_that("check line, paragraph space encoding", {
 })
 
 test_that("check page break encoding", {
-
   # Check page break new_page encoding
 
   expect_match(
@@ -153,7 +151,6 @@ test_that("check page break encoding", {
 })
 
 test_that("check indentation, alignment encoding", {
-
   # Check alignment justification encoding
 
   expect_match(
@@ -196,7 +193,6 @@ test_that("check indentation, alignment encoding", {
 })
 
 test_that("check hyphenation encoding", {
-
   # Check page break new_page encoding
 
   expect_match(

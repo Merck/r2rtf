@@ -55,7 +55,6 @@ rtf_figure <- function(tbl,
                        fig_width = 5,
                        fig_height = 5,
                        fig_format = NULL) {
-
   # Set Default Page Attributes
   if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
@@ -68,8 +67,8 @@ rtf_figure <- function(tbl,
   attr(tbl, "fig_width") <- matrix(fig_width, nrow = length(tbl), ncol = 1, byrow = TRUE)
   attr(tbl, "fig_height") <- matrix(fig_height, nrow = length(tbl), ncol = 1, byrow = TRUE)
 
-  if(is.null(attr(tbl, "fig_format"))){
-    if(is.null(fig_format)) stop("fig_format is required")
+  if (is.null(attr(tbl, "fig_format"))) {
+    if (is.null(fig_format)) stop("fig_format is required")
     attr(tbl, "fig_format") <- matrix(fig_format, nrow = length(tbl), ncol = 1, byrow = TRUE)
   }
 

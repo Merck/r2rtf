@@ -52,8 +52,6 @@ obj_rtf_border <- function(tbl,
                            cell_justification = "c",
                            cell_vertical_justification = "top",
                            cell_nrow = NULL) {
-
-
   # Check argument type
   check_args(border_left, type = c("character"))
   check_args(border_right, type = c("character"))
@@ -145,7 +143,7 @@ obj_rtf_border <- function(tbl,
   border_color_first <- foo(border_color_first)
   border_color_last <- foo(border_color_last)
 
-  if(! is.null(cell_nrow)){
+  if (!is.null(cell_nrow)) {
     cell_nrow <- rep_len(cell_nrow, length.out = n_row)
   }
 

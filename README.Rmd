@@ -74,8 +74,8 @@ library(dplyr)
 library(r2rtf)
 
 head(iris) %>%
-  rtf_body() %>%                 # Step 1 Add attributes
-  rtf_encode() %>%               # Step 2 Convert attributes to RTF encode
+  rtf_body() %>% # Step 1 Add attributes
+  rtf_encode() %>% # Step 2 Convert attributes to RTF encode
   write_rtf(file = "ex-tbl.rtf") # Step 3 Write to a .rtf file
 ```
 
@@ -120,9 +120,11 @@ try(
 # Transfer all RTF files to PDF files
 files <- list.files("vignettes/rtf", pattern = "*.rtf", full.names = TRUE)
 
-r2rtf:::rtf_convert_format(input = files, 
-                           format = "pdf",
-                           output_dir = "vignettes/pdf")
+r2rtf:::rtf_convert_format(
+  input = files,
+  format = "pdf",
+  output_dir = "vignettes/pdf"
+)
 
 r2rtf:::rtf_convert_format(
   input = files,

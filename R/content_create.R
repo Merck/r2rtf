@@ -28,7 +28,6 @@
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 as_rtf_init <- function() {
-
   # The number 1033 is U.S. English
   paste("{", "\\rtf1\\ansi\n\\deff0\\deflang1033", sep = "")
 }
@@ -202,9 +201,9 @@ as_rtf_title <- function(tbl) {
     return(NULL)
   }
 
-  if( length(unique(attr(title, "text_justification"))) > 1 ){
+  if (length(unique(attr(title, "text_justification"))) > 1) {
     paste0(as_rtf_paragraph(title, combine = FALSE), collapse = "")
-  }else{
+  } else {
     as_rtf_paragraph(title, combine = TRUE)
   }
 }
@@ -230,9 +229,9 @@ as_rtf_subline <- function(tbl) {
     return(NULL)
   }
 
-  if( length(unique(attr(subline, "text_justification"))) > 1 ){
+  if (length(unique(attr(subline, "text_justification"))) > 1) {
     paste0(as_rtf_paragraph(subline, combine = FALSE), collapse = "")
-  }else{
+  } else {
     as_rtf_paragraph(subline, combine = TRUE)
   }
 }
@@ -294,7 +293,7 @@ as_rtf_footnote <- function(tbl) {
     text_matrix <- matrix(paste(text_matrix, collapse = "\\line "), nrow = 1, ncol = 1)
 
     attr(text, "text_convert") <- matrix(FALSE, nrow = 1, ncol = 1)
-    attributes(text_matrix) <- append(attributes(text_matrix), lapply(attributes(text), `[`, 1) )
+    attributes(text_matrix) <- append(attributes(text_matrix), lapply(attributes(text), `[`, 1))
     attr(text_matrix, "col_rel_width") <- 1
     encode <- rtf_table_content(text_matrix,
       col_total_width = attr(tbl, "page")$col_width,
@@ -302,9 +301,9 @@ as_rtf_footnote <- function(tbl) {
     )
     paste(encode, collapse = "\n")
   } else {
-    if( length(unique(attr(text, "text_justification"))) > 1 ){
+    if (length(unique(attr(text, "text_justification"))) > 1) {
       paste0(as_rtf_paragraph(text, combine = FALSE), collapse = "")
-    }else{
+    } else {
       as_rtf_paragraph(text, combine = TRUE)
     }
   }
@@ -342,7 +341,7 @@ as_rtf_source <- function(tbl) {
     text_matrix <- matrix(paste(text_matrix, collapse = "\\line "), nrow = 1, ncol = 1)
 
     attr(text, "text_convert") <- matrix(FALSE, nrow = 1, ncol = 1)
-    attributes(text_matrix) <- append(attributes(text_matrix), lapply(attributes(text), `[`, 1) )
+    attributes(text_matrix) <- append(attributes(text_matrix), lapply(attributes(text), `[`, 1))
     attr(text_matrix, "col_rel_width") <- 1
     encode <- rtf_table_content(text_matrix,
       col_total_width = attr(tbl, "page")$col_width,
@@ -350,9 +349,9 @@ as_rtf_source <- function(tbl) {
     )
     paste(encode, collapse = "\n")
   } else {
-    if( length(unique(attr(text, "text_justification"))) > 1 ){
+    if (length(unique(attr(text, "text_justification"))) > 1) {
       paste0(as_rtf_paragraph(text, combine = FALSE), collapse = "")
-    }else{
+    } else {
       as_rtf_paragraph(text, combine = TRUE)
     }
   }

@@ -43,7 +43,6 @@
 #'   rtf_body(text_font = c(1, 3)) %>%
 #'   r2rtf:::rtf_strwidth()
 rtf_strwidth <- function(tbl) {
-
   # Text matrix
   if (!is.null(dim(tbl))) {
     text <- apply(tbl, 2, as.character)
@@ -94,7 +93,6 @@ rtf_strwidth <- function(tbl) {
 
   db_list <- split(db, db$index)
   db_list <- lapply(db_list, function(x) {
-
     # Mapping Windows Font
     if (.Platform$OS.type == "windows") {
       grDevices::windowsFonts("Arial" = grDevices::windowsFont("Arial"))

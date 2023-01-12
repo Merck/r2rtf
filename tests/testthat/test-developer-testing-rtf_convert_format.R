@@ -13,4 +13,3 @@ test_that("Report ERROR if libreoffice7.1 is not avaiable", {
     expect_equal(rtf_convert_format(input = file, output_dir = tempdir()), file.path(tempdir(), "tmp.pdf"))
   }
 })
-
