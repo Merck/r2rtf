@@ -63,8 +63,6 @@ rtf_paragraph <- function(text,
                           new_page = FALSE,
                           hyphenation = TRUE,
                           cell = FALSE) {
-
-
   ## Define dictionary
   para_justification <- justification()
   spacing <- spacing()

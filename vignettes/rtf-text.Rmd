@@ -208,12 +208,13 @@ color <- c("black", "black", "red", "black")
 background_color <- c("white", "white", "white", "yellow")
 
 res <- r2rtf:::rtf_paragraph(
-  paste(r2rtf:::rtf_text(text,
-    format = format,
-    color = color,
-    background_color = background_color
-  ),
-  collapse = ""
+  paste(
+    r2rtf:::rtf_text(text,
+      format = format,
+      color = color,
+      background_color = background_color
+    ),
+    collapse = ""
   )
 )
 r2rtf:::write_rtf_para(res, "rtf/text-combine2.rtf")

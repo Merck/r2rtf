@@ -31,7 +31,6 @@
 #' @inheritParams rtf_encode
 #'
 rtf_encode_list <- function(tbl) {
-
   # Page Input checking
   page <- lapply(tbl, function(x) attr(x, "page"))
   width <- length(unique(lapply(page, function(x) x$width))) > 1

@@ -1,6 +1,6 @@
 Package: r2rtf
 Title: Easily Create Production-Ready Rich Text Format (RTF) Table and Figure
-Version: 0.4.0
+Version: 1.0.0
 Authors@R: c(
     person("Yilong", "Zhang", email = "elong0527@gmail.com", role = c("aut", "cre")),
     person("Siruo", "Wang", role = "aut"),
@@ -49,4 +49,4 @@ Suggests:
     magrittr
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3

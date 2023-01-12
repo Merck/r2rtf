@@ -68,7 +68,6 @@ cell_size <- function(col_rel_width, col_total_width) {
 #'
 convert <- function(text,
                     load_stringi = class(try(stringi::stri_replace_all_fixed, silent = TRUE)) != "try-error") {
-
   # grepl(">|<|=|_|\\^|(\\\\)|(\\n)", c(">", "<", "=", "_", "\n", "\\line", "abc"))
   index <- grepl(">|<|=|_|\\^|(\\\\)|(\\n)", text)
 
@@ -83,7 +82,7 @@ convert <- function(text,
     "<=" = "\\leq ",
     "\n" = "\\line ",
     "\\pagenumber" = "\\chpgn ",
-    "\\totalpage"  = "\\totalpage ",
+    "\\totalpage" = "\\totalpage ",
     "\\pagefield" = "{\\field{\\*\\fldinst NUMPAGES }} "
   )
 

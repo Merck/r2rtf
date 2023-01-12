@@ -127,7 +127,6 @@ rtf_body <- function(tbl,
                      pageby_row = "column",
                      subline_by = NULL,
                      last_row = TRUE) {
-
   # Check argument type
   check_args(tbl, type = c("data.frame"))
 

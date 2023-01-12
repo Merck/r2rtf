@@ -108,7 +108,6 @@ irspagebyrows <- attr(attr(irs1, "rtf_pageby_row")$Species, "rtf_nrow")
 
 
 test_that("test if rtf_nline_vector() return to correct numbers", {
-
   # line for first vector
   expect_equal(nline_vector[1], 1)
 
@@ -117,7 +116,6 @@ test_that("test if rtf_nline_vector() return to correct numbers", {
 })
 
 test_that("test if rtf_nline_matrix() return to correct numbers", {
-
   # maximum lines for first row
   expect_equal(nline_matrix[1], 6)
 
@@ -127,7 +125,6 @@ test_that("test if rtf_nline_matrix() return to correct numbers", {
 
 
 test_that("test if nrow_paragraph() return to correct number of titles when there are 3 title lines", {
-
   # title lines through rtf_nrow
   expect_equal(titles, 4)
 
@@ -137,7 +134,6 @@ test_that("test if nrow_paragraph() return to correct number of titles when ther
 
 
 test_that("test if nrow_paragraph() return to correct number of sublines", {
-
   # subline lines through rtf_nrow
   expect_equal(sublines, 3)
 
@@ -157,7 +153,6 @@ test_that("test for nrow_table() when as_table attr is TRUE", {
 
 
 test_that("test for nrow_table() if actual column size are calculated correctly", {
-
   # first cell size calculated within nrow_table
   expect_equal(round(cellsize[1, 1], 5), round(6.25 * 1 / 6 - 0.2, 5))
 

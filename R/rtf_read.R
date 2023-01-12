@@ -35,7 +35,7 @@
 #' \dontrun{
 #'
 #' # Read in PNG file in binary format
-#' file <- tempfile("figure",fileext=".png")
+#' file <- tempfile("figure", fileext = ".png")
 #' png(file)
 #' plot(1:10)
 #' dev.off()
@@ -43,21 +43,17 @@
 #'
 #' rtf_read_figure(file)
 #'
-#' \dontrun{
 #' # Read in EMF file in binary format
 #' library(devEMF)
-#' file <- tempfile("figure",fileext=".emf")
+#' file <- tempfile("figure", fileext = ".emf")
 #' emf(file)
 #' plot(1:10)
 #' dev.off()
 #'
 #' rtf_read_figure(file)
 #' }
-#'
-#' }
 #' @export
-rtf_read_figure <- function(file){
-
+rtf_read_figure <- function(file) {
   out <- lapply(file, readBin, what = "raw", size = 1, signed = TRUE, endian = "little", n = 1e8)
 
   attr(out, "fig_format") <- tools::file_ext(file)
@@ -80,7 +76,7 @@ rtf_read_figure <- function(file){
 #' @return a list of binary data vector returned by \code{readBin}
 #'
 #' @export
-rtf_read_png <- function(file){
+rtf_read_png <- function(file) {
   warning("Deprecated: rtf_read_png. Use rtf_read_figure instead")
   rtf_read_figure(file)
 }

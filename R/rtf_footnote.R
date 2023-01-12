@@ -141,7 +141,6 @@ rtf_footnote <- function(tbl,
                          text_space_after = 15,
                          text_convert = TRUE,
                          as_table = TRUE) {
-
   # Check argument type
   check_args(footnote, type = "character")
   check_args(as_table, type = "logical")
@@ -192,13 +191,13 @@ rtf_footnote <- function(tbl,
       border_top,
       border_bottom,
       border_first = NULL,
-      border_last  = NULL,
+      border_last = NULL,
       border_color_left,
       border_color_right,
       border_color_top,
       border_color_bottom,
       border_color_first = NULL,
-      border_color_last  = NULL,
+      border_color_last = NULL,
       border_width = border_width,
       cell_height = cell_height,
       cell_justification = cell_justification,

@@ -35,25 +35,22 @@ rtf_convert_format <- function(input,
                                output_dir = ".",
                                format = "pdf",
                                overwrite = FALSE) {
-
-  if(length(input) == 0) stop("The input variable can not be null")
+  if (length(input) == 0) stop("The input variable can not be null")
 
   match_arg(tolower(format), c("pdf", "docx", "html"))
 
   # Check libreoffice dependency
   if (.Platform$OS.type == "unix") {
-
-    sys_cmd <- c("libreoffice7.2","libreoffice7.1", "libreoffice")
+    sys_cmd <- c("libreoffice7.2", "libreoffice7.1", "libreoffice")
     sys_loc <- which(Sys.which(sys_cmd) != "")[1]
-    if(is.na(sys_loc)) stop("libreoffice is required")
+    if (is.na(sys_loc)) stop("libreoffice is required")
     sys_cmd <- sys_cmd[sys_loc]
 
     # Libreoffice version require to be >= 7.1
     version <- strsplit(system(paste(sys_cmd, "--version"), intern = TRUE), " ")[[1]][[2]]
-    if(as.package_version(version) < as.package_version("7.1")){
+    if (as.package_version(version) < as.package_version("7.1")) {
       stop("libreoffice version required to be >= 7.1")
     }
-
   } else {
     stop("Only Unix/Linux is currently supported")
   }
@@ -61,29 +58,27 @@ rtf_convert_format <- function(input,
   file_pattern <- paste0("*.", format)
 
   # Add blank cell for html output
-  if(format == "html"){
-
+  if (format == "html") {
     dir.create(file.path(tempdir(), "rtf"), showWarnings = FALSE)
     input_convert <- file.path(tempdir(), "rtf", basename(input))
 
-    for(i in seq_along(input)){
-
+    for (i in seq_along(input)) {
       x <- readLines(input[i])
       x <- update_cellx(x)
 
       index <- grep("^\\{\\\\pard", x)
 
       x_cell <- gsub("\\\\par", "\\\\cell", x[index])
-      x_cell <- paste0("\\trowd\\trgaph108\\trleft0\\trqc\\cellx", attr(x, "max_twip"), "\n",
-                       x_cell, "\n\\intbl\\row\\pard")
+      x_cell <- paste0(
+        "\\trowd\\trgaph108\\trleft0\\trqc\\cellx", attr(x, "max_twip"), "\n",
+        x_cell, "\n\\intbl\\row\\pard"
+      )
 
       x[index] <- x_cell
 
       write_rtf(x, input_convert[i])
     }
-
-
-  }else{
+  } else {
     input_convert <- input
   }
 
@@ -169,29 +164,29 @@ rtf_convert_format <- function(input,
 #' @return a character vector of RTF encoding.
 #'
 #' @keywords internal
-update_cellx <- function(x, tolerance = 5){
-
+update_cellx <- function(x, tolerance = 5) {
   cellx <- regmatches(x, gregexpr("cellx([0-9]+)", x))
 
   index <- sapply(cellx, function(x) length(x) > 0)
 
   cellx_num <- sort(as.numeric(gsub("cellx", "", unique(unlist(cellx)))))
 
-  if(length(cellx_num) == 0) return(x)
+  if (length(cellx_num) == 0) {
+    return(x)
+  }
 
-  cellx_diff <- cumsum(c(tolerance+1, diff(cellx_num)) > tolerance)
+  cellx_diff <- cumsum(c(tolerance + 1, diff(cellx_num)) > tolerance)
 
   cellx_update <- unlist(tapply(cellx_num, cellx_diff, function(x) rep(max(x), length(x))))
 
-  origin  <- paste0("\\\\cellx",cellx_num[cellx_num != cellx_update])
-  convert <- paste0("\\\\cellx",cellx_update[cellx_num != cellx_update])
+  origin <- paste0("\\\\cellx", cellx_num[cellx_num != cellx_update])
+  convert <- paste0("\\\\cellx", cellx_update[cellx_num != cellx_update])
 
-  for(i in seq_along(origin)){
+  for (i in seq_along(origin)) {
     x[index] <- gsub(origin[i], convert[i], x[index])
   }
 
   attr(x, "max_twip") <- max(cellx_num, na.rm = TRUE)
 
   x
-
 }

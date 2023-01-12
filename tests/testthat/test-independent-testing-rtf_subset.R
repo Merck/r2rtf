@@ -1,5 +1,4 @@
 test_that("Input check for arguments", {
-
   # check each arguments with different input type
   expect_error(rtf_subset(c("a", "b"), row = 1, col = 1))
   expect_error(rtf_subset(matrix(1:9, nrow = 3, ncol = 3), row = 1:2, col = c(1:2)))

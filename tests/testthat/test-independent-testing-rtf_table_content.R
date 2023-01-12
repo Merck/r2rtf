@@ -34,7 +34,6 @@ testdat2 <- rtf_table_content(
 )
 
 test_that("RTF table content generation", {
-
   # Check cell text font type encoding
   expect_snapshot_output(testdat2)
 })

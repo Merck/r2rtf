@@ -73,4 +73,3 @@
 #'
 #' @format A data frame with 1 row and 1 variable.
 "r2rtf_tbl3"
-

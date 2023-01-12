@@ -6,7 +6,6 @@ testdatatt <- attributes(testdat)
 
 
 test_that("case when as_colheader equals to NULL", {
-
   # Check case when as_colheader equals to ""
 
   expect_error(
@@ -29,7 +28,6 @@ test_that("case when as_colheader equals to NULL", {
 })
 
 test_that("Column relative width", {
-
   # Check case when col_rel_width equals to ""
 
   expect_error(
@@ -52,7 +50,6 @@ test_that("Column relative width", {
 })
 
 test_that("border type and color", {
-
   # Check border type and color attributes defaults
 
   testdat2 <- testdat %>%
@@ -212,7 +209,6 @@ test_that("border type and color", {
 })
 
 test_that("cell justification and height", {
-
   # Check cell justification and height attribute default
 
   testdat2 <- testdat %>%
@@ -234,7 +230,6 @@ test_that("cell justification and height", {
 })
 
 test_that("text type", {
-
   # Check text attributes default
 
   testdat2 <- testdat %>%
