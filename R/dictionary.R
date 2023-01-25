@@ -159,9 +159,9 @@ justification <- function() {
 #'
 vertical_justification <- function() {
   data.frame(
-    type = c("top", "bottom"),
-    name = c("top", "bottom"),
-    rtf_code = c("", "\\clvertalb"),
+    type = c("top", "middle", "bottom", "merge_first", "merge_rest"),
+    name = c("top", "middle", "bottom", "merge_first", "merge_rest"),
+    rtf_code = c("\\clvertalt", "\\clvertalc", "\\clvertalb", "\\clvertalc\\clvmgf", "\\clvertalc\\clvmrg"),
     stringsAsFactors = FALSE
   )
 }
