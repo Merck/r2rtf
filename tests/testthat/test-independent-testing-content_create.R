@@ -96,18 +96,18 @@ test_that("RTF colheader ", {
 
 test_that("RTF footnote font encode - font 2", {
   x <- iris %>% rtf_footnote(footnote = "test", text_font = 2)
-  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f1 test}\\cell\n\\intbl\\row\\pard")
+ expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\clvertalt\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f1 test}\\cell\n\\intbl\\row\\pard")
 })
 
 test_that("RTF footnote font encode - font 3", {
   x <- iris %>% rtf_footnote(footnote = "test", text_font = 3)
-  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f2 test}\\cell\n\\intbl\\row\\pard")
+  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\clvertalt\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f2 test}\\cell\n\\intbl\\row\\pard")
 })
 
 
 test_that("RTF footnote format, size and color encode", {
   x <- iris %>% rtf_footnote(footnote = "test", text_font_size = 8, text_format = "i", text_color = "red")
-  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs16{\\f0\\i\\cf552 test}\\cell\n\\intbl\\row\\pard")
+  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\clvertalt\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs16{\\f0\\i\\cf552 test}\\cell\n\\intbl\\row\\pard")
 })
 
 test_that("RTF footnote NULL", {
@@ -117,7 +117,7 @@ test_that("RTF footnote NULL", {
 
 test_that("RTF footnote when as_table = TRUE", {
   x <- iris %>% rtf_footnote(footnote = "test", as_table = TRUE)
-  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f0 test}\\cell\n\\intbl\\row\\pard")
+  expect_equal(as_rtf_footnote(x), "\\trowd\\trgaph108\\trleft0\\trqc\n\\clbrdrl\\brdrs\\brdrw15\\clbrdrt\\brdrw15\\clbrdrr\\brdrs\\brdrw15\\clbrdrb\\brdrs\\brdrw15\\clvertalt\\cellx9000\n\\pard\\hyphpar0\\sb15\\sa15\\fi0\\li0\\ri0\\ql\\fs18{\\f0 test}\\cell\n\\intbl\\row\\pard")
 })
 
 test_that("RTF footnote when as_table = FALSE", {
