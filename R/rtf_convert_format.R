@@ -41,7 +41,7 @@ rtf_convert_format <- function(input,
 
   # Check libreoffice dependency
   if (.Platform$OS.type == "unix") {
-    sys_cmd <- c("libreoffice7.2", "libreoffice7.1", "libreoffice")
+    sys_cmd <- c("libreoffice7.3", "libreoffice7.2", "libreoffice7.1", "libreoffice")
     sys_loc <- which(Sys.which(sys_cmd) != "")[1]
     if (is.na(sys_loc)) stop("libreoffice is required")
     sys_cmd <- sys_cmd[sys_loc]
