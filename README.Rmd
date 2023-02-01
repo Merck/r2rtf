@@ -32,6 +32,9 @@ The R package is designed to
   + Data manipulation and analysis shall be handled by other R packages. (e.g., `tidyverse`)
 - minimizes package dependency 
 
+The [R for clinical study reports and submission](https://r4csr.org/) book 
+provides tutorials by using real world examples.   
+
 ## Installation
 
 You can install the package via CRAN:
@@ -50,7 +53,7 @@ remotes::install_github("Merck/r2rtf")
 
 The R package`r2rtf` provided flexibility to enable features below:
 
-* Necessary options to create highly customized RTF table and figure. 
+* Create highly customized RTF table and figure ready for production. 
 * Simple to use parameters and data structure.
     + Customized column header: split by `"|"`. 
     + Three required parameters for the output tables (data, filename, column relative width).
