@@ -1,4 +1,4 @@
-# r2rtf 1.0.1 (2023-02-01)
+# r2rtf 1.0.1 (2023-02-02)
 
 * New feature: enable vertical alignment (#136)
 * bug fix: enable libreoffice7.3 (#92)
