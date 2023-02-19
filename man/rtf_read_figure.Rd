@@ -29,7 +29,7 @@ Supported format is listed in \code{r2rtf:::fig_format()}.
 \dontrun{
 
 # Read in PNG file in binary format
-file <- tempfile("figure",fileext=".png")
+file <- tempfile("figure", fileext = ".png")
 png(file)
 plot(1:10)
 dev.off()
@@ -37,16 +37,13 @@ dev.off()
 
 rtf_read_figure(file)
 
-\dontrun{
 # Read in EMF file in binary format
 library(devEMF)
-file <- tempfile("figure",fileext=".emf")
+file <- tempfile("figure", fileext = ".emf")
 emf(file)
 plot(1:10)
 dev.off()
 
 rtf_read_figure(file)
-}
-
 }
 }
