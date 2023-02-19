@@ -4,10 +4,12 @@
 \alias{as_rtf_footnote}
 \title{Create Footnote RTF Encode}
 \usage{
-as_rtf_footnote(tbl)
+as_rtf_footnote(tbl, attr_name = "rtf_footnote")
 }
 \arguments{
 \item{tbl}{A data frame.}
+
+\item{attr_name}{a character value of attribute name.}
 }
 \description{
 Create Footnote RTF Encode
