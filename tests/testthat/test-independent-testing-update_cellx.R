@@ -1,4 +1,3 @@
-
 file <- file.path(tempdir(), "tmp.rtf")
 
 iris[1:2, 1:2] %>%
