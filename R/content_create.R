@@ -277,7 +277,7 @@ as_rtf_colheader <- function(tbl) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
-as_rtf_footnote <- function(tbl, attr_name =  "rtf_footnote") {
+as_rtf_footnote <- function(tbl, attr_name = "rtf_footnote") {
   text <- attr(tbl, attr_name)
 
   if (is.null(text)) {
@@ -285,26 +285,26 @@ as_rtf_footnote <- function(tbl, attr_name =  "rtf_footnote") {
   }
 
   if (attr(text, "as_table")) {
-
     indent <- unlist(
-        attr(text, "text_indent_first"),
-        attr(text, "text_indent_left"),
-        attr(text, "text_indent_right")
-        )
+      attr(text, "text_indent_first"),
+      attr(text, "text_indent_left"),
+      attr(text, "text_indent_right")
+    )
 
-    if(any(indent != 0)){
+    if (any(indent != 0)) {
       text_matrix <- matrix(text, ncol = 1)
       attributes(text_matrix) <- append(attributes(text_matrix), attributes(text))
 
       # handle border bottom to only display the last one
       border_bottom <- matrix("", nrow = nrow(text_matrix), ncol = 1)
-      border_bottom[nrow(border_bottom), 1] <- tail(unlist(attr(text_matrix, "border_bottom")),1)
+      border_bottom[nrow(border_bottom), 1] <- tail(unlist(attr(text_matrix, "border_bottom")), 1)
       attr(text_matrix, "border_bottom") <- border_bottom
 
       encode <- rtf_table_content(text_matrix,
-                                  col_total_width = attr(tbl, "page")$col_width,
-                                  use_border_bottom = TRUE)
-    }else{
+        col_total_width = attr(tbl, "page")$col_width,
+        use_border_bottom = TRUE
+      )
+    } else {
       if (any(attr(text, "text_convert"))) {
         text_matrix <- convert(text)
       } else {
@@ -318,8 +318,8 @@ as_rtf_footnote <- function(tbl, attr_name =  "rtf_footnote") {
       attr(text_matrix, "col_rel_width") <- 1
 
       encode <- rtf_table_content(text_matrix,
-                                  col_total_width = attr(tbl, "page")$col_width,
-                                  use_border_bottom = TRUE
+        col_total_width = attr(tbl, "page")$col_width,
+        use_border_bottom = TRUE
       )
     }
     paste(encode, collapse = "\n")
