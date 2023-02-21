@@ -204,9 +204,10 @@ table layout. Commonly used verbs includes:</p>
 <li>
 <code>rtf_source</code>: RTF data source information</li>
 </ul>
-<p>All these verbs is designed to enables usage of pipes
-(<code>%&gt;%</code>). A full list of all functions can be found in <a href="https://merck.github.io/r2rtf/reference/index.html">package
-reference</a></p>
+<p>All these verbs are designed to enables usage of pipes
+(<code>%&gt;%</code>). A full list of all functions can be found in the
+<a href="https://merck.github.io/r2rtf/reference/index.html">package
+reference</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="simple-example">Simple Example<a class="anchor" aria-label="anchor" href="#simple-example"></a>
@@ -215,12 +216,12 @@ reference</a></p>
 to create an RTF table.</p>
 <ul>
 <li>
-<code><a href="../reference/rtf_body.html">rtf_body()</a></code> is used to define table body layout.</li>
+<code><a href="../reference/rtf_body.html">rtf_body()</a></code> defines table body layout.</li>
 <li>
 <code><a href="../reference/rtf_encode.html">rtf_encode()</a></code> transfers table layout information into
 RTF syntax.</li>
 <li>
-<code><a href="../reference/write_rtf.html">write_rtf()</a></code> save RTF encoding into a file with file
+<code><a href="../reference/write_rtf.html">write_rtf()</a></code> saves RTF encoding into a file with file
 extension <code>.rtf</code>.</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -234,7 +235,7 @@ extension <code>.rtf</code>.</li>
 <h2 id="column-width">Column Width<a class="anchor" aria-label="anchor" href="#column-width"></a>
 </h2>
 <p>If we want to adjust the width of each column to provide more space
-to the first column, and this can be achieved by updating
+to the first column, this can be achieved by updating
 <code>col_rel_width</code> in <code>rtf_body</code>.</p>
 <p>The input of <code>col_rel_width</code> is a vector with same length
 for number of columns. This argument defines the relative length of each
@@ -262,8 +263,8 @@ argument of the <code><a href="../reference/rtf_page.html">rtf_page()</a></code>
 <div class="section level2">
 <h2 id="column-headers">Column Headers<a class="anchor" aria-label="anchor" href="#column-headers"></a>
 </h2>
-<p>In previous example, we found issue of misaligned column header. We
-can fix the issue by using the <code><a href="../reference/rtf_colheader.html">rtf_colheader()</a></code>
+<p>In the previous example, we found an issue of misaligned column
+header. We can fix the issue by using the <code><a href="../reference/rtf_colheader.html">rtf_colheader()</a></code>
 function.</p>
 <p>In <code>rtf_colheader</code>, <code>colheader</code> argument is
 used to provide content of column header. We used <code>"|"</code> to
@@ -319,8 +320,8 @@ vector with length of vector equal to number of columns displayed (e.g.,
 <span><span class="co">## 3    r     right          \\qr       \\trqr</span></span>
 <span><span class="co">## 4    d   decimal          \\qj             </span></span>
 <span><span class="co">## 5    j justified          \\qj</span></span></code></pre></div>
-<p>Below is an example to make first column left aligned and center
-aligned for the rest.</p>
+<p>Below is an example that makes the first column left-aligned and
+center-aligned for the rest.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>text_justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"c"</span>, <span class="st">"c"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -366,14 +367,14 @@ rest.</p>
 <p>In <code>rtf_*()</code> functions such as <code><a href="../reference/rtf_body.html">rtf_body()</a></code>,
 <code><a href="../reference/rtf_footnote.html">rtf_footnote()</a></code>, etc., <code>border_left</code>,
 <code>border_right</code>, <code>border_top</code>, and
-<code>border_bottom</code> control border.</p>
+<code>border_bottom</code> control the border.</p>
 <p>In example of <code>intro-ae4.rtf</code>, if we want to remove the
 top border of <code>"Adverse Events"</code> in header, we can change
 default value <code>"single"</code> to <code>""</code> in
-<code>border_top</code> argument as showed below.</p>
+<code>border_top</code> argument as shown below.</p>
 <p>All possible border type inputs can be found in
-<code>r2rtf:::border_type()</code>. There are 26 different border type,
-we only display first six here.</p>
+<code>r2rtf:::border_type()</code>. There are 26 different border types
+and we only display the first six here.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/border_type.html">border_type</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">##         name     rtf_code</span></span>
@@ -539,8 +540,8 @@ specified character to be converted to LaTeX command
 <span class="math inline">\(\alpha\)</span>, <span class="math inline">\(\pm\)</span>, <span class="math inline">\(\infty\)</span>. You will need to use double
 backslash <code>\\</code> to escape backslash in R.
 i.e. <code>"\\alpha"</code>, <code>"\\pm"</code> and
-<code>"\\infty"</code>. A list of LaTex commands can be found <a href="https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols" class="external-link">here</a></p>
-<p>Example below demonstrate the idea.</p>
+<code>"\\infty"</code>. A list of LaTex commands can be found <a href="https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols" class="external-link">here</a>.</p>
+<p>Example below demonstrates this idea.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span>title <span class="op">=</span> <span class="st">"Adverse Event Count by Treatment Group{^a}"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -564,13 +565,13 @@ i.e. <code>"\\alpha"</code>, <code>"\\pm"</code> and
 <div class="section level2">
 <h2 id="table-color">Table Color<a class="anchor" aria-label="anchor" href="#table-color"></a>
 </h2>
-<p>Each cell’s text and background color are controllable. Take
-<code>intro-ae13.rtf</code> as an example, if we want to add gray
+<p>Each cell’s text and background color are adjustable. Take
+<code>intro-ae13.rtf</code> as an example. If we want to add gray
 background color to cells with 0 AE, we need to create a color name
 matrix corresponding to each cell in table body.</p>
-<p>Then assign this background color matrix to
+<p>Then we need to assign this background color matrix to
 <code>text_background_color</code> argument in the
-<code><a href="../reference/rtf_body.html">rtf_body()</a></code> function as showed below.</p>
+<code><a href="../reference/rtf_body.html">rtf_body()</a></code> function as shown below.</p>
 <p>Note:</p>
 <ul>
 <li>When creating a color name matrix, each element needs to be a color
@@ -609,8 +610,8 @@ name defined in <code><a href="https://rdrr.io/r/grDevices/colors.html" class="e
 <code>nrow</code> argument of <code><a href="../reference/rtf_page.html">rtf_page()</a></code> function. Every
 lines is counted including title, subline, header, body, footnote,
 source, and extra rows.</p>
-<p>The value in <code>nrow</code> is the maximum of row allowed in one
-page, the actual rows display can be slightly smaller.</p>
+<p>The value in <code>nrow</code> is the maximum number of rows allowed
+in one page, the actual rows display can be slightly smaller.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tbl</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">50</span>, <span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_page.html">rtf_page</a></span><span class="op">(</span>nrow <span class="op">=</span> <span class="fl">40</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -634,9 +635,9 @@ page, the actual rows display can be slightly smaller.</p>
 <code><a href="../reference/rtf_body.html">rtf_body()</a></code> function to group table by assigning the
 <code>subline_by</code> variable.</p>
 <p>A subject line will be displayed at the beginning of each page based
-on the variable provided to <code>subline_by</code>. Different value of
-<code>subline_by</code> will be break into different pages.</p>
-<p>Below example showed using treatment group as the
+on the variable provided to <code>subline_by</code>. Different values of
+<code>subline_by</code> will be broken into different pages.</p>
+<p>Below example shows using treatment group as the
 <code>subline_by</code> variable.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">aegt5</span> <span class="op">&lt;-</span> <span class="va">r2rtf_adae</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -673,8 +674,8 @@ on the variable provided to <code>subline_by</code>. Different value of
 row with assigned <code>page_by</code> variable’s value in it.</p>
 <p>A row header will be generated at the beginning of each
 <code>page_by</code> group.</p>
-<p>if <code>new_page = TRUE</code>, different value of
-<code>group_by</code> will be break into different pages. Default is
+<p>If <code>new_page = TRUE</code>, different values of
+<code>group_by</code> will be broken into different pages. Default is
 <code>FALSE</code>.</p>
 <p>Below example showed using treatment group as <code>page_by</code>
 variable.</p>
@@ -695,7 +696,7 @@ variable.</p>
 </h2>
 <p>Users can use the <code>group_by</code> argument in the
 <code><a href="../reference/rtf_body.html">rtf_body()</a></code> function to display once for group variable.</p>
-<p>Below example showed using treatment group as <code>group_by</code>
+<p>Below example shows using treatment group as <code>group_by</code>
 variable.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">aegt5</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
