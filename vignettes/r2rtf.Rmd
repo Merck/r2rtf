@@ -90,16 +90,16 @@ tbl %>% head(4)
 - `rtf_footnote`: RTF footnote information
 - `rtf_source`: RTF data source information
 
-All these verbs is designed to enables usage of pipes (`%>%`).
-A full list of all functions can be found in [package reference](https://merck.github.io/r2rtf/reference/index.html)
+All these verbs are designed to enables usage of pipes (`%>%`).
+A full list of all functions can be found in the [package reference](https://merck.github.io/r2rtf/reference/index.html).
 
 ## Simple Example
 
 A minimal example below illustrates how to combine verbs using pipes to create an RTF table.
 
-- `rtf_body()` is used to define table body layout.
+- `rtf_body()` defines table body layout.
 - `rtf_encode()` transfers table layout information into RTF syntax.
-- `write_rtf()` save RTF encoding into a file with file extension `.rtf`.
+- `write_rtf()` saves RTF encoding into a file with file extension `.rtf`.
 
 ```{r}
 head(tbl) %>%
@@ -114,8 +114,8 @@ knitr::include_graphics("pdf/intro-ae1.pdf")
 
 ## Column Width
 
-If we want to adjust the width of each column to provide more space to the first column,
-and this can be achieved by updating `col_rel_width` in `rtf_body`.
+If we want to adjust the width of each column to provide more space to the first column, 
+this can be achieved by updating `col_rel_width` in `rtf_body`.
 
 The input of `col_rel_width` is a vector with same length for number of columns.
 This argument defines the relative length of each column within a pre-defined total column width.
@@ -143,7 +143,7 @@ Note:
 
 ## Column Headers
 
-In previous example, we found issue of misaligned column header.
+In the previous example, we found an issue of misaligned column header.
 We can fix the issue by using the `rtf_colheader()` function.
 
 In `rtf_colheader`, `colheader` argument is used to provide content of column header.
@@ -204,7 +204,7 @@ All possible inputs can be found in the first column of `r2rtf:::justification()
 r2rtf:::justification()
 ```
 
-Below is an example to make first column left aligned and center aligned for the rest.
+Below is an example that makes the first column left-aligned and center-aligned for the rest.
 
 ```{r}
 head(tbl) %>%
@@ -249,13 +249,13 @@ knitr::include_graphics("pdf/intro-ae6.pdf")
 ## Table Border
 
 In `rtf_*()` functions such as `rtf_body()`, `rtf_footnote()`, etc.,
-`border_left`, `border_right`, `border_top`, and `border_bottom` control border.
+`border_left`, `border_right`, `border_top`, and `border_bottom` control the border.
 
 In example of `intro-ae4.rtf`, if we want to remove the top border of `"Adverse Events"` in header,
-we can change default value `"single"` to `""` in `border_top` argument as showed below.
+we can change default value `"single"` to `""` in `border_top` argument as shown below.
 
 All possible border type inputs can be found in `r2rtf:::border_type()`.
-There are 26 different border type, we only display first six here.
+There are 26 different border types and we only display the first six here.
 
 ```{r}
 head(r2rtf:::border_type())
@@ -433,9 +433,9 @@ LaTeX command `'\\leq'` to generate special character $\leq$.
 
 LaTeX commands can be used for Greek letters and math symbol such as $\alpha$, $\pm$, $\infty$.
 You will need to use double backslash `\\` to escape backslash in R. i.e. `"\\alpha"`, `"\\pm"` and `"\\infty"`.
-A list of LaTex commands can be found [here](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols)
+A list of LaTex commands can be found [here](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols).
 
-Example below demonstrate the idea.
+Example below demonstrates this idea.
 
 ```{r}
 head(tbl) %>%
@@ -463,11 +463,11 @@ knitr::include_graphics("pdf/intro-ae13.pdf")
 
 ## Table Color
 
-Each cell's text and background color are controllable.
-Take `intro-ae13.rtf` as an example, if we want to add gray background color to cells with 0 AE,
+Each cell's text and background color are adjustable.
+Take `intro-ae13.rtf` as an example. If we want to add gray background color to cells with 0 AE,
 we need to create a color name matrix corresponding to each cell in table body.
 
-Then assign this background color matrix to `text_background_color` argument in the `rtf_body()` function as showed below.
+Then we need to assign this background color matrix to `text_background_color` argument in the `rtf_body()` function as shown below.
 
 Note:
 
@@ -503,7 +503,7 @@ knitr::include_graphics("pdf/intro-ae14.pdf")
 The total number of rows in each page can be controlled in `nrow` argument of `rtf_page()` function.
 Every lines is counted including title, subline, header, body, footnote, source, and extra rows.
 
-The value in `nrow` is the maximum of row allowed in one page, the actual rows display can be slightly smaller.
+The value in `nrow` is the maximum number of rows allowed in one page, the actual rows display can be slightly smaller.
 
 ```{r}
 tbl[1:50, ] %>%
@@ -530,9 +530,9 @@ knitr::include_graphics("pdf/intro-ae15.pdf")
 Users can use the `subline_by` argument in the `rtf_body()` function to group table by assigning the `subline_by` variable.
 
 A subject line will be displayed at the beginning of each page based on the variable provided to `subline_by`.
-Different value of `subline_by` will be break into different pages.
+Different values of `subline_by` will be broken into different pages.
 
-Below example showed using treatment group as the `subline_by` variable.
+Below example shows using treatment group as the `subline_by` variable.
 
 ```{r, message=FALSE}
 aegt5 <- r2rtf_adae %>%
@@ -564,7 +564,7 @@ Users can use `page_by` argument in the `rtf_body()` function to group/separate 
 
 A row header will be generated at the beginning of each `page_by` group.
 
-if `new_page = TRUE`, different value of `group_by` will be break into different pages. Default is `FALSE`.
+If `new_page = TRUE`, different values of `group_by` will be broken into different pages. Default is `FALSE`.
 
 Below example showed using treatment group as `page_by` variable.
 
@@ -588,7 +588,7 @@ knitr::include_graphics("pdf/intro-ae17.pdf")
 
 Users can use the `group_by` argument in the `rtf_body()` function to display once for group variable.
 
-Below example showed using treatment group as `group_by` variable.
+Below example shows using treatment group as `group_by` variable.
 
 ```{r}
 aegt5 %>%
