@@ -121,6 +121,7 @@ rtf_strwidth <- function(tbl) {
 
   # Add indent space
   width <- width + text_indent
+  width[is.na(width)] <- 0
 
   if (!is.null(dim(tbl))) {
     width <- matrix(width, nrow = nrow(tbl), ncol = ncol(tbl))
