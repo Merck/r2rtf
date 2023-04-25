@@ -28,7 +28,5 @@ preferred-citation:
     given-names: "Yilong"
   title: "r2rtf---an R Package to Produce Rich Text Format (RTF) Tables and Figures"
   year: 2020
-  conference:
-    - name: PharmaSUG
-    location: San Francisco, California
+  collection-title: "PharmaSUG"
   url: "https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf"
