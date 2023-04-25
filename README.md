@@ -1,3 +1,6 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # r2rtf <img src="man/figures/logo.png" align="right" width="120" />
 
 <!-- badges: start -->
@@ -14,61 +17,70 @@ Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/
 
 ## Overview
 
-`r2rtf` is an R package to create production-ready tables and figures in
-RTF format. The R package is designed to
+r2rtf is an R package to create production-ready tables and figures in
+RTF format. The package is designed with these principles:
 
--   provide simple “verb” functions that correspond to each component of
-    a table, to help you translate data frame(s) to a table in RTF file.
--   enables pipes (`%>%`).
--   only focus on **table format**.
-    -   Data manipulation and analysis shall be handled by other R
-        packages. (e.g., `tidyverse`)
--   minimizes package dependency
+- Provide simple “verb” functions that correspond to each component of a
+  table, to help you translate data frame(s) to a table in RTF file.
+- Functions are chainable with pipes (`%>%`).
+- Only focus on **table format**.
+  - Data manipulation and analysis should be handled by other R
+    packages, for example, tidyverse.
+- Minimize package dependency.
+
+The [R for clinical study reports and submission](https://r4csr.org/)
+book provides tutorials by using real world examples.
 
 ## Installation
 
 You can install the package via CRAN:
 
-    install.packages("r2rtf")
+``` r
+install.packages("r2rtf")
+```
 
 Or, install from GitHub:
 
-    remotes::install_github("Merck/r2rtf")
+``` r
+remotes::install_github("Merck/r2rtf")
+```
 
-## Highlighted Features
+## Highlighted features
 
-The R package`r2rtf` provided flexibility to enable features below:
+The R package r2rtf provides flexibility to enable features below:
 
--   Necessary options to create highly customized RTF table and figure.
--   Simple to use parameters and data structure.
-    -   Customized column header: split by `"|"`.
-    -   Three required parameters for the output tables (data, filename,
-        column relative width).
-    -   Flexible and detail control of table structure.
--   Format control in cell, row, column and table level for:
-    -   Border Type: single, double, dash, dot, etc.
-    -   Alignment: left, right, center, decimal.
-    -   Column width.
-    -   Text appearance: **bold**, *italics*, <s>strikethrough</s>,
-        underline and any combinations.
-    -   Font size.
-    -   Text and border color (657 different colors named in `color()`
-        function).
-    -   Special characters: any character in UTF-8 encoding (e.g.,
-        Greek, Symbol, Chinese, Japanese, Korean).
--   Append several tables into one file.
--   Pagination.
--   Built-in raw data for validation.
+- Create highly customized RTF table and figure ready for production.
+- Simple to use parameters and data structure.
+  - Customized column header: split by `"|"`.
+  - Three required parameters for the output tables (data, filename,
+    column relative width).
+  - Flexible and detail control of table structure.
+- Format control in cell, row, column and table level for:
+  - Border Type: single, double, dash, dot, etc.
+  - Alignment: left, right, center, decimal.
+  - Column width.
+  - Text appearance: **bold**, *italics*, ~~strikethrough~~, underline
+    and any combinations.
+  - Font size.
+  - Text and border color (657 different colors named in `color()`
+    function).
+  - Special characters: any character in UTF-8 encoding (e.g., Greek,
+    Symbol, Chinese, Japanese, Korean).
+- Append several tables into one file.
+- Pagination.
+- Built-in raw data for validation.
 
-## Simple Example
+## Simple example
 
-    library(dplyr)
-    library(r2rtf)
+``` r
+library(dplyr)
+library(r2rtf)
 
-    head(iris) %>%
-      rtf_body() %>%                 # Step 1 Add attributes
-      rtf_encode() %>%               # Step 2 Convert attributes to RTF encode
-      write_rtf(file = "ex-tbl.rtf") # Step 3 Write to a .rtf file
+head(iris) %>%
+  rtf_body() %>% # Step 1 Add attributes
+  rtf_encode() %>% # Step 2 Convert attributes to RTF encode
+  write_rtf(file = "ex-tbl.rtf") # Step 3 Write to a .rtf file
+```
 
 <details>
 <summary>
@@ -77,12 +89,12 @@ Click here to see the output
 <img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png">
 </details>
 
--   [More Examples](https://merck.github.io/r2rtf/articles/index.html)
+- [More Examples](https://merck.github.io/r2rtf/articles/index.html)
 
-## Example Efficacy Table
+## Example efficacy table
 
--   [Source
-    code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
+- [Source
+  code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
 
 <details>
 <summary>
@@ -91,10 +103,10 @@ Click here to see the output
 <img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png">
 </details>
 
-## Example Safety Table
+## Example safety table
 
--   [Source
-    code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
+- [Source
+  code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
 
 <details>
 <summary>
@@ -102,3 +114,23 @@ Click here to see the output
 </summary>
 <img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png">
 </details>
+
+## Citation
+
+If you use this software, please cite it as below.
+
+> Wang, S., Ye, S., Anderson, K., & Zhang, Y. (2020). r2rtf—an R Package
+> to Produce Rich Text Format (RTF) Tables and Figures. *PharmaSUG*.
+> <https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf>
+
+A BibTeX entry for LaTeX users is
+
+``` bibtex
+@inproceedings{wang2020r2rtf,
+  title     = {{r2rtf}---an {R} Package to Produce {Rich Text Format} ({RTF}) Tables and Figures},
+  author    = {Wang, Siruo and Ye, Simiao and Anderson, Keaven M and Zhang, Yilong},
+  booktitle = {PharmaSUG},
+  year      = {2020},
+  url       = {https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf}
+}
+```

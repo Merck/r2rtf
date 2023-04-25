@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Zhang"
+  given-names: "Yilong"
+- family-names: "Wang"
+  given-names: "Siruo"
+- family-names: "Ye"
+  given-names: "Simiao"
+- family-names: "Kong"
+  given-names: "Fansen"
+- family-names: "Lang"
+  given-names: "Brian"
+title: "r2rtf: Easily Create Production-Ready Rich Text Format (RTF) Table and Figure"
+version: 1.0.1
+date-released: 2020-02-19
+url: "https://github.com/Merck/r2rtf"
+preferred-citation:
+  type: conference-paper
+  authors:
+  - family-names: "Wang"
+    given-names: "Siruo"
+  - family-names: "Ye"
+    given-names: "Simiao"
+  - family-names: "Anderson"
+    given-names: "Keaven"
+  - family-names: "Zhang"
+    given-names: "Yilong"
+  title: "r2rtf---an R Package to Produce Rich Text Format (RTF) Tables and Figures"
+  year: 2020
+  collection-title: "PharmaSUG"
+  url: "https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf"
