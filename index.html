@@ -103,32 +103,35 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><code>r2rtf</code> is an R package to create production-ready tables and figures in RTF format. The R package is designed to</p>
+<p>r2rtf is an R package to create production-ready tables and figures in RTF format. The package is designed with these principles:</p>
 <ul>
-<li>provide simple “verb” functions that correspond to each component of a table, to help you translate data frame(s) to a table in RTF file.</li>
-<li>enables pipes (<code>%&gt;%</code>).</li>
-<li>only focus on <strong>table format</strong>.
+<li>Provide simple “verb” functions that correspond to each component of a table, to help you translate data frame(s) to a table in RTF file.</li>
+<li>Functions are chainable with pipes (<code>%&gt;%</code>).</li>
+<li>Only focus on <strong>table format</strong>.
 <ul>
-<li>Data manipulation and analysis shall be handled by other R packages. (e.g., <code>tidyverse</code>)</li>
+<li>Data manipulation and analysis should be handled by other R packages, for example, tidyverse.</li>
 </ul>
 </li>
-<li>minimizes package dependency</li>
+<li>Minimize package dependency.</li>
 </ul>
+<p>The <a href="https://r4csr.org/" class="external-link">R for clinical study reports and submission</a> book provides tutorials by using real world examples.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install the package via CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"r2rtf"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"r2rtf"</span><span class="op">)</span></span></code></pre></div>
 <p>Or, install from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"Merck/r2rtf"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"Merck/r2rtf"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="highlighted-features">Highlighted Features<a class="anchor" aria-label="anchor" href="#highlighted-features"></a>
+<h2 id="highlighted-features">Highlighted features<a class="anchor" aria-label="anchor" href="#highlighted-features"></a>
 </h2>
-<p>The R package<code>r2rtf</code> provided flexibility to enable features below:</p>
+<p>The R package r2rtf provides flexibility to enable features below:</p>
 <ul>
-<li>Necessary options to create highly customized RTF table and figure.</li>
+<li>Create highly customized RTF table and figure ready for production.</li>
 <li>Simple to use parameters and data structure.
 <ul>
 <li>Customized column header: split by <code>"|"</code>.</li>
@@ -141,7 +144,7 @@
 <li>Border Type: single, double, dash, dot, etc.</li>
 <li>Alignment: left, right, center, decimal.</li>
 <li>Column width.</li>
-<li>Text appearance: <strong>bold</strong>, <em>italics</em>, <s>strikethrough</s>, underline and any combinations.</li>
+<li>Text appearance: <strong>bold</strong>, <em>italics</em>, <del>strikethrough</del>, underline and any combinations.</li>
 <li>Font size.</li>
 <li>Text and border color (657 different colors named in <code>color()</code> function).</li>
 <li>Special characters: any character in UTF-8 encoding (e.g., Greek, Symbol, Chinese, Japanese, Korean).</li>
@@ -153,15 +156,16 @@
 </ul>
 </div>
 <div class="section level2">
-<h2 id="simple-example">Simple Example<a class="anchor" aria-label="anchor" href="#simple-example"></a>
+<h2 id="simple-example">Simple example<a class="anchor" aria-label="anchor" href="#simple-example"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(r2rtf)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris) <span class="sc">%&gt;%</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rtf_body</span>() <span class="sc">%&gt;%</span>                 <span class="co"># Step 1 Add attributes</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rtf_encode</span>() <span class="sc">%&gt;%</span>               <span class="co"># Step 2 Convert attributes to RTF encode</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">write_rtf</span>(<span class="at">file =</span> <span class="st">"ex-tbl.rtf"</span>) <span class="co"># Step 3 Write to a .rtf file</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://merck.github.io/r2rtf/">r2rtf</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="reference/rtf_body.html">rtf_body</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># Step 1 Add attributes</span></span>
+<span>  <span class="fu"><a href="reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># Step 2 Convert attributes to RTF encode</span></span>
+<span>  <span class="fu"><a href="reference/write_rtf.html">write_rtf</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"ex-tbl.rtf"</span><span class="op">)</span> <span class="co"># Step 3 Write to a .rtf file</span></span></code></pre></div>
 <details><summary>
 Click here to see the output
 </summary><img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png"></details><ul>
@@ -169,7 +173,7 @@ Click here to see the output
 </ul>
 </div>
 <div class="section level2">
-<h2 id="example-efficacy-table">Example Efficacy Table<a class="anchor" aria-label="anchor" href="#example-efficacy-table"></a>
+<h2 id="example-efficacy-table">Example efficacy table<a class="anchor" aria-label="anchor" href="#example-efficacy-table"></a>
 </h2>
 <ul>
 <li><a href="https://merck.github.io/r2rtf/articles/example-efficacy.html">Source code</a></li>
@@ -179,7 +183,7 @@ Click here to see the output
 </summary><img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png"></details>
 </div>
 <div class="section level2">
-<h2 id="example-safety-table">Example Safety Table<a class="anchor" aria-label="anchor" href="#example-safety-table"></a>
+<h2 id="example-safety-table">Example safety table<a class="anchor" aria-label="anchor" href="#example-safety-table"></a>
 </h2>
 <ul>
 <li><a href="https://merck.github.io/r2rtf/articles/example-ae-summary.html">Source code</a></li>
@@ -187,6 +191,22 @@ Click here to see the output
 <details><summary>
 Click here to see the output
 </summary><img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png"></details>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you use this software, please cite it as below.</p>
+<blockquote>
+<p>Wang, S., Ye, S., Anderson, K., &amp; Zhang, Y. (2020). r2rtf—an R Package to Produce Rich Text Format (RTF) Tables and Figures. <em>PharmaSUG</em>. <a href="https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf" class="external-link uri">https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf</a></p>
+</blockquote>
+<p>A BibTeX entry for LaTeX users is</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bibtex"><code class="sourceCode bibtex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">@inproceedings</span>{<span class="ot">wang2020r2rtf</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {{r2rtf}---an {R} Package to Produce {Rich Text Format} ({RTF}) Tables and Figures},</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Wang, Siruo and Ye, Simiao and Anderson, Keaven M and Zhang, Yilong},</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">booktitle</span> = {PharmaSUG},</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2020},</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>       = {https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf}</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
