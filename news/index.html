@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">r2rtf</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,88 +68,165 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.0.1" id="r2rtf-101-2023-02-02">r2rtf 1.0.1 (2023-02-02)<a class="anchor" aria-label="anchor" href="#r2rtf-101-2023-02-02"></a></h2><p class="text-muted">CRAN release: 2023-02-01</p>
-<ul><li>New feature: enable vertical alignment (<a href="https://github.com/Merck/r2rtf/issues/136" class="external-link">#136</a>)</li>
-<li>bug fix: enable libreoffice7.3 (<a href="https://github.com/Merck/r2rtf/issues/92" class="external-link">#92</a>)</li>
+<h2 class="pkg-version" data-toc-text="1.0.2" id="r2rtf-102-2023-04-28">r2rtf 1.0.2 (2023-04-28)<a class="anchor" aria-label="anchor" href="#r2rtf-102-2023-04-28"></a></h2>
+<div class="section level3">
+<h3 id="bug-fixes-1-0-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-2"></a></h3>
+<ul><li>Display proper indentation for footnote and data source (<a href="https://github.com/Merck/r2rtf/issues/141" class="external-link">#141</a>).</li>
+<li>Fix an issue when a column only contains missing value (<a href="https://github.com/Merck/r2rtf/issues/146" class="external-link">#146</a>).</li>
 </ul></div>
+<div class="section level3">
+<h3 id="improvements-1-0-2">Improvements<a class="anchor" aria-label="anchor" href="#improvements-1-0-2"></a></h3>
+<ul><li>Improve grammar and style for the main vignette (<a href="https://github.com/howardbaek" class="external-link">@howardbaek</a>, <a href="https://github.com/Merck/r2rtf/issues/144" class="external-link">#144</a>).</li>
+<li>Add libreoffice 7.4 and 7.5 support (<a href="https://github.com/Merck/r2rtf/issues/156" class="external-link">#156</a>).</li>
+<li>Add citation details (<a href="https://github.com/Merck/r2rtf/issues/155" class="external-link">#155</a>).</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.1" id="r2rtf-101-2023-02-02">r2rtf 1.0.1 (2023-02-02)<a class="anchor" aria-label="anchor" href="#r2rtf-101-2023-02-02"></a></h2><p class="text-muted">CRAN release: 2023-02-01</p>
+<div class="section level3">
+<h3 id="new-features-1-0-1">New features<a class="anchor" aria-label="anchor" href="#new-features-1-0-1"></a></h3>
+<ul><li>Enable vertical alignment (<a href="https://github.com/Merck/r2rtf/issues/136" class="external-link">#136</a>).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="improvements-1-0-1">Improvements<a class="anchor" aria-label="anchor" href="#improvements-1-0-1"></a></h3>
+<ul><li>Add support for libreoffice 7.3 (<a href="https://github.com/Merck/r2rtf/issues/92" class="external-link">#92</a>).</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.0.0" id="r2rtf-100-2023-01-12">r2rtf 1.0.0 (2023-01-12)<a class="anchor" aria-label="anchor" href="#r2rtf-100-2023-01-12"></a></h2><p class="text-muted">CRAN release: 2023-01-12</p>
-<ul><li>New functions: <code>assemble_docx</code> and <code>assemble_rtf</code>.</li>
-<li>Update copyright</li>
-<li>bug fix: rtf_enode fails when data contains NA and fixed-width font is used (<a href="https://github.com/Merck/r2rtf/issues/118" class="external-link">#118</a>)</li>
-<li>bug fix: avoid error when <code>cell_nrow=1</code> (<a href="https://github.com/Merck/r2rtf/issues/108" class="external-link">#108</a>, <a href="https://github.com/Merck/r2rtf/issues/109" class="external-link">#109</a>)</li>
+<div class="section level3">
+<h3 id="new-features-1-0-0">New features<a class="anchor" aria-label="anchor" href="#new-features-1-0-0"></a></h3>
+<ul><li>Add new functions: <code><a href="../reference/assemble_docx.html">assemble_docx()</a></code> and <code><a href="../reference/assemble_rtf.html">assemble_rtf()</a></code>.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-1-0-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-0"></a></h3>
+<ul><li>
+<code><a href="../reference/rtf_encode.html">rtf_encode()</a></code> fails when data contains <code>NA</code> and fixed-width font is used (<a href="https://github.com/Merck/r2rtf/issues/118" class="external-link">#118</a>).</li>
+<li>Avoid error when <code>cell_nrow = 1</code> (<a href="https://github.com/Merck/r2rtf/issues/108" class="external-link">#108</a>, <a href="https://github.com/Merck/r2rtf/issues/109" class="external-link">#109</a>).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="improvements-1-0-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-1-0-0"></a></h3>
+<ul><li>Update copyright text.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.5" id="r2rtf-035-2022-05-17">r2rtf 0.3.5 (2022-05-17)<a class="anchor" aria-label="anchor" href="#r2rtf-035-2022-05-17"></a></h2><p class="text-muted">CRAN release: 2022-05-17</p>
-<ul><li>bug fix: avoid warning message for matrix dimission in R4.2.0 (<a href="https://github.com/Merck/r2rtf/issues/101" class="external-link">#101</a>)</li>
-<li>bug fix: vectorized text justification for <code><a href="../reference/rtf_title.html">r2rtf::rtf_title</a></code>, <code><a href="../reference/rtf_footnote.html">r2rtf::rtf_footnote</a></code>, etc (<a href="https://github.com/Merck/r2rtf/issues/98" class="external-link">#98</a>)</li>
+<div class="section level3">
+<h3 id="bug-fixes-0-3-5">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-5"></a></h3>
+<ul><li>Avoid warning messages on matrix dimension in R &gt;= 4.2.0 (<a href="https://github.com/Merck/r2rtf/issues/101" class="external-link">#101</a>).</li>
+<li>Vectorized text justification for <code><a href="../reference/rtf_title.html">rtf_title()</a></code>, <code><a href="../reference/rtf_footnote.html">rtf_footnote()</a></code>, and other functions (<a href="https://github.com/Merck/r2rtf/issues/98" class="external-link">#98</a>).</li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.4" id="r2rtf-034-2022-04-08">r2rtf 0.3.4 (2022-04-08)<a class="anchor" aria-label="anchor" href="#r2rtf-034-2022-04-08"></a></h2><p class="text-muted">CRAN release: 2022-04-08</p>
-<ul><li>Update maintainer email</li>
-<li>bug fix: utf8Tortf provide additional “-”</li>
+<div class="section level3">
+<h3 id="bug-fixes-0-3-4">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-4"></a></h3>
+<ul><li>
+<code><a href="../reference/utf8Tortf.html">utf8Tortf()</a></code> provides additional “-”.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="improvements-0-3-4">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-3-4"></a></h3>
+<ul><li>Update maintainer email.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.3" id="r2rtf-033-2022-03-07">r2rtf 0.3.3 (2022-03-07)<a class="anchor" aria-label="anchor" href="#r2rtf-033-2022-03-07"></a></h2><p class="text-muted">CRAN release: 2022-03-07</p>
-<ul><li>New argument: add <code>use_color</code> argument in <code>rtf_page</code>
-</li>
-<li>bug fix: convert to proper RTF code</li>
-<li>bug fig:<code>rft_encode()</code> doesn’t add footnote and source to all pages for <code>doc_type = "figure"</code> (<a href="https://github.com/Merck/r2rtf/issues/90" class="external-link">#90</a>)</li>
+<div class="section level3">
+<h3 id="improvements-0-3-3">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-3-3"></a></h3>
+<ul><li>
+<code><a href="../reference/rtf_page.html">rtf_page()</a></code> now has a new argument <code>use_color</code>.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-3-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-3"></a></h3>
+<ul><li>Convert to proper RTF code.</li>
+<li>
+<code>rft_encode()</code> does not add footnote and source to all pages for <code>doc_type = "figure"</code> (<a href="https://github.com/Merck/r2rtf/issues/90" class="external-link">#90</a>).</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.2" id="r2rtf-032-2021-12-07">r2rtf 0.3.2 (2021-12-07)<a class="anchor" aria-label="anchor" href="#r2rtf-032-2021-12-07"></a></h2><p class="text-muted">CRAN release: 2021-12-07</p>
-<ul><li>New function: <code>rtf_read_figure</code> support <code>jpeg</code> and <code>emf</code> format to read figure (<a href="https://github.com/Merck/r2rtf/issues/65" class="external-link">#65</a>)</li>
-<li>Improvement: avoid specific libreoffice version (<a href="https://github.com/Merck/r2rtf/issues/68" class="external-link">#68</a>)</li>
-<li>Bug fix: avoid using <code>as.vector</code> for <code>data.frame</code> (<a href="https://github.com/Merck/r2rtf/issues/74" class="external-link">#74</a>)</li>
-<li>Bug fix: proper alignment to transfer <code>html</code> (<a href="https://github.com/Merck/r2rtf/issues/61" class="external-link">#61</a>)</li>
+<div class="section level3">
+<h3 id="new-features-0-3-2">New features<a class="anchor" aria-label="anchor" href="#new-features-0-3-2"></a></h3>
+<ul><li>The new function <code><a href="../reference/rtf_read_figure.html">rtf_read_figure()</a></code> supports <code>jpeg</code> and <code>emf</code> formats for reading figures (<a href="https://github.com/Merck/r2rtf/issues/65" class="external-link">#65</a>).</li>
 </ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-3-2">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-2"></a></h3>
+<ul><li>Avoid using <code>as.vector</code> for <code>data.frame</code> (<a href="https://github.com/Merck/r2rtf/issues/74" class="external-link">#74</a>).</li>
+<li>Proper alignment to transfer <code>html</code> (<a href="https://github.com/Merck/r2rtf/issues/61" class="external-link">#61</a>).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="improvements-0-3-2">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-3-2"></a></h3>
+<ul><li>Avoid specific libreoffice version (<a href="https://github.com/Merck/r2rtf/issues/68" class="external-link">#68</a>).</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.1" id="r2rtf-031-2021-09-09">r2rtf 0.3.1 (2021-09-09)<a class="anchor" aria-label="anchor" href="#r2rtf-031-2021-09-09"></a></h2><p class="text-muted">CRAN release: 2021-09-09</p>
-<ul><li>New argument <code>cell_vertical_alignment</code> in <code>rtf_xxx</code> function. (<a href="https://github.com/Merck/r2rtf/issues/49" class="external-link">#49</a>, <a href="https://github.com/Merck/r2rtf/issues/52" class="external-link">#52</a>)</li>
-<li>New argument <code>verbose</code> in <code>rtf_encode_list</code> and <code>rtf_encode_table</code>. (<a href="https://github.com/Merck/r2rtf/issues/38" class="external-link">#38</a>)</li>
-<li>Bug fix <code>unicode_latex</code> not found. (<a href="https://github.com/Merck/r2rtf/issues/50" class="external-link">#50</a>)</li>
-<li>Bug fix vertical align column headers. (<a href="https://github.com/Merck/r2rtf/issues/49" class="external-link">#49</a>, <a href="https://github.com/Merck/r2rtf/issues/52" class="external-link">#52</a>)</li>
-<li>Bug fix vectorize text formatting arguments in rtf_page_header and rtf_page_footer. (<a href="https://github.com/Merck/r2rtf/issues/47" class="external-link">#47</a>, <a href="https://github.com/Merck/r2rtf/issues/53" class="external-link">#53</a>)</li>
-<li>Bug fix text_format issue with all value equal to ““. (<a href="https://github.com/Merck/r2rtf/issues/40" class="external-link">#40</a>)</li>
-<li>
-<code>r2rtf</code> needs to work properly with <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by()</a></code>. (<a href="https://github.com/Merck/r2rtf/issues/36" class="external-link">#36</a>)</li>
+<div class="section level3">
+<h3 id="new-features-0-3-1">New features<a class="anchor" aria-label="anchor" href="#new-features-0-3-1"></a></h3>
+<ul><li>New argument <code>cell_vertical_alignment</code> in <code>rtf_*()</code> functions (<a href="https://github.com/Merck/r2rtf/issues/49" class="external-link">#49</a>, <a href="https://github.com/Merck/r2rtf/issues/52" class="external-link">#52</a>).</li>
+<li>New argument <code>verbose</code> in <code><a href="../reference/rtf_encode_list.html">rtf_encode_list()</a></code> and <code><a href="../reference/rtf_encode_table.html">rtf_encode_table()</a></code> (<a href="https://github.com/Merck/r2rtf/issues/38" class="external-link">#38</a>).</li>
 </ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-3-1">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-1"></a></h3>
+<ul><li>
+<code>unicode_latex</code> not found (<a href="https://github.com/Merck/r2rtf/issues/50" class="external-link">#50</a>).</li>
+<li>Vertical align column headers (<a href="https://github.com/Merck/r2rtf/issues/49" class="external-link">#49</a>, <a href="https://github.com/Merck/r2rtf/issues/52" class="external-link">#52</a>).</li>
+<li>Vectorize text formatting arguments in <code><a href="../reference/rtf_page_header.html">rtf_page_header()</a></code> and <code><a href="../reference/rtf_page_footer.html">rtf_page_footer()</a></code> (<a href="https://github.com/Merck/r2rtf/issues/47" class="external-link">#47</a>, <a href="https://github.com/Merck/r2rtf/issues/53" class="external-link">#53</a>).</li>
+<li>
+<code>text_format</code> issue with all value equal to <code>""</code> (<a href="https://github.com/Merck/r2rtf/issues/40" class="external-link">#40</a>).</li>
+<li>r2rtf needs to work properly with <code><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by()</a></code> (<a href="https://github.com/Merck/r2rtf/issues/36" class="external-link">#36</a>).</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="r2rtf-030-2021-06-01">r2rtf 0.3.0 (2021-06-01)<a class="anchor" aria-label="anchor" href="#r2rtf-030-2021-06-01"></a></h2><p class="text-muted">CRAN release: 2021-06-01</p>
-<ul><li>Rename dataset with prefix <code>r2rtf</code> to avoid conflict of other namespace</li>
-<li>Enable special place holder “—–” in <code>page_by</code> variable to suppress line displayed in <code>page_by</code> variable (ref Example 2 in <code>vignette/example-pageby-groupby</code>)</li>
-<li>New experimental function <code>rtf_convert_format</code>.</li>
-<li>New argument <code>pageby_row</code> in <code>rtf_body</code> to display first row instead of <code>page_by</code> variable when <code>pageby_row = "first_row"</code>
-</li>
-<li>New argument <code>subline_by</code> in <code>rtf_body</code> to display subline by an variable.<br></li>
-<li>New argument <code>text_indent_reference</code> to allow user to control reference of indent from page margin or table border (<a href="https://github.com/Merck/r2rtf/issues/12" class="external-link">#12</a>)</li>
-<li>New internal function <code>rtf_subset</code> to subset an rtf table object.</li>
-<li>Bug fix <code>group_by</code> can be used when <code>page_by=NULL</code>.</li>
-<li>Bug fix <code>page_by</code> can not sort format style in <code>rtf_body</code>
-</li>
-<li>Bug fix ensure consistent font size with blank cell (<a href="https://github.com/Merck/r2rtf/issues/14" class="external-link">#14</a>)</li>
+<div class="section level3">
+<h3 id="new-features-0-3-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-3-0"></a></h3>
+<ul><li>New experimental internal function <code><a href="../reference/rtf_convert_format.html">rtf_convert_format()</a></code>.</li>
+<li>New argument <code>pageby_row</code> in <code><a href="../reference/rtf_body.html">rtf_body()</a></code> to display first row instead of <code>page_by</code> variable when <code>pageby_row = "first_row"</code>.</li>
+<li>New argument <code>subline_by</code> in <code>rtf_body</code> to display subline by an variable.</li>
+<li>New argument <code>text_indent_reference</code> to allow user to control reference of indent from page margin or table border (<a href="https://github.com/Merck/r2rtf/issues/12" class="external-link">#12</a>).</li>
+<li>New internal function <code><a href="../reference/rtf_subset.html">rtf_subset()</a></code> to subset an RTF table object.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-0-3-0">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-0"></a></h3>
+<ul><li>
+<code>group_by</code> can be used when <code>page_by = NULL</code>.</li>
+<li>
+<code>page_by</code> cannot sort format style in <code><a href="../reference/rtf_body.html">rtf_body()</a></code>.</li>
+<li>Ensure consistent font size with blank cell (<a href="https://github.com/Merck/r2rtf/issues/14" class="external-link">#14</a>).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="improvements-0-3-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-3-0"></a></h3>
+<ul><li>Rename datasets with prefix <code>r2rtf_</code> to avoid conflicts with other namespaces.</li>
+<li>Enable special place holder <code>"-----"</code> in <code>page_by</code> variable to suppress line displayed in the <code>page_by</code> variable. See example 2 in <code>vignettes/example-pageby-groupby.Rmd</code>.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.0" id="r2rtf-020-2020-12-04">r2rtf 0.2.0 (2020-12-04)<a class="anchor" aria-label="anchor" href="#r2rtf-020-2020-12-04"></a></h2><p class="text-muted">CRAN release: 2020-12-04</p>
-<ul><li>Add <code>rtf_subline</code>, <code>rtf_page_header</code>, <code>rtf_page_footer</code>.</li>
-<li>Add <code>rtf_page</code> to set page related attributes.</li>
-<li>Introduce <code>text_convert</code> argument to allow fixed string.</li>
-<li>Add <code>as_table</code> argument in <code>rtf_footnote</code> and <code>rtf_source</code> to allow footnote and datasource inside or outside of a table.</li>
-<li>Refactor <code>pageby</code> feature to enable <code>group_by</code> feature. Add <code>vignette\example-pageby.Rmd</code> to illustrate new pageby features.</li>
+<div class="section level3">
+<h3 id="new-features-0-2-0">New features<a class="anchor" aria-label="anchor" href="#new-features-0-2-0"></a></h3>
+<ul><li>Add <code><a href="../reference/rtf_subline.html">rtf_subline()</a></code>, <code><a href="../reference/rtf_page_header.html">rtf_page_header()</a></code>, and <code><a href="../reference/rtf_page_footer.html">rtf_page_footer()</a></code>.</li>
+<li>Add <code><a href="../reference/rtf_page.html">rtf_page()</a></code> to set page related attributes.</li>
+<li>Introduce argument <code>text_convert</code> to allow fixed string.</li>
+<li>Add argument <code>as_table</code> in <code><a href="../reference/rtf_footnote.html">rtf_footnote()</a></code> and <code><a href="../reference/rtf_source.html">rtf_source()</a></code> to allow footnote and data source inside or outside of a table.</li>
+<li>Refactor the <code>pageby</code> feature to enable the <code>group_by</code> feature. Add <code>vignettes/example-pageby.Rmd</code> to illustrate new <code>pageby</code> features.</li>
 <li>Define <code>obj_rtf_border</code> and <code>obj_rtf_text</code> objects to standardize border and text attributes.</li>
-<li>Add example ADaM datasets.</li>
-<li>Add validation tracker in <code>\inst</code> folder and testing cases in <code>\test</code>.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="improvements-0-2-0">Improvements<a class="anchor" aria-label="anchor" href="#improvements-0-2-0"></a></h3>
+<ul><li>Add example ADaM datasets.</li>
+<li>Add validation tracker in <code>inst/</code> and test cases in <code>tests/</code>.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.1" id="r2rtf-011-2020-04-03">r2rtf 0.1.1 (2020-04-03)<a class="anchor" aria-label="anchor" href="#r2rtf-011-2020-04-03"></a></h2><p class="text-muted">CRAN release: 2020-04-03</p>
-<ul><li>Standardize input from <code>gt_tbl</code> to <code>tbl</code>
-</li>
-<li>Resolving UTF-8 encoding</li>
+<ul><li>Standardize input from <code>gt_tbl</code> to <code>tbl</code>.</li>
+<li>Resolve UTF-8 encoding.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.0" id="r2rtf-010-unpublished">r2rtf 0.1.0 (Unpublished)<a class="anchor" aria-label="anchor" href="#r2rtf-010-unpublished"></a></h2>
 <ul><li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
-<li>Initial Version</li>
+<li>Initial version.</li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
