@@ -1,3 +1,16 @@
+# r2rtf 1.0.2 (2023-04-28)
+
+## Bug fixes
+
+* Display proper indentation for footnote and data source (#141).
+* Fix an issue when a column only contains missing value (#146).
+
+## Improvements
+
+* Improve grammar and style for the main vignette (@howardbaek, #144).
+* Add libreoffice 7.4 and 7.5 support (#156).
+* Add citation details (#155).
+
 # r2rtf 1.0.1 (2023-02-02)
 
 ## New features
