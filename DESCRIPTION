@@ -40,13 +40,13 @@ Suggests:
     emmeans,
     ggplot2,
     knitr,
+    magrittr,
     officer,
-    xml2,
     rmarkdown,
     stringi,
     testthat,
     tidyr,
-    magrittr
+    xml2
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
