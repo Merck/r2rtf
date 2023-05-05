@@ -5,7 +5,7 @@
 \title{Text to formatted RTF Encode}
 \usage{
 rtf_rich_text(
-  text = "This is {.emph important}. This is {.blah relevant}.",
+  text,
   theme = list(.emph = list(color = "blue", format = "b"), .blah = list(color = "red"))
 )
 }

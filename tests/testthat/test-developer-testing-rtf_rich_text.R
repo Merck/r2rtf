@@ -7,13 +7,38 @@ test_that("rtf_rich_text fundamentally works.", {
     )
   )
 
-  expectation <- paste0(
+  expectation <- rtf_text(paste0(
     "This is ",
     rtf_text("important", color = "blue", `format` = "b"),
     ". This is ",
     rtf_text("relevant", color = "red"),
     "."
-  )
+  ))
 
   expect_equal(output, expectation)
 })
+
+test_that("rtf_rich_text works with example from check_args.", {
+  output <- r2rtf:::rtf_paragraph(
+    r2rtf:::rtf_rich_text(
+      text = "3.5{.ft \\dagger}\\line{.red red} {.hl highlight}",
+      theme = list(
+        .ft = list(format = "^"),
+        .red = list(color = "red"),
+        .hl = list(background_color = "yellow")
+      )
+  ))
+
+  expectation <- r2rtf:::rtf_paragraph(
+    r2rtf:::rtf_text(paste0(
+    "3.5",
+    r2rtf:::rtf_text("\\dagger", format = "^"),
+    "\\line",
+    r2rtf:::rtf_text("red", color = "red"),
+    " ",
+    r2rtf:::rtf_text("highlight", background_color = "yellow")
+  )))
+
+  expect_equal(output, expectation)
+})
+
