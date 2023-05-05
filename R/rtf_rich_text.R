@@ -56,7 +56,7 @@ rtf_rich_text <- function(text = "This is {.emph important}. This is {.blah rele
     unique_theme_args,
     ~ checkmate::assert_choice(.x,
       choices = names(formals(rtf_text)),
-      label = paste0("theme: ", .x)
+      .var.name = paste0("theme: ", .x)
     )
   )
 
