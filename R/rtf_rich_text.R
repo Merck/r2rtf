@@ -48,7 +48,6 @@ rtf_rich_text <- function(text = "This is {.emph important}. This is {.blah rele
                             .emph = list(color = "blue", `format` = "b"),
                             .blah = list(color = "red")
                           )) {
-
   # bulletproof theme
   theme_args <- theme
   names(theme_args) <- NULL
