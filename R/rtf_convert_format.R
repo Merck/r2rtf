@@ -160,6 +160,11 @@ rtf_convert_format <- function(input,
     output_path <- file.path(output_dir, output_file)
   }
 
+  # Fix height for html
+  if (format == "html") {
+    writeLines(gsub("line-height:.*;", "", readLines(output_path, warn = FALSE)), output_path)
+  }
+
   invisible(output_path)
 }
 
