@@ -68,6 +68,7 @@ articles:
 reference:
 - title: RTF Table
   contents:
+  - "rtf_rich_text"
   - "rtf_page"
   - "rtf_page_header"
   - "rtf_page_footer"
