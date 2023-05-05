@@ -12,7 +12,7 @@ rtf_rich_text(
 \arguments{
 \item{text}{Plain text.}
 
-\item{theme}{Named list defining themes for tags. See \code(rtf_text) for
+\item{theme}{Named list defining themes for tags. See \code{rtf_text()} for
 details on possible formatting.}
 }
 \description{
@@ -29,7 +29,7 @@ Text to formatted RTF Encode
    \item Extract text from tagged text.
    \item Validate that lengths of extractions are all the same.
    \item Validate that tags are defined in the `theme` argument.
-   \item Execute `rtf_text` with extracted text and relevant formatting.
+   \item Execute \code{rtf_text} with extracted text and relevant formatting.
    \item Reinsert encoded formatted text to original input text.
  }
  }
