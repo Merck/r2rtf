@@ -43,7 +43,12 @@
 #' @export
 #'
 #' @examples
-#' rtf_rich_text()
+#' rtf_rich_text(text = "This is {.emph important}. This is {.blah relevant}.",
+#' theme = list(
+#` .emph = list(color = "blue", `format` = "b"),
+#` .blah = list(color = "red")
+#` `))
+#
 rtf_rich_text <- function(text,
                           theme = list(
                             .emph = list(color = "blue", `format` = "b"),
