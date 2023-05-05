@@ -18,7 +18,7 @@
 #' Text to formatted RTF Encode
 #'
 #' @param text Plain text.
-#' @param theme Named list defining themes for tags. See \code(rtf_text) for
+#' @param theme Named list defining themes for tags. See \code{rtf_text()} for
 #' details on possible formatting.
 #'
 #' @section Specification:
@@ -31,13 +31,14 @@
 #'    \item Extract text from tagged text.
 #'    \item Validate that lengths of extractions are all the same.
 #'    \item Validate that tags are defined in the `theme` argument.
-#'    \item Execute `rtf_text` with extracted text and relevant formatting.
+#'    \item Execute \code{rtf_text} with extracted text and relevant formatting.
 #'    \item Reinsert encoded formatted text to original input text.
 #'  }
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 #' @importFrom checkmate assert_choice assert_true
+#' @importFrom purrr walk map2_chr
 #'
 #' @export
 #'
