@@ -217,106 +217,13 @@
     <loc>https://merck.github.io/r2rtf/news/index.html</loc>
   </url>
   <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_colheader.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_color.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_end.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_font.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_footnote.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_init.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_margin.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_new_page.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_page.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_pageby.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_paragraph.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_source.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_subline.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_table.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/as_rtf_title.html</loc>
-  </url>
-  <url>
     <loc>https://merck.github.io/r2rtf/reference/assemble_docx.html</loc>
   </url>
   <url>
     <loc>https://merck.github.io/r2rtf/reference/assemble_rtf.html</loc>
   </url>
   <url>
-    <loc>https://merck.github.io/r2rtf/reference/border_type.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/cell_size.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/check_args.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/color_table.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/convert.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/fig_format.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/font_format.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/font_type.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/footnote_source_space.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/inch_to_twip.html</loc>
-  </url>
-  <url>
     <loc>https://merck.github.io/r2rtf/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/justification.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/match_arg.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/nrow_paragraph.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/nrow_table.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/obj_rtf_border.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/obj_rtf_text.html</loc>
   </url>
   <url>
     <loc>https://merck.github.io/r2rtf/reference/r2rtf_HAMD17.html</loc>
@@ -340,43 +247,16 @@
     <loc>https://merck.github.io/r2rtf/reference/rtf_body.html</loc>
   </url>
   <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_by_subline.html</loc>
-  </url>
-  <url>
     <loc>https://merck.github.io/r2rtf/reference/rtf_colheader.html</loc>
   </url>
   <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_convert_format.html</loc>
-  </url>
-  <url>
     <loc>https://merck.github.io/r2rtf/reference/rtf_encode.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_encode_figure.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_encode_list.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_encode_table.html</loc>
   </url>
   <url>
     <loc>https://merck.github.io/r2rtf/reference/rtf_figure.html</loc>
   </url>
   <url>
     <loc>https://merck.github.io/r2rtf/reference/rtf_footnote.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_group_by_enhance.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_nline_matrix.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_nline_vector.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_nrow.html</loc>
   </url>
   <url>
     <loc>https://merck.github.io/r2rtf/reference/rtf_page.html</loc>
@@ -388,12 +268,6 @@
     <loc>https://merck.github.io/r2rtf/reference/rtf_page_header.html</loc>
   </url>
   <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_pageby.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_paragraph.html</loc>
-  </url>
-  <url>
     <loc>https://merck.github.io/r2rtf/reference/rtf_read_figure.html</loc>
   </url>
   <url>
@@ -403,48 +277,15 @@
     <loc>https://merck.github.io/r2rtf/reference/rtf_source.html</loc>
   </url>
   <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_strwidth.html</loc>
-  </url>
-  <url>
     <loc>https://merck.github.io/r2rtf/reference/rtf_subline.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_subset.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_table_content.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_text.html</loc>
   </url>
   <url>
     <loc>https://merck.github.io/r2rtf/reference/rtf_title.html</loc>
   </url>
   <url>
-    <loc>https://merck.github.io/r2rtf/reference/set_margin.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/spacing.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/update_border_first.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/update_border_last.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/update_cellx.html</loc>
-  </url>
-  <url>
     <loc>https://merck.github.io/r2rtf/reference/utf8Tortf.html</loc>
   </url>
   <url>
-    <loc>https://merck.github.io/r2rtf/reference/vertical_justification.html</loc>
-  </url>
-  <url>
     <loc>https://merck.github.io/r2rtf/reference/write_rtf.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/write_rtf_para.html</loc>
   </url>
 </urlset>

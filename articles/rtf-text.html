@@ -121,7 +121,7 @@ assembled in <code>vignettes/r2rtf_examples.docx</code> document.</p>
 </h3>
 <p>Paragraph alignment supports four types.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/justification.html">justification</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">type</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"r"</span>, <span class="st">"j"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">justification</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html" class="external-link">subset</a></span><span class="op">(</span><span class="va">type</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"r"</span>, <span class="st">"j"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##   type      name rtf_code_text rtf_code_row</span></span>
 <span><span class="co">## 1    l      left          \\ql       \\trql</span></span>
 <span><span class="co">## 2    c    center          \\qc       \\trqc</span></span>
@@ -129,10 +129,10 @@ assembled in <code>vignettes/r2rtf_examples.docx</code> document.</p>
 <span><span class="co">## 5    j justified          \\qj</span></span></code></pre>
 <p>This example display text in different alignment methods.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,</span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,</span>
 <span>  justification <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"l"</span>, <span class="st">"c"</span>, <span class="st">"r"</span>, <span class="st">"j"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-justification.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-justification.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/para-justification.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
@@ -141,12 +141,12 @@ assembled in <code>vignettes/r2rtf_examples.docx</code> document.</p>
 <p>First line, left, and right indent can be controlled. One can also
 use a negative number to have the text “outdent”.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,</span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,</span>
 <span>  indent_first <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">0</span>, <span class="op">-</span><span class="fl">1000</span><span class="op">)</span>,</span>
 <span>  indent_left <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">500</span>, <span class="op">-</span><span class="fl">500</span><span class="op">)</span>,</span>
 <span>  indent_right <span class="op">=</span> <span class="fl">500</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-indent.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-indent.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/para-indent.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
@@ -154,28 +154,28 @@ use a negative number to have the text “outdent”.</p>
 </h3>
 <p>Different types of line space can be controlled.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/spacing.html">spacing</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">spacing</span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##   type         name</span></span>
 <span><span class="co">## 1  1.0 single-space</span></span>
 <span><span class="co">## 2  2.0 double-space</span></span>
 <span><span class="co">## 3  1.5    1.5-space</span></span></code></pre>
 <p>This example show different line spaces in paragraph.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,</span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,</span>
 <span>  space <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">1.5</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-line-space.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-line-space.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/para-line-space.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
 <h3 id="paragraph-space">Paragraph Space<a class="anchor" aria-label="anchor" href="#paragraph-space"></a>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,</span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span><span class="op">)</span>,</span>
 <span>  space_before <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">50</span>, <span class="fl">180</span><span class="op">)</span>,</span>
 <span>  space_after <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">180</span>, <span class="fl">50</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-space.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-space.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/para-space.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
@@ -183,10 +183,10 @@ use a negative number to have the text “outdent”.</p>
 </h3>
 <p>This example add page break before paragraphs.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,</span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>,</span>
 <span>  new_page <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-page.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/para-page.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/para-page.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 </div>
@@ -197,57 +197,57 @@ use a negative number to have the text “outdent”.</p>
 <h3 id="font-size">Font Size<a class="anchor" aria-label="anchor" href="#font-size"></a>
 </h3>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,</span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span>,</span>
 <span>  font_size <span class="op">=</span> <span class="fl">8</span><span class="op">:</span><span class="fl">12</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-font-size-1.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-font-size-1.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/text-font-size-1.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
 <h3 id="text-format">Text Format<a class="anchor" aria-label="anchor" href="#text-format"></a>
 </h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,</span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span>,</span>
 <span>  format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"b"</span>, <span class="st">"i"</span>, <span class="st">"bi"</span>, <span class="st">"^"</span>, <span class="st">"_"</span>, <span class="st">"u"</span>, <span class="st">"s"</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in matrix(text_rtf, nrow = nrow(text), ncol = ncol(text)): data length</span></span>
 <span><span class="co">## [7] is not a sub-multiple or multiple of the number of rows [5]</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-format-1.rtf"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-format-1.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/text-format-1.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
 <h3 id="text-font-type">Text Font Type<a class="anchor" aria-label="anchor" href="#text-font-type"></a>
 </h3>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,</span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span>,</span>
 <span>  font <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
 <span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Warning in matrix(text_rtf, nrow = nrow(text), ncol = ncol(text)): data length</span></span>
 <span><span class="co">## differs from size of matrix: [10 != 5 x 1]</span></span></code></pre>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-font-type.rtf"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-font-type.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/text-font-type.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
 <h3 id="text-color">Text Color<a class="anchor" aria-label="anchor" href="#text-color"></a>
 </h3>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,</span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span>,</span>
 <span>  color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"black"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-color.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-color.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/text-color.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
 <h3 id="text-background-color">Text Background Color<a class="anchor" aria-label="anchor" href="#text-background-color"></a>
 </h3>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,</span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span>,</span>
 <span>  color <span class="op">=</span> <span class="st">"white"</span>,</span>
 <span>  background_color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"gold"</span>, <span class="st">"black"</span>, <span class="st">"orange"</span>, <span class="st">"blue"</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-background-color.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-background-color.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/text-background-color.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
@@ -256,13 +256,13 @@ use a negative number to have the text “outdent”.</p>
 <p>This example call <code>rtf_text</code> multiple times to combine a
 text.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="st">"3.5"</span><span class="op">)</span>,</span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="st">"\\dagger"</span>, format <span class="op">=</span> <span class="st">"^"</span><span class="op">)</span>,</span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="st">"\\line red "</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="st">"highlight"</span>, background_color <span class="op">=</span> <span class="st">"yellow"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="st">"3.5"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="st">"\\dagger"</span>, format <span class="op">=</span> <span class="st">"^"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="st">"\\line red "</span>, color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span>,</span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="st">"highlight"</span>, background_color <span class="op">=</span> <span class="st">"yellow"</span><span class="op">)</span></span>
 <span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine1.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine1.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/text-combine1.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><p>This example call <code>rtf_text</code> one time to combine a
 text.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
@@ -271,9 +271,9 @@ text.</p>
 <span><span class="va">color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span></span>
 <span><span class="va">background_color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"white"</span>, <span class="st">"white"</span>, <span class="st">"yellow"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span></span>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span></span>
-<span>    <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span>,</span>
+<span>    <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span>,</span>
 <span>      format <span class="op">=</span> <span class="va">format</span>,</span>
 <span>      color <span class="op">=</span> <span class="va">color</span>,</span>
 <span>      background_color <span class="op">=</span> <span class="va">background_color</span></span>
@@ -281,7 +281,7 @@ text.</p>
 <span>    collapse <span class="op">=</span> <span class="st">""</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine2.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine2.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/text-combine2.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 <div class="section level3">
@@ -292,8 +292,8 @@ and subscript. It is important to note the location of <code><a href="https://rd
 is before the special character.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"X{_1} = \\alpha{^2} + \\beta{^\\dagger}"</span><span class="op">)</span></span>
-<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_paragraph.html">rtf_paragraph</a></span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/rtf_text.html">rtf_text</a></span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/write_rtf_para.html">write_rtf_para</a></span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine3.rtf"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_paragraph</span><span class="op">(</span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_text</span><span class="op">(</span><span class="va">text</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">write_rtf_para</span><span class="op">(</span><span class="va">res</span>, <span class="st">"rtf/text-combine3.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/text-combine3.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 </div>

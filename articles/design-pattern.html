@@ -193,8 +193,8 @@ function), line width, column width, row height, text format (e.g.,
 bold, italics, strikethrough, underline and any combinations), font
 size, text color, alignment (e.g., left, right, center, decimal), etc.
 Format control can be at the cell, row, column, or table level.</p>
-<p>With the help of functions <code><a href="../reference/obj_rtf_text.html">obj_rtf_text()</a></code> and
-<code><a href="../reference/obj_rtf_border.html">obj_rtf_border()</a></code>, it is straightforward to pass the user
+<p>With the help of functions <code>obj_rtf_text()</code> and
+<code>obj_rtf_border()</code>, it is straightforward to pass the user
 inputs to text/border attributes. For example, parameter
 <code>text_justification = "c"</code> sets all text in the cells to be
 center adjusted and
@@ -215,7 +215,7 @@ color is used in any of table elements (border, text, etc.).</p>
 <p>Similarly to <code><a href="../reference/rtf_body.html">rtf_body()</a></code>, the package also includes
 <code><a href="../reference/rtf_colheader.html">rtf_colheader()</a></code>, <code><a href="../reference/rtf_footnote.html">rtf_footnote()</a></code>,
 <code><a href="../reference/rtf_source.html">rtf_source()</a></code>, <code><a href="../reference/rtf_subline.html">rtf_subline()</a></code>,
-<code><a href="../reference/rtf_text.html">rtf_text()</a></code>, <code><a href="../reference/rtf_title.html">rtf_title()</a></code> and
+<code>rtf_text()</code>, <code><a href="../reference/rtf_title.html">rtf_title()</a></code> and
 <code><a href="../reference/rtf_figure.html">rtf_figure()</a></code> to assign attributes to the certain component
 of the output. Below is a simple example of using the functions together
 for table/figure.</p>
@@ -246,37 +246,37 @@ with a prefix <code>as_rtf_</code>. For a table,
 <code>r2rtf:::rtf_encode_table()</code> is used internally to translate
 attribute to RTF syntax by using a set of <code>as_rtf_</code>
 functions.</p>
-<p>Likewise, <code><a href="../reference/rtf_encode_list.html">rtf_encode_list()</a></code> is used when we have
+<p>Likewise, <code>rtf_encode_list()</code> is used when we have
 multiple data frame with different data structures to be stacked, this
-is often seen in efficacy analysis. And <code><a href="../reference/rtf_encode_figure.html">rtf_encode_figure()</a></code>
+is often seen in efficacy analysis. And <code>rtf_encode_figure()</code>
 is used for figure outputs.</p>
 <p><code>r2rtf:::as_rtf_colheader()</code> define the column header in a
 table or listing.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_colheader.html">as_rtf_colheader</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_colheader</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_color()</code> define the color to be used in
 text or border.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>text_color <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_color.html">as_rtf_color</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_color</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_end()</code> define the end of rtf encode
 string.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_end.html">as_rtf_end</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_end</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_font()</code> define the font encode.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_font.html">as_rtf_font</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_font</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_footnote()</code> define the footnote
 encode.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_footnote.html">rtf_footnote</a></span><span class="op">(</span><span class="st">"example"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_footnote.html">as_rtf_footnote</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_footnote</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; \trowd\trgaph108\trleft0\trqc</span></span>
 <span><span class="co">#&gt; \clbrdrl\brdrs\brdrw15\clbrdrt\brdrw15\clbrdrr\brdrs\brdrw15\clbrdrb\brdrs\brdrw15\clvertalt\cellx9000</span></span>
@@ -285,57 +285,57 @@ encode.</p>
 <p><code>r2rtf:::as_rtf_init()</code> initiates rtf encode with
 ‘English’ as the default language.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_init.html">as_rtf_init</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_init</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_margin()</code> define a page margin.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_page.html">rtf_page</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">::</span><span class="fu"><a href="../reference/as_rtf_margin.html">as_rtf_margin</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">::</span><span class="fu">as_rtf_margin</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_new_page()</code> initiates new page encode.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">::</span><span class="fu"><a href="../reference/as_rtf_new_page.html">as_rtf_new_page</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">::</span><span class="fu">as_rtf_new_page</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_page()</code> define a page width
 (<code>\paperw</code>) and height(<code>\paperh</code>).</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_page.html">rtf_page</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_page.html">as_rtf_page</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_page</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_pageby()</code> define a page_by encoding when
 argument page_by is not NULL in <code><a href="../reference/rtf_body.html">rtf_body()</a></code>.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>page_by <span class="op">=</span> <span class="st">"Species"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_pageby.html">as_rtf_pageby</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_pageby</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_paragraph()</code> define a title/text attribute
 as paragraph.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_paragraph.html">as_rtf_paragraph</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"example"</span><span class="op">)</span>, <span class="st">"rtf_title"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_paragraph</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"example"</span><span class="op">)</span>, <span class="st">"rtf_title"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_source()</code> define the source encode.</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_source.html">rtf_source</a></span><span class="op">(</span><span class="st">"example"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_source.html">as_rtf_source</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_source</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_subline()</code> define the subline encode.</p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_subline.html">rtf_subline</a></span><span class="op">(</span><span class="st">"example"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_subline.html">as_rtf_subline</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_subline</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_table()</code> define the table encode.</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"example"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_table.html">as_rtf_table</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_table</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><code>r2rtf:::as_rtf_title()</code> define the title encode.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"example"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_title.html">as_rtf_title</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_title</span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>In a minimal example, we can create an RTF file by combining
 different pieces of RTF code. For simplicity, we only show the first two
@@ -344,11 +344,11 @@ rows of <code>iris</code> data</p>
 <code class="sourceCode R"><span><span class="va">tbl</span> <span class="op">&lt;-</span> <span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span></span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_init.html">as_rtf_init</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_font.html">as_rtf_font</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_page.html">as_rtf_page</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span>,</span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_margin.html">as_rtf_margin</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span>,</span>
-<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/as_rtf_table.html">as_rtf_table</a></span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span>,</span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_init</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_font</span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_page</span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span>,</span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_margin</span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span>,</span>
+<span>  <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">as_rtf_table</span><span class="op">(</span><span class="va">tbl</span><span class="op">)</span>,</span>
 <span>  <span class="st">"}"</span>,</span>
 <span>  sep <span class="op">=</span> <span class="st">"\n"</span></span>
 <span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -440,9 +440,9 @@ contains the most commonly used font types, formats, border types, etc.
 All these attributes are mapped in a data frame which contains the
 element names and corresponding RTF encode. User is only allowed to key
 in whatever is defined in dictionary for the rtf_ functions, or error
-message will be provided as a result from <code><a href="../reference/match_arg.html">match_arg()</a></code>.</p>
+message will be provided as a result from <code>match_arg()</code>.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/font_type.html">font_type</a></span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">font_type</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    type                  name     style rtf_code    family</span></span>
 <span><span class="co">#&gt; 1     1       Times New Roman  \\froman     \\f0     Times</span></span>
 <span><span class="co">#&gt; 2     2 Times New Roman Greek  \\froman     \\f1     Times</span></span>
@@ -455,10 +455,10 @@ message will be provided as a result from <code><a href="../reference/match_arg.
 <span><span class="co">#&gt; 9     9           Courier New \\fmodern     \\f8   Courier</span></span>
 <span><span class="co">#&gt; 10   10                Symbol   \\ftech     \\f9     Times</span></span></code></pre></div>
 <p>Superscripts, under scripts are taken care of by using
-<code><a href="../reference/convert.html">convert()</a></code> function to translate them into latex code and
+<code>convert()</code> function to translate them into latex code and
 unicode. For example:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu"><a href="../reference/convert.html">convert</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"^"</span>, <span class="st">"&lt;="</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">convert</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"^"</span>, <span class="st">"&lt;="</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "\\super "       "\\uc1\\u8804* "</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -488,16 +488,16 @@ together with other variables in the vectors.</p>
 </h2>
 <ul>
 <li>
-<code><a href="../reference/check_args.html">check_args()</a></code>: Function for argument checking for types,
+<code>check_args()</code>: Function for argument checking for types,
 length or dimension, this function is used for all export functions
 except <code><a href="../reference/write_rtf.html">write_rtf()</a></code>.</li>
 <li>
-<code><a href="../reference/match_arg.html">match_arg()</a></code>: Function for argument verification on
+<code>match_arg()</code>: Function for argument verification on
 input values to see whether they match <code>dictionary()</code> defined
 values, this function is used for all export functions except
 <code>write_rtf</code>().</li>
 <li>
-<code><a href="../reference/footnote_source_space.html">footnote_source_space()</a></code>: Function to derive space
+<code>footnote_source_space()</code>: Function to derive space
 adjustment, whose results could be used in <code><a href="../reference/rtf_footnote.html">rtf_footnote()</a></code>
 and <code><a href="../reference/rtf_source.html">rtf_source()</a></code> when indentation is defined by user.</li>
 </ul>
