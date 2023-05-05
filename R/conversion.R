@@ -27,6 +27,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 inch_to_twip <- function(inch) {
   round(inch * 1440, 0)
 }
@@ -45,6 +46,7 @@ inch_to_twip <- function(inch) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 cell_size <- function(col_rel_width, col_total_width) {
   total_width_twip <- inch_to_twip(col_total_width)
   round(total_width_twip / sum(col_rel_width) * col_rel_width, 0)
@@ -66,6 +68,7 @@ cell_size <- function(col_rel_width, col_total_width) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 convert <- function(text,
                     load_stringi = class(try(stringi::stri_replace_all_fixed, silent = TRUE)) != "try-error") {
   # grepl(">|<|=|_|\\^|(\\\\)|(\\n)", c(">", "<", "=", "_", "\n", "\\line", "abc"))

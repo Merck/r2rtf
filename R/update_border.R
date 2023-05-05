@@ -38,6 +38,8 @@
 #' tbl <- iris[c(1:3, 51:54), ] %>%
 #'   rtf_body(page_by = "Species") %>%
 #'   r2rtf:::update_border_first()
+#'
+#' @noRd
 update_border_first <- function(tbl) {
   page <- attr(tbl, "page")
   colheader <- attr(tbl, "rtf_colheader")
@@ -109,6 +111,8 @@ update_border_first <- function(tbl) {
 #' tbl <- iris[c(1:3, 51:54), ] %>%
 #'   rtf_body(page_by = "Species") %>%
 #'   r2rtf:::update_border_last()
+#'
+#' @noRd
 update_border_last <- function(tbl) {
   page <- attr(tbl, "page")
   pageby <- attr(tbl, "rtf_pageby_table")

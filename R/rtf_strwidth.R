@@ -42,6 +42,8 @@
 #' tbl %>%
 #'   rtf_body(text_font = c(1, 3)) %>%
 #'   r2rtf:::rtf_strwidth()
+#'
+#' @noRd
 rtf_strwidth <- function(tbl) {
   # Text matrix
   if (!is.null(dim(tbl))) {

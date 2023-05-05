@@ -37,6 +37,7 @@
 #' @inheritParams rtf_encode
 #' @param verbose a boolean value to return more details of RTF encoding.
 #'
+#' @noRd
 rtf_encode_table <- function(tbl, verbose = FALSE) {
   # Update First and Last Border
   tbl_1 <- update_border_first(tbl)

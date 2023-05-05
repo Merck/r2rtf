@@ -30,6 +30,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_paragraph <- function(text, combine = TRUE) {
   attr_text <- attributes(text)
 

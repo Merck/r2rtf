@@ -33,6 +33,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 footnote_source_space <- function(tbl,
                                   text_indent_reference = "table") {
   # Input checking

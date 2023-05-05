@@ -44,6 +44,8 @@
 #'   r2rtf:::rtf_subset(row = 1:2, col = c(1, 4:5))
 #'
 #' attributes(sub_table)
+#'
+#' @noRd
 rtf_subset <- function(tbl,
                        row = 1:nrow(tbl),
                        col = 1:ncol(tbl)) {

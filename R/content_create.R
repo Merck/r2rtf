@@ -27,6 +27,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_init <- function() {
   # The number 1033 is U.S. English
   paste("{", "\\rtf1\\ansi\n\\deff0\\deflang1033", sep = "")
@@ -44,6 +45,7 @@ as_rtf_init <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_font <- function() {
   font_type <- font_type()
   font_rtf <- factor(c(1:10), levels = font_type$type, labels = font_type$rtf_code)
@@ -73,6 +75,7 @@ as_rtf_font <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_color <- function(tbl) {
   rtf_color <- NULL
 
@@ -99,6 +102,7 @@ as_rtf_color <- function(tbl) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_page <- function(tbl) {
   page <- attr(tbl, "page")
 
@@ -155,6 +159,7 @@ as_rtf_page <- function(tbl) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_margin <- function(tbl) {
   page <- attr(tbl, "page")
 
@@ -176,6 +181,7 @@ as_rtf_margin <- function(tbl) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_new_page <- function() {
   paste("{\\pard\\fs2\\par}\\page{\\pard\\fs2\\par}")
 }
@@ -194,6 +200,7 @@ as_rtf_new_page <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_title <- function(tbl) {
   title <- attr(tbl, "rtf_title")
 
@@ -222,6 +229,7 @@ as_rtf_title <- function(tbl) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_subline <- function(tbl) {
   subline <- attr(tbl, "rtf_subline")
 
@@ -250,6 +258,7 @@ as_rtf_subline <- function(tbl) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_colheader <- function(tbl) {
   rtf_colheader <- attr(tbl, "rtf_colheader")
 
@@ -277,6 +286,7 @@ as_rtf_colheader <- function(tbl) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_footnote <- function(tbl, attr_name = "rtf_footnote") {
   text <- attr(tbl, attr_name)
 
@@ -347,6 +357,7 @@ as_rtf_footnote <- function(tbl, attr_name = "rtf_footnote") {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_source <- function(tbl) {
   as_rtf_footnote(tbl, "rtf_source")
 }
@@ -361,6 +372,7 @@ as_rtf_source <- function(tbl) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_end <- function() {
   paste("}", sep = "")
 }
