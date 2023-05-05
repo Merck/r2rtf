@@ -33,6 +33,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 rtf_group_by_enhance <- function(tbl, group_by, page_index) {
   for (i in length(group_by):1) {
     by <- group_by[1:i]

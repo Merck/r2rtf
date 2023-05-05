@@ -29,6 +29,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 font_type <- function() {
   data.frame(
     type = 1:10,
@@ -70,6 +71,7 @@ font_type <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 color_table <- function() {
   .tb <- data.frame(color = grDevices::colors())
   .tb$type <- 1:nrow(.tb)
@@ -93,6 +95,7 @@ color_table <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 font_format <- function() {
   data.frame(
     type = c("", "b", "i", "u", "s", "^", "_"),
@@ -114,6 +117,7 @@ font_format <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 fig_format <- function() {
   data.frame(
     type = c("emf", "png", "jpeg"),
@@ -136,6 +140,7 @@ fig_format <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 justification <- function() {
   data.frame(
     type = c("l", "c", "r", "d", "j"),
@@ -157,6 +162,7 @@ justification <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 vertical_justification <- function() {
   data.frame(
     type = c("top", "middle", "bottom", "merge_first", "merge_rest"),
@@ -178,6 +184,7 @@ vertical_justification <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 border_type <- function() {
   data.frame(
     name = c(
@@ -204,6 +211,7 @@ border_type <- function() {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 spacing <- function() {
   data.frame(
     type = c(1, 2, 1.5),

@@ -19,6 +19,7 @@
 #'
 #' @inheritParams rtf_body
 #'
+#' @noRd
 rtf_pageby <- function(tbl,
                        page_by = NULL,
                        new_page = FALSE,

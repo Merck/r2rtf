@@ -32,6 +32,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_table <- function(tbl) {
   # Remove subline_by column
   if (!is.null(attr(tbl, "rtf_by_subline")$by_var)) {

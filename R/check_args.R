@@ -45,6 +45,7 @@
 #' check_args(arg = vec, type = c("character"), length = c(2, 4))
 #' }
 #'
+#' @noRd
 check_args <- function(arg, type, length = NULL, dim = NULL) {
   if (is.null(arg)) {
     return(NULL)

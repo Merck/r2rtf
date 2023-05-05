@@ -52,6 +52,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 rtf_paragraph <- function(text,
                           justification = "c",
                           indent_first = 0,

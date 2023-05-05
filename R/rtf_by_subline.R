@@ -20,6 +20,7 @@
 #'
 #' @inheritParams rtf_body
 #'
+#' @noRd
 rtf_by_subline <- function(tbl,
                            subline_by) {
   if (is.null(subline_by)) {

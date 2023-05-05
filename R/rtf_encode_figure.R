@@ -35,6 +35,7 @@
 #'
 #' @inheritParams rtf_encode
 #'
+#' @noRd
 rtf_encode_figure <- function(tbl) {
   # Footnote always be free text in figures
   page <- attr(tbl, "page")

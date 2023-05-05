@@ -45,7 +45,6 @@ articles:
 - title: Get Started
   contents:
   - r2rtf
-  - r2rtf-cran
 - title: TLF Examples
   navbar: ~
   contents:
@@ -64,6 +63,9 @@ articles:
 - title: Package Design
   contents:
   - design-pattern
+- title: CRAN
+  contents:
+  - r2rtf-cran
 
 reference:
 - title: RTF Table
@@ -96,58 +98,4 @@ reference:
 - title: Utility
   contents:
   - "utf8Tortf"
-- title: Internal function
-  contents:
-  - "as_rtf_colheader"
-  - "as_rtf_color"
-  - "as_rtf_end"
-  - "as_rtf_font"
-  - "as_rtf_footnote"
-  - "as_rtf_init"
-  - "as_rtf_margin"
-  - "as_rtf_new_page"
-  - "as_rtf_page"
-  - "as_rtf_pageby"
-  - "as_rtf_paragraph"
-  - "as_rtf_source"
-  - "as_rtf_subline"
-  - "as_rtf_table"
-  - "as_rtf_title"
-  - "border_type"
-  - "cell_size"
-  - "check_args"
-  - "color_table"
-  - "convert"
-  - "font_format"
-  - "font_type"
-  - "footnote_source_space"
-  - "inch_to_twip"
-  - "justification"
-  - "match_arg"
-  - "nrow_paragraph"
-  - "nrow_table"
-  - "obj_rtf_border"
-  - "obj_rtf_text"
-  - "rtf_by_subline"
-  - "rtf_convert_format"
-  - "rtf_encode_figure"
-  - "rtf_encode_list"
-  - "rtf_encode_table"
-  - "rtf_group_by_enhance"
-  - "rtf_nline_matrix"
-  - "rtf_nline_vector"
-  - "rtf_nrow"
-  - "rtf_pageby"
-  - "rtf_paragraph"
-  - "rtf_strwidth"
-  - "rtf_subset"
-  - "rtf_table_content"
-  - "rtf_text"
-  - "set_margin"
-  - "spacing"
-  - "update_border_first"
-  - "update_border_last"
-  - "vertical_justification"
-  - "write_rtf_para"
-  - "fig_format"
   - "rtf_read_png"

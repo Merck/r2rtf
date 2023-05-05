@@ -35,6 +35,8 @@
 #' @return the same text (data frame or text) with additional attributes
 #'
 #' @importFrom grDevices colors
+#'
+#' @noRd
 obj_rtf_text <- function(text,
                          text_font = 1,
                          text_format = NULL,

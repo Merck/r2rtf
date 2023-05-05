@@ -39,6 +39,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 rtf_text <- function(text,
                      font = 1,
                      font_size = 12,

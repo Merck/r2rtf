@@ -30,6 +30,7 @@
 #'
 #' @return A vector of file paths for the converted files.
 #'
+#' @noRd
 rtf_convert_format <- function(input,
                                output_file = NULL,
                                output_dir = ".",
@@ -172,6 +173,8 @@ rtf_convert_format <- function(input,
 #' @return a character vector of RTF encoding.
 #'
 #' @keywords internal
+#'
+#' @noRd
 update_cellx <- function(x, tolerance = 5) {
   cellx <- regmatches(x, gregexpr("cellx([0-9]+)", x))
 
