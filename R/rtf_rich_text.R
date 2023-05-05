@@ -31,7 +31,7 @@
 #'    \item Extract text from tagged text.
 #'    \item Validate that lengths of extractions are all the same.
 #'    \item Validate that tags are defined in the `theme` argument.
-#'    \item Execute \code{rtf_text} with extracted text and relevant formatting.
+#'    \item Execute \code{rtf_text()} with extracted text and relevant formatting.
 #'    \item Reinsert encoded formatted text to original input text.
 #'  }
 #'  }
@@ -44,7 +44,7 @@
 #'
 #' @examples
 #' rtf_rich_text()
-rtf_rich_text <- function(text = "This is {.emph important}. This is {.blah relevant}.",
+rtf_rich_text <- function(text,
                           theme = list(
                             .emph = list(color = "blue", `format` = "b"),
                             .blah = list(color = "red")
@@ -113,5 +113,5 @@ rtf_rich_text <- function(text = "This is {.emph important}. This is {.blah rele
     )
   }
 
-  new_text
+  rtf_text(new_text)
 }
