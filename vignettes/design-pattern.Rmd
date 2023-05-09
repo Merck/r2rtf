@@ -34,15 +34,15 @@ The r2rtf package is developed to standardize the approach to generate highly cu
 tables, listings and figures (TLFs) in RTF format and provide flexibility to
 customize table appearance for table title, subtitle, column header, footnote, and data source.
 
-The r2rtf package is designed to enables pipes (`%>%`),
+The r2rtf package is designed to enables pipes (`|>`),
 the first argument are all `tbl` except `rtf_read_figure()` and `write_rtf()`.
 A minimal example summarized the major steps in using r2rtf package to
 create a table or listing after a data frame is ready.
 
 ```{r}
-head(iris) %>%
-  rtf_body() %>% # Step 1 Add attributes
-  rtf_encode() %>% # Step 2 Convert attributes to RTF encode
+head(iris) |>
+  rtf_body() |> # Step 1 Add attributes
+  rtf_encode() |> # Step 2 Convert attributes to RTF encode
   write_rtf(file = "rtf/ex-tbl.rtf") # Step 3 Write to a .rtf file
 ```
 
@@ -54,9 +54,9 @@ Similar step is used to create a figure. First we generate a figure in `png` for
 
 ```{r}
 fig <- c("fig/fig1.png")
-fig %>% rtf_read_figure() %>% # Step 1 Read in PNG file
-  rtf_figure() %>% # Step 2 Add attributes
-  rtf_encode(doc_type = "figure") %>% # Step 3 Convert attributes to RTF encode
+fig |> rtf_read_figure() |> # Step 1 Read in PNG file
+  rtf_figure() |> # Step 2 Add attributes
+  rtf_encode(doc_type = "figure") |> # Step 3 Convert attributes to RTF encode
   write_rtf(file = "rtf/ex-fig.rtf") # Step 4 Write to a .rtf file
 ```
 
@@ -85,7 +85,7 @@ attr(tbl, "page")$border_color_first <- border_color_first
 All attributes is saved in a logical way and summarized in the table below.
 
 ```{r}
-tbl <- head(iris) %>% rtf_page()
+tbl <- head(iris) |> rtf_page()
 ```
 
 To access the attributes, `attr()` or `attributes()` function can be used. For example, to get page attributes
@@ -110,7 +110,7 @@ and the texts in the remaining 4 columns to be left adjusted for a table with fi
 In addition, `rtf_body()` initiates "page" attributes when color is used in any of table elements (border, text, etc.).
 
 ```{r}
-head(iris) %>% rtf_body()
+head(iris) |> rtf_body()
 ```
 
 Similarly to `rtf_body()`, the package also includes
@@ -119,20 +119,20 @@ assign attributes to the certain component of the output. Below is a simple
 example of using the functions together for table/figure.
 
 ```{r, eval = FALSE}
-head(iris) %>% # Step 1 Read in data frame
-  rtf_title("iris") %>% # Step 2 Add title
-  rtf_colheader("A | B | C | D | E") %>% # Step 3 Add column header
-  rtf_body() %>% # Step 4 Add attributes
-  rtf_footnote("This is a footnote") %>% # Step 5 Add footnote
+head(iris) |> # Step 1 Read in data frame
+  rtf_title("iris") |> # Step 2 Add title
+  rtf_colheader("A | B | C | D | E") |> # Step 3 Add column header
+  rtf_body() |> # Step 4 Add attributes
+  rtf_footnote("This is a footnote") |> # Step 5 Add footnote
   rtf_source("Source: xxx") # Step 6 Add data source
 ```
 
 ```{r, eval = FALSE}
-"fig/tmp-fig.png" %>%
-  rtf_read_figure() %>% # Step 1 Read PNG files from the file path
-  rtf_title("title", "subtitle") %>% # Step 2 Add title or subtitle
-  rtf_footnote("footnote") %>% # Step 3 Add footnote
-  rtf_source("[datasource: mk0999]") %>% # Step 4 Add data source
+"fig/tmp-fig.png" |>
+  rtf_read_figure() |> # Step 1 Read PNG files from the file path
+  rtf_title("title", "subtitle") |> # Step 2 Add title or subtitle
+  rtf_footnote("footnote") |> # Step 3 Add footnote
+  rtf_source("[datasource: mk0999]") |> # Step 4 Add data source
   rtf_figure() # Step 5 Add figure attributes
 ```
 
@@ -152,120 +152,120 @@ this is often seen in efficacy analysis. And `rtf_encode_figure()` is used for f
 `r2rtf:::as_rtf_colheader()` define the column header in a table or listing.
 
 ```{r, eval = FALSE}
-head(iris) %>%
-  rtf_body() %>%
-  r2rtf:::as_rtf_colheader() %>%
+head(iris) |>
+  rtf_body() |>
+  r2rtf:::as_rtf_colheader() |>
   cat()
 ```
 
 `r2rtf:::as_rtf_color()` define the color to be used in text or border.
 
 ```{r, eval = FALSE}
-head(iris) %>%
-  rtf_body(text_color = "red") %>%
-  r2rtf:::as_rtf_color() %>%
+head(iris) |>
+  rtf_body(text_color = "red") |>
+  r2rtf:::as_rtf_color() |>
   cat()
 ```
 
 `r2rtf:::as_rtf_end()` define the end of rtf encode string.
 
 ```{r, eval = FALSE}
-r2rtf:::as_rtf_end() %>% cat()
+r2rtf:::as_rtf_end() |> cat()
 ```
 
 `r2rtf:::as_rtf_font()` define the font encode.
 
 ```{r, eval = FALSE}
-r2rtf:::as_rtf_font() %>% cat()
+r2rtf:::as_rtf_font() |> cat()
 ```
 
 `r2rtf:::as_rtf_footnote()` define the footnote encode.
 
 ```{r}
-head(iris) %>%
-  rtf_footnote("example") %>%
-  r2rtf:::as_rtf_footnote() %>%
+head(iris) |>
+  rtf_footnote("example") |>
+  r2rtf:::as_rtf_footnote() |>
   cat()
 ```
 
 `r2rtf:::as_rtf_init()` initiates rtf encode with 'English' as the default language.
 
 ```{r, eval = FALSE}
-r2rtf:::as_rtf_init() %>% cat()
+r2rtf:::as_rtf_init() |> cat()
 ```
 
 `r2rtf:::as_rtf_margin()` define a page margin.
 
 ```{r, eval = FALSE}
-head(iris) %>%
-  rtf_page() %>%
-  r2rtf::as_rtf_margin() %>%
+head(iris) |>
+  rtf_page() |>
+  r2rtf::as_rtf_margin() |>
   cat()
 ```
 
 `r2rtf:::as_rtf_new_page()` initiates new page encode.
 
 ```{r, eval = FALSE}
-r2rtf::as_rtf_new_page() %>% cat()
+r2rtf::as_rtf_new_page() |> cat()
 ```
 
 `r2rtf:::as_rtf_page()` define a page width (`\paperw`) and height(`\paperh`).
 
 ```{r, eval = FALSE}
-head(iris) %>%
-  rtf_page() %>%
-  r2rtf:::as_rtf_page() %>%
+head(iris) |>
+  rtf_page() |>
+  r2rtf:::as_rtf_page() |>
   cat()
 ```
 
 `r2rtf:::as_rtf_pageby()` define a page_by encoding when argument page_by is not NULL in `rtf_body()`.
 
 ```{r, eval = FALSE}
-iris %>%
-  rtf_body(page_by = "Species") %>%
-  r2rtf:::as_rtf_pageby() %>%
+iris |>
+  rtf_body(page_by = "Species") |>
+  r2rtf:::as_rtf_pageby() |>
   cat()
 ```
 
 `r2rtf:::as_rtf_paragraph()` define a title/text attribute as paragraph.
 
 ```{r, eval = FALSE}
-r2rtf:::as_rtf_paragraph(attr(head(iris) %>% rtf_title("example"), "rtf_title")) %>% cat()
+r2rtf:::as_rtf_paragraph(attr(head(iris) |> rtf_title("example"), "rtf_title")) |> cat()
 ```
 
 `r2rtf:::as_rtf_source()` define the source encode.
 
 ```{r, eval = FALSE}
-head(iris) %>%
-  rtf_source("example") %>%
-  r2rtf:::as_rtf_source() %>%
+head(iris) |>
+  rtf_source("example") |>
+  r2rtf:::as_rtf_source() |>
   cat()
 ```
 
 `r2rtf:::as_rtf_subline()` define the subline encode.
 
 ```{r, eval = FALSE}
-head(iris) %>%
-  rtf_subline("example") %>%
-  r2rtf:::as_rtf_subline() %>%
+head(iris) |>
+  rtf_subline("example") |>
+  r2rtf:::as_rtf_subline() |>
   cat()
 ```
 
 `r2rtf:::as_rtf_table()` define the table encode.
 
 ```{r, eval = FALSE}
-head(iris) %>%
-  rtf_title("example") %>%
-  r2rtf:::as_rtf_table() %>%
+head(iris) |>
+  rtf_title("example") |>
+  r2rtf:::as_rtf_table() |>
   cat()
 ```
 
 `r2rtf:::as_rtf_title()` define the title encode.
 
 ```{r, eval = FALSE}
-head(iris) %>%
-  rtf_title("example") %>%
-  r2rtf:::as_rtf_title() %>%
+head(iris) |>
+  rtf_title("example") |>
+  r2rtf:::as_rtf_title() |>
   cat()
 ```
 
@@ -273,7 +273,7 @@ In a minimal example, we can create an RTF file by combining different pieces of
 For simplicity, we only show the first two rows of `iris` data
 
 ```{r}
-tbl <- iris[1:2, ] %>% rtf_body()
+tbl <- iris[1:2, ] |> rtf_body()
 
 paste(
   r2rtf:::as_rtf_init(),
@@ -283,7 +283,7 @@ paste(
   r2rtf:::as_rtf_table(tbl),
   "}",
   sep = "\n"
-) %>% cat()
+) |> cat()
 ```
 
 If we save the RTF code into an `.rtf` file.
@@ -299,9 +299,9 @@ into an `.rtf` file.
 A simple example is as in the overview section.
 
 ```{r, eval = FALSE}
-head(iris) %>%
-  rtf_body() %>% # Step 1 Add attributes
-  rtf_encode() %>% # Step 2 Convert attributes to RTF encode
+head(iris) |>
+  rtf_body() |> # Step 1 Add attributes
+  rtf_encode() |> # Step 2 Convert attributes to RTF encode
   write_rtf(file = "tmp.rtf") # Step 3 Write to a .rtf file
 ```
 
@@ -328,17 +328,17 @@ To achieve this, user first need to sort input data frame by page_by variable th
 Border and text attributes are controlled together with other variables in the vectors.
 
 ```{r, eval = FALSE}
-iris %>%
-  arrange(Species) %>%
-  rtf_colheader("Sepal Length | Sepal Width | Petal Length | PetalWidth", ) %>%
+iris |>
+  arrange(Species) |>
+  rtf_colheader("Sepal Length | Sepal Width | Petal Length | PetalWidth", ) |>
   rtf_body(
     page_by = c("Species"),
     border_top = c(rep("", 4), c("single")),
     border_bottom = c(rep("", 4), c("single")),
     text_justification = c(rep("c", 4), c("l")),
     new_page = TRUE
-  ) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_encode() |>
   write_rtf("pageby.rtf")
 ```
 

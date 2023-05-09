@@ -40,7 +40,6 @@ Suggests:
     emmeans,
     ggplot2,
     knitr,
-    magrittr,
     officer,
     rmarkdown,
     stringi,

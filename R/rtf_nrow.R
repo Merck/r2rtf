@@ -132,9 +132,9 @@ rtf_nline_matrix <- function(text, strwidth, size) {
 #'
 #' @examples
 #' library(dplyr) # required for running example
-#' tb <- head(iris) %>%
-#'   rtf_title(title = "Iris example") %>%
-#'   rtf_footnote(footnote = c("footnote 1", "footnote 2")) %>%
+#' tb <- head(iris) |>
+#'   rtf_title(title = "Iris example") |>
+#'   rtf_footnote(footnote = c("footnote 1", "footnote 2")) |>
 #'   rtf_body()
 #'
 #' r2rtf:::nrow_paragraph(attr(tb, "rtf_title"), 6.25)
@@ -179,8 +179,8 @@ nrow_paragraph <- function(tbl, size, padding = 0.2) {
 #'
 #' @examples
 #' library(dplyr) # required for running example
-#' tbl <- iris[c(1:4, 50:54), ] %>%
-#'   rtf_title(title = "Iris example") %>%
+#' tbl <- iris[c(1:4, 50:54), ] |>
+#'   rtf_title(title = "Iris example") |>
 #'   rtf_body()
 #' r2rtf:::nrow_table(tbl, size = 2.55)
 #'
@@ -234,8 +234,8 @@ nrow_table <- function(tbl, size, page_size = size, padding = 0.2) {
 #'
 #' @examples
 #' library(dplyr) # required for running example
-#' tbl <- iris[c(1:4, 50:54), ] %>%
-#'   rtf_title(title = "Iris example") %>%
+#' tbl <- iris[c(1:4, 50:54), ] |>
+#'   rtf_title(title = "Iris example") |>
 #'   rtf_body()
 #' r2rtf:::rtf_nrow(tbl)
 #'

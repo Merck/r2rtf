@@ -21,7 +21,7 @@ The R package is designed to
 
 - provide simple "verb" functions that correspond to each component of a table,
   to help you translate data frame to table in RTF file.
-- enable pipes (`%>%`).
+- enable pipes (`|>`).
 - only focus on **table format**.
   Data manipulation and analysis should be handled by other R packages. (e.g., `tidyverse`)
 - `r2rtf` minimizes package dependency
@@ -58,8 +58,8 @@ library(tidyr)
 ```
 
 ```{r}
-r2rtf_adae %>%
-  select(USUBJID, TRTA, AEDECOD) %>%
+r2rtf_adae |>
+  select(USUBJID, TRTA, AEDECOD) |>
   head(4)
 ```
 
@@ -73,10 +73,10 @@ that contains all the information we want to add in an RTF table.
 In this AE example, we provide number of subjects with each type of AE by treatment group.
 
 ```{r}
-tbl <- r2rtf_adae %>%
-  count(TRTA, AEDECOD) %>%
+tbl <- r2rtf_adae |>
+  count(TRTA, AEDECOD) |>
   pivot_wider(names_from = TRTA, values_from = n, values_fill = 0)
-tbl %>% head(4)
+tbl |> head(4)
 ```
 
 ## Single table verbs
@@ -90,7 +90,7 @@ tbl %>% head(4)
 - `rtf_footnote`: RTF footnote information
 - `rtf_source`: RTF data source information
 
-All these verbs are designed to enables usage of pipes (`%>%`).
+All these verbs are designed to enables usage of pipes (`|>`).
 A full list of all functions can be found in the [package reference](https://merck.github.io/r2rtf/reference/index.html).
 
 ## Simple Example
@@ -102,9 +102,9 @@ A minimal example below illustrates how to combine verbs using pipes to create a
 - `write_rtf()` saves RTF encoding into a file with file extension `.rtf`.
 
 ```{r}
-head(tbl) %>%
-  rtf_body() %>% # Step 1 Add table  attributes
-  rtf_encode() %>% # Step 2 Convert attributes to RTF encode
+head(tbl) |>
+  rtf_body() |> # Step 1 Add table  attributes
+  rtf_encode() |> # Step 2 Convert attributes to RTF encode
   write_rtf("rtf/intro-ae1.rtf") # Step 3 Write to a .rtf file
 ```
 
@@ -125,10 +125,10 @@ Only the ratio of `col_rel_width` is used.
 Therefore it is equivalent to use `col_rel_width = c(6,4,4,4)` or `col_rel_width = c(1.5,1,1,1)`.
 
 ```{r}
-head(tbl) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
+head(tbl) |>
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) |>
   # define relative width
-  rtf_encode() %>%
+  rtf_encode() |>
   write_rtf("rtf/intro-ae2.rtf")
 ```
 
@@ -150,13 +150,13 @@ In `rtf_colheader`, `colheader` argument is used to provide content of column he
 We used `"|"` to separate the columns.
 
 ```{r}
-head(tbl) %>%
+head(tbl) |>
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     col_rel_width = c(3, 2, 2, 2)
-  ) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae3.rtf")
 ```
 
@@ -173,17 +173,17 @@ By using `rtf_colheader` with `col_rel_width`, one can customize complicated col
 If there are multiple pages, column header will repeat at each page by default.
 
 ```{r}
-head(tbl, 50) %>%
+head(tbl, 50) |>
   rtf_colheader(
     colheader = " | Treatment",
     col_rel_width = c(3, 6)
-  ) %>%
+  ) |>
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     col_rel_width = c(3, 2, 2, 2)
-  ) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae4.rtf")
 ```
 
@@ -207,9 +207,9 @@ r2rtf:::justification()
 Below is an example that makes the first column left-aligned and center-aligned for the rest.
 
 ```{r}
-head(tbl) %>%
-  rtf_body(text_justification = c("l", "c", "c", "c")) %>%
-  rtf_encode() %>%
+head(tbl) |>
+  rtf_body(text_justification = c("l", "c", "c", "c")) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae5.rtf")
 ```
 
@@ -236,9 +236,9 @@ number of columns displayed (e.g., `c("i", "u", "ib")`).
 Below is an example to make first column in bold and normal for the rest.
 
 ```{r}
-head(tbl) %>%
-  rtf_body(text_format = c("b", "", "", "")) %>%
-  rtf_encode() %>%
+head(tbl) |>
+  rtf_body(text_format = c("b", "", "", "")) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae6.rtf")
 ```
 
@@ -263,18 +263,18 @@ head(r2rtf:::border_type())
 
 
 ```{r}
-head(tbl) %>%
+head(tbl) |>
   rtf_colheader(
     colheader = " | Treatment",
     col_rel_width = c(3, 6)
-  ) %>%
+  ) |>
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     border_top = c("", "single", "single", "single"),
     col_rel_width = c(3, 2, 2, 2)
-  ) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae7.rtf")
 ```
 
@@ -293,20 +293,20 @@ The format can also be controlled by providing a vector input in `text_format`.
 > We used soft return to break lines in title.
 
 ```{r}
-head(tbl) %>%
+head(tbl) |>
   rtf_title(
     title = c(
       "Adverse Event Count by Treatment Group",
       "(An example)"
     ),
     text_format = c("b", "")
-  ) %>%
+  ) |>
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     col_rel_width = c(3, 2, 2, 2)
-  ) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae8.rtf")
 ```
 
@@ -323,21 +323,21 @@ We can provide a vector for the `footnote` argument. Each value is a separate li
 Below example showed the case when using `as_table = TRUE` (default) to display footnote inside the table body.
 
 ```{r}
-head(tbl) %>%
-  rtf_title(title = "Adverse Event Count by Treatment Group") %>%
+head(tbl) |>
+  rtf_title(title = "Adverse Event Count by Treatment Group") |>
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     col_rel_width = c(3, 2, 2, 2)
-  ) %>%
+  ) |>
   rtf_footnote(
     footnote = c(
       "Adverse events are coded according to MedDRA version 23.0",
       "adam-adae"
     ),
     as_table = TRUE
-  ) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae9.rtf")
 ```
 
@@ -348,21 +348,21 @@ knitr::include_graphics("pdf/intro-ae9.pdf")
 Below example showed the case when using `as_table = FALSE` to display footnote outside the table body.
 
 ```{r}
-head(tbl) %>%
-  rtf_title(title = "Adverse Event Count by Treatment Group") %>%
+head(tbl) |>
+  rtf_title(title = "Adverse Event Count by Treatment Group") |>
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     col_rel_width = c(3, 2, 2, 2)
-  ) %>%
+  ) |>
   rtf_footnote(
     footnote = c(
       "Adverse events are coded according to MedDRA version 23.0",
       "adam-adae"
     ),
     as_table = FALSE
-  ) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae10.rtf")
 ```
 
@@ -379,21 +379,21 @@ Below example showed the case when using `as_table = FALSE` (default) to display
 > We can also adjust data source to be left aligned. By default the alignment matches the table border.
 
 ```{r}
-head(tbl) %>%
-  rtf_page(col_width = 5) %>%
+head(tbl) |>
+  rtf_page(col_width = 5) |>
   # set total column width
-  rtf_title(title = "Adverse Event Count by Treatment Group") %>%
+  rtf_title(title = "Adverse Event Count by Treatment Group") |>
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     col_rel_width = c(3, 2, 2, 2)
-  ) %>%
+  ) |>
   rtf_source(
     source = "[datasource: adam-adae]",
     text_justification = "l",
     as_table = FALSE
-  ) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae11.rtf")
 ```
 
@@ -404,18 +404,18 @@ knitr::include_graphics("pdf/intro-ae11.pdf")
 Below example showed the case when using `as_table = TRUE` to display data source inside the table body.
 
 ```{r}
-head(tbl) %>%
-  rtf_title(title = "Adverse Event Count by Treatment Group") %>%
+head(tbl) |>
+  rtf_title(title = "Adverse Event Count by Treatment Group") |>
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     col_rel_width = c(3, 2, 2, 2)
-  ) %>%
+  ) |>
   rtf_source(
     source = "[datasource: adam-adae]",
     as_table = TRUE
-  ) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae12.rtf")
 ```
 
@@ -438,12 +438,12 @@ A list of LaTex commands can be found [here](https://www.overleaf.com/learn/late
 Example below demonstrates this idea.
 
 ```{r}
-head(tbl) %>%
-  rtf_title(title = "Adverse Event Count by Treatment Group{^a}") %>%
+head(tbl) |>
+  rtf_title(title = "Adverse Event Count by Treatment Group{^a}") |>
   rtf_colheader(
     colheader = "Adverse Events{\\super 1} | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     col_rel_width = c(3, 2, 2, 2)
-  ) %>%
+  ) |>
   rtf_footnote(
     footnote = c(
       "{\\super 1}Adverse events are coded according to MedDRA 20.0{<=}version {\\leq}23.0",
@@ -451,9 +451,9 @@ head(tbl) %>%
       "{^a}adam-adae"
     ),
     as_table = FALSE
-  ) %>%
-  rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_body(col_rel_width = c(3, 2, 2, 2)) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae13.rtf")
 ```
 
@@ -480,17 +480,17 @@ color_matrix
 ```
 
 ```{r}
-tbl1 %>%
-  rtf_title(title = "Adverse Event Count by Treatment Group") %>%
+tbl1 |>
+  rtf_title(title = "Adverse Event Count by Treatment Group") |>
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     col_rel_width = c(3, 2, 2, 2)
-  ) %>%
+  ) |>
   rtf_body(
     col_rel_width = c(3, 2, 2, 2),
     text_background_color = color_matrix
-  ) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae14.rtf")
 ```
 
@@ -506,18 +506,18 @@ Every lines is counted including title, subline, header, body, footnote, source,
 The value in `nrow` is the maximum number of rows allowed in one page, the actual rows display can be slightly smaller.
 
 ```{r}
-tbl[1:50, ] %>%
-  rtf_page(nrow = 40) %>%
-  rtf_title(title = "Adverse Events Example") %>%
+tbl[1:50, ] |>
+  rtf_page(nrow = 40) |>
+  rtf_title(title = "Adverse Events Example") |>
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
     col_rel_width = c(3, 1, 1, 1)
-  ) %>%
+  ) |>
   rtf_body(
     col_rel_width = c(3, 1, 1, 1),
     text_justification = c("l", "c", "c", "c")
-  ) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae15.rtf")
 ```
 
@@ -535,22 +535,22 @@ Different values of `subline_by` will be broken into different pages.
 Below example shows using treatment group as the `subline_by` variable.
 
 ```{r, message=FALSE}
-aegt5 <- r2rtf_adae %>%
-  group_by(TRTA, AEDECOD) %>%
-  summarise(Count = n_distinct(USUBJID)) %>%
-  filter(Count > 7) %>%
-  ungroup() %>%
+aegt5 <- r2rtf_adae |>
+  group_by(TRTA, AEDECOD) |>
+  summarise(Count = n_distinct(USUBJID)) |>
+  filter(Count > 7) |>
+  ungroup() |>
   arrange(TRTA, desc(Count))
 
 head(aegt5)
 ```
 
 ```{r}
-aegt5 %>%
-  rtf_title(title = "Top Adverse Events by Treatment Group") %>%
-  rtf_colheader(colheader = "Adverse Events|Count") %>%
-  rtf_body(subline_by = "TRTA") %>%
-  rtf_encode() %>%
+aegt5 |>
+  rtf_title(title = "Top Adverse Events by Treatment Group") |>
+  rtf_colheader(colheader = "Adverse Events|Count") |>
+  rtf_body(subline_by = "TRTA") |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae16.rtf")
 ```
 
@@ -569,14 +569,14 @@ If `new_page = TRUE`, different values of `group_by` will be broken into differe
 Below example showed using treatment group as `page_by` variable.
 
 ```{r}
-aegt5 %>%
-  rtf_title(title = "Top Adverse Events by Treatment Group") %>%
-  rtf_colheader(colheader = "Adverse Events|Count") %>%
+aegt5 |>
+  rtf_title(title = "Top Adverse Events by Treatment Group") |>
+  rtf_colheader(colheader = "Adverse Events|Count") |>
   rtf_body(
     page_by = "TRTA",
     new_page = TRUE
-  ) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae17.rtf")
 ```
 
@@ -591,14 +591,14 @@ Users can use the `group_by` argument in the `rtf_body()` function to display on
 Below example shows using treatment group as `group_by` variable.
 
 ```{r}
-aegt5 %>%
-  rtf_title(title = "Top Adverse Events by Treatment Group") %>%
-  rtf_colheader(colheader = "Treatment|Adverse Events|Count") %>%
+aegt5 |>
+  rtf_title(title = "Top Adverse Events by Treatment Group") |>
+  rtf_colheader(colheader = "Treatment|Adverse Events|Count") |>
   rtf_body(
     group_by = "TRTA",
     text_justification = c("l", "l", "c")
-  ) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_encode() |>
   write_rtf("rtf/intro-ae18.rtf")
 ```
 
@@ -620,9 +620,9 @@ The workflow can be summarized as:
 - Write rtf to a file using `write_rtf()`.
 
 ```{r, message = FALSE}
-pruritus <- r2rtf_adae %>%
-  filter(AEDECOD == "PRURITUS") %>%
-  group_by(TRTA, AEDECOD) %>%
+pruritus <- r2rtf_adae |>
+  filter(AEDECOD == "PRURITUS") |>
+  group_by(TRTA, AEDECOD) |>
   summarise(Count = n_distinct(USUBJID))
 
 fig <- ggplot(data = pruritus, aes(x = TRTA, y = Count)) +
@@ -636,13 +636,13 @@ fig
 filename <- "fig/intro-fig1.png"
 ggsave(filename, fig)
 
-filename %>%
-  rtf_read_figure() %>%
-  rtf_title("Pruritus Frequency by Treatment Group") %>%
-  rtf_footnote("footnote here") %>%
-  rtf_source("[datasource: adam-adae]") %>%
-  rtf_figure() %>%
-  rtf_encode(doc_type = "figure") %>%
+filename |>
+  rtf_read_figure() |>
+  rtf_title("Pruritus Frequency by Treatment Group") |>
+  rtf_footnote("footnote here") |>
+  rtf_source("[datasource: adam-adae]") |>
+  rtf_figure() |>
+  rtf_encode(doc_type = "figure") |>
   write_rtf("rtf/intro-ae19.rtf")
 ```
 

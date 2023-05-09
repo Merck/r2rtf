@@ -3,8 +3,8 @@ test_that("Write function test for simple text and dataset", {
   write_rtf(a, file = file.path(tempdir(), "tabel.rtf"))
   b <- paste(readLines(file.path(tempdir(), "tabel.rtf")), collapse = "\n")
 
-  x <- head(iris) %>%
-    rtf_body() %>%
+  x <- head(iris) |>
+    rtf_body() |>
     rtf_encode()
   write_rtf(x, file = file.path(tempdir(), "tabel.rtf"))
   y <- paste(readLines(file.path(tempdir(), "tabel.rtf")), collapse = "\n")
@@ -27,8 +27,8 @@ test_that("Write function test for simple text", {
 })
 
 test_that("Write function test for dataset input", {
-  x <- head(iris) %>%
-    rtf_body() %>%
+  x <- head(iris) |>
+    rtf_body() |>
     rtf_encode()
   write_rtf_para(x, file = file.path(tempdir(), "tabel.rtf"))
   y <- paste(readLines(file.path(tempdir(), "tabel.rtf")), collapse = "\n")

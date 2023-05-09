@@ -23,14 +23,14 @@
 #' library(magrittr)
 #'
 #' file <- replicate(2, tempfile(fileext = ".rtf"))
-#' file1 <- head(iris) %>%
-#'   rtf_body() %>%
-#'   rtf_encode() %>%
+#' file1 <- head(iris) |>
+#'   rtf_body() |>
+#'   rtf_encode() |>
 #'   write_rtf(file[1])
-#' file2 <- head(cars) %>%
-#'   rtf_page(orientation = "landscape") %>%
-#'   rtf_body() %>%
-#'   rtf_encode() %>%
+#' file2 <- head(cars) |>
+#'   rtf_page(orientation = "landscape") |>
+#'   rtf_body() |>
+#'   rtf_encode() |>
 #'   write_rtf(file[2])
 #' output <- tempfile(fileext = ".rtf")
 #'
@@ -106,14 +106,14 @@ assemble_rtf <- function(input,
 #' library(magrittr)
 #'
 #' file <- replicate(2, tempfile(fileext = ".rtf"))
-#' file1 <- head(iris) %>%
-#'   rtf_body() %>%
-#'   rtf_encode() %>%
+#' file1 <- head(iris) |>
+#'   rtf_body() |>
+#'   rtf_encode() |>
 #'   write_rtf(file[1])
-#' file2 <- head(cars) %>%
-#'   rtf_page(orientation = "landscape") %>%
-#'   rtf_body() %>%
-#'   rtf_encode() %>%
+#' file2 <- head(cars) |>
+#'   rtf_page(orientation = "landscape") |>
+#'   rtf_body() |>
+#'   rtf_encode() |>
 #'   write_rtf(file[2])
 #' output <- tempfile(fileext = ".docx")
 #'

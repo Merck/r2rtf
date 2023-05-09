@@ -1,8 +1,8 @@
 file <- file.path(tempdir(), "tmp.rtf")
 
-iris[1:2, 1:2] %>%
-  rtf_body() %>%
-  rtf_encode() %>%
+iris[1:2, 1:2] |>
+  rtf_body() |>
+  rtf_encode() |>
   write_rtf(file)
 
 x <- readLines(file)

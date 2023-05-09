@@ -58,13 +58,13 @@ By using `png` file as an example, the workflow can be summarized as:
 # Define the path of figure
 filename <- c("fig/fig1.png", "fig/fig2.png", "fig/fig3.png")
 
-filename %>%
-  rtf_read_figure() %>% # read PNG files from the file path
-  rtf_title("title", "subtitle") %>% # add title or subtitle
-  rtf_footnote("footnote") %>% # add footnote
-  rtf_source("[datasource: mk0999]") %>% # add data source
-  rtf_figure() %>% # default setting of page and figure
-  rtf_encode(doc_type = "figure") %>% # encode rtf as figure
+filename |>
+  rtf_read_figure() |> # read PNG files from the file path
+  rtf_title("title", "subtitle") |> # add title or subtitle
+  rtf_footnote("footnote") |> # add footnote
+  rtf_source("[datasource: mk0999]") |> # add data source
+  rtf_figure() |> # default setting of page and figure
+  rtf_encode(doc_type = "figure") |> # encode rtf as figure
   write_rtf(file = "rtf/fig-simple.rtf") # write RTF to a file
 ```
 
@@ -79,16 +79,16 @@ The figure height and width can be set up for each figure in a vector.
 The code below provides an example for these features.
 
 ```{r}
-filename %>%
-  rtf_read_figure() %>% # read PNG files from the file path
-  rtf_page(orientation = "landscape") %>% # set page orientation
-  rtf_title("title", "subtitle") %>% # add title or subtitle
-  rtf_footnote("footnote") %>% # add footnote
-  rtf_source("[datasource: mk0999]") %>% # add data source
+filename |>
+  rtf_read_figure() |> # read PNG files from the file path
+  rtf_page(orientation = "landscape") |> # set page orientation
+  rtf_title("title", "subtitle") |> # add title or subtitle
+  rtf_footnote("footnote") |> # add footnote
+  rtf_source("[datasource: mk0999]") |> # add data source
   rtf_figure(
     fig_height = 3.5, # set figure height
     fig_width = c(6, 7, 8) # set figure width individually.
-  ) %>%
-  rtf_encode(doc_type = "figure") %>% # encode rtf as figure
+  ) |>
+  rtf_encode(doc_type = "figure") |> # encode rtf as figure
   write_rtf(file = "rtf/fig-landscape.rtf") # write RTF to a file
 ```

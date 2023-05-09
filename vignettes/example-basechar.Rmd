@@ -36,32 +36,32 @@ bs_count <- function(data, grp, var,
                      var_label = var,
                      decimal = 1,
                      total = TRUE) {
-  data <- data %>% rename(grp = !!grp, var = !!var)
+  data <- data |> rename(grp = !!grp, var = !!var)
   coding <- levels(factor(data$grp))
-  data <- data %>% mutate(grp = as.numeric(factor(grp)))
+  data <- data |> mutate(grp = as.numeric(factor(grp)))
 
-  res <- with(data, table(var, grp)) %>%
-    as.data.frame() %>%
+  res <- with(data, table(var, grp)) |>
+    as.data.frame() |>
     mutate(grp = as.numeric(grp))
 
   if (total) {
-    res_tot <- with(data, table(var)) %>%
-      as.data.frame() %>%
+    res_tot <- with(data, table(var)) |>
+      as.data.frame() |>
       mutate(grp = 9999)
     res <- bind_rows(res, res_tot)
   }
 
-  res <- res %>% rename(n = Freq)
+  res <- res |> rename(n = Freq)
 
-  res <- res %>% mutate(pct = formatC(n / sum(n) * 100, digits = decimal, format = "f", flag = "0"))
+  res <- res |> mutate(pct = formatC(n / sum(n) * 100, digits = decimal, format = "f", flag = "0"))
 
   res$n <- as.character(res$n)
 
-  res <- res %>%
-    pivot_longer(cols = c(n, pct), names_to = "key", values_to = "value") %>%
-    unite(keys, grp, key) %>%
-    pivot_wider(names_from = keys, values_from = value) %>%
-    mutate(var_label = var_label) %>%
+  res <- res |>
+    pivot_longer(cols = c(n, pct), names_to = "key", values_to = "value") |>
+    unite(keys, grp, key) |>
+    pivot_wider(names_from = keys, values_from = value) |>
+    mutate(var_label = var_label) |>
     mutate(var = as.character(var))
 
   names(res) <- gsub("_n", "", names(res), fixed = TRUE)
@@ -78,14 +78,14 @@ bs_continous <- function(data, grp, var,
                          decimal = 1,
                          total = TRUE,
                          blank_row = FALSE) {
-  data <- data %>% rename(grp = !!grp, var = !!var)
+  data <- data |> rename(grp = !!grp, var = !!var)
   coding <- levels(factor(data$grp))
-  data <- data %>% mutate(grp = as.numeric(factor(grp)))
+  data <- data |> mutate(grp = as.numeric(factor(grp)))
 
-  res <- data %>%
-    select(grp, var) %>%
-    na.omit() %>%
-    group_by(grp) %>%
+  res <- data |>
+    select(grp, var) |>
+    na.omit() |>
+    group_by(grp) |>
     summarise(
       `Subjects with data` = n(),
       Mean = formatC(mean(var), digits = decimal, format = "f", flag = "0"),
@@ -95,28 +95,28 @@ bs_continous <- function(data, grp, var,
     )
 
   if (total) {
-    res_tot <- data %>%
-      select(grp, var) %>%
-      na.omit() %>%
+    res_tot <- data |>
+      select(grp, var) |>
+      na.omit() |>
       summarise(
         `Subjects with data` = n(),
         Mean = formatC(mean(var), digits = decimal, format = "f", flag = "0"),
         SD = formatC(sd(var), digits = decimal, format = "f", flag = "0"),
         Median = formatC(median(var), digits = decimal, format = "f", flag = "0"),
         Range = paste(range(var), collapse = " to ")
-      ) %>%
+      ) |>
       mutate(grp = 9999)
     res <- bind_rows(res, res_tot)
   }
 
   res$"Subjects with data" <- as.character(res$"Subjects with data")
 
-  res <- res %>%
-    pivot_longer(cols = -grp, names_to = "key", values_to = "value") %>%
-    mutate(key = factor(key, levels = c("Subjects with data", "Mean", "SD", "Median", "Range"))) %>%
-    pivot_wider(names_from = grp, values_from = value) %>%
-    mutate(var_label = var_label) %>%
-    mutate(key = as.character(key)) %>%
+  res <- res |>
+    pivot_longer(cols = -grp, names_to = "key", values_to = "value") |>
+    mutate(key = factor(key, levels = c("Subjects with data", "Mean", "SD", "Median", "Range"))) |>
+    pivot_wider(names_from = grp, values_from = value) |>
+    mutate(var_label = var_label) |>
+    mutate(key = as.character(key)) |>
     rename(var = key)
 
   if (blank_row) {
@@ -136,9 +136,9 @@ bs_continous <- function(data, grp, var,
 
 # Analysis Set
 data(r2rtf_adsl)
-ana <- r2rtf_adsl %>% subset(ITTFL == "Y")
+ana <- r2rtf_adsl |> subset(ITTFL == "Y")
 
-ana <- ana %>% mutate(
+ana <- ana |> mutate(
   RACE = factor(
     RACE,
     c("WHITE", "BLACK OR AFRICAN AMERICAN", "AMERICAN INDIAN OR ALASKA NATIVE"),
@@ -161,7 +161,7 @@ bs_tb <- bind_rows(
   bs_count(ana, "TRT01AN", "AGEGR1", "Age (Years)"),
   bs_continous(ana, "TRT01AN", "AGE", "Age (Years)", blank_row = TRUE),
   bs_count(ana, "TRT01AN", "RACE", "Race")
-) %>% mutate(
+) |> mutate(
   var_label = factor(var_label, levels = c("Gender", "Age (Years)", "Race"))
 )
 
@@ -179,17 +179,17 @@ knitr::kable(bs_tb)
   + `page_by` variable should not be in `rtf_colheader()`. However, it should be in `rtf_body()`
 
 ```{r}
-bs_rtf <- bs_tb %>%
-  rtf_page(width = 9.5) %>%
-  rtf_title("Demographic and Anthropometric Characteristics", "ITT Subjects") %>%
+bs_rtf <- bs_tb |>
+  rtf_page(width = 9.5) |>
+  rtf_title("Demographic and Anthropometric Characteristics", "ITT Subjects") |>
   rtf_colheader(" | Placebo | Drug Low Dose | Drug High Dose | Total ",
     col_rel_width = c(3, rep(2, 4))
-  ) %>%
+  ) |>
   rtf_colheader(" | n | (%) | n | (%) | n | (%) | n | (%) ",
     col_rel_width = c(3, rep(c(1.2, 0.8), 4)),
     border_top = c("", rep("single", 8)),
     border_left = c("single", rep(c("single", ""), 4))
-  ) %>%
+  ) |>
   rtf_body(
     page_by = "var_label",
     col_rel_width = c(3, rep(c(1.2, 0.8), 4), 3),
@@ -198,8 +198,8 @@ bs_rtf <- bs_tb %>%
     border_left = c("single", rep(c("single", ""), 4), "single"),
     border_top = c(rep("", 9), "single"),
     border_bottom = c(rep("", 9), "single"),
-  ) %>%
-  rtf_footnote("This is a footnote") %>%
+  ) |>
+  rtf_footnote("This is a footnote") |>
   rtf_source("Source: xxx")
 ```
 
@@ -207,7 +207,7 @@ bs_rtf <- bs_tb %>%
 
 ```{r}
 # Output .rtf file
-bs_rtf %>%
-  rtf_encode() %>%
+bs_rtf |>
+  rtf_encode() |>
   write_rtf("rtf/bs_example.rtf")
 ```

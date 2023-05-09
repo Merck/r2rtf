@@ -45,8 +45,8 @@
 #' dev.off()
 #'
 #' # Read in PNG file in binary format
-#' rtf_read_figure(file) %>%
-#'   rtf_figure() %>%
+#' rtf_read_figure(file) |>
+#'   rtf_figure() |>
 #'   attributes()
 #' }
 #'

@@ -29,7 +29,7 @@ The package is designed with these principles:
 
 - Provide simple "verb" functions that correspond to each component of a table,
   to help you translate data frame(s) to a table in RTF file.
-- Functions are chainable with pipes (`%>%`).
+- Functions are chainable with pipes (`|>`).
 - Only focus on **table format**.
   - Data manipulation and analysis should be handled by other R packages, for example, tidyverse.
 - Minimize package dependency.
@@ -78,9 +78,9 @@ The R package r2rtf provides flexibility to enable features below:
 library(dplyr)
 library(r2rtf)
 
-head(iris) %>%
-  rtf_body() %>% # Step 1 Add attributes
-  rtf_encode() %>% # Step 2 Convert attributes to RTF encode
+head(iris) |>
+  rtf_body() |> # Step 1 Add attributes
+  rtf_encode() |> # Step 2 Convert attributes to RTF encode
   write_rtf(file = "ex-tbl.rtf") # Step 3 Write to a .rtf file
 ```
 

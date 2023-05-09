@@ -41,12 +41,12 @@
 #' @examples
 #' library(dplyr) # required to run examples
 #' data(r2rtf_tbl1)
-#' r2rtf_tbl1 %>%
+#' r2rtf_tbl1 |>
 #'   rtf_colheader(
 #'     colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N |
 #'                   Mean (SD) | LS Mean (95% CI)\\dagger",
 #'     text_format = c("b", "", "u", "", "u", "", "u", "i")
-#'   ) %>%
+#'   ) |>
 #'   attr("rtf_colheader")
 #' @export
 rtf_colheader <- function(tbl,

@@ -11,26 +11,26 @@ tbl1 <- matrix("RStudio is an integrated development environment for R, a progra
 tbl2 <- matrix("RStudio", nrow = 2, ncol = 2)
 tbl <- rbind(tbl1, tbl2)
 
-tbl <- data.frame(tbl) %>%
-  rtf_page(orientation = "portrait") %>%
+tbl <- data.frame(tbl) |>
+  rtf_page(orientation = "portrait") |>
   rtf_title(title = c(
     "title here",
     "title 2 here",
     "here is a very very very very very long title 3 that should be broken to two lines if calculated correctly"
-  )) %>%
+  )) |>
   rtf_subline(text = c(
     "subline 1",
     "this is a very long subline that should be broken to 2 lines if calculated correctly by rtf_nrow function"
-  )) %>%
+  )) |>
   rtf_colheader(
     colheader = "a long column 1 header to test line break|col2",
     col_rel_width = c(1, 5)
-  ) %>%
+  ) |>
   rtf_footnote(footnote = c(
     "footer1",
     "this is a very very very very very very very long footer2 that should be broken to 2 lines if calculated correctly by rtf_nrow function"
-  )) %>%
-  rtf_source(source = c("source here", "source 2")) %>%
+  )) |>
+  rtf_source(source = c("source here", "source 2")) |>
   rtf_body(
     text_justification = "l",
     col_rel_width = c(1, 5),
@@ -40,7 +40,7 @@ tbl <- data.frame(tbl) %>%
     text_indent_first = indent_first,
     text_indent_left = indent_left
   )
-# tbl %>% rtf_encode() %>% write_rtf("tmp.rtf")
+# tbl |> rtf_encode() |> write_rtf("tmp.rtf")
 
 
 # rtf_nrow
@@ -95,10 +95,10 @@ nline_matrix <- rtf_nline_matrix(text = mtx, strwidth = mtxstrwidth, size = mtxs
 
 iris[1:2, 1] <- "a long string to test line breaks"
 
-irs <- iris[1:55, ] %>%
-  rtf_title(title = "pageby example") %>%
+irs <- iris[1:55, ] |>
+  rtf_title(title = "pageby example") |>
   rtf_body(page_by = "Species", new_page = TRUE)
-# irs %>% rtf_encode() %>% write_rtf("tmp.rtf")
+# irs |> rtf_encode() |> write_rtf("tmp.rtf")
 
 irs1 <- rtf_nrow(irs)
 irsbodys <- attr(irs1, "rtf_nrow")

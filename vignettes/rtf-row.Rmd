@@ -29,13 +29,13 @@ This example define different top border line.
 
 ```{r}
 .n <- length(r2rtf:::border_type()$name)
-db <- data.frame(border_type = r2rtf:::border_type()$name) %>%
-  rtf_title("Summary of Border Type Using Top Border") %>%
-  rtf_colheader("Border Type") %>%
+db <- data.frame(border_type = r2rtf:::border_type()$name) |>
+  rtf_title("Summary of Border Type Using Top Border") |>
+  rtf_colheader("Border Type") |>
   rtf_body(border_top = r2rtf:::border_type()$name)
 
-db %>%
-  rtf_encode() %>%
+db |>
+  rtf_encode() |>
   write_rtf("rtf/border-type.rtf")
 ```
 
@@ -48,15 +48,15 @@ The bottom border only defined in last row. This example show that top border an
 cell border as single. Only last column use right border as double. Only last row use bottom border as dash line. 
 
 ```{r}
-iris %>%
-  head() %>%
+iris |>
+  head() |>
   rtf_body(
     as_colheader = FALSE,
     border_top = "dash",
     border_left = "double",
     border_right = "single"
-  ) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_encode() |>
   write_rtf("rtf/border-order.rtf")
 ```
 
@@ -67,15 +67,15 @@ knitr::include_graphics("pdf/border-order.pdf")
 This example display table with specific border type (i.e. double line at the first and last line and blank at the middle)
 
 ```{r}
-rtf_db <- iris %>%
-  head() %>%
-  rtf_title("Border Using Double Line at First/Last Line") %>%
-  rtf_colheader("Sepal Length | Sepal Width | Petal Length | Petal Width | Species") %>%
+rtf_db <- iris |>
+  head() |>
+  rtf_title("Border Using Double Line at First/Last Line") |>
+  rtf_colheader("Sepal Length | Sepal Width | Petal Length | Petal Width | Species") |>
   rtf_body()
 
 
-rtf_db %>%
-  rtf_encode() %>%
+rtf_db |>
+  rtf_encode() |>
   write_rtf("rtf/border-example.rtf")
 ```
 
@@ -96,7 +96,7 @@ attr(rtf_db, "border_first")
 For other border, it is controled by a matrix. 
 
 ```{r}
-rtf_db %>% attr("border_top")
+rtf_db |> attr("border_top")
 ```
 
 User can use single value, vector, and matrix to control the border type. Specifically, a vector is transferred to a matrix by row. Therefore, it is useful to set columns type by using vector. 
@@ -106,13 +106,13 @@ matrix(r2rtf:::border_type()$name[1:5], nrow = 6, ncol = 5, byrow = TRUE)
 ```
 
 ```{r}
-rtf_db <- iris %>%
-  head() %>%
-  rtf_title("Left Border Defined by a Vector") %>%
+rtf_db <- iris |>
+  head() |>
+  rtf_title("Left Border Defined by a Vector") |>
   rtf_body(border_left = r2rtf:::border_type()$name[2:6])
 
-rtf_db %>%
-  rtf_encode() %>%
+rtf_db |>
+  rtf_encode() |>
   write_rtf("rtf/border-vector.rtf")
 ```
 
@@ -128,9 +128,9 @@ r2rtf:::justification()[, 1:2]
 ```
 
 ```{r}
-r2rtf:::justification()[, 1:2] %>%
-  rtf_body(text_justification = rep(r2rtf:::justification()$type, each = 2)) %>%
-  rtf_encode() %>%
+r2rtf:::justification()[, 1:2] |>
+  rtf_body(text_justification = rep(r2rtf:::justification()$type, each = 2)) |>
+  rtf_encode() |>
   write_rtf("rtf/justification-type.rtf")
 ```
 
@@ -140,12 +140,12 @@ knitr::include_graphics("pdf/justification-type.pdf")
 
 
 ```{r}
-db <- iris %>% mutate(Sepal.Length = formatC(Sepal.Length * 2, digits = 1, format = "f"))
+db <- iris |> mutate(Sepal.Length = formatC(Sepal.Length * 2, digits = 1, format = "f"))
 
-db[, rep(1, 4)] %>%
-  head() %>%
-  rtf_body(text_justification = c("d", "l", "c", "r")) %>%
-  rtf_encode() %>%
+db[, rep(1, 4)] |>
+  head() |>
+  rtf_body(text_justification = c("d", "l", "c", "r")) |>
+  rtf_encode() |>
   write_rtf("rtf/justification-number.rtf")
 ```
 
@@ -159,10 +159,10 @@ Column width is determined by width ratio between the row using `col_rel_width`.
 
 This example shows the default setting
 ```{r}
-iris %>%
-  head() %>%
-  rtf_body(as_colheader = FALSE) %>%
-  rtf_encode() %>%
+iris |>
+  head() |>
+  rtf_body(as_colheader = FALSE) |>
+  rtf_encode() |>
   write_rtf("rtf/column-width-default.rtf")
 ```
 
@@ -172,10 +172,10 @@ knitr::include_graphics("pdf/column-width-default.pdf")
 
 This example customizes the column width
 ```{r}
-iris %>%
-  head() %>%
-  rtf_body(col_rel_width = 1:ncol(iris), as_colheader = FALSE) %>%
-  rtf_encode() %>%
+iris |>
+  head() |>
+  rtf_body(col_rel_width = 1:ncol(iris), as_colheader = FALSE) |>
+  rtf_encode() |>
   write_rtf("rtf/column-width-ratio.rtf")
 ```
 
@@ -200,9 +200,9 @@ fmt
 
 
 ```{r}
-r2rtf:::font_format()[, 1:2] %>%
-  rtf_body(text_format = fmt) %>%
-  rtf_encode() %>%
+r2rtf:::font_format()[, 1:2] |>
+  rtf_body(text_format = fmt) |>
+  rtf_encode() |>
   write_rtf("rtf/text-format.rtf")
 ```
 
@@ -215,10 +215,10 @@ knitr::include_graphics("pdf/text-format.pdf")
 Font size can be defined for each cell. 
 
 ```{r}
-iris %>%
-  head() %>%
-  rtf_body(text_font_size = c(7:11), as_colheader = FALSE) %>%
-  rtf_encode() %>%
+iris |>
+  head() |>
+  rtf_body(text_font_size = c(7:11), as_colheader = FALSE) |>
+  rtf_encode() |>
   write_rtf("rtf/text-font-size.rtf")
 ```
 
@@ -233,13 +233,13 @@ The text, border and background color can be set separately for each cell. It is
 This example define text color for each column
 
 ```{r}
-iris %>%
-  head() %>%
+iris |>
+  head() |>
   rtf_body(
     text_color = c("black", "red", "gold", "blue", "grey"),
     as_colheader = FALSE
-  ) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_encode() |>
   write_rtf("rtf/color-text.rtf")
 ```
 
@@ -250,13 +250,13 @@ knitr::include_graphics("pdf/color-text.pdf")
 This example define left border color for each column
 
 ```{r}
-iris %>%
-  head() %>%
+iris |>
+  head() |>
   rtf_body(
     border_color_left = c("black", "red", "gold", "blue", "grey"),
     as_colheader = FALSE
-  ) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_encode() |>
   write_rtf("rtf/color-border.rtf")
 ```
 
@@ -267,14 +267,14 @@ knitr::include_graphics("pdf/color-border.pdf")
 This example define background color for each column
 
 ```{r}
-iris %>%
-  head() %>%
+iris |>
+  head() |>
   rtf_body(
     text_background_color = c("white", "red", "gold", "blue", "grey"),
     text_color = "black",
     as_colheader = FALSE,
-  ) %>%
-  rtf_encode() %>%
+  ) |>
+  rtf_encode() |>
   write_rtf("rtf/color-background.rtf")
 ```
 

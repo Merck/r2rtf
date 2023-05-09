@@ -30,7 +30,7 @@ text <- rep(text, 5)
 Paragraph alignment supports four types. 
 
 ```{r}
-r2rtf:::justification() %>% subset(type %in% c("l", "c", "r", "j"))
+r2rtf:::justification() |> subset(type %in% c("l", "c", "r", "j"))
 ```
 
 This example display text in different alignment methods.

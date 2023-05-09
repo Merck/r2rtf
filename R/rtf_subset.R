@@ -39,8 +39,8 @@
 #' @examples
 #' library(dplyr)
 #' data(r2rtf_tbl1)
-#' sub_table <- r2rtf_tbl1 %>%
-#'   rtf_body() %>%
+#' sub_table <- r2rtf_tbl1 |>
+#'   rtf_body() |>
 #'   r2rtf:::rtf_subset(row = 1:2, col = c(1, 4:5))
 #'
 #' attributes(sub_table)

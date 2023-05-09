@@ -107,8 +107,8 @@
 #' @examples
 #' library(dplyr) # required to run examples
 #' data(r2rtf_tbl1)
-#' r2rtf_tbl1 %>%
-#'   rtf_footnote("\\dagger Based on an ANCOVA model.") %>%
+#' r2rtf_tbl1 |>
+#'   rtf_footnote("\\dagger Based on an ANCOVA model.") |>
 #'   attr("rtf_footnote")
 #' @export
 rtf_footnote <- function(tbl,

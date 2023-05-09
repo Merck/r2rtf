@@ -34,8 +34,8 @@
 #' @examples
 #' library(dplyr) # required to run examples
 #' data(r2rtf_tbl1)
-#' r2rtf_tbl1 %>%
-#'   rtf_source("Source: [study999:adam-adeff]") %>%
+#' r2rtf_tbl1 |>
+#'   rtf_source("Source: [study999:adam-adeff]") |>
 #'   attr("rtf_source")
 #' @export
 rtf_source <- function(tbl,

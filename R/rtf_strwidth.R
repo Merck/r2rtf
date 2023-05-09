@@ -39,8 +39,8 @@
 #'   x = rep("This is a long sentence", 5),
 #'   y = "short"
 #' )
-#' tbl %>%
-#'   rtf_body(text_font = c(1, 3)) %>%
+#' tbl |>
+#'   rtf_body(text_font = c(1, 3)) |>
 #'   r2rtf:::rtf_strwidth()
 #'
 #' @noRd

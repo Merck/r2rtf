@@ -35,8 +35,8 @@
 #'
 #' @examples
 #' library(dplyr)
-#' tbl <- iris[c(1:3, 51:54), ] %>%
-#'   rtf_body(page_by = "Species") %>%
+#' tbl <- iris[c(1:3, 51:54), ] |>
+#'   rtf_body(page_by = "Species") |>
 #'   r2rtf:::update_border_first()
 #'
 #' @noRd
@@ -108,8 +108,8 @@ update_border_first <- function(tbl) {
 #'
 #' @examples
 #' library(dplyr)
-#' tbl <- iris[c(1:3, 51:54), ] %>%
-#'   rtf_body(page_by = "Species") %>%
+#' tbl <- iris[c(1:3, 51:54), ] |>
+#'   rtf_body(page_by = "Species") |>
 #'   r2rtf:::update_border_last()
 #'
 #' @noRd

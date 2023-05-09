@@ -79,12 +79,12 @@
 #' @examples
 #' library(dplyr) # required to run examples
 #' data(r2rtf_tbl1)
-#' r2rtf_tbl1 %>%
+#' r2rtf_tbl1 |>
 #'   rtf_body(
 #'     col_rel_width = c(3, 1, 3, 1, 3, 1, 3, 5),
 #'     text_justification = c("l", rep("c", 7)),
 #'     last_row = FALSE
-#'   ) %>%
+#'   ) |>
 #'   attributes()
 #' @export
 rtf_body <- function(tbl,

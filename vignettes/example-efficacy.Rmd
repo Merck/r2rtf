@@ -83,17 +83,17 @@ HAMD17 <- r2rtf_HAMD17
 
 ana_week <- 8 # Analysis Week
 
-HAMD17_lmfit <- HAMD17 %>%
-  filter(week == ana_week) %>%
+HAMD17_lmfit <- HAMD17 |>
+  filter(week == ana_week) |>
   lm(change ~ basval + TRT, data = .)
 ```
 
 - Raw summary
 
 ```{r}
-t11 <- HAMD17 %>%
-  filter(week == ana_week) %>%
-  group_by(TRT) %>%
+t11 <- HAMD17 |>
+  filter(week == ana_week) |>
+  group_by(TRT) |>
   summarise(
     N = n(),
     mean_bl = mean(basval),
@@ -107,8 +107,8 @@ t11 <- HAMD17 %>%
 
 ```{r}
 t12 <- emmeans(HAMD17_lmfit, "TRT")
-t1 <- merge(t11, t12) %>%
-  mutate(emmean_sd = SE * sqrt(df)) %>%
+t1 <- merge(t11, t12) |>
+  mutate(emmean_sd = SE * sqrt(df)) |>
   mutate(
     Trt = c("Study Drug", "Placebo"),
     N1 = N,
@@ -118,7 +118,7 @@ t1 <- merge(t11, t12) %>%
     N3 = N,
     Mean3 = fmt_est(., c("emmean", "emmean_sd")),
     CI = paste(fmt_est(., "emmean"), fmt_ci(., c("lower.CL", "upper.CL")))
-  ) %>%
+  ) |>
   select(Trt:CI)
 ```
 
@@ -131,16 +131,16 @@ knitr::kable(t1)
 ```{r}
 t2 <- data.frame(pairs(t12))
 
-t2 <- t2 %>%
+t2 <- t2 |>
   mutate(
     lower = estimate - 1.96 * SE,
     upper = estimate + 1.96 * SE
-  ) %>%
+  ) |>
   mutate(
     comp = "Study Drug vs. Placebo",
     mean = paste(fmt_est(., "estimate"), fmt_ci(., c("lower", "upper"))),
     p = fmt_pval(., "p.value")
-  ) %>%
+  ) |>
   select(comp:p)
 ```
 
@@ -166,50 +166,50 @@ knitr::kable(t3)
 The table consists of three data frames: `t1`, `t2`, and `t3`. We define each data frame's format as below then combine them into a listing. 
 
 ```{r}
-tbl_1 <- t1 %>%
+tbl_1 <- t1 |>
   rtf_title(
     title = "ANCOVA of Change from Baseline at Week 20",
     subtitle = c(
       "Missing Data Approach",
       "Analysis Population"
     )
-  ) %>%
+  ) |>
   rtf_colheader(
     colheader = " | Baseline | Week 20 | Change from Baseline",
     col_rel_width = c(3, 4, 4, 9)
-  ) %>%
+  ) |>
   rtf_colheader(
     colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N | Mean (SD) | LS Mean (95% CI){^a}",
     col_rel_width = c(3, 1, 3, 1, 3, 1, 3, 5)
-  ) %>%
+  ) |>
   rtf_body(
     col_rel_width = c(3, 1, 3, 1, 3, 1, 3, 5),
     text_justification = c("l", rep("c", 7)),
     last_row = FALSE
-  ) %>%
+  ) |>
   rtf_footnote(
     footnote = c(
       "{^a}Based on an ANCOVA model.",
       "ANCOVA = Analysis of Covariance, CI = Confidence Interval, LS = Least Squares, SD = Standard Deviation"
     )
-  ) %>%
+  ) |>
   rtf_source(
     source = "Source: [study999: adam-adeff]"
   )
 
-tbl_2 <- t2 %>%
+tbl_2 <- t2 |>
   rtf_colheader(
     colheader = "Pairwise Comparison | Difference in LS Mean (95% CI){^a} | p-Value",
     text_justification = c("l", "c", "c"),
     col_rel_width = c(8, 7, 5)
-  ) %>%
+  ) |>
   rtf_body(
     col_rel_width = c(8, 7, 5),
     text_justification = c("l", "c", "c"),
     last_row = FALSE
   )
 
-tbl_3 <- t3 %>%
+tbl_3 <- t3 |>
   rtf_body(
     as_colheader = FALSE,
     col_rel_width = c(1),
@@ -227,7 +227,7 @@ knitr::kable(tbl)
 
 ```{r}
 # Output .rtf file
-tbl %>%
-  rtf_encode() %>%
+tbl |>
+  rtf_encode() |>
   write_rtf("rtf/efficacy_example.rtf")
 ```
