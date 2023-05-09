@@ -30,7 +30,7 @@ BugReports: https://github.com/Merck/r2rtf/issues
 Encoding: UTF-8
 VignetteBuilder: knitr
 LazyData: true
-Depends: R (>= 3.5.0)
+Depends: R (>= 4.1.0)
 Imports:
     grDevices,
     tools
