@@ -20,8 +20,6 @@
 #'
 #' @examples
 #'
-#' library(magrittr)
-#'
 #' file <- replicate(2, tempfile(fileext = ".rtf"))
 #' file1 <- head(iris) |>
 #'   rtf_body() |>
@@ -103,7 +101,6 @@ assemble_rtf <- function(input,
 #' @examples
 #'
 #' library(officer)
-#' library(magrittr)
 #'
 #' file <- replicate(2, tempfile(fileext = ".rtf"))
 #' file1 <- head(iris) |>

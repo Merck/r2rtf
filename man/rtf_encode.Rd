@@ -57,9 +57,9 @@ to an RTF file.
 library(dplyr) # required to run examples
 
 # Example 1
-head(iris) \%>\%
-  rtf_body() \%>\%
-  rtf_encode() \%>\%
+head(iris) |>
+  rtf_body() |>
+  rtf_encode() |>
   write_rtf(file = file.path(tempdir(), "table1.rtf"))
 
 # Example 2
@@ -71,9 +71,9 @@ plot(1:10)
 dev.off()
 
 # Read in PNG file in binary format
-rtf_read_figure(file) \%>\%
-  rtf_figure() \%>\%
-  rtf_encode(doc_type = "figure") \%>\%
+rtf_read_figure(file) |>
+  rtf_figure() |>
+  rtf_encode(doc_type = "figure") |>
   write_rtf(file = file.path(tempdir(), "figure1.rtf"))
 }
 # Example 3
@@ -82,19 +82,19 @@ rtf_read_figure(file) \%>\%
 ## headers, and footnotes to the table body.
 data(r2rtf_tbl2)
 ## convert r2rtf_tbl2 to the table body. Add a table column header to table body.
-t2 <- r2rtf_tbl2 \%>\%
+t2 <- r2rtf_tbl2 |>
   rtf_colheader(
     colheader = "Pairwise Comparison |
                    Difference in LS Mean(95\% CI)\\\\dagger | p-Value",
     text_justification = c("l", "c", "c")
-  ) \%>\%
+  ) |>
   rtf_body(
     col_rel_width = c(8, 7, 5),
     text_justification = c("l", "c", "c"),
     last_row = FALSE
   )
 # concatenate a list of table and save to an RTF file
-t2 \%>\%
-  rtf_encode() \%>\%
+t2 |>
+  rtf_encode() |>
   write_rtf(file.path(tempdir(), "table2.rtf"))
 }
