@@ -139,10 +139,19 @@ as_rtf_pageby <- function(tbl) {
 
   ## Remove repeated records if group_by is not null
   if (!is.null(group_by)) {
-    cell_tbl <- rtf_group_by_enhance(cell_tbl,
-      group_by = group_by,
-      page_index = subset(page_dict, !pageby)$page
+    tmp <- cell_tbl
+    tmp$`.pageby` <- pageby$id
+    tmp$`.order` <- 1:nrow(tmp)
+    tmp <- rtf_group_by_enhance(tmp,
+                                group_by = c(".pageby", group_by),
+                                page_index = subset(page_dict, !pageby)$page
     )
+
+    stopifnot(all(1:nrow(tmp) == tmp$`.order`))
+    tmp <- tmp[ , ! names(tmp) %in% c(".pageby", ".order")]
+    attributes(tmp) <- attributes(cell_tbl)
+    cell_tbl <- tmp
+
   }
 
   # Add border type for first and last row
