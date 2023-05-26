@@ -57,7 +57,7 @@ as_rtf_pageby <- function(tbl) {
   }
 
   # Number of rows in cells based on column size
-  index <- sort(c(1:nrow(cell_tbl), do.call(rbind, row)$row_start))
+  index <- sort(c(seq_len(nrow(cell_tbl)), do.call(rbind, row)$row_start))
 
   # Number of row in each table entry
   if (is.null(attr(cell_tbl, "cell_nrow"))) {
@@ -102,7 +102,7 @@ as_rtf_pageby <- function(tbl) {
 
     # If the last row is a page by row, move it to next row
     retain <- unlist(lapply(split(page_dict, page), function(x) {
-      rev(cumsum(rev(x$pageby)) == 1:nrow(x))
+      rev(cumsum(rev(x$pageby)) == seq_len(nrow(x)))
     }))
 
     page + retain + 1
@@ -141,13 +141,13 @@ as_rtf_pageby <- function(tbl) {
   if (!is.null(group_by)) {
     tmp <- cell_tbl
     tmp$`.pageby` <- pageby$id
-    tmp$`.order` <- 1:nrow(tmp)
+    tmp$`.order` <- seq_len(nrow(tmp))
     tmp <- rtf_group_by_enhance(tmp,
                                 group_by = c(".pageby", group_by),
                                 page_index = subset(page_dict, !pageby)$page
     )
 
-    stopifnot(all(1:nrow(tmp) == tmp$`.order`))
+    stopifnot(all(seq_len(nrow(tmp)) == tmp$`.order`))
     tmp <- tmp[ , ! names(tmp) %in% c(".pageby", ".order")]
     attributes(tmp) <- attributes(cell_tbl)
     cell_tbl <- tmp
@@ -197,7 +197,7 @@ as_rtf_pageby <- function(tbl) {
   rtf_row_encode <- apply(rtf_row, 2, paste, collapse = "\n")
   rtf[page_dict$pageby] <- rtf_row_encode
 
-  page_dict$index <- 1:nrow(page_dict)
+  page_dict$index <- seq_len(nrow(page_dict))
 
   if (pageby$pageby_header) {
     # Show pageby header at the top of each page
@@ -226,7 +226,7 @@ as_rtf_pageby <- function(tbl) {
     page_dict <- rbind(page_dict, pageby_header)
     page_dict_order <- order(page_dict$index)
     page_dict <- page_dict[page_dict_order, ]
-    page_dict$index <- 1:nrow(page_dict)
+    page_dict$index <- seq_len(nrow(page_dict))
 
     # Restructure rtf encoding
     rtf <- c(rtf, rtf_pageby_header)[page_dict_order]
@@ -266,7 +266,8 @@ as_rtf_pageby <- function(tbl) {
 
       # RTF encode for nested header
       rtf_header_nested <- rep("", nrow(pageby_header))
-      for (i in 1:(rtf_nrow$pageby - 1)) {
+
+      for (i in seq_len(nrow(rtf_nrow$pageby - 1))) {
         rtf_nested_index <- pageby_header_nested[[pageby$by_var[[i]]]]
 
         rtf_nested <- apply(rtf_row_list[[i]], 2, paste, collapse = "\n")
@@ -279,7 +280,7 @@ as_rtf_pageby <- function(tbl) {
       page_dict <- rbind(page_dict, pageby_header_nested[, names(page_dict)])
       page_dict_order <- order(page_dict$index)
       page_dict <- page_dict[page_dict_order, ]
-      page_dict$index <- 1:nrow(page_dict)
+      page_dict$index <- seq_len(nrow(page_dict))
 
       # Restructure rtf encoding
       rtf <- c(rtf, rtf_header_nested)[page_dict_order]
@@ -290,7 +291,7 @@ as_rtf_pageby <- function(tbl) {
   rtf_index <- page_dict$index[!(page_dict$page_id == "-----" & page_dict$pageby)]
   rtf <- rtf[rtf_index]
   page_dict <- page_dict[rtf_index, ]
-  page_dict$index <- 1:nrow(page_dict)
+  page_dict$index <- seq_len(nrow(page_dict))
 
   attr(rtf, "info") <- page_dict
   rtf
