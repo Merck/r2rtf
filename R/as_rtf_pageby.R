@@ -266,7 +266,7 @@ as_rtf_pageby <- function(tbl) {
       # RTF encode for nested header
       rtf_header_nested <- rep("", nrow(pageby_header))
 
-      for (i in seq_len(nrow(rtf_nrow$pageby - 1))) {
+      for (i in seq_len(rtf_nrow$pageby - 1)) {
         rtf_nested_index <- pageby_header_nested[[pageby$by_var[[i]]]]
 
         rtf_nested <- apply(rtf_row_list[[i]], 2, paste, collapse = "\n")
