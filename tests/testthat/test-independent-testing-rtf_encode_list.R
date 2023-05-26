@@ -229,7 +229,6 @@ test_that("Test when orientation are different in the list", {
 })
 
 test_that("Test case to split page", {
-
   m1 <- iris[1:31, ] %>%
     rtf_page(
       nrow = 4,
@@ -244,5 +243,4 @@ test_that("Test case to split page", {
   tbl %>%
     rtf_encode_list() %>%
     expect_snapshot_output()
-
 })
