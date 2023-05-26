@@ -143,15 +143,14 @@ as_rtf_pageby <- function(tbl) {
     tmp$`.pageby` <- pageby$id
     tmp$`.order` <- seq_len(nrow(tmp))
     tmp <- rtf_group_by_enhance(tmp,
-                                group_by = c(".pageby", group_by),
-                                page_index = subset(page_dict, !pageby)$page
+      group_by = c(".pageby", group_by),
+      page_index = subset(page_dict, !pageby)$page
     )
 
     stopifnot(all(seq_len(nrow(tmp)) == tmp$`.order`))
     tmp <- tmp[ , ! names(tmp) %in% c(".pageby", ".order")]
     attributes(tmp) <- attributes(cell_tbl)
     cell_tbl <- tmp
-
   }
 
   # Add border type for first and last row
