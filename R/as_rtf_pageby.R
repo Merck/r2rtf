@@ -148,7 +148,7 @@ as_rtf_pageby <- function(tbl) {
     )
 
     stopifnot(all(seq_len(nrow(tmp)) == tmp$`.order`))
-    tmp <- tmp[ , ! names(tmp) %in% c(".pageby", ".order"), drop = FALSE]
+    tmp <- tmp[, !names(tmp) %in% c(".pageby", ".order"), drop = FALSE]
     attributes(tmp) <- attributes(cell_tbl)
     cell_tbl <- tmp
   }
