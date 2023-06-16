@@ -76,21 +76,13 @@ as_rtf_table <- function(tbl) {
     stringsAsFactors = FALSE
   )
 
-  # Define page number for each row
-  page_dict_page <- function(page_dict) {
-    # Page Number
-    page <- cumsum(page_dict$nrow) %/% page_dict$total
-
-    page + 1
-  }
-
   if (!is.null(attr(tbl, "rtf_by_subline")$id)) {
     page_dict$id <- attr(tbl, "rtf_by_subline")$id
     page_dict$subline <- attr(tbl, "rtf_by_subline")$id
     page_dict$page <- unlist(lapply(split(page_dict, page_dict$id), page_dict_page))
     page_dict$page <- as.numeric(page_dict$id) * 1e6 + page_dict$page
   } else {
-    page_dict$page <- with(page_dict, cumsum(nrow) %/% total) + 1
+    page_dict$page <- page_dict_page(page_dict)
   }
 
   # Move to next page for footnote and data source
@@ -137,4 +129,10 @@ as_rtf_table <- function(tbl) {
 
   attr(rtf, "info") <- page_dict
   rtf
+}
+
+# Define page number for each row
+page_dict_page <- function(page_dict) {
+  # Page Number
+  with(page_dict, (cumsum(nrow) - 1) %/% total) + 1
 }

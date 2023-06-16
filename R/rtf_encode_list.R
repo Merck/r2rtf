@@ -151,7 +151,7 @@ rtf_encode_list <- function(tbl) {
 
     info$total <- min(info$total)
 
-    info$page1 <- cumsum(info$nrow) %/% info$total + 1
+    info$page1 <- page_dict_page(info)
 
     page1 <- info[info$page == 1, ]
     page1 <- split(page1, page1$item)

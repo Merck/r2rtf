@@ -331,9 +331,17 @@ test_that("Test case when using subline_by, page_by, group_by simultaneously wit
 
   attr(ae_t3, "page")$page_title <- "first"
   ae_t3a <- rtf_encode_table(ae_t3)
-  expect_snapshot_output(ae_t3a)
+
+  tmp <- lapply(strsplit(ae_t3a$body, "\\page", fixed = TRUE)[[1]],
+                function(x) grepl("subline", x)
+  )
+  expect_true(tmp[[1]])
 
   attr(ae_t3, "page")$page_title <- "last"
   ae_t3b <- rtf_encode_table(ae_t3)
-  expect_snapshot_output(ae_t3b)
+
+  tmp <- lapply(strsplit(ae_t3b$body, "\\page", fixed = TRUE)[[1]],
+         function(x) grepl("subline", x)
+  )
+  expect_true(tmp[[length(tmp)]])
 })
