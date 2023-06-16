@@ -41,6 +41,7 @@
 #' match_arg(arg = c("c", "b"), choices = c("a", "b", "c", "d"), several.ok = TRUE)
 #' }
 #'
+#' @noRd
 match_arg <- function(arg, choices, several.ok = FALSE) {
   # following code are from match.arg with minor updates
 

@@ -38,6 +38,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 rtf_table_content <- function(tbl,
                               col_total_width = attr(tbl, "page")$col_width,
                               use_border_bottom = FALSE) {

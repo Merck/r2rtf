@@ -1,4 +1,9 @@
-# r2rtf 1.0.2 (2023-04-28)
+# r2rtf 1.0.3 (2023-05-26)
+
+* Properly display cell height in HTML output (#66).
+* Fix an issue when `group_by` and `page_by` are used together (#168).
+
+# r2rtf 1.0.2 (2023-05-01)
 
 ## Bug fixes
 

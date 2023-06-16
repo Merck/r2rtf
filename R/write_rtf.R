@@ -55,6 +55,7 @@ write_rtf <- function(rtf, file) {
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 write_rtf_para <- function(rtf, file) {
   col_tb <- color_table()
   rtf_color <- paste(c("{\\colortbl\n;", col_tb$rtf_code, "}"), collapse = "\n")

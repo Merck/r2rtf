@@ -29,6 +29,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 set_margin <- function(doc_type, orientation) {
   if (!doc_type %in% c("csr", "wma", "wmm", "narrow")) {
     stop("input doc_type must be 'csr', 'wma', 'wmm' or 'narrow' ")

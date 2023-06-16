@@ -30,6 +30,7 @@
 #'
 #' @inheritParams rtf_encode
 #'
+#' @noRd
 rtf_encode_list <- function(tbl) {
   # Page Input checking
   page <- lapply(tbl, function(x) attr(x, "page"))

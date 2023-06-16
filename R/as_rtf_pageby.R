@@ -29,6 +29,7 @@
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
+#' @noRd
 as_rtf_pageby <- function(tbl) {
   # Calculate Number of rows for each entry.
   tbl <- rtf_nrow(tbl)

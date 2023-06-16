@@ -43,6 +43,8 @@
 #'   strwidth = c(0.4, 2),
 #'   size = 0.5
 #' )
+#'
+#' @noRd
 rtf_nline_vector <- function(text, strwidth, size) {
   index <- strwidth / size > 1
   n_row <- rep(1, length(text))
@@ -96,6 +98,8 @@ rtf_nline_vector <- function(text, strwidth, size) {
 #' strwidth <- matrix(6:9, nrow = 2)
 #' size <- matrix(1:4, nrow = 2)
 #' r2rtf:::rtf_nline_matrix(text = text, strwidth = strwidth, size = size)
+#'
+#' @noRd
 rtf_nline_matrix <- function(text, strwidth, size) {
   n_row <- matrix(1, nrow = nrow(text), ncol = ncol(text))
   for (i in 1:ncol(text)) {
@@ -135,6 +139,8 @@ rtf_nline_matrix <- function(text, strwidth, size) {
 #'
 #' r2rtf:::nrow_paragraph(attr(tb, "rtf_title"), 6.25)
 #' r2rtf:::nrow_paragraph(attr(tb, "rtf_footnote"), 6.25)
+#'
+#' @noRd
 nrow_paragraph <- function(tbl, size, padding = 0.2) {
   if (is.null(tbl)) {
     return(0)
@@ -177,6 +183,8 @@ nrow_paragraph <- function(tbl, size, padding = 0.2) {
 #'   rtf_title(title = "Iris example") %>%
 #'   rtf_body()
 #' r2rtf:::nrow_table(tbl, size = 2.55)
+#'
+#' @noRd
 nrow_table <- function(tbl, size, page_size = size, padding = 0.2) {
   if (is.null(tbl)) {
     return(0)
@@ -230,6 +238,8 @@ nrow_table <- function(tbl, size, page_size = size, padding = 0.2) {
 #'   rtf_title(title = "Iris example") %>%
 #'   rtf_body()
 #' r2rtf:::rtf_nrow(tbl)
+#'
+#' @noRd
 rtf_nrow <- function(tbl) {
   page <- attr(tbl, "page")
   page_size <- page$width - sum(page$margin[c(1, 2)])

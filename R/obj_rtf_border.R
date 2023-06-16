@@ -34,6 +34,8 @@
 #' @return the same \code{tbl} with additional border attributes
 #'
 #' @importFrom grDevices colors
+#'
+#' @noRd
 obj_rtf_border <- function(tbl,
                            border_left = "single",
                            border_right = "single",
