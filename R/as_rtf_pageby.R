@@ -96,19 +96,6 @@ as_rtf_pageby <- function(tbl) {
     page_dict$id <- factor(page_dict$id, levels = unique(page_dict$id))
   }
 
-  # Define page number for each row
-  page_dict_page <- function(page_dict) {
-    # Page Number
-    page <- cumsum(page_dict$nrow) %/% page_dict$total
-
-    # If the last row is a page by row, move it to next row
-    retain <- unlist(lapply(split(page_dict, page), function(x) {
-      rev(cumsum(rev(x$pageby)) == seq_len(nrow(x)))
-    }))
-
-    page + retain + 1
-  }
-
   ## Adjust page number if pageby$new_page is true
   new_page <- pageby$new_page | attr(tbl, "rtf_by_subline")$new_page
   if (new_page) {
@@ -116,10 +103,10 @@ as_rtf_pageby <- function(tbl) {
     if (attr(tbl, "rtf_by_subline")$new_page) page_id <- page_dict$subline
     if (pageby$new_page & attr(tbl, "rtf_by_subline")$new_page) page_id <- page_dict$id
 
-    page_dict$page <- unlist(lapply(split(page_dict, page_id), page_dict_page))
+    page_dict$page <- unlist(lapply(split(page_dict, page_id), pageby_dict_page))
     page_dict$page <- as.numeric(page_id) * 1e6 + page_dict$page
   } else {
-    page_dict$page <- page_dict_page(page_dict)
+    page_dict$page <- pageby_dict_page(page_dict)
   }
 
   page_dict$index <- cumsum(!page_dict$pageby)
@@ -295,4 +282,17 @@ as_rtf_pageby <- function(tbl) {
 
   attr(rtf, "info") <- page_dict
   rtf
+}
+
+# Define page number for each row
+pageby_dict_page <- function(page_dict) {
+  # Page Number
+  page <- (cumsum(page_dict$nrow) - 1) %/% page_dict$total
+
+  # If the last row is a page by row, move it to next row
+  retain <- unlist(lapply(split(page_dict, page), function(x) {
+    rev(cumsum(rev(x$pageby)) == seq_len(nrow(x)))
+  }))
+
+  page + retain + 1
 }
