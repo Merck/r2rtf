@@ -1,8 +1,8 @@
-dt <- iris[c(1:5, 51:55, 101:105), ] %>% dplyr::arrange(Species)
+dt <- iris[c(1:5, 51:55, 101:105), ] |> dplyr::arrange(Species)
 
 
 # test_that("Test when data is not sorted by group_by variable", {
-#   dt1 <- dt %>% dplyr::arrange(Sepal.Width)
+#   dt1 <- dt |> dplyr::arrange(Sepal.Width)
 #   expect_error(case1 <- rtf_group_by_enhance(dt1, "Species", 1))
 #
 # })
@@ -27,7 +27,7 @@ test_that("Test if duplicated records are removed in returned dataset", {
 })
 
 test_that("Test if no records will be deleted when there are no duplicated records", {
-  dt4 <- iris[c(1, 51, 101), ] %>% dplyr::arrange(Species)
+  dt4 <- iris[c(1, 51, 101), ] |> dplyr::arrange(Species)
   case4 <- rtf_group_by_enhance(dt4, "Species", rep(1, 3))
 
   expect_equal(dt4, case4)

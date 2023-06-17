@@ -40,7 +40,7 @@ test_that("Column relative width", {
 
   # Check col_rel_width attributes
 
-  testdat2 <- testdat %>%
+  testdat2 <- testdat |>
     rtf_body(col_rel_width = c(1, 2, 3, 4, 5))
 
   expect_identical(
@@ -52,7 +52,7 @@ test_that("Column relative width", {
 test_that("border type and color", {
   # Check border type and color attributes defaults
 
-  testdat2 <- testdat %>%
+  testdat2 <- testdat |>
     rtf_body()
 
   expect_identical(
@@ -117,7 +117,7 @@ test_that("border type and color", {
 
   # Check commonly used border type and color attributes formats
 
-  testdat2 <- testdat %>%
+  testdat2 <- testdat |>
     rtf_body(
       border_left = c(
         "",
@@ -211,14 +211,14 @@ test_that("border type and color", {
 test_that("cell justification and height", {
   # Check cell justification and height attribute default
 
-  testdat2 <- testdat %>%
+  testdat2 <- testdat |>
     rtf_body()
 
   expect_identical(attributes(testdat2)$cell_justification, "c")
 
   expect_identical(attributes(testdat2)$cell_height, 0.15)
 
-  testdat2 <- testdat[1:2, ] %>%
+  testdat2 <- testdat[1:2, ] |>
     rtf_body(
       cell_justification = "j",
       cell_height = 2
@@ -232,7 +232,7 @@ test_that("cell justification and height", {
 test_that("text type", {
   # Check text attributes default
 
-  testdat2 <- testdat %>%
+  testdat2 <- testdat |>
     rtf_body()
 
   expect_identical(attributes(testdat2)$text_justification[35, 1:5], rep(c("c"), 5))
@@ -252,7 +252,7 @@ test_that("text type", {
   expect_identical(attributes(testdat2)$text_space_after, 15)
 
 
-  testdat2 <- testdat[1:2, ] %>%
+  testdat2 <- testdat[1:2, ] |>
     rtf_body(
       text_justification = c("l", "c", "r", "d", "j", "l", "c", "r", "d", "j"),
       text_font = c(1, 2, 3, 3, 2, 1, 2, 1, 3, 1),
@@ -315,7 +315,7 @@ test_that("text type", {
 
 
 test_that("Case for subline_by", {
-  tbl <- iris[c(1:2, 51:52), ] %>%
+  tbl <- iris[c(1:2, 51:52), ] |>
     rtf_body(
       subline_by = c("Species")
     )
@@ -338,7 +338,7 @@ test_that("Case for subline_by", {
 
 
 test_that("Case for page_by", {
-  tbl0 <- iris[c(1:2, 51:52), ] %>%
+  tbl0 <- iris[c(1:2, 51:52), ] |>
     rtf_body(
       page_by = c("Species")
     )
@@ -351,9 +351,9 @@ test_that("Case for page_by", {
 
 
 test_that("Case for using subline_by and page_by together", {
-  tbl1 <- iris[c(1:4, 51:54), 3:5] %>%
-    mutate(s2 = paste0(Species, 1:2), s3 = s2) %>%
-    arrange(Species, s2) %>%
+  tbl1 <- iris[c(1:4, 51:54), 3:5] |>
+    mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
+    arrange(Species, s2) |>
     rtf_body(
       subline_by = "Species",
       page_by = "s2"
@@ -381,9 +381,9 @@ test_that("Case for using subline_by and page_by together", {
 })
 
 test_that("Case for using subline_by and page_by with pageby_row = 'first_row'", {
-  tbl2 <- iris[c(1:4, 51:54), 3:5] %>%
-    mutate(s2 = paste0(Species, 1:2), s3 = s2) %>%
-    arrange(Species, s2) %>%
+  tbl2 <- iris[c(1:4, 51:54), 3:5] |>
+    mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
+    arrange(Species, s2) |>
     rtf_body(
       subline_by = "Species",
       page_by = "s2",

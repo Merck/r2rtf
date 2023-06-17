@@ -1,19 +1,19 @@
-tbl <- rtf_read_figure("fig/fig1.png") %>%
+tbl <- rtf_read_figure("fig/fig1.png") |>
   rtf_figure(
     fig_width = 5,
     fig_height = 5
   ) # page and image size set here
 
-tbl <- tbl %>%
-  rtf_title("This is the title") %>%
-  rtf_footnote("This is a footnote") %>%
+tbl <- tbl |>
+  rtf_title("This is the title") |>
+  rtf_footnote("This is a footnote") |>
   rtf_source("Source:  This is the source]")
 
 attr(tbl, "page")$page_title <- "first"
 attr(tbl, "page")$page_footnote <- "all"
 attr(tbl, "page")$page_source <- "all"
 
-tbl_encode <- tbl %>% rtf_encode_figure()
+tbl_encode <- tbl |> rtf_encode_figure()
 
 
 test_that("figure width and height encoding", {
