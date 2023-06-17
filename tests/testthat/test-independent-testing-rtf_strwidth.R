@@ -6,7 +6,7 @@ df <- data.frame(
   z = "third"
 )
 
-tbl <- df %>%
+tbl <- df |>
   rtf_body(
     text_font = c(1, 9, 1),
     text_font_size = 8,

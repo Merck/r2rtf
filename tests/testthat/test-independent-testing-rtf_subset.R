@@ -7,12 +7,12 @@ test_that("Input check for arguments", {
 
 
 # an example of data frame with attributes
-tbl <- r2rtf_tbl1 %>%
-  rtf_colheader(colheader = "Trt|N1|Mean1|N2|Mean2|N3|Mean3|CI", border_left = "") %>%
+tbl <- r2rtf_tbl1 |>
+  rtf_colheader(colheader = "Trt|N1|Mean1|N2|Mean2|N3|Mean3|CI", border_left = "") |>
   rtf_body(col_rel_width = c(1, 2, 3, 4, 2, 2, 2, 2))
 
 # an example of subsetted data frame
-tbl_sub <- tbl %>% rtf_subset(row = 1:2, col = 2:4)
+tbl_sub <- tbl |> rtf_subset(row = 1:2, col = 2:4)
 
 # create two expected matrices
 blk <- matrix("", nrow = 2, ncol = 3)

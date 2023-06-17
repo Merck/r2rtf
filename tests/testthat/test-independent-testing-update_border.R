@@ -1,7 +1,7 @@
 test_that("test update_border_first when attr(tbl, 'rtf_colheader') is not NULL", {
-  tbl <- iris[1:2, ] %>%
-    rtf_page(border_color_first = "red") %>%
-    rtf_body() %>%
+  tbl <- iris[1:2, ] |>
+    rtf_page(border_color_first = "red") |>
+    rtf_body() |>
     update_border_first()
 
   expect_equal(attributes(attr(tbl, "rtf_colheader")[[1]])$border_top, matrix("double", nrow = 1, ncol = 5))
@@ -10,8 +10,8 @@ test_that("test update_border_first when attr(tbl, 'rtf_colheader') is not NULL"
 
 
 test_that("test update_border_first when attr(tbl, 'rtf_colheader') is NULL", {
-  tbl <- iris[c(1:2, 51:52), ] %>%
-    rtf_page(border_color_first = "red") %>%
+  tbl <- iris[c(1:2, 51:52), ] |>
+    rtf_page(border_color_first = "red") |>
     rtf_body(
       page_by = "Species",
       new_page = TRUE
@@ -27,12 +27,12 @@ test_that("test update_border_first when attr(tbl, 'rtf_colheader') is NULL", {
 
 
 test_that("test update_border_last when 'footnote' as_table", {
-  tbl <- iris[1:2, ] %>%
+  tbl <- iris[1:2, ] |>
     rtf_page(
       border_color_first = "red",
       border_color_last = "red"
-    ) %>%
-    rtf_body() %>%
+    ) |>
+    rtf_body() |>
     rtf_footnote("footnote",
       as_table = TRUE
     )
@@ -45,12 +45,12 @@ test_that("test update_border_last when 'footnote' as_table", {
 
 
 test_that("test update_border_last when 'source' as_table", {
-  tbl <- iris[1:2, ] %>%
+  tbl <- iris[1:2, ] |>
     rtf_page(
       border_color_first = "red",
       border_color_last = "red"
-    ) %>%
-    rtf_body() %>%
+    ) |>
+    rtf_body() |>
     rtf_source("source",
       as_table = TRUE
     )
@@ -63,11 +63,11 @@ test_that("test update_border_last when 'source' as_table", {
 
 
 test_that("test update_border_last when body as last", {
-  tbl <- iris[c(1:2, 51:52), ] %>%
+  tbl <- iris[c(1:2, 51:52), ] |>
     rtf_page(
       border_color_first = "red",
       border_color_last = "red"
-    ) %>%
+    ) |>
     rtf_body(
       page_by = "Species",
       new_page = TRUE

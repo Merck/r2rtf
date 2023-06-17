@@ -1,8 +1,8 @@
-tbl.p <- head(iris) %>%
-  rtf_footnote(text_indent_left = 1) %>%
+tbl.p <- head(iris) |>
+  rtf_footnote(text_indent_left = 1) |>
   rtf_page(orientation = "portrait")
-tbl.l <- head(iris) %>%
-  rtf_footnote(text_indent_left = 1) %>%
+tbl.l <- head(iris) |>
+  rtf_footnote(text_indent_left = 1) |>
   rtf_page(orientation = "landscape")
 
 test_that("space adjust when orientation is portrait", {

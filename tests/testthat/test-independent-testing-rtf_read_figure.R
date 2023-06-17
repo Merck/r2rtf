@@ -6,8 +6,8 @@ test_that("Test fig_format attribute", {
 })
 
 test_that("Test outputs", {
-  a <- rtf_read_figure(c("fig/fig3.jpeg", "fig/fig2.png", "fig/fig4.emf")) %>%
-    rtf_figure() %>%
+  a <- rtf_read_figure(c("fig/fig3.jpeg", "fig/fig2.png", "fig/fig4.emf")) |>
+    rtf_figure() |>
     rtf_encode(doc_type = "figure")
 
   expect_snapshot_output(a)

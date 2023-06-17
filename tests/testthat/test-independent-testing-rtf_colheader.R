@@ -1,15 +1,15 @@
 test_that("case when colheader equals to NULL", {
-  x <- r2rtf_tbl1 %>% rtf_colheader(colheader = NULL)
+  x <- r2rtf_tbl1 |> rtf_colheader(colheader = NULL)
   expect_true("data.frame" %in% class(x))
 
   y <- rtf_colheader(r2rtf_tbl1, colheader = NULL)
   expect_equal(attributes(y)$colheader, NULL)
 
-  z <- r2rtf_tbl1 %>% rtf_colheader(colheader = NULL, border_color_left = "green")
+  z <- r2rtf_tbl1 |> rtf_colheader(colheader = NULL, border_color_left = "green")
   expect_equal(attributes(z)$colheader, NULL)
   expect_equal(attributes(z)$border_color_left, NULL)
 
-  u <- r2rtf_tbl1 %>% rtf_colheader(colheader = " | | ")
+  u <- r2rtf_tbl1 |> rtf_colheader(colheader = " | | ")
   expect_equal(data.frame(attributes(u)$rtf_colheader[[1]]), data.frame(data.frame(X1 = "", X2 = "", X3 = "")))
 })
 
@@ -19,20 +19,20 @@ test_that("multiple colheaders separated by |", {
 })
 
 test_that("border color", {
-  x <- r2rtf_tbl1 %>%
-    rtf_body() %>%
+  x <- r2rtf_tbl1 |>
+    rtf_body() |>
     rtf_colheader(colheader = " a | b | c ", border_color_left = "green")
-  xx <- r2rtf_tbl1 %>%
-    rtf_body() %>%
+  xx <- r2rtf_tbl1 |>
+    rtf_body() |>
     rtf_colheader(colheader = " a | b | c ", border_color_left = c("red", "green", "blue"))
-  y <- r2rtf_tbl1 %>%
-    rtf_body() %>%
+  y <- r2rtf_tbl1 |>
+    rtf_body() |>
     rtf_colheader(colheader = "  | b |   ", border_color_right = c("red", "green", "blue"))
-  z <- r2rtf_tbl1 %>%
-    rtf_body() %>%
+  z <- r2rtf_tbl1 |>
+    rtf_body() |>
     rtf_colheader(colheader = " a |   |c  ", border_color_top = c("blue", "green", "blue"))
-  u <- r2rtf_tbl1 %>%
-    rtf_body() %>%
+  u <- r2rtf_tbl1 |>
+    rtf_body() |>
     rtf_colheader(colheader = " a | b | c ", border_color_bottom = "yellow")
 
   expect_equal(attr(attr(x, "rtf_colheader")[[2]], "border_color_left")[1, ], c("green", "green", "green"))
@@ -43,16 +43,16 @@ test_that("border color", {
 })
 
 test_that("border type", {
-  x <- r2rtf_tbl1 %>%
-    rtf_body() %>%
+  x <- r2rtf_tbl1 |>
+    rtf_body() |>
     rtf_colheader(colheader = " a | b | c ", border_left = c("double", "single", "dot dot"))
   expect_equal(attr(attr(x, "rtf_colheader")[[2]], "border_left")[1, ], c("double", "single", "dot dot"))
 })
 
 
 test_that("cell text formats", {
-  x <- r2rtf_tbl1 %>%
-    rtf_body() %>%
+  x <- r2rtf_tbl1 |>
+    rtf_body() |>
     rtf_colheader(colheader = " a | b | c ", text_format = c("u", "i", "s"))
 
   expect_error(rtf_colheader(r2rtf_tbl1, colheader = " a | b | c ", text_format = c("$20.", "$5.", "$20.")))
