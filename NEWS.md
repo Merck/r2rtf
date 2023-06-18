@@ -1,4 +1,12 @@
+# r2rtf 1.0.4 (2023-06-17)
+
+## Bug fixes
+
+* Page size of the first page is different from the other pages (#174).
+
 # r2rtf 1.0.3 (2023-05-26)
+
+## Bug fixes
 
 * Properly display cell height in HTML output (#66).
 * Fix an issue when `group_by` and `page_by` are used together (#168).
