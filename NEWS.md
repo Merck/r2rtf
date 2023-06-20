@@ -1,17 +1,17 @@
-# r2rtf 1.0.4 (2023-06-18)
+# r2rtf 1.0.4
 
 ## Bug fixes
 
 * Page size of the first page is different from the other pages (#174).
 
-# r2rtf 1.0.3 (2023-05-26)
+# r2rtf 1.0.3
 
 ## Bug fixes
 
 * Properly display cell height in HTML output (#66).
 * Fix an issue when `group_by` and `page_by` are used together (#168).
 
-# r2rtf 1.0.2 (2023-05-01)
+# r2rtf 1.0.2
 
 ## Bug fixes
 
@@ -24,7 +24,7 @@
 * Add libreoffice 7.4 and 7.5 support (#156).
 * Add citation details (#155).
 
-# r2rtf 1.0.1 (2023-02-02)
+# r2rtf 1.0.1
 
 ## New features
 
@@ -34,7 +34,7 @@
 
 * Add support for libreoffice 7.3 (#92).
 
-# r2rtf 1.0.0 (2023-01-12)
+# r2rtf 1.0.0
 
 ## New features
 
@@ -49,14 +49,14 @@
 
 * Update copyright text.
 
-# r2rtf 0.3.5 (2022-05-17)
+# r2rtf 0.3.5
 
 ## Bug fixes
 
 * Avoid warning messages on matrix dimension in R >= 4.2.0 (#101).
 * Vectorized text justification for `rtf_title()`, `rtf_footnote()`, and other functions (#98).
 
-# r2rtf 0.3.4 (2022-04-08)
+# r2rtf 0.3.4
 
 ## Bug fixes
 
@@ -66,7 +66,7 @@
 
 * Update maintainer email.
 
-# r2rtf 0.3.3 (2022-03-07)
+# r2rtf 0.3.3
 
 ## Improvements
 
@@ -77,7 +77,7 @@
 * Convert to proper RTF code.
 * `rft_encode()` does not add footnote and source to all pages for `doc_type = "figure"` (#90).
 
-# r2rtf 0.3.2 (2021-12-07)
+# r2rtf 0.3.2
 
 ## New features
 
@@ -92,7 +92,7 @@
 
 * Avoid specific libreoffice version (#68).
 
-# r2rtf 0.3.1 (2021-09-09)
+# r2rtf 0.3.1
 
 ## New features
 
@@ -107,7 +107,7 @@
 * `text_format` issue with all value equal to `""` (#40).
 * r2rtf needs to work properly with `group_by()` (#36).
 
-# r2rtf 0.3.0 (2021-06-01)
+# r2rtf 0.3.0
 
 ## New features
 
@@ -132,7 +132,7 @@
   displayed in the `page_by` variable. See example 2 in
   `vignettes/example-pageby-groupby.Rmd`.
 
-# r2rtf 0.2.0 (2020-12-04)
+# r2rtf 0.2.0
 
 ## New features
 
@@ -151,7 +151,7 @@
 * Add example ADaM datasets.
 * Add validation tracker in `inst/` and test cases in `tests/`.
 
-# r2rtf 0.1.1 (2020-04-03)
+# r2rtf 0.1.1
 
 * Standardize input from `gt_tbl` to `tbl`.
 * Resolve UTF-8 encoding.
