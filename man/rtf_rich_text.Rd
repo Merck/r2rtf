@@ -6,7 +6,7 @@
 \usage{
 rtf_rich_text(
   text,
-  theme = list(.emph = list(color = "blue", format = "b"), .blah = list(color = "red"))
+  theme = list(.emph = list(format = "i"), .strong = list(format = "b"))
 )
 }
 \arguments{
@@ -37,10 +37,12 @@ Text to formatted RTF Encode
 }
 
 \examples{
-rtf_rich_text(text = "This is {.emph important}. This is {.blah relevant}.",
+rtf_rich_text(text = "This is {.emph important}. This is {.strong relevant}.
+This is {.zebra ZEBRA}.",
 theme = list(
-.emph = list(color = "blue", `format` = "b"),
-.blah = list(color = "red")
+.emph = list(format = "i"),
+.strong = list(format = "b"),
+.zebra = list(color = "white", `background_color = "black")
 ))
 
 }
