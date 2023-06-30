@@ -32,9 +32,7 @@ VignetteBuilder: knitr
 LazyData: true
 Depends: R (>= 3.5.0)
 Imports:
-    checkmate,
     grDevices,
-    purrr,
     tools
 Suggests:
     covr,
