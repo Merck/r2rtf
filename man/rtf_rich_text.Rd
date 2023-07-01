@@ -2,7 +2,7 @@
 % Please edit documentation in R/rtf_rich_text.R
 \name{rtf_rich_text}
 \alias{rtf_rich_text}
-\title{Text to formatted RTF Encode}
+\title{Text to Formatted RTF Encode}
 \usage{
 rtf_rich_text(
   text,
@@ -12,11 +12,11 @@ rtf_rich_text(
 \arguments{
 \item{text}{Plain text.}
 
-\item{theme}{Named list defining themes for tags. See \code{rtf_text()} for
+\item{theme}{Named list defining themes for tags. See \code{\link[=rtf_text]{rtf_text()}} for
 details on possible formatting.}
 }
 \description{
-Text to formatted RTF Encode
+Text to Formatted RTF Encode
 }
 \section{Specification}{
 
@@ -32,7 +32,7 @@ Text to formatted RTF Encode
    \item Execute \code{rtf_text()} with extracted text and relevant formatting.
    \item Reinsert encoded formatted text to original input text.
  }
- }
+}
 \if{html}{The contents of this section are shown in PDF user manual only.}
 }
 
@@ -48,5 +48,4 @@ rtf_rich_text(
     .zebra = list(color = "white", background_color = "black")
   )
 )
-
 }

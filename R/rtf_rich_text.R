@@ -15,11 +15,11 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#' Text to formatted RTF Encode
+#' Text to Formatted RTF Encode
 #'
 #' @param text Plain text.
-#' @param theme Named list defining themes for tags. See \code{rtf_text()} for
-#' details on possible formatting.
+#' @param theme Named list defining themes for tags. See [rtf_text()] for
+#'   details on possible formatting.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -34,7 +34,7 @@
 #'    \item Execute \code{rtf_text()} with extracted text and relevant formatting.
 #'    \item Reinsert encoded formatted text to original input text.
 #'  }
-#'  }
+#' }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 #' @export
@@ -51,13 +51,13 @@
 #'     .zebra = list(color = "white", background_color = "black")
 #'   )
 #' )
-#'
-rtf_rich_text <- function(text,
-                          theme = list(
-                            .emph = list(format = "i"),
-                            .strong = list(format = "b")
-                          )) {
-  # Bulletproof the styles requested within the theme argument.
+rtf_rich_text <- function(
+    text,
+    theme = list(
+      .emph = list(format = "i"),
+      .strong = list(format = "b")
+    )) {
+  # Bulletproof the styles requested within the `theme` argument
   theme_arg <- theme
   names(theme_arg) <- NULL
   unique_styles <- unique(names(unlist(theme_arg)))
@@ -65,16 +65,19 @@ rtf_rich_text <- function(text,
   if (length(bad_style) > 0) {
     stop(
       "Theme lists have styles which are not supported (",
-      paste0(bad_style, collapse = ", "), ")."
+      paste0(bad_style, collapse = ", "), ").",
+      call. = FALSE
     )
   }
 
-  # Find all paired braces in text string.
+  # Find all paired braces in text string
   extracted <- list()
   extracted$matches <- gsub(
-    pattern = "^\\{", replacement = "",
-    gsub(
-      pattern = "\\}$", replacement = "",
+    pattern = "^\\{",
+    replacement = "",
+    x = gsub(
+      pattern = "\\}$",
+      replacement = "",
       x = extract_tagged_text(text)
     )
   )
@@ -85,48 +88,52 @@ rtf_rich_text <- function(text,
 
   extracted$tags <- gsub(
     pattern = extraction_pattern,
-    x = extracted$matches, replacement = "\\1"
+    replacement = "\\1",
+    x = extracted$matches
   )
   if (length(extracted$tags) != length(extracted$matches)) {
-    stop("Length missmatch of tags found and matches found")
+    stop("Length missmatch of tags found and matches found.", call. = FALSE)
   }
 
-  # For each paired brace: extract the text to be wrapped with rtf_text()
+  # For each paired brace: extract the text to be wrapped with `rtf_text()`
   extracted$text <- gsub(
     pattern = extraction_pattern,
-    x = extracted$matches, replacement = "\\3"
+    replacement = "\\3",
+    x = extracted$matches
   )
   if (length(extracted$text) != length(extracted$matches)) {
-    stop("Length missmatch of extracted text found and matches found")
+    stop("Length missmatch of extracted text found and matches found.", call. = FALSE)
   }
 
-  # Validate that tags in text are reflected in themes argument
+  # Validate that tags in text are reflected in the `themes` argument
   missing_themes <- extracted$tags[!(extracted$tags %in% names(theme))]
   if (length(missing_themes) != 0) {
     stop(
       "Input text has tags which are not available in the theme (",
-      paste0(missing_themes, collapse = ", "), ")."
+      paste0(missing_themes, collapse = ", "), ").",
+      call. = FALSE
     )
   }
 
-  # Execute rtf_text() calls with theme tags.
+  # Execute `rtf_text()` calls with theme tags
   extracted$replacements <- vapply(
     X = seq_along(extracted$tags),
     FUN = function(x) {
-      do.call(rtf_text,
+      do.call(
+        rtf_text,
         args = c(text = extracted$text[x], theme[[extracted$tags[x]]])
       )
     },
     FUN.VALUE = "character"
   )
 
-  # Insert rtf_text() calls into original text.
+  # Insert `rtf_text()` calls into the original text
   new_text <- text
   for (i in seq_along(extracted$matches)) {
     new_text <- gsub(
-      x = new_text,
       pattern = paste0("{", extracted$matches[i], "}"),
       replacement = extracted$replacements[i],
+      x = new_text,
       fixed = TRUE
     )
   }
@@ -134,30 +141,31 @@ rtf_rich_text <- function(text,
   rtf_text(new_text)
 }
 
-#' Extract tagged text
+#' Extract Tagged Text
 #'
 #' Identify the text that is in brackets and correctly resolve the ordering of
 #' the brackets such that everything is correctly tagged with the needed style.
 #'
 #' @param input Plain text containing matched curly braces with tags.
 #'
-#' @keywords internal
+#' @noRd
 extract_tagged_text <- function(input) {
   opening <- gregexec("\\{", text = input, perl = TRUE)[[1]]
   closing <- gregexec("\\}", text = input, perl = TRUE)[[1]]
   styles <- gregexec("\\{\\.[A-Za-z]*", text = input, perl = TRUE)
 
-  # Check for equal number of opening and closing braces.
+  # Check for equal number of opening and closing braces
   check_braces(input)
 
-  # Identify matching brace pairs.
+  # Identify matching brace pairs
   brace_matches <- match_braces(opening, closing)
 
-  # Identify which matched braces are associated with a style tag.
+  # Identify which matched braces are associated with a style tag
   styles_matches <- brace_matches[which(brace_matches$opening %in% styles[[1]]), ]
 
-  # Extract tagged brackets.
-  unname(apply(styles_matches,
+  # Extract tagged brackets
+  unname(apply(
+    styles_matches,
     MARGIN = 1,
     FUN = function(X) {
       substr(input, start = X[["opening"]], stop = X[["closing"]])
@@ -165,15 +173,15 @@ extract_tagged_text <- function(input) {
   ))
 }
 
-#' Identify opening and closing brace pairs
+#' Identify Opening and Closing Brace Pairs
 #'
-#' Identify which opening and closing braces in a string belong together. Follows
-#' a first-in-last-out matching.
+#' Identify which opening and closing braces in a string belong together.
+#' Follows a first-in-last-out matching.
 #'
 #' @param openings Vector of indices indicating location of opening braces.
 #' @param closings Vector of indices indicating location of closing braces.
 #'
-#' @keywords internal
+#' @noRd
 match_braces <- function(openings, closings) {
   # Verify that equal numbers of opening and closing braces exist
   stopifnot(length(openings) == length(closings))
@@ -188,11 +196,11 @@ match_braces <- function(openings, closings) {
     # Find the matching opening brace.
     # The matching opening brace is the one most recently preceding a closing brace.
     match_opening <- max(openings[openings < closings[i]])
-    # Record the opening brace index to be removed.
+    # Record the opening brace index to be removed
     match_opening_index <- which(openings == match_opening)
-    # Add the pair of opening and closing braces to the holder data frame.
+    # Add the pair of opening and closing braces to the holder data frame
     holder[i, ] <- c(match_opening, closings[i])
-    # Remove the matching opening brace from the vector of opening braces.
+    # Remove the matching opening brace from the vector of opening braces
     openings <- openings[-match_opening_index]
   }
 
@@ -202,21 +210,21 @@ match_braces <- function(openings, closings) {
 #' Check that braces are correctly matched
 #'
 #' Braces must be matched appropriately. First brace should be an opening brace.
-#' Every brace should be closed appropriate.
+#' Every brace should be closed appropriately.
 #'
 #' @param input Plain text containing matched curly braces with tags.
 #'
-#' @keywords internal
+#' @noRd
 check_braces <- function(input) {
   input_parse <- gsub(x = input, pattern = "[^{}]", replacement = "")
   input_split <- unlist(strsplit(input_parse, ""))
   checker <- ifelse(input_split == "{", 1, -1)
   if (grepl(x = input, pattern = "(\\\\{)|(\\\\})", perl = TRUE)) {
     warning(c(
-      "It seems that you have some escaped brackets in your input,",
-      " this might not work as expected."
+      "It seems that you have some escaped brackets in your input, ",
+      "this might not work as expected."
     ))
   }
-  if (sum(checker) != 0) stop("Number of opening { and closing } must match.")
-  if (any(cumsum(checker) < 0)) stop("Input has at least one unpaired '{'.")
+  if (sum(checker) != 0) stop("Number of opening { and closing } must match.", call. = FALSE)
+  if (any(cumsum(checker) < 0)) stop("Input has at least one unpaired '{'.", call. = FALSE)
 }
