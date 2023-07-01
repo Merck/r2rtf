@@ -207,7 +207,7 @@ match_braces <- function(openings, closings) {
 #' @param input Plain text containing matched curly braces with tags.
 #'
 #' @keywords internal
-check_braces <- function(input){
+check_braces <- function(input) {
   input_parse <- gsub(x = input, pattern = "[^{}]", replacement = "")
   input_split <- unlist(strsplit(input_parse, ""))
   checker <- ifelse(input_split == "{", 1, -1)
