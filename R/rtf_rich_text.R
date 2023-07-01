@@ -40,12 +40,12 @@
 #' @export
 #'
 #' @examples
-#' rtf_rich_text(text = "This is {.emph important}. This is {.strong relevant}.
-#' This is {.zebra ZEBRA}.",
+#' rtf_rich_text(text = paste("This is {.emph important}.",
+#' "This is {.strong relevant}.", "This is {.zebra ZEBRA}."),
 #' theme = list(
 #' .emph = list(format = "i"),
 #' .strong = list(format = "b"),
-#' .zebra = list(color = "white", `background_color = "black")
+#' .zebra = list(color = "white", background_color = "black")
 #' ))
 #'
 rtf_rich_text <- function(text,
