@@ -26,16 +26,17 @@ test_that("rtf_rich_text works with example from check_args.", {
         .red = list(color = "red"),
         .hl = list(background_color = "yellow")
       )
-  ))
+    )
+  )
 
   expectation <- r2rtf:::rtf_paragraph(
     r2rtf:::rtf_text(paste0(
-    "3.5{^\\dagger}\\line ",
-    r2rtf:::rtf_text("red", color = "red"),
-    " ",
-    r2rtf:::rtf_text("highlight", background_color = "yellow")
-  )))
+      "3.5{^\\dagger}\\line ",
+      r2rtf:::rtf_text("red", color = "red"),
+      " ",
+      r2rtf:::rtf_text("highlight", background_color = "yellow")
+    ))
+  )
 
   expect_equal(output, expectation)
 })
-
