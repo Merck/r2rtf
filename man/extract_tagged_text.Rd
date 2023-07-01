@@ -13,3 +13,4 @@ extract_tagged_text(input)
 Identify the text that is in brackets and correctly resolve the ordering of
 the brackets such that everything is correctly tagged with the needed style.
 }
+\keyword{internal}

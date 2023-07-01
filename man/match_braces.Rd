@@ -15,3 +15,4 @@ match_braces(openings, closings)
 Identify which opening and closing braces in a string belong together. Follows
 a first-in-last-out matching.
 }
+\keyword{internal}

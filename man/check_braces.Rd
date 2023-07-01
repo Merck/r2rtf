@@ -13,3 +13,4 @@ check_braces(input)
 Braces must be matched appropriately. First brace should be an opening brace.
 Every brace should be closed appropriate.
 }
+\keyword{internal}

@@ -141,6 +141,7 @@ rtf_rich_text <- function(text,
 #'
 #' @param input Plain text containing matched curly braces with tags.
 #'
+#' @keywords internal
 extract_tagged_text <- function(input) {
   opening <- gregexec("\\{", text = input, perl = TRUE)[[1]]
   closing <- gregexec("\\}", text = input, perl = TRUE)[[1]]
@@ -172,6 +173,7 @@ extract_tagged_text <- function(input) {
 #' @param openings Vector of indices indicating location of opening braces.
 #' @param closings Vector of indices indicating location of closing braces.
 #'
+#' @keywords internal
 match_braces <- function(openings, closings) {
   # Verify that equal numbers of opening and closing braces exist
   stopifnot(length(openings) == length(closings))
@@ -204,7 +206,8 @@ match_braces <- function(openings, closings) {
 #'
 #' @param input Plain text containing matched curly braces with tags.
 #'
-check_braces <- function(input) {
+#' @keywords internal
+check_braces <- function(input){
   input_parse <- gsub(x = input, pattern = "[^{}]", replacement = "")
   input_split <- unlist(strsplit(input_parse, ""))
   checker <- ifelse(input_split == "{", 1, -1)
