@@ -18,7 +18,7 @@
 #' Text to Formatted RTF Encode
 #'
 #' @param text Plain text.
-#' @param theme Named list defining themes for tags. See [rtf_text()] for
+#' @param theme Named list defining themes for tags. See `rtf_text()` for
 #'   details on possible formatting.
 #'
 #' @section Specification:

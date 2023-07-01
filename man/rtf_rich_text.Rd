@@ -12,7 +12,7 @@ rtf_rich_text(
 \arguments{
 \item{text}{Plain text.}
 
-\item{theme}{Named list defining themes for tags. See \code{\link[=rtf_text]{rtf_text()}} for
+\item{theme}{Named list defining themes for tags. See \code{rtf_text()} for
 details on possible formatting.}
 }
 \description{
