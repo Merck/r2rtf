@@ -69,7 +69,6 @@ obj_rtf_border <- function(tbl,
 
   check_args(cell_height, type = c("integer", "numeric"))
   check_args(cell_justification, type = c("character"))
-  check_args(cell_justification, type = c("character"))
   check_args(cell_nrow, type = c("integer", "numeric"))
 
   # Check argument values
