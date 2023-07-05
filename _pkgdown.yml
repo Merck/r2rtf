@@ -70,7 +70,6 @@ articles:
 reference:
 - title: RTF Table
   contents:
-  - "rtf_rich_text"
   - "rtf_page"
   - "rtf_page_header"
   - "rtf_page_footer"
@@ -98,5 +97,7 @@ reference:
   - "r2rtf_tbl3"
 - title: Utility
   contents:
-  - "utf8Tortf"
+  - "rtf_rich_text"
   - "rtf_read_png"
+  - "utf8Tortf"
+
