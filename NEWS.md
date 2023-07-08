@@ -1,3 +1,13 @@
+# r2rtf 1.1.0 
+
+## New features 
+
+* add `r2rtf_ric_text` function to allow inline formating. (#184) 
+
+## Improvement 
+
+* use native pipe in unit testing (#179)
+
 # r2rtf 1.0.4
 
 ## Bug fixes
