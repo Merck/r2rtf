@@ -81,8 +81,8 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>text</dt>
 <dd><p>A string to be converted.</p>
-<p>If the unicode of a character is 255 or under (including all character on a keyboard), the character is as is.
-If the unicode of a character is larger than 255, the character will be encoded.</p></dd>
+<p>If the unicode of a character is less than 128 (including all character on a keyboard), the character is as is.
+If the unicode of a character is larger or equal to 128, the character will be encoded.</p></dd>
 
 </dl></div>
     <div class="section level2">
