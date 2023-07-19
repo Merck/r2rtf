@@ -9,8 +9,8 @@ utf8Tortf(text)
 \arguments{
 \item{text}{A string to be converted.
 
-If the unicode of a character is 255 or under (including all character on a keyboard), the character is as is.
-If the unicode of a character is larger than 255, the character will be encoded.}
+If the unicode of a character is less than 128 (including all character on a keyboard), the character is as is.
+If the unicode of a character is larger or equal to 128, the character will be encoded.}
 }
 \description{
 Convert a UTF-8 Encoded Character String to a RTF Encoded String
@@ -19,9 +19,9 @@ Convert a UTF-8 Encoded Character String to a RTF Encoded String
 
 \if{latex}{
  \itemize{
-   \item Define rules for character by setting 255 as cutoff.
-   \item If the unicode of a character is 255 or under (including all character on a keyboard), the character is as is.
-   \item If the unicode of a character is larger than 255, the character will be encoded.
+   \item Define rules for character by setting 128 as cutoff.
+   \item If the unicode of a character is 128 or under (including all character on a keyboard), the character is as is.
+   \item If the unicode of a character is larger than 128, the character will be encoded.
  }
  }
 \if{html}{The contents of this section are shown in PDF user manual only.}

@@ -121,17 +121,17 @@ convert <- function(text,
 #'
 #' @param text A string to be converted.
 #'
-#' If the unicode of a character is 255 or under (including all character on a keyboard), the character is as is.
-#' If the unicode of a character is larger than 255, the character will be encoded.
+#' If the unicode of a character is less than 128 (including all character on a keyboard), the character is as is.
+#' If the unicode of a character is larger or equal to 128, the character will be encoded.
 #'
 #' @references Burke, S. M. (2003). RTF Pocket Guide. " O'Reilly Media, Inc.".
 #'
 #' @section Specification:
 #' \if{latex}{
 #'  \itemize{
-#'    \item Define rules for character by setting 255 as cutoff.
-#'    \item If the unicode of a character is 255 or under (including all character on a keyboard), the character is as is.
-#'    \item If the unicode of a character is larger than 255, the character will be encoded.
+#'    \item Define rules for character by setting 128 as cutoff.
+#'    \item If the unicode of a character is 128 or under (including all character on a keyboard), the character is as is.
+#'    \item If the unicode of a character is larger than 128, the character will be encoded.
 #'  }
 #'  }
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
@@ -143,7 +143,7 @@ utf8Tortf <- function(text) {
 
   x_char <- unlist(strsplit(text, ""))
   x_int <- utf8ToInt(text)
-  x_rtf <- ifelse(x_int <= 255, x_char,
+  x_rtf <- ifelse(x_int < 128, x_char,
     ifelse(x_int <= 32768, paste0("\\uc1\\u", x_int, "?"),
       paste0("\\uc1\\u", x_int - 65536, "?")
     )
