@@ -36,7 +36,7 @@ rtf_convert_format <- function(input,
                                output_dir = ".",
                                format = "pdf",
                                overwrite = FALSE) {
-  if (length(input) == 0) stop("The input variable can not be null")
+  if (length(input) == 0) stop("`input` can't be null.")
 
   match_arg(tolower(format), c("pdf", "docx", "html"))
 
@@ -46,22 +46,22 @@ rtf_convert_format <- function(input,
       paste0(
         "libreoffice",
         c(
-          "7.5", "7.4", "7.3", "7.2", "7.1"
+          "7.6", "7.5", "7.4", "7.3", "7.2", "7.1"
         )
       ),
       "libreoffice"
     )
     sys_loc <- which(Sys.which(sys_cmd) != "")[1]
-    if (is.na(sys_loc)) stop("libreoffice is required")
+    if (is.na(sys_loc)) stop("Can't find libreoffice.")
     sys_cmd <- sys_cmd[sys_loc]
 
     # Libreoffice version require to be >= 7.1
     version <- strsplit(system(paste(sys_cmd, "--version"), intern = TRUE), " ")[[1]][[2]]
     if (as.package_version(version) < as.package_version("7.1")) {
-      stop("libreoffice version required to be >= 7.1")
+      stop("libreoffice version must be >= 7.1.")
     }
   } else {
-    stop("Only Unix/Linux is currently supported")
+    stop("Only Unix/Linux is currently supported.")
   }
 
   file_pattern <- paste0("*.", format)
@@ -113,7 +113,7 @@ rtf_convert_format <- function(input,
   # Report error
   if (any(unlist(output) == 1)) {
     stop(paste0(
-      "File convert error: ",
+      "File conversion error: ",
       paste(basename(input_convert)[output == 1], collapse = "; ")
     ))
   }
