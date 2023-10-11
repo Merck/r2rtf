@@ -46,11 +46,11 @@
 #' A dataset prepared by the Drug Information Association scientific working group
 #' to investigate a drug to reduce lower back pain.
 #'
-#' Definition of each variable can be found in \url{https://missingdata.lshtm.ac.uk/dia-working-group/}
+#' Definition of each variable can be found in \url{https://www.lshtm.ac.uk/research/centres-projects-groups/missing-data#dia-missing-data}
 #'
 #' @format A data frame with 831 rows and 6 variables.
 #'
-#' @source \url{https://missingdata.lshtm.ac.uk/dia-working-group/}
+#' @source \url{https://www.lshtm.ac.uk/research/centres-projects-groups/missing-data#dia-missing-data}
 "r2rtf_HAMD17"
 
 #' Within Group Results from an ANCOVA Model
