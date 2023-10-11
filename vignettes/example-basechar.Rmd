@@ -74,10 +74,10 @@ bs_count <- function(data, grp, var,
 - Summarize continuous variable 
 ```{r}
 bs_continuous <- function(data, grp, var,
-                         var_label = var,
-                         decimal = 1,
-                         total = TRUE,
-                         blank_row = FALSE) {
+                          var_label = var,
+                          decimal = 1,
+                          total = TRUE,
+                          blank_row = FALSE) {
   data <- data %>% rename(grp = !!grp, var = !!var)
   coding <- levels(factor(data$grp))
   data <- data %>% mutate(grp = as.numeric(factor(grp)))
