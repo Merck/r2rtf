@@ -23,9 +23,9 @@ r2rtf:::rtf_convert_format(
 ## Overview
 
 `r2rtf` had an experimental internal function `r2rtf:::rtf_convert_format` to 
-convert RTF format to PDF, DOCX or HTML. 
-This feature requires [libreoffice7.1](https://www.libreoffice.org/download/download/) and only 
-be tested in a Linux environment. 
+convert RTF format to PDF, DOCX, or HTML. 
+This feature requires LibreOffice >= 7.1 and was only 
+tested in a Linux environment. 
 
 By default, `r2rtf:::rtf_convert_format` convert RTF file to PDF format.
 The PDF file will be saved in the same folder with same file name by default.

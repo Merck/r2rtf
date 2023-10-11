@@ -92,7 +92,7 @@ rtf_rich_text <- function(
     x = extracted$matches
   )
   if (length(extracted$tags) != length(extracted$matches)) {
-    stop("Length missmatch of tags found and matches found.", call. = FALSE)
+    stop("Length mismatch of tags found and matches found.", call. = FALSE)
   }
 
   # For each paired brace: extract the text to be wrapped with `rtf_text()`
@@ -102,7 +102,7 @@ rtf_rich_text <- function(
     x = extracted$matches
   )
   if (length(extracted$text) != length(extracted$matches)) {
-    stop("Length missmatch of extracted text found and matches found.", call. = FALSE)
+    stop("Length mismatch of extracted text found and matches found.", call. = FALSE)
   }
 
   # Validate that tags in text are reflected in the `themes` argument

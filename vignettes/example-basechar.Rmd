@@ -73,7 +73,7 @@ bs_count <- function(data, grp, var,
 
 - Summarize continuous variable 
 ```{r}
-bs_continous <- function(data, grp, var,
+bs_continuous <- function(data, grp, var,
                          var_label = var,
                          decimal = 1,
                          total = TRUE,
@@ -159,7 +159,7 @@ ana <- ana %>% mutate(
 bs_tb <- bind_rows(
   bs_count(ana, "TRT01AN", "SEX", "Gender"),
   bs_count(ana, "TRT01AN", "AGEGR1", "Age (Years)"),
-  bs_continous(ana, "TRT01AN", "AGE", "Age (Years)", blank_row = TRUE),
+  bs_continuous(ana, "TRT01AN", "AGE", "Age (Years)", blank_row = TRUE),
   bs_count(ana, "TRT01AN", "RACE", "Race")
 ) %>% mutate(
   var_label = factor(var_label, levels = c("Gender", "Age (Years)", "Race"))

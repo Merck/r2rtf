@@ -73,7 +73,7 @@ fmt_pval <- function(data, columns = "p.value", decimals = 3) {
 
 ### Step 2: ANCOVA analysis for HOMA data
 
-The data is available at <https://missingdata.lshtm.ac.uk/dia-working-group/example-data-sets/>.
+The data is available at <https://www.lshtm.ac.uk/research/centres-projects-groups/missing-data#dia-missing-data>.
 
 - Read in data and run ANCOVA model
 
