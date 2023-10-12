@@ -83,7 +83,7 @@ rtf_db %>%
 knitr::include_graphics("pdf/border-example.pdf")
 ```
 
-* The first and last border of the whole table is controled by `border_first` and `border_last` argument in `rtf_page()`  
+* The first and last border of the whole table is controlled by `border_first` and `border_last` argument in `rtf_page()`  
 
 ```{r}
 attr(rtf_db, "page")$border_first
@@ -93,7 +93,7 @@ attr(rtf_db, "page")$border_first
 attr(rtf_db, "border_first")
 ```
 
-For other border, it is controled by a matrix. 
+For other border, it is controlled by a matrix. 
 
 ```{r}
 rtf_db %>% attr("border_top")

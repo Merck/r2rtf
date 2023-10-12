@@ -433,7 +433,7 @@ LaTeX command `'\\leq'` to generate special character $\leq$.
 
 LaTeX commands can be used for Greek letters and math symbol such as $\alpha$, $\pm$, $\infty$.
 You will need to use double backslash `\\` to escape backslash in R. i.e. `"\\alpha"`, `"\\pm"` and `"\\infty"`.
-A list of LaTex commands can be found [here](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols).
+A list of LaTeX commands can be found [here](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols).
 
 Example below demonstrates this idea.
 

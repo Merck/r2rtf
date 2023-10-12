@@ -139,8 +139,8 @@ head(iris) %>% # Step 1 Read in data frame
 ## RTF Encoding
 
 `rtf_encode()` wraps up internal functions in r2rtf package to translate all attributes attached to a data frame
-into [RTF syntax](http://www.snake.net/software/RTF/RTF-Spec-1.7.pdf).
-A good reference is [RTF pocket guide](https://www.oreilly.com/library/view/rtf-pocket-guide/9781449302047/).
+into [RTF syntax](https://web.archive.org/web/20221008045825/http://www.snake.net/software/RTF/RTF-Spec-1.7.pdf).
+A good reference is [RTF Pocket Guide](https://www.oreilly.com/library/view/rtf-pocket-guide/9781449302047/).
 
 All of the internal encoding functions in the r2rtf package start with a prefix `as_rtf_`.
 For a table, `r2rtf:::rtf_encode_table()` is used internally to translate attribute to RTF syntax by using
@@ -315,7 +315,7 @@ allowed to key in whatever is defined in dictionary for the rtf_ functions, or e
 r2rtf:::font_type()
 ```
 
-Superscripts, under scripts are taken care of by using `convert()` function to translate them into latex code and unicode. For example:
+Superscripts, under scripts are taken care of by using `convert()` function to translate them into LaTeX code and Unicode. For example:
 
 ```{r}
 r2rtf:::convert(c("^", "<="))

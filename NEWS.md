@@ -31,7 +31,7 @@
 ## Improvements
 
 * Improve grammar and style for the main vignette (@howardbaek, #144).
-* Add libreoffice 7.4 and 7.5 support (#156).
+* Add LibreOffice 7.4 and 7.5 support (#156).
 * Add citation details (#155).
 
 # r2rtf 1.0.1
@@ -42,7 +42,7 @@
 
 ## Improvements
 
-* Add support for libreoffice 7.3 (#92).
+* Add support for LibreOffice 7.3 (#92).
 
 # r2rtf 1.0.0
 
@@ -100,7 +100,7 @@
 
 ## Improvements
 
-* Avoid specific libreoffice version (#68).
+* Avoid specific LibreOffice version (#68).
 
 # r2rtf 0.3.1
 

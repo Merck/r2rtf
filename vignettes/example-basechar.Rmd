@@ -73,11 +73,11 @@ bs_count <- function(data, grp, var,
 
 - Summarize continuous variable 
 ```{r}
-bs_continous <- function(data, grp, var,
-                         var_label = var,
-                         decimal = 1,
-                         total = TRUE,
-                         blank_row = FALSE) {
+bs_continuous <- function(data, grp, var,
+                          var_label = var,
+                          decimal = 1,
+                          total = TRUE,
+                          blank_row = FALSE) {
   data <- data %>% rename(grp = !!grp, var = !!var)
   coding <- levels(factor(data$grp))
   data <- data %>% mutate(grp = as.numeric(factor(grp)))
@@ -159,7 +159,7 @@ ana <- ana %>% mutate(
 bs_tb <- bind_rows(
   bs_count(ana, "TRT01AN", "SEX", "Gender"),
   bs_count(ana, "TRT01AN", "AGEGR1", "Age (Years)"),
-  bs_continous(ana, "TRT01AN", "AGE", "Age (Years)", blank_row = TRUE),
+  bs_continuous(ana, "TRT01AN", "AGE", "Age (Years)", blank_row = TRUE),
   bs_count(ana, "TRT01AN", "RACE", "Race")
 ) %>% mutate(
   var_label = factor(var_label, levels = c("Gender", "Age (Years)", "Race"))

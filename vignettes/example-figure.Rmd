@@ -73,7 +73,7 @@ filename %>%
 Features of page and figure can be set up in `rtf_page` and `rtf_figure` respectively: 
 
 * Page orientation: `orientation` argument in `rtf_page`. 
-* Figure height and width: `fig_heigth` and `fig_width` arguments in `rtf_figure`.
+* Figure height and width: `fig_height` and `fig_width` arguments in `rtf_figure`.
 
 The figure height and width can be set up for each figure in a vector. 
 The code below provides an example for these features.
