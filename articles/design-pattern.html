@@ -238,9 +238,9 @@ for table/figure.</p>
 <h2 id="rtf-encoding">RTF Encoding<a class="anchor" aria-label="anchor" href="#rtf-encoding"></a>
 </h2>
 <p><code><a href="../reference/rtf_encode.html">rtf_encode()</a></code> wraps up internal functions in r2rtf
-package to translate all attributes attached to a data frame into <a href="http://www.snake.net/software/RTF/RTF-Spec-1.7.pdf" class="external-link">RTF
+package to translate all attributes attached to a data frame into <a href="https://web.archive.org/web/20221008045825/http://www.snake.net/software/RTF/RTF-Spec-1.7.pdf" class="external-link">RTF
 syntax</a>. A good reference is <a href="https://www.oreilly.com/library/view/rtf-pocket-guide/9781449302047/" class="external-link">RTF
-pocket guide</a>.</p>
+Pocket Guide</a>.</p>
 <p>All of the internal encoding functions in the r2rtf package start
 with a prefix <code>as_rtf_</code>. For a table,
 <code>r2rtf:::rtf_encode_table()</code> is used internally to translate
@@ -455,8 +455,8 @@ message will be provided as a result from <code>match_arg()</code>.</p>
 <span><span class="co">#&gt; 9     9           Courier New \\fmodern     \\f8   Courier</span></span>
 <span><span class="co">#&gt; 10   10                Symbol   \\ftech     \\f9     Times</span></span></code></pre></div>
 <p>Superscripts, under scripts are taken care of by using
-<code>convert()</code> function to translate them into latex code and
-unicode. For example:</p>
+<code>convert()</code> function to translate them into LaTeX code and
+Unicode. For example:</p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">convert</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"^"</span>, <span class="st">"&lt;="</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "\\super "       "\\uc1\\u8804* "</span></span></code></pre></div>
