@@ -7,7 +7,7 @@ Authors@R: c(
     person("Simiao", "Ye", role = "aut"),
     person("Fansen", "Kong", role = "aut"),
     person("Brian", "Lang", role = "aut"),
-    person("Benjamin", "Wang", , email = "benjamin.wang@merck.com", role = c("aut", "cre")),
+    person("Benjamin", "Wang", email = "benjamin.wang@merck.com", role = c("aut", "cre")),
     person("Nan", "Xiao", role = "ctb"),
     person("Madhusudhan", "Ginnaram", role = "ctb"),
     person("Ruchitbhai", "Patel", role = "ctb"),
