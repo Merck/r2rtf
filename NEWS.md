@@ -6,8 +6,8 @@
 
 ## Improvements
 
-* Add libreoffice 7.6 support and improve error messages style (#198).
-* Update doc and html file in vignettes folder
+* Add LibreOffice 7.6 support and improve error messages style (#198).
+* Update `.docx` and `.html` artifacts in `vignettes/` (#206).
 
 # r2rtf 1.1.0
 
