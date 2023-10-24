@@ -1,3 +1,14 @@
+# r2rtf 1.1.1
+
+## Bug fixes
+
+* Fix bug when converting UTF-8 code >= 128 (#194).
+
+## Improvements
+
+* Add libreoffice 7.6 support and improve error messages style (#198).
+* Update doc and html file in vignettes folder
+
 # r2rtf 1.1.0
 
 ## New features
