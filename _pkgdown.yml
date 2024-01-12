@@ -5,6 +5,7 @@ url: https://merck.github.io/r2rtf/
 template:
   bootstrap: 5
   bslib:
+    preset: "bootstrap"
     primary: "#00857c"
     navbar-light-brand-color: "#fff"
     navbar-light-brand-hover-color: "#fff"
