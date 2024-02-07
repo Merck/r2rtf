@@ -46,28 +46,28 @@ test_that("rtf_assemble: output without using officer", {
 })
 
 # test functionality with officer
-if (requireNamespace("officer")) {
-  test_that("rtf_assemble: output with using officer", {
-    file_tmp <- tempfile(fileext = ".docx")
-    rtf_path <- assemble_docx(
-      input = file,
-      output = file_tmp,
-      landscape = c(FALSE, TRUE)
-    )
+test_that("rtf_assemble: output with using officer", {
+  skip_if_not_installed("officer")
 
-    expect_equal(rtf_path, file_tmp)
+  file_tmp <- tempfile(fileext = ".docx")
+  rtf_path <- assemble_docx(
+    input = file,
+    output = file_tmp,
+    landscape = c(FALSE, TRUE)
+  )
 
-    # Need to read in and expose document text for our test
-    docx <- officer::read_docx(rtf_path)
-    tmp_docx <- officer::docx_summary(docx)
-    body_docx <- officer::docx_body_xml(docx)
+  expect_equal(rtf_path, file_tmp)
 
-    # Need to check if both "table seq table" texts are in the docx file.
-    expect_true(grepl("Table SEQ Table", tmp_docx$text[1]))
+  # Need to read in and expose document text for our test
+  docx <- officer::read_docx(rtf_path)
+  tmp_docx <- officer::docx_summary(docx)
+  body_docx <- officer::docx_body_xml(docx)
 
-    expect_equal(
-      unlist(lapply(xml2::as_list(xml2::xml_find_all(body_docx, "//w:pgSz")), FUN = function(x) attr(x, "orient"))),
-      c("portrait", "landscape")
-    )
-  })
-}
+  # Need to check if both "table seq table" texts are in the docx file.
+  expect_true(grepl("Table SEQ Table", tmp_docx$text[1]))
+
+  expect_equal(
+    unlist(lapply(xml2::as_list(xml2::xml_find_all(body_docx, "//w:pgSz")), FUN = function(x) attr(x, "orient"))),
+    c("portrait", "landscape")
+  )
+})
