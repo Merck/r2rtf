@@ -352,8 +352,8 @@ test_that("Case for page_by", {
 
 test_that("Case for using subline_by and page_by together", {
   tbl1 <- iris[c(1:4, 51:54), 3:5] |>
-    mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
-    arrange(Species, s2) |>
+    dplyr::mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
+    dplyr::arrange(Species, s2) |>
     rtf_body(
       subline_by = "Species",
       page_by = "s2"
@@ -382,8 +382,8 @@ test_that("Case for using subline_by and page_by together", {
 
 test_that("Case for using subline_by and page_by with pageby_row = 'first_row'", {
   tbl2 <- iris[c(1:4, 51:54), 3:5] |>
-    mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
-    arrange(Species, s2) |>
+    dplyr::mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
+    dplyr::arrange(Species, s2) |>
     rtf_body(
       subline_by = "Species",
       page_by = "s2",

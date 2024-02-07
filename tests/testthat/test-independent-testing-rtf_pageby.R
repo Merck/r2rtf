@@ -1,5 +1,3 @@
-library(dplyr)
-
 test_that("Test case when page_by is NULL and new_page is TRUE", {
   expect_error(iris[1:2, ] |>
     rtf_body() |>
@@ -8,7 +6,7 @@ test_that("Test case when page_by is NULL and new_page is TRUE", {
 
 test_that("Test case when page_by is not NULL and data is sorted by the page_by variable", {
   expect_output(str(iris[1:2, ] |>
-    arrange(Petal.Length) |>
+    dplyr::arrange(Petal.Length) |>
     rtf_body() |>
     rtf_pageby(
       page_by = c("Petal.Length"), new_page = TRUE,
@@ -16,7 +14,7 @@ test_that("Test case when page_by is not NULL and data is sorted by the page_by 
     )), "2 obs")
 
   a <- iris[1:2, ] |>
-    arrange(Sepal.Width) |>
+    dplyr::arrange(Sepal.Width) |>
     rtf_body() |>
     rtf_pageby(
       page_by = c("Sepal.Width"), new_page = TRUE,
@@ -60,8 +58,8 @@ test_that("Test if there are more than one page_by variables", {
 # add tests for new features
 test_that("Test case when pageby_row='first_row'", {
   x <- iris[c(1:4, 51:54), 3:5] |>
-    mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
-    arrange(Species, s2) |>
+    dplyr::mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
+    dplyr::arrange(Species, s2) |>
     rtf_colheader("patelLength|patelWidth|s3") |>
     rtf_body(subline_by = "Species") |>
     rtf_pageby(
@@ -78,8 +76,8 @@ test_that("Test case when pageby_row='first_row'", {
 
 test_that("Test case when subline is not NULL", {
   x <- iris[c(1:4, 51:54), 3:5] |>
-    mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
-    arrange(Species, s2) |>
+    dplyr::mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
+    dplyr::arrange(Species, s2) |>
     rtf_colheader("patelLength|patelWidth|s3") |>
     rtf_body(subline_by = "Species") |>
     rtf_pageby(

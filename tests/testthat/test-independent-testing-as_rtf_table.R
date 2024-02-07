@@ -31,8 +31,8 @@ test_that("Case for having group_by without page_by", {
 # add additional test to increase coverage and for new feature
 test_that("Test case when subline is not NULL", {
   x <- iris[c(1:4, 51:54), 3:5] |>
-    mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
-    arrange(Species, s2) |>
+    dplyr::mutate(s2 = paste0(Species, 1:2), s3 = s2) |>
+    dplyr::arrange(Species, s2) |>
     rtf_body(
       subline_by = "Species",
       page_by = "s2",
@@ -45,18 +45,18 @@ test_that("Test case when subline is not NULL", {
 
   data(r2rtf_adae)
   ae <- r2rtf_adae[200:260, ] |>
-    arrange(SITEID, TRTA, USUBJID, ASTDY)
+    dplyr::arrange(SITEID, TRTA, USUBJID, ASTDY)
 
   ae <- ae |>
-    mutate(
+    dplyr::mutate(
       AEDECODNUM = as.character(rownames(ae)),
       SUBLINEBY = paste0(
         "Trial Number: ", STUDYID,
         ", Site Number: ", SITEID
       ),
     ) |>
-    select(USUBJID, ASTDY, AEDECODNUM, TRTA, SUBLINEBY) |>
-    arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) |>
+    dplyr::select(USUBJID, ASTDY, AEDECODNUM, TRTA, SUBLINEBY) |>
+    dplyr::arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) |>
     rtf_colheader("Subject| Rel Day | Adverse Code|") |>
     rtf_body(
       subline_by = "SUBLINEBY",
