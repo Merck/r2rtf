@@ -1,5 +1,5 @@
 library(dplyr)
-svg(tempfile("tmp.svg"))
+
 test_that("Test for case when output has title, footnote and source", {
   x <- iris[1:2, ] |>
     rtf_title("Title") |>
@@ -136,5 +136,3 @@ test_that("Test when using subline_by and page_by with pageby_row = 'first_row' 
 
   expect_snapshot_output(tbl2$body)
 })
-
-dev.off()
