@@ -231,8 +231,8 @@ test_that("Test case when pageby$border_color_last is not NULL", {
 
 test_that("Test case when subline is not NULL", {
   ir3 <- iris[c(1:4, 51:54), 3:5] |>
-    mutate(s2 = paste0(Species, 1:2)) |>
-    arrange(Species, s2) |>
+    dplyr::mutate(s2 = paste0(Species, 1:2)) |>
+    dplyr::arrange(Species, s2) |>
     rtf_colheader("patelLength|patelWidth|s2") |>
     rtf_body(subline_by = "Species")
 
@@ -243,8 +243,8 @@ test_that("Test case when subline is not NULL", {
 
 test_that("Test case when subline is not NULL and verbose equals to TRUE", {
   ir3 <- iris[c(1:4, 51:54), 3:5] |>
-    mutate(s2 = paste0(Species, 1:2)) |>
-    arrange(Species, s2) |>
+    dplyr::mutate(s2 = paste0(Species, 1:2)) |>
+    dplyr::arrange(Species, s2) |>
     rtf_colheader("patelLength|patelWidth|s2") |>
     rtf_body(subline_by = "Species")
 
@@ -256,14 +256,14 @@ test_that("Test case when subline is not NULL and verbose equals to TRUE", {
 test_that("Test case when using subline_by, page_by, group_by simultaneously in rtf_body", {
   data(r2rtf_adae)
   ae_t1 <- r2rtf_adae[200:260, ] |>
-    mutate(
+    dplyr::mutate(
       SUBLINEBY = paste0(
         "Trial Number: ", STUDYID,
         ", Site Number: ", SITEID
       ),
     ) |>
-    select(USUBJID, ASTDY, AEDECOD, TRTA, SUBLINEBY) |>
-    arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) |>
+    dplyr::select(USUBJID, ASTDY, AEDECOD, TRTA, SUBLINEBY) |>
+    dplyr::arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) |>
     rtf_colheader("Subject| Rel Day | Adverse |") |>
     rtf_body(
       subline_by = "SUBLINEBY",
@@ -281,14 +281,14 @@ test_that("Test case when using subline_by, page_by, group_by simultaneously wit
   data(r2rtf_adae)
   ae_t2 <- r2rtf_adae[200:260, ] |>
     subset(USUBJID != "01-701-1442") |>
-    mutate(
+    dplyr::mutate(
       SUBLINEBY = paste0(
         "Trial Number: ", STUDYID,
         ", Site Number: ", SITEID
       ),
     ) |>
-    select(USUBJID, ASTDY, AEDECOD, TRTA, SUBLINEBY) |>
-    arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) |>
+    dplyr::select(USUBJID, ASTDY, AEDECOD, TRTA, SUBLINEBY) |>
+    dplyr::arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) |>
     rtf_colheader("Subject| Rel Day | Adverse |",
       border_bottom = "single"
     ) |>
@@ -309,14 +309,14 @@ test_that("Test case when using subline_by, page_by, group_by simultaneously wit
   data(r2rtf_adae)
   ae_t3 <- r2rtf_adae[200:260, ] |>
     subset(USUBJID != "01-701-1442") |>
-    mutate(
+    dplyr::mutate(
       SUBLINEBY = paste0(
         "Trial Number: ", STUDYID,
         ", Site Number: ", SITEID
       ),
     ) |>
-    select(USUBJID, ASTDY, AEDECOD, TRTA, SUBLINEBY) |>
-    arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) |>
+    dplyr::select(USUBJID, ASTDY, AEDECOD, TRTA, SUBLINEBY) |>
+    dplyr::arrange(SUBLINEBY, TRTA, USUBJID, ASTDY) |>
     rtf_colheader("Subject| Rel Day | Adverse |",
       border_bottom = "single"
     ) |>
