@@ -93,7 +93,7 @@ convert <- function(text,
 
   unicode_int <- as.integer(as.hexmode(unicode_latex$unicode))
   char_latex <- ifelse(unicode_int <= 255 & unicode_int != 177, unicode_latex$chr,
-    paste0("\\uc1\\u", unicode_int - if (unicode_int < 32768) 0 else 65536, "*")
+    sprintf("\\uc1\\u%d*", unicode_int - if (unicode_int < 32768) 0 else 65536)
   )
 
   names(char_latex) <- unicode_latex$latex
