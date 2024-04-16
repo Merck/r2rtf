@@ -70,7 +70,7 @@ cell_size <- function(col_rel_width, col_total_width) {
 #'
 #' @noRd
 convert <- function(text,
-                    load_stringi = class(try(stringi::stri_replace_all_fixed, silent = TRUE)) != "try-error") {
+                    load_stringi = requireNamespace("stringi", quietly = TRUE)) {
   # grepl(">|<|=|_|\\^|(\\\\)|(\\n)", c(">", "<", "=", "_", "\n", "\\line", "abc"))
   index <- grepl(">|<|=|_|\\^|(\\\\)|(\\n)", text)
 
@@ -91,12 +91,9 @@ convert <- function(text,
 
   # Define Pattern for latex code
 
-  unicode_latex$int <- as.integer(as.hexmode(unicode_latex$unicode))
-  char_latex <- ifelse(unicode_latex$int <= 255 & unicode_latex$int != 177, unicode_latex$chr,
-    ifelse(unicode_latex$int < 32768,
-      paste0("\\uc1\\u", unicode_latex$int, "*"),
-      paste0("\\uc1\\u", unicode_latex$int - 65536, "*")
-    )
+  unicode_int <- as.integer(as.hexmode(unicode_latex$unicode))
+  char_latex <- ifelse(unicode_int <= 255 & unicode_int != 177, unicode_latex$chr,
+    sprintf("\\uc1\\u%d*", unicode_int - ifelse(unicode_int < 32768, 0, 65536))
   )
 
   names(char_latex) <- unicode_latex$latex
@@ -108,7 +105,7 @@ convert <- function(text,
       vectorize_all = FALSE, opts_fixed = list(case_insensitive = FALSE)
     )
   } else {
-    for (i in 1:length(char_latex)) {
+    for (i in seq_along(char_latex)) {
       text[index] <- gsub(names(char_latex[i]), char_latex[i], text[index], fixed = TRUE)
     }
   }
