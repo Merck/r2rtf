@@ -43,7 +43,7 @@ jobs:
         with:
           extra-packages: |
             any::rcmdcheck
-            estimability=?ignore-before-r=4.3.0
+            emmeans=?ignore-before-r=4.3.0
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
