@@ -12,7 +12,7 @@ coverage](https://codecov.io/gh/Merck/r2rtf/branch/master/graph/badge.svg)](http
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/package=r2rtf)
 [![R-CMD-check](https://github.com/Merck/r2rtf/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Merck/r2rtf/actions/workflows/R-CMD-check.yaml)
-[![status](https://tinyverse.netlify.com/badge/r2rtf)](https://tinyverse.netlify.app/)
+[![status](https://tinyverse.netlify.app/badge/r2rtf)](https://cran.r-project.org/package=r2rtf)
 <!-- badges: end -->
 
 ## Overview
