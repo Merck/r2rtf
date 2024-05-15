@@ -8,6 +8,8 @@ on:
 
 name: R-CMD-check
 
+permissions: read-all
+
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}
@@ -41,11 +43,10 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: |
-            any::rcmdcheck
-            emmeans=?ignore-before-r=4.3.0
+          extra-packages: any::rcmdcheck
           needs: check
 
       - uses: r-lib/actions/check-r-package@v2
         with:
           upload-snapshots: true
+          build_args: 'c("--no-manual","--compact-vignettes=gs+qpdf")'
