@@ -52,9 +52,10 @@ update_unicode_latex <- function() {
     "\\Micro", "\\times", "\\eth", "\\div", "\\bullet",
     "\\vec", "\\eqcolon", "\\square", "\\blacksquare"
   )), , drop = FALSE]
+
   rows <- paste(
-    tbl$unicode,
-    gsub("\\", "\\\\", tbl$latex, fixed = TRUE),
+    sprintf('"%s"', tbl$unicode),
+    sprintf('"%s"', gsub("\\", "\\\\", tbl$latex, fixed = TRUE)),
     sprintf("%d", tbl$int),
     sep = ", "
   )
@@ -64,11 +65,11 @@ update_unicode_latex <- function() {
     "# Please run update_unicode_latex() to regenerate this file",
     "",
     "unicode_latex <- matrix(c(",
-    paste0("  ", rows, collapse = ",\n")
+    paste0("  ", rows, collapse = ",\n"),
     "), ncol = 3, byrow = TRUE)",
+    "",
     "unicode_latex <- as.data.frame(unicode_latex)",
     'names(unicode_latex) <- c("unicode", "latex", "int")',
-    "",
     "unicode_latex$int <- as.integer(unicode_latex$int)"
   ), con = "R/unicode_latex.R")
 }
