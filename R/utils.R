@@ -1,3 +1,30 @@
+#  Copyright (c) 2024 Merck & Co., Inc., Rahway, NJ, USA and its affiliates.
+#  All rights reserved.
+#
+#  This file is part of the r2rtf program.
+#
+#  r2rtf is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+#' Update unicode_latex data frame
+#'
+#' Updates the `unicode_latex` mapping table by downloading and
+#' processing the `unimathsymbols.txt` file from the specified URL.
+#'
+#' The original `unimathsymbols.txt` file is licensed under the
+#' LaTeX Project Public License (LPPL), version 1.3 or later.
+#'
+#' @noRd
 update_unicode_latex <- function() {
   url <- "https://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt"
 
