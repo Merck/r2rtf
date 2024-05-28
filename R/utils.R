@@ -54,9 +54,12 @@ update_unicode_latex <- function() {
   )), , drop = FALSE]
 
   rows <- paste(
-    sprintf('"%s"', tbl$unicode),
-    sprintf('"%s"', gsub("\\", "\\\\", tbl$latex, fixed = TRUE)),
-    sprintf("%d", tbl$int),
+    sprintf(
+      '"%s", "%s", %d',
+      tbl$unicode,
+      gsub("\\", "\\\\", tbl$latex, fixed = TRUE),
+      tbl$int
+    ),
     sep = ", "
   )
 
