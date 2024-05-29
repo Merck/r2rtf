@@ -11,9 +11,9 @@ authors:
   given-names: "Fansen"
 - family-names: "Lang"
   given-names: "Brian"
-title: "r2rtf: Easily Create Production-Ready Rich Text Format (RTF) Table and Figure"
-version: 1.0.1
-date-released: 2020-02-19
+title: "r2rtf: Easily Create Production-Ready Rich Text Format (RTF) Tables and Figures"
+version: 1.1.2
+date-released: 2024-05-28
 url: "https://github.com/Merck/r2rtf"
 preferred-citation:
   type: conference-paper

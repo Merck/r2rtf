@@ -55,7 +55,7 @@ remotes::install_github("Merck/r2rtf")
 
 The R package r2rtf provides flexibility to enable features below:
 
-- Create highly customized RTF table and figure ready for production.
+- Create highly customized RTF tables and figures ready for production.
 - Simple to use parameters and data structure.
   - Customized column header: split by `"|"`.
   - Three required parameters for the output tables (data, filename, column relative width).
