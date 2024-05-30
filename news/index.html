@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">r2rtf</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,6 +67,14 @@
       <small>Source: <a href="https://github.com/Merck/r2rtf/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.1.2" id="r2rtf-112">r2rtf 1.1.2<a class="anchor" aria-label="anchor" href="#r2rtf-112"></a></h2>
+<div class="section level3">
+<h3 id="improvements-1-1-2">Improvements<a class="anchor" aria-label="anchor" href="#improvements-1-1-2"></a></h3>
+<ul><li>Fine-tune the symbol to ANSI and Unicode converter for faster, safer, and more robust conversion (thanks, <a href="https://github.com/yihui" class="external-link">@yihui</a>, <a href="https://github.com/Merck/r2rtf/issues/217" class="external-link">#217</a>).</li>
+<li>Use code to generate the Unicode/LaTeX mapping table, to replace the previous <code>R/sysdata.rda</code> solution. Now the mapping table is directly accessible via <code>r2rtf:::unicode_latex</code> (thanks, <a href="https://github.com/yihui" class="external-link">@yihui</a>, <a href="https://github.com/Merck/r2rtf/issues/218" class="external-link">#218</a>).</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.1" id="r2rtf-111">r2rtf 1.1.1<a class="anchor" aria-label="anchor" href="#r2rtf-111"></a></h2><p class="text-muted">CRAN release: 2023-10-25</p>
 <div class="section level3">
