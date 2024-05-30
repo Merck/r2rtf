@@ -53,14 +53,11 @@ update_unicode_latex <- function() {
     "\\vec", "\\eqcolon", "\\square", "\\blacksquare"
   )), , drop = FALSE]
 
-  rows <- paste(
-    sprintf(
-      '"%s", "%s", %d',
-      tbl$unicode,
-      gsub("\\", "\\\\", tbl$latex, fixed = TRUE),
-      tbl$int
-    ),
-    sep = ", "
+  rows <- sprintf(
+    '"%s", "%s", %d',
+    tbl$unicode,
+    gsub("\\", "\\\\", tbl$latex, fixed = TRUE),
+    tbl$int
   )
 
   writeLines(c(
