@@ -150,7 +150,7 @@ safe_strwidth <- function(text, ...) with_bmp(graphics::strwidth(text, ...))
 #' @noRd
 with_bmp <- function(expr) {
   expr <- substitute(expr)
-  grDevices::bmp(nullfile())
+  grDevices::bmp(file_null())
   on.exit(
     {
       current <- grDevices::dev.cur()
@@ -164,3 +164,5 @@ with_bmp <- function(expr) {
   )
   eval(expr, envir = parent.frame())
 }
+
+file_null <- function() if (.Platform$OS.type == "windows") "nul:" else "/dev/null"
