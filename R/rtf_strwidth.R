@@ -53,7 +53,7 @@ rtf_strwidth <- function(tbl) {
   }
 
   # Font size
-  text_cex <- attr(tbl, "text_font_size") / graphics::par("ps")
+  text_cex <- attr(tbl, "text_font_size") / safe_par("ps")
 
   # Font format
   # text format 1 (plain/normal), 2 (bold), 3 (italic), 4 (bold-italic)
@@ -107,7 +107,8 @@ rtf_strwidth <- function(tbl) {
       grDevices::windowsFonts("Courier" = grDevices::windowsFont("Courier New"))
     }
 
-    x$width <- graphics::strwidth(x$text,
+    x$width <- safe_strwidth(
+      x$text,
       units = "inches",
       cex = x$cex[1],
       font = x$font[1],
@@ -130,4 +131,36 @@ rtf_strwidth <- function(tbl) {
   }
 
   width
+}
+
+#' Safe version of `graphics::par()` with side effects isolated
+#'
+#' @noRd
+safe_par <- function(...) with_bmp(graphics::par(...))
+
+#' Safe version of `graphics::strwidth()` with side effects isolated
+#'
+#' @noRd
+safe_strwidth <- function(text, ...) with_bmp(graphics::strwidth(text, ...))
+
+#' Evaluate expression within a BMP device and close it on exit
+#'
+#' See why: <https://github.com/Merck/r2rtf/issues/227>
+#'
+#' @noRd
+with_bmp <- function(expr) {
+  expr <- substitute(expr)
+  grDevices::bmp(nullfile())
+  on.exit(
+    {
+      current <- grDevices::dev.cur()
+      if (current > 1) {
+        prev <- grDevices::dev.prev(current)
+        grDevices::dev.off(current)
+        if (prev != current) grDevices::dev.set(prev)
+      }
+    },
+    add = TRUE
+  )
+  eval(expr, envir = parent.frame())
 }
