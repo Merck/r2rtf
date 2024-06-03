@@ -7,6 +7,11 @@
 * Use code to generate the Unicode/LaTeX mapping table, to replace the previous
   `R/sysdata.rda` solution. Now the mapping table is directly accessible
   via `r2rtf:::unicode_latex` (thanks, @yihui, #218).
+* Introduce "safe" versions of `graphics::par()` and `graphics::strwidth()`
+  that isolate their side effects by evaluating within a temporary BMP device.
+  This should avoid the generation of `Rplots.pdf` when when running r2rtf code
+  in certain context such as clicking the test buttons in RStudio environments
+  (#227).
 
 # r2rtf 1.1.1
 
