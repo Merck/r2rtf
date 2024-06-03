@@ -15,14 +15,16 @@ tbl <- df |>
 
 strw <- round(r2rtf:::rtf_strwidth(tbl), 5)
 
-size8italic <- round(graphics::strwidth("This is a long sentence",
+size8italic <- round(safe_strwidth(
+  "This is a long sentence",
   units = "inches",
   cex = 2 / 3,
   font = 3,
   family = "Times"
 ), 5)
 
-bold <- round(graphics::strwidth("third",
+bold <- round(safe_strwidth(
+  "third",
   units = "inches",
   cex = 2 / 3,
   font = 2,
