@@ -1,5 +1,5 @@
 /* navbar background */
-.bg-light, .navbar-light {
+nav.bg-light {
     background-color: #00857c !important;
 }
 
@@ -9,11 +9,16 @@
 }
 
 /* navbar link status */
-.navbar-light .navbar-nav .nav-item>.nav-link:hover {
+nav.bg-light .navbar-nav .nav-item.active .nav-link {
+    color: #212529;
+    background-color: #e9ecef;
+}
+
+nav.bg-light .navbar-nav .nav-item>.nav-link:hover {
     background: #005c55;
 }
 
-.navbar-light .navbar-nav .nav-item.active>.nav-link:hover {
+nav.bg-light .navbar-nav .nav-item.active>.nav-link:hover {
     color: #fff;
 }
 
