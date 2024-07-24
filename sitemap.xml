@@ -1,294 +1,100 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://merck.github.io/r2rtf/404.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/design-pattern.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/example-ae-summary.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/example-basechar.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/example-efficacy.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/example-figure.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/example-sublineby-pageby-groupby.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/ae_example.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/border-example.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/border-order.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/border-type.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/border-vector.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/bs_example.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/color-background.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/color-border.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/color-text.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/column-width-default.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/column-width-ratio.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/efficacy_example.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/ex-fig.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/ex-tbl.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/fig-landscape.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/fig-simple.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae1.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae10.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae11.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae12.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae13.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae14.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae15.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae16.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae17.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae18.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae19.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae2.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae3.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae4.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae5.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae6.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae7.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae8.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/intro-ae9.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/justification-number.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/justification-type.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/pageby-ae-listing.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/pageby-disposition.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/pageby-firstrow-ae.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/para-indent.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/para-justification.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/para-line-space.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/para-page.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/para-space.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/text-background-color.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/text-color.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/text-combine1.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/text-combine2.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/text-combine3.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/text-font-size-1.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/text-font-size.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/text-font-type.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/text-format-1.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/html/text-format.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/r2rtf-cran.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/r2rtf.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/rtf-convert-format.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/rtf-row.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/articles/rtf-text.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/assemble_docx.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/assemble_rtf.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/r2rtf_HAMD17.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/r2rtf_adae.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/r2rtf_adsl.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/r2rtf_tbl1.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/r2rtf_tbl2.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/r2rtf_tbl3.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_body.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_colheader.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_encode.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_figure.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_footnote.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_page.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_page_footer.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_page_header.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_read_figure.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_read_png.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_rich_text.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_source.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_subline.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/rtf_title.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/utf8Tortf.html</loc>
-  </url>
-  <url>
-    <loc>https://merck.github.io/r2rtf/reference/write_rtf.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://merck.github.io/r2rtf/404.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/LICENSE-text.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/design-pattern.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/example-ae-summary.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/example-basechar.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/example-efficacy.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/example-figure.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/example-sublineby-pageby-groupby.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/ae_example.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/border-example.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/border-order.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/border-type.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/border-vector.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/bs_example.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/color-background.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/color-border.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/color-text.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/column-width-default.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/column-width-ratio.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/efficacy_example.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/ex-fig.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/ex-tbl.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/fig-landscape.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/fig-simple.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae1.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae10.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae11.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae12.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae13.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae14.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae15.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae16.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae17.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae18.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae19.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae2.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae3.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae4.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae5.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae6.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae7.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae8.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/intro-ae9.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/justification-number.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/justification-type.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/pageby-ae-listing.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/pageby-disposition.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/pageby-firstrow-ae.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/para-indent.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/para-justification.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/para-line-space.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/para-page.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/para-space.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/text-background-color.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/text-color.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/text-combine1.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/text-combine2.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/text-combine3.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/text-font-size-1.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/text-font-size.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/text-font-type.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/text-format-1.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/html/text-format.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/index.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/r2rtf-cran.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/r2rtf.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/rtf-convert-format.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/rtf-row.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/articles/rtf-text.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/authors.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/index.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/news/index.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/assemble_docx.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/assemble_rtf.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/index.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/r2rtf_HAMD17.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/r2rtf_adae.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/r2rtf_adsl.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/r2rtf_tbl1.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/r2rtf_tbl2.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/r2rtf_tbl3.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_body.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_colheader.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_encode.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_figure.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_footnote.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_page.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_page_footer.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_page_header.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_read_figure.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_read_png.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_rich_text.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_source.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_subline.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/rtf_title.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/utf8Tortf.html</loc></url>
+<url><loc>https://merck.github.io/r2rtf/reference/write_rtf.html</loc></url>
 </urlset>
+
