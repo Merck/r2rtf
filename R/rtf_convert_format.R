@@ -46,6 +46,7 @@ rtf_convert_format <- function(input,
       paste0(
         "libreoffice",
         c(
+          "24.8", "24.2",
           "7.6", "7.5", "7.4", "7.3", "7.2", "7.1"
         )
       ),
