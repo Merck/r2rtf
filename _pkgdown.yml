@@ -24,22 +24,29 @@ footer:
     blank: "<span></span>"
 
 navbar:
-  left:
-    - icon: fas fa-file-code
+  structure:
+    left:  [reference, intro, articles, news]
+    right: [search, github]
+  components:
+    reference:
       text: "Reference"
+      icon: fas fa-file-code
       href: reference/index.html
-    - icon: fas fa-play-circle
+    intro:
       text: "Get started"
+      icon: fas fa-play-circle
       href: articles/r2rtf.html
-    - text: "Articles"
+    articles:
+      text: "Articles"
       icon: fas fa-book
       href: articles/index.html
-    - icon: fas fa-newspaper
+    news:
       text: "Changelog"
+      icon: fas fa-newspaper
       href: news/index.html
-  right:
-    - icon: fab fa-github
+    github:
       text: "Source code"
+      icon: fab fa-github
       href: https://github.com/Merck/r2rtf
 
 articles:
