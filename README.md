@@ -121,7 +121,7 @@ If you use this software, please cite it as below.
 
 > Wang, S., Ye, S., Anderson, K., & Zhang, Y. (2020). r2rtf—an R Package
 > to Produce Rich Text Format (RTF) Tables and Figures. *PharmaSUG*.
-> <https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf>
+> <https://pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf>
 
 A BibTeX entry for LaTeX users is
 
