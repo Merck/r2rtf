@@ -131,6 +131,6 @@ A BibTeX entry for LaTeX users is
   author    = {Wang, Siruo and Ye, Simiao and Anderson, Keaven M and Zhang, Yilong},
   booktitle = {PharmaSUG},
   year      = {2020},
-  url       = {https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf}
+  url       = {https://pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf}
 }
 ```
