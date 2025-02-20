@@ -171,7 +171,7 @@ If you use this software, please cite it as below.
 
 > Wang, S., Ye, S., Anderson, K., & Zhang, Y. (2020).
 > r2rtf---an R Package to Produce Rich Text Format (RTF) Tables and Figures.
-> _PharmaSUG_. https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf
+> _PharmaSUG_. https://pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf
 
 A BibTeX entry for LaTeX users is
 
@@ -181,6 +181,6 @@ A BibTeX entry for LaTeX users is
   author    = {Wang, Siruo and Ye, Simiao and Anderson, Keaven M and Zhang, Yilong},
   booktitle = {PharmaSUG},
   year      = {2020},
-  url       = {https://www.pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf}
+  url       = {https://pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf}
 }
 ```
