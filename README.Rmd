@@ -182,4 +182,5 @@ A BibTeX entry for LaTeX users is
   booktitle = {PharmaSUG},
   year      = {2020},
   url       = {https://pharmasug.org/proceedings/2020/DV/PharmaSUG-2020-DV-198.pdf}
+}
 ```
