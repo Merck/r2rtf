@@ -1,3 +1,10 @@
+# r2rtf 1.1.2.9000
+
+## Bug fixes
+
+- Fix `unlist()` usage in `as_rtf_footnote()` which could result in errors
+  for downstream code under R >= 4.5.0 (@nanxstats, #245).
+
 # r2rtf 1.1.2
 
 ## Improvements
