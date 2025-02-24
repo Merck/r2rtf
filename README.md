@@ -8,7 +8,7 @@
 [![CRAN
 status](https://www.r-pkg.org/badges/version/r2rtf)](https://CRAN.R-project.org/package=r2rtf)
 [![Codecov test
-coverage](https://codecov.io/gh/Merck/r2rtf/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Merck/r2rtf?branch=master)
+coverage](https://codecov.io/gh/Merck/r2rtf/graph/badge.svg)](https://app.codecov.io/gh/Merck/r2rtf)
 [![CRAN
 Downloads](https://cranlogs.r-pkg.org/badges/r2rtf)](https://cran.r-project.org/package=r2rtf)
 [![R-CMD-check](https://github.com/Merck/r2rtf/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Merck/r2rtf/actions/workflows/R-CMD-check.yaml)
@@ -83,9 +83,12 @@ head(iris) %>%
 ```
 
 <details>
+
 <summary>
+
 Click here to see the output
 </summary>
+
 <img src="https://merck.github.io/r2rtf/articles/fig/ex-tbl.png">
 </details>
 
@@ -97,9 +100,12 @@ Click here to see the output
   code](https://merck.github.io/r2rtf/articles/example-efficacy.html)
 
 <details>
+
 <summary>
+
 Click here to see the output
 </summary>
+
 <img src="https://merck.github.io/r2rtf/articles/fig/efficacy_example.png">
 </details>
 
@@ -109,9 +115,12 @@ Click here to see the output
   code](https://merck.github.io/r2rtf/articles/example-ae-summary.html)
 
 <details>
+
 <summary>
+
 Click here to see the output
 </summary>
+
 <img src="https://merck.github.io/r2rtf/articles/fig/ae_example.png">
 </details>
 
