@@ -1,6 +1,6 @@
 Package: r2rtf
 Title: Easily Create Production-Ready Rich Text Format (RTF) Tables and Figures
-Version: 1.1.3
+Version: 1.1.3.9000
 Authors@R: c(
     person("Yilong", "Zhang", role = "aut"),
     person("Siruo", "Wang", role = "aut"),
