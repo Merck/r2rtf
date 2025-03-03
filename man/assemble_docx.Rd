@@ -31,6 +31,7 @@ The contents of this section are shown in PDF user manual only.
 }
 
 \examples{
+\dontshow{if (requireNamespace("officer", quietly = TRUE) && requireNamespace("systemfonts", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 
 library(officer)
 library(magrittr)
@@ -51,5 +52,5 @@ assemble_docx(
   input = file,
   output = output
 )
-
+\dontshow{\}) # examplesIf}
 }
