@@ -100,7 +100,7 @@ assemble_rtf <- function(input,
 #' The contents of this section are shown in PDF user manual only.
 #' }
 #'
-#' @examplesIf requireNamespace("officer", quietly = TRUE) && requireNamespace("systemfonts", quietly = TRUE)
+#' @examplesIf is_installed("officer") && is_installed("systemfonts")
 #'
 #' library(officer)
 #' library(magrittr)
