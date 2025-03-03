@@ -100,7 +100,7 @@ assemble_rtf <- function(input,
 #' The contents of this section are shown in PDF user manual only.
 #' }
 #'
-#' @examplesIf is_installed("officer") && is_installed("systemfonts")
+#' @examplesIf r2rtf:::is_installed("officer") && r2rtf:::is_installed("systemfonts")
 #'
 #' library(officer)
 #' library(magrittr)
