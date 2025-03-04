@@ -48,6 +48,7 @@ test_that("rtf_assemble: output without using officer", {
 # test functionality with officer
 test_that("rtf_assemble: output with using officer", {
   skip_if_not_installed("officer")
+  skip_if_not_installed("systemfonts")
 
   file_tmp <- tempfile(fileext = ".docx")
   rtf_path <- assemble_docx(
