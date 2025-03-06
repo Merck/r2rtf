@@ -1,4 +1,9 @@
-# r2rtf 1.1.3.9000
+# r2rtf 1.1.4
+
+## Bug fixes
+
+- Support setting text color properly when encoding figures into RTF
+  (@elong0527, #252).
 
 ## Improvements
 
