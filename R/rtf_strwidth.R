@@ -70,7 +70,7 @@ rtf_strwidth <- function(tbl) {
   font_num <- as.numeric(attr(tbl, "text_font"))
 
   # Group font with same style
-  font_num <- factor(font_num, levels = 1:10, labels = c(1, 1, 4, 4, 4, 1, 9, 4, 9, 9))
+  font_num <- factor(font_num, levels = 1:11, labels = c(1, 1, 4, 4, 4, 1, 9, 4, 9, 9, 1))
   font_num <- as.numeric(as.character(font_num))
 
   text_family <- font_type()[font_num, "family"]

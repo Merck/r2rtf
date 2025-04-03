@@ -48,13 +48,14 @@ as_rtf_init <- function() {
 #' @noRd
 as_rtf_font <- function() {
   font_type <- font_type()
-  font_rtf <- factor(c(1:10), levels = font_type$type, labels = font_type$rtf_code)
-  font_style <- factor(c(1:10), levels = font_type$type, labels = font_type$style)
-  font_name <- factor(c(1:10), levels = font_type$type, labels = font_type$name)
+  font_rtf <- factor(seq_along(font_type$type), levels = font_type$type, labels = font_type$rtf_code)
+  font_style <- factor(seq_along(font_type$type), levels = font_type$type, labels = font_type$style)
+  font_name <- factor(seq_along(font_type$type), levels = font_type$type, labels = font_type$name)
+  font_charset <- factor(seq_along(font_type$type), levels = font_type$type, labels = font_type$charset)
 
   font_table <- paste0(
     "{\\fonttbl",
-    paste(paste0("{", font_rtf, font_style, "\\fcharset161\\fprq2 ", font_name, ";}\n"), collapse = ""),
+    paste(paste0("{", font_rtf, font_style, font_charset, "\\fprq2 ", font_name, ";}\n"), collapse = ""),
     "}\n"
   )
 
@@ -295,11 +296,11 @@ as_rtf_footnote <- function(tbl, attr_name = "rtf_footnote") {
   }
 
   if (attr(text, "as_table")) {
-    indent <- unlist(c(
+    indent <- unlist(
       attr(text, "text_indent_first"),
       attr(text, "text_indent_left"),
       attr(text, "text_indent_right")
-    ))
+    )
 
     if (any(indent != 0)) {
       text_matrix <- matrix(text, ncol = 1)

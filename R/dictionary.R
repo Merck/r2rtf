@@ -32,26 +32,28 @@
 #' @noRd
 font_type <- function() {
   data.frame(
-    type = 1:10,
+    type = 1:11,
     name = c(
       "Times New Roman", "Times New Roman Greek", "Arial Greek",
       "Arial", "Helvetica", "Calibri", "Georgia",
-      "Cambria", "Courier New", "Symbol"
+      "Cambria", "Courier New", "Symbol", "SimSun"
     ),
     style = c(
       "\\froman", "\\froman", "\\fswiss",
       "\\fswiss", "\\fswiss", "\\fswiss", "\\froman",
-      "\\ffroman", "\\fmodern", "\\ftech"
+      "\\ffroman", "\\fmodern", "\\ftech", "\\fnil"
     ),
     rtf_code = c(
       "\\f0", "\\f1", "\\f2",
       "\\f3", "\\f4", "\\f5", "\\f6",
-      "\\f7", "\\f8", "\\f9"
+      "\\f7", "\\f8", "\\f9", "\\f10"
     ),
     family = c(
       "Times", "Times", "ArialMT", "ArialMT", "Helvetica",
-      "Calibri", "Georgia", "Cambria", "Courier", "Times"
+      "Calibri", "Georgia", "Cambria", "Courier", "Times", "Times"
     ),
+    charset = c(rep("\\fcharset161", 10), "\\fcharset134"),
+
     stringsAsFactors = FALSE
   )
 }
