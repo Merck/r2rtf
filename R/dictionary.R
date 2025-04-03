@@ -53,7 +53,6 @@ font_type <- function() {
       "Calibri", "Georgia", "Cambria", "Courier", "Times", "Times"
     ),
     charset = c(rep("\\fcharset161", 10), "\\fcharset134"),
-
     stringsAsFactors = FALSE
   )
 }
