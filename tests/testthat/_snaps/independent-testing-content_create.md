@@ -1,6 +1,6 @@
 # RTF font type encode
 
-    [1] "{\\fonttbl{\\f0\\froman\\fcharset161\\fprq2 Times New Roman;}\n{\\f1\\froman\\fcharset161\\fprq2 Times New Roman Greek;}\n{\\f2\\fswiss\\fcharset161\\fprq2 Arial Greek;}\n{\\f3\\fswiss\\fcharset161\\fprq2 Arial;}\n{\\f4\\fswiss\\fcharset161\\fprq2 Helvetica;}\n{\\f5\\fswiss\\fcharset161\\fprq2 Calibri;}\n{\\f6\\froman\\fcharset161\\fprq2 Georgia;}\n{\\f7\\ffroman\\fcharset161\\fprq2 Cambria;}\n{\\f8\\fmodern\\fcharset161\\fprq2 Courier New;}\n{\\f9\\ftech\\fcharset161\\fprq2 Symbol;}\n}\n"
+    [1] "{\\fonttbl{\\f0\\froman\\fcharset161\\fprq2 Times New Roman;}\n{\\f1\\froman\\fcharset161\\fprq2 Times New Roman Greek;}\n{\\f2\\fswiss\\fcharset161\\fprq2 Arial Greek;}\n{\\f3\\fswiss\\fcharset161\\fprq2 Arial;}\n{\\f4\\fswiss\\fcharset161\\fprq2 Helvetica;}\n{\\f5\\fswiss\\fcharset161\\fprq2 Calibri;}\n{\\f6\\froman\\fcharset161\\fprq2 Georgia;}\n{\\f7\\ffroman\\fcharset161\\fprq2 Cambria;}\n{\\f8\\fmodern\\fcharset161\\fprq2 Courier New;}\n{\\f9\\ftech\\fcharset161\\fprq2 Symbol;}\n{\\f10\\fnil\\fcharset134\\fprq2 SimSun;}\n}\n"
 
 # RTF font color encode with color not NULL
 
