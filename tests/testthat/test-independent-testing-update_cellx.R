@@ -7,14 +7,14 @@ iris[1:2, 1:2] |>
 
 x <- readLines(file)
 
-x[24] <- gsub("4500", "4501", x[24])
-x[36] <- gsub("4500", "4502", x[36])
-x[31] <- gsub("9000", "9001", x[31])
+x[25] <- gsub("4500", "4501", x[25])
+x[37] <- gsub("4500", "4502", x[37])
+x[32] <- gsub("9000", "9001", x[32])
 
 y <- update_cellx(x)
 
 test_that("border twips were updated to maxinum as expected", {
-  expect_equal(sum(grepl("cellx4502", y[24]), grepl("cellx4502", y[30]), grepl("cellx4502", y[36]), grepl("cellx9001", y[31])), 4)
+  expect_equal(sum(grepl("cellx4502", y[25]), grepl("cellx4502", y[31]), grepl("cellx4502", y[37]), grepl("cellx9001", y[32])), 4)
 })
 
 
