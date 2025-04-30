@@ -58,7 +58,6 @@ font_type <- function() {
       "\\fcharset0", "\\fcharset2"
     ),
     width_group = c(1, 1, 4, 4, 4, 1, 9, 4, 9, 9),
-
     stringsAsFactors = FALSE
   )
 }
