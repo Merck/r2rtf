@@ -32,31 +32,31 @@
 #' @noRd
 font_type <- function() {
   data.frame(
-    type = 1:11,
+    type = 1:10,
     name = c(
       "Times New Roman", "Times New Roman Greek", "Arial Greek",
       "Arial", "Helvetica", "Calibri", "Georgia",
-      "Cambria", "Courier New", "Symbol", "SimSun"
+      "Cambria", "Courier New", "Symbol"
     ),
     style = c(
       "\\froman", "\\froman", "\\fswiss",
       "\\fswiss", "\\fswiss", "\\fswiss", "\\froman",
-      "\\ffroman", "\\fmodern", "\\ftech", "\\fnil"
+      "\\ffroman", "\\fmodern", "\\ftech"
     ),
     rtf_code = c(
       "\\f0", "\\f1", "\\f2",
       "\\f3", "\\f4", "\\f5", "\\f6",
-      "\\f7", "\\f8", "\\f9", "\\f10"
+      "\\f7", "\\f8", "\\f9"
     ),
     family = c(
       "Times", "Times", "ArialMT", "ArialMT", "Helvetica",
-      "Calibri", "Georgia", "Cambria", "Courier", "Times", "Times"
+      "Calibri", "Georgia", "Cambria", "Courier", "Times"
     ),
 
     charset = c("\\fcharset1", "\\fcharset161", "\\fcharset161", "\\fcharset0",
                 "\\fcharset1", "\\fcharset1", "\\fcharset1", "\\fcharset1",
-                "\\fcharset0", "\\fcharset2", "\\fcharset134"),
-    width_group = c(1, 1, 4, 4, 4, 1, 9, 4, 9, 9, 1),
+                "\\fcharset0", "\\fcharset2"),
+    width_group = c(1, 1, 4, 4, 4, 1, 9, 4, 9, 9),
 
     stringsAsFactors = FALSE
   )
