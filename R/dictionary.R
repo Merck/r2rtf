@@ -52,9 +52,11 @@ font_type <- function() {
       "Times", "Times", "ArialMT", "ArialMT", "Helvetica",
       "Calibri", "Georgia", "Cambria", "Courier", "Times", "Times"
     ),
-    charset = c("\\fcharset0", "\\fcharset161", "\\fcharset161", "\\fcharset0",
-                "\\fcharset0", "\\fcharset0", "\\fcharset0", "\\fcharset0",
-                "\\fcharset0", "\\fcharset2", "\\fcharset134"),
+    charset = c(
+      "\\fcharset0", "\\fcharset161", "\\fcharset161", "\\fcharset0",
+      "\\fcharset0", "\\fcharset0", "\\fcharset0", "\\fcharset0",
+      "\\fcharset0", "\\fcharset2", "\\fcharset134"
+    ),
     stringsAsFactors = FALSE
   )
 }
