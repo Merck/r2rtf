@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>r2rtf Design Pattern • r2rtf</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -61,7 +60,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>r2rtf Design Pattern</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Merck/r2rtf/blob/v1.1.4/vignettes/design-pattern.Rmd" class="external-link"><code>vignettes/design-pattern.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Merck/r2rtf/blob/master/vignettes/design-pattern.Rmd" class="external-link"><code>vignettes/design-pattern.Rmd</code></a></small>
       <div class="d-none name"><code>design-pattern.Rmd</code></div>
     </div>
 
@@ -316,16 +315,16 @@ rows of <code>iris</code> data</p>
 <span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; {\rtf1\ansi</span></span>
 <span><span class="co">#&gt; \deff0\deflang1033</span></span>
-<span><span class="co">#&gt; {\fonttbl{\f0\froman\fcharset161\fprq2 Times New Roman;}</span></span>
+<span><span class="co">#&gt; {\fonttbl{\f0\froman\fcharset1\fprq2 Times New Roman;}</span></span>
 <span><span class="co">#&gt; {\f1\froman\fcharset161\fprq2 Times New Roman Greek;}</span></span>
 <span><span class="co">#&gt; {\f2\fswiss\fcharset161\fprq2 Arial Greek;}</span></span>
-<span><span class="co">#&gt; {\f3\fswiss\fcharset161\fprq2 Arial;}</span></span>
-<span><span class="co">#&gt; {\f4\fswiss\fcharset161\fprq2 Helvetica;}</span></span>
-<span><span class="co">#&gt; {\f5\fswiss\fcharset161\fprq2 Calibri;}</span></span>
-<span><span class="co">#&gt; {\f6\froman\fcharset161\fprq2 Georgia;}</span></span>
-<span><span class="co">#&gt; {\f7\ffroman\fcharset161\fprq2 Cambria;}</span></span>
-<span><span class="co">#&gt; {\f8\fmodern\fcharset161\fprq2 Courier New;}</span></span>
-<span><span class="co">#&gt; {\f9\ftech\fcharset161\fprq2 Symbol;}</span></span>
+<span><span class="co">#&gt; {\f3\fswiss\fcharset0\fprq2 Arial;}</span></span>
+<span><span class="co">#&gt; {\f4\fswiss\fcharset1\fprq2 Helvetica;}</span></span>
+<span><span class="co">#&gt; {\f5\fswiss\fcharset1\fprq2 Calibri;}</span></span>
+<span><span class="co">#&gt; {\f6\froman\fcharset1\fprq2 Georgia;}</span></span>
+<span><span class="co">#&gt; {\f7\ffroman\fcharset1\fprq2 Cambria;}</span></span>
+<span><span class="co">#&gt; {\f8\fmodern\fcharset0\fprq2 Courier New;}</span></span>
+<span><span class="co">#&gt; {\f9\ftech\fcharset2\fprq2 Symbol;}</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; \paperw12240\paperh15840</span></span>
@@ -346,16 +345,16 @@ rows of <code>iris</code> data</p>
 <span><span class="co">#&gt; \intbl\row\pard</span></span>
 <span><span class="co">#&gt; } {\rtf1\ansi</span></span>
 <span><span class="co">#&gt; \deff0\deflang1033</span></span>
-<span><span class="co">#&gt; {\fonttbl{\f0\froman\fcharset161\fprq2 Times New Roman;}</span></span>
+<span><span class="co">#&gt; {\fonttbl{\f0\froman\fcharset1\fprq2 Times New Roman;}</span></span>
 <span><span class="co">#&gt; {\f1\froman\fcharset161\fprq2 Times New Roman Greek;}</span></span>
 <span><span class="co">#&gt; {\f2\fswiss\fcharset161\fprq2 Arial Greek;}</span></span>
-<span><span class="co">#&gt; {\f3\fswiss\fcharset161\fprq2 Arial;}</span></span>
-<span><span class="co">#&gt; {\f4\fswiss\fcharset161\fprq2 Helvetica;}</span></span>
-<span><span class="co">#&gt; {\f5\fswiss\fcharset161\fprq2 Calibri;}</span></span>
-<span><span class="co">#&gt; {\f6\froman\fcharset161\fprq2 Georgia;}</span></span>
-<span><span class="co">#&gt; {\f7\ffroman\fcharset161\fprq2 Cambria;}</span></span>
-<span><span class="co">#&gt; {\f8\fmodern\fcharset161\fprq2 Courier New;}</span></span>
-<span><span class="co">#&gt; {\f9\ftech\fcharset161\fprq2 Symbol;}</span></span>
+<span><span class="co">#&gt; {\f3\fswiss\fcharset0\fprq2 Arial;}</span></span>
+<span><span class="co">#&gt; {\f4\fswiss\fcharset1\fprq2 Helvetica;}</span></span>
+<span><span class="co">#&gt; {\f5\fswiss\fcharset1\fprq2 Calibri;}</span></span>
+<span><span class="co">#&gt; {\f6\froman\fcharset1\fprq2 Georgia;}</span></span>
+<span><span class="co">#&gt; {\f7\ffroman\fcharset1\fprq2 Cambria;}</span></span>
+<span><span class="co">#&gt; {\f8\fmodern\fcharset0\fprq2 Courier New;}</span></span>
+<span><span class="co">#&gt; {\f9\ftech\fcharset2\fprq2 Symbol;}</span></span>
 <span><span class="co">#&gt; }</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; \paperw12240\paperh15840</span></span>
@@ -405,17 +404,28 @@ in whatever is defined in dictionary for the rtf_ functions, or error
 message will be provided as a result from <code>match_arg()</code>.</p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">font_type</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt;    type                  name     style rtf_code    family</span></span>
-<span><span class="co">#&gt; 1     1       Times New Roman  \\froman     \\f0     Times</span></span>
-<span><span class="co">#&gt; 2     2 Times New Roman Greek  \\froman     \\f1     Times</span></span>
-<span><span class="co">#&gt; 3     3           Arial Greek  \\fswiss     \\f2   ArialMT</span></span>
-<span><span class="co">#&gt; 4     4                 Arial  \\fswiss     \\f3   ArialMT</span></span>
-<span><span class="co">#&gt; 5     5             Helvetica  \\fswiss     \\f4 Helvetica</span></span>
-<span><span class="co">#&gt; 6     6               Calibri  \\fswiss     \\f5   Calibri</span></span>
-<span><span class="co">#&gt; 7     7               Georgia  \\froman     \\f6   Georgia</span></span>
-<span><span class="co">#&gt; 8     8               Cambria \\ffroman     \\f7   Cambria</span></span>
-<span><span class="co">#&gt; 9     9           Courier New \\fmodern     \\f8   Courier</span></span>
-<span><span class="co">#&gt; 10   10                Symbol   \\ftech     \\f9     Times</span></span></code></pre></div>
+<span><span class="co">#&gt;    type                  name     style rtf_code    family       charset</span></span>
+<span><span class="co">#&gt; 1     1       Times New Roman  \\froman     \\f0     Times   \\fcharset1</span></span>
+<span><span class="co">#&gt; 2     2 Times New Roman Greek  \\froman     \\f1     Times \\fcharset161</span></span>
+<span><span class="co">#&gt; 3     3           Arial Greek  \\fswiss     \\f2   ArialMT \\fcharset161</span></span>
+<span><span class="co">#&gt; 4     4                 Arial  \\fswiss     \\f3   ArialMT   \\fcharset0</span></span>
+<span><span class="co">#&gt; 5     5             Helvetica  \\fswiss     \\f4 Helvetica   \\fcharset1</span></span>
+<span><span class="co">#&gt; 6     6               Calibri  \\fswiss     \\f5   Calibri   \\fcharset1</span></span>
+<span><span class="co">#&gt; 7     7               Georgia  \\froman     \\f6   Georgia   \\fcharset1</span></span>
+<span><span class="co">#&gt; 8     8               Cambria \\ffroman     \\f7   Cambria   \\fcharset1</span></span>
+<span><span class="co">#&gt; 9     9           Courier New \\fmodern     \\f8   Courier   \\fcharset0</span></span>
+<span><span class="co">#&gt; 10   10                Symbol   \\ftech     \\f9     Times   \\fcharset2</span></span>
+<span><span class="co">#&gt;    width_group</span></span>
+<span><span class="co">#&gt; 1            1</span></span>
+<span><span class="co">#&gt; 2            1</span></span>
+<span><span class="co">#&gt; 3            4</span></span>
+<span><span class="co">#&gt; 4            4</span></span>
+<span><span class="co">#&gt; 5            4</span></span>
+<span><span class="co">#&gt; 6            1</span></span>
+<span><span class="co">#&gt; 7            9</span></span>
+<span><span class="co">#&gt; 8            4</span></span>
+<span><span class="co">#&gt; 9            9</span></span>
+<span><span class="co">#&gt; 10           9</span></span></code></pre></div>
 <p>Superscripts, under scripts are taken care of by using
 <code>convert()</code> function to translate them into LaTeX code and
 Unicode. For example:</p>
@@ -471,7 +481,7 @@ and <code><a href="../reference/rtf_source.html">rtf_source()</a></code> when in
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong, Brian Lang, Benjamin Wang. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1. <br>Copyright © 2023 Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.</p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong, Brian Lang, Benjamin Wang. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2. <br>Copyright © 2023 Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.</p>
 </div>
 
 <div class="pkgdown-footer-right">
