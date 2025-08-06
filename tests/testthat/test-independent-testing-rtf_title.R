@@ -65,19 +65,19 @@ test_that("text hyphenation parameter", {
   # Test default value (TRUE)
   x <- r2rtf_tbl1 |> rtf_title(title = "Title with Hyphenation")
   expect_equal(attr(attr(x, "rtf_title"), "text_hyphenation"), TRUE)
-  
+
   # Test explicitly setting to FALSE
   x <- r2rtf_tbl1 |> rtf_title(title = "Title without Hyphenation", text_hyphenation = FALSE)
   expect_equal(attr(attr(x, "rtf_title"), "text_hyphenation"), FALSE)
-  
+
   # Test explicitly setting to TRUE
   x <- r2rtf_tbl1 |> rtf_title(title = "Title with Hyphenation", text_hyphenation = TRUE)
   expect_equal(attr(attr(x, "rtf_title"), "text_hyphenation"), TRUE)
-  
+
   # Test with rtf_subline
   x <- r2rtf_tbl1 |> rtf_subline(text = "Subline with default hyphenation")
   expect_equal(attr(attr(x, "rtf_subline"), "text_hyphenation"), TRUE)
-  
+
   x <- r2rtf_tbl1 |> rtf_subline(text = "Subline without hyphenation", text_hyphenation = FALSE)
   expect_equal(attr(attr(x, "rtf_subline"), "text_hyphenation"), FALSE)
 })
