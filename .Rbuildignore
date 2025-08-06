@@ -45,3 +45,5 @@ lib_paths
 ^r2rtf.*\.tar\.gz$
 ^r2rtf.*\.tgz$
 ^CITATION\.cff$
+^\.claude$
+^CLAUDE\.md$
