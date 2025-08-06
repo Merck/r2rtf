@@ -33,6 +33,7 @@ rtf_colheader(
   text_space = 1,
   text_space_before = 15,
   text_space_after = 15,
+  text_hyphenation = TRUE,
   text_convert = TRUE
 )
 }
@@ -139,6 +140,8 @@ All possible input can be found in \code{r2rtf:::justification()$type}.}
 \item{text_space_before}{Line space before a paragraph in twips.}
 
 \item{text_space_after}{Line space after a paragraph in twips.}
+
+\item{text_hyphenation}{A logical value to control whether display text linked with hyphenation.}
 
 \item{text_convert}{A logical value to convert special characters.}
 }

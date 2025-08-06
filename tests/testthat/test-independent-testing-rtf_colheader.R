@@ -49,6 +49,20 @@ test_that("border type", {
   expect_equal(attr(attr(x, "rtf_colheader")[[2]], "border_left")[1, ], c("double", "single", "dot dot"))
 })
 
+test_that("text hyphenation parameter", {
+  # Test default value (TRUE)
+  x <- r2rtf_tbl1 |> rtf_colheader(colheader = "Column 1 | Column 2 | Column 3")
+  expect_equal(attr(attr(x, "rtf_colheader")[[1]], "text_hyphenation"), TRUE)
+  
+  # Test explicitly setting to FALSE
+  x <- r2rtf_tbl1 |> rtf_colheader(colheader = "Column 1 | Column 2 | Column 3", text_hyphenation = FALSE)
+  expect_equal(attr(attr(x, "rtf_colheader")[[1]], "text_hyphenation"), FALSE)
+  
+  # Test explicitly setting to TRUE
+  x <- r2rtf_tbl1 |> rtf_colheader(colheader = "Column 1 | Column 2 | Column 3", text_hyphenation = TRUE)
+  expect_equal(attr(attr(x, "rtf_colheader")[[1]], "text_hyphenation"), TRUE)
+})
+
 
 test_that("cell text formats", {
   x <- r2rtf_tbl1 |>

@@ -22,6 +22,7 @@
 #' Default is NULL for a blank column header.
 #' @param col_rel_width A Column relative width in a vector e.g. c(2,1,1) refers to 2:1:1.
 #'                      Default is NULL for equal column width.
+#' @param text_hyphenation A logical value to control whether display text linked with hyphenation.
 #' @inheritParams rtf_footnote
 #'
 #' @section Specification:
@@ -77,6 +78,7 @@ rtf_colheader <- function(tbl,
                           text_space = 1,
                           text_space_before = 15,
                           text_space_after = 15,
+                          text_hyphenation = TRUE,
                           text_convert = TRUE) {
   # Check argument type
   check_args(tbl, type = c("data.frame"))
@@ -118,7 +120,7 @@ rtf_colheader <- function(tbl,
     text_space_before,
     text_space_after,
     text_new_page = FALSE,
-    text_hyphenation = TRUE,
+    text_hyphenation = text_hyphenation,
     text_convert = text_convert
   )
   if (attr(colheader, "use_color")) attr(tbl, "page")$use_color <- TRUE
