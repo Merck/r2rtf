@@ -91,7 +91,7 @@ rtf_source <- function(tbl,
 
   # Get use_i18n from page attributes
   use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
-  
+
   # Define text object
   source <- obj_rtf_text(source,
     text_font,

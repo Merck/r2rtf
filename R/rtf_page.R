@@ -154,10 +154,10 @@ rtf_page_header <- function(tbl,
   if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
-  
+
   # Get use_i18n from page attributes
   use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
-  
+
   text <- obj_rtf_text(text,
     text_font,
     text_format,
@@ -213,10 +213,10 @@ rtf_page_footer <- function(tbl,
   if (is.null(attr(tbl, "page"))) {
     tbl <- rtf_page(tbl)
   }
-  
+
   # Get use_i18n from page attributes
   use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
-  
+
   text <- obj_rtf_text(text,
     text_font,
     text_format,

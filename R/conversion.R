@@ -114,10 +114,11 @@ convert <- function(text,
     # Check for non-ASCII characters
     has_non_ascii <- grepl("[^\x01-\x7F]", text)
     if (any(has_non_ascii)) {
-      text[has_non_ascii] <- vapply(text[has_non_ascii], 
-                                     utf8Tortf, 
-                                     character(1), 
-                                     USE.NAMES = FALSE)
+      text[has_non_ascii] <- vapply(text[has_non_ascii],
+        utf8Tortf,
+        character(1),
+        USE.NAMES = FALSE
+      )
     }
   }
 
@@ -170,7 +171,7 @@ apply_utf8_conversion <- function(text, use_i18n = FALSE) {
   if (!use_i18n || is.null(text)) {
     return(text)
   }
-  
+
   # Apply utf8Tortf to each element in the character vector
   if (is.character(text)) {
     vapply(text, utf8Tortf, character(1), USE.NAMES = FALSE)

@@ -107,7 +107,7 @@ rtf_colheader <- function(tbl,
 
   # Get use_i18n from page attributes
   use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
-  
+
   # Define text attributes
   colheader <- obj_rtf_text(colheader,
     text_font,

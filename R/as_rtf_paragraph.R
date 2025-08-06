@@ -33,7 +33,7 @@
 #' @noRd
 as_rtf_paragraph <- function(text, combine = TRUE) {
   attr_text <- attributes(text)
-  
+
   # Get use_i18n from text attributes (will be set by obj_rtf_text)
   use_i18n <- attr_text$use_i18n %||% FALSE
 

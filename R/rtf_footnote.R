@@ -164,7 +164,7 @@ rtf_footnote <- function(tbl,
 
   # Get use_i18n from page attributes
   use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
-  
+
   # Define text object
   footnote <- obj_rtf_text(footnote,
     text_font,
