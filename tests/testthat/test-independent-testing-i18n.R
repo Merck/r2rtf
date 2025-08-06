@@ -29,10 +29,10 @@ test_that("RTF encoding preserves i18n flag", {
   )
 
   # Add RTF attributes with i18n enabled
-  df_i18n <- df %>%
-    rtf_page(use_i18n = TRUE) %>%
-    rtf_title(title = "Test Table") %>%
-    rtf_colheader(colheader = "Column 1 | Column 2") %>%
+  df_i18n <- df |>
+    rtf_page(use_i18n = TRUE) |>
+    rtf_title(title = "Test Table") |>
+    rtf_colheader(colheader = "Column 1 | Column 2") |>
     rtf_body()
 
   # Generate RTF code
@@ -48,8 +48,8 @@ test_that("Font type 11 can be used with i18n enabled", {
   df <- data.frame(x = "test")
 
   # Should accept font type 11 when i18n is enabled
-  df_i18n <- df %>%
-    rtf_page(use_i18n = TRUE) %>%
+  df_i18n <- df |>
+    rtf_page(use_i18n = TRUE) |>
     rtf_body(text_font = 11)
 
   # Font 11 should be valid - stored in text_font attribute as a matrix
@@ -68,9 +68,9 @@ test_that("UTF-8 conversion is applied when i18n is enabled", {
   )
 
   # Test with i18n enabled
-  df_i18n <- df %>%
-    rtf_page(use_i18n = TRUE) %>%
-    rtf_title(title_char) %>%
+  df_i18n <- df |>
+    rtf_page(use_i18n = TRUE) |>
+    rtf_title(title_char) |>
     rtf_body()
 
   # Generate RTF code
@@ -81,8 +81,8 @@ test_that("UTF-8 conversion is applied when i18n is enabled", {
   expect_true(grepl("\\\\u[0-9]+", all_text))
 
   # Test without i18n - non-ASCII characters should not be converted
-  df_no_i18n <- df %>%
-    rtf_page(use_i18n = FALSE) %>%
+  df_no_i18n <- df |>
+    rtf_page(use_i18n = FALSE) |>
     rtf_body()
 
   rtf_code_no_i18n <- rtf_encode(df_no_i18n)
