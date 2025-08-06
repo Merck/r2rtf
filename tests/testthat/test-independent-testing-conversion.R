@@ -8,5 +8,5 @@ test_that("cell size inch to twip conversion", {
 
 test_that("UTF-8 to RTF encode conversion", {
   expect_error(utf8Tortf(8))
-  expect_equal(utf8Tortf("老人Z"), "\\uc1\\u-32767?\\uc1\\u20154?Z")
+  expect_equal(utf8Tortf("\u8001\u4eba\u005a"), "\\uc1\\u-32767?\\uc1\\u20154?Z")
 })

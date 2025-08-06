@@ -52,7 +52,8 @@ obj_rtf_text <- function(text,
                          text_space_after = 15,
                          text_new_page = FALSE,
                          text_hyphenation = TRUE,
-                         text_convert = TRUE) {
+                         text_convert = TRUE,
+                         use_i18n = FALSE) {
   # Check argument type
   check_args(text, type = c("character", "data.frame"))
 
@@ -143,6 +144,7 @@ obj_rtf_text <- function(text,
   attr(text, "text_new_page") <- text_new_page
   attr(text, "text_hyphenation") <- text_hyphenation
   attr(text, "text_convert") <- text_convert
+  attr(text, "use_i18n") <- use_i18n
   attr(text, "strwidth") <- rtf_strwidth(text)
 
   # Register Color Use

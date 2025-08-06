@@ -162,6 +162,9 @@ rtf_footnote <- function(tbl,
     tbl <- rtf_page(tbl)
   }
 
+  # Get use_i18n from page attributes
+  use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
+  
   # Define text object
   footnote <- obj_rtf_text(footnote,
     text_font,
@@ -178,7 +181,8 @@ rtf_footnote <- function(tbl,
     text_space_after,
     text_new_page = FALSE,
     text_hyphenation = TRUE,
-    text_convert = text_convert
+    text_convert = text_convert,
+    use_i18n = use_i18n
   )
 
   if (attr(footnote, "use_color")) attr(tbl, "page")$use_color <- TRUE

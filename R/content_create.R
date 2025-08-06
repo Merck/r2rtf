@@ -325,7 +325,9 @@ as_rtf_footnote <- function(tbl, attr_name = "rtf_footnote") {
       )
     } else {
       if (any(attr(text, "text_convert"))) {
-        text_matrix <- convert(text)
+        # Get use_i18n from text attributes
+        use_i18n <- attr(text, "use_i18n") %||% FALSE
+        text_matrix <- convert(text, use_i18n = use_i18n)
       } else {
         text_matrix <- text
       }

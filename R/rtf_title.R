@@ -87,6 +87,9 @@ rtf_title <- function(tbl,
     text_indent_right
   )
 
+  # Get use_i18n from page attributes
+  use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
+  
   text <- obj_rtf_text(text,
     text_font,
     text_format,
@@ -102,7 +105,8 @@ rtf_title <- function(tbl,
     text_space_after,
     text_new_page = FALSE,
     text_hyphenation = text_hyphenation,
-    text_convert = text_convert
+    text_convert = text_convert,
+    use_i18n = use_i18n
   )
 
   # Register Color Use
@@ -172,6 +176,9 @@ rtf_subline <- function(tbl,
     text_indent_right <- text_indent_right + footnote_source_space(tbl, text_indent_reference)
   }
 
+  # Get use_i18n from page attributes
+  use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
+  
   text <- obj_rtf_text(text,
     text_font,
     text_format,
@@ -187,7 +194,8 @@ rtf_subline <- function(tbl,
     text_space_after,
     text_new_page = FALSE,
     text_hyphenation = text_hyphenation,
-    text_convert = text_convert
+    text_convert = text_convert,
+    use_i18n = use_i18n
   )
 
   # Register Color Use

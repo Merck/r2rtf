@@ -150,6 +150,14 @@ rtf_page_header <- function(tbl,
   # Convert tbl to a data frame, each column is a character
   if (any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
+  # Set Default Page Attributes
+  if (is.null(attr(tbl, "page"))) {
+    tbl <- rtf_page(tbl)
+  }
+  
+  # Get use_i18n from page attributes
+  use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
+  
   text <- obj_rtf_text(text,
     text_font,
     text_format,
@@ -165,15 +173,11 @@ rtf_page_header <- function(tbl,
     text_space_after,
     text_new_page = NULL,
     text_hyphenation = NULL,
-    text_convert = text_convert
+    text_convert = text_convert,
+    use_i18n = use_i18n
   )
 
   attr(tbl, "rtf_page_header") <- text
-
-  # Set Default Page Attributes
-  if (is.null(attr(tbl, "page"))) {
-    tbl <- rtf_page(tbl)
-  }
 
   # Register Color Use
   if (attr(text, "use_color")) attr(tbl, "page")$use_color <- TRUE
@@ -205,6 +209,14 @@ rtf_page_footer <- function(tbl,
   # Convert tbl to a data frame, each column is a character
   if (any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
 
+  # Set Default Page Attributes
+  if (is.null(attr(tbl, "page"))) {
+    tbl <- rtf_page(tbl)
+  }
+  
+  # Get use_i18n from page attributes
+  use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
+  
   text <- obj_rtf_text(text,
     text_font,
     text_format,
@@ -220,15 +232,11 @@ rtf_page_footer <- function(tbl,
     text_space_after,
     text_new_page = NULL,
     text_hyphenation = NULL,
-    text_convert = text_convert
+    text_convert = text_convert,
+    use_i18n = use_i18n
   )
 
   attr(tbl, "rtf_page_footer") <- text
-
-  # Set Default Page Attributes
-  if (is.null(attr(tbl, "page"))) {
-    tbl <- rtf_page(tbl)
-  }
 
   # Register Color Use
   if (attr(text, "use_color")) attr(tbl, "page")$use_color <- TRUE

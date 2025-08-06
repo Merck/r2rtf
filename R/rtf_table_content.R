@@ -183,13 +183,17 @@ rtf_table_content <- function(tbl,
   border_rtf <- t(border_rtf)
 
   # Encode RTF Text and Paragraph
+  # Get use_i18n flag from page attributes
+  use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
+  
   text_rtf <- rtf_text(tbl,
     font = text_font,
     font_size = text_font_size,
     format = text_format,
     color = text_color,
     background_color = text_background_color,
-    text_convert = text_convert
+    text_convert = text_convert,
+    use_i18n = use_i18n
   )
 
   cell_rtf <- rtf_paragraph(text_rtf,
