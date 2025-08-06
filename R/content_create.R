@@ -54,7 +54,7 @@ as_rtf_font <- function(tbl = NULL) {
   if (!is.null(tbl) && !is.null(attr(tbl, "page"))) {
     use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
   }
-  
+
   font_type <- font_type(use_i18n = use_i18n)
   font_rtf <- factor(seq_along(font_type$type), levels = font_type$type, labels = font_type$rtf_code)
   font_style <- factor(seq_along(font_type$type), levels = font_type$type, labels = font_type$style)
