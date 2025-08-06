@@ -18,11 +18,13 @@
 
 #' RTF Text Font Dictionary
 #'
+#' @param use_i18n Logical. If TRUE, includes SimSun font for CJK support.
+#'
 #' @section Specification:
 #' \if{latex}{
 #'  \itemize{
 #'    \item Collect most commonly used fonts (Times New Roman, Times New Roman Greek, and Arial Greek, etc.).
-#'    \item Define font types from 1 to 10.
+#'    \item Define font types from 1 to 10 (or 11 with SimSun when use_i18n is TRUE).
 #'    \item Define font styles.
 #'    \item Create a mapping between font types and their RTF code.
 #'  }
@@ -30,36 +32,42 @@
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 #' @noRd
-font_type <- function() {
-  data.frame(
-    type = 1:10,
+font_type <- function(use_i18n = TRUE) {
+  all_fonts <- data.frame(
+    type = 1:11,
     name = c(
       "Times New Roman", "Times New Roman Greek", "Arial Greek",
       "Arial", "Helvetica", "Calibri", "Georgia",
-      "Cambria", "Courier New", "Symbol"
+      "Cambria", "Courier New", "Symbol", "SimSun"
     ),
     style = c(
       "\\froman", "\\froman", "\\fswiss",
       "\\fswiss", "\\fswiss", "\\fswiss", "\\froman",
-      "\\ffroman", "\\fmodern", "\\ftech"
+      "\\ffroman", "\\fmodern", "\\ftech", "\\fnil"
     ),
     rtf_code = c(
       "\\f0", "\\f1", "\\f2",
       "\\f3", "\\f4", "\\f5", "\\f6",
-      "\\f7", "\\f8", "\\f9"
+      "\\f7", "\\f8", "\\f9", "\\f10"
     ),
     family = c(
       "Times", "Times", "ArialMT", "ArialMT", "Helvetica",
-      "Calibri", "Georgia", "Cambria", "Courier", "Times"
+      "Calibri", "Georgia", "Cambria", "Courier", "Times", "SimSun"
     ),
     charset = c(
       "\\fcharset1", "\\fcharset161", "\\fcharset161", "\\fcharset0",
       "\\fcharset1", "\\fcharset1", "\\fcharset1", "\\fcharset1",
-      "\\fcharset0", "\\fcharset2"
+      "\\fcharset0", "\\fcharset2", "\\fcharset134"
     ),
-    width_group = c(1, 1, 4, 4, 4, 1, 9, 4, 9, 9),
+    width_group = c(1, 1, 4, 4, 4, 1, 9, 4, 9, 9, 1),
     stringsAsFactors = FALSE
   )
+
+  if (use_i18n) {
+    all_fonts
+  } else {
+    all_fonts[1:10, ]
+  }
 }
 
 

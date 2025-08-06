@@ -34,6 +34,7 @@
 #'                            All possible input can be found in `grDevices::colors()`.
 #' @param col_width A numeric value of total column width in inch. Default is `width - ifelse(orientation == "portrait", 2, 2.5)`
 #' @param use_color A logical value to use color in the output.
+#' @param use_i18n A logical value to enable internationalization fonts (e.g., SimSun for Chinese). Default is FALSE.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -67,7 +68,8 @@ rtf_page <- function(tbl,
                      border_color_first = NULL,
                      border_color_last = NULL,
                      col_width = width - ifelse(orientation == "portrait", 2.25, 2.5),
-                     use_color = FALSE) {
+                     use_color = FALSE,
+                     use_i18n = FALSE) {
   # Check argument type
   check_args(width, type = c("integer", "numeric"), length = 1)
   check_args(height, type = c("integer", "numeric"), length = 1)
@@ -75,6 +77,7 @@ rtf_page <- function(tbl,
   check_args(margin, type = c("integer", "numeric"), length = 6)
   check_args(nrow, type = c("integer", "numeric"), length = 1)
   check_args(col_width, type = c("integer", "numeric"), length = 1)
+  check_args(use_i18n, type = "logical", length = 1)
 
   # Convert tbl to a data frame, each column is a character
   if (any(class(tbl) %in% "data.frame")) tbl <- as.data.frame(tbl, stringsAsFactors = FALSE)
@@ -116,6 +119,9 @@ rtf_page <- function(tbl,
   if (use_color) {
     attr(tbl, "page")$use_color <- TRUE
   }
+
+  # Store i18n flag
+  attr(tbl, "page")$use_i18n <- use_i18n
 
   tbl
 }
