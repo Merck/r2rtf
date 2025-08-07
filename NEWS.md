@@ -1,3 +1,16 @@
+# r2rtf 1.2.0
+
+## New features
+
+- Add internationalization (i18n) support with `use_i18n` parameter in `rtf_page()` 
+  to enable SimSun font for Chinese character support in RTF documents (#256).
+- Add `text_hyphenation` parameter to `rtf_title()`, `rtf_colheader()`, and 
+  `rtf_subline()` functions to control text hyphenation in RTF output (#235).
+
+## Improvements
+
+- Refactor font type table to use a data frame structure for better maintainability (#264).
+
 # r2rtf 1.1.4
 
 ## Bug fixes
