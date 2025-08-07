@@ -52,7 +52,8 @@
 <span>  border_color_first <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  border_color_last <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  col_width <span class="op">=</span> <span class="va">width</span> <span class="op">-</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">orientation</span> <span class="op">==</span> <span class="st">"portrait"</span>, <span class="fl">2.25</span>, <span class="fl">2.5</span><span class="op">)</span>,</span>
-<span>  use_color <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span>  use_color <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  use_i18n <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -112,6 +113,10 @@ All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/co
 <dt id="arg-use-color">use_color<a class="anchor" aria-label="anchor" href="#arg-use-color"></a></dt>
 <dd><p>A logical value to use color in the output.</p></dd>
 
+
+<dt id="arg-use-i-n">use_i18n<a class="anchor" aria-label="anchor" href="#arg-use-i-n"></a></dt>
+<dd><p>A logical value to enable internationalization fonts (e.g., SimSun for Chinese). Default is FALSE.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -165,6 +170,9 @@ All possible input can be found in <code><a href="https://rdrr.io/r/grDevices/co
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "last"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $use_color</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $use_i18n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>

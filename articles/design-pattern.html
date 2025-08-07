@@ -144,7 +144,8 @@ attributes in default setting, we can run code below.</p>
 <span><span class="co">#&gt; page_title         all</span></span>
 <span><span class="co">#&gt; page_footnote     last</span></span>
 <span><span class="co">#&gt; page_source       last</span></span>
-<span><span class="co">#&gt; use_color        FALSE</span></span></code></pre></div>
+<span><span class="co">#&gt; use_color        FALSE</span></span>
+<span><span class="co">#&gt; use_i18n         FALSE</span></span></code></pre></div>
 <p>The table body attributes are more complicated than page attributes.
 Take <code><a href="../reference/rtf_body.html">rtf_body()</a></code> as an example, it meets the user’s need to
 take fully control of table appearance through parameters to customize
@@ -415,6 +416,7 @@ message will be provided as a result from <code>match_arg()</code>.</p>
 <span><span class="co">#&gt; 8     8               Cambria \\ffroman     \\f7   Cambria   \\fcharset1</span></span>
 <span><span class="co">#&gt; 9     9           Courier New \\fmodern     \\f8   Courier   \\fcharset0</span></span>
 <span><span class="co">#&gt; 10   10                Symbol   \\ftech     \\f9     Times   \\fcharset2</span></span>
+<span><span class="co">#&gt; 11   11                SimSun    \\fnil    \\f10    SimSun \\fcharset134</span></span>
 <span><span class="co">#&gt;    width_group</span></span>
 <span><span class="co">#&gt; 1            1</span></span>
 <span><span class="co">#&gt; 2            1</span></span>
@@ -425,7 +427,8 @@ message will be provided as a result from <code>match_arg()</code>.</p>
 <span><span class="co">#&gt; 7            9</span></span>
 <span><span class="co">#&gt; 8            4</span></span>
 <span><span class="co">#&gt; 9            9</span></span>
-<span><span class="co">#&gt; 10           9</span></span></code></pre></div>
+<span><span class="co">#&gt; 10           9</span></span>
+<span><span class="co">#&gt; 11           1</span></span></code></pre></div>
 <p>Superscripts, under scripts are taken care of by using
 <code>convert()</code> function to translate them into LaTeX code and
 Unicode. For example:</p>
