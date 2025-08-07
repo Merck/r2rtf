@@ -11,6 +11,7 @@
     8     8               Cambria \\ffroman     \\f7   Cambria   \\fcharset1
     9     9           Courier New \\fmodern     \\f8   Courier   \\fcharset0
     10   10                Symbol   \\ftech     \\f9     Times   \\fcharset2
+    11   11                SimSun    \\fnil    \\f10    SimSun \\fcharset134
        width_group
     1            1
     2            1
@@ -22,6 +23,7 @@
     8            4
     9            9
     10           9
+    11           1
 
 # border type
 

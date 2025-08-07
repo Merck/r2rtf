@@ -105,6 +105,9 @@ rtf_colheader <- function(tbl,
   # Split input by "|".
   colheader <- data.frame(t(trimws(unlist(strsplit(colheader, "|", fixed = TRUE)))))
 
+  # Get use_i18n from page attributes
+  use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
+
   # Define text attributes
   colheader <- obj_rtf_text(colheader,
     text_font,
@@ -121,7 +124,8 @@ rtf_colheader <- function(tbl,
     text_space_after,
     text_new_page = FALSE,
     text_hyphenation = text_hyphenation,
-    text_convert = text_convert
+    text_convert = text_convert,
+    use_i18n = use_i18n
   )
   if (attr(colheader, "use_color")) attr(tbl, "page")$use_color <- TRUE
 

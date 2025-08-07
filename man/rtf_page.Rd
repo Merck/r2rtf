@@ -16,7 +16,8 @@ rtf_page(
   border_color_first = NULL,
   border_color_last = NULL,
   col_width = width - ifelse(orientation == "portrait", 2.25, 2.5),
-  use_color = FALSE
+  use_color = FALSE,
+  use_i18n = FALSE
 )
 }
 \arguments{
@@ -48,6 +49,8 @@ All possible input can be found in \code{grDevices::colors()}.}
 \item{col_width}{A numeric value of total column width in inch. Default is \code{width - ifelse(orientation == "portrait", 2, 2.5)}}
 
 \item{use_color}{A logical value to use color in the output.}
+
+\item{use_i18n}{A logical value to enable internationalization fonts (e.g., SimSun for Chinese). Default is FALSE.}
 }
 \value{
 the same data frame \code{tbl} with additional attributes for page features

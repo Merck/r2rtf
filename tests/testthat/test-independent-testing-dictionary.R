@@ -2,6 +2,25 @@ test_that("text font", {
   expect_snapshot_output(font_type())
 })
 
+test_that("text font with i18n support", {
+  # Test without i18n
+  fonts_default <- font_type(use_i18n = FALSE)
+  expect_equal(nrow(fonts_default), 10)
+  expect_equal(max(fonts_default$type), 10)
+
+  # Test with i18n
+  fonts_i18n <- font_type(use_i18n = TRUE)
+  expect_equal(nrow(fonts_i18n), 11)
+  expect_equal(max(fonts_i18n$type), 11)
+
+  # Check SimSun is included
+  expect_true("SimSun" %in% fonts_i18n$name)
+  expect_equal(fonts_i18n[fonts_i18n$name == "SimSun", "type"], 11)
+  expect_equal(fonts_i18n[fonts_i18n$name == "SimSun", "rtf_code"], "\\f10")
+  expect_equal(fonts_i18n[fonts_i18n$name == "SimSun", "charset"], "\\fcharset134")
+  expect_equal(fonts_i18n[fonts_i18n$name == "SimSun", "style"], "\\fnil")
+})
+
 test_that("text color", {
   t_color <- data.frame(color = grDevices::colors())
   t_color$type <- 1:nrow(t_color)

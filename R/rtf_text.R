@@ -24,6 +24,7 @@
 #' @param color Text color.
 #' @param background_color Text background color.
 #' @param text_convert A logical value to convert special characters.
+#' @param use_i18n A logical value to enable UTF-8 to RTF conversion for non-ASCII characters.
 #'
 #' @section Specification:
 #' \if{latex}{
@@ -46,7 +47,8 @@ rtf_text <- function(text,
                      format = NULL,
                      color = NULL,
                      background_color = NULL,
-                     text_convert = TRUE) {
+                     text_convert = TRUE,
+                     use_i18n = FALSE) {
   ## Set default value
   if ((!is.null(background_color)) & is.null(color)) {
     color <- "black"
@@ -107,7 +109,7 @@ rtf_text <- function(text,
   ### Convert Latex Character
   text <- as.matrix(text)
   text_convert <- matrix(text_convert, nrow = nrow(text), ncol = ncol(text))
-  text_vector <- ifelse(text_convert, convert(text), text)
+  text_vector <- ifelse(text_convert, convert(text, use_i18n = use_i18n), text)
 
   end <- "}"
 

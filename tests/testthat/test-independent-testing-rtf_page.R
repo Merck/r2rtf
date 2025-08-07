@@ -16,6 +16,9 @@ test_that("Test if argument types are checked correctly", {
 
   expect_error(rtf_page(df, col_width = c("11")))
   expect_error(rtf_page(df, col_width = c(1, 2)))
+
+  expect_error(rtf_page(df, use_i18n = "TRUE"))
+  expect_error(rtf_page(df, use_i18n = c(TRUE, FALSE)))
 })
 
 test_that("Test if function will stop when providing invalid argument values", {
@@ -45,6 +48,20 @@ test_that("Test if attributes are assigned correctly", {
 
   expect_equal(att_df$page$use_color, TRUE)
   expect_equal(att_df$page$border_color_first, "red")
+})
+
+test_that("Test if use_i18n flag is assigned correctly", {
+  # Test default value
+  df_default <- rtf_page(df)
+  expect_equal(attr(df_default, "page")$use_i18n, FALSE)
+
+  # Test when set to TRUE
+  df_i18n <- rtf_page(df, use_i18n = TRUE)
+  expect_equal(attr(df_i18n, "page")$use_i18n, TRUE)
+
+  # Test when set to FALSE explicitly
+  df_no_i18n <- rtf_page(df, use_i18n = FALSE)
+  expect_equal(attr(df_no_i18n, "page")$use_i18n, FALSE)
 })
 
 test_that("Test if attributes are assigned correctly for orientation not portrait", {

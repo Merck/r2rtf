@@ -34,13 +34,17 @@
 as_rtf_paragraph <- function(text, combine = TRUE) {
   attr_text <- attributes(text)
 
+  # Get use_i18n from text attributes (will be set by obj_rtf_text)
+  use_i18n <- attr_text$use_i18n %||% FALSE
+
   text_rtftext <- rtf_text(text,
     font = attr_text$text_font,
     font_size = attr_text$text_font_size,
     format = attr_text$text_format,
     color = attr_text$text_color,
     background_color = attr_text$text_background_color,
-    text_convert = attr_text$text_convert
+    text_convert = attr_text$text_convert,
+    use_i18n = use_i18n
   )
 
   if (combine) {

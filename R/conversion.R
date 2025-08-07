@@ -70,43 +70,55 @@ cell_size <- function(col_rel_width, col_total_width) {
 #'
 #' @noRd
 convert <- function(text,
+                    use_i18n = FALSE,
                     load_stringi = requireNamespace("stringi", quietly = TRUE)) {
   # grepl(">|<|=|_|\\^|(\\\\)|(\\n)", c(">", "<", "=", "_", "\n", "\\line", "abc"))
   index <- grepl(">|<|=|_|\\^|(\\\\)|(\\n)", text)
 
-  if (!any(index)) {
-    return(text)
+  # Process special characters if they exist
+  if (any(index)) {
+    char_rtf <- c(
+      "^" = "\\super ",
+      "_" = "\\sub ",
+      ">=" = "\\geq ",
+      "<=" = "\\leq ",
+      "\n" = "\\line ",
+      "\\pagenumber" = "\\chpgn ",
+      "\\totalpage" = "\\totalpage ",
+      "\\pagefield" = "{\\field{\\*\\fldinst NUMPAGES }} "
+    )
+
+    # Define Pattern for latex code
+    unicode_int <- as.integer(as.hexmode(unicode_latex$unicode))
+    char_latex <- ifelse(unicode_int <= 255 & unicode_int != 177, unicode_latex$chr,
+      sprintf("\\uc1\\u%d*", unicode_int - ifelse(unicode_int < 32768, 0, 65536))
+    )
+
+    names(char_latex) <- unicode_latex$latex
+
+    char_latex <- rev(c(char_latex, char_rtf))
+
+    if (load_stringi) {
+      text[index] <- stringi::stri_replace_all_fixed(text[index], names(char_latex), char_latex,
+        vectorize_all = FALSE, opts_fixed = list(case_insensitive = FALSE)
+      )
+    } else {
+      for (i in seq_along(char_latex)) {
+        text[index] <- gsub(names(char_latex[i]), char_latex[i], text[index], fixed = TRUE)
+      }
+    }
   }
 
-  char_rtf <- c(
-    "^" = "\\super ",
-    "_" = "\\sub ",
-    ">=" = "\\geq ",
-    "<=" = "\\leq ",
-    "\n" = "\\line ",
-    "\\pagenumber" = "\\chpgn ",
-    "\\totalpage" = "\\totalpage ",
-    "\\pagefield" = "{\\field{\\*\\fldinst NUMPAGES }} "
-  )
-
-  # Define Pattern for latex code
-
-  unicode_int <- as.integer(as.hexmode(unicode_latex$unicode))
-  char_latex <- ifelse(unicode_int <= 255 & unicode_int != 177, unicode_latex$chr,
-    sprintf("\\uc1\\u%d*", unicode_int - ifelse(unicode_int < 32768, 0, 65536))
-  )
-
-  names(char_latex) <- unicode_latex$latex
-
-  char_latex <- rev(c(char_latex, char_rtf))
-
-  if (load_stringi) {
-    text[index] <- stringi::stri_replace_all_fixed(text[index], names(char_latex), char_latex,
-      vectorize_all = FALSE, opts_fixed = list(case_insensitive = FALSE)
-    )
-  } else {
-    for (i in seq_along(char_latex)) {
-      text[index] <- gsub(names(char_latex[i]), char_latex[i], text[index], fixed = TRUE)
+  # Apply UTF-8 to RTF conversion for non-ASCII characters when use_i18n is TRUE
+  if (use_i18n) {
+    # Check for non-ASCII characters
+    has_non_ascii <- grepl("[^\x01-\x7F]", text)
+    if (any(has_non_ascii)) {
+      text[has_non_ascii] <- vapply(text[has_non_ascii],
+        utf8Tortf,
+        character(1),
+        USE.NAMES = FALSE
+      )
     }
   }
 
@@ -147,4 +159,23 @@ utf8Tortf <- function(text) {
   )
 
   paste0(x_rtf, collapse = "")
+}
+
+#' Apply UTF-8 to RTF Conversion for Character Vectors
+#'
+#' @param text Character vector to convert
+#' @param use_i18n Logical indicating whether to apply UTF-8 conversion
+#'
+#' @noRd
+apply_utf8_conversion <- function(text, use_i18n = FALSE) {
+  if (!use_i18n || is.null(text)) {
+    return(text)
+  }
+
+  # Apply utf8Tortf to each element in the character vector
+  if (is.character(text)) {
+    vapply(text, utf8Tortf, character(1), USE.NAMES = FALSE)
+  } else {
+    text
+  }
 }

@@ -36,6 +36,8 @@ as_rtf_init <- function() {
 
 #' Create RTF Font Encode
 #'
+#' @param tbl A data frame with potential page attributes containing use_i18n flag.
+#'
 #' @section Specification:
 #' \if{latex}{
 #'  \itemize{
@@ -46,8 +48,14 @@ as_rtf_init <- function() {
 #' \if{html}{The contents of this section are shown in PDF user manual only.}
 #'
 #' @noRd
-as_rtf_font <- function() {
-  font_type <- font_type()
+as_rtf_font <- function(tbl = NULL) {
+  # Get use_i18n flag from table attributes if available
+  use_i18n <- FALSE
+  if (!is.null(tbl) && !is.null(attr(tbl, "page"))) {
+    use_i18n <- attr(tbl, "page")$use_i18n %||% FALSE
+  }
+
+  font_type <- font_type(use_i18n = use_i18n)
   font_rtf <- factor(seq_along(font_type$type), levels = font_type$type, labels = font_type$rtf_code)
   font_style <- factor(seq_along(font_type$type), levels = font_type$type, labels = font_type$style)
   font_name <- factor(seq_along(font_type$type), levels = font_type$type, labels = font_type$name)
@@ -317,7 +325,9 @@ as_rtf_footnote <- function(tbl, attr_name = "rtf_footnote") {
       )
     } else {
       if (any(attr(text, "text_convert"))) {
-        text_matrix <- convert(text)
+        # Get use_i18n from text attributes
+        use_i18n <- attr(text, "use_i18n") %||% FALSE
+        text_matrix <- convert(text, use_i18n = use_i18n)
       } else {
         text_matrix <- text
       }
