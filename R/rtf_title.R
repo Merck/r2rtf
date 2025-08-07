@@ -23,6 +23,7 @@
 #' @param tbl A data frame.
 #' @param title Title in a character string.
 #' @param subtitle Subtitle in a character string.
+#' @param text_hyphenation A logical value to control whether display text linked with hyphenation.
 #' @inheritParams rtf_footnote
 #'
 #' @section Specification:
@@ -61,6 +62,7 @@ rtf_title <- function(tbl,
                       text_space = 1,
                       text_space_before = 180,
                       text_space_after = 180,
+                      text_hyphenation = TRUE,
                       text_convert = TRUE) {
   # check argument types
   check_args(title, type = c("character"))
@@ -99,7 +101,7 @@ rtf_title <- function(tbl,
     text_space_before,
     text_space_after,
     text_new_page = FALSE,
-    text_hyphenation = TRUE,
+    text_hyphenation = text_hyphenation,
     text_convert = text_convert
   )
 
@@ -119,6 +121,7 @@ rtf_title <- function(tbl,
 #'
 #' @param tbl A data frame.
 #' @param text A character vector of subline
+#' @param text_hyphenation A logical value to control whether display text linked with hyphenation.
 #' @inheritParams rtf_footnote
 #'
 #' @section Specification:
@@ -148,6 +151,7 @@ rtf_subline <- function(tbl,
                         text_space = 1,
                         text_space_before = 180,
                         text_space_after = 180,
+                        text_hyphenation = TRUE,
                         text_convert = TRUE) {
   # Input checking
   check_args(text, type = c("character"))
@@ -182,7 +186,7 @@ rtf_subline <- function(tbl,
     text_space_before,
     text_space_after,
     text_new_page = FALSE,
-    text_hyphenation = TRUE,
+    text_hyphenation = text_hyphenation,
     text_convert = text_convert
   )
 
