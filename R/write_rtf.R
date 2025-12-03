@@ -61,7 +61,6 @@ write_rtf_para <- function(rtf, file) {
   rtf_color <- paste(c("{\\colortbl\n;", col_tb$rtf_code, "}"), collapse = "\n")
 
   start_rtf <- paste(
-
     as_rtf_init(),
     as_rtf_font(),
     rtf_color,

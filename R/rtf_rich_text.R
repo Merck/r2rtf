@@ -52,11 +52,12 @@
 #'   )
 #' )
 rtf_rich_text <- function(
-    text,
-    theme = list(
-      .emph = list(format = "i"),
-      .strong = list(format = "b")
-    )) {
+  text,
+  theme = list(
+    .emph = list(format = "i"),
+    .strong = list(format = "b")
+  )
+) {
   # Bulletproof the styles requested within the `theme` argument
   theme_arg <- theme
   names(theme_arg) <- NULL

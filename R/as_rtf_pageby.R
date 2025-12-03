@@ -247,7 +247,6 @@ as_rtf_pageby <- function(tbl) {
       by_var_dict$id <- apply(by_var_dict, 1, paste, collapse = "-")
 
 
-
       pageby_header_nested <- merge(pageby_header, by_var_dict, all.x = TRUE)
       pageby_header_nested$index <- pageby_header_nested$index - 0.1
 
