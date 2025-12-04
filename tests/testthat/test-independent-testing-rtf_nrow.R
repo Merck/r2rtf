@@ -105,7 +105,6 @@ irspagebybodys <- attr(attr(irs1, "rtf_pageby_table"), "rtf_nrow")
 irspagebyrows <- attr(attr(irs1, "rtf_pageby_row")$Species, "rtf_nrow")
 
 
-
 test_that("test if rtf_nline_vector() return to correct numbers", {
   # line for first vector
   expect_equal(nline_vector[1], 1)

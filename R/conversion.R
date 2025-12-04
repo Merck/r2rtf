@@ -84,7 +84,7 @@ convert <- function(text,
       "<=" = "\\leq ",
       "\n" = "\\line ",
       "\\pagenumber" = "\\chpgn ",
-      "\\totalpage" = "\\totalpage ",
+      "\\totalpage" = "\\totalpage",
       "\\pagefield" = "{\\field{\\*\\fldinst NUMPAGES }} "
     )
 

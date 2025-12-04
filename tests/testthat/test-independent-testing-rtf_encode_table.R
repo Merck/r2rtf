@@ -124,12 +124,10 @@ test_that("RTF header, footnote and source encoding for different location", {
   footnote_rtftext_1 <- as_rtf_footnote(d3)
 
 
-
   expect_true(grep(as_rtf_footnote(d3), encode1, fixed = TRUE) == 2)
   expect_true(grep(as_rtf_source(d3), encode1, fixed = TRUE) == 2)
   expect_true(grep(as_rtf_title(d3), encode1, fixed = TRUE) == 2)
 })
-
 
 
 test_that("input value test if data frame or list of data frames", {

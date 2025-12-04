@@ -74,7 +74,6 @@ rtf_table_content <- function(tbl,
   text_indent_right <- attr(tbl, "text_indent_right")
 
 
-
   text_convert <- attr(tbl, "text_convert")
 
   ## get dimension of tbl

@@ -48,7 +48,6 @@ rtf_encode_table <- function(tbl, verbose = FALSE) {
   pageby <- attr(tbl, "rtf_pageby")
 
   start_rtf <- paste(
-
     as_rtf_init(),
     as_rtf_font(tbl),
     as_rtf_color(tbl),
