@@ -1,0 +1,290 @@
+# RTF Examples for Controlling Table Details
+
+This vignette documents how to use `.rtf_row` to customize table in
+details. All output tables are saved in the `vignettes/rtf` folder and
+assembled in `vignettes/r2rtf_examples.docx` document.
+
+## Border Type
+
+`.rtf_row` supports 8 different types of border as listed below.
+
+``` r
+r2rtf:::border_type()$name
+```
+
+    ## [1] ""           "single"     "double"     "dot"        "dash"      
+    ## [6] "small dash" "dot dash"   "dot dot"
+
+The border type can be used to define the top, left, right and bottom
+border types.
+
+This example define different top border line.
+
+``` r
+.n <- length(r2rtf:::border_type()$name)
+db <- data.frame(border_type = r2rtf:::border_type()$name) %>%
+  rtf_title("Summary of Border Type Using Top Border") %>%
+  rtf_colheader("Border Type") %>%
+  rtf_body(border_top = r2rtf:::border_type()$name)
+
+db %>%
+  rtf_encode() %>%
+  write_rtf("rtf/border-type.rtf")
+```
+
+For each cell, the top border and left border is defined in each cell.
+The right border only defined in last column. The bottom border only
+defined in last row. This example show that top border and left border
+type are used for all cell border as single. Only last column use right
+border as double. Only last row use bottom border as dash line.
+
+``` r
+iris %>%
+  head() %>%
+  rtf_body(
+    as_colheader = FALSE,
+    border_top = "dash",
+    border_left = "double",
+    border_right = "single"
+  ) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/border-order.rtf")
+```
+
+This example display table with specific border type (i.e. double line
+at the first and last line and blank at the middle)
+
+``` r
+rtf_db <- iris %>%
+  head() %>%
+  rtf_title("Border Using Double Line at First/Last Line") %>%
+  rtf_colheader("Sepal Length | Sepal Width | Petal Length | Petal Width | Species") %>%
+  rtf_body()
+
+
+rtf_db %>%
+  rtf_encode() %>%
+  write_rtf("rtf/border-example.rtf")
+```
+
+- The first and last border of the whole table is controlled by
+  `border_first` and `border_last` argument in
+  [`rtf_page()`](https://merck.github.io/r2rtf/reference/rtf_page.md)
+
+``` r
+attr(rtf_db, "page")$border_first
+```
+
+    ## [1] "double"
+
+``` r
+attr(rtf_db, "border_first")
+```
+
+    ##      [,1]     [,2]     [,3]     [,4]     [,5]    
+    ## [1,] "single" "single" "single" "single" "single"
+    ## [2,] "single" "single" "single" "single" "single"
+    ## [3,] "single" "single" "single" "single" "single"
+    ## [4,] "single" "single" "single" "single" "single"
+    ## [5,] "single" "single" "single" "single" "single"
+    ## [6,] "single" "single" "single" "single" "single"
+
+For other border, it is controlled by a matrix.
+
+``` r
+rtf_db %>% attr("border_top")
+```
+
+    ##      [,1] [,2] [,3] [,4] [,5]
+    ## [1,] ""   ""   ""   ""   ""  
+    ## [2,] ""   ""   ""   ""   ""  
+    ## [3,] ""   ""   ""   ""   ""  
+    ## [4,] ""   ""   ""   ""   ""  
+    ## [5,] ""   ""   ""   ""   ""  
+    ## [6,] ""   ""   ""   ""   ""
+
+User can use single value, vector, and matrix to control the border
+type. Specifically, a vector is transferred to a matrix by row.
+Therefore, it is useful to set columns type by using vector.
+
+``` r
+matrix(r2rtf:::border_type()$name[1:5], nrow = 6, ncol = 5, byrow = TRUE)
+```
+
+    ##      [,1] [,2]     [,3]     [,4]  [,5]  
+    ## [1,] ""   "single" "double" "dot" "dash"
+    ## [2,] ""   "single" "double" "dot" "dash"
+    ## [3,] ""   "single" "double" "dot" "dash"
+    ## [4,] ""   "single" "double" "dot" "dash"
+    ## [5,] ""   "single" "double" "dot" "dash"
+    ## [6,] ""   "single" "double" "dot" "dash"
+
+``` r
+rtf_db <- iris %>%
+  head() %>%
+  rtf_title("Left Border Defined by a Vector") %>%
+  rtf_body(border_left = r2rtf:::border_type()$name[2:6])
+
+rtf_db %>%
+  rtf_encode() %>%
+  write_rtf("rtf/border-vector.rtf")
+```
+
+## Cell Justification
+
+The table cell allow to be left, center or right justified. the cell is
+also allow to align by decimal.
+
+``` r
+r2rtf:::justification()[, 1:2]
+```
+
+    ##   type      name
+    ## 1    l      left
+    ## 2    c    center
+    ## 3    r     right
+    ## 4    d   decimal
+    ## 5    j justified
+
+``` r
+r2rtf:::justification()[, 1:2] %>%
+  rtf_body(text_justification = rep(r2rtf:::justification()$type, each = 2)) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/justification-type.rtf")
+```
+
+``` r
+db <- iris %>% mutate(Sepal.Length = formatC(Sepal.Length * 2, digits = 1, format = "f"))
+
+db[, rep(1, 4)] %>%
+  head() %>%
+  rtf_body(text_justification = c("d", "l", "c", "r")) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/justification-number.rtf")
+```
+
+## Column Width
+
+Column width is determined by width ratio between the row using
+`col_rel_width`. The default is to have the same width for each column.
+The actual width is calculate with actual width `col_total_width`. The
+default value of `col_total_width` is page_width divided by 1.4.
+
+This example shows the default setting
+
+``` r
+iris %>%
+  head() %>%
+  rtf_body(as_colheader = FALSE) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/column-width-default.rtf")
+```
+
+This example customizes the column width
+
+``` r
+iris %>%
+  head() %>%
+  rtf_body(col_rel_width = 1:ncol(iris), as_colheader = FALSE) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/column-width-ratio.rtf")
+```
+
+## Text Appearance
+
+The `.rtf_row` function allow **bold**, *italics*, ~~strikethrough~~,
+underline and any combinations of them.
+
+``` r
+r2rtf:::font_format()[, 1:2]
+```
+
+    ##   type        name
+    ## 1           normal
+    ## 2    b        bold
+    ## 3    i     italics
+    ## 4    u   underline
+    ## 5    s      strike
+    ## 6    ^ superscript
+    ## 7    _   subscript
+
+This example considers the text format defined below
+
+``` r
+fmt <- cbind("", r2rtf:::font_format()$type)
+fmt
+```
+
+    ##      [,1] [,2]
+    ## [1,] ""   ""  
+    ## [2,] ""   "b" 
+    ## [3,] ""   "i" 
+    ## [4,] ""   "u" 
+    ## [5,] ""   "s" 
+    ## [6,] ""   "^" 
+    ## [7,] ""   "_"
+
+``` r
+r2rtf:::font_format()[, 1:2] %>%
+  rtf_body(text_format = fmt) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/text-format.rtf")
+```
+
+## Text Font Size
+
+Font size can be defined for each cell.
+
+``` r
+iris %>%
+  head() %>%
+  rtf_body(text_font_size = c(7:11), as_colheader = FALSE) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/text-font-size.rtf")
+```
+
+## Color
+
+The text, border and background color can be set separately for each
+cell. It is important to note that the cell can be defined condition by
+the data. For example, one can highlight p-value \< 0.05 in gold.
+
+This example define text color for each column
+
+``` r
+iris %>%
+  head() %>%
+  rtf_body(
+    text_color = c("black", "red", "gold", "blue", "grey"),
+    as_colheader = FALSE
+  ) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/color-text.rtf")
+```
+
+This example define left border color for each column
+
+``` r
+iris %>%
+  head() %>%
+  rtf_body(
+    border_color_left = c("black", "red", "gold", "blue", "grey"),
+    as_colheader = FALSE
+  ) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/color-border.rtf")
+```
+
+This example define background color for each column
+
+``` r
+iris %>%
+  head() %>%
+  rtf_body(
+    text_background_color = c("white", "red", "gold", "blue", "grey"),
+    text_color = "black",
+    as_colheader = FALSE,
+  ) %>%
+  rtf_encode() %>%
+  write_rtf("rtf/color-background.rtf")
+```

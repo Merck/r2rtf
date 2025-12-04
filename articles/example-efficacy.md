@@ -1,0 +1,235 @@
+# RTF Examples for Efficacy Tables
+
+``` r
+library(r2rtf)
+library(dplyr)
+library(tidyr)
+library(emmeans)
+```
+
+## Example
+
+This example shows how to create a efficacy table as below.
+
+### Step 1: Define some utility functions
+
+- Format Model Estimator
+
+``` r
+#' The function assume 1 or 2 column.
+#'   If there is only 1 column, only represent mean
+#'   If there are 2 column, represent mean (sd) or mean(se)
+#' Decimals will understand the number will be formatted as x.x(x.xx)
+#' @noRd
+fmt_est <- function(data, columns = c("mean", "sd"), decimals = c(1, 2)) {
+  .mean <- formatC(data[[columns[[1]]]], digits = decimals[1], format = "f", flag = "0")
+  if (length(columns) > 1) {
+    .sd <- formatC(data[[columns[[2]]]], digits = decimals[2], format = "f", flag = "0")
+    paste0(.mean, " (", .sd, ")")
+  } else {
+    .mean
+  }
+}
+```
+
+- Format Confidence Interval
+
+``` r
+#' @noRd
+fmt_ci <- function(data, columns = c("lower.CL", "upper.CL"), decimals = 2) {
+  .lower <- formatC(data[[columns[[1]]]], digits = decimals, format = "f", flag = "0")
+  .upper <- formatC(data[[columns[[2]]]], digits = decimals, format = "f", flag = "0")
+  paste0("(", .lower, ", ", .upper, ")")
+}
+```
+
+- Format P-Value
+
+``` r
+#' @noRd
+fmt_pval <- function(data, columns = "p.value", decimals = 3) {
+  scale <- 10^(-1 * decimals)
+  p_scale <- paste0("<", scale)
+  if_else(data[[columns[[1]]]] < scale, p_scale,
+    formatC(data[[columns[[1]]]], digits = decimals, format = "f", flag = "0")
+  )
+}
+```
+
+### Step 2: ANCOVA analysis for HOMA data
+
+The data is available at
+<https://www.lshtm.ac.uk/research/centres-projects-groups/missing-data#dia-missing-data>.
+
+- Read in data and run ANCOVA model
+
+``` r
+data("r2rtf_HAMD17")
+HAMD17 <- r2rtf_HAMD17
+
+ana_week <- 8 # Analysis Week
+
+HAMD17_lmfit <- HAMD17 %>%
+  filter(week == ana_week) %>%
+  lm(change ~ basval + TRT, data = .)
+```
+
+- Raw summary
+
+``` r
+t11 <- HAMD17 %>%
+  filter(week == ana_week) %>%
+  group_by(TRT) %>%
+  summarise(
+    N = n(),
+    mean_bl = mean(basval),
+    sd_bl = sd(basval),
+    mean = mean(change),
+    sd = sd(change)
+  )
+```
+
+- LS means
+
+``` r
+t12 <- emmeans(HAMD17_lmfit, "TRT")
+t1 <- merge(t11, t12) %>%
+  mutate(emmean_sd = SE * sqrt(df)) %>%
+  mutate(
+    Trt = c("Study Drug", "Placebo"),
+    N1 = N,
+    Mean1 = fmt_est(., c("mean_bl", "sd_bl")),
+    N2 = N,
+    Mean2 = fmt_est(., c("mean", "sd")),
+    N3 = N,
+    Mean3 = fmt_est(., c("emmean", "emmean_sd")),
+    CI = paste(fmt_est(., "emmean"), fmt_ci(., c("lower.CL", "upper.CL")))
+  ) %>%
+  select(Trt:CI)
+```
+
+``` r
+knitr::kable(t1)
+```
+
+| Trt        |  N1 | Mean1       |  N2 | Mean2       |  N3 | Mean3       | CI                   |
+|:-----------|----:|:------------|----:|:------------|----:|:------------|:---------------------|
+| Study Drug |  61 | 16.6 (4.41) |  61 | -6.6 (5.95) |  61 | -7.0 (9.16) | -7.0 (-8.58, -5.38)  |
+| Placebo    |  70 | 18.4 (6.34) |  70 | -9.0 (7.04) |  70 | -8.7 (8.54) | -8.7 (-10.17, -7.18) |
+
+- Treatment Comparison
+
+``` r
+t2 <- data.frame(pairs(t12))
+
+t2 <- t2 %>%
+  mutate(
+    lower = estimate - 1.96 * SE,
+    upper = estimate + 1.96 * SE
+  ) %>%
+  mutate(
+    comp = "Study Drug vs. Placebo",
+    mean = paste(fmt_est(., "estimate"), fmt_ci(., c("lower", "upper"))),
+    p = fmt_pval(., "p.value")
+  ) %>%
+  select(comp:p)
+```
+
+``` r
+knitr::kable(t2)
+```
+
+| comp                   | mean              | p     |
+|:-----------------------|:------------------|:------|
+| Study Drug vs. Placebo | 1.7 (-0.49, 3.88) | 0.130 |
+
+- RMSE
+
+``` r
+t3 <- data.frame(rmse = paste0(
+  "Root Mean Squared Error of Change = ",
+  formatC(sd(HAMD17_lmfit$residuals), digits = 2, format = "f", flag = "0")
+))
+```
+
+``` r
+knitr::kable(t3)
+```
+
+| rmse                                     |
+|:-----------------------------------------|
+| Root Mean Squared Error of Change = 6.23 |
+
+### Step 3: Define table format
+
+The table consists of three data frames: `t1`, `t2`, and `t3`. We define
+each data frame’s format as below then combine them into a listing.
+
+``` r
+tbl_1 <- t1 %>%
+  rtf_title(
+    title = "ANCOVA of Change from Baseline at Week 20",
+    subtitle = c(
+      "Missing Data Approach",
+      "Analysis Population"
+    )
+  ) %>%
+  rtf_colheader(
+    colheader = " | Baseline | Week 20 | Change from Baseline",
+    col_rel_width = c(3, 4, 4, 9)
+  ) %>%
+  rtf_colheader(
+    colheader = "Treatment | N | Mean (SD) | N | Mean (SD) | N | Mean (SD) | LS Mean (95% CI){^a}",
+    col_rel_width = c(3, 1, 3, 1, 3, 1, 3, 5)
+  ) %>%
+  rtf_body(
+    col_rel_width = c(3, 1, 3, 1, 3, 1, 3, 5),
+    text_justification = c("l", rep("c", 7)),
+    last_row = FALSE
+  ) %>%
+  rtf_footnote(
+    footnote = c(
+      "{^a}Based on an ANCOVA model.",
+      "ANCOVA = Analysis of Covariance, CI = Confidence Interval, LS = Least Squares, SD = Standard Deviation"
+    )
+  ) %>%
+  rtf_source(
+    source = "Source: [study999: adam-adeff]"
+  )
+
+tbl_2 <- t2 %>%
+  rtf_colheader(
+    colheader = "Pairwise Comparison | Difference in LS Mean (95% CI){^a} | p-Value",
+    text_justification = c("l", "c", "c"),
+    col_rel_width = c(8, 7, 5)
+  ) %>%
+  rtf_body(
+    col_rel_width = c(8, 7, 5),
+    text_justification = c("l", "c", "c"),
+    last_row = FALSE
+  )
+
+tbl_3 <- t3 %>%
+  rtf_body(
+    as_colheader = FALSE,
+    col_rel_width = c(1),
+    text_justification = "l"
+  )
+
+tbl <- list(tbl_1, tbl_2, tbl_3)
+```
+
+``` r
+knitr::kable(tbl)
+```
+
+[TABLE]
+
+### Step 4: Output
+
+``` r
+# Output .rtf file
+tbl %>%
+  rtf_encode() %>%
+  write_rtf("rtf/efficacy_example.rtf")
+```
