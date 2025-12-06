@@ -72,3 +72,61 @@ write_rtf_para <- function(rtf, file) {
 
   invisible(file)
 }
+
+#' Write an RTF Table or Figure to a DOCX File
+#'
+#' @description
+#' The write_docx function writes an RTF encoding string to a .docx file
+#' by first writing to a temporary RTF file and then converting it to DOCX
+#' using LibreOffice.
+#'
+#' @section Specification:
+#' \if{latex}{
+#'  \itemize{
+#'    \item Write RTF encoding to a temporary RTF file.
+#'    \item Convert RTF to DOCX using LibreOffice command-line tool via \code{rtf_convert_format()}.
+#'  }
+#'  }
+#' \if{html}{The contents of this section are shown in PDF user manual only.}
+#'
+#' @param rtf A character rtf encoding string rendered by `rtf_encode()`.
+#' @param file A character string naming a file to save docx file.
+#'
+#' @details
+#' This function requires LibreOffice to be installed on the system.
+#' The function uses the internal \code{rtf_convert_format()} function
+#' to perform the conversion from RTF to DOCX format.
+#'
+#' Currently only Unix/Linux/macOS systems are supported.
+#'
+#' @export
+write_docx <- function(rtf, file) {
+  # Normalize the output file path
+  file <- normalizePath(file, mustWork = FALSE)
+
+  # Create output directory if it doesn't exist
+  output_dir <- dirname(file)
+  if (!dir.exists(output_dir)) {
+    dir.create(output_dir, recursive = TRUE)
+  }
+
+  # Create a temporary RTF file
+  tmpdir <- tempfile(pattern = "r2rtf_")
+  dir.create(tmpdir)
+  on.exit(unlink(tmpdir, recursive = TRUE), add = TRUE)
+
+  file_basename <- tools::file_path_sans_ext(basename(file))
+  rtf_path <- file.path(tmpdir, paste0(file_basename, ".rtf"))
+  write_rtf(rtf, rtf_path)
+
+  # Convert RTF to DOCX using existing rtf_convert_format function
+  rtf_convert_format(
+    input = rtf_path,
+    output_file = basename(file),
+    output_dir = output_dir,
+    format = "docx",
+    overwrite = TRUE
+  )
+
+  invisible(file)
+}
