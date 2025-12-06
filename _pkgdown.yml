@@ -88,7 +88,13 @@ reference:
   - "rtf_footnote"
   - "rtf_source"
   - "rtf_encode"
+- title: Write to File
+  contents:
   - "write_rtf"
+  - "write_docx"
+  - "write_html"
+- title: Assemble Documents
+  contents:
   - "assemble_rtf"
   - "assemble_docx"
 - title: RTF Figure
