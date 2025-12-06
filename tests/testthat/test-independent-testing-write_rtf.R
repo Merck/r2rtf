@@ -40,3 +40,130 @@ test_that("Write function test for dataset input", {
 
   expect_equal(y, z)
 })
+
+test_that("write_docx creates DOCX file from RTF encoding", {
+  skip_on_os("windows") # rtf_convert_format only supports Unix/Linux/macOS
+  skip_if_not(
+    nzchar(Sys.which("libreoffice")) ||
+      nzchar(Sys.which("libreoffice24.8")) ||
+      nzchar(Sys.which("libreoffice7.6")),
+    "LibreOffice is not installed"
+  )
+
+  # Create RTF encoding
+  rtf <- head(iris) |>
+    rtf_body() |>
+    rtf_encode()
+
+  # Write to DOCX
+  docx_file <- file.path(tempdir(), "test_table.docx")
+  result <- write_docx(rtf, docx_file)
+
+  # Verify file was created
+  expect_true(file.exists(docx_file))
+  expect_equal(result, docx_file)
+
+  # Clean up
+  unlink(docx_file)
+})
+
+test_that("write_docx creates output directory if needed", {
+  skip_on_os("windows") # rtf_convert_format only supports Unix/Linux/macOS
+  skip_if_not(
+    nzchar(Sys.which("libreoffice")) ||
+      nzchar(Sys.which("libreoffice24.8")) ||
+      nzchar(Sys.which("libreoffice7.6")),
+    "LibreOffice is not installed"
+  )
+
+  # Create RTF encoding
+  rtf <- head(cars) |>
+    rtf_body() |>
+    rtf_encode()
+
+  # Create nested path
+  nested_path <- file.path(tempdir(), "test_output_dir", "nested", "test.docx")
+
+  # Write to DOCX
+  result <- write_docx(rtf, nested_path)
+
+  # Verify directory and file were created
+  expect_true(dir.exists(dirname(nested_path)))
+  expect_true(file.exists(nested_path))
+
+  # Clean up
+  unlink(file.path(tempdir(), "test_output_dir"), recursive = TRUE)
+})
+
+test_that("write_docx fails gracefully when LibreOffice is not available", {
+  skip_on_os("windows") # rtf_convert_format only supports Unix/Linux/macOS
+  skip_if(
+    nzchar(Sys.which("libreoffice")) ||
+      nzchar(Sys.which("libreoffice24.8")) ||
+      nzchar(Sys.which("libreoffice7.6")),
+    "Skip if LibreOffice IS installed"
+  )
+
+  rtf <- head(iris) |>
+    rtf_body() |>
+    rtf_encode()
+
+  expect_error(
+    write_docx(rtf, file.path(tempdir(), "test.docx")),
+    "Can't find libreoffice"
+  )
+})
+
+test_that("write_html creates HTML file from RTF encoding", {
+  skip_on_os("windows") # rtf_convert_format only supports Unix/Linux/macOS
+  skip_if_not(
+    nzchar(Sys.which("libreoffice")) ||
+      nzchar(Sys.which("libreoffice24.8")) ||
+      nzchar(Sys.which("libreoffice7.6")),
+    "LibreOffice is not installed"
+  )
+
+  # Create RTF encoding
+  rtf <- head(iris) |>
+    rtf_body() |>
+    rtf_encode()
+
+  # Write to HTML
+  html_file <- file.path(tempdir(), "test_table.html")
+  result <- write_html(rtf, html_file)
+
+  # Verify file was created
+  expect_true(file.exists(html_file))
+  expect_equal(result, html_file)
+
+  # Clean up
+  unlink(html_file)
+})
+
+test_that("write_html creates output directory if needed", {
+  skip_on_os("windows") # rtf_convert_format only supports Unix/Linux/macOS
+  skip_if_not(
+    nzchar(Sys.which("libreoffice")) ||
+      nzchar(Sys.which("libreoffice24.8")) ||
+      nzchar(Sys.which("libreoffice7.6")),
+    "LibreOffice is not installed"
+  )
+
+  # Create RTF encoding
+  rtf <- head(cars) |>
+    rtf_body() |>
+    rtf_encode()
+
+  # Create nested path
+  nested_path <- file.path(tempdir(), "test_html_output", "nested", "test.html")
+
+  # Write to HTML
+  result <- write_html(rtf, nested_path)
+
+  # Verify directory and file were created
+  expect_true(dir.exists(dirname(nested_path)))
+  expect_true(file.exists(nested_path))
+
+  # Clean up
+  unlink(file.path(tempdir(), "test_html_output"), recursive = TRUE)
+})

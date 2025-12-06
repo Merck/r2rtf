@@ -25,7 +25,8 @@
 #' @param output_file A vector of filename for the output file.
 #' Default is the same filename for input.
 #' @param output_dir The output directory for the converted `output_dir`.
-#' @param format Converted file format extension. Currently support "pdf" or "docx"
+#' @param format Converted file format extension. Currently support "pdf"
+#'   or "docx" or "html"
 #' @param overwrite logical; should existing destination files be overwritten?
 #'
 #' @return A vector of file paths for the converted files.
