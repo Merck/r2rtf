@@ -69,27 +69,74 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><code>r2rtf</code> had an experimental internal function
-<code>r2rtf:::rtf_convert_format</code> to convert RTF format to PDF,
-DOCX, or HTML. This feature requires LibreOffice &gt;= 7.1 and was only
-tested in a Linux environment.</p>
-<p>By default, <code>r2rtf:::rtf_convert_format</code> convert RTF file
-to PDF format. The PDF file will be saved in the same folder with same
-file name by default.</p>
-<p>In example below, <code>ae_example.pdf</code> will be created in the
-same folder.</p>
+<p><code>r2rtf</code> provides multiple ways to convert RTF format to
+other formats including PDF, DOCX, and HTML:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>User-facing functions</strong>: <code><a href="../reference/write_docx.html">write_docx()</a></code>
+and <code><a href="../reference/write_html.html">write_html()</a></code> - Exported functions for converting RTF
+encoding to DOCX or HTML</li>
+<li>
+<strong>Internal function</strong>:
+<code>r2rtf:::rtf_convert_format()</code> - Lower-level function for
+batch conversion of RTF files</li>
+</ol>
+<p>All conversion features require LibreOffice &gt;= 7.1 and currently
+support Unix/Linux/macOS systems only.</p>
+</div>
+<div class="section level2">
+<h2 id="using-write_docx-and-write_html">Using write_docx() and write_html()<a class="anchor" aria-label="anchor" href="#using-write_docx-and-write_html"></a>
+</h2>
+<p>The <code><a href="../reference/write_docx.html">write_docx()</a></code> and <code><a href="../reference/write_html.html">write_html()</a></code> functions
+provide a simple interface to convert RTF encoding directly to DOCX or
+HTML formats.</p>
+<div class="section level3">
+<h3 id="write-docx">Write DOCX<a class="anchor" aria-label="anchor" href="#write-docx"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create RTF encoding</span></span>
+<span><span class="va">rtf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">iris</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert to DOCX</span></span>
+<span><span class="fu"><a href="../reference/write_docx.html">write_docx</a></span><span class="op">(</span><span class="va">rtf</span>, <span class="st">"output/table.docx"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="write-html">Write HTML<a class="anchor" aria-label="anchor" href="#write-html"></a>
+</h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Create RTF encoding</span></span>
+<span><span class="va">rtf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Convert to HTML</span></span>
+<span><span class="fu"><a href="../reference/write_html.html">write_html</a></span><span class="op">(</span><span class="va">rtf</span>, <span class="st">"output/table.html"</span><span class="op">)</span></span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="using-rtf_convert_format-advanced">Using rtf_convert_format() (Advanced)<a class="anchor" aria-label="anchor" href="#using-rtf_convert_format-advanced"></a>
+</h2>
+<p>The internal <code>r2rtf:::rtf_convert_format()</code> function
+provides more control for batch processing of existing RTF files.</p>
+<p>By default, <code>r2rtf:::rtf_convert_format</code> converts RTF
+files to PDF format. The PDF file will be saved in the same folder with
+same file name by default.</p>
+<p>In the example below, <code>ae_example.pdf</code> will be created in
+the same folder.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_convert_format</span><span class="op">(</span>input <span class="op">=</span> <span class="st">"rtf/ae_example.rtf"</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>Multiple files can be provided as input.</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_convert_format</span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="st">"rtf"</span>, pattern <span class="op">=</span> <span class="st">"*.rtf"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <ul>
-<li>The <code>format</code> argument allow use to specify output format
+<li>The <code>format</code> argument allows you to specify output format
 as <code>pdf</code>, <code>docx</code>, or <code>html</code>.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">rtf_convert_format</span><span class="op">(</span>input <span class="op">=</span> <span class="st">"rtf/ae_example.rtf"</span>, format <span class="op">=</span> <span class="st">"html"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="limitations">Limitations<a class="anchor" aria-label="anchor" href="#limitations"></a>

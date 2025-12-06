@@ -135,8 +135,18 @@ A BibTeX entry for LaTeX users is
   : Add Data Source Attributes to the Table
 - [`rtf_encode()`](https://merck.github.io/r2rtf/reference/rtf_encode.md)
   : Render to RTF Encoding
+
+## Write to File
+
 - [`write_rtf()`](https://merck.github.io/r2rtf/reference/write_rtf.md)
   : Write an RTF Table or Figure to an RTF File
+- [`write_docx()`](https://merck.github.io/r2rtf/reference/write_docx.md)
+  : Write an RTF Table or Figure to a DOCX File
+- [`write_html()`](https://merck.github.io/r2rtf/reference/write_html.md)
+  : Write an RTF Table or Figure to an HTML File
+
+## Assemble Documents
+
 - [`assemble_rtf()`](https://merck.github.io/r2rtf/reference/assemble_rtf.md)
   : Assemble Multiple RTF Table Listing and Figure Into One RTF Document
 - [`assemble_docx()`](https://merck.github.io/r2rtf/reference/assemble_docx.md)
