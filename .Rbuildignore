@@ -20,7 +20,6 @@
 ^jenkins$
 ^jobs-configuration.groovy$
 ^codecov\.yml$
-^tests/testthat/_snaps$
 ^sonar-project.properties$
 ^export_lib_paths.R$
 lib_paths
