@@ -345,3 +345,76 @@ test_that("Test case when using subline_by, page_by, group_by simultaneously wit
   )
   expect_true(tmp[[length(tmp)]])
 })
+
+test_that("Test pagenumber_hardcoding with multi-page table", {
+  tbl <- iris[1:100, ] |>
+    rtf_title("Table: Iris Data (\\pagenumber_hardcoding/\\totalpage)") |>
+    rtf_colheader("Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species") |>
+    rtf_body(col_rel_width = rep(1, 5))
+
+  encoded <- rtf_encode_table(tbl)
+
+  expect_snapshot_output(encoded)
+})
+
+test_that("Test pagenumber_hardcoding replaces correctly per page", {
+  tbl <- iris[1:100, ] |>
+    rtf_title("Table (\\pagenumber_hardcoding/\\totalpage)") |>
+    rtf_body(col_rel_width = rep(1, 5))
+
+  encoded <- rtf_encode_table(tbl)
+
+  pages <- strsplit(encoded$body, "\\\\page")[[1]]
+  n_pages <- length(pages)
+
+  for (i in seq_len(n_pages)) {
+    expect_true(grepl(as.character(i), pages[i], fixed = TRUE))
+    expect_true(grepl(as.character(n_pages), pages[i], fixed = TRUE))
+  }
+})
+
+test_that("Test pagenumber_hardcoding in page header", {
+  tbl <- iris[1:100, ] |>
+    rtf_page() |>
+    rtf_body() |>
+    rtf_page_header(text = "Page \\pagenumber_hardcoding of \\totalpage")
+
+  encoded <- rtf_encode_table(tbl)
+
+  pages <- strsplit(encoded$body, "\\\\page")[[1]]
+  n_pages <- length(pages)
+
+  for (i in seq_len(min(3, n_pages))) {
+    expect_true(grepl(paste0("Page ", i), pages[i]))
+    expect_true(grepl(paste0("of ", n_pages), pages[i]))
+  }
+})
+
+test_that("Test pagenumber_hardcoding with totalpage in footnote", {
+  tbl <- iris[1:100, ] |>
+    rtf_body(col_rel_width = rep(1, 5)) |>
+    rtf_footnote("Page \\pagenumber_hardcoding of \\totalpage")
+
+  attr(tbl, "page")$page_footnote <- "all"
+
+  encoded <- rtf_encode_table(tbl)
+
+  pages <- strsplit(encoded$body, "\\\\page")[[1]]
+  n_pages <- length(pages)
+
+  for (i in seq_len(min(3, n_pages))) {
+    expect_true(grepl(as.character(i), pages[i]))
+    expect_true(grepl(as.character(n_pages), pages[i]))
+  }
+})
+
+test_that("Test pagenumber_hardcoding survives without extra spaces", {
+  tbl <- iris[1:50, ] |>
+    rtf_title("Test (\\pagenumber_hardcoding/\\totalpage)") |>
+    rtf_body()
+
+  encoded <- rtf_encode_table(tbl)
+
+  expect_false(grepl("\\\\totalpage ", encoded$body, fixed = TRUE))
+  expect_false(grepl("\\\\pgnhardcoding", encoded$body, fixed = TRUE))
+})
