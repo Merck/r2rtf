@@ -258,6 +258,134 @@ is before the special character.</p>
 <embed src="pdf/text-combine3.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
 </div>
 </div>
+<div class="section level2">
+<h2 id="rtf-control-words-for-page-numbering">RTF Control Words for Page Numbering<a class="anchor" aria-label="anchor" href="#rtf-control-words-for-page-numbering"></a>
+</h2>
+<p>The r2rtf package supports several control words for page numbering
+in tables. These control words can be used in titles, headers,
+footnotes, and other text elements.</p>
+<div class="section level3">
+<h3 id="available-control-words">Available Control Words<a class="anchor" aria-label="anchor" href="#available-control-words"></a>
+</h3>
+<table class="table">
+<colgroup>
+<col width="37%">
+<col width="35%">
+<col width="27%">
+</colgroup>
+<thead><tr class="header">
+<th>Control Word</th>
+<th>Description</th>
+<th>Use Case</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td><code>\pagenumber</code></td>
+<td>Dynamic RTF page field (document-level)</td>
+<td>When you need the actual document page number</td>
+</tr>
+<tr class="even">
+<td><code>\pagenumber_hardcoding</code></td>
+<td>Hardcoded table-specific page number</td>
+<td>For multi-page tables with table-relative page numbering (e.g.,
+“Page 1 of 3”)</td>
+</tr>
+<tr class="odd">
+<td><code>\totalpage</code></td>
+<td>Total number of pages in the table</td>
+<td>Works with <code>\pagenumber_hardcoding</code> to show “X of Y”
+format</td>
+</tr>
+<tr class="even">
+<td><code>\pagefield</code></td>
+<td>RTF NUMPAGES field code</td>
+<td>For total document pages</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="example-1-using-pagenumber-document-level-page-number">Example 1: Using <code>\pagenumber</code> (Document-Level Page
+Number)<a class="anchor" aria-label="anchor" href="#example-1-using-pagenumber-document-level-page-number"></a>
+</h3>
+<p>This example uses <code>\pagenumber</code> which shows the
+document-level page number. When multiple tables are combined, it shows
+the absolute page position in the document.</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tbl1_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".rtf"</span><span class="op">)</span></span>
+<span><span class="va">tbl2_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".rtf"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">30</span>, <span class="op">]</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Table 1: Iris Data (Page \\pagenumber)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span><span class="st">"Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="va">tbl1_file</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">iris</span><span class="op">[</span><span class="fl">31</span><span class="op">:</span><span class="fl">60</span>, <span class="op">]</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Table 2: Iris Data (Page \\pagenumber)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span><span class="st">"Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="va">tbl2_file</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/assemble_rtf.html">assemble_rtf</a></span><span class="op">(</span></span>
+<span>  input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">tbl1_file</span>, <span class="va">tbl2_file</span><span class="op">)</span>,</span>
+<span>  output <span class="op">=</span> <span class="st">"rtf/page-number-dynamic.rtf"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<embed src="pdf/page-number-dynamic.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
+</div>
+<div class="section level3">
+<h3 id="example-2-using-pagenumber_hardcoding-table-specific-page-number">Example 2: Using <code>\pagenumber_hardcoding</code> (Table-Specific
+Page Number)<a class="anchor" aria-label="anchor" href="#example-2-using-pagenumber_hardcoding-table-specific-page-number"></a>
+</h3>
+<p>This example uses <code>\pagenumber_hardcoding</code> which shows the
+table-specific page number. When multiple tables are combined, each
+table maintains its own independent page numbering (1/N, 2/N, etc.).
+Note that Table 1 spans multiple pages to demonstrate how the page
+counter works within a single table.</p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">tbl3_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".rtf"</span><span class="op">)</span></span>
+<span><span class="va">tbl4_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".rtf"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Create a multi-page table to demonstrate page numbering within a single table</span></span>
+<span><span class="va">iris</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span>, <span class="op">]</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Table 1: Iris Data (\\pagenumber_hardcoding/\\totalpage)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span><span class="st">"Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="va">tbl3_file</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Single page table to show independent numbering</span></span>
+<span><span class="va">iris</span><span class="op">[</span><span class="fl">101</span><span class="op">:</span><span class="fl">130</span>, <span class="op">]</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_title.html">rtf_title</a></span><span class="op">(</span><span class="st">"Table 2: Iris Data (\\pagenumber_hardcoding/\\totalpage)"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_colheader.html">rtf_colheader</a></span><span class="op">(</span><span class="st">"Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_body.html">rtf_body</a></span><span class="op">(</span>col_rel_width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="va">tbl4_file</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/assemble_rtf.html">assemble_rtf</a></span><span class="op">(</span></span>
+<span>  input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">tbl3_file</span>, <span class="va">tbl4_file</span><span class="op">)</span>,</span>
+<span>  output <span class="op">=</span> <span class="st">"rtf/page-number-hardcoding.rtf"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<embed src="pdf/page-number-hardcoding.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed>
+</div>
+<div class="section level3">
+<h3 id="key-differences">Key Differences<a class="anchor" aria-label="anchor" href="#key-differences"></a>
+</h3>
+<p><strong><code>\pagenumber</code> (Dynamic Field):</strong> - Shows:
+1, 2, 3, 4, 5, … (continuous across document) - Use when: You need
+absolute document page numbers - Behavior: When combining tables with
+<code><a href="../reference/assemble_rtf.html">assemble_rtf()</a></code>, pages continue numbering across all
+tables</p>
+<p><strong><code>\pagenumber_hardcoding</code> (Hardcoded Table
+Pages):</strong> - Shows: Table 1 displays “1/3, 2/3, 3/3”, Table 2
+displays “1/1” (each restarts) - Use when: You need table-relative page
+numbering where each table has its own counter - Behavior: Each table’s
+pages are numbered independently starting from 1. This is especially
+useful for multi-page tables that need internal page tracking.</p>
+</div>
+</div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
 </div>

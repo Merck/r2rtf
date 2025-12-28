@@ -32,7 +32,7 @@ best practices.
 - Build package: `devtools::build()`
 - Check package: `devtools::check()`
 - Generate/update documentation: `devtools::document()` or
-  `roxygen2::roxygenise()`
+  [`roxygen2::roxygenise()`](https://roxygen2.r-lib.org/reference/roxygenize.html)
 - Install package locally: `devtools::install()`
 - Build pkgdown site:
   [`pkgdown::build_site()`](https://pkgdown.r-lib.org/reference/build_site.html)
