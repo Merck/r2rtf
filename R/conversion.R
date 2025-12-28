@@ -85,7 +85,8 @@ convert <- function(text,
       "\n" = "\\line ",
       "\\pagenumber" = "\\chpgn ",
       "\\totalpage" = "\\totalpage",
-      "\\pagefield" = "{\\field{\\*\\fldinst NUMPAGES }} "
+      "\\pagefield" = "{\\field{\\*\\fldinst NUMPAGES }} ",
+      "\\pagenumber_hardcoding" = "\\pgnhardcoding"
     )
 
     # Define Pattern for latex code

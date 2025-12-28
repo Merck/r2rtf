@@ -151,10 +151,13 @@ rtf_encode_table <- function(tbl, verbose = FALSE) {
     sep = "\n"
   )
 
-  rtf_feature <- paste(unlist(rtf_feature), collapse = "\n")
+  ## Post Processing for page numbers (per page basis)
+  for (i in seq_len(n_page)) {
+    rtf_feature[i] <- gsub("\\pgnhardcoding", i, rtf_feature[i], fixed = TRUE)
+    rtf_feature[i] <- gsub("\\totalpage", n_page, rtf_feature[i], fixed = TRUE)
+  }
 
-  ## Post Processing for total page number
-  rtf_feature <- gsub("\\totalpage", n_page, rtf_feature, fixed = TRUE) # total page number
+  rtf_feature <- paste(unlist(rtf_feature), collapse = "\n") # total page number
 
   end <- as_rtf_end()
   if (verbose) {

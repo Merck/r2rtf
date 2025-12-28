@@ -237,3 +237,94 @@ r2rtf:::write_rtf_para(res, "rtf/text-combine3.rtf")
 ```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
 knitr::include_graphics("pdf/text-combine3.pdf")
 ```
+
+## RTF Control Words for Page Numbering
+
+The r2rtf package supports several control words for page numbering in tables. These control words can be used in titles, headers, footnotes, and other text elements.
+
+### Available Control Words
+
+| Control Word | Description | Use Case |
+|--------------|-------------|----------|
+| `\pagenumber` | Dynamic RTF page field (document-level) | When you need the actual document page number |
+| `\pagenumber_hardcoding` | Hardcoded table-specific page number | For multi-page tables with table-relative page numbering (e.g., "Page 1 of 3") |
+| `\totalpage` | Total number of pages in the table | Works with `\pagenumber_hardcoding` to show "X of Y" format |
+| `\pagefield` | RTF NUMPAGES field code | For total document pages |
+
+### Example 1: Using `\pagenumber` (Document-Level Page Number)
+
+This example uses `\pagenumber` which shows the document-level page number. When multiple tables are combined, it shows the absolute page position in the document.
+
+```{r}
+tbl1_file <- tempfile(fileext = ".rtf")
+tbl2_file <- tempfile(fileext = ".rtf")
+
+iris[1:30, ] |>
+  rtf_title("Table 1: Iris Data (Page \\pagenumber)") |>
+  rtf_colheader("Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species") |>
+  rtf_body(col_rel_width = rep(1, 5)) |>
+  rtf_encode() |>
+  write_rtf(tbl1_file)
+
+iris[31:60, ] |>
+  rtf_title("Table 2: Iris Data (Page \\pagenumber)") |>
+  rtf_colheader("Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species") |>
+  rtf_body(col_rel_width = rep(1, 5)) |>
+  rtf_encode() |>
+  write_rtf(tbl2_file)
+
+assemble_rtf(
+  input = c(tbl1_file, tbl2_file),
+  output = "rtf/page-number-dynamic.rtf"
+)
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/page-number-dynamic.pdf")
+```
+
+### Example 2: Using `\pagenumber_hardcoding` (Table-Specific Page Number)
+
+This example uses `\pagenumber_hardcoding` which shows the table-specific page number. When multiple tables are combined, each table maintains its own independent page numbering (1/N, 2/N, etc.). Note that Table 1 spans multiple pages to demonstrate how the page counter works within a single table.
+
+```{r}
+tbl3_file <- tempfile(fileext = ".rtf")
+tbl4_file <- tempfile(fileext = ".rtf")
+
+# Create a multi-page table to demonstrate page numbering within a single table
+iris[1:100, ] |>
+  rtf_title("Table 1: Iris Data (\\pagenumber_hardcoding/\\totalpage)") |>
+  rtf_colheader("Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species") |>
+  rtf_body(col_rel_width = rep(1, 5)) |>
+  rtf_encode() |>
+  write_rtf(tbl3_file)
+
+# Single page table to show independent numbering
+iris[101:130, ] |>
+  rtf_title("Table 2: Iris Data (\\pagenumber_hardcoding/\\totalpage)") |>
+  rtf_colheader("Sepal.Length | Sepal.Width | Petal.Length | Petal.Width | Species") |>
+  rtf_body(col_rel_width = rep(1, 5)) |>
+  rtf_encode() |>
+  write_rtf(tbl4_file)
+
+assemble_rtf(
+  input = c(tbl3_file, tbl4_file),
+  output = "rtf/page-number-hardcoding.rtf"
+)
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/page-number-hardcoding.pdf")
+```
+
+### Key Differences
+
+**`\pagenumber` (Dynamic Field):**
+- Shows: 1, 2, 3, 4, 5, ... (continuous across document)
+- Use when: You need absolute document page numbers
+- Behavior: When combining tables with `assemble_rtf()`, pages continue numbering across all tables
+
+**`\pagenumber_hardcoding` (Hardcoded Table Pages):**
+- Shows: Table 1 displays "1/3, 2/3, 3/3", Table 2 displays "1/1" (each restarts)
+- Use when: You need table-relative page numbering where each table has its own counter
+- Behavior: Each table's pages are numbered independently starting from 1. This is especially useful for multi-page tables that need internal page tracking.
