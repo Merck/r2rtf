@@ -27,6 +27,10 @@ with_graphics_device <- function(expr) {
 #' Open a file-backed device (prefer the session default) targeting the
 #' platform null file so no output is created on disk.
 #'
+#' This first tries to use the session default device from `getOption("device")`
+#' when it supports a `file` or `filename` argument. If that does not result in
+#' an open device, it falls back to [grDevices::pdf()] writing to the null file.
+#'
 #' @returns The device number returned by [grDevices::dev.cur()] after the
 #'   attempt. If no device could be opened, this will be `1` (the null device;
 #'   i.e., no active device), which is safe because `close_device()` treats `1`
