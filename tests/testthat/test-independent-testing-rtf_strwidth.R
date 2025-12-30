@@ -15,7 +15,7 @@ tbl <- df |>
 
 strw <- round(r2rtf:::rtf_strwidth(tbl), 5)
 
-size8italic <- round(with_graphics_device(graphics::strwidth(
+size8italic <- round(r2rtf:::with_graphics_device(graphics::strwidth(
   "This is a long sentence",
   units = "inches",
   cex = 2 / 3,
@@ -23,7 +23,7 @@ size8italic <- round(with_graphics_device(graphics::strwidth(
   family = "Times"
 )), 5)
 
-bold <- round(with_graphics_device(graphics::strwidth(
+bold <- round(r2rtf:::with_graphics_device(graphics::strwidth(
   "third",
   units = "inches",
   cex = 2 / 3,
