@@ -41,7 +41,10 @@ open_null_device <- function() {
   if (is.function(device_opt)) {
     device_fun <- device_opt
   } else if (is.character(device_opt) && length(device_opt) == 1L) {
-    device_fun <- get(device_opt, mode = "function")
+    device_fun <- tryCatch(
+      get(device_opt, mode = "function"),
+      error = function(e) NULL
+    )
   }
 
   if (is.function(device_fun)) {
