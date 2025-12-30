@@ -76,8 +76,8 @@ cellsize <- matrix(width, nrow = nrow(tbl), ncol = ncol(tbl), byrow = TRUE) - pa
 nline_vector <- rtf_nline_vector(
   text = c("title 1", "this is a sentence for title 2", NA),
   strwidth = c(
-    strwidth("title 1", units = "inches"),
-    strwidth("this is a sentence for title 2", units = "inches")
+    with_graphics_device(graphics::strwidth("title 1", units = "inches")),
+    with_graphics_device(graphics::strwidth("this is a sentence for title 2", units = "inches"))
   ),
   size = 0.5
 )
