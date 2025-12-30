@@ -1,10 +1,17 @@
+# r2rtf 1.2.0.9000
+
+## Bug fixes
+
+- `strwidth()` and `par()` calls no longer leak a graphics device when
+  no device is active, preventing unwanted `Rplots.pdf` output (#285).
+
 # r2rtf 1.2.0
 
 ## New features
 
-- Add internationalization (i18n) support with `use_i18n` parameter in `rtf_page()` 
+- Add internationalization (i18n) support with `use_i18n` parameter in `rtf_page()`
   to enable SimSun font for Chinese character support in RTF documents (#256).
-- Add `text_hyphenation` parameter to `rtf_title()`, `rtf_colheader()`, and 
+- Add `text_hyphenation` parameter to `rtf_title()`, `rtf_colheader()`, and
   `rtf_subline()` functions to control text hyphenation in RTF output (#235).
 
 ## Improvements
