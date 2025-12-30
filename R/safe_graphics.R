@@ -27,7 +27,10 @@ with_graphics_device <- function(expr) {
 #' Open a file-backed device (prefer the session default) targeting the
 #' platform null file so no output is created on disk.
 #'
-#' @returns The opened device number (or 1 if opening failed).
+#' @returns The device number returned by [grDevices::dev.cur()] after the
+#'   attempt. If no device could be opened, this will be `1` (the null device;
+#'   i.e., no active device), which is safe because `close_device()` treats `1`
+#'   as a no-op.
 #'
 #' @noRd
 open_null_device <- function() {
