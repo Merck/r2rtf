@@ -135,7 +135,7 @@ ds_tbl <- ds %>%
     border_bottom = c("single", rep("", 4)),
   ) %>%
   rtf_footnote(c("This is footnote")) %>%
-  rtf_source("Source:  [Study MK9999P001: adam-adsl]")
+  rtf_source("Source:  [Study CDISCPILOT01: adam-adsl]")
 ```
 
 ### Step 3: Output
@@ -246,7 +246,7 @@ apr0ae_rtf <- apr0ae %>%
     pageby_row = "first_row",
   ) %>%
   rtf_footnote(c("This is footnote")) %>%
-  rtf_source("Source:  [Study MK9999P001: adam-adae]")
+  rtf_source("Source:  [Study CDISCPILOT01: adam-adae]")
 ```
 
 ### Step 3: Output
@@ -305,7 +305,7 @@ ae_tbl <- ae_t1 %>%
   arrange(SUBLINEBY, TRTA, SUBJLINE, USUBJID, ASTDY) %>%
   rtf_page(orientation = "landscape", col_width = 9) %>%
   rtf_page_header() %>%
-  rtf_page_footer(text = "CONFIDENTIAL") %>%
+  rtf_page_footer(text = "This is Page Footer Information") %>%
   rtf_title(
     "Listing of Subjects With Serious Adverse Events",
     "ASaT"
@@ -329,7 +329,7 @@ ae_tbl <- ae_t1 %>%
     group_by = c("USUBJID", "ASTDY")
   ) %>%
   rtf_footnote(c("This is footnote 1")) %>%
-  rtf_source("Source:  [Study MK9999P001: adam-adae]")
+  rtf_source("Source:  [Study CDISCPILOT01: adam-adae]")
 ```
 
 ### Step 3: Output
