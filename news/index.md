@@ -1,14 +1,45 @@
 # Changelog
 
-## r2rtf 1.2.0.9000
+## r2rtf 1.3.0
+
+### New features
+
+- Add
+  [`write_docx()`](https://merck.github.io/r2rtf/reference/write_docx.md)
+  and
+  [`write_html()`](https://merck.github.io/r2rtf/reference/write_html.md)
+  to output encoded RTF to DOCX/HTML via LibreOffice
+  ([@elong0527](https://github.com/elong0527),
+  [\#281](https://github.com/Merck/r2rtf/issues/281)).
+- Add `\\pagenumber_hardcoding` control word for table-relative page
+  numbering in multi-page tables
+  ([@wangben718](https://github.com/wangben718),
+  [\#283](https://github.com/Merck/r2rtf/issues/283)).
 
 ### Bug fixes
 
+- Remove trailing whitespace after `\\totalpage` to avoid emitting extra
+  spaces and support page-aware substitution
+  ([@elong0527](https://github.com/elong0527),
+  [\#280](https://github.com/Merck/r2rtf/issues/280)).
 - [`strwidth()`](https://rdrr.io/r/graphics/strwidth.html) and
   [`par()`](https://rdrr.io/r/graphics/par.html) calls no longer leak a
   graphics device when no device is active, preventing unwanted
-  `Rplots.pdf` output
-  ([\#285](https://github.com/Merck/r2rtf/issues/285)).
+  `Rplots.pdf` output ([@nanxstats](https://github.com/nanxstats),
+  [\#285](https://github.com/Merck/r2rtf/issues/285)).
+
+### Improvements
+
+- Update vignette examples to avoid misleading footer/source labels
+  ([@wangben718](https://github.com/wangben718),
+  [\#286](https://github.com/Merck/r2rtf/issues/286)).
+
+### Maintenance
+
+- Include `tests/testthat/_snaps/` in the built package to satisfy
+  testthat snapshot requirements and fix `R CMD check` with testthat \>=
+  3.3.0 ([@elong0527](https://github.com/elong0527),
+  [\#282](https://github.com/Merck/r2rtf/issues/282)).
 
 ## r2rtf 1.2.0
 
