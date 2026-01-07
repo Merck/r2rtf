@@ -1,5 +1,15 @@
 # Changelog
 
+## r2rtf 1.2.0.9000
+
+### Bug fixes
+
+- [`strwidth()`](https://rdrr.io/r/graphics/strwidth.html) and
+  [`par()`](https://rdrr.io/r/graphics/par.html) calls no longer leak a
+  graphics device when no device is active, preventing unwanted
+  `Rplots.pdf` output
+  ([\#285](https://github.com/Merck/r2rtf/issues/285)).
+
 ## r2rtf 1.2.0
 
 CRAN release: 2025-08-22
