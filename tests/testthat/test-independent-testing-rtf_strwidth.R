@@ -15,19 +15,21 @@ tbl <- df |>
 
 strw <- round(r2rtf:::rtf_strwidth(tbl), 5)
 
-size8italic <- round(graphics::strwidth("This is a long sentence",
+size8italic <- round(r2rtf:::with_graphics_device(graphics::strwidth(
+  "This is a long sentence",
   units = "inches",
   cex = 2 / 3,
   font = 3,
   family = "Times"
-), 5)
+)), 5)
 
-bold <- round(graphics::strwidth("third",
+bold <- round(r2rtf:::with_graphics_device(graphics::strwidth(
+  "third",
   units = "inches",
   cex = 2 / 3,
   font = 2,
   family = "Times"
-), 5)
+)), 5)
 
 
 test_that("test if width are calculated correctly for case when font size is 8", {

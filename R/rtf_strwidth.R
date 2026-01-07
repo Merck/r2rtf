@@ -53,7 +53,7 @@ rtf_strwidth <- function(tbl) {
   }
 
   # Font size
-  text_cex <- attr(tbl, "text_font_size") / graphics::par("ps")
+  text_cex <- attr(tbl, "text_font_size") / with_graphics_device(graphics::par("ps"))
 
   # Font format
   # text format 1 (plain/normal), 2 (bold), 3 (italic), 4 (bold-italic)
@@ -110,12 +110,13 @@ rtf_strwidth <- function(tbl) {
       grDevices::windowsFonts("Courier" = grDevices::windowsFont("Courier New"))
     }
 
-    x$width <- graphics::strwidth(x$text,
+    x$width <- with_graphics_device(graphics::strwidth(
+      x$text,
       units = "inches",
       cex = x$cex[1],
       font = x$font[1],
       family = as.character(x$family[1])
-    )
+    ))
     x
   })
   db <- do.call(rbind, db_list)
