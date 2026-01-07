@@ -16,7 +16,7 @@
 
 ## Improvements
 
-- Update vignette examples to avoid misleading footer/source labels (#286).
+- Update vignette examples to avoid misleading footer/source labels (@wangben718, #286).
 
 ## Maintenance
 
