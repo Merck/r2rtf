@@ -2,6 +2,8 @@
 
 ## r2rtf 1.3.0
 
+CRAN release: 2026-01-09
+
 ### New features
 
 - Add

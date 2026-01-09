@@ -48,7 +48,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/Merck/r2rtf/blob/master/inst/CITATION)
+[`inst/CITATION`](https://github.com/Merck/r2rtf/blob/v1.3.0/inst/CITATION)
 
 Wang S, Ye S, Anderson KM, Zhang Y (2020). “r2rtf—an R Package to
 Produce Rich Text Format (RTF) Tables and Figures.” In *PharmaSUG*.
