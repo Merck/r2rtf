@@ -31,7 +31,6 @@ test_that("rtf_span_row errors on out-of-range indices", {
 })
 
 test_that("rtf_span_row errors on non-logical non-integer input", {
-
   tbl <- iris[1:5, ] |> rtf_body()
   expect_error(rtf_span_row(tbl, span_row = "row1"))
 })
@@ -40,7 +39,9 @@ test_that("rtf_span_row errors on non-logical non-integer input", {
 # --- rtf_table_content() with span ---
 
 test_that("rtf_table_content emits clmgf and clmrg for span rows", {
-  tbl <- iris[1:3, ] |> rtf_body() |> rtf_span_row(span_row = c(TRUE, FALSE, FALSE))
+  tbl <- iris[1:3, ] |>
+    rtf_body() |>
+    rtf_span_row(span_row = c(TRUE, FALSE, FALSE))
   result <- rtf_table_content(tbl, use_border_bottom = TRUE)
 
   # result is a matrix; columns correspond to rows in the table
@@ -57,7 +58,9 @@ test_that("rtf_table_content emits clmgf and clmrg for span rows", {
 })
 
 test_that("rtf_table_content empties continuation cells for span rows", {
-  tbl <- iris[1:3, ] |> rtf_body() |> rtf_span_row(span_row = c(TRUE, FALSE, FALSE))
+  tbl <- iris[1:3, ] |>
+    rtf_body() |>
+    rtf_span_row(span_row = c(TRUE, FALSE, FALSE))
   result <- rtf_table_content(tbl, use_border_bottom = TRUE)
 
   # For span row (column 1 of result matrix), continuation cells should be \\pard\\cell
@@ -69,7 +72,9 @@ test_that("rtf_table_content empties continuation cells for span rows", {
 })
 
 test_that("rtf_table_content first cell retains content for span rows", {
-  tbl <- iris[1:3, ] |> rtf_body() |> rtf_span_row(span_row = c(TRUE, FALSE, FALSE))
+  tbl <- iris[1:3, ] |>
+    rtf_body() |>
+    rtf_span_row(span_row = c(TRUE, FALSE, FALSE))
   result <- rtf_table_content(tbl, use_border_bottom = TRUE)
 
   # First cell content (row after borders) should NOT be just \\pard\\cell
