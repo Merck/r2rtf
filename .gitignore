@@ -9,3 +9,4 @@ r2rtf.Rcheck/
 r2rtf*.tar.gz
 r2rtf*.tgz
 revdep/
+RESEARCH-*.md

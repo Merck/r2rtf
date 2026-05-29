@@ -94,10 +94,14 @@ as_rtf_table <- function(tbl) {
 
   # Remove repeated records if group_by is not null
   if (!is.null(group_by)) {
+    saved_attrs <- attributes(cell_tbl)
     cell_tbl <- rtf_group_by_enhance(cell_tbl,
       group_by = group_by,
       page_index = page_dict$page
     )
+    for (a in setdiff(names(saved_attrs), names(attributes(cell_tbl)))) {
+      attr(cell_tbl, a) <- saved_attrs[[a]]
+    }
   }
 
   # Add border type for first and last row

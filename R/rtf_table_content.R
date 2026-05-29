@@ -165,11 +165,29 @@ rtf_table_content <- function(tbl,
   cell_size <- cumsum(cell_width)
   cell_size <- foo(cell_size)
 
+  # Horizontal Merge (span rows)
+  span_row <- attr(tbl, "rtf_span_row")
+  if (!is.null(span_row) && any(span_row) && n_col > 1) {
+    cell_h_merge <- matrix("", nrow = n_row, ncol = n_col)
+    cell_h_merge[span_row, 1] <- "\\clmgf"
+    cell_h_merge[span_row, 2:n_col] <- "\\clmrg"
+
+    # For span rows, the first cell (\clmgf) controls all visible borders.
+    # Copy the last cell's right border onto the first cell, then clear internals.
+    border_left_rtf <- matrix(border_left_rtf, nrow = n_row, ncol = n_col)
+    border_right_rtf <- matrix(border_right_rtf, nrow = n_row, ncol = n_col)
+    border_right_rtf[span_row, 1] <- border_right_rtf[span_row, n_col]
+    border_left_rtf[span_row, 2:n_col] <- ""
+    border_right_rtf[span_row, 2:n_col] <- ""
+  } else {
+    cell_h_merge <- ""
+  }
+
   # Combine Cell Attributes of cell justification, cell border type, cell border width, cell border color, cell background color and cell size.
-  border_top_left <- matrix(paste0(border_left_rtf, border_top_rtf, text_background_color_rtf, cell_vertical_justification, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
-  border_top_left_right <- matrix(paste0(border_left_rtf, border_top_rtf, border_right_rtf, text_background_color_rtf, cell_vertical_justification, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
-  border_top_left_bottom <- matrix(paste0(border_left_rtf, border_top_rtf, border_bottom_rtf, text_background_color_rtf, cell_vertical_justification, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
-  border_all <- matrix(paste0(border_left_rtf, border_top_rtf, border_right_rtf, border_bottom_rtf, text_background_color_rtf, cell_vertical_justification, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
+  border_top_left <- matrix(paste0(border_left_rtf, border_top_rtf, text_background_color_rtf, cell_vertical_justification, cell_h_merge, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
+  border_top_left_right <- matrix(paste0(border_left_rtf, border_top_rtf, border_right_rtf, text_background_color_rtf, cell_vertical_justification, cell_h_merge, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
+  border_top_left_bottom <- matrix(paste0(border_left_rtf, border_top_rtf, border_bottom_rtf, text_background_color_rtf, cell_vertical_justification, cell_h_merge, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
+  border_all <- matrix(paste0(border_left_rtf, border_top_rtf, border_right_rtf, border_bottom_rtf, text_background_color_rtf, cell_vertical_justification, cell_h_merge, "\\cellx", cell_size), nrow = n_row, ncol = n_col)
 
   if (use_border_bottom) {
     border_rtf <- border_top_left_bottom
@@ -177,6 +195,11 @@ rtf_table_content <- function(tbl,
   } else {
     border_rtf <- border_top_left
     border_rtf[, n_col] <- border_top_left_right[, n_col]
+  }
+
+  # For span rows, first cell is the only visible cell — give it all 4 borders
+  if (!is.null(span_row) && any(span_row) && n_col > 1) {
+    border_rtf[span_row, 1] <- border_all[span_row, 1]
   }
 
   border_rtf <- t(border_rtf)
@@ -205,6 +228,11 @@ rtf_table_content <- function(tbl,
     hyphenation = FALSE,
     cell = TRUE
   )
+
+  # Clear continuation cell content for span rows
+  if (!is.null(span_row) && any(span_row) && n_col > 1) {
+    cell_rtf[span_row, 2:n_col] <- "\\pard\\cell"
+  }
 
   rbind(row_begin, border_rtf, t(cell_rtf), row_end)
 }

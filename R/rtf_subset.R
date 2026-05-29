@@ -96,5 +96,9 @@ rtf_subset <- function(tbl,
 
   attr(tbl_sub, "col_rel_width") <- attr(tbl, "col_rel_width")[col]
 
+  if (!is.null(attr(tbl, "rtf_span_row"))) {
+    attr(tbl_sub, "rtf_span_row") <- attr(tbl, "rtf_span_row")[row]
+  }
+
   tbl_sub
 }
