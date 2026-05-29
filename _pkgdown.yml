@@ -85,6 +85,7 @@ reference:
   - "rtf_subline"
   - "rtf_colheader"
   - "rtf_body"
+  - "rtf_span_row"
   - "rtf_footnote"
   - "rtf_source"
   - "rtf_encode"
