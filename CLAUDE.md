@@ -32,7 +32,7 @@ best practices.
 - Build package: `devtools::build()`
 - Check package: `devtools::check()`
 - Generate/update documentation: `devtools::document()` or
-  [`roxygen2::roxygenise()`](https://roxygen2.r-lib.org/reference/roxygenize.html)
+  `roxygen2::roxygenise()`
 - Install package locally: `devtools::install()`
 - Build pkgdown site:
   [`pkgdown::build_site()`](https://pkgdown.r-lib.org/reference/build_site.html)
@@ -58,6 +58,7 @@ Install with:
 For better dependency management, use `pak`:
 
 ``` r
+
 # Install pak if not available
 install.packages("pak", repos = "https://r-lib.github.io/p/pak/stable/")
 

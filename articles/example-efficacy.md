@@ -1,6 +1,7 @@
 # RTF Examples for Efficacy Tables
 
 ``` r
+
 library(r2rtf)
 library(dplyr)
 library(tidyr)
@@ -16,6 +17,7 @@ This example shows how to create a efficacy table as below.
 - Format Model Estimator
 
 ``` r
+
 #' The function assume 1 or 2 column.
 #'   If there is only 1 column, only represent mean
 #'   If there are 2 column, represent mean (sd) or mean(se)
@@ -35,6 +37,7 @@ fmt_est <- function(data, columns = c("mean", "sd"), decimals = c(1, 2)) {
 - Format Confidence Interval
 
 ``` r
+
 #' @noRd
 fmt_ci <- function(data, columns = c("lower.CL", "upper.CL"), decimals = 2) {
   .lower <- formatC(data[[columns[[1]]]], digits = decimals, format = "f", flag = "0")
@@ -46,6 +49,7 @@ fmt_ci <- function(data, columns = c("lower.CL", "upper.CL"), decimals = 2) {
 - Format P-Value
 
 ``` r
+
 #' @noRd
 fmt_pval <- function(data, columns = "p.value", decimals = 3) {
   scale <- 10^(-1 * decimals)
@@ -64,6 +68,7 @@ The data is available at
 - Read in data and run ANCOVA model
 
 ``` r
+
 data("r2rtf_HAMD17")
 HAMD17 <- r2rtf_HAMD17
 
@@ -77,6 +82,7 @@ HAMD17_lmfit <- HAMD17 %>%
 - Raw summary
 
 ``` r
+
 t11 <- HAMD17 %>%
   filter(week == ana_week) %>%
   group_by(TRT) %>%
@@ -92,6 +98,7 @@ t11 <- HAMD17 %>%
 - LS means
 
 ``` r
+
 t12 <- emmeans(HAMD17_lmfit, "TRT")
 t1 <- merge(t11, t12) %>%
   mutate(emmean_sd = SE * sqrt(df)) %>%
@@ -109,6 +116,7 @@ t1 <- merge(t11, t12) %>%
 ```
 
 ``` r
+
 knitr::kable(t1)
 ```
 
@@ -120,6 +128,7 @@ knitr::kable(t1)
 - Treatment Comparison
 
 ``` r
+
 t2 <- data.frame(pairs(t12))
 
 t2 <- t2 %>%
@@ -136,6 +145,7 @@ t2 <- t2 %>%
 ```
 
 ``` r
+
 knitr::kable(t2)
 ```
 
@@ -146,6 +156,7 @@ knitr::kable(t2)
 - RMSE
 
 ``` r
+
 t3 <- data.frame(rmse = paste0(
   "Root Mean Squared Error of Change = ",
   formatC(sd(HAMD17_lmfit$residuals), digits = 2, format = "f", flag = "0")
@@ -153,6 +164,7 @@ t3 <- data.frame(rmse = paste0(
 ```
 
 ``` r
+
 knitr::kable(t3)
 ```
 
@@ -166,6 +178,7 @@ The table consists of three data frames: `t1`, `t2`, and `t3`. We define
 each data frame’s format as below then combine them into a listing.
 
 ``` r
+
 tbl_1 <- t1 %>%
   rtf_title(
     title = "ANCOVA of Change from Baseline at Week 20",
@@ -220,6 +233,7 @@ tbl <- list(tbl_1, tbl_2, tbl_3)
 ```
 
 ``` r
+
 knitr::kable(tbl)
 ```
 
@@ -228,6 +242,7 @@ knitr::kable(tbl)
 ### Step 4: Output
 
 ``` r
+
 # Output .rtf file
 tbl %>%
   rtf_encode() %>%

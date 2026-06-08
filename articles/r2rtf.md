@@ -40,6 +40,7 @@ found in help page of the dataset
 - AEDECOD: Dictionary-Derived Term
 
 ``` r
+
 library(r2rtf)
 library(ggplot2)
 library(dplyr)
@@ -47,6 +48,7 @@ library(tidyr)
 ```
 
 ``` r
+
 r2rtf_adae %>%
   select(USUBJID, TRTA, AEDECOD) %>%
   head(4)
@@ -69,6 +71,7 @@ In this AE example, we provide number of subjects with each type of AE
 by treatment group.
 
 ``` r
+
 tbl <- r2rtf_adae %>%
   count(TRTA, AEDECOD) %>%
   pivot_wider(names_from = TRTA, values_from = n, values_fill = 0)
@@ -111,6 +114,7 @@ create an RTF table.
   saves RTF encoding into a file with file extension `.rtf`.
 
 ``` r
+
 head(tbl) %>%
   rtf_body() %>% # Step 1 Add table  attributes
   rtf_encode() %>% # Step 2 Convert attributes to RTF encode
@@ -132,6 +136,7 @@ of `col_rel_width` is used. Therefore it is equivalent to use
 `col_rel_width = c(6,4,4,4)` or `col_rel_width = c(1.5,1,1,1)`.
 
 ``` r
+
 head(tbl) %>%
   rtf_body(col_rel_width = c(3, 2, 2, 2)) %>%
   # define relative width
@@ -161,6 +166,7 @@ In `rtf_colheader`, `colheader` argument is used to provide content of
 column header. We used `"|"` to separate the columns.
 
 ``` r
+
 head(tbl) %>%
   rtf_colheader(
     colheader = "Adverse Events | Placebo | Xanomeline High Dose | Xanomeline Low Dose",
@@ -183,6 +189,7 @@ complicated column headers. If there are multiple pages, column header
 will repeat at each page by default.
 
 ``` r
+
 head(tbl, 50) %>%
   rtf_colheader(
     colheader = " | Treatment",
@@ -211,6 +218,7 @@ All possible inputs can be found in the first column of
 `r2rtf:::justification()`.
 
 ``` r
+
 r2rtf:::justification()
 ##   type      name rtf_code_text rtf_code_row
 ## 1    l      left          \\ql       \\trql
@@ -224,6 +232,7 @@ Below is an example that makes the first column left-aligned and
 center-aligned for the rest.
 
 ``` r
+
 head(tbl) %>%
   rtf_body(text_justification = c("l", "c", "c", "c")) %>%
   rtf_encode() %>%
@@ -242,6 +251,7 @@ All possible inputs and corresponding text style can be found in
 `r2rtf:::font_format()`.
 
 ``` r
+
 r2rtf:::font_format()
 ##   type        name rtf_code
 ## 1           normal         
@@ -262,6 +272,7 @@ Below is an example to make first column in bold and normal for the
 rest.
 
 ``` r
+
 head(tbl) %>%
   rtf_body(text_format = c("b", "", "", "")) %>%
   rtf_encode() %>%
@@ -285,6 +296,7 @@ There are 26 different border types and we only display the first six
 here.
 
 ``` r
+
 head(r2rtf:::border_type())
 ##         name     rtf_code
 ## 1                        
@@ -296,6 +308,7 @@ head(r2rtf:::border_type())
 ```
 
 ``` r
+
 head(tbl) %>%
   rtf_colheader(
     colheader = " | Treatment",
@@ -327,6 +340,7 @@ input in `text_format`.
 > We used soft return to break lines in title.
 
 ``` r
+
 head(tbl) %>%
   rtf_title(
     title = c(
@@ -357,6 +371,7 @@ Below example showed the case when using `as_table = TRUE` (default) to
 display footnote inside the table body.
 
 ``` r
+
 head(tbl) %>%
   rtf_title(title = "Adverse Event Count by Treatment Group") %>%
   rtf_colheader(
@@ -379,6 +394,7 @@ Below example showed the case when using `as_table = FALSE` to display
 footnote outside the table body.
 
 ``` r
+
 head(tbl) %>%
   rtf_title(title = "Adverse Event Count by Treatment Group") %>%
   rtf_colheader(
@@ -410,6 +426,7 @@ display data source outside the table body.
 > alignment matches the table border.
 
 ``` r
+
 head(tbl) %>%
   rtf_page(col_width = 5) %>%
   # set total column width
@@ -432,6 +449,7 @@ Below example showed the case when using `as_table = TRUE` to display
 data source inside the table body.
 
 ``` r
+
 head(tbl) %>%
   rtf_title(title = "Adverse Event Count by Treatment Group") %>%
   rtf_colheader(
@@ -454,17 +472,18 @@ In the `r2rtf` package, `'^'` is a character to be converted to rtf code
 
 Similarly, `'<='` is a `r2rtf` package specified character to be
 converted to LaTeX command `'\\leq'` to generate special character
-$\leq$.
+$`\leq`$.
 
 LaTeX commands can be used for Greek letters and math symbol such as
-$\alpha$, $\pm$, $\infty$. You will need to use double backslash `\\` to
-escape backslash in R. i.e. `"\\alpha"`, `"\\pm"` and `"\\infty"`. A
-list of LaTeX commands can be found
+$`\alpha`$, $`\pm`$, $`\infty`$. You will need to use double backslash
+`\\` to escape backslash in R. i.e. `"\\alpha"`, `"\\pm"` and
+`"\\infty"`. A list of LaTeX commands can be found
 [here](https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols).
 
 Example below demonstrates this idea.
 
 ``` r
+
 head(tbl) %>%
   rtf_title(title = "Adverse Event Count by Treatment Group{^a}") %>%
   rtf_colheader(
@@ -503,6 +522,7 @@ Note:
   [`grDevices::colours()`](https://rdrr.io/r/grDevices/colors.html).
 
 ``` r
+
 tbl1 <- head(tbl)
 color_matrix <- ifelse(trimws(apply(tbl1, 2, as.character)) == "0", "gray", "white")
 color_matrix
@@ -516,6 +536,7 @@ color_matrix
 ```
 
 ``` r
+
 tbl1 %>%
   rtf_title(title = "Adverse Event Count by Treatment Group") %>%
   rtf_colheader(
@@ -542,6 +563,7 @@ The value in `nrow` is the maximum number of rows allowed in one page,
 the actual rows display can be slightly smaller.
 
 ``` r
+
 tbl[1:50, ] %>%
   rtf_page(nrow = 40) %>%
   rtf_title(title = "Adverse Events Example") %>%
@@ -570,6 +592,7 @@ will be broken into different pages.
 Below example shows using treatment group as the `subline_by` variable.
 
 ``` r
+
 aegt5 <- r2rtf_adae %>%
   group_by(TRTA, AEDECOD) %>%
   summarise(Count = n_distinct(USUBJID)) %>%
@@ -590,6 +613,7 @@ head(aegt5)
 ```
 
 ``` r
+
 aegt5 %>%
   rtf_title(title = "Top Adverse Events by Treatment Group") %>%
   rtf_colheader(colheader = "Adverse Events|Count") %>%
@@ -613,6 +637,7 @@ different pages. Default is `FALSE`.
 Below example showed using treatment group as `page_by` variable.
 
 ``` r
+
 aegt5 %>%
   rtf_title(title = "Top Adverse Events by Treatment Group") %>%
   rtf_colheader(colheader = "Adverse Events|Count") %>%
@@ -633,6 +658,7 @@ function to display once for group variable.
 Below example shows using treatment group as `group_by` variable.
 
 ``` r
+
 aegt5 %>%
   rtf_title(title = "Top Adverse Events by Treatment Group") %>%
   rtf_colheader(colheader = "Treatment|Adverse Events|Count") %>%
@@ -668,6 +694,7 @@ The workflow can be summarized as:
   [`write_rtf()`](https://merck.github.io/r2rtf/reference/write_rtf.md).
 
 ``` r
+
 pruritus <- r2rtf_adae %>%
   filter(AEDECOD == "PRURITUS") %>%
   group_by(TRTA, AEDECOD) %>%
@@ -683,6 +710,7 @@ fig
 ![](r2rtf_files/figure-html/unnamed-chunk-45-1.png)
 
 ``` r
+
 filename <- "fig/intro-fig1.png"
 ggsave(filename, fig)
 ## Saving 7.29 x 4.51 in image

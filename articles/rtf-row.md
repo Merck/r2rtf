@@ -9,6 +9,7 @@ assembled in `vignettes/r2rtf_examples.docx` document.
 `.rtf_row` supports 8 different types of border as listed below.
 
 ``` r
+
 r2rtf:::border_type()$name
 ```
 
@@ -21,6 +22,7 @@ border types.
 This example define different top border line.
 
 ``` r
+
 .n <- length(r2rtf:::border_type()$name)
 db <- data.frame(border_type = r2rtf:::border_type()$name) %>%
   rtf_title("Summary of Border Type Using Top Border") %>%
@@ -39,6 +41,7 @@ type are used for all cell border as single. Only last column use right
 border as double. Only last row use bottom border as dash line.
 
 ``` r
+
 iris %>%
   head() %>%
   rtf_body(
@@ -55,6 +58,7 @@ This example display table with specific border type (i.e. double line
 at the first and last line and blank at the middle)
 
 ``` r
+
 rtf_db <- iris %>%
   head() %>%
   rtf_title("Border Using Double Line at First/Last Line") %>%
@@ -72,12 +76,14 @@ rtf_db %>%
   [`rtf_page()`](https://merck.github.io/r2rtf/reference/rtf_page.md)
 
 ``` r
+
 attr(rtf_db, "page")$border_first
 ```
 
     ## [1] "double"
 
 ``` r
+
 attr(rtf_db, "border_first")
 ```
 
@@ -92,6 +98,7 @@ attr(rtf_db, "border_first")
 For other border, it is controlled by a matrix.
 
 ``` r
+
 rtf_db %>% attr("border_top")
 ```
 
@@ -108,6 +115,7 @@ type. Specifically, a vector is transferred to a matrix by row.
 Therefore, it is useful to set columns type by using vector.
 
 ``` r
+
 matrix(r2rtf:::border_type()$name[1:5], nrow = 6, ncol = 5, byrow = TRUE)
 ```
 
@@ -120,6 +128,7 @@ matrix(r2rtf:::border_type()$name[1:5], nrow = 6, ncol = 5, byrow = TRUE)
     ## [6,] ""   "single" "double" "dot" "dash"
 
 ``` r
+
 rtf_db <- iris %>%
   head() %>%
   rtf_title("Left Border Defined by a Vector") %>%
@@ -136,6 +145,7 @@ The table cell allow to be left, center or right justified. the cell is
 also allow to align by decimal.
 
 ``` r
+
 r2rtf:::justification()[, 1:2]
 ```
 
@@ -147,6 +157,7 @@ r2rtf:::justification()[, 1:2]
     ## 5    j justified
 
 ``` r
+
 r2rtf:::justification()[, 1:2] %>%
   rtf_body(text_justification = rep(r2rtf:::justification()$type, each = 2)) %>%
   rtf_encode() %>%
@@ -154,6 +165,7 @@ r2rtf:::justification()[, 1:2] %>%
 ```
 
 ``` r
+
 db <- iris %>% mutate(Sepal.Length = formatC(Sepal.Length * 2, digits = 1, format = "f"))
 
 db[, rep(1, 4)] %>%
@@ -173,6 +185,7 @@ default value of `col_total_width` is page_width divided by 1.4.
 This example shows the default setting
 
 ``` r
+
 iris %>%
   head() %>%
   rtf_body(as_colheader = FALSE) %>%
@@ -183,6 +196,7 @@ iris %>%
 This example customizes the column width
 
 ``` r
+
 iris %>%
   head() %>%
   rtf_body(col_rel_width = 1:ncol(iris), as_colheader = FALSE) %>%
@@ -196,6 +210,7 @@ The `.rtf_row` function allow **bold**, *italics*, ~~strikethrough~~,
 underline and any combinations of them.
 
 ``` r
+
 r2rtf:::font_format()[, 1:2]
 ```
 
@@ -211,6 +226,7 @@ r2rtf:::font_format()[, 1:2]
 This example considers the text format defined below
 
 ``` r
+
 fmt <- cbind("", r2rtf:::font_format()$type)
 fmt
 ```
@@ -225,6 +241,7 @@ fmt
     ## [7,] ""   "_"
 
 ``` r
+
 r2rtf:::font_format()[, 1:2] %>%
   rtf_body(text_format = fmt) %>%
   rtf_encode() %>%
@@ -236,6 +253,7 @@ r2rtf:::font_format()[, 1:2] %>%
 Font size can be defined for each cell.
 
 ``` r
+
 iris %>%
   head() %>%
   rtf_body(text_font_size = c(7:11), as_colheader = FALSE) %>%
@@ -252,6 +270,7 @@ the data. For example, one can highlight p-value \< 0.05 in gold.
 This example define text color for each column
 
 ``` r
+
 iris %>%
   head() %>%
   rtf_body(
@@ -265,6 +284,7 @@ iris %>%
 This example define left border color for each column
 
 ``` r
+
 iris %>%
   head() %>%
   rtf_body(
@@ -278,6 +298,7 @@ iris %>%
 This example define background color for each column
 
 ``` r
+
 iris %>%
   head() %>%
   rtf_body(

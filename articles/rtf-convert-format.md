@@ -28,6 +28,7 @@ DOCX or HTML formats.
 ### Write DOCX
 
 ``` r
+
 # Create RTF encoding
 rtf <- head(iris) |>
   rtf_body() |>
@@ -40,6 +41,7 @@ write_docx(rtf, "output/table.docx")
 ### Write HTML
 
 ``` r
+
 # Create RTF encoding
 rtf <- head(cars) |>
   rtf_body() |>
@@ -62,12 +64,14 @@ In the example below, `ae_example.pdf` will be created in the same
 folder.
 
 ``` r
+
 r2rtf:::rtf_convert_format(input = "rtf/ae_example.rtf")
 ```
 
 - Multiple files can be provided as input.
 
 ``` r
+
 r2rtf:::rtf_convert_format(input = list.files("rtf", pattern = "*.rtf"))
 ```
 
@@ -75,6 +79,7 @@ r2rtf:::rtf_convert_format(input = list.files("rtf", pattern = "*.rtf"))
   `docx`, or `html`.
 
 ``` r
+
 r2rtf:::rtf_convert_format(input = "rtf/ae_example.rtf", format = "html")
 ```
 

@@ -21,12 +21,14 @@ book provides tutorials by using real world examples.
 You can install the package via CRAN:
 
 ``` r
+
 install.packages("r2rtf")
 ```
 
 Or, install from GitHub:
 
 ``` r
+
 remotes::install_github("Merck/r2rtf")
 ```
 
@@ -58,6 +60,7 @@ The R package r2rtf provides flexibility to enable features below:
 ## Simple example
 
 ``` r
+
 library(dplyr)
 library(r2rtf)
 

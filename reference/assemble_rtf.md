@@ -30,6 +30,7 @@ The contents of this section are shown in PDF user manual only.
 ## Examples
 
 ``` r
+
 library(magrittr)
 
 file <- replicate(2, tempfile(fileext = ".rtf"))

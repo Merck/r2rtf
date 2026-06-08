@@ -1,6 +1,7 @@
 # RTF Examples for Tables with Sublineby, Pageby, and Groupby Features
 
 ``` r
+
 library(r2rtf)
 library(dplyr)
 library(tidyr)
@@ -36,6 +37,7 @@ disposition table.
 ### Step 1: Create data for RTF table
 
 ``` r
+
 data(r2rtf_adsl)
 adsl <- r2rtf_adsl
 
@@ -70,10 +72,15 @@ reas <- adsl %>%
   summarise(reasn = n())
 ```
 
-    ## `summarise()` has grouped output by 'TRT01P'. You can override using the
-    ## `.groups` argument.
+    ## `summarise()` has regrouped the output.
+    ## ℹ Summaries were computed grouped by TRT01P and DCREASCD.
+    ## ℹ Output is grouped by TRT01P.
+    ## ℹ Use `summarise(.groups = "drop_last")` to silence this message.
+    ## ℹ Use `summarise(.by = c(TRT01P, DCREASCD))` for per-operation grouping
+    ##   (`?dplyr::dplyr_by`) instead.
 
 ``` r
+
 ds <- rbind(
   row1 %>% merge(row2, by = "TRT01P") %>%
     merge(row3, by = "TRT01P") %>%
@@ -102,21 +109,23 @@ ds[is.na(ds)] <- 0
 ```
 
 ``` r
+
 knitr::kable(head(ds))
 ```
 
-| pagebyvar           | DCREASCD                  | Xanomeline High Dose | Xanomeline Low Dose | Placebo |
-|:--------------------|:--------------------------|---------------------:|--------------------:|--------:|
-| —–                  | Participants randomized   |                   84 |                  84 |      86 |
-| —–                  | Participants treated      |                   84 |                  84 |      86 |
-| —–                  | Participants completed    |                   27 |                  25 |      58 |
-| —–                  | Participants discontinued |                   57 |                  59 |      28 |
-| Discontinued reason | Adverse Event             |                   40 |                  44 |       8 |
-| Discontinued reason | Death                     |                    0 |                   1 |       2 |
+| pagebyvar | DCREASCD | Xanomeline High Dose | Xanomeline Low Dose | Placebo |
+|:---|:---|---:|---:|---:|
+| —– | Participants randomized | 84 | 84 | 86 |
+| —– | Participants treated | 84 | 84 | 86 |
+| —– | Participants completed | 27 | 25 | 58 |
+| —– | Participants discontinued | 57 | 59 | 28 |
+| Discontinued reason | Adverse Event | 40 | 44 | 8 |
+| Discontinued reason | Death | 0 | 1 | 2 |
 
 ### Step 2: Define table format
 
 ``` r
+
 ds_tbl <- ds %>%
   rtf_title("Disposition of Participants", "(ITT Population)") %>%
   rtf_colheader(" | Xanomeline High Dose |Xanomeline Low Dose | Placebo",
@@ -143,6 +152,7 @@ ds_tbl <- ds %>%
 ### Step 3: Output
 
 ``` r
+
 # Output .rtf file
 ds_tbl %>%
   rtf_encode() %>%
@@ -157,6 +167,7 @@ how to create a simple adverse events table.
 ### Step 1: Create data for RTF table
 
 ``` r
+
 # Read in and merge r2rtf_adsl and r2rtf_adae data
 data(r2rtf_adsl)
 data(r2rtf_adae)
@@ -218,6 +229,7 @@ apr0ae <- bind_rows(part1, blank, part2)
 ```
 
 ``` r
+
 knitr::kable(head(apr0ae))
 ```
 
@@ -233,6 +245,7 @@ knitr::kable(head(apr0ae))
 ### Step 2: Define table format
 
 ``` r
+
 apr0ae_rtf <- apr0ae %>%
   rtf_page(orientation = "landscape") %>%
   rtf_title(c("Participants with Severe Adverse Events", "(Incidence \\geq 0% in One or More Treatment Groups)"), "(ASaT Population)") %>%
@@ -259,6 +272,7 @@ apr0ae_rtf <- apr0ae %>%
 ### Step 3: Output
 
 ``` r
+
 # Output .rtf file
 apr0ae_rtf %>%
   rtf_encode() %>%
@@ -273,6 +287,7 @@ create a simple adverse events listing.
 ### Step 1: Create data for RTF table
 
 ``` r
+
 data(r2rtf_adae)
 
 ae_t1 <- r2rtf_adae[200:260, ] %>%
@@ -297,17 +312,19 @@ ae_t1 <- r2rtf_adae[200:260, ] %>%
 ```
 
 ``` r
+
 knitr::kable(head(ae_t1, 2))
 ```
 
-|     | USUBJID     | ASTDY | AEDECD1                   | DUR | AESEV    | AESER | AEREL    | AEACN | AEOUT                      | TRTA                 | SUBJLINE                                                                                       | SUBLINEBY                                    |
-|:----|:------------|------:|:--------------------------|:----|:---------|:------|:---------|:------|:---------------------------|:---------------------|:-----------------------------------------------------------------------------------------------|:---------------------------------------------|
-| 200 | 01-701-1360 |     3 | APPLICATION SITE PRURITUS | NA  | MODERATE | N     | PROBABLE |       | NOT RECOVERED/NOT RESOLVED | Xanomeline High Dose | Subject ID = 01-701-1360, Gender = M, Race = WHITE, AGE = 67 Years, TRT = Xanomeline High Dose | Trial Number: CDISCPILOT01, Site Number: 701 |
-| 201 | 01-701-1360 |     6 | APPLICATION SITE VESICLES | NA  | MODERATE | N     | PROBABLE |       | NOT RECOVERED/NOT RESOLVED | Xanomeline High Dose | Subject ID = 01-701-1360, Gender = M, Race = WHITE, AGE = 67 Years, TRT = Xanomeline High Dose | Trial Number: CDISCPILOT01, Site Number: 701 |
+|  | USUBJID | ASTDY | AEDECD1 | DUR | AESEV | AESER | AEREL | AEACN | AEOUT | TRTA | SUBJLINE | SUBLINEBY |
+|:---|:---|---:|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+| 200 | 01-701-1360 | 3 | APPLICATION SITE PRURITUS | NA | MODERATE | N | PROBABLE |  | NOT RECOVERED/NOT RESOLVED | Xanomeline High Dose | Subject ID = 01-701-1360, Gender = M, Race = WHITE, AGE = 67 Years, TRT = Xanomeline High Dose | Trial Number: CDISCPILOT01, Site Number: 701 |
+| 201 | 01-701-1360 | 6 | APPLICATION SITE VESICLES | NA | MODERATE | N | PROBABLE |  | NOT RECOVERED/NOT RESOLVED | Xanomeline High Dose | Subject ID = 01-701-1360, Gender = M, Race = WHITE, AGE = 67 Years, TRT = Xanomeline High Dose | Trial Number: CDISCPILOT01, Site Number: 701 |
 
 ### Step 2: Define table format
 
 ``` r
+
 ae_tbl <- ae_t1 %>%
   # It is important to order variable properly.
   arrange(SUBLINEBY, TRTA, SUBJLINE, USUBJID, ASTDY) %>%
@@ -343,6 +360,7 @@ ae_tbl <- ae_t1 %>%
 ### Step 3: Output
 
 ``` r
+
 # Output .rtf file
 ae_tbl %>%
   rtf_encode() %>%

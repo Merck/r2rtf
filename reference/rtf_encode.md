@@ -57,6 +57,7 @@ The contents of this section are shown in PDF user manual only.
 ## Examples
 
 ``` r
+
 library(dplyr) # required to run examples
 
 # Example 1

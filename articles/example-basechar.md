@@ -1,6 +1,7 @@
 # RTF Examples for Baseline Characteristics Tables
 
 ``` r
+
 library(r2rtf)
 library(dplyr)
 library(tidyr)
@@ -18,6 +19,7 @@ We defined two utility functions for analysis purpose.
 - Summarize categorical variable
 
 ``` r
+
 bs_count <- function(data, grp, var,
                      var_label = var,
                      decimal = 1,
@@ -60,6 +62,7 @@ bs_count <- function(data, grp, var,
 - Summarize continuous variable
 
 ``` r
+
 bs_continuous <- function(data, grp, var,
                           var_label = var,
                           decimal = 1,
@@ -119,6 +122,7 @@ bs_continuous <- function(data, grp, var,
 - Convert variable to factors to properly define display order
 
 ``` r
+
 # The code above define two utility function for baseline characteristic tables.
 
 # Analysis Set
@@ -156,25 +160,26 @@ bs_tb[is.na(bs_tb)] <- "" # convert NA to blank string.
 ```
 
 ``` r
+
 knitr::kable(bs_tb)
 ```
 
-| var                | 1        | 1_pct | 2        | 2_pct | 3        | 3_pct | 9999     | 9999_pct | var_label   |
-|:-------------------|:---------|:------|:---------|:------|:---------|:------|:---------|:---------|:------------|
-| Female             | 53       | 10.4  | 50       | 9.8   | 40       | 7.9   | 143      | 28.1     | Gender      |
-| Male               | 33       | 6.5   | 34       | 6.7   | 44       | 8.7   | 111      | 21.9     | Gender      |
-| \<65               | 14       | 2.8   | 8        | 1.6   | 11       | 2.2   | 33       | 6.5      | Age (Years) |
-| 65-80              | 42       | 8.3   | 47       | 9.3   | 55       | 10.8  | 144      | 28.3     | Age (Years) |
-| \>80               | 30       | 5.9   | 29       | 5.7   | 18       | 3.5   | 77       | 15.2     | Age (Years) |
-|                    |          |       |          |       |          |       |          |          | Age (Years) |
-| Subjects with data | 86       |       | 84       |       | 84       |       | 254      |          | Age (Years) |
-| Mean               | 75.2     |       | 75.7     |       | 74.4     |       | 75.1     |          | Age (Years) |
-| SD                 | 8.6      |       | 8.3      |       | 7.9      |       | 8.2      |          | Age (Years) |
-| Median             | 76.0     |       | 77.5     |       | 76.0     |       | 77.0     |          | Age (Years) |
-| Range              | 52 to 89 |       | 51 to 88 |       | 56 to 88 |       | 51 to 89 |          | Age (Years) |
-| White              | 78       | 15.4  | 78       | 15.4  | 74       | 14.6  | 230      | 45.3     | Race        |
-| Black              | 8        | 1.6   | 6        | 1.2   | 9        | 1.8   | 23       | 4.5      | Race        |
-| Other              | 0        | 0.0   | 0        | 0.0   | 1        | 0.2   | 1        | 0.2      | Race        |
+| var | 1 | 1_pct | 2 | 2_pct | 3 | 3_pct | 9999 | 9999_pct | var_label |
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+| Female | 53 | 10.4 | 50 | 9.8 | 40 | 7.9 | 143 | 28.1 | Gender |
+| Male | 33 | 6.5 | 34 | 6.7 | 44 | 8.7 | 111 | 21.9 | Gender |
+| \<65 | 14 | 2.8 | 8 | 1.6 | 11 | 2.2 | 33 | 6.5 | Age (Years) |
+| 65-80 | 42 | 8.3 | 47 | 9.3 | 55 | 10.8 | 144 | 28.3 | Age (Years) |
+| \>80 | 30 | 5.9 | 29 | 5.7 | 18 | 3.5 | 77 | 15.2 | Age (Years) |
+|  |  |  |  |  |  |  |  |  | Age (Years) |
+| Subjects with data | 86 |  | 84 |  | 84 |  | 254 |  | Age (Years) |
+| Mean | 75.2 |  | 75.7 |  | 74.4 |  | 75.1 |  | Age (Years) |
+| SD | 8.6 |  | 8.3 |  | 7.9 |  | 8.2 |  | Age (Years) |
+| Median | 76.0 |  | 77.5 |  | 76.0 |  | 77.0 |  | Age (Years) |
+| Range | 52 to 89 |  | 51 to 88 |  | 56 to 88 |  | 51 to 89 |  | Age (Years) |
+| White | 78 | 15.4 | 78 | 15.4 | 74 | 14.6 | 230 | 45.3 | Race |
+| Black | 8 | 1.6 | 6 | 1.2 | 9 | 1.8 | 23 | 4.5 | Race |
+| Other | 0 | 0.0 | 0 | 0.0 | 1 | 0.2 | 1 | 0.2 | Race |
 
 ### Step 3: Define table format
 
@@ -188,6 +193,7 @@ knitr::kable(bs_tb)
     [`rtf_body()`](https://merck.github.io/r2rtf/reference/rtf_body.md)
 
 ``` r
+
 bs_rtf <- bs_tb %>%
   rtf_page(width = 9.5) %>%
   rtf_title("Demographic and Anthropometric Characteristics", "ITT Subjects") %>%
@@ -215,6 +221,7 @@ bs_rtf <- bs_tb %>%
 ### Step 4: Output
 
 ``` r
+
 # Output .rtf file
 bs_rtf %>%
   rtf_encode() %>%

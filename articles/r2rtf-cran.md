@@ -4,6 +4,7 @@ Please see <https://merck.github.io/r2rtf/articles/index.html> for the
 full documentation. Here is only a minimal example:
 
 ``` r
+
 library(dplyr)
 library(r2rtf)
 

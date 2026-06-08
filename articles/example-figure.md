@@ -1,6 +1,7 @@
 # RTF Examples for Figures
 
 ``` r
+
 library(r2rtf)
 library(dplyr)
 library(tidyr)
@@ -20,6 +21,7 @@ The package allow user to embed multiple figures into one RTF document.
 The supported format is listed as below.
 
 ``` r
+
 r2rtf:::fig_format()
 ```
 
@@ -54,6 +56,7 @@ By using `png` file as an example, the workflow can be summarized as:
 #### Simple Example
 
 ``` r
+
 # Define the path of figure
 filename <- c("fig/fig1.png", "fig/fig2.png", "fig/fig3.png")
 
@@ -80,6 +83,7 @@ The figure height and width can be set up for each figure in a vector.
 The code below provides an example for these features.
 
 ``` r
+
 filename %>%
   rtf_read_figure() %>% # read PNG files from the file path
   rtf_page(orientation = "landscape") %>% # set page orientation
