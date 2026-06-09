@@ -1,5 +1,13 @@
 # Changelog
 
+## r2rtf 1.3.1
+
+### What’s Changed
+
+- Update author and contributor roles in DESCRIPTION by
+  [@wangben718](https://github.com/wangben718) in
+  <https://github.com/Merck/r2rtf/pull/293>
+
 ## r2rtf 1.3.0
 
 CRAN release: 2026-01-09
