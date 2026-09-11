@@ -123,6 +123,11 @@ knitr::include_graphics("pdf/border-vector.pdf")
 ## Cell Justification
 
 The table cell allow to be left, center or right justified. the cell is also allow to align by decimal. 
+
+The numeric display example keeps calculations unrounded until display.
+`r2rtf:::format_fixed_ties_away()` then applies ties-away-from-zero rounding and retains
+the requested number of decimal places with fixed-point formatting.
+
 ```{r}
 r2rtf:::justification()[, 1:2]
 ```
@@ -140,7 +145,7 @@ knitr::include_graphics("pdf/justification-type.pdf")
 
 
 ```{r}
-db <- iris %>% mutate(Sepal.Length = formatC(Sepal.Length * 2, digits = 1, format = "f"))
+db <- iris %>% mutate(Sepal.Length = r2rtf:::format_fixed_ties_away(Sepal.Length * 2, 1))
 
 db[, rep(1, 4)] %>%
   head() %>%
