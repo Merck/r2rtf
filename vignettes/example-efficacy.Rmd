@@ -10,7 +10,6 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::read_chunk("clinical-reporting-rounding.R")
 ```
 
 ```{r, message=FALSE, warning=FALSE}
@@ -31,11 +30,8 @@ knitr::include_graphics("pdf/efficacy_example.pdf")
 ### Step 1: Define some utility functions
 
 Clinical statistics are calculated from unrounded values. At the final display
-boundary, `format_fixed_ties_away()` applies ties-away-from-zero rounding and
+boundary, `r2rtf:::format_fixed_ties_away()` applies ties-away-from-zero rounding and
 then retains the requested number of decimal places with fixed-point formatting.
-
-```{r clinical-reporting-rounding}
-```
 
 - Format Model Estimator
 ```{r}
@@ -45,9 +41,9 @@ then retains the requested number of decimal places with fixed-point formatting.
 #' Decimals will understand the number will be formatted as x.x(x.xx)
 #' @noRd
 fmt_est <- function(data, columns = c("mean", "sd"), decimals = c(1, 2)) {
-  .mean <- format_fixed_ties_away(data[[columns[[1]]]], decimals[1])
+  .mean <- r2rtf:::format_fixed_ties_away(data[[columns[[1]]]], decimals[1])
   if (length(columns) > 1) {
-    .sd <- format_fixed_ties_away(data[[columns[[2]]]], decimals[2])
+    .sd <- r2rtf:::format_fixed_ties_away(data[[columns[[2]]]], decimals[2])
     paste0(.mean, " (", .sd, ")")
   } else {
     .mean
@@ -60,8 +56,8 @@ fmt_est <- function(data, columns = c("mean", "sd"), decimals = c(1, 2)) {
 ```{r}
 #' @noRd
 fmt_ci <- function(data, columns = c("lower.CL", "upper.CL"), decimals = 2) {
-  .lower <- format_fixed_ties_away(data[[columns[[1]]]], decimals)
-  .upper <- format_fixed_ties_away(data[[columns[[2]]]], decimals)
+  .lower <- r2rtf:::format_fixed_ties_away(data[[columns[[1]]]], decimals)
+  .upper <- r2rtf:::format_fixed_ties_away(data[[columns[[2]]]], decimals)
   paste0("(", .lower, ", ", .upper, ")")
 }
 ```
@@ -74,7 +70,7 @@ fmt_pval <- function(data, columns = "p.value", decimals = 3) {
   scale <- 10^(-1 * decimals)
   p_scale <- paste0("<", scale)
   if_else(data[[columns[[1]]]] < scale, p_scale,
-    format_fixed_ties_away(data[[columns[[1]]]], decimals)
+    r2rtf:::format_fixed_ties_away(data[[columns[[1]]]], decimals)
   )
 }
 ```
@@ -161,7 +157,7 @@ knitr::kable(t2)
 ```{r}
 t3 <- data.frame(rmse = paste0(
   "Root Mean Squared Error of Change = ",
-  format_fixed_ties_away(sd(HAMD17_lmfit$residuals), 2)
+  r2rtf:::format_fixed_ties_away(sd(HAMD17_lmfit$residuals), 2)
 ))
 ```
 

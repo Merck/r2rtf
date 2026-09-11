@@ -1,13 +1,3 @@
-source(
-  testthat::test_path(
-    "..",
-    "..",
-    "vignettes",
-    "clinical-reporting-rounding.R"
-  ),
-  local = TRUE
-)
-
 test_that("clinical display rounding sends exact ties away from zero", {
   expect_identical(
     format_fixed_ties_away(c(1.25, -1.25), 1),

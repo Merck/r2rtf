@@ -10,7 +10,6 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-knitr::read_chunk("clinical-reporting-rounding.R")
 ```
 
 ```{r, message=FALSE, warning=FALSE}
@@ -30,11 +29,8 @@ knitr::include_graphics("pdf/bs_example.pdf")
 ### Step 1: Define utility functions
 
 Clinical statistics are calculated from unrounded values. At the final display
-boundary, `format_fixed_ties_away()` applies ties-away-from-zero rounding and
+boundary, `r2rtf:::format_fixed_ties_away()` applies ties-away-from-zero rounding and
 then retains the requested number of decimal places with fixed-point formatting.
-
-```{r clinical-reporting-rounding}
-```
 
 We defined two utility functions for analysis purpose.
 
@@ -61,7 +57,7 @@ bs_count <- function(data, grp, var,
 
   res <- res %>% rename(n = Freq)
 
-  res <- res %>% mutate(pct = format_fixed_ties_away(n / sum(n) * 100, decimal))
+  res <- res %>% mutate(pct = r2rtf:::format_fixed_ties_away(n / sum(n) * 100, decimal))
 
   res$n <- as.character(res$n)
 
@@ -96,9 +92,9 @@ bs_continuous <- function(data, grp, var,
     group_by(grp) %>%
     summarise(
       `Subjects with data` = n(),
-      Mean = format_fixed_ties_away(mean(var), decimal),
-      SD = format_fixed_ties_away(sd(var), decimal),
-      Median = format_fixed_ties_away(median(var), decimal),
+      Mean = r2rtf:::format_fixed_ties_away(mean(var), decimal),
+      SD = r2rtf:::format_fixed_ties_away(sd(var), decimal),
+      Median = r2rtf:::format_fixed_ties_away(median(var), decimal),
       Range = paste(range(var), collapse = " to ")
     )
 
@@ -108,9 +104,9 @@ bs_continuous <- function(data, grp, var,
       na.omit() %>%
       summarise(
         `Subjects with data` = n(),
-        Mean = format_fixed_ties_away(mean(var), decimal),
-        SD = format_fixed_ties_away(sd(var), decimal),
-        Median = format_fixed_ties_away(median(var), decimal),
+        Mean = r2rtf:::format_fixed_ties_away(mean(var), decimal),
+        SD = r2rtf:::format_fixed_ties_away(sd(var), decimal),
+        Median = r2rtf:::format_fixed_ties_away(median(var), decimal),
         Range = paste(range(var), collapse = " to ")
       ) %>%
       mutate(grp = 9999)
