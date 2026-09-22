@@ -60,7 +60,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>RTF Examples for AE Summary Count Tables</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Merck/r2rtf/blob/v1.3.1/vignettes/example-ae-summary.Rmd" class="external-link"><code>vignettes/example-ae-summary.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Merck/r2rtf/blob/master/vignettes/example-ae-summary.Rmd" class="external-link"><code>vignettes/example-ae-summary.Rmd</code></a></small>
       <div class="d-none name"><code>example-ae-summary.Rmd</code></div>
     </div>
 
@@ -75,6 +75,10 @@
 </h2>
 <p>This example shows how to create a simplified adverse events summary
 table as below.</p>
+<p>Clinical statistics are calculated from unrounded values. At the
+final display boundary, <code>r2rtf:::format_fixed_ties_away()</code>
+applies ties-away-from-zero rounding and then retains the requested
+number of decimal places with fixed-point formatting.</p>
 <embed src="pdf/ae_example.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="section level3">
 <h3 id="step-1-create-data-for-rtf-table">Step 1: Create data for RTF table<a class="anchor" aria-label="anchor" href="#step-1-create-data-for-rtf-table"></a>
 </h3>
@@ -86,13 +90,14 @@ table as below.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">TRTA</span>, <span class="va">AEDECOD</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span></span>
 <span>    n_ae <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">USUBJID</span><span class="op">)</span>,</span>
-<span>    pct <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">n_ae</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">n_subj</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span>    pct <span class="op">=</span> <span class="va">n_ae</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">n_subj</span><span class="op">)</span> <span class="op">*</span> <span class="fl">100</span></span>
 <span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">n_ae</span> <span class="op">&gt;</span> <span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="co"># only show AE terms with at least 5 subjects in one treatment group.</span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">n_ae</span>, <span class="va">pct</span><span class="op">)</span>, names_to <span class="op">=</span> <span class="st">"var"</span>, values_to <span class="op">=</span> <span class="st">"value"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/unite.html" class="external-link">unite</a></span><span class="op">(</span><span class="va">temp</span>, <span class="va">TRTA</span>, <span class="va">var</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">temp</span>, values_from <span class="op">=</span> <span class="va">value</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="va">temp</span>, values_from <span class="op">=</span> <span class="va">value</span>, values_fill <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/across.html" class="external-link">across</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html" class="external-link">ends_with</a></span><span class="op">(</span><span class="st">"_pct"</span><span class="op">)</span>, <span class="op">~</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">format_fixed_ties_away</span><span class="op">(</span><span class="va">.x</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## `summarise()` has regrouped the output.</span></span>
 <span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Summaries were computed grouped by <span style="color: #0000BB;">TRTA</span> and <span style="color: #0000BB;">AEDECOD</span>.</span></span>
 <span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Output is grouped by <span style="color: #0000BB;">TRTA</span>.</span></span>
@@ -114,183 +119,183 @@ table as below.</p>
 <thead><tr class="header">
 <th align="left">AEDECOD</th>
 <th align="right">Placebo_n_ae</th>
-<th align="right">Placebo_pct</th>
+<th align="left">Placebo_pct</th>
 <th align="right">Xanomeline High Dose_n_ae</th>
-<th align="right">Xanomeline High Dose_pct</th>
+<th align="left">Xanomeline High Dose_pct</th>
 <th align="right">Xanomeline Low Dose_n_ae</th>
-<th align="right">Xanomeline Low Dose_pct</th>
+<th align="left">Xanomeline Low Dose_pct</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">APPLICATION SITE PRURITUS</td>
 <td align="right">6</td>
-<td align="right">8.70</td>
+<td align="left">8.70</td>
 <td align="right">22</td>
-<td align="right">27.85</td>
+<td align="left">27.85</td>
 <td align="right">22</td>
-<td align="right">28.57</td>
+<td align="left">28.57</td>
 </tr>
 <tr class="even">
 <td align="left">DIARRHOEA</td>
 <td align="right">9</td>
-<td align="right">13.04</td>
+<td align="left">13.04</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">ERYTHEMA</td>
 <td align="right">9</td>
-<td align="right">13.04</td>
+<td align="left">13.04</td>
 <td align="right">14</td>
-<td align="right">17.72</td>
+<td align="left">17.72</td>
 <td align="right">15</td>
-<td align="right">19.48</td>
+<td align="left">19.48</td>
 </tr>
 <tr class="even">
 <td align="left">HEADACHE</td>
 <td align="right">7</td>
-<td align="right">10.14</td>
+<td align="left">10.14</td>
 <td align="right">6</td>
-<td align="right">7.59</td>
+<td align="left">7.59</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">PRURITUS</td>
 <td align="right">8</td>
-<td align="right">11.59</td>
+<td align="left">11.59</td>
 <td align="right">26</td>
-<td align="right">32.91</td>
+<td align="left">32.91</td>
 <td align="right">23</td>
-<td align="right">29.87</td>
+<td align="left">29.87</td>
 </tr>
 <tr class="even">
 <td align="left">UPPER RESPIRATORY TRACT INFECTION</td>
 <td align="right">6</td>
-<td align="right">8.70</td>
+<td align="left">8.70</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">APPLICATION SITE DERMATITIS</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">7</td>
-<td align="right">8.86</td>
+<td align="left">8.86</td>
 <td align="right">9</td>
-<td align="right">11.69</td>
+<td align="left">11.69</td>
 </tr>
 <tr class="even">
 <td align="left">APPLICATION SITE ERYTHEMA</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">15</td>
-<td align="right">18.99</td>
+<td align="left">18.99</td>
 <td align="right">12</td>
-<td align="right">15.58</td>
+<td align="left">15.58</td>
 </tr>
 <tr class="odd">
 <td align="left">APPLICATION SITE IRRITATION</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">9</td>
-<td align="right">11.39</td>
+<td align="left">11.39</td>
 <td align="right">9</td>
-<td align="right">11.69</td>
+<td align="left">11.69</td>
 </tr>
 <tr class="even">
 <td align="left">APPLICATION SITE VESICLES</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">6</td>
-<td align="right">7.59</td>
+<td align="left">7.59</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">DIZZINESS</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">12</td>
-<td align="right">15.19</td>
+<td align="left">15.19</td>
 <td align="right">8</td>
-<td align="right">10.39</td>
+<td align="left">10.39</td>
 </tr>
 <tr class="even">
 <td align="left">HYPERHIDROSIS</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">8</td>
-<td align="right">10.13</td>
+<td align="left">10.13</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">NASOPHARYNGITIS</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">6</td>
-<td align="right">7.59</td>
+<td align="left">7.59</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">NAUSEA</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">6</td>
-<td align="right">7.59</td>
+<td align="left">7.59</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">RASH</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">11</td>
-<td align="right">13.92</td>
+<td align="left">13.92</td>
 <td align="right">13</td>
-<td align="right">16.88</td>
+<td align="left">16.88</td>
 </tr>
 <tr class="even">
 <td align="left">SINUS BRADYCARDIA</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">8</td>
-<td align="right">10.13</td>
+<td align="left">10.13</td>
 <td align="right">7</td>
-<td align="right">9.09</td>
+<td align="left">9.09</td>
 </tr>
 <tr class="odd">
 <td align="left">VOMITING</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">7</td>
-<td align="right">8.86</td>
+<td align="left">8.86</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">COUGH</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">6</td>
-<td align="right">7.79</td>
+<td align="left">7.79</td>
 </tr>
 <tr class="odd">
 <td align="left">SKIN IRRITATION</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">0</td>
-<td align="right">0.00</td>
+<td align="left">0.00</td>
 <td align="right">6</td>
-<td align="right">7.79</td>
+<td align="left">7.79</td>
 </tr>
 </tbody>
 </table>
@@ -340,7 +345,7 @@ table as below.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong, Brian Lang, Benjamin Wang, Ruchitbhai Patel. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0. <br>Copyright © 2023 Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.</p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong, Brian Lang, Benjamin Wang, Ruchitbhai Patel. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1. <br>Copyright © 2023 Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.</p>
 </div>
 
 <div class="pkgdown-footer-right">

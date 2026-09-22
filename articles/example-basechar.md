@@ -14,6 +14,11 @@ below.
 
 ### Step 1: Define utility functions
 
+Clinical statistics are calculated from unrounded values. At the final
+display boundary, `r2rtf:::format_fixed_ties_away()` applies
+ties-away-from-zero rounding and then retains the requested number of
+decimal places with fixed-point formatting.
+
 We defined two utility functions for analysis purpose.
 
 - Summarize categorical variable
@@ -41,7 +46,7 @@ bs_count <- function(data, grp, var,
 
   res <- res %>% rename(n = Freq)
 
-  res <- res %>% mutate(pct = formatC(n / sum(n) * 100, digits = decimal, format = "f", flag = "0"))
+  res <- res %>% mutate(pct = r2rtf:::format_fixed_ties_away(n / sum(n) * 100, decimal))
 
   res$n <- as.character(res$n)
 
@@ -78,9 +83,9 @@ bs_continuous <- function(data, grp, var,
     group_by(grp) %>%
     summarise(
       `Subjects with data` = n(),
-      Mean = formatC(mean(var), digits = decimal, format = "f", flag = "0"),
-      SD = formatC(sd(var), digits = decimal, format = "f", flag = "0"),
-      Median = formatC(median(var), digits = decimal, format = "f", flag = "0"),
+      Mean = r2rtf:::format_fixed_ties_away(mean(var), decimal),
+      SD = r2rtf:::format_fixed_ties_away(sd(var), decimal),
+      Median = r2rtf:::format_fixed_ties_away(median(var), decimal),
       Range = paste(range(var), collapse = " to ")
     )
 
@@ -90,9 +95,9 @@ bs_continuous <- function(data, grp, var,
       na.omit() %>%
       summarise(
         `Subjects with data` = n(),
-        Mean = formatC(mean(var), digits = decimal, format = "f", flag = "0"),
-        SD = formatC(sd(var), digits = decimal, format = "f", flag = "0"),
-        Median = formatC(median(var), digits = decimal, format = "f", flag = "0"),
+        Mean = r2rtf:::format_fixed_ties_away(mean(var), decimal),
+        SD = r2rtf:::format_fixed_ties_away(sd(var), decimal),
+        Median = r2rtf:::format_fixed_ties_away(median(var), decimal),
         Range = paste(range(var), collapse = " to ")
       ) %>%
       mutate(grp = 9999)

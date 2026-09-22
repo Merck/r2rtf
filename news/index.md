@@ -2,6 +2,8 @@
 
 ## r2rtf 1.3.1
 
+CRAN release: 2026-06-10
+
 ### What’s Changed
 
 - Update author and contributor roles in DESCRIPTION by

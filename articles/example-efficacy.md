@@ -14,6 +14,11 @@ This example shows how to create a efficacy table as below.
 
 ### Step 1: Define some utility functions
 
+Clinical statistics are calculated from unrounded values. At the final
+display boundary, `r2rtf:::format_fixed_ties_away()` applies
+ties-away-from-zero rounding and then retains the requested number of
+decimal places with fixed-point formatting.
+
 - Format Model Estimator
 
 ``` r
@@ -24,9 +29,9 @@ This example shows how to create a efficacy table as below.
 #' Decimals will understand the number will be formatted as x.x(x.xx)
 #' @noRd
 fmt_est <- function(data, columns = c("mean", "sd"), decimals = c(1, 2)) {
-  .mean <- formatC(data[[columns[[1]]]], digits = decimals[1], format = "f", flag = "0")
+  .mean <- r2rtf:::format_fixed_ties_away(data[[columns[[1]]]], decimals[1])
   if (length(columns) > 1) {
-    .sd <- formatC(data[[columns[[2]]]], digits = decimals[2], format = "f", flag = "0")
+    .sd <- r2rtf:::format_fixed_ties_away(data[[columns[[2]]]], decimals[2])
     paste0(.mean, " (", .sd, ")")
   } else {
     .mean
@@ -40,8 +45,8 @@ fmt_est <- function(data, columns = c("mean", "sd"), decimals = c(1, 2)) {
 
 #' @noRd
 fmt_ci <- function(data, columns = c("lower.CL", "upper.CL"), decimals = 2) {
-  .lower <- formatC(data[[columns[[1]]]], digits = decimals, format = "f", flag = "0")
-  .upper <- formatC(data[[columns[[2]]]], digits = decimals, format = "f", flag = "0")
+  .lower <- r2rtf:::format_fixed_ties_away(data[[columns[[1]]]], decimals)
+  .upper <- r2rtf:::format_fixed_ties_away(data[[columns[[2]]]], decimals)
   paste0("(", .lower, ", ", .upper, ")")
 }
 ```
@@ -55,7 +60,7 @@ fmt_pval <- function(data, columns = "p.value", decimals = 3) {
   scale <- 10^(-1 * decimals)
   p_scale <- paste0("<", scale)
   if_else(data[[columns[[1]]]] < scale, p_scale,
-    formatC(data[[columns[[1]]]], digits = decimals, format = "f", flag = "0")
+    r2rtf:::format_fixed_ties_away(data[[columns[[1]]]], decimals)
   )
 }
 ```
@@ -159,7 +164,7 @@ knitr::kable(t2)
 
 t3 <- data.frame(rmse = paste0(
   "Root Mean Squared Error of Change = ",
-  formatC(sd(HAMD17_lmfit$residuals), digits = 2, format = "f", flag = "0")
+  r2rtf:::format_fixed_ties_away(sd(HAMD17_lmfit$residuals), 2)
 ))
 ```
 

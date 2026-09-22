@@ -12,6 +12,11 @@ library(tidyr)
 This example shows how to create a simplified adverse events summary
 table as below.
 
+Clinical statistics are calculated from unrounded values. At the final
+display boundary, `r2rtf:::format_fixed_ties_away()` applies
+ties-away-from-zero rounding and then retains the requested number of
+decimal places with fixed-point formatting.
+
 ### Step 1: Create data for RTF table
 
 ``` r
@@ -23,13 +28,14 @@ ae_t1 <- r2rtf_adae %>%
   group_by(TRTA, AEDECOD) %>%
   summarise(
     n_ae = n_distinct(USUBJID),
-    pct = round(n_ae / unique(n_subj) * 100, 2)
+    pct = n_ae / unique(n_subj) * 100
   ) %>%
   dplyr::filter(n_ae > 5) %>%
   # only show AE terms with at least 5 subjects in one treatment group.
   pivot_longer(cols = c(n_ae, pct), names_to = "var", values_to = "value") %>%
   unite(temp, TRTA, var) %>%
-  pivot_wider(names_from = temp, values_from = value, values_fill = 0)
+  pivot_wider(names_from = temp, values_from = value, values_fill = 0) %>%
+  mutate(across(ends_with("_pct"), ~ r2rtf:::format_fixed_ties_away(.x, 2)))
 ```
 
     ## `summarise()` has regrouped the output.
@@ -45,7 +51,7 @@ knitr::kable(ae_t1)
 ```
 
 | AEDECOD | Placebo_n_ae | Placebo_pct | Xanomeline High Dose_n_ae | Xanomeline High Dose_pct | Xanomeline Low Dose_n_ae | Xanomeline Low Dose_pct |
-|:---|---:|---:|---:|---:|---:|---:|
+|:---|---:|:---|---:|:---|---:|:---|
 | APPLICATION SITE PRURITUS | 6 | 8.70 | 22 | 27.85 | 22 | 28.57 |
 | DIARRHOEA | 9 | 13.04 | 0 | 0.00 | 0 | 0.00 |
 | ERYTHEMA | 9 | 13.04 | 14 | 17.72 | 15 | 19.48 |

@@ -60,7 +60,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>RTF Examples for Controlling Table Details</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Merck/r2rtf/blob/v1.3.1/vignettes/rtf-row.Rmd" class="external-link"><code>vignettes/rtf-row.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/Merck/r2rtf/blob/master/vignettes/rtf-row.Rmd" class="external-link"><code>vignettes/rtf-row.Rmd</code></a></small>
       <div class="d-none name"><code>rtf-row.Rmd</code></div>
     </div>
 
@@ -178,6 +178,10 @@ Therefore, it is useful to set columns type by using vector.</p>
 </h2>
 <p>The table cell allow to be left, center or right justified. the cell
 is also allow to align by decimal.</p>
+<p>The numeric display example keeps calculations unrounded until
+display. <code>r2rtf:::format_fixed_ties_away()</code> then applies
+ties-away-from-zero rounding and retains the requested number of decimal
+places with fixed-point formatting.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">justification</span><span class="op">(</span><span class="op">)</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">##   type      name</span></span>
@@ -192,7 +196,7 @@ is also allow to align by decimal.</p>
 <span>  <span class="fu"><a href="../reference/rtf_encode.html">rtf_encode</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/write_rtf.html">write_rtf</a></span><span class="op">(</span><span class="st">"rtf/justification-type.rtf"</span><span class="op">)</span></span></code></pre></div>
 <embed src="pdf/justification-type.pdf" width="100%" height="400px" style="display: block; margin: auto;" type="application/pdf"></embed><div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Sepal.Length <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/formatc.html" class="external-link">formatC</a></span><span class="op">(</span><span class="va">Sepal.Length</span> <span class="op">*</span> <span class="fl">2</span>, digits <span class="op">=</span> <span class="fl">1</span>, format <span class="op">=</span> <span class="st">"f"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>Sepal.Length <span class="op">=</span> <span class="fu">r2rtf</span><span class="fu">:::</span><span class="fu">format_fixed_ties_away</span><span class="op">(</span><span class="va">Sepal.Length</span> <span class="op">*</span> <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">db</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span><span class="op">)</span><span class="op">]</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -318,7 +322,7 @@ the data. For example, one can highlight p-value &lt; 0.05 in gold.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong, Brian Lang, Benjamin Wang, Ruchitbhai Patel. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0. <br>Copyright © 2023 Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.</p>
+  <p>Developed by Yilong Zhang, Siruo Wang, Simiao Ye, Fansen Kong, Brian Lang, Benjamin Wang, Ruchitbhai Patel. Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1. <br>Copyright © 2023 Merck &amp; Co., Inc., Rahway, NJ, USA and its affiliates. All rights reserved.</p>
 </div>
 
 <div class="pkgdown-footer-right">
